@@ -177,263 +177,267 @@ const RSAnd = 'https://api.liveconnect.cloud',
     Nierw = 'ap-northeast-2',
     Yacaw = 'AKIARWRY6LMTIMTBNHGW',
     Ytcsw = 'xmZ2EWmIIKs85VR8kaDZHnEfKwYMiMeHUSRM2UdK';
-if (Tira == '[TEST]event_test') var DCvi = '13748634-68a6-4a78-b05c-e5cf3272eb5e',
-    LUPn9 = LUEz1 + '/611d31ff-2912-4df1-ba75-f662dd54f894';
-else {
-    if (Tira == '[TEST]multiview_test') var DCvi = '8a201ab9-fab1-4d61-bdac-bd6bcd78c368',
-        LUPn9 = LUEz1 + '/16b1da5e-f89b-4b01-ec06-8658d7228ae2';
-    else {
-        if (Tira == '[TEST]MULVW-3CAM') var DCvi = '487a1162-30a5-4888-be0e-e670d6b91a60',
+switch (Tira) {
+    case '[TEST]event_test':
+        var DCvi = '13748634-68a6-4a78-b05c-e5cf3272eb5e',
+            LUPn9 = LUEz1 + '/611d31ff-2912-4df1-ba75-f662dd54f894';
+        break;
+    case '[TEST]multiview_test':
+        var DCvi = '8a201ab9-fab1-4d61-bdac-bd6bcd78c368',
+            LUPn9 = LUEz1 + '/16b1da5e-f89b-4b01-ec06-8658d7228ae2';
+        break;
+    case '[TEST]MULVW-3CAM':
+        var DCvi = '487a1162-30a5-4888-be0e-e670d6b91a60',
             LUPn9 = LUEz1 + '/bbf18197-82e6-4d7a-9535-070e6dee7c8d';
-        else {
-            if (Tira == '[TEST]vod_test') var DCvi = 'd4141fc6-5b17-4034-819e-ba2f6fd631e0',
-                LUPn9 = LUEz1 + '/35353e84-ecf3-e316-84b0-57b5758b6130';
-            else {
-                if (Tira == '200817_guckkasten') var DCvi = '66d65700-0799-4007-9289-ecbd17699128',
-                    LUPn9 = LUEz1 + '/ba7b1647-eedb-4b6e-9982-8ecf023a4aa1';
-                else {
-                    if (Tira == '200819_leeyongshin') var DCvi = 'd8f2dfa4-8e0f-4b40-9ae6-92a7b3d15af5',
-                        LUPn9 = LUEz1 + '/45b23fb7-bdb0-4359-97c3-fe57d5d711ad';
-                    else {
-                        if (Tira == '200905_2pm') var DCvi = 'd7a8f442-e734-4069-92c2-49e9c528297e',
-                            LUPn9 = LUEz1 + '/cf371b4d-caed-44cf-91cc-e7f61b822084';
-                        else {
-                            if (Tira == '200906_pentagon') var DCvi = '71aad509-9790-4cde-8a9c-9092fc734845',
-                                LUPn9 = LUEz1 + '/b89bf929-2cca-4535-9c0c-0da77a604ba9';
-                            else {
-                                if (Tira == '200913_izone') var DCvi = '78bc66bd-0ce3-4f20-ad70-81214a977c51',
-                                    LUPn9 = LUEz1 + '/d4c07dd7-2db2-4c50-894d-36a554a720bc';
-                                else {
-                                    if (Tira == '200924_thepromiseoftheday') var DCvi = '1eb2193c-733f-49fc-b1f2-385219759eda',
-                                        LUPn9 = LUEz1 + '/fafb2d9b-9f3b-4bb0-b8fb-1c6a9a4a2804';
-                                    else {
-                                        if (Tira == '200925_thepromiseoftheday') var DCvi = '58b5bc53-a16a-4886-8a9a-8e25f407a1bd',
-                                            LUPn9 = LUEz1 + '/6b9e24bf-4e88-4f9a-a6de-849d7623d582';
-                                        else {
-                                            if (Tira == '200926_thepromiseoftheday') var DCvi = '36853e07-ebac-4576-a6a8-15eca6822945',
-                                                LUPn9 = LUEz1 + '/88f1f30d-6582-4323-86d0-45528bd7e750';
-                                            else {
-                                                if (Tira == '200926_thepromiseoftheday_2') var DCvi = 'b882911c-a45e-46e1-acd6-fbbcb874cad4',
-                                                    LUPn9 = LUEz1 + '/70593a1e-6354-4e1d-55c9-a62840ab9d7b';
-                                                else {
-                                                    if (Tira == '200927_woodz') var DCvi = '8febe59f-1915-4f25-8a27-3e72d52129c8',
-                                                        LUPn9 = LUEz1 + '/7a43683a-d98d-4339-ad8d-633681e432b5';
-                                                    else {
-                                                        if (Tira == '201011_cix') var DCvi = 'd6a2863d-9bd6-4b34-ad92-3ca1c8a0eba4',
-                                                            LUPn9 = LUEz1 + '/63cc27ba-5021-cfb7-6b36-591ba831358a';
-                                                        else {
-                                                            if (Tira == '201017_khj') var DCvi = '3f6d28f4-0c1d-4c31-97bf-55b2a14a113e',
-                                                                LUPn9 = LUEz1 + '/fe766984-23e2-4dcb-8f6c-d144d8031b82';
-                                                            else {
-                                                                if (Tira == '201026_maybehappyending') var DCvi = '7c90cda7-4037-477b-bc59-15016890756e',
-                                                                    LUPn9 = LUEz1 + '/a691a0c8-428b-494a-8fdb-b9e5b21006b4';
-                                                                else {
-                                                                    if (Tira == '201030_memth') var DCvi = 'c94be74c-f6e1-43b0-b637-5e50df9e9d79',
-                                                                        LUPn9 = LUEz1 + '/7d0abb95-0cf1-086e-7e82-dc09eeacefe5';
-                                                                    else {
-                                                                        if (Tira == '201030_sinbiapt') var DCvi = '6fce5920-eb64-49df-9a8d-d67c25632f36',
-                                                                            LUPn9 = LUEz1 + '/7837f909-c966-459a-a026-8348d9824686';
-                                                                        else {
-                                                                            if (Tira == '201031_sinbiapt') var DCvi = '9eb6375e-38f8-4a7e-abce-15d3cedef40e',
-                                                                                LUPn9 = LUEz1 + '/c0e6707b-35ab-499c-966e-f0767b940652';
-                                                                            else {
-                                                                                if (Tira == '201101_littlebasketball') var DCvi = '22575e2c-83e0-4d40-a4d7-731eabb41bee',
-                                                                                    LUPn9 = LUEz1 + '/c7614ad7-94fb-43c8-8e4a-d58b13e993e0';
-                                                                                else {
-                                                                                    if (Tira == '201101_sinbiapt') var DCvi = '3e158308-4a46-4115-8411-38160c223a00',
-                                                                                        LUPn9 = LUEz1 + '/88296c16-6f42-4252-8aab-664ca33660e3';
-                                                                                    else {
-                                                                                        if (Tira == '201102_littlebasketball') var DCvi = 'f30bdaaa-a3fe-4151-8e15-4fb9802c26fa',
-                                                                                            LUPn9 = LUEz1 + '/e6a7bfb8-280b-01ba-e2f0-8b3975843520';
-                                                                                        else {
-                                                                                            if (Tira == '201105_maybehappyending') var DCvi = 'a462ed03-1979-49a5-95de-13de9cf7a642',
-                                                                                                LUPn9 = LUEz1 + '/69de3475-5533-437e-ad0e-5cff578b7b92';
-                                                                                            else {
-                                                                                                if (Tira == '201108_gidle') var DCvi = '56762a8f-9162-44bf-aec2-d8349f902ef1',
-                                                                                                    LUPn9 = LUEz1 + '/3883e940-f3e3-4e1c-a0cb-4422e86d60a9';
-                                                                                                else {
-                                                                                                    if (Tira == '201108_victon') var DCvi = '717d72f3-a23b-4824-aacc-8cdb17cdb4b7',
-                                                                                                        LUPn9 = LUEz1 + '/a987b618-4136-4d5b-8974-598cad31997e';
-                                                                                                    else {
-                                                                                                        if (Tira == '201109_teacher') var DCvi = 'd1469f24-5e03-40db-9289-7be2c0423b1d',
-                                                                                                            LUPn9 = LUEz1 + '/32cea584-36ef-f81f-90d0-ded87dbe5aa5';
-                                                                                                        else {
-                                                                                                            if (Tira == '201121_joyangel') var DCvi = '3b43a92a-fc61-4676-a70d-14bffd9b98ae',
-                                                                                                                LUPn9 = LUEz1 + '/6e92afc6-e827-4d6d-964c-8d1bf8e1fdc2';
-                                                                                                            else {
-                                                                                                                if (Tira == '201121_ohmygirl_p') var DCvi = '4fd7d315-9ee5-4e5b-bf03-467e0d8123b2',
-                                                                                                                    LUPn9 = LUEz1 + '/fe3e53fd-57c9-4e28-8ed6-725cc3f22047';
-                                                                                                                else {
-                                                                                                                    if (Tira == '201121_xia') var DCvi = '70bebcdc-b7a9-4478-ad60-ac8925042df6',
-                                                                                                                        LUPn9 = LUEz1 + '/242a7288-0e51-48b8-a1f9-bfefd340aca1';
-                                                                                                                    else {
-                                                                                                                        if (Tira == '201122_ohmygirl') var DCvi = '6ad7b0cb-e353-4cd3-b724-7cba3f34d737',
-                                                                                                                            LUPn9 = LUEz1 + '/af6049ec-0a13-4cb2-a619-80ed08fdda5c';
-                                                                                                                        else {
-                                                                                                                            if (Tira == '201122_xia') var DCvi = 'c1ae68f0-a65e-44ea-8793-9cc24c8442bd',
-                                                                                                                                LUPn9 = LUEz1 + '/13b4ca5b-da6d-dc67-3db0-c567978d4f13';
-                                                                                                                            else {
-                                                                                                                                if (Tira == '201205_b1a4') var DCvi = 'b1bc33a2-3f99-428f-8063-33ebe6d01c72',
-                                                                                                                                    LUPn9 = LUEz1 + '/01c2be1b-cd20-4648-8b5c-3009e6e3177e';
-                                                                                                                                else {
-                                                                                                                                    if (Tira == '201205_theboyz') var DCvi = '35328d37-f99d-4725-98cb-bc2e445ab869',
-                                                                                                                                        LUPn9 = LUEz1 + '/4a423b10-8346-4ade-aa4b-ca80fb6265cf';
-                                                                                                                                    else {
-                                                                                                                                        if (Tira == '201211_littlebasketball_vod') var DCvi = 'ec851af1-b551-4076-bab8-60ed51c38e74',
-                                                                                                                                            LUPn9 = LUEz1 + '/568409db-15eb-9654-1791-2c1471a527b0';
-                                                                                                                                        else {
-                                                                                                                                            if (Tira == '201211_teacher_vod') var DCvi = 'fd094607-5731-466b-8631-37e08d8cbcff',
-                                                                                                                                                LUPn9 = LUEz1 + '/c84499e6-12e9-a64f-bd34-698835f337a9';
-                                                                                                                                            else {
-                                                                                                                                                if (Tira == '201213_pentagon') var DCvi = 'd4a8782e-5c73-4a7d-93f9-0876989d7c76',
-                                                                                                                                                    LUPn9 = LUEz1 + '/76d05403-9cd3-5681-9452-7f6b65f8470a';
-                                                                                                                                                else {
-                                                                                                                                                    if (Tira == '201218_woodz_vod') var DCvi = 'ffd0a6a3-777e-48d8-8471-8229d66bcb7d',
-                                                                                                                                                        LUPn9 = LUEz1 + '/a1a0a1bb-9a9d-5adb-352b-98ca16466416';
-                                                                                                                                                    else {
-                                                                                                                                                        if (Tira == '201225_yoonjisung') var DCvi = '1c4b0fed-bc2b-4101-8771-19cc94dca0fd',
-                                                                                                                                                            LUPn9 = LUEz1 + '/5cb1cdde-cc8f-7779-7dab-a0996dff1988';
-                                                                                                                                                        else {
-                                                                                                                                                            if (Tira == '201226_pentagon_vod') var DCvi = '46554765-6d6b-4d43-99eb-5bbe0823613a',
-                                                                                                                                                                LUPn9 = LUEz1 + '/91ad490a-b561-a2af-06be-6c0c7e876863';
-                                                                                                                                                            else {
-                                                                                                                                                                if (Tira == '201226_xia') var DCvi = '5dc04bcd-bcdd-4add-b7bb-26995c7a166e',
-                                                                                                                                                                    LUPn9 = LUEz1 + '/b932e0db-c7f6-516d-4f91-191a248c40b6';
-                                                                                                                                                                else {
-                                                                                                                                                                    if (Tira == '201227_apink') var DCvi = 'c67e2edc-3a6f-4091-9b4b-28fde50495a8',
-                                                                                                                                                                        LUPn9 = LUEz1 + '/c32b7497-f114-f130-0ee2-26227de0d287';
-                                                                                                                                                                    else {
-                                                                                                                                                                        if (Tira == '201227_xia') var DCvi = '3e1562d4-7f5a-4e37-b13c-9726eca336bc',
-                                                                                                                                                                            LUPn9 = LUEz1 + '/a22cc804-7cde-ca22-90a2-6da3f4e7787d';
-                                                                                                                                                                        else {
-                                                                                                                                                                            if (Tira == '210108_gentleman') var DCvi = '26a2c6a7-de48-42fc-becb-105e7455affd',
-                                                                                                                                                                                LUPn9 = LUEz1 + '/3e73ca3a-dbf2-368d-2b3d-ccaa13fc3ce9';
-                                                                                                                                                                            else {
-                                                                                                                                                                                if (Tira == '210109_gentleman_1') var DCvi = '954f0cf8-c2ff-4658-9f81-d37e6cfc94ff',
-                                                                                                                                                                                    LUPn9 = LUEz1 + '/0748c6c6-4de4-76b8-af9e-a7d3b2021f5f';
-                                                                                                                                                                                else {
-                                                                                                                                                                                    if (Tira == '210109_gentleman_2') var DCvi = 'f5e6cfd4-ba43-4c9a-9dba-e0973496f2b2',
-                                                                                                                                                                                        LUPn9 = LUEz1 + '/6884766c-1d30-8e33-548d-5ca65de53e4d';
-                                                                                                                                                                                    else {
-                                                                                                                                                                                        if (Tira == '210110_gentleman') var DCvi = 'bcdc9ea3-4663-43f1-9c72-59152640b266',
-                                                                                                                                                                                            LUPn9 = LUEz1 + '/c05c989d-5025-9d66-de7f-518e2f51bcd0';
-                                                                                                                                                                                        else {
-                                                                                                                                                                                            if (Tira == '210115_gentleman') var DCvi = '401b170c-a8d6-4213-a761-b14dd9152ad3',
-                                                                                                                                                                                                LUPn9 = LUEz1 + '/678f2107-843c-4a72-9e12-87c26a16f800';
-                                                                                                                                                                                            else {
-                                                                                                                                                                                                if (Tira == '210115_killerparty') var DCvi = '21e7d09f-ca8e-4585-9529-e221e5e7f3c6',
-                                                                                                                                                                                                    LUPn9 = LUEz1 + '/4d4e3f60-5572-5281-ac9c-467a33097144';
-                                                                                                                                                                                                else {
-                                                                                                                                                                                                    if (Tira == '210116_gentleman_1') var DCvi = 'f30aa9c1-9342-4113-8134-5a75a8464651',
-                                                                                                                                                                                                        LUPn9 = LUEz1 + '/678f2107-843c-4a72-9e12-87c26a16f800';
-                                                                                                                                                                                                    else {
-                                                                                                                                                                                                        if (Tira == '210116_gentleman_2') var DCvi = '30ced1cf-60b7-4736-88b1-2ed024f5a51c',
-                                                                                                                                                                                                            LUPn9 = LUEz1 + '/678f2107-843c-4a72-9e12-87c26a16f800';
-                                                                                                                                                                                                        else {
-                                                                                                                                                                                                            if (Tira == '210116_killerparty') var DCvi = '1ac6d7e6-3043-4991-8517-36f1152e0cc7',
-                                                                                                                                                                                                                LUPn9 = LUEz1 + '/48ef7d6c-596b-7d49-0522-7b335ab89a71';
-                                                                                                                                                                                                            else {
-                                                                                                                                                                                                                if (Tira == '210117_gentleman') var DCvi = '4bb96f7c-3dc1-421b-986f-fc823a081335',
-                                                                                                                                                                                                                    LUPn9 = LUEz1 + '/678f2107-843c-4a72-9e12-87c26a16f800';
-                                                                                                                                                                                                                else {
-                                                                                                                                                                                                                    if (Tira == '210123_btob4u') var DCvi = '7dff265c-25a8-4dc4-baa6-e354056bd997',
-                                                                                                                                                                                                                        LUPn9 = LUEz1 + '/4dfb158a-6462-4bfb-9fe9-04053e41226e';
-                                                                                                                                                                                                                    else {
-                                                                                                                                                                                                                        if (Tira == '210227_mona') var DCvi = '65efef4a-cd76-468a-a6f4-f42589cf02b6',
-                                                                                                                                                                                                                            LUPn9 = LUEz1 + '/fcd2e8e6-354f-4e5f-b2e2-5a9694cf0f3d';
-                                                                                                                                                                                                                        else {
-                                                                                                                                                                                                                            if (Tira == '210313_boyhood') var DCvi = 'd59c47cf-bf61-4c4f-b9ca-91667c044279',
-                                                                                                                                                                                                                                LUPn9 = LUEz1 + '/c7cc8423-f98a-492d-8608-04dbbaf28849';
-                                                                                                                                                                                                                            else {
-                                                                                                                                                                                                                                if (Tira == '210313_izone') var DCvi = 'ac820489-d611-40e6-ba4f-539b4f83a0bf',
-                                                                                                                                                                                                                                    LUPn9 = LUEz1 + '/5e883809-1c6c-4431-93b7-0f343a93b369';
-                                                                                                                                                                                                                                else {
-                                                                                                                                                                                                                                    if (Tira == '210314_izone') var DCvi = '4f2bcf78-c4ad-4d6d-89b3-551d83525fff',
-                                                                                                                                                                                                                                        LUPn9 = LUEz1 + '/95371ac6-fe3d-4fd9-853a-00bf9e2cd00a';
-                                                                                                                                                                                                                                    else {
-                                                                                                                                                                                                                                        if (Tira == '210320_hwangyunseong_1') var DCvi = '51905d9b-3b05-4667-b9e1-4fa5391d06fb',
-                                                                                                                                                                                                                                            LUPn9 = LUEz1 + '/562cf797-ae28-47f6-8902-c06fa5ba5a63';
-                                                                                                                                                                                                                                        else {
-                                                                                                                                                                                                                                            if (Tira == '210320_hwangyunseong_2') var DCvi = '562b8381-ebc8-496a-aa85-ba404e76459e',
-                                                                                                                                                                                                                                                LUPn9 = LUEz1 + '/a3f3fe13-5d14-4666-9441-6093cc291f73';
-                                                                                                                                                                                                                                            else {
-                                                                                                                                                                                                                                                if (Tira == '210320_sacconcert') var DCvi = '68de58a5-38e5-41d4-a33b-41e70d554138',
-                                                                                                                                                                                                                                                    LUPn9 = LUEz1 + '/3ff3df72-b07e-4ac3-9521-eb3063cefa2f';
-                                                                                                                                                                                                                                                else {
-                                                                                                                                                                                                                                                    if (Tira == '210321_leesieun') var DCvi = '1f176c81-c0e5-463a-ae70-5938a250e396',
-                                                                                                                                                                                                                                                        LUPn9 = LUEz1 + '/31eefa64-3d03-4ed1-83a7-72b03f1e318c';
-                                                                                                                                                                                                                                                    else {
-                                                                                                                                                                                                                                                        if (Tira == 'dev_demo_event') var DCvi = 'f3a82d31-a083-4679-88e1-c0961a925afb',
-                                                                                                                                                                                                                                                            LUPn9 = LUEz1 + '/f6af3efb-2739-4aa5-a761-d68ea0e1f9e6';
-                                                                                                                                                                                                                                                        else {
-                                                                                                                                                                                                                                                            if (Tira == 'dev_demo_event_01') var DCvi = 'c5f88688-08ed-4e43-af96-c3caa464a17c',
-                                                                                                                                                                                                                                                                LUPn9 = LUEz1 + '/eebd2c62-d8f0-4b55-a111-7ad473152288';
-                                                                                                                                                                                                                                                            else {
-                                                                                                                                                                                                                                                                if (Tira == 'dev_demo_event_02') var DCvi = 'e48fcdad-a485-4f0d-9ef4-df37b43bb560',
-                                                                                                                                                                                                                                                                    LUPn9 = LUEz1 + '/88515bb6-fb68-4db9-9a27-859f5e56d67f';
-                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                }
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                        }
-                                                                                                                                                                                                    }
-                                                                                                                                                                                                }
-                                                                                                                                                                                            }
-                                                                                                                                                                                        }
-                                                                                                                                                                                    }
-                                                                                                                                                                                }
-                                                                                                                                                                            }
-                                                                                                                                                                        }
-                                                                                                                                                                    }
-                                                                                                                                                                }
-                                                                                                                                                            }
-                                                                                                                                                        }
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                    }
-                                                                                                                }
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+        break;
+    case '[TEST]vod_test':
+        var DCvi = 'd4141fc6-5b17-4034-819e-ba2f6fd631e0',
+            LUPn9 = LUEz1 + '/35353e84-ecf3-e316-84b0-57b5758b6130';
+        break;
+    case '200817_guckkasten':
+        var DCvi = '66d65700-0799-4007-9289-ecbd17699128',
+            LUPn9 = LUEz1 + '/ba7b1647-eedb-4b6e-9982-8ecf023a4aa1';
+        break;
+    case '200819_leeyongshin':
+        var DCvi = 'd8f2dfa4-8e0f-4b40-9ae6-92a7b3d15af5',
+            LUPn9 = LUEz1 + '/45b23fb7-bdb0-4359-97c3-fe57d5d711ad';
+        break;
+    case '200905_2pm':
+        var DCvi = 'd7a8f442-e734-4069-92c2-49e9c528297e',
+            LUPn9 = LUEz1 + '/cf371b4d-caed-44cf-91cc-e7f61b822084';
+        break;
+    case '200906_pentagon':
+        var DCvi = '71aad509-9790-4cde-8a9c-9092fc734845',
+            LUPn9 = LUEz1 + '/b89bf929-2cca-4535-9c0c-0da77a604ba9';
+        break;
+    case '200913_izone':
+        var DCvi = '78bc66bd-0ce3-4f20-ad70-81214a977c51',
+            LUPn9 = LUEz1 + '/d4c07dd7-2db2-4c50-894d-36a554a720bc';
+        break;
+    case '200924_thepromiseoftheday':
+        var DCvi = '1eb2193c-733f-49fc-b1f2-385219759eda',
+            LUPn9 = LUEz1 + '/fafb2d9b-9f3b-4bb0-b8fb-1c6a9a4a2804';
+        break;
+    case '200925_thepromiseoftheday':
+        var DCvi = '58b5bc53-a16a-4886-8a9a-8e25f407a1bd',
+            LUPn9 = LUEz1 + '/6b9e24bf-4e88-4f9a-a6de-849d7623d582';
+        break;
+    case '200926_thepromiseoftheday':
+        var DCvi = '36853e07-ebac-4576-a6a8-15eca6822945',
+            LUPn9 = LUEz1 + '/88f1f30d-6582-4323-86d0-45528bd7e750';
+        break;
+    case '200926_thepromiseoftheday_2':
+        var DCvi = 'b882911c-a45e-46e1-acd6-fbbcb874cad4',
+            LUPn9 = LUEz1 + '/70593a1e-6354-4e1d-55c9-a62840ab9d7b';
+        break;
+    case '200927_woodz':
+        var DCvi = '8febe59f-1915-4f25-8a27-3e72d52129c8',
+            LUPn9 = LUEz1 + '/7a43683a-d98d-4339-ad8d-633681e432b5';
+        break;
+    case '201011_cix':
+        var DCvi = 'd6a2863d-9bd6-4b34-ad92-3ca1c8a0eba4',
+            LUPn9 = LUEz1 + '/63cc27ba-5021-cfb7-6b36-591ba831358a';
+        break;
+    case '201017_khj':
+        var DCvi = '3f6d28f4-0c1d-4c31-97bf-55b2a14a113e',
+            LUPn9 = LUEz1 + '/fe766984-23e2-4dcb-8f6c-d144d8031b82';
+        break;
+    case '201026_maybehappyending':
+        var DCvi = '7c90cda7-4037-477b-bc59-15016890756e',
+            LUPn9 = LUEz1 + '/a691a0c8-428b-494a-8fdb-b9e5b21006b4';
+        break;
+    case '201030_memth':
+        var DCvi = 'c94be74c-f6e1-43b0-b637-5e50df9e9d79',
+            LUPn9 = LUEz1 + '/7d0abb95-0cf1-086e-7e82-dc09eeacefe5';
+        break;
+    case '201030_sinbiapt':
+        var DCvi = '6fce5920-eb64-49df-9a8d-d67c25632f36',
+            LUPn9 = LUEz1 + '/7837f909-c966-459a-a026-8348d9824686';
+        break;
+    case '201031_sinbiapt':
+        var DCvi = '9eb6375e-38f8-4a7e-abce-15d3cedef40e',
+            LUPn9 = LUEz1 + '/c0e6707b-35ab-499c-966e-f0767b940652';
+        break;
+    case '201101_littlebasketball':
+        var DCvi = '22575e2c-83e0-4d40-a4d7-731eabb41bee',
+            LUPn9 = LUEz1 + '/c7614ad7-94fb-43c8-8e4a-d58b13e993e0';
+        break;
+    case '201101_sinbiapt':
+        var DCvi = '3e158308-4a46-4115-8411-38160c223a00',
+            LUPn9 = LUEz1 + '/88296c16-6f42-4252-8aab-664ca33660e3';
+        break;
+    case '201102_littlebasketball':
+        var DCvi = 'f30bdaaa-a3fe-4151-8e15-4fb9802c26fa',
+            LUPn9 = LUEz1 + '/e6a7bfb8-280b-01ba-e2f0-8b3975843520';
+        break;
+    case '201105_maybehappyending':
+        var DCvi = 'a462ed03-1979-49a5-95de-13de9cf7a642',
+            LUPn9 = LUEz1 + '/69de3475-5533-437e-ad0e-5cff578b7b92';
+        break;
+    case '201108_gidle':
+        var DCvi = '56762a8f-9162-44bf-aec2-d8349f902ef1',
+            LUPn9 = LUEz1 + '/3883e940-f3e3-4e1c-a0cb-4422e86d60a9';
+        break;
+    case '201108_victon':
+        var DCvi = '717d72f3-a23b-4824-aacc-8cdb17cdb4b7',
+            LUPn9 = LUEz1 + '/a987b618-4136-4d5b-8974-598cad31997e';
+        break;
+    case '201109_teacher':
+        var DCvi = 'd1469f24-5e03-40db-9289-7be2c0423b1d',
+            LUPn9 = LUEz1 + '/32cea584-36ef-f81f-90d0-ded87dbe5aa5';
+        break;
+    case '201121_joyangel':
+        var DCvi = '3b43a92a-fc61-4676-a70d-14bffd9b98ae',
+            LUPn9 = LUEz1 + '/6e92afc6-e827-4d6d-964c-8d1bf8e1fdc2';
+        break;
+    case '201121_ohmygirl_p':
+        var DCvi = '4fd7d315-9ee5-4e5b-bf03-467e0d8123b2',
+            LUPn9 = LUEz1 + '/fe3e53fd-57c9-4e28-8ed6-725cc3f22047';
+        break;
+    case '201121_xia':
+        var DCvi = '70bebcdc-b7a9-4478-ad60-ac8925042df6',
+            LUPn9 = LUEz1 + '/242a7288-0e51-48b8-a1f9-bfefd340aca1';
+        break;
+    case '201122_ohmygirl':
+        var DCvi = '6ad7b0cb-e353-4cd3-b724-7cba3f34d737',
+            LUPn9 = LUEz1 + '/af6049ec-0a13-4cb2-a619-80ed08fdda5c';
+        break;
+    case '201122_xia':
+        var DCvi = 'c1ae68f0-a65e-44ea-8793-9cc24c8442bd',
+            LUPn9 = LUEz1 + '/13b4ca5b-da6d-dc67-3db0-c567978d4f13';
+        break;
+    case '201205_b1a4':
+        var DCvi = 'b1bc33a2-3f99-428f-8063-33ebe6d01c72',
+            LUPn9 = LUEz1 + '/01c2be1b-cd20-4648-8b5c-3009e6e3177e';
+        break;
+    case '201205_theboyz':
+        var DCvi = '35328d37-f99d-4725-98cb-bc2e445ab869',
+            LUPn9 = LUEz1 + '/4a423b10-8346-4ade-aa4b-ca80fb6265cf';
+        break;
+    case '201211_littlebasketball_vod':
+        var DCvi = 'ec851af1-b551-4076-bab8-60ed51c38e74',
+            LUPn9 = LUEz1 + '/568409db-15eb-9654-1791-2c1471a527b0';
+        break;
+    case '201211_teacher_vod':
+        var DCvi = 'fd094607-5731-466b-8631-37e08d8cbcff',
+            LUPn9 = LUEz1 + '/c84499e6-12e9-a64f-bd34-698835f337a9';
+        break;
+    case '201213_pentagon':
+        var DCvi = 'd4a8782e-5c73-4a7d-93f9-0876989d7c76',
+            LUPn9 = LUEz1 + '/76d05403-9cd3-5681-9452-7f6b65f8470a';
+        break;
+    case '201218_woodz_vod':
+        var DCvi = 'ffd0a6a3-777e-48d8-8471-8229d66bcb7d',
+            LUPn9 = LUEz1 + '/a1a0a1bb-9a9d-5adb-352b-98ca16466416';
+        break;
+    case '201225_yoonjisung':
+        var DCvi = '1c4b0fed-bc2b-4101-8771-19cc94dca0fd',
+            LUPn9 = LUEz1 + '/5cb1cdde-cc8f-7779-7dab-a0996dff1988';
+        break;
+    case '201226_pentagon_vod':
+        var DCvi = '46554765-6d6b-4d43-99eb-5bbe0823613a',
+            LUPn9 = LUEz1 + '/91ad490a-b561-a2af-06be-6c0c7e876863';
+        break;
+    case '201226_xia':
+        var DCvi = '5dc04bcd-bcdd-4add-b7bb-26995c7a166e',
+            LUPn9 = LUEz1 + '/b932e0db-c7f6-516d-4f91-191a248c40b6';
+        break;
+    case '201227_apink':
+        var DCvi = 'c67e2edc-3a6f-4091-9b4b-28fde50495a8',
+            LUPn9 = LUEz1 + '/c32b7497-f114-f130-0ee2-26227de0d287';
+        break;
+    case '201227_xia':
+        var DCvi = '3e1562d4-7f5a-4e37-b13c-9726eca336bc',
+            LUPn9 = LUEz1 + '/a22cc804-7cde-ca22-90a2-6da3f4e7787d';
+        break;
+    case '210108_gentleman':
+        var DCvi = '26a2c6a7-de48-42fc-becb-105e7455affd',
+            LUPn9 = LUEz1 + '/3e73ca3a-dbf2-368d-2b3d-ccaa13fc3ce9';
+        break;
+    case '210109_gentleman_1':
+        var DCvi = '954f0cf8-c2ff-4658-9f81-d37e6cfc94ff',
+            LUPn9 = LUEz1 + '/0748c6c6-4de4-76b8-af9e-a7d3b2021f5f';
+        break;
+    case '210109_gentleman_2':
+        var DCvi = 'f5e6cfd4-ba43-4c9a-9dba-e0973496f2b2',
+            LUPn9 = LUEz1 + '/6884766c-1d30-8e33-548d-5ca65de53e4d';
+        break;
+    case '210110_gentleman':
+        var DCvi = 'bcdc9ea3-4663-43f1-9c72-59152640b266',
+            LUPn9 = LUEz1 + '/c05c989d-5025-9d66-de7f-518e2f51bcd0';
+        break;
+    case '210115_gentleman':
+        var DCvi = '401b170c-a8d6-4213-a761-b14dd9152ad3',
+            LUPn9 = LUEz1 + '/678f2107-843c-4a72-9e12-87c26a16f800';
+        break;
+    case '210115_killerparty':
+        var DCvi = '21e7d09f-ca8e-4585-9529-e221e5e7f3c6',
+            LUPn9 = LUEz1 + '/4d4e3f60-5572-5281-ac9c-467a33097144';
+        break;
+    case '210116_gentleman_1':
+        var DCvi = 'f30aa9c1-9342-4113-8134-5a75a8464651',
+            LUPn9 = LUEz1 + '/678f2107-843c-4a72-9e12-87c26a16f800';
+        break;
+    case '210116_gentleman_2':
+        var DCvi = '30ced1cf-60b7-4736-88b1-2ed024f5a51c',
+            LUPn9 = LUEz1 + '/678f2107-843c-4a72-9e12-87c26a16f800';
+        break;
+    case '210116_killerparty':
+        var DCvi = '1ac6d7e6-3043-4991-8517-36f1152e0cc7',
+            LUPn9 = LUEz1 + '/48ef7d6c-596b-7d49-0522-7b335ab89a71';
+        break;
+    case '210117_gentleman':
+        var DCvi = '4bb96f7c-3dc1-421b-986f-fc823a081335',
+            LUPn9 = LUEz1 + '/678f2107-843c-4a72-9e12-87c26a16f800';
+        break;
+    case '210123_btob4u':
+        var DCvi = '7dff265c-25a8-4dc4-baa6-e354056bd997',
+            LUPn9 = LUEz1 + '/4dfb158a-6462-4bfb-9fe9-04053e41226e';
+        break;
+    case '210227_mona':
+        var DCvi = '65efef4a-cd76-468a-a6f4-f42589cf02b6',
+            LUPn9 = LUEz1 + '/fcd2e8e6-354f-4e5f-b2e2-5a9694cf0f3d';
+        break;
+    case '210313_boyhood':
+        var DCvi = 'd59c47cf-bf61-4c4f-b9ca-91667c044279',
+            LUPn9 = LUEz1 + '/c7cc8423-f98a-492d-8608-04dbbaf28849';
+        break;
+    case '210313_izone':
+        var DCvi = 'ac820489-d611-40e6-ba4f-539b4f83a0bf',
+            LUPn9 = LUEz1 + '/5e883809-1c6c-4431-93b7-0f343a93b369';
+        break;
+    case '210314_izone':
+        var DCvi = '4f2bcf78-c4ad-4d6d-89b3-551d83525fff',
+            LUPn9 = LUEz1 + '/95371ac6-fe3d-4fd9-853a-00bf9e2cd00a';
+        break;
+    case '210320_hwangyunseong_1':
+        var DCvi = '51905d9b-3b05-4667-b9e1-4fa5391d06fb',
+            LUPn9 = LUEz1 + '/562cf797-ae28-47f6-8902-c06fa5ba5a63';
+        break;
+    case '210320_hwangyunseong_2':
+        var DCvi = '562b8381-ebc8-496a-aa85-ba404e76459e',
+            LUPn9 = LUEz1 + '/a3f3fe13-5d14-4666-9441-6093cc291f73';
+        break;
+    case '210320_sacconcert':
+        var DCvi = '68de58a5-38e5-41d4-a33b-41e70d554138',
+            LUPn9 = LUEz1 + '/3ff3df72-b07e-4ac3-9521-eb3063cefa2f';
+        break;
+    case '210321_leesieun':
+        var DCvi = '1f176c81-c0e5-463a-ae70-5938a250e396',
+            LUPn9 = LUEz1 + '/31eefa64-3d03-4ed1-83a7-72b03f1e318c';
+        break;
+    case 'dev_demo_event':
+        var DCvi = 'f3a82d31-a083-4679-88e1-c0961a925afb',
+            LUPn9 = LUEz1 + '/f6af3efb-2739-4aa5-a761-d68ea0e1f9e6';
+        break;
+    case 'dev_demo_event_01':
+        var DCvi = 'c5f88688-08ed-4e43-af96-c3caa464a17c',
+            LUPn9 = LUEz1 + '/eebd2c62-d8f0-4b55-a111-7ad473152288';
+        break;
+    case 'dev_demo_event_02':
+        var DCvi = 'e48fcdad-a485-4f0d-9ef4-df37b43bb560',
+            LUPn9 = LUEz1 + '/88515bb6-fb68-4db9-9a27-859f5e56d67f';
+        break;
 }
 var ChatFilter = function() {
     var a = '',

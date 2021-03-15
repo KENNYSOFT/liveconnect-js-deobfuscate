@@ -24,6 +24,9 @@ const deobfuscate = async (url) => {
             .replace(/\\x27/g, '\\\'')
             .replace(/\\x([0-9a-f]{2})/g, (_, g1) => String.fromCharCode(parseInt(g1, 16)))
             .replace(/0x([0-9a-f]+)/g, (_, g1) => parseInt(g1, 16))
+            .replace(/\nif \(Tira == ('[^']*')\) (var DCvi = '[^']*',\n *LUPn9 = LUEz1 \+ '[^']*');\n *else {/g, 'switch(Tira){case $1:$2;break;')
+            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*',\n *LUPn9 = LUEz1 \+ '[^']*');\n *else {/g, 'case $1:$2;break;')
+            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*',\n *LUPn9 = LUEz1 \+ '[^']*');(\n *})*/g, 'case $1:$2;break;}')
     );
 };
 
