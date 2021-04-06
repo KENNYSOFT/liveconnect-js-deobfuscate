@@ -16,7 +16,7 @@ var selectArr = [],
     callbackArr = [];
 
 function cusDD(a, b, c) {
-    var d = ![];
+    var d = false;
     for (var e = 0; e < selectArr.length; e++) {
         if ('cnPhi' !== 'cnPhi') {
             function k() {
@@ -25,7 +25,7 @@ function cusDD(a, b, c) {
             }
         } else {
             if (selectArr[e] == a) {
-                callbackArr[e] = c, d = !![];
+                callbackArr[e] = c, d = true;
                 break;
             }
         }
@@ -443,7 +443,7 @@ switch (Tira) {
 }
 var ChatFilter = function() {
     var a = '',
-        b = ![];
+        b = false;
     return {
         'loadChatFilterData': function(c) {
             if ('PmUiH' === 'TQpeQ') {
@@ -478,7 +478,7 @@ var ChatFilter = function() {
                                 if (d.status == 200 || d.status == 201) {
                                     a = d.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
                                     a[a.length - 1] == '|' && (a = a.substr(0, a.length - 1));
-                                    b = !![];
+                                    b = true;
                                     if (c) c();
                                 }
                             }
@@ -510,7 +510,7 @@ var ChatFilter = function() {
 }();
 (function(c) {
     var d = function() {
-            var m = !![];
+            var m = true;
             return function(n, o) {
                 var p = m ? function() {
                     if ('Chqpo' !== 'Chqpo') {
@@ -530,7 +530,7 @@ var ChatFilter = function() {
                         }
                     }
                 } : function() {};
-                return m = ![], p;
+                return m = false, p;
             };
         }(),
         e = d(this, function() {
@@ -594,9 +594,9 @@ var ChatFilter = function() {
             });
             else {
                 function A() {
-                    var B = ![];
+                    var B = false;
                     return function(C) {
-                        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(C) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(C.substr(0, 4))) B = !![];
+                        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(C) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(C.substr(0, 4))) B = true;
                     }(d.userAgent || e.vendor || f.opera), B;
                 }
             }
@@ -622,13 +622,13 @@ var ChatFilter = function() {
                         function A() {
                             if (d) e(f);
                         }
-                    } else return !![];
-                } else return ![];
+                    } else return true;
+                } else return false;
             }
         }
 
         function q(x) {
-            if ('IwVou' !== 'TIplS') return x.search(/\s/) != -1 ? !![] : ![];
+            if ('IwVou' !== 'TIplS') return x.search(/\s/) != -1 ? true : false;
             else {
                 function y() {
                     var z = {};
@@ -695,7 +695,7 @@ var ChatFilter = function() {
                                 function A() {
                                     k = l.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
                                     m[n.length - 1] == '|' && (u = v.substr(0, w.length - 1));
-                                    r = !![];
+                                    r = true;
                                     if (s) t();
                                 }
                             }
@@ -718,7 +718,7 @@ var ChatFilter = function() {
                 if (x < y) {
                     if ('ZWAjL' !== 'ZWAjL') {
                         function D() {
-                            return !![];
+                            return true;
                         }
                     } else {
                         c('#dayWrap').css('display', 'none');
@@ -894,7 +894,7 @@ var ChatFilter = function() {
                 }
                 c('#enterBtn').on('click', function() {
                     if ('EpcOs' !== 'QSfMP') {
-                        c('#customerId').val(''), c('#ticketId').val(''), c('#loginFailTxt').text(''), c('#chk_save2').prop('checked', !![]);
+                        c('#customerId').val(''), c('#ticketId').val(''), c('#loginFailTxt').text(''), c('#chk_save2').prop('checked', true);
                         var I = {
                             'user_id': getCookie(DCvi + '_user_id'),
                             'device_id': getCookie(DCvi + '_device_id'),
@@ -952,8 +952,8 @@ var ChatFilter = function() {
                         function I() {
                             var J = c.navigator.userAgent.toLowerCase(),
                                 K = J.indexOf('trident');
-                            if (K > -1) return !![];
-                            return ![];
+                            if (K > -1) return true;
+                            return false;
                         }
                     }
                 }), c('#loginBtn').on('click', function() {
@@ -1036,7 +1036,7 @@ var ChatFilter = function() {
                             } else {
                                 function L() {
                                     var M = d.navigator.userAgent.toLowerCase();
-                                    return M.indexOf('edg') !== -1 || M.indexOf('edge') !== -1 ? !![] : ![];
+                                    return M.indexOf('edg') !== -1 || M.indexOf('edge') !== -1 ? true : false;
                                 }
                             }
                         }
@@ -1198,7 +1198,7 @@ var ChatFilter = function() {
                 }), c('#nickname').on('keydown', function(I) {
                     I.keyCode == 13 && c('#createNickBtn').click();
                 }), c('#authBtn').on('click', function() {
-                    c('#authCustomerId').text(''), c('#authTicketId').text(''), c('#authFailTxt').text(''), c('#chk_save').prop('checked', !![]), c('#authPopup').css('display', 'block');
+                    c('#authCustomerId').text(''), c('#authTicketId').text(''), c('#authFailTxt').text(''), c('#chk_save').prop('checked', true), c('#authPopup').css('display', 'block');
                     if (!c('#authCustomerId').val() && getCookie(DCvi + '_customer_id')) {
                         if ('iNFwC' === 'ajUKB') {
                             function I() {
@@ -1226,7 +1226,7 @@ var ChatFilter = function() {
                                 return;
                             } else {
                                 function L() {
-                                    return d.userAgent.match('CriOS') ? !![] : ![];
+                                    return d.userAgent.match('CriOS') ? true : false;
                                 }
                             }
                         }
@@ -1246,7 +1246,7 @@ var ChatFilter = function() {
                             } else {
                                 if ('ZUkDG' !== 'ZUkDG') {
                                     function N() {
-                                        return !![];
+                                        return true;
                                     }
                                 } else removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id'), removeCookie(DCvi + '_user_id');
                             }
@@ -1263,7 +1263,7 @@ var ChatFilter = function() {
                         });
                     } else {
                         function M() {
-                            return !![];
+                            return true;
                         }
                     }
                 }), c('#authCustomerId, #authTicketId').on('keydown', function(I) {
@@ -1369,7 +1369,7 @@ var requestCnt = 0,
 
 function request_to_server(a, b, c, d, e) {
     var f = new XMLHttpRequest();
-    f.open(a, b, !![]), f.withCredentials = !![], f.setRequestHeader('X-CSRFToken', getCookie('csrftoken')), f.timeout = 60000;
+    f.open(a, b, true), f.withCredentials = true, f.setRequestHeader('X-CSRFToken', getCookie('csrftoken')), f.timeout = 60000;
     if (c) {
         var g = new FormData();
         for (var h in c) {
@@ -1550,8 +1550,8 @@ function alertPopup(a, b, c, d) {
 }
 
 function checkInterparkApp() {
-    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) return !![];
-    return ![];
+    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) return true;
+    return false;
 }
 
 function getQueryStringObject() {
@@ -1570,7 +1570,7 @@ function checkIEbrowser() {
     var a = window.navigator.userAgent.toLowerCase(),
         b = a.indexOf('trident');
     if (b > -1) {
-        if ('KnQYv' !== 'VnfLU') return !![];
+        if ('KnQYv' !== 'VnfLU') return true;
         else {
             function c() {
                 var d = g ? function() {
@@ -1579,11 +1579,11 @@ function checkIEbrowser() {
                         return s = null, t;
                     }
                 } : function() {};
-                return l = ![], d;
+                return l = false, d;
             }
         }
     }
-    return ![];
+    return false;
 }
 
 function checkEdgeBrowser() {
@@ -1593,15 +1593,15 @@ function checkEdgeBrowser() {
             function b() {
                 b('#dayWrap').css('display', 'block');
             }
-        } else return !![];
-    } else return ![];
+        } else return true;
+    } else return false;
 }
 
 function checkMobileAndTablet() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
         if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
-            if ('AzcCD' === 'AzcCD') return !![];
+            if ('AzcCD' === 'AzcCD') return true;
             else {
                 function d() {
                     b.text('인터파크ID와 예매번호를 입력해 주세요.');
@@ -1631,10 +1631,10 @@ function checkMobileAndTablet() {
 }
 
 function isMobile() {
-    var a = ![];
+    var a = false;
     return function(b) {
         if ('budIr' !== 'Dyleb') {
-            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(b) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(b.substr(0, 4))) a = !![];
+            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(b) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(b.substr(0, 4))) a = true;
         } else {
             function c() {
                 b = 'cusDD_slick_d';
@@ -1700,7 +1700,7 @@ function getOrientation() {
                 if (b.length == 1) f[b[0]] = '';
                 else g[b[0]] = h(b[1].replace(/\+/g, ' '));
             }
-        } else return ![];
+        } else return false;
     }
     if (isIOS()) switch (window.orientation) {
         case -90:
@@ -1720,7 +1720,7 @@ function checkMobile() {
                     var e = '1eb2193c-733f-49fc-b1f2-385219759eda',
                         f = c + '/fafb2d9b-9f3b-4bb0-b8fb-1c6a9a4a2804';
                 }
-            } else return !![];
+            } else return true;
         } else {
             if ('dBoft' === 'dBoft') {
                 var b = navigator.userAgent.toLowerCase(),
@@ -1744,14 +1744,14 @@ function checkMobile() {
 
 function isChrome() {
     if (navigator.userAgent.match('CriOS')) {
-        if ('oFOXC' !== 'WUNml') return !![];
+        if ('oFOXC' !== 'WUNml') return true;
         else {
             function a() {
                 b.text('Enter INTERPARK ID and reservation number.');
             }
         }
     } else {
-        if ('RBSwF' === 'RBSwF') return ![];
+        if ('RBSwF' === 'RBSwF') return false;
         else {
             function b() {
                 b.text('请输入INTERPARK账户和预订号码');
