@@ -26,15 +26,16 @@ const deobfuscate = async (url) => {
             .replace(/0x([0-9a-f]+)/g, (_, g1) => parseInt(g1, 16))
             .replace(/!!\[\]/g, 'true')
             .replace(/!\[\]/g, 'false')
-            .replace(/\nif \(Tira == ('[^']*')\) (var DCvi = '[^']*',\n *LUPn9 = LUEz1 \+ '[^']*');\n *else {/g, 'switch(Tira){case $1:$2;break;')
-            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*',\n *LUPn9 = LUEz1 \+ '[^']*');\n *else {/g, 'case $1:$2;break;')
-            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*',\n *LUPn9 = LUEz1 \+ '[^']*');(\n *})*/g, 'case $1:$2;break;}')
+            .replace(/\nif \(Tira == ('[^']*')\) (var DCvi = '[^']*'(,\n *LUPn9 = LUEz1 \+ '[^']*')?);\n *else {/g, 'switch(Tira){case $1:$2;break;')
+            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*'(,\n *LUPn9 = LUEz1 \+ '[^']*')?);\n *else {/g, 'case $1:$2;break;')
+            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*'(,\n *LUPn9 = LUEz1 \+ '[^']*')?);(\n *})*/g, 'case $1:$2;break;}')
     );
 };
 
 const main = async () => {
     fs.writeFileSync('itg_e.js', await deobfuscate('https://event.liveconnect.co.kr/static/js/dist/itg_e.min.js'));
     fs.writeFileSync('itg_p.js', await deobfuscate('https://event.liveconnect.co.kr/static/js/dist/itg_p.min.js'));
+    fs.writeFileSync('app-player.js', await deobfuscate('https://event.liveconnect.co.kr/static/js/dist/app-player.min.js'));
 };
 
 main().then(() => {process.exit(0);});
