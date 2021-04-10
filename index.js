@@ -33,8 +33,7 @@ const deobfuscate = async (url) => {
 };
 
 const main = async () => {
-    fs.writeFileSync('itg_e.js', await deobfuscate('https://event.liveconnect.co.kr/static/js/dist/itg_e.min.js'));
-    fs.writeFileSync('itg_p.js', await deobfuscate('https://event.liveconnect.co.kr/static/js/dist/itg_p.min.js'));
+    fs.writeFileSync('app-enter.js', await deobfuscate('https://event.liveconnect.co.kr/static/js/dist/app-enter.min.js'));
     fs.writeFileSync('app-player.js', await deobfuscate('https://event.liveconnect.co.kr/static/js/dist/app-player.min.js'));
 };
 
