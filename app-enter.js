@@ -831,7 +831,7 @@ var ChatFilter = function() {
                     c.keyCode == 13 && e.click();
                 }
             } else {
-                var u = e48fcdad - a485 - 4 f0d - 9 ef4 - df37b43bb560,
+                var u = ['e48fcdad-a485-4f0d-9ef4-df37b43bb560'],
                     v = a('#enterBtn'),
                     w = a('#authBtn'),
                     x = a('#readyBtn'),

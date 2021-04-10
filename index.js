@@ -17,7 +17,7 @@ const deobfuscate = async (url) => {
             .replace(/([^ ])\['([0-9a-z_-]*)'\]/ig, '$1.$2')
             .replace(/([^ ])\['([0-9a-z_-]*)'\]/ig, '$1.$2')
             .replace(/ \['bind'\]\(this\)/g, '.bind(this)')
-            .replace(/ \['([0-9a-z_-]*)'\]/ig, ' $1')
+            .replace(/\} \['([0-9a-z_-]*)'\]/ig, '} $1')
             .replace(/\\x09/g, '\\t')
             .replace(/\\x0a/g, '\\n')
             .replace(/\\x0d/g, '\\r')
