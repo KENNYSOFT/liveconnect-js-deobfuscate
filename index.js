@@ -7,11 +7,9 @@ const fs = require('fs');
 const deobfuscate = async (url) => {
     const res = await fetch(url);
     const js = await res.text();
-    try {
-        eval(js);
-    } catch (ignored) {
-    }
-    return beautify(beautify(js.replace(/a0b\('0x([0-9a-f]+)'\)/g, (_, g1) => `'${a0b(parseInt(g1, 16)).replace(/'/g, '\\\'')}'`))
+    const [_, decryptor, source] = js.match(/^(.*var a0b=function\([^}]*};)(.*)$/);
+    eval(decryptor);
+    return beautify(beautify(source.replace(/a0b\('0x([0-9a-f]+)'\)/g, (_, g1) => `'${a0b(parseInt(g1, 16)).replace(/'/g, '\\\'')}'`))
             .replace(/    (get|set)\['([0-9a-z_-]*)'\]/ig, '$1 $2')
             .replace(/(\/[a-z]*|') \['([0-9a-z_-]*)'\]/ig, '$1.$2')
             .replace(/([^ ])\['([0-9a-z_-]*)'\]/ig, '$1.$2')
