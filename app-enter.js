@@ -5,22 +5,12 @@ function cusDD(a, b, c) {
     var d = false;
     for (var e = 0; e < selectArr.length; e++) {
         if (selectArr[e] == a) {
-            if ('bLmyo' === 'qdUpg') {
-                function k() {
-                    c('enter', d.nickname);
-                }
-            } else {
-                callbackArr[e] = c, d = true;
-                break;
-            }
+            callbackArr[e] = c, d = true;
+            break;
         }
     }
     if (!d) {
-        if ('JnCwZ' !== 'JnCwZ') {
-            function l() {
-                b.text('账户名仅限2~12字节');
-            }
-        } else selectArr.push(a), callbackArr.push(c);
+        selectArr.push(a), callbackArr.push(c);
     }
     var f = '';
     if (!b) f = 'cusDD_default';
@@ -51,30 +41,14 @@ function cusDD(a, b, c) {
         }
         var o = 200;
         if ($(this).find('.cusDD_options').children()) {
-            if ('hvzJC' === 'hvzJC') {
-                if ($(this).find('.cusDD_options').children().length > 30) {
-                    if ('WFkSw' !== 'WFkSw') {
-                        function p() {
-                            var q = 'b882911c-a45e-46e1-acd6-fbbcb874cad4';
-                        }
-                    } else o = 0;
-                }
-            } else {
-                function q() {
-                    o.prop('checked') ? (C(D + '_customer_id', E.customer_id, 20160), F(G + '_ticket_id', H.ticket_id, 20160)) : (I(J + '_customer_id'), K(L + '_ticket_id')), z(A + '_ticket_id', B.ticket_id, 20160);
-                }
+            if ($(this).find('.cusDD_options').children().length > 30) {
+                o = 0;
             }
         }
         $(this).find('.cusDD_options').slideToggle(o), $(this).find('.cusDD_arrow').toggleClass('active');
     }), $(a).find('.cusDD_opt').click(function() {
-        if ('ecbFo' !== 'ecbFo') {
-            function m() {
-                c = '0' + d;
-            }
-        } else {
-            $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
-            if (c) c($(this).data(), $(this));
-        }
+        $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
+        if (c) c($(this).data(), $(this));
     });
 }(function(a) {
     a.fn.changeElementType = function(b) {
@@ -82,11 +56,7 @@ function cusDD(a, b, c) {
         a.each(this[0].attributes, function(d, e) {
             c[e.nodeName] = e.nodeValue;
         }), this.replaceWith(function() {
-            if ('qktUD' !== 'qktUD') {
-                function d() {
-                    return true;
-                }
-            } else return a('<' + b + '/>', c).append(a(this).contents());
+            return a('<' + b + '/>', c).append(a(this).contents());
         });
     };
 }(jQuery));
@@ -97,22 +67,10 @@ function cusDDselectOption(a, b, c) {
             $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
             $(this).data().id && ($($(this).parent()).siblings('.cusDD_select').data().id = $(this).data().id);
             if (c) {
-                if ('tUbRK' === 'mKIVF') {
-                    function f() {
-                        e.text(f.duplicatedNickname(g).desc), h();
-                    }
-                } else {
-                    var d = '#' + $(this).parent().parent().attr('id');
-                    for (var e = 0; e < selectArr.length; e++) {
-                        if ('iPYbi' === 'oxlJM') {
-                            function g() {
-                                b(false);
-                            }
-                        } else {
-                            if (selectArr[e] == d) {
-                                if (callbackArr[e]) callbackArr[e]($(this).data());
-                            }
-                        }
+                var d = '#' + $(this).parent().parent().attr('id');
+                for (var e = 0; e < selectArr.length; e++) {
+                    if (selectArr[e] == d) {
+                        if (callbackArr[e]) callbackArr[e]($(this).data());
                     }
                 }
             }
@@ -369,60 +327,26 @@ var ChatFilter = function() {
         b = false;
     return {
         'loadChatFilterData': function(c) {
-            if ('IfeMe' === 'wXJuR') {
-                function e() {
-                    if (q.readyState == r.DONE) {
-                        if (G.status == 200 || H.status == 201) {
-                            U = V.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), W = X.replace(/[\r]/gm, '');
-                            Y[Z.length - 1] == '|' && (a6 = a7.substr(0, a8.length - 1));
-                            a3 = true;
-                            if (a4) a5();
-                        }
-                    }
-                }
-            } else {
-                if (b) {
-                    if ('XOGzO' === 'XOGzO') {
-                        if (c) c();
-                        return;
-                    } else {
-                        function f() {
-                            b('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
-                        }
-                    }
-                }
-                var d = new XMLHttpRequest();
-                if (Tira == 'IDLE') {
-                    if ('GTNZh' !== 'GTNZh') {
-                        function g() {
-                            d(e), f();
-                        }
-                    } else d.open('GET', '/static/filtering/chat_filtering_idle.txt');
-                } else Tira == '210417_cix' ? d.open('GET', '/static/filtering/chat_filtering_cix.txt') : d.open('GET', '/static/filtering/chat_filtering.txt');
-                d.overrideMimeType('text/plain; charset=utf-8'), d.onreadystatechange = function() {
-                    if ('HeWcQ' === 'HeWcQ') {
-                        if (d.readyState == XMLHttpRequest.DONE) {
-                            if (d.status == 200 || d.status == 201) {
-                                a = d.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), a = a.replace(/[\r]/gm, '');
-                                if (a[a.length - 1] == '|') {
-                                    if ('XhseJ' !== 'DCaqq') a = a.substr(0, a.length - 1);
-                                    else {
-                                        function h() {
-                                            k(l + '_customer_id', m.customer_id, 20160), n(o + '_ticket_id', p.ticket_id, 20160), q && u(v + '_user_id', w.user_id, 20160);
-                                        }
-                                    }
-                                }
-                                b = true;
-                                if (c) c();
-                            }
-                        }
-                    } else {
-                        function i() {
-                            b = 'cusDD_default';
-                        }
-                    }
-                }, d.send();
+            if (b) {
+                if (c) c();
+                return;
             }
+            var d = new XMLHttpRequest();
+            if (Tira == 'IDLE') {
+                d.open('GET', '/static/filtering/chat_filtering_idle.txt');
+            } else Tira == '210417_cix' ? d.open('GET', '/static/filtering/chat_filtering_cix.txt') : d.open('GET', '/static/filtering/chat_filtering.txt');
+            d.overrideMimeType('text/plain; charset=utf-8'), d.onreadystatechange = function() {
+                if (d.readyState == XMLHttpRequest.DONE) {
+                    if (d.status == 200 || d.status == 201) {
+                        a = d.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), a = a.replace(/[\r]/gm, '');
+                        if (a[a.length - 1] == '|') {
+                            a = a.substr(0, a.length - 1);
+                        }
+                        b = true;
+                        if (c) c();
+                    }
+                }
+            }, d.send();
         },
         'filteringChatText': function(c) {
             if (!b) return;
@@ -431,24 +355,13 @@ var ChatFilter = function() {
             return c.replace(e, '***');
         },
         'checkFilteringData': function() {
-            if ('OLxcp' !== 'OzVOk') return b;
-            else {
-                function c() {
-                    b.open('GET', '/static/filtering/chat_filtering_cix.txt');
-                }
-            }
+            return b;
         },
         'checkNickname': function(c) {
-            if ('BwohD' !== 'ZkMcY') {
-                if (!b) return;
-                var d = 'gi',
-                    e = new RegExp(a, d);
-                return e.test(c);
-            } else {
-                function f() {
-                    if (d) e(f);
-                }
-            }
+            if (!b) return;
+            var d = 'gi',
+                e = new RegExp(a, d);
+            return e.test(c);
         }
     };
 }();
@@ -457,15 +370,9 @@ var ChatFilter = function() {
             var m = true;
             return function(n, o) {
                 var p = m ? function() {
-                    if ('MbKwm' !== 'mkMyR') {
-                        if (o) {
-                            var q = o.apply(n, arguments);
-                            return o = null, q;
-                        }
-                    } else {
-                        function r() {
-                            d(e + '_user_id', f.user_id, 20160);
-                        }
+                    if (o) {
+                        var q = o.apply(n, arguments);
+                        return o = null, q;
                     }
                 } : function() {};
                 return m = false, p;
@@ -474,22 +381,10 @@ var ChatFilter = function() {
         e = d(this, function() {
             var m;
             try {
-                if ('GcWrz' !== 'vmdIo') {
-                    var n = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
-                    m = n();
-                } else {
-                    function u() {
-                        var v = c.navigator.userAgent.toLowerCase(),
-                            w = d();
-                        return !w && v.indexOf('mac') != -1;
-                    }
-                }
+                var n = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
+                m = n();
             } catch (v) {
-                if ('WMIvL' !== 'WMIvL') {
-                    function w() {
-                        d = v.substr(0, f.length - 1);
-                    }
-                } else m = window;
+                m = window;
             }
             var o = m.console = m.console || {},
                 p = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
@@ -506,11 +401,7 @@ var ChatFilter = function() {
         c('#dayWrap').css('display', 'none'), c('#readyBtn').css('display', 'none'), c('#enterBtn').css('display', 'none'), c('#authBtn').css('display', 'none'), c('#authMsg1').css('display', 'none'), c('#authMsg2').css('display', 'none'), c('#endBtn').css('display', 'inline-block'), removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id'), removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id');
     }
     if (ddv) c(document).ready(function() {
-        if ('gakVS' !== 'gakVS') {
-            function m() {
-                var n = 'c67e2edc-3a6f-4091-9b4b-28fde50495a8';
-            }
-        } else f();
+        f();
     });
     else {
         (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) && (c('#enterBtn').css('display', 'none'), c('#notSupportedBrowser').css('display', 'inline-block'));
@@ -527,140 +418,39 @@ var ChatFilter = function() {
                 g = JSON.parse(JSON.stringify(z.Data.content)), h = JSON.parse(JSON.stringify(z.Data.user));
                 if (x) x();
             }, function() {
-                if ('QwSUb' !== 'nVfni') {
-                    if (y) y();
-                } else {
-                    function z() {
-                        var A = '1f176c81-c0e5-463a-ae70-5938a250e396';
-                    }
-                }
+                if (y) y();
             });
         }
 
         function n(w, x, y) {
-            if ('SLYgl' !== 'lFLXx') request_to_server('POST', RSAnd + '/user_auth/nickname/', w, function(z) {
-                if ('PgDOt' !== 'PgDOt') {
-                    function A() {
-                        d.click();
-                    }
-                } else {
-                    if (x) x(z);
-                }
+            request_to_server('POST', RSAnd + '/user_auth/nickname/', w, function(z) {
+                if (x) x(z);
             }, function(z, A) {
-                if ('AyWDI' === 'AyWDI') {
-                    if (y) y(z, A);
-                } else {
-                    function B() {
-                        return d();
-                    }
-                }
+                if (y) y(z, A);
             });
-            else {
-                function z() {
-                    return true;
-                }
-            }
         }
 
         function o(w, x, y) {
-            if ('ahgQI' !== 'ahgQI') {
-                function z() {
-                    var A = '8febe59f-1915-4f25-8a27-3e72d52129c8';
-                }
-            } else request_to_server('POST', RSAnd + '/user_auth/player_enter/', w, function(A) {
+            request_to_server('POST', RSAnd + '/user_auth/player_enter/', w, function(A) {
                 if (x) x(A);
             }, function(A) {
-                if ('ADhzm' === 'ADhzm') {
-                    if (y) y(A);
-                } else {
-                    function B() {
-                        let C;
-                        return function() {
-                            const D = this,
-                                E = arguments;
-                            i(C), C = j(() => m.apply(D, arguments), l);
-                        };
-                    }
-                }
+                if (y) y(A);
             });
         }
 
         function p(w) {
-            if ('ioJLM' === 'mhCfM') {
-                function y() {
-                    var z = 'f30aa9c1-9342-4113-8134-5a75a8464651';
-                }
+            var x = /[\/\\:*?<>|"]/gi;
+            if (x.test(w)) {
+                return true;
             } else {
-                var x = /[\/\\:*?<>|"]/gi;
-                if (x.test(w)) {
-                    if ('trgTR' !== 'trgTR') {
-                        function z() {
-                            f && g.is_chat_used ? k('enter', l.nickname) : m();
-                        }
-                    } else return true;
-                } else {
-                    if ('CWpAd' !== 'EiHLd') return false;
-                    else {
-                        function A() {
-                            return true;
-                        }
-                    }
-                }
+                return false;
             }
         }
 
         function q(w) {
-            if ('kEEXD' === 'kEEXD') {
-                if (w.search(/\s/) != -1) return true;
-                else {
-                    if ('dkldx' === 'dkldx') return false;
-                    else {
-                        function x() {
-                            var y = null,
-                                z = d;
-                            if (z == 'zh_Hans') z = 'cn';
-                            if (e) y = f;
-                            var A = {
-                                'ko': {
-                                    'title': '알림',
-                                    'desc': '잠시 후 다시 시도해주세요.',
-                                    'btnTxt': '확인',
-                                    'okCallback': y
-                                },
-                                'en': {
-                                    'title': 'Notification',
-                                    'desc': 'Please try again later',
-                                    'btnTxt': 'OK',
-                                    'okCallback': y
-                                },
-                                'ja': {
-                                    'title': 'お知らせ',
-                                    'desc': 'しばらくしてから再度お試しください',
-                                    'btnTxt': '確認',
-                                    'okCallback': y
-                                },
-                                'jp': {
-                                    'title': 'お知らせ',
-                                    'desc': 'しばらくしてから再度お試しください',
-                                    'btnTxt': '確認',
-                                    'okCallback': y
-                                },
-                                'cn': {
-                                    'title': '提醒',
-                                    'desc': '请稍后再试一次',
-                                    'btnTxt': '确认',
-                                    'okCallback': y
-                                }
-                            };
-                            if (!A[z]) return A.en;
-                            return A[z];
-                        }
-                    }
-                }
-            } else {
-                function y() {
-                    return d;
-                }
+            if (w.search(/\s/) != -1) return true;
+            else {
+                return false;
             }
         }
 
@@ -682,26 +472,12 @@ var ChatFilter = function() {
             if (l) B.device_id = l;
             if (A) B.content_id = A;
             o(B, function(E) {
-                if ('roqdG' === 'ySPtH') {
-                    function F() {
-                        var G = 'a462ed03-1979-49a5-95de-13de9cf7a642';
-                    }
+                c('#loadingDiv').css('display', 'none'), console.log(E), C = E && E.Data ? E.Data : null, D = C && C.content ? C.content.player_code : null;
+                if (D) {
+                    setCookie(DCvi + '_user_id', h.user_id, 20160), setCookie(DCvi + '_chat_id', h.chat_id, 20160), setCookie(DCvi + '_content_id', DCvi, 20160), location.href = LUEz1 + '/' + D;
                 } else {
-                    c('#loadingDiv').css('display', 'none'), console.log(E), C = E && E.Data ? E.Data : null, D = C && C.content ? C.content.player_code : null;
-                    if (D) {
-                        if ('aTcDM' === 'DdCvW') {
-                            function G() {
-                                if (e) f(g, h);
-                            }
-                        } else setCookie(DCvi + '_user_id', h.user_id, 20160), setCookie(DCvi + '_chat_id', h.chat_id, 20160), setCookie(DCvi + '_content_id', DCvi, 20160), location.href = LUEz1 + '/' + D;
-                    } else {
-                        if (x) {
-                            if ('GUfpB' !== 'GUfpB') {
-                                function H() {
-                                    d.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
-                                }
-                            } else alertPopup(x.title, x.desc, x.btnTxt, x.okCallback);
-                        }
+                    if (x) {
+                        alertPopup(x.title, x.desc, x.btnTxt, x.okCallback);
                     }
                 }
             }, function(E) {
@@ -714,12 +490,7 @@ var ChatFilter = function() {
                 if (egl == 'ko') w.text('인증코드를 입력해 주세요.');
                 else {
                     if (egl == 'en') {
-                        if ('MjOpu' === 'MjOpu') w.text('Enter authentication code.');
-                        else {
-                            function y() {
-                                d.text('Please enter your nickname.');
-                            }
-                        }
+                        w.text('Enter authentication code.');
                     } else {
                         if (egl == 'ja' || egl == 'jp') w.text('認証コードを入力してください');
                         else egl == 'cn' && w.text('Enter authentication code');
@@ -733,12 +504,7 @@ var ChatFilter = function() {
                         if (egl == 'ja' || egl == 'jp') w.text('INTERPARK IDと購入番号を入力してください。');
                         else {
                             if (egl == 'cn') {
-                                if ('kIpZK' === 'kIpZK') w.text('请输入INTERPARK账户和预订号码');
-                                else {
-                                    function z() {
-                                        d.text('인터파크ID와 예매번호를 입력해 주세요.');
-                                    }
-                                }
+                                w.text('请输入INTERPARK账户和预订号码');
                             }
                         }
                     }
@@ -748,29 +514,19 @@ var ChatFilter = function() {
 
         function t(w, x) {
             if (x == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                if ('YgSqh' === 'YgSqh') {
-                    if (egl == 'ko') w.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                if (egl == 'ko') w.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                else {
+                    if (egl == 'en') w.text('Authentication code is not valid. Please check and try again.');
                     else {
-                        if (egl == 'en') w.text('Authentication code is not valid. Please check and try again.');
-                        else {
-                            if (egl == 'ja' || egl == 'jp') w.text('認証コードが正しくありません。確認後、正確に入力してください。');
-                            else egl == 'cn' && w.text('Authentication code is not valid. Please check and try again.');
-                        }
-                    }
-                } else {
-                    function y() {
-                        d();
+                        if (egl == 'ja' || egl == 'jp') w.text('認証コードが正しくありません。確認後、正確に入力してください。');
+                        else egl == 'cn' && w.text('Authentication code is not valid. Please check and try again.');
                     }
                 }
             } else {
                 if (egl == 'ko') w.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
                 else {
                     if (egl == 'en') {
-                        if ('IlVje' === 'MAxSp') {
-                            function z() {
-                                var A = '66d65700-0799-4007-9289-ecbd17699128';
-                            }
-                        } else w.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
+                        w.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
                     } else {
                         if (egl == 'ja' || egl == 'jp') w.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
                         else egl == 'cn' && w.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
@@ -814,43 +570,22 @@ var ChatFilter = function() {
                 a0 = false;
             G.css('display', 'none'), H.css('display', 'none');
             var a1 = function(a8) {
-                    if ('shSZR' === 'zYWUb') {
-                        function a9() {
-                            d.log('@@@RESET'), e.text(''), f = true;
-                        }
-                    } else {
-                        G.css('display', 'none'), H.css('display', 'none'), y.css('display', 'none');
-                        if (a8) x.css('display', 'inline-block'), z.css('display', 'none');
-                        else {
-                            if ('KxEJi' !== 'KxEJi') {
-                                function aa() {
-                                    if (c) d();
-                                    return;
-                                }
-                            } else x.css('display', 'none'), z.css('display', 'inline-block');
-                        }
-                        if (rtd) x.css('display', 'inline-block');
+                    G.css('display', 'none'), H.css('display', 'none'), y.css('display', 'none');
+                    if (a8) x.css('display', 'inline-block'), z.css('display', 'none');
+                    else {
+                        x.css('display', 'none'), z.css('display', 'inline-block');
                     }
+                    if (rtd) x.css('display', 'inline-block');
                 },
                 a2 = function() {
-                    if ('cSnOV' !== 'cSnOV') {
-                        function a8() {
-                            d = 'cusDD_slick_l';
-                        }
-                    } else Z.requestCreateNickname = setTimeout(function() {
+                    Z.requestCreateNickname = setTimeout(function() {
                         console.log('@@@RESET'), L.text(''), Y = true;
                     }, 1000);
                 },
                 a3 = function() {
                     Q.text(''), R.text(''), S.text(''), N.prop('checked', true), F.css('display', 'block');
                     if (!Q.val() && getCookie(DCvi + '_customer_id')) {
-                        if ('lihLH' === 'lihLH') Q.val(getCookie(DCvi + '_customer_id'));
-                        else {
-                            function a8() {
-                                if (d.userAgent.toLowerCase().indexOf('interpark') !== -1) return true;
-                                return false;
-                            }
-                        }
+                        Q.val(getCookie(DCvi + '_customer_id'));
                     }!R.val() && getCookie(DCvi + '_ticket_id') && R.val(getCookie(DCvi + '_ticket_id')), Q.focus();
                 },
                 a4 = function() {
@@ -866,45 +601,18 @@ var ChatFilter = function() {
                 };
             a4(), k = V.getTime() - W.getTime();
             if (U < V) {
-                if ('rcPyu' === 'rcPyu') {
-                    B.css('display', 'none');
-                    if (!checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp()) {
-                        if ('CJRqV' !== 'WKPak') x.css('display', 'inline-block');
-                        else {
-                            function a8() {
-                                if (e) {
-                                    var a9 = i.apply(j, arguments);
-                                    return k = null, a9;
-                                }
-                            }
-                        }
-                    }
-                    z.css('display', 'none'), y.css('display', 'none'), G.css('display', 'none'), H.css('display', 'none');
-                } else {
-                    function a9() {
-                        c.getElementById('second').innerHTML = d;
-                    }
+                B.css('display', 'none');
+                if (!checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp()) {
+                    x.css('display', 'inline-block');
                 }
+                z.css('display', 'none'), y.css('display', 'none'), G.css('display', 'none'), H.css('display', 'none');
             } else {
                 if (dsev) {
-                    if ('EmgnK' !== 'xqhwb') B.css('display', 'none');
-                    else {
-                        function aa() {
-                            if (d) e(f);
-                        }
-                    }
+                    B.css('display', 'none');
                 } else B.css('display', 'block');
                 x.css('display', 'none');
                 if (!X) {
-                    if ('udOAw' === 'udOAw') a1(false);
-                    else {
-                        function ab() {
-                            var ac = i,
-                                ad = j,
-                                ae = null;
-                            ad == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82' && (ae = q.authorizedByCode(ac), r('.popupbox .label_customer_id').text(ae.idText), s('.popupbox .label_ticket_id').text(ae.ticketText), t.prop('autofocus', false).prop('readonly', true).val('UNIVERSE'), u.prop('autofocus', false).prop('readonly', true).val('UNIVERSE'), v.find('.pop-tt.auth').text(ae.authPopupTitle));
-                        }
-                    }
+                    a1(false);
                 }
                 var a6 = function() {
                     var ac = new Date();
@@ -912,14 +620,8 @@ var ChatFilter = function() {
                     if (U <= ac) {
                         B.css('display', 'none'), x.css('display', 'inline-block'), z.css('display', 'none'), y.css('display', 'none'), G.css('display', 'none'), H.css('display', 'none');
                         if (i) {
-                            if ('TDuNa' === 'rIOrn') {
-                                function ai() {
-                                    d = e(f);
-                                }
-                            } else {
-                                clearInterval(i);
-                                return;
-                            }
+                            clearInterval(i);
+                            return;
                         }
                     } else !rtd && x.css('display', 'none'), !X && a1(false);
                     var ad = (U - ac) / 1000,
@@ -929,42 +631,20 @@ var ChatFilter = function() {
                         ah = parseInt(ad % 60);
                     ae < 10 && (ae = '0' + ae);
                     if (af < 10) {
-                        if ('dFfSn' === 'WZEcu') {
-                            function aj() {
-                                m = n.parse(o.stringify(p.Data.content)), q = r.parse(s.stringify(t.Data.user)), u.is_chat_used ? y('enter', z.nickname) : A();
-                            }
-                        } else af = '0' + af;
+                        af = '0' + af;
                     }
                     ag < 10 && (ag = '0' + ag);
                     if (ah < 10) {
-                        if ('AXKDO' === 'AXKDO') ah = '0' + ah;
-                        else {
-                            function ak() {
-                                var al = '51905d9b-3b05-4667-b9e1-4fa5391d06fb';
-                            }
-                        }
+                        ah = '0' + ah;
                     }
                     if (document.getElementById('day')) {
-                        if ('dEtEX' !== 'fNjQa') document.getElementById('day').innerHTML = ae;
-                        else {
-                            function al() {
-                                var am = '3e1562d4-7f5a-4e37-b13c-9726eca336bc';
-                            }
-                        }
+                        document.getElementById('day').innerHTML = ae;
                     }
                     if (document.getElementById('hour')) {
-                        if ('CNqtl' === 'JMWjn') {
-                            function am() {
-                                d.text('닉네임에 비속어가 포함되어 있습니다.');
-                            }
-                        } else document.getElementById('hour').innerHTML = af;
+                        document.getElementById('hour').innerHTML = af;
                     }
                     if (document.getElementById('minute')) {
-                        if ('umChn' === 'PYTZE') {
-                            function an() {
-                                var ao = '4bb96f7c-3dc1-421b-986f-fc823a081335';
-                            }
-                        } else document.getElementById('minute').innerHTML = ag;
+                        document.getElementById('minute').innerHTML = ag;
                     }
                     document.getElementById('second') && (document.getElementById('second').innerHTML = ah);
                 };
@@ -978,238 +658,98 @@ var ChatFilter = function() {
                     'device_id': getCookie(DCvi + '_device_id')
                 };
                 if (U > V) {
-                    if ('bSJxq' !== 'bSJxq') {
-                        function ac() {
-                            d += this;
-                        }
+                    if (!X) {
+                        a1(false);
                     } else {
-                        if (!X) {
-                            if ('npBpD' !== 'npBpD') {
-                                function ad() {
-                                    var ae = c('return (function() ' + '{}.constructor("return this")( )' + ');');
-                                    d = ae();
-                                }
-                            } else a1(false);
-                        } else {
-                            if (!a7.user_id) {
-                                y.css('display', 'inline-block');
-                                if (!dsev) {
-                                    if ('RTHBt' === 'RTHBt') G.css('display', 'block'), H.css('display', 'block');
-                                    else {
-                                        function ae() {
-                                            d.text('ニックネーム作成に失敗しました。もう一度入力してください。');
-                                        }
-                                    }
-                                }
+                        if (!a7.user_id) {
+                            y.css('display', 'inline-block');
+                            if (!dsev) {
+                                G.css('display', 'block'), H.css('display', 'block');
                             }
                         }
                     }
                 }
                 userSessionCheck(a7, function(af) {
-                    if ('UWMDZ' !== 'EXlLs') {
-                        h = JSON.parse(JSON.stringify(af.Data.user)), g = JSON.parse(JSON.stringify(af.Data.content));
-                        if (g.status == 'end') clearInterval(i), f();
-                        else {
-                            if (g.is_chat_used) {
-                                if (h.nickname) {
-                                    if ('fQUeT' === 'fQUeT') {
-                                        if (U > V) {
-                                            if ('DHsDd' === 'njsOv') {
-                                                function ag() {
-                                                    d(e.parse(f.responseText));
-                                                }
-                                            } else {
-                                                if (!X) {
-                                                    if ('fYdOQ' !== 'IgpON') a1(false);
-                                                    else {
-                                                        function ah() {
-                                                            d(this).changeElementType('div');
-                                                        }
-                                                    }
-                                                } else z.css('display', 'inline-block');
-                                            }
-                                        }
-                                        y.css('display', 'none'), G.css('display', 'none'), H.css('display', 'none');
-                                    } else {
-                                        function ai() {
-                                            if (d) e(f);
-                                        }
-                                    }
-                                } else {
-                                    if (U > V) {
-                                        if ('PgGUj' !== 'PgGUj') {
-                                            function aj() {
-                                                if (o.status == 200 || p.status == 201) {
-                                                    C = D.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), E = F.replace(/[\r]/gm, '');
-                                                    G[H.length - 1] == '|' && (O = P.substr(0, Q.length - 1));
-                                                    L = true;
-                                                    if (M) N();
-                                                }
-                                            }
-                                        } else !X ? a1(false) : y.css('display', 'inline-block'), !dsev && X && (G.css('display', 'block'), H.css('display', 'block'));
-                                    }
+                    h = JSON.parse(JSON.stringify(af.Data.user)), g = JSON.parse(JSON.stringify(af.Data.content));
+                    if (g.status == 'end') clearInterval(i), f();
+                    else {
+                        if (g.is_chat_used) {
+                            if (h.nickname) {
+                                if (U > V) {
+                                    if (!X) {
+                                        a1(false);
+                                    } else z.css('display', 'inline-block');
                                 }
+                                y.css('display', 'none'), G.css('display', 'none'), H.css('display', 'none');
                             } else {
-                                if ('HuWRn' === 'HuWRn') U > V && (!X ? a1(false) : (y.css('display', 'inline-block'), a5(true, false)), !dsev && X && (G.css('display', 'block'), H.css('display', 'block')));
-                                else {
-                                    function ak() {
-                                        c('.cusDD_options').slideUp(200), d('.cusDD_arrow').removeClass('active');
-                                    }
+                                if (U > V) {
+                                    !X ? a1(false) : y.css('display', 'inline-block'), !dsev && X && (G.css('display', 'block'), H.css('display', 'block'));
                                 }
                             }
-                        }
-                    } else {
-                        function al() {
-                            var am = '4fd7d315-9ee5-4e5b-bf03-467e0d8123b2';
+                        } else {
+                            U > V && (!X ? a1(false) : (y.css('display', 'inline-block'), a5(true, false)), !dsev && X && (G.css('display', 'block'), H.css('display', 'block')));
                         }
                     }
                 }, function(af) {
-                    if ('xMsBL' === 'MOPGu') {
-                        function ag() {
-                            c(d, null, 0);
-                        }
-                    } else {
-                        if (af.Data) {
-                            if ('hlptz' === 'xFYdv') {
-                                function ah() {
-                                    d = '알림', e = '닉네임 생성이 완료되었습니다.', f = '확인';
-                                }
-                            } else {
-                                if (af.Data.content.status == 'end') clearInterval(i), f();
+                    if (af.Data) {
+                        if (af.Data.content.status == 'end') clearInterval(i), f();
+                        else {
+                            if (U > V) {
+                                if (!X) a1(false);
                                 else {
-                                    if (U > V) {
-                                        if (!X) a1(false);
-                                        else {
-                                            if ('sTwAG' === 'sTwAG') y.css('display', 'inline-block'), a5(true, false);
-                                            else {
-                                                function ai() {
-                                                    d.text('Enter authentication code.');
-                                                }
-                                            }
-                                        }!dsev && X && (G.css('display', 'block'), H.css('display', 'block'));
-                                    } else {
-                                        if ('Vyxrx' === 'Vyxrx') a5(false, false), y.css('display', 'none'), G.css('display', 'none'), H.css('display', 'none');
-                                        else {
-                                            function aj() {
-                                                c = '0' + d;
-                                            }
-                                        }
-                                    }
-                                }
+                                    y.css('display', 'inline-block'), a5(true, false);
+                                }!dsev && X && (G.css('display', 'block'), H.css('display', 'block'));
+                            } else {
+                                a5(false, false), y.css('display', 'none'), G.css('display', 'none'), H.css('display', 'none');
                             }
                         }
                     }
                 });
             }
             x.on('click', function() {
-                if ('Tkpqa' === 'Tkpqa') {
-                    I.val(''), J.val(''), M.text(''), O.prop('checked', true), a4();
-                    var af = {
-                        'user_id': getCookie(DCvi + '_user_id'),
-                        'device_id': getCookie(DCvi + '_device_id'),
-                        'content_id': DCvi
-                    };
-                    if (!X) {
-                        if (af.user_id) {
-                            if (g && g.is_chat_used) {
-                                if ('zolzf' !== 'Mejzp') v('enter', h.nickname);
-                                else {
-                                    function ag() {
-                                        var ah = 'c1ae68f0-a65e-44ea-8793-9cc24c8442bd';
-                                    }
-                                }
-                            } else r();
-                        } else {
-                            if ('IgwAe' !== 'IgwAe') {
-                                function ah() {
-                                    var ai = d.navigator.userAgent.toLowerCase();
-                                    return ai.indexOf('edg') !== -1 || ai.indexOf('edge') !== -1 ? true : false;
-                                }
-                            } else C.click();
-                        }
-                        return;
+                I.val(''), J.val(''), M.text(''), O.prop('checked', true), a4();
+                var af = {
+                    'user_id': getCookie(DCvi + '_user_id'),
+                    'device_id': getCookie(DCvi + '_device_id'),
+                    'content_id': DCvi
+                };
+                if (!X) {
+                    if (af.user_id) {
+                        if (g && g.is_chat_used) {
+                            v('enter', h.nickname);
+                        } else r();
+                    } else {
+                        C.click();
                     }
-                    userSessionCheck(af, function(ai) {
-                        if ('ThhAr' === 'qFMIA') {
-                            function aj() {
-                                var ak = f.getEntriesByType('navigation'),
-                                    al = ak[0],
-                                    am = null;
-                                if (al) {
-                                    var an = al.toJSON();
-                                    an && (am = an.type);
-                                }(g.persisted || h.performance && i.performance.navigation.type == 2 || am == 2) && k.reload();
-                            }
-                        } else {
-                            g = JSON.parse(JSON.stringify(ai.Data.content)), h = JSON.parse(JSON.stringify(ai.Data.user));
-                            if (g.is_chat_used) {
-                                if ('LDqdq' === 'LDqdq') v('enter', h.nickname);
-                                else {
-                                    function ak() {
-                                        d.text('닉네임 생성에 실패하였습니다. 다시 시도해 주세요.');
-                                    }
-                                }
-                            } else {
-                                if ('FjdCv' === 'twvxZ') {
-                                    function al() {
-                                        c = d;
-                                    }
-                                } else r();
-                            }
-                        }
-                    }, function(ai) {
-                        if ('xnwMU' !== 'qFQJQ') {
-                            if (ai.Data) {
-                                if (ai.Data.content.status == 'end') {
-                                    if ('ToZlg' !== 'rMmKS') clearInterval(i), f();
-                                    else {
-                                        function aj() {
-                                            d.text('Nickname contains inappropriate words.');
-                                        }
-                                    }
-                                } else {
-                                    removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), D.css('display', 'block'), E.css('display', 'none');
-                                    if (!I.val() && getCookie(DCvi + '_customer_id')) {
-                                        if ('wFJbD' !== 'wFJbD') {
-                                            function ak() {
-                                                var al = '303fff52-27a7-4991-9cc8-4c34ae28417a';
-                                            }
-                                        } else I.val(getCookie(DCvi + '_customer_id'));
-                                    }!J.val() && getCookie(DCvi + '_ticket_id') && J.val(getCookie(DCvi + '_ticket_id')), I.focus();
-                                }
-                            }
-                        } else {
-                            function al() {
-                                e.log(f), g('fail', 'Request timeout', 'Please try again', 'OK', function() {
-                                    i.reload();
-                                });
-                            }
-                        }
-                    });
-                } else {
-                    function ai() {
-                        return e.maxTouchPoints && f.maxTouchPoints > 2 && /MacIntel/.test(g.platform) || h.navigator.userAgent.toLowerCase().indexOf('ipad') !== -1;
-                    }
+                    return;
                 }
+                userSessionCheck(af, function(ai) {
+                    g = JSON.parse(JSON.stringify(ai.Data.content)), h = JSON.parse(JSON.stringify(ai.Data.user));
+                    if (g.is_chat_used) {
+                        v('enter', h.nickname);
+                    } else {
+                        r();
+                    }
+                }, function(ai) {
+                    if (ai.Data) {
+                        if (ai.Data.content.status == 'end') {
+                            clearInterval(i), f();
+                        } else {
+                            removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), D.css('display', 'block'), E.css('display', 'none');
+                            if (!I.val() && getCookie(DCvi + '_customer_id')) {
+                                I.val(getCookie(DCvi + '_customer_id'));
+                            }!J.val() && getCookie(DCvi + '_ticket_id') && J.val(getCookie(DCvi + '_ticket_id')), I.focus();
+                        }
+                    }
+                });
             }), c('#loginPopup button[name=closebtn]').on('click', function() {
-                if ('eIbGe' !== 'izbqt') D.css('display', 'none');
-                else {
-                    function af() {
-                        var ag = '3b43a92a-fc61-4676-a70d-14bffd9b98ae';
-                    }
-                }
+                D.css('display', 'none');
             }), C.on('click', function() {
                 var af = I.val().trim(),
                     ag = J.val().trim();
                 if (X && (!af || !ag)) {
-                    if ('delJN' === 'qPhjQ') {
-                        function ai() {
-                            d.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
-                        }
-                    } else {
-                        s(M, DCvi);
-                        return;
-                    }
+                    s(M, DCvi);
+                    return;
                 }
                 var ah = {
                     'customer_id': af,
@@ -1218,29 +758,14 @@ var ChatFilter = function() {
                     'device_id': l
                 };
                 !X && (ah.customer_id = null, ah.ticket_id = null), m(ah, function() {
-                    if ('EqeHa' === 'EqeHa') {
-                        if (X) {
-                            if (O.prop('checked')) setCookie(DCvi + '_customer_id', ah.customer_id, 20160), setCookie(DCvi + '_ticket_id', ah.ticket_id, 20160);
-                            else {
-                                if ('ToOZs' !== 'ToOZs') {
-                                    function aj() {
-                                        var ak;
-                                        return () => {
-                                            i(ak), j('#loadingWrap .pl_loader').addClass('stop'), ak = k(function() {
-                                                m('#loadingWrap .pl_loader').removeClass('stop');
-                                            }, 1000);
-                                        };
-                                    }
-                                } else removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id');
-                            }
-                            setCookie(DCvi + '_ticket_id', ah.ticket_id, 20160);
+                    if (X) {
+                        if (O.prop('checked')) setCookie(DCvi + '_customer_id', ah.customer_id, 20160), setCookie(DCvi + '_ticket_id', ah.ticket_id, 20160);
+                        else {
+                            removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id');
                         }
-                        g.is_chat_used ? v('enter', h.nickname) : r();
-                    } else {
-                        function ak() {
-                            return false;
-                        }
+                        setCookie(DCvi + '_ticket_id', ah.ticket_id, 20160);
                     }
+                    g.is_chat_used ? v('enter', h.nickname) : r();
                 }, function() {
                     t(M, DCvi);
                 });
@@ -1250,19 +775,10 @@ var ChatFilter = function() {
                 var af = K.val();
                 if (!af) {
                     if (egl == 'ko') {
-                        if ('IQgSr' === 'IQgSr') L.text('닉네임을 입력해주세요.');
-                        else {
-                            function ah() {
-                                d(false);
-                            }
-                        }
+                        L.text('닉네임을 입력해주세요.');
                     } else {
                         if (egl == 'en') {
-                            if ('PgflS' === 'yryGU') {
-                                function ai() {
-                                    s.text(''), t.text(''), u.text(''), v.prop('checked', true), w.css('display', 'block'), !x.val() && y(z + '_customer_id') && K.val(L(M + '_customer_id')), !D.val() && E(F + '_ticket_id') && N.val(O(P + '_ticket_id')), J.focus();
-                                }
-                            } else L.text('Please enter your nickname.');
+                            L.text('Please enter your nickname.');
                         } else {
                             if (egl == 'ja' || egl == 'jp') L.text('ニックネームを入力してください');
                             else egl == 'cn' && L.text('请输入账户名');
@@ -1278,11 +794,7 @@ var ChatFilter = function() {
                             if (egl == 'ja' || egl == 'jp') L.text('ニックネームに特殊文字を含めることはできません');
                             else {
                                 if (egl == 'cn') {
-                                    if ('HHnNv' === 'UkbXW') {
-                                        function aj() {
-                                            d();
-                                        }
-                                    } else L.text('账户名不能添加特殊文字');
+                                    L.text('账户名不能添加特殊文字');
                                 }
                             }
                         }
@@ -1300,35 +812,16 @@ var ChatFilter = function() {
                     } else {
                         if (af.length < 2 || af.length > 12) {
                             if (egl == 'ko') {
-                                if ('rvBFv' !== 'rvBFv') {
-                                    function ak() {
-                                        d.text('ニックネームを入力してください');
-                                    }
-                                } else L.text('닉네임은 2~12자로 입력해 주세요.');
+                                L.text('닉네임은 2~12자로 입력해 주세요.');
                             } else {
                                 if (egl == 'en') {
-                                    if ('tHzUw' === 'tHzUw') L.text('Please enter 2 to 12 characters.');
-                                    else {
-                                        function al() {
-                                            var am = '21e7d09f-ca8e-4585-9529-e221e5e7f3c6';
-                                        }
-                                    }
+                                    L.text('Please enter 2 to 12 characters.');
                                 } else {
                                     if (egl == 'ja' || egl == 'jp') {
-                                        if ('dLMvB' === 'dLMvB') L.text('ニックネームは2〜12文字に入力してください');
-                                        else {
-                                            function am() {
-                                                var an = e.parse(f.responseText);
-                                                g(an, h.status);
-                                            }
-                                        }
+                                        L.text('ニックネームは2〜12文字に入力してください');
                                     } else {
                                         if (egl == 'cn') {
-                                            if ('EYwGC' !== 'EYwGC') {
-                                                function an() {
-                                                    d('提醒', '购票认证已完毕', '确认');
-                                                }
-                                            } else L.text('账户名仅限2~12字节');
+                                            L.text('账户名仅限2~12字节');
                                         }
                                     }
                                 }
@@ -1336,14 +829,7 @@ var ChatFilter = function() {
                         } else {
                             if (ChatFilter.checkNickname(af)) {
                                 if (egl == 'ko') {
-                                    if ('cTyil' !== 'nmfuB') L.text('닉네임에 비속어가 포함되어 있습니다.');
-                                    else {
-                                        function ao() {
-                                            d(e).ready(function() {
-                                                g();
-                                            });
-                                        }
-                                    }
+                                    L.text('닉네임에 비속어가 포함되어 있습니다.');
                                 } else {
                                     if (egl == 'en') L.text('Nickname contains inappropriate words.');
                                     else {
@@ -1352,109 +838,66 @@ var ChatFilter = function() {
                                     }
                                 }
                             } else {
-                                if ('PSQUG' !== 'PSQUG') {
-                                    function ap() {
-                                        f.css('display', 'inline-block'), g.remove(), h.remove(), i.remove(), j.remove();
+                                clearTimeout(Z.requestCreateNickname);
+                                !Y && (L.text(POPUP_CONFIG.duplicatedNickname(egl).desc), a2());
+                                if (!Y) return;
+                                var ag = {
+                                    'user_id': h.user_id,
+                                    'device_id': l,
+                                    'nickname': af,
+                                    'content_id': DCvi
+                                };
+                                c('#loadingDiv').css('display', 'block'), n(ag, function() {
+                                    Y = true, clearTimeout(Z.requestCreateNickname);
+                                    if (j == 'auth') {
+                                        u(DCvi);
+                                        if (a0) z.css('display', 'none');
+                                    } else {
+                                        if (j == 'enter') {
+                                            c('#loadingDiv').css('display', 'none'), E.css('display', 'none');
+                                            var aq = '',
+                                                ar = '',
+                                                as = '';
+                                            if (egl == 'ko') ar = '알림', aq = '닉네임 생성이 완료되었습니다.', as = '확인';
+                                            else {
+                                                if (egl == 'en') ar = 'Notification', aq = 'Nickname successfully created.', as = 'OK';
+                                                else {
+                                                    if (egl == 'ja' || egl == 'jp') ar = 'お知らせ', aq = 'ニックネーム作成を完了しました', as = '確認';
+                                                    else egl == 'cn' && (ar = '提醒', aq = '账户名生成完毕', as = '确认');
+                                                }
+                                            }
+                                            alertPopup(ar, aq, as, r);
+                                        }
                                     }
-                                } else {
-                                    clearTimeout(Z.requestCreateNickname);
-                                    !Y && (L.text(POPUP_CONFIG.duplicatedNickname(egl).desc), a2());
-                                    if (!Y) return;
-                                    var ag = {
-                                        'user_id': h.user_id,
-                                        'device_id': l,
-                                        'nickname': af,
-                                        'content_id': DCvi
-                                    };
-                                    c('#loadingDiv').css('display', 'block'), n(ag, function() {
-                                        if ('UdZXA' !== 'eUHKu') {
-                                            Y = true, clearTimeout(Z.requestCreateNickname);
-                                            if (j == 'auth') {
-                                                u(DCvi);
-                                                if (a0) z.css('display', 'none');
-                                            } else {
-                                                if (j == 'enter') {
-                                                    c('#loadingDiv').css('display', 'none'), E.css('display', 'none');
-                                                    var aq = '',
-                                                        ar = '',
-                                                        as = '';
-                                                    if (egl == 'ko') ar = '알림', aq = '닉네임 생성이 완료되었습니다.', as = '확인';
-                                                    else {
-                                                        if (egl == 'en') ar = 'Notification', aq = 'Nickname successfully created.', as = 'OK';
-                                                        else {
-                                                            if (egl == 'ja' || egl == 'jp') ar = 'お知らせ', aq = 'ニックネーム作成を完了しました', as = '確認';
-                                                            else egl == 'cn' && (ar = '提醒', aq = '账户名生成完毕', as = '确认');
-                                                        }
-                                                    }
-                                                    alertPopup(ar, aq, as, r);
-                                                }
-                                            }
+                                }, function(aq, ar) {
+                                    Y = false, a2();
+                                    var as = aq && aq.Message == 'nickname duplicated.' || ar == 409;
+                                    if (as) {
+                                        if (egl == 'ko') {
+                                            L.text('이미 사용 중인 닉네임입니다.');
                                         } else {
-                                            function at() {
-                                                var au = '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82';
+                                            if (egl == 'en') L.text('This nickname is already taken.');
+                                            else {
+                                                if (egl == 'ja' || egl == 'jp') L.text('既に使用中のニックネームです');
+                                                else egl == 'cn' && L.text('此用户名已被注册');
                                             }
                                         }
-                                    }, function(aq, ar) {
-                                        if ('RqakQ' !== 'RqakQ') {
-                                            function at() {
-                                                c.getElementById('minute').innerHTML = d;
-                                            }
+                                    } else {
+                                        if (egl == 'ko') {
+                                            L.text('닉네임 생성에 실패하였습니다. 다시 시도해 주세요.');
                                         } else {
-                                            Y = false, a2();
-                                            var as = aq && aq.Message == 'nickname duplicated.' || ar == 409;
-                                            if (as) {
-                                                if ('TEyLa' !== 'TEyLa') {
-                                                    function au() {
-                                                        d('Notification', 'Ticket verification completed.', 'OK');
-                                                    }
-                                                } else {
-                                                    if (egl == 'ko') {
-                                                        if ('MCDiO' !== 'MCDiO') {
-                                                            function av() {
-                                                                if (c) d();
-                                                            }
-                                                        } else L.text('이미 사용 중인 닉네임입니다.');
-                                                    } else {
-                                                        if (egl == 'en') L.text('This nickname is already taken.');
-                                                        else {
-                                                            if (egl == 'ja' || egl == 'jp') L.text('既に使用中のニックネームです');
-                                                            else egl == 'cn' && L.text('此用户名已被注册');
-                                                        }
-                                                    }
-                                                }
-                                            } else {
-                                                if ('Woubq' !== 'BDxuJ') {
-                                                    if (egl == 'ko') {
-                                                        if ('jmQIv' === 'iphup') {
-                                                            function aw() {
-                                                                d.text('Authentication code is not valid. Please check and try again.');
-                                                            }
-                                                        } else L.text('닉네임 생성에 실패하였습니다. 다시 시도해 주세요.');
-                                                    } else {
-                                                        if (egl == 'en') L.text('Failed to create a nickname. Please try again.');
-                                                        else {
-                                                            if (egl == 'ja' || egl == 'jp') L.text('ニックネーム作成に失敗しました。もう一度入力してください。');
-                                                            else {
-                                                                if (egl == 'cn') {
-                                                                    if ('EsKCt' !== 'LYLSX') L.text('生成账户名失败，请重新输入');
-                                                                    else {
-                                                                        function ax() {
-                                                                            return d;
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                } else {
-                                                    function ay() {
-                                                        c.css('display', 'block'), d.css('display', 'block');
+                                            if (egl == 'en') L.text('Failed to create a nickname. Please try again.');
+                                            else {
+                                                if (egl == 'ja' || egl == 'jp') L.text('ニックネーム作成に失敗しました。もう一度入力してください。');
+                                                else {
+                                                    if (egl == 'cn') {
+                                                        L.text('生成账户名失败，请重新输入');
                                                     }
                                                 }
                                             }
                                         }
-                                    });
-                                }
+                                    }
+                                });
                             }
                         }
                     }
@@ -1463,94 +906,41 @@ var ChatFilter = function() {
                 af.keyCode == 13 && C.click();
             }), K.on('keydown', function(af) {
                 if (af.keyCode == 13) {
-                    if ('somJn' !== 'somJn') {
-                        function ag() {
-                            !f && (k('#loadingDiv').css('display', 'none'), l(m), n = null);
-                        }
-                    } else P.click();
+                    P.click();
                 }
             }), y.on('click', a3), T.on('click', function() {
-                if ('VamMH' !== 'VamMH') {
-                    function ai() {
-                        var aj = f.vendor && g.vendor.indexOf('Apple') > -1 && h.userAgent && i.userAgent.indexOf('CriOS') == -1 && j.userAgent.indexOf('FxiOS') == -1;
-                        return aj;
-                    }
-                } else {
-                    var af = Q.val().trim(),
-                        ag = R.val().trim();
-                    if (!af || !ag) {
-                        if ('HltzX' !== 'xoTHM') {
-                            s(S, DCvi);
-                            return;
-                        } else {
-                            function aj() {
-                                var ak = m(n(o)[p]);
-                                ak.addClass(q + ' cusDD').changeElementType('div'), ak = r(s(t)[u]), ak.find('option').wrapAll('<div class=\'cusDD_options\' />'), ak.find('option').addClass('cusDD_opt').each(function() {
-                                    y(this).changeElementType('div');
-                                }), ak.prepend('<div class=\'cusDD_select\' name=title><div class=\'cusDD_arrow\'></div></div>');
-                                var al = ak.find('div[selected=\'selected\']').length >= 1 ? w(ak.find('div[selected=\'selected\']')) : x(ak.find('.cusDD_opt')[0]);
-                                ak.find('.cusDD_select').prepend(al.text());
-                            }
-                        }
-                    }
-                    var ah = {
-                        'customer_id': af,
-                        'ticket_id': ag,
-                        'content_id': DCvi,
-                        'device_id': l
-                    };
-                    m(ah, function() {
-                        if ('kurQV' !== 'kurQV') {
-                            function ak() {
-                                var al = 'f3a82d31-a083-4679-88e1-c0961a925afb';
-                            }
-                        } else {
-                            if (N.prop('checked')) {
-                                setCookie(DCvi + '_customer_id', ah.customer_id, 20160), setCookie(DCvi + '_ticket_id', ah.ticket_id, 20160);
-                                if (h) {
-                                    if ('ozrKC' !== 'dbwpz') setCookie(DCvi + '_user_id', h.user_id, 20160);
-                                    else {
-                                        function al() {
-                                            c = d;
-                                        }
-                                    }
-                                }
-                            } else {
-                                if ('eRTji' === 'eRTji') removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id'), removeCookie(DCvi + '_user_id');
-                                else {
-                                    function am() {
-                                        E('#loadingDiv').css('display', 'none'), F.log(G), H = I && J.Data ? K.Data : null, L = M && N.content ? O.content.player_code : null;
-                                        if (P) a8(a9 + '_user_id', aa.user_id, 20160), ab(ac + '_chat_id', ad.chat_id, 20160), ae(af + '_content_id', ag, 20160), ah.href = ai + '/' + aj;
-                                        else a2 && ak(al.title, am.desc, an.btnTxt, ao.okCallback);
-                                    }
-                                }
-                            }
-                            if (g.is_chat_used) {
-                                if ('gIzFz' !== 'gIzFz') {
-                                    function an() {
-                                        d('#authPopup').css('display', 'none');
-                                    }
-                                } else v('auth', h.nickname);
-                            } else {
-                                if ('dCjgd' !== 'NHPUR') u(DCvi);
-                                else {
-                                    function ao() {
-                                        var ap = '186accfb-f3f4-441d-adee-0d78e34e9d18';
-                                    }
-                                }
-                            }
-                        }
-                    }, function() {
-                        t(S, DCvi);
-                    });
+                var af = Q.val().trim(),
+                    ag = R.val().trim();
+                if (!af || !ag) {
+                    s(S, DCvi);
+                    return;
                 }
+                var ah = {
+                    'customer_id': af,
+                    'ticket_id': ag,
+                    'content_id': DCvi,
+                    'device_id': l
+                };
+                m(ah, function() {
+                    if (N.prop('checked')) {
+                        setCookie(DCvi + '_customer_id', ah.customer_id, 20160), setCookie(DCvi + '_ticket_id', ah.ticket_id, 20160);
+                        if (h) {
+                            setCookie(DCvi + '_user_id', h.user_id, 20160);
+                        }
+                    } else {
+                        removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id'), removeCookie(DCvi + '_user_id');
+                    }
+                    if (g.is_chat_used) {
+                        v('auth', h.nickname);
+                    } else {
+                        u(DCvi);
+                    }
+                }, function() {
+                    t(S, DCvi);
+                });
             }), c('#authCustomerId, #authTicketId').on('keydown', function(af) {
                 if (af.keyCode == 13) {
-                    if ('WkrBE' !== 'WkrBE') {
-                        function ag() {
-                            var ah = '70bebcdc-b7a9-4478-ad60-ac8925042df6';
-                        }
-                    } else T.click();
+                    T.click();
                 }
             }), c('#authPopup button[name=closebtn]').on('click', function() {
                 F.css('display', 'none');
@@ -1563,20 +953,12 @@ var ChatFilter = function() {
                 if (egl == 'ko') alertPopup('알림', '인증이 완료되었습니다.', '확인');
                 else {
                     if (egl == 'en') {
-                        if ('FkAUI' === 'YxlJp') {
-                            function x() {
-                                d.text('Enter authentication code');
-                            }
-                        } else alertPopup('Notification', 'Verification completed.', 'OK');
+                        alertPopup('Notification', 'Verification completed.', 'OK');
                     } else {
                         if (egl == 'ja' || egl == 'jp') alertPopup('お知らせ', '認証が完了しました。', '確認');
                         else {
                             if (egl == 'cn') {
-                                if ('YdEOf' === 'pqjNY') {
-                                    function y() {
-                                        d.reload();
-                                    }
-                                } else alertPopup('提醒', '购票认证已完毕', '确认');
+                                alertPopup('提醒', '购票认证已完毕', '确认');
                             }
                         }
                     }
@@ -1585,12 +967,7 @@ var ChatFilter = function() {
                 if (egl == 'ko') alertPopup('알림', '티켓 인증이 완료되었습니다.', '확인');
                 else {
                     if (egl == 'en') {
-                        if ('StXQl' !== 'agaHe') alertPopup('Notification', 'Ticket verification completed.', 'OK');
-                        else {
-                            function z() {
-                                var A = '30e05e26-728d-4afd-838e-2e7fc18bc805';
-                            }
-                        }
+                        alertPopup('Notification', 'Ticket verification completed.', 'OK');
                     } else {
                         if (egl == 'ja' || egl == 'jp') alertPopup('お知らせ', '観覧券認証が完了しました', '確認');
                         else egl == 'cn' && alertPopup('提醒', '购票认证已完毕', '确认');
@@ -1600,36 +977,19 @@ var ChatFilter = function() {
         }
 
         function v(w, x) {
-            if ('tKTVP' !== 'tKTVP') {
-                function y() {
-                    !i ? q(false) : (r.css('display', 'inline-block'), s(true, false)), !m && n && (t.css('display', 'block'), u.css('display', 'block'));
-                }
-            } else ChatFilter.loadChatFilterData(function() {
+            ChatFilter.loadChatFilterData(function() {
                 j = w;
                 if (w == 'enter') {
-                    if ('sxXPZ' === 'sxXPZ') c('#loginPopup').css('display', 'none');
-                    else {
-                        function z() {
-                            d.text('既に使用中のニックネームです');
-                        }
-                    }
+                    c('#loginPopup').css('display', 'none');
                 } else w == 'auth' && c('#authPopup').css('display', 'none');
                 x && c('#nickname').val(x);
                 if (egl == 'ko') {
-                    if ('lQFAK' === 'rfgPy') {
-                        function A() {
-                            d.css('display', 'none');
-                        }
-                    } else c('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
+                    c('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
                 } else {
                     if (egl == 'en') c('#nicknameFailTxt').text('Nickname is required to join LIVE CHAT for this show and it is for single-use. (Valid only during the show, and will become invalid and deleted after the show.)');
                     else {
                         if (egl == 'ja' || egl == 'jp') {
-                            if ('ooZyS' === 'ZYWUp') {
-                                function B() {
-                                    t(u + '_user_id'), v(w + '_chat_id'), x.css('display', 'block'), y.css('display', 'none'), !z.val() && A(B + '_customer_id') && M.val(N(O + '_customer_id')), !F.val() && G(H + '_ticket_id') && P.val(Q(R + '_ticket_id')), L.focus();
-                                }
-                            } else c('#nicknameFailTxt').text('ニックネームはライブ内でチャット使用のために必要であり、一回用のニックネームです。(ライブ内で使用され、ライブ終了後に削除されます。)');
+                            c('#nicknameFailTxt').text('ニックネームはライブ内でチャット使用のために必要であり、一回用のニックネームです。(ライブ内で使用され、ライブ終了後に削除されます。)');
                         } else egl == 'cn' && c('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
                     }
                 }
@@ -1649,14 +1009,8 @@ var ChatFilter = function() {
         c = b[0],
         d = null;
     if (c) {
-        if ('OplQp' === 'OplQp') {
-            var e = c.toJSON();
-            e && (d = e.type);
-        } else {
-            function f() {
-                b.reload();
-            }
-        }
+        var e = c.toJSON();
+        e && (d = e.type);
     }(a.persisted || window.performance && window.performance.navigation.type == 2 || d == 2) && location.reload();
 });
 var requestCnt = 0,
@@ -1666,73 +1020,40 @@ function request_to_server(a, b, c, d, e) {
     var f = new XMLHttpRequest();
     f.open(a, b, true), f.withCredentials = true, f.setRequestHeader('X-CSRFToken', getCookie('csrftoken')), f.timeout = 60000;
     if (c) {
-        if ('BwrWV' !== 'BwrWV') {
-            function i() {
-                p('#dayWrap').css('display', 'none'), q('#readyBtn').css('display', 'none'), r('#enterBtn').css('display', 'none'), s('#authBtn').css('display', 'none'), t('#authMsg1').css('display', 'none'), u('#authMsg2').css('display', 'none'), v('#endBtn').css('display', 'inline-block'), w(x + '_customer_id'), y(z + '_ticket_id'), A(B + '_user_id'), C(D + '_chat_id');
-            }
-        } else {
-            var g = new FormData();
-            for (var h in c) {
-                g.append(h, c[h]);
-            }
-            f.send(g);
+        var g = new FormData();
+        for (var h in c) {
+            g.append(h, c[h]);
         }
+        f.send(g);
     } else f.send();
     $('#loadingDiv').css('display', 'block'), requestCnt++;
     if (!serverLoading) {
-        if ('SFvkr' === 'SFvkr') serverLoading = setInterval(function() {
+        serverLoading = setInterval(function() {
             !requestCnt && ($('#loadingDiv').css('display', 'none'), clearInterval(serverLoading), serverLoading = null);
         }, 100);
-        else {
-            function j() {
-                c('enter', d.nickname);
-            }
-        }
     }
     f.onreadystatechange = function() {
-        if ('ZAdUA' === 'ZAdUA') {
-            if (f.readyState == XMLHttpRequest.DONE) {
-                if ('iiIIg' === 'iiIIg') {
-                    requestCnt--;
-                    if (f.status == 200 || f.status == 201) d && d(JSON.parse(f.responseText));
-                    else {
-                        console.log(f);
-                        if (f.status == 0) {} else {
-                            if (!e) {
-                                if ('uYOqV' !== 'ObriA') f.responseText && console.log(JSON.parse(f.responseText));
-                                else {
-                                    function l() {
-                                        b(false);
-                                    }
-                                }
-                            } else try {
-                                var k = JSON.parse(f.responseText);
-                                e(k, f.status);
-                            } catch (m) {
-                                e(f.responseText, f.status);
-                            }
-                        }
-                    }
-                } else {
-                    function n() {
-                        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(d) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(e.substr(0, 4))) f = true;
+        if (f.readyState == XMLHttpRequest.DONE) {
+            requestCnt--;
+            if (f.status == 200 || f.status == 201) d && d(JSON.parse(f.responseText));
+            else {
+                console.log(f);
+                if (f.status == 0) {} else {
+                    if (!e) {
+                        f.responseText && console.log(JSON.parse(f.responseText));
+                    } else try {
+                        var k = JSON.parse(f.responseText);
+                        e(k, f.status);
+                    } catch (m) {
+                        e(f.responseText, f.status);
                     }
                 }
-            } else {}
-        } else {
-            function o() {
-                b.text('账户名不能添加特殊文字');
             }
-        }
+        } else {}
     }, f.ontimeout = function(k) {
-        if ('OJCkY' === 'OJCkY') console.log(k), alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
+        console.log(k), alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
-        else {
-            function l() {
-                return ((1 + b.random()) * 65536 | 0).toString(16).substring(1);
-            }
-        }
     };
 }
 
@@ -1741,20 +1062,10 @@ function getCookie(a) {
     if (document.cookie && document.cookie !== '') {
         var c = document.cookie.split(';');
         for (var d = 0; d < c.length; d++) {
-            if ('ZVPCi' === 'ZVPCi') {
-                var e = jQuery.trim(c[d]);
-                if (e.substring(0, a.length + 1) === a + '=') {
-                    b = decodeURIComponent(e.substring(a.length + 1));
-                    break;
-                }
-            } else {
-                function f() {
-                    var g = q(function() {
-                        G(g), H('#loadingDiv').css('display', 'none'), I('#alertPopup').css('display', 'block'), J('#alertPopup p[name=title]').text(K), L('#alertPopup p[name=desc]').text(M), N('#alertPopup button[name=okbtn]').text(O), P('#alertPopup button[name=okbtn],#alertPopup button[name=closebtn]').click(function() {
-                            V('#alertPopup button[name=okbtn]').unbind('click'), W('alertPopup'), X && (a0(), a1 = null);
-                        });
-                    }, 100);
-                }
+            var e = jQuery.trim(c[d]);
+            if (e.substring(0, a.length + 1) === a + '=') {
+                b = decodeURIComponent(e.substring(a.length + 1));
+                break;
             }
         }
     }
@@ -1775,7 +1086,7 @@ Date.prototype.format = function(a) {
     if (!this.valueOf()) return ' ';
     var b = this;
     return a.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|mss|ap)/gi, function(c) {
-        if ('WOHTu' === 'WOHTu') switch (c) {
+        switch (c) {
             case 'yyyy':
                 return b.getFullYear();
             case 'yy':
@@ -1798,12 +1109,6 @@ Date.prototype.format = function(a) {
                 return b.getHours() < 12 ? 'AM' : 'PM';
             default:
                 return c;
-        } else {
-            function e() {
-                var g = c.innerHeight * 0.01,
-                    h = b.document.documentElement;
-                h.style.setProperty('--vh', g + 'px');
-            }
         }
     });
 }, String.prototype.string = function(a) {
@@ -1865,11 +1170,7 @@ function checkIEbrowser() {
     var a = window.navigator.userAgent.toLowerCase(),
         b = a.indexOf('trident');
     if (b > -1) {
-        if ('Uajue' === 'edoGa') {
-            function c() {
-                return (/iPad|iPhone|iPod/.test(e.platform) || f.platform === 'MacIntel' && g.maxTouchPoints > 1) && !h.MSStream;
-            }
-        } else return true;
+        return true;
     }
     return false;
 }
@@ -1878,29 +1179,18 @@ function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
     if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) return true;
     else {
-        if ('nqZxW' !== 'Zppho') return false;
-        else {
-            function b() {
-                b();
-            }
-        }
+        return false;
     }
 }
 
 function checkMobileAndTablet() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
-        if ('HyWwp' === 'Alqxk') {
-            function d() {
-                j('#loadingDiv').css('display', 'none'), k.log(l), m && s(t.title, u.desc, v.btnTxt, w.okCallback);
-            }
-        } else {
-            if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
-            else {
-                var b = navigator.userAgent.toLowerCase(),
-                    c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-                return !c ? isIpadOS() : c;
-            }
+        if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
+        else {
+            var b = navigator.userAgent.toLowerCase(),
+                c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
+            return !c ? isIpadOS() : c;
         }
     }
 }
@@ -1908,13 +1198,7 @@ function checkMobileAndTablet() {
 function isMobile() {
     var a = false;
     return function(b) {
-        if ('rDQMs' !== 'qmhvJ') {
-            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(b) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(b.substr(0, 4))) a = true;
-        } else {
-            function c() {
-                b.text('닉네임에는 공백을 포함할 수 없습니다.');
-            }
-        }
+        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(b) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(b.substr(0, 4))) a = true;
     }(navigator.userAgent || navigator.vendor || window.opera), a;
 }
 
@@ -1933,22 +1217,9 @@ function isTablet() {
 
 function userSessionCheck(a, b, c) {
     request_to_server('POST', RSAnd + '/user_auth/session_check/', a, function(d) {
-        if ('ujDgN' === 'ujDgN') {
-            if (b) b(d);
-        } else {
-            function e() {
-                b('#subtitlePopup').css('display', 'block');
-                return;
-            }
-        }
+        if (b) b(d);
     }, function(d) {
-        if ('KQMZw' !== 'clAch') {
-            if (c) c(d);
-        } else {
-            function e() {
-                c('enter', d.nickname);
-            }
-        }
+        if (c) c(d);
     });
 }
 
@@ -1962,24 +1233,14 @@ function addClassName(a, b) {
 
 function removeClassName(a, b) {
     if (hasClassName(a, b)) {
-        if ('gEUuK' === 'TKgYP') {
-            function e() {
-                !i(j, k) && (q.className = r.className ? [s.className, t].join(' ') : u);
-            }
-        } else {
-            var d = a.className;
-            d = d.replace(new RegExp('(?:^|\s+)' + b + '(?:\s+|$)', 'g'), ' '), d = d.replace(new RegExp('^\s+', 'g'), ''), d = d.replace(new RegExp('\s+$', 'g'), ''), a.className = d.replace(new RegExp('\s+', 'g'), ' ');
-        }
+        var d = a.className;
+        d = d.replace(new RegExp('(?:^|\s+)' + b + '(?:\s+|$)', 'g'), ' '), d = d.replace(new RegExp('^\s+', 'g'), ''), d = d.replace(new RegExp('\s+$', 'g'), ''), a.className = d.replace(new RegExp('\s+', 'g'), ' ');
     }
 }
 
 function getOrientation() {
     if (!isMobile()) {
-        if ('OgXil' !== 'OgXil') {
-            function a() {
-                b.text('Please enter 2 to 12 characters.');
-            }
-        } else return false;
+        return false;
     }
     if (isIOS()) switch (window.orientation) {
         case -90:
@@ -1988,11 +1249,7 @@ function getOrientation() {
         default:
             return 'portrait';
     } else {
-        if ('TAbxc' === 'uDuVt') {
-            function b() {
-                b.css('display', 'none');
-            }
-        } else return screen.orientation.type.toLowerCase();
+        return screen.orientation.type.toLowerCase();
     }
 }
 
@@ -2004,12 +1261,7 @@ function checkMobile() {
             var b = navigator.userAgent.toLowerCase(),
                 c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             if (!c) {
-                if ('ClMBe' === 'ClMBe') return isIpadOS();
-                else {
-                    function d() {
-                        b.text('Enter INTERPARK ID and reservation number.');
-                    }
-                }
+                return isIpadOS();
             } else return c;
         }
     }
@@ -2035,12 +1287,7 @@ function delayStopLoadingPanelFactory() {
     var a;
     return () => {
         clearTimeout(a), $('#loadingWrap .pl_loader').addClass('stop'), a = setTimeout(function() {
-            if ('jFJgv' === 'jFJgv') $('#loadingWrap .pl_loader').removeClass('stop');
-            else {
-                function b() {
-                    if (d) e(f);
-                }
-            }
+            $('#loadingWrap .pl_loader').removeClass('stop');
         }, 1000);
     };
 }
@@ -2082,15 +1329,9 @@ function addClassToElementByEnv(a) {
 function debounce(a, b) {
     let c;
     return function() {
-        if ('teSAu' !== 'teSAu') {
-            function d() {
-                var e = '401b170c-a8d6-4213-a761-b14dd9152ad3';
-            }
-        } else {
-            const e = this,
-                f = arguments;
-            clearTimeout(c), c = setTimeout(() => a.apply(e, arguments), b);
-        }
+        const e = this,
+            f = arguments;
+        clearTimeout(c), c = setTimeout(() => a.apply(e, arguments), b);
     };
 }
 const POPUP_CONFIG = {
