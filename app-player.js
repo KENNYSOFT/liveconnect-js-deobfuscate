@@ -5,65 +5,27 @@ function cusDD(a, b, c) {
     var d = false;
     for (var e = 0; e < selectArr.length; e++) {
         if (selectArr[e] == a) {
-            if ('QZaCQ' !== 'QZaCQ') {
-                function k() {
-                    if (c.keyCode == 13) return e('#chatSendBtn').click(), false;
-                }
-            } else {
-                callbackArr[e] = c, d = true;
-                break;
-            }
+            callbackArr[e] = c, d = true;
+            break;
         }
     }
     if (!d) {
-        if ('KBnXQ' === 'RQohq') {
-            function l() {
-                if (this._player.currentPosition) {
-                    var m = this._player.currentPosition - 10;
-                    m < 0 && (m = 0), this._player.currentPosition = m;
-                }
+        if ('rKNIx' === 'hVBMC') {
+            function k() {
+                var l = 'd8f2dfa4-8e0f-4b40-9ae6-92a7b3d15af5';
             }
         } else selectArr.push(a), callbackArr.push(c);
     }
     var f = '';
-    if (!b) {
-        if ('jdpQe' === 'jdpQe') f = 'cusDD_default';
-        else {
-            function m() {
-                c = d;
-            }
-        }
-    } else {
+    if (!b) f = 'cusDD_default';
+    else {
         if (b == 'slick dark') {
-            if ('OYYKV' !== 'OYYKV') {
-                function n() {
-                    if (!h._player._video.paused) {
-                        var o = o._player.view;
-                        p._player.view = q(this).data().view, r(this).siblings().each(function() {
-                            if (o == u(this).data().view) return;
-                        }), t();
-                    }
+            if ('ryAfQ' === 'XpGxR') {
+                function l() {
+                    d.log(e, f.stack);
                 }
             } else f = 'cusDD_slick_d';
-        } else {
-            if (b == 'slick light') {
-                if ('HmYFl' !== 'HmYFl') {
-                    function o() {
-                        var p = this._player.subtitleTrack;
-                        this._player.subtitleTrack = -1, this._bfSendSubTime = c, d(function() {
-                            this._player.subtitleTrack = p;
-                        }.bind(this), 100);
-                    }
-                } else f = 'cusDD_slick_l';
-            } else {
-                if ('XHprA' !== 'newaQ') f = b;
-                else {
-                    function p() {
-                        this._logData = [];
-                    }
-                }
-            }
-        }
+        } else b == 'slick light' ? f = 'cusDD_slick_l' : f = b;
     }
     for (var g = 0; g < $(a).length; g++) {
         var h = $($(a)[g]);
@@ -73,117 +35,120 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(q) {
-        if ('uIpoV' !== 'uIpoV') {
-            function r() {
-                !c.hidden && q();
+    $(document).click(function(m) {
+        if ('wAsLn' !== 'wAsLn') {
+            function n() {
+                f.Ui.displayArtistHistoryMsg(g, h.messages[e].timetoken, j);
             }
         } else $('.cusDD_options').slideUp(200), $('.cusDD_arrow').removeClass('active');
-    }), $(a).click(function(q) {
-        var r = a;
-        $('.cusDD').not(r).find('.cusDD_options').slideUp(200), $('.cusDD').not(r).find('.cusDD_arrow').removeClass('active'), console.log(' select : ', r), q.stopPropagation();
-        if ($(q.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
-            $('#qualityPopup').css('display', 'block');
-            return;
-        }
-        if ($(q.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
-            if ('adylV' !== 'adylV') {
-                function t() {
-                    this.initMultiviewManifest();
+    }), $(a).click(function(m) {
+        if ('Qmqot' === 'Qmqot') {
+            var n = a;
+            $('.cusDD').not(n).find('.cusDD_options').slideUp(200), $('.cusDD').not(n).find('.cusDD_arrow').removeClass('active'), console.log(' select : ', n), m.stopPropagation();
+            if ($(m.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+                if ('Tpkuq' === 'zMQOx') {
+                    function p() {
+                        this._loading_on = [];
+                        for (var q = 0; q < b.SIZE; q++) {
+                            this._loading_on[q] = false;
+                        }
+                    }
+                } else {
+                    $('#qualityPopup').css('display', 'block');
+                    return;
                 }
-            } else {
+            }
+            if ($(m.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
                 $('#subtitlePopup').css('display', 'block');
                 return;
             }
-        }
-        var s = 200;
-        if ($(this).find('.cusDD_options').children()) {
-            if ($(this).find('.cusDD_options').children().length > 30) {
-                if ('cjNMh' !== 'cjNMh') {
-                    function u() {
-                        var v = '',
-                            w = 0;
-                        while (w++ < c) {
-                            v += this;
+            var o = 200;
+            if ($(this).find('.cusDD_options').children()) {
+                if ($(this).find('.cusDD_options').children().length > 30) {
+                    if ('Gknuw' === 'uNmAA') {
+                        function q() {
+                            d.push(m[f]);
                         }
-                        return v;
-                    }
-                } else s = 0;
+                    } else o = 0;
+                }
+            }
+            $(this).find('.cusDD_options').slideToggle(o), $(this).find('.cusDD_arrow').toggleClass('active');
+        } else {
+            function r() {
+                !c.hidden && m();
             }
         }
-        $(this).find('.cusDD_options').slideToggle(s), $(this).find('.cusDD_arrow').toggleClass('active');
     }), $(a).find('.cusDD_opt').click(function() {
-        $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
-        if (c) c($(this).data(), $(this));
+        if ('AzDFr' === 'AzDFr') {
+            $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
+            if (c) c($(this).data(), $(this));
+        } else {
+            function m() {
+                return e('<' + f + '/>', g).append(h(this).contents());
+            }
+        }
     });
 }(function(c) {
     var d = function() {
             var f = true;
             return function(g, h) {
-                if ('zQTMY' === 'RpNeG') {
-                    function j() {
-                        this._ui.volumeBtn.classList.contains('mute') ? (this._ui.volumeBtn.classList.remove('mute'), this._ui.volumeSlider.value = this._ui.volumeSlider.beforeValue, this._ui.volumeSlider.beforeValue = 0, this.volume(this._ui.volumeSlider.value)) : (this._ui.volumeBtn.classList.add('mute'), this._ui.volumeSlider.beforeValue = this._ui.volumeSlider.value, this._ui.volumeSlider.value = 0, this.volume(this._ui.volumeSlider.value));
-                    }
-                } else {
-                    var i = f ? function() {
-                        if ('MkClU' === 'xsvAb') {
-                            function l() {
-                                c._player.subtitleList[0].lang !== '' && e('#ccSelectBtn').css('display', 'block');
-                            }
+                var i = f ? function() {
+                    if (h) {
+                        if ('OiOOH' === 'OiOOH') {
+                            var j = h.apply(g, arguments);
+                            return h = null, j;
                         } else {
-                            if (h) {
-                                if ('vVPMw' === 'vVPMw') {
-                                    var k = h.apply(g, arguments);
-                                    return h = null, k;
-                                } else {
-                                    function m() {
-                                        d += e[f];
-                                    }
+                            function k() {
+                                this.thumbInteracting = true;
+                                var l = g.offsetX;
+                                if (!l) {
+                                    var m = m.target.getBoundingClientRect();
+                                    l = n.targetTouches[0].pageX - m.left;
                                 }
+                                this.value = l * 100 / this.barDiv.offsetWidth, this.interactStartX = j.clientX || k.touches && l.touches[0].clientX, this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
                             }
                         }
-                    } : function() {};
-                    return f = false, i;
-                }
+                    }
+                } : function() {};
+                return f = false, i;
             };
         }(),
         e = d(this, function() {
-            if ('ZdpMc' !== 'riocX') {
-                var f = function() {
-                        var n;
-                        try {
-                            n = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
-                        } catch (o) {
-                            if ('qarpx' !== 'qarpx') {
-                                function p() {
-                                    this._cues = [], this._subtitleDiv.innerHTML = '', this._subtitleDiv.style.display = 'none';
-                                }
-                            } else n = window;
-                        }
-                        return n;
-                    },
-                    g = f(),
-                    h = g.console = g.console || {},
-                    i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-                for (var j = 0; j < i.length; j++) {
-                    var k = d.constructor.prototype.bind(d),
-                        l = i[j],
-                        m = h[l] || k;
-                    k.__proto__ = d.bind(d), k.toString = m.toString.bind(m), h[l] = k;
+            var f;
+            try {
+                if ('awjyp' !== 'awjyp') {
+                    function n() {
+                        this._hls.destroy();
+                    }
+                } else {
+                    var g = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
+                    f = g();
                 }
-            } else {
-                function n() {
-                    d('#chatInputWrap').css('display', 'block');
-                }
+            } catch (o) {
+                f = window;
+            }
+            var h = f.console = f.console || {},
+                i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+            for (var j = 0; j < i.length; j++) {
+                var k = d.constructor.prototype.bind(d),
+                    l = i[j],
+                    m = h[l] || k;
+                k.__proto__ = d.bind(d), k.toString = m.toString.bind(m), h[l] = k;
             }
         });
     e(), c.fn.changeElementType = function(f) {
-        var g = {};
-        c.each(this[0].attributes, function(h, i) {
-            g[i.nodeName] = i.nodeValue;
-        }), this.replaceWith(function() {
-            return c('<' + f + '/>', g).append(c(this).contents());
-        });
+        if ('gABhX' === 'SCmfj') {
+            function h() {
+                d('#chatInput').prop('readonly', false), e('#chatInput').prop('placeholder', f('P_CHAT_INPUT_PLACEHOLDER'));
+            }
+        } else {
+            var g = {};
+            c.each(this[0].attributes, function(i, j) {
+                g[j.nodeName] = j.nodeValue;
+            }), this.replaceWith(function() {
+                return c('<' + f + '/>', g).append(c(this).contents());
+            });
+        }
     };
 }(jQuery));
 
@@ -192,23 +157,24 @@ function cusDDselectOption(a, b, c) {
         if ($(this).data().id == b) {
             $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
             if ($(this).data().id) {
-                if ('gIyac' === 'TYAJi') {
+                if ('qwBPn' === 'qwBPn') $($(this).parent()).siblings('.cusDD_select').data().id = $(this).data().id;
+                else {
                     function f() {
-                        if (e.status == 403) this._listener.trigger(e.RICH360_ACCESS_DENIED, 'Permission Denied');
-                        else {
-                            if (g.status != 200) {
-                                this._listener.trigger(j.RICH360_ACCESS_DENIED, 'Authorization failed');
-                                return;
-                            }
-                        }
+                        e.Manager.submitUpdate(f, g, h.Manager.getCtrChannel());
                     }
-                } else $($(this).parent()).siblings('.cusDD_select').data().id = $(this).data().id;
+                }
             }
             if (c) {
                 var d = '#' + $(this).parent().parent().attr('id');
                 for (var e = 0; e < selectArr.length; e++) {
-                    if (selectArr[e] == d) {
-                        if (callbackArr[e]) callbackArr[e]($(this).data());
+                    if ('TrzYj' === 'TrzYj') {
+                        if (selectArr[e] == d) {
+                            if (callbackArr[e]) callbackArr[e]($(this).data());
+                        }
+                    } else {
+                        function g() {
+                            return b.fromCharCode(this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255));
+                        }
                     }
                 }
             }
@@ -219,16 +185,29 @@ function cusDDselectOption(a, b, c) {
 
     function b(e, f) {
         for (var g in f) {
-            f.hasOwnProperty(g) && (e[g] = f[g]);
+            if ('mgybg' !== 'iulSB') {
+                if (f.hasOwnProperty(g)) {
+                    if ('VBFUc' === 'VBFUc') e[g] = f[g];
+                    else {
+                        function h() {
+                            this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path;
+                        }
+                    }
+                }
+            } else {
+                function i() {
+                    f.Ui.enableChatInput();
+                }
+            }
         }
         return e;
     }
 
     function c(e, f) {
         for (var g = 0; g < e.length; g++) {
-            if ('HLkTM' !== 'HLkTM') {
+            if ('XyuNE' !== 'XyuNE') {
                 function j() {
-                    f() && (k.getElementsByTagName('video')[0].style.display = 'block'), h(), g('#chatList').scrollTop(j('#chatList')[0].scrollHeight);
+                    b('#chatInputWrap').css('display', 'block');
                 }
             } else {
                 var h = e[g];
@@ -248,250 +227,254 @@ function cusDDselectOption(a, b, c) {
     }, d.prototype._init = function() {
         this.body = document.body, this.wrapper = document.querySelector(this.options.wrapper), this.mask = document.querySelector(this.options.maskId), this.menu = document.querySelector('#c-menu--' + this.options.type), this.closeBtn = this.menu.querySelector('.c-menu__close'), this.menuOpeners = document.querySelectorAll(this.options.menuOpenerClass), this._initEvents();
     }, d.prototype._initEvents = function() {
-        this.closeBtn && this.closeBtn.addEventListener('click', function(f) {
-            f.preventDefault(), this.close();
-        }.bind(this));
-        if (this.mask) {
-            if ('PewSw' === 'kyIhn') {
+        if (this.closeBtn) {
+            if ('uSrQY' !== 'uSrQY') {
                 function e() {
-                    this._canvasTimeStamps[this._canvasTimeStampIndex] = e, f = this._canvasTimeStampIndex + 1;
-                    if (g >= 100) h = 0;
+                    if (0 > i) j = 0;
+                    if (k > this._video.duration) l = this._video.duration;
+                    m.abs(n - this._video.currentTime) > 0.5 && (this._video.currentTime = q, this._logger.addLog({
+                        'event': 'seek',
+                        'time': r
+                    }), this._render_once_on_seek = true);
                 }
-            } else this.mask.addEventListener('click', function(f) {
-                if ('YWLxy' === 'ApezT') {
+            } else this.closeBtn.addEventListener('click', function(f) {
+                if ('DxUlK' !== 'DxUlK') {
                     function g() {
-                        this._subtitleTrack = this._player._hls._hls.subtitleTrack;
+                        var h = '3b43a92a-fc61-4676-a70d-14bffd9b98ae';
                     }
                 } else f.preventDefault(), this.close();
             }.bind(this));
         }
-    }, d.prototype.open = function() {
-        if ('pnvrN' === 'aQSaD') {
-            function e() {
-                this._player._hls.destroy(), p.Manager.destroy(), q(r + '_user_id'), s(t + '_chat_id'), u() && G(function() {
-                    J.href = K;
-                }, 3000), A(B('P_ALERT_TITLE'), C('P_ALERT_END_LIVE_DESC'), D('P_ALERT_OK'), function() {
-                    J.href = K;
-                });
+        this.mask && this.mask.addEventListener('click', function(f) {
+            if ('ieDQj' === 'ieDQj') f.preventDefault(), this.close();
+            else {
+                function g() {
+                    return false;
+                }
             }
-        } else this.body.classList.add('has-active-menu'), this.wrapper.classList.add('has-' + this.options.type), this.menu.classList.add('is-active'), this.mask.classList.add('is-active'), this.disableMenuOpeners();
+        }.bind(this));
+    }, d.prototype.open = function() {
+        this.body.classList.add('has-active-menu'), this.wrapper.classList.add('has-' + this.options.type), this.menu.classList.add('is-active'), this.mask.classList.add('is-active'), this.disableMenuOpeners();
     }, d.prototype.close = function() {
         this.body.classList.remove('has-active-menu'), this.wrapper.classList.remove('has-' + this.options.type), this.menu.classList.remove('is-active'), this.mask.classList.remove('is-active'), this.enableMenuOpeners();
     }, d.prototype.disableMenuOpeners = function() {
         c(this.menuOpeners, function(e) {
-            if ('ZxWdv' === 'ZxWdv') e.disabled = true;
-            else {
-                function f() {
-                    if (this._isDummy) {
-                        this._video.src = m;
-                        if (n) this._video.currentTime = o;
-                        if (p) this._video.poster = q;
-                        this._video.crossOrigin = 'anonymous', this._video.load();
-                    } else this._hls.loadSource(r);
-                }
-            }
+            e.disabled = true;
         });
     }, d.prototype.enableMenuOpeners = function() {
         c(this.menuOpeners, function(e) {
-            e.disabled = false;
+            if ('RtrTB' === 'RfflV') {
+                function f() {
+                    let g = 0;
+                    if (this._hls.snsInDictionary[g] == 0) g = 1;
+                    let h = this._hls.snsInDictionary[g];
+                    this._hls.snsInDictionary.splice(g, 1), delete this._hls.timeDictionary[h + ''];
+                }
+            } else e.disabled = false;
         });
     }, a.Menu = d;
 }(window));
 class Rich360Player {
     constructor(a, b, c) {
-        this._options = a, this._ui = b, this._req_str = c, this._player = new Rich360(a, c), this._initHideCtroller = false, this._initQualityUI = false, this._initSubtitleUI = false, this._loading_on = [], this._wakeupPastTime = 0, this._isFullScreen = true, this._thumbnailGridData = null, this.initLoadingState(), this.initEventListener();
-        if (this._options.content_data.use_vod) {
-            if ('JwrUL' === 'JwrUL') this.initSeekBarThumbnailData();
-            else {
-                function d() {
-                    g(h), i('#loadingWrap .pl_loader').addClass('stop'), j = k(function() {
-                        m('#loadingWrap .pl_loader').removeClass('stop');
-                    }, 1000);
-                }
+        this._options = a, this._ui = b, this._req_str = c, this._player = new Rich360(a, c, b, this), this._initHideCtroller = false, this._initQualityUI = false, this._initSubtitleUI = false, this._loading_on = [], this._wakeupPastTime = 0, this._timer = {
+            'hidePlayerController': {
+                'timer': null,
+                'period': 5000
             }
-        }
+        }, this._isFullScreen = true, this._thumbnailGridData = null, this.initLoadingState(), this.initEventListener();
     }
     initPlayerUI() {
         this._ui.playBtn.onclick = function() {
-            if ('DigxE' === 'ZZRoX') {
-                function e() {
-                    var f = e.location.search.substr(1).split('&');
-                    if (f == '') return {};
-                    var g = {};
-                    for (var h = 0; h < f.length; ++h) {
-                        var i = f[h].split('=', 2);
-                        if (i.length == 1) g[i[0]] = '';
-                        else g[i[0]] = g(i[1].replace(/\+/g, ' '));
-                    }
-                    return g;
-                }
-            } else {
+            if ('vOvDO' !== 'xWcsP') {
                 if (this._player._ui_play) {
-                    var b = this._req_str.lastIndexOf('/output'),
-                        c = new Date(),
-                        d = this._req_str.substr(0, b) + '/thumbnails.jpg?' + c.getTime();
-                    $(this._ui.playThumbnail).css('background-image', ''), $(this._ui.playThumbnail).css('background-image', 'url(' + d + ')'), this.pause();
-                } else this.play();
-            }
-        }.bind(this), this._ui.volumeSlider = new customRange(this._ui.volumeSlider);
-        if (isMobile() || isTablet() || isIpadOS()) this._ui.volumeBtn.style.display = 'none', $(this._ui.volumeSlider).parent().css('display', 'none');
-        else {
-            if ('WRipZ' === 'XuQDb') {
-                function b() {
-                    var c = b();
-                    if (typeof c == 'string') {
-                        if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') this._web_ui.hideChatWrap(c);
-                        else(c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') && this._web_ui.showChatWrap();
-                    }
-                }
-            } else this._ui.volumeSlider.addEventListener('input', function() {
-                if (this._ui.volumeSlider._value == 0) {
-                    if ('xCqjF' === 'xCqjF') this._ui.volumeBtn.classList.add('mute');
+                    if ('qJqeM' === 'qJqeM') this.pause();
                     else {
-                        function c() {
-                            l(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
-                                w(this).data().id != z(A.target).data().id ? (F(this).removeAttr('selected'), G(this).removeClass('on')) : (H(this).attr('selected', 'selected'), I(this).addClass('on'));
-                            }), this._ui.subtitlePopup.style.display = 'none', this._player.subtitleTrack = t(u(v.target).data().id);
+                        function b() {
+                            this._video.autoplay = false;
                         }
                     }
-                } else this._ui.volumeBtn.classList.remove('mute');
-                this._ui.volumeSlider.barDiv.style.backgroundImage = 'linear-gradient(to right, #fff 0%, #fff ' + this._ui.volumeSlider._value + '%, transparent ' + this._ui.volumeSlider._value + '%, transparent 100%)', this.volume(this._ui.volumeSlider._value);
-            }.bind(this)), this._ui.volumeSlider.addEventListener('seek', function(c) {
-                if ('omZHp' !== 'omZHp') {
+                } else this.play();
+            } else {
+                function c() {
+                    var d = new b();
+                    return d.format('yyyy-MM-dd HH:mm:ss:mss');
+                }
+            }
+        }.bind(this), this._ui.volumeSlider = new customRange(this._ui.volumeSlider);
+        if (isMobile() || isTablet() || isIpadOS()) {
+            if ('EgsKZ' === 'EgsKZ') this._ui.volumeBtn.style.display = 'none', $(this._ui.volumeSlider).parent().css('display', 'none');
+            else {
+                function b() {
+                    d.log(e), this._listener.trigger(f.RICH360_ACCESS_DENIED, 'Authorization failed');
+                    return;
+                }
+            }
+        } else {
+            if ('MJOoF' === 'qTEZC') {
+                function c() {
+                    return b;
+                }
+            } else this._ui.volumeSlider.addEventListener('input', function() {
+                if ('PwZFs' === 'PwZFs') this._ui.volumeSlider._value == 0 ? this._ui.volumeBtn.classList.add('mute') : this._ui.volumeBtn.classList.remove('mute'), this._ui.volumeSlider.barDiv.style.backgroundImage = 'linear-gradient(to right, #fff 0%, #fff ' + this._ui.volumeSlider._value + '%, transparent ' + this._ui.volumeSlider._value + '%, transparent 100%)', this.volume(this._ui.volumeSlider._value);
+                else {
                     function d() {
-                        var f = '1f176c81-c0e5-463a-ae70-5938a250e396';
+                        return this._video.duration;
                     }
-                } else this.volume(c.target._value);
+                }
+            }.bind(this)), this._ui.volumeSlider.addEventListener('seek', function(d) {
+                this.volume(d.target._value);
             }.bind(this)), this._ui.volumeBtn.onclick = function() {
                 if (this._ui.volumeBtn.classList.contains('mute')) {
-                    if ('WQEWb' !== 'kJGOC') this._ui.volumeBtn.classList.remove('mute'), this._ui.volumeSlider.value = this._ui.volumeSlider.beforeValue, this._ui.volumeSlider.beforeValue = 0, this.volume(this._ui.volumeSlider.value);
+                    if ('VSnHh' !== 'FyDfx') this._ui.volumeBtn.classList.remove('mute'), this._ui.volumeSlider.value = this._ui.volumeSlider.beforeValue, this._ui.volumeSlider.beforeValue = 0, this.volume(this._ui.volumeSlider.value);
                     else {
-                        function c() {
-                            e(f('P_ALERT_TITLE'), '<' + g.web_title + '>의 라이브가 진행중입니다.', h('P_ALERT_OK'));
+                        function d() {
+                            b.play();
                         }
                     }
                 } else this._ui.volumeBtn.classList.add('mute'), this._ui.volumeSlider.beforeValue = this._ui.volumeSlider.value, this._ui.volumeSlider.value = 0, this.volume(this._ui.volumeSlider.value);
             }.bind(this), this._ui.volumeBtn.style.display = 'inline-block', $(this._ui.volumeSlider).parent().css('display', 'inline-block');
         }
-        this._options.content_data.use_vod && (this._ui.seekBar = new customRange(this._ui.sliderArea, 0, this._ui.sliderPaddingDiv), this._ui.seekBar.addEventListener('input', function(c) {
-            this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + c.target._value + '%, #ea0029 ' + c.target._value + '%, transparent ' + c.target._loadedValue + '%, transparent ' + c.target._loadedValue + '%)';
-            if (this._ui.seekBar.thumbInteracting) {
-                if ('bgnms' !== 'Synno') this.viewSeekBarThumbnail(c.target._value, true);
-                else {
-                    function d() {
-                        var f = '78bc66bd-0ce3-4f20-ad70-81214a977c51';
-                    }
-                }
-            }
-        }.bind(this)), this._ui.seekBar.paddingBar.addEventListener('mousemove', function(c) {
-            if ('beRWa' !== 'beRWa') {
-                function d() {
-                    this.initSeekBarThumbnailData();
-                }
-            } else this.viewSeekBarThumbnail(c.offsetX / this._ui.seekBar.clientWidth * 100);
-        }.bind(this)), this._ui.seekBar.paddingBar.addEventListener('mouseout', function(c) {
-            if ('EeDVF' === 'sPIJh') {
-                function d() {
-                    this._loading_on[b] = false;
-                }
-            } else $(this._ui.sliderThumbnail).css('display', 'none');
-        }.bind(this)), this._ui.seekBar.addEventListener('seek', function(c) {
-            if ('xcoqN' !== 'xcoqN') {
-                function d() {
-                    this._ui.volumeSlider._value == 0 ? this._ui.volumeBtn.classList.add('mute') : this._ui.volumeBtn.classList.remove('mute'), this._ui.volumeSlider.barDiv.style.backgroundImage = 'linear-gradient(to right, #fff 0%, #fff ' + this._ui.volumeSlider._value + '%, transparent ' + this._ui.volumeSlider._value + '%, transparent 100%)', this.volume(this._ui.volumeSlider._value);
-                }
-            } else this.seek(c.target._value), $(this._ui.sliderThumbnail).css('display', 'none');
-        }.bind(this)), $(this._ui.prev10sBtn).on('click', function() {
-            if (this._player.currentPosition) {
-                if ('TxXqI' !== 'vLHGR') {
-                    var c = this._player.currentPosition - 10;
-                    c < 0 && (c = 0), this._player.currentPosition = c;
-                } else {
-                    function d() {
-                        g === '[delete]' ? (m('#noticeChatWrap p[name=desc]').text(''), n('#noticeChatWrap').css('display', 'none')) : (o('#noticeChatWrap p[name=desc]').text(p), q('#noticeChatWrap').css('display', 'block'));
-                    }
-                }
-            }
-        }.bind(this)), $(this._ui.next10sBtn).on('click', function() {
-            if ('QLjsi' === 'QLjsi') {
-                if (this._player.currentPosition) {
-                    var c = this._player.currentPosition + 10;
-                    c > this._player.duration - 1 && (c = this._player.duration - 1), this._player.currentPosition = c;
+        this._options.content_data.use_vod && (this._ui.seekBar = new customRange(this._ui.sliderArea, 0, this._ui.sliderPaddingDiv), this._ui.seekBar.addEventListener('input', function(d) {
+            if ('ijQTA' !== 'HCaez') {
+                this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + d.target._value + '%, #ea0029 ' + d.target._value + '%, transparent ' + d.target._loadedValue + '%, transparent ' + d.target._loadedValue + '%)';
+                if (this._ui.seekBar.thumbInteracting) {
+                    if ('KNScZ' !== 'KNScZ') {
+                        function f() {
+                            if (m == 'Authorization failed') {
+                                A.Manager.destroy();
+                                if (this._player && this._player._hls) this._player._hls.destroy();
+                                B(C + '_user_id'), D(E + '_chat_id'), F(G('P_ALERT_TITLE'), H('P_ALERT_AUTH_FAIL_DESC'), I('P_ALERT_OK'), function() {
+                                    L.href = M;
+                                });
+                            }
+                        }
+                    } else this.viewSeekBarThumbnail(d.target._value, true);
                 }
             } else {
-                function d() {
-                    c('#volumeBtn').css('display', 'inline-block'), d('#volumeSlider').css('display', 'inline-block');
+                function g() {
+                    d() ? (this._video = null, this.initialize()) : (this._hls.loadSource(g), this._hls.attachMedia(this._player._video)), this.updateThumbnail(), this._options.content_data.use_vod && this._listener.trigger(h.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.thumbnail_grid);
                 }
             }
-        }.bind(this)));
-        if (isIOS()) {
-            if ('ZVcwx' === 'ZVcwx') $(this._ui.fullBtn).on('click', function() {
-                if ('EpoKi' === 'EpoKi') this._player._subtitleManager.showDefaultSubtitle(), !this._player._video.paused && this._player._video.webkitEnterFullscreen();
-                else {
-                    function c() {
-                        var d = this._video.textTracks.length;
-                        for (var e = 0; e < d; e++) {
-                            d == e ? this._video.textTracks[e].mode = 'showing' : this._video.textTracks[e].mode = 'disabled';
+        }.bind(this)), this._ui.seekBar.paddingBar.addEventListener('mousemove', function(d) {
+            if ('Khbny' === 'enABL') {
+                function f() {
+                    if (!k(this._video.duration)) {
+                        if (0 > u) v = 0;
+                        if (w > this._video.duration) z = this._video.duration;
+                        A.abs(B - this._video.currentTime) > 0.5 && (this._video.currentTime = E, this._logger.addLog({
+                            'event': 'seek',
+                            'time': F
+                        }), this._render_once_on_seek = true);
+                    } else G.log('isNan');
+                }
+            } else this.viewSeekBarThumbnail(d.offsetX / this._ui.seekBar.clientWidth * 100);
+        }.bind(this)), this._ui.seekBar.paddingBar.addEventListener('mouseout', function(d) {
+            $(this._ui.sliderThumbnail).css('display', 'none');
+        }.bind(this)), this._ui.seekBar.addEventListener('seek', function(d) {
+            this.seek(d.target._value), $(this._ui.sliderThumbnail).css('display', 'none');
+        }.bind(this)), $(this._ui.prev10sBtn).on('click', function() {
+            if (this._player.currentPosition) {
+                var d = this._player.currentPosition - 10;
+                if (d < 0) {
+                    if ('qCDeD' === 'qCDeD') d = 0;
+                    else {
+                        function e() {
+                            this._web_ui._isFullScreen = b;
                         }
                     }
                 }
-            }.bind(this));
-            else {
-                function c() {
-                    b.msRequestFullscreen();
-                }
+                this._player.currentPosition = d;
             }
-        } else {
-            if ('ogUUe' !== 'pWSct') this._ui.fullScreen = new FullscreenButton(this, this._ui.fullBtn);
-            else {
+        }.bind(this)), $(this._ui.next10sBtn).on('click', function() {
+            if (this._player.currentPosition) {
+                var d = this._player.currentPosition + 10;
+                d > this._player.duration - 1 && (d = this._player.duration - 1), this._player.currentPosition = d;
+            }
+        }.bind(this)));
+        if (isIOS()) $(this._ui.fullBtn).on('click', function() {
+            this._player._subtitleManager.showDefaultSubtitle(), !this._player._video.paused && this._player._video.webkitEnterFullscreen();
+        }.bind(this));
+        else {
+            if ('ykOWf' !== 'ykOWf') {
                 function d() {
-                    var e = 'dcb519d5-e770-4377-960d-edc6cf169c68';
+                    var e = new h();
+                    i = j + '?' + e.getTime(), k(this._ui.playThumbnail).css('background-image', ''), l(this._ui.playThumbnail).css('background-image', 'url(' + m + ')'), n(this._ui.playThumbnail).css('display', 'block');
+                }
+            } else this._ui.fullScreen = new FullscreenButton(this, this._ui.fullBtn);
+        }
+        if (isMobile()) {
+            if ('wutOZ' === 'wutOZ') {
+                var a = getOrientation();
+                if (typeof a == 'string') {
+                    if ('grVHI' === 'grVHI') {
+                        if (a == 'landscape-primary' || a == 'landscape-secondary' || a == 'landscape') this.hideChatWrap();
+                        else(a == 'portrait-primary' || a == 'portrait-secondary' || a == 'portrait') && this.showChatWrap();
+                    } else {
+                        function e() {
+                            f() && (k.getElementsByTagName('video')[0].style.display = 'block'), h(), i('#chatList').scrollTop(j('#chatList')[0].scrollHeight);
+                        }
+                    }
+                }
+                $(window).on('orientationchange', function() {
+                    var f = getOrientation();
+                    if (typeof f == 'string') {
+                        if (f == 'landscape-primary' || f == 'landscape-secondary' || f == 'landscape') {
+                            if ('fVoUo' === 'UCkaD') {
+                                function g() {
+                                    var h = this.encrypt(d.ltstr, 16),
+                                        i = '';
+                                    for (var j = 0; j < 16; j++) {
+                                        i += h[j];
+                                    }
+                                    if (i == e.rtstr) return true;
+                                    else return false;
+                                }
+                            } else this.hideChatWrap();
+                        } else(f == 'portrait-primary' || f == 'portrait-secondary' || f == 'portrait') && this.showChatWrap();
+                    }
+                }.bind(this));
+            } else {
+                function f() {
+                    return -1;
                 }
             }
         }
-        if (isMobile()) {
-            var a = getOrientation();
-            if (typeof a == 'string') {
-                if ('wUxOy' !== 'wUxOy') {
-                    function e() {
-                        var f = 'cd6f57e3-d512-4692-82e9-7aee2571a48a';
-                    }
-                } else {
-                    if (a == 'landscape-primary' || a == 'landscape-secondary' || a == 'landscape') this.hideChatWrap(a);
-                    else(a == 'portrait-primary' || a == 'portrait-secondary' || a == 'portrait') && this.showChatWrap();
+        if (this._options.content_data.use_vod) {
+            if ('bxRAX' !== 'uegJE') $(this._ui.sliderPaddingDiv).width($(this._ui.sliderArea).width());
+            else {
+                function g() {
+                    this._video.play();
                 }
             }
-            $(window).on('orientationchange', function() {
-                var f = getOrientation();
-                if (typeof f == 'string') {
-                    if ('etCkn' === 'HSgAA') {
-                        function g() {
-                            var h = {};
-                            e.each(this[0].attributes, function(i, j) {
-                                h[j.nodeName] = j.nodeValue;
-                            }), this.replaceWith(function() {
-                                return i('<' + j + '/>', h).append(k(this).contents());
-                            });
-                        }
-                    } else {
-                        if (f == 'landscape-primary' || f == 'landscape-secondary' || f == 'landscape') this.hideChatWrap(f);
-                        else(f == 'portrait-primary' || f == 'portrait-secondary' || f == 'portrait') && this.showChatWrap();
-                    }
-                }
-            }.bind(this));
         }
     }
     createQualityDiv(a) {
         var b = document.createElement('div');
         b.className = 'fc_default cusDD_opt', b.id = a.id, b.dataset.id = a.id, b.dataset.height = a.height;
         var c = '';
-        return b.dataset.height == 'auto' ? c = 'AUTO' : c = b.dataset.height + 'P', b.innerHTML = c, b;
+        if (b.dataset.height == 'auto') c = 'AUTO';
+        else {
+            if ('KBhnT' === 'VFZgH') {
+                function d() {
+                    c(this).attr('selected', 'selected'), d(this).addClass('on');
+                }
+            } else c = b.dataset.height + 'P';
+        }
+        return b.innerHTML = c, b;
     }
     createQualityBtn(a) {
         var b = document.createElement('button');
         b.className = 'text-btn fc_default bold', b.id = a.id, b.dataset.id = a.id, b.dataset.height = a.height;
         var c = '';
-        return b.dataset.height == 'auto' ? c = 'AUTO' : c = b.dataset.height + 'P', b.innerHTML = c, b;
+        if (b.dataset.height == 'auto') c = 'AUTO';
+        else {
+            if ('TvyCa' !== 'TvyCa') {
+                function d() {
+                    return b;
+                }
+            } else c = b.dataset.height + 'P';
+        }
+        return b.innerHTML = c, b;
     }
     createSubtitleDiv(a) {
         var b = document.createElement('div');
@@ -505,16 +488,9 @@ class Rich360Player {
         if (this._initQualityUI) return;
         this._ui.qualityItems = [], this._ui.qualityPopupItems = [];
         if (!this._player.qualityList) {
-            if ('wYWUt' === 'QeCju') {
+            if ('gZFWX' === 'lZNNf') {
                 function j() {
-                    if (q.readyState == r.DONE) {
-                        if (I.status == 200 || J.status == 201) {
-                            W = X.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), Y = Z.replace(/[\r]/gm, '');
-                            a0[a1.length - 1] == '|' && (a8 = a9.substr(0, aa.length - 1));
-                            a5 = true;
-                            if (a6) a7();
-                        }
-                    }
+                    this._ui.volumeBtn.style.display = 'none', b(this._ui.volumeSlider).parent().css('display', 'none');
                 }
             } else {
                 this._ui.qualitySelect.style.display = 'none', this._ui.qualitySelectBtn.style.display = 'none';
@@ -534,60 +510,67 @@ class Rich360Player {
         c.className = 'cusDD_options', c.appendChild(a), b.className += ' on', $(this._ui.qualityPopup).find('.ta_c').append(b), this._ui.qualityItems.push(a), this._ui.qualityPopupItems.push(b);
         if (this._player.qualityList) {
             for (var d = 0; d < this._player.qualityList.length; d++) {
-                if (!this._player.qualityList[d].height) continue;
-                var e = this.createQualityDiv({
-                        'id': d,
-                        'height': this._player.qualityList[d].height
-                    }),
-                    f = this.createQualityBtn({
-                        'id': d,
-                        'height': this._player.qualityList[d].height
-                    });
-                if ('NAME' in this._player.qualityList[d].attrs) {
-                    if ('dyAAs' === 'dyAAs') e = this.createQualityDiv({
+                if ('imDoY' !== 'naklA') {
+                    if (!this._player.qualityList[d].height) continue;
+                    var e = this.createQualityDiv({
+                            'id': d,
+                            'height': this._player.qualityList[d].height
+                        }),
+                        f = this.createQualityBtn({
+                            'id': d,
+                            'height': this._player.qualityList[d].height
+                        });
+                    'NAME' in this._player.qualityList[d].attrs && (e = this.createQualityDiv({
                         'id': d,
                         'height': this._player.qualityList[d].attrs.NAME
                     }), f = this.createQualityBtn({
                         'id': d,
                         'height': this._player.qualityList[d].attrs.NAME
-                    });
-                    else {
-                        function k() {
-                            this.release();
-                        }
+                    }));
+                    if (this._player.quality) {
+                        if (this._player.quality == d) addClassName(e, 'on');
+                    }
+                    c.appendChild(e), $(this._ui.qualityPopup).find('.ta_c').append(f), this._ui.qualityItems.push(e), this._ui.qualityPopupItems.push(f);
+                } else {
+                    function k() {
+                        b--;
                     }
                 }
-                if (this._player.quality) {
-                    if (this._player.quality == d) addClassName(e, 'on');
-                }
-                c.appendChild(e), $(this._ui.qualityPopup).find('.ta_c').append(f), this._ui.qualityItems.push(e), this._ui.qualityPopupItems.push(f);
             }
             for (var g = 0; g < this._ui.qualityPopupItems.length; g++) {
                 this._ui.qualityPopupItems[g].addEventListener('click', function(l) {
-                    if ('FGKpY' === 'MqGpS') {
-                        function p() {
-                            return c('#playerBottomWrap').css('display', 'block'), d('#chat-i-pushy').css('display', 'block'), true;
-                        }
-                    } else {
-                        var m = null;
-                        l.target.id == 'auto' ? m = -1 : m = parseInt(l.target.id);
-                        for (var n = 0; n < this._ui.qualityPopupItems.length; n++) {
-                            removeClassName(this._ui.qualityPopupItems[n], 'on');
-                        }
-                        l.target.classList.add('on'), this._ui.qualityPopup.style.display = 'none';
-                        if (this._player.quality == m) return;
-                        this._player.quality = m;
-                        if (l.target.id == 'auto')
+                    var m = null;
+                    if (l.target.id == 'auto') m = -1;
+                    else {
+                        if ('YoWQG' !== 'YoWQG') {
+                            function p() {
+                                var q = d.indexOf(l);
+                                if (q > -1) f.splice(q, 1);
+                            }
+                        } else m = parseInt(l.target.id);
+                    }
+                    for (var n = 0; n < this._ui.qualityPopupItems.length; n++) {
+                        removeClassName(this._ui.qualityPopupItems[n], 'on');
+                    }
+                    l.target.classList.add('on'), this._ui.qualityPopup.style.display = 'none';
+                    if (this._player.quality == m) return;
+                    this._player.quality = m;
+                    if (l.target.id == 'auto') {
+                        if ('BGLcH' === 'BGLcH')
                             for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
                                 if (this._ui.qualityPopupItems[o].id == this._player._hls.nextAutoLevel) {
-                                    if ('OoFHm' === 'OoFHm') {
+                                    if ('xGmgW' === 'xGmgW') {
                                         addClassName(this._ui.qualityPopupItems[o], 'on');
                                         break;
                                     } else {
                                         function q() {
-                                            c(this._ui.loadingDiv).css('display', 'none'), d(this._ui.loadingDiv).parent().css('display', 'none');
+                                            this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
                                         }
                                     }
+                                }
+                            } else {
+                                function r() {
+                                    this._mainDiv.removeChild(this._video), this._mainDiv.appendChild(c), this._video = d;
                                 }
                             }
                     }
@@ -597,82 +580,70 @@ class Rich360Player {
         this._ui.qualitySelect.appendChild(c);
         var h = '#' + this._ui.qualitySelect.getAttribute('id');
         cusDD(h, null, function(l) {
-            if ('EYVcB' === 'EYVcB') {
-                var m = null;
-                $(h).find('.cusDD_opt').each(function() {
-                    $(this).data().id != l.id ? (!$(this).attr('selected') || l.id != 'auto') && ($(this).removeAttr('selected'), $(this).removeClass('on')) : ($(this).attr('selected', 'selected'), $(this).addClass('on'));
-                }), l.id == 'auto' ? m = -1 : m = parseInt(l.id), this._player.quality = m;
-            } else {
-                function n() {
-                    this._player._subtitleManager.showDefaultSubtitle(), !this._player._video.paused && this._player._video.webkitEnterFullscreen();
-                }
-            }
+            var m = null;
+            $(h).find('.cusDD_opt').each(function() {
+                if ('JyFNF' === 'riAtW') {
+                    function n() {
+                        this._listener.removeListener(c, d);
+                    }
+                } else $(this).data().id != l.id ? (!$(this).attr('selected') || l.id != 'auto') && ($(this).removeAttr('selected'), $(this).removeClass('on')) : ($(this).attr('selected', 'selected'), $(this).addClass('on'));
+            });
+            if (l.id == 'auto') {
+                if ('lWZGV' !== 'lWZGV') {
+                    function n() {
+                        return b('#chatSendBtn').click(), false;
+                    }
+                } else m = -1;
+            } else m = parseInt(l.id);
+            this._player.quality = m;
         }.bind(this)), cusDDselectOption(h, 'auto', true), this._ui.qualitySelect = document.getElementById(this._ui.qualitySelect.getAttribute('id')), $(this._ui.qualitySelectBtn).on('click', function(l) {
             $(this._ui.qualitySelect).click(), l.stopPropagation();
         }.bind(this)), this._initQualityUI = true;
     }
     initSubtitle() {
         if (this._initSubtitleUI) {
-            if ('xleTg' !== 'ZfbJn') {
-                var a = this._ui.ccSelect.getAttribute('id');
-                $(this._ui.ccSelect).find('.cusDD_opt').each(function() {
-                    if ('eqtTi' === 'eqtTi') {
-                        if ($(this).attr('selected') == 'selected') {
-                            if ('FPbTq' === 'FPbTq') cusDDselectOption('#' + a, $(this).data().id, true);
-                            else {
-                                function j() {
-                                    b.play();
-                                }
-                            }
-                        }
-                    } else {
-                        function k() {
-                            if (c) d();
-                            return;
+            return;
+            var a = this._ui.ccSelect.getAttribute('id');
+            $(this._ui.ccSelect).find('.cusDD_opt').each(function() {
+                if ($(this).attr('selected') == 'selected') {
+                    if ('iITEG' !== 'KTfOU') cusDDselectOption('#' + a, $(this).data().id, true);
+                    else {
+                        function j() {
+                            var k = g.floor(h.random() * e(j.chat_channel_num)) + 1;
+                            k.push(l + '_' + k.toString());
                         }
                     }
-                });
-                return;
-            } else {
-                function j() {
-                    this._video = null, this._hls = null;
                 }
-            }
+            });
+            return;
         }
         this._ui.subtitlePopupItems = [];
         if (!this._player.subtitleList) {
-            if ('DYpCc' !== 'DYpCc') {
-                function k() {
-                    this._options.credentials = {
-                        'device_id': null,
-                        'user_id': null,
-                        'content_id': null,
-                        'ticket_id': null
-                    };
-                }
-            } else {
+            if ('FnrVV' === 'FnrVV') {
                 this._ui.ccSelect.style.display = 'none', this._ui.ccSelectBtn.style.display = 'none';
                 return;
+            } else {
+                function j() {
+                    this._listener.trigger(b.RICH360_ACCESS_DENIED, 'Permission Denied');
+                }
             }
         } else {
             if (!this._player.subtitleList.length) {
-                if ('TXegn' !== 'TXegn') {
-                    function l() {
-                        if (j(this._ui.pageWrap).hasClass('pl-t-default')) s(this._ui.pageWrap).removeClass('pl-t-default').addClass('pl-t-fullscreen'), t(this._ui.chatWrap).addClass('chat_full'), u(this._ui.chatContents).removeClass('is-active'), this.showChatOpenBtn(true);
-                        else n(this._ui.pageWrap).hasClass('pl-t-default_nochat') && v(this._ui.pageWrap).removeClass('pl-t-default_nochat').addClass('pl-t-fullscreen_nochat');
-                        p(this._ui.playerBottomWrap).css('display', 'block'), q(this._ui.playerWrap).css('z-index', 'auto'), r(this._ui.playerWrap).css('position', ''), this._wakeupPastTime = 0;
-                    }
-                } else {
+                if ('qynfv' === 'qynfv') {
                     this._ui.ccSelect.style.display = 'none', this._ui.ccSelectBtn.style.display = 'none';
                     return;
+                } else {
+                    function k() {
+                        if (d._player) {
+                            if (g._player.qualityList) return e._player.qualityList.length;
+                        }
+                    }
                 }
             } else {
                 if (!this._player.subtitleList[0].lang) {
-                    if ('QbSWU' === 'BNTfO') {
-                        function m() {
-                            for (var n in d) {
-                                g(h[n]);
-                            }
+                    if ('OVZJV' !== 'OVZJV') {
+                        function l() {
+                            c = d;
                         }
                     } else return;
                 }
@@ -698,19 +669,71 @@ class Rich360Player {
             }
             this._player.subtitleList.length && ($(this._ui.ccSelectBtn).css('display', 'block'), $(this._ui.ccSelect).css('display', 'block'));
         }
-        this._ui.ccSelect.appendChild(d), $(this._ui.ccSelectBtn).on('click', function(n) {
-            $(this._ui.ccSelect).click(), n.stopPropagation();
+        this._ui.ccSelect.appendChild(d), $(this._ui.ccSelectBtn).on('click', function(m) {
+            if ('Ravjl' !== 'fyUdT') $(this._ui.ccSelect).click(), m.stopPropagation();
+            else {
+                function n() {
+                    if (this._isDummy) {
+                        this._video.src = m;
+                        if (n) this._video.currentTime = o;
+                        if (p) this._video.poster = q;
+                        this._video.crossOrigin = 'anonymous', this._video.disablePictureInPicture = true, this._video.oncontextmenu = function() {
+                            return false;
+                        }, this._video.load();
+                    } else this._hls.loadSource(r);
+                }
+            }
         }.bind(this));
         var a = '#' + this._ui.ccSelect.getAttribute('id');
-        cusDD(a, null, function(n) {
-            console.log('selected ccSelect option : ', n), $(a).find('.cusDD_opt').each(function(o) {
-                $(this).data().id != n.id ? ($(this).removeAttr('selected'), $(this).removeClass('on')) : ($(this).attr('selected', 'selected'), $(this).addClass('on'));
-            }), this._player.subtitleTrack = parseInt(n.id);
+        cusDD(a, null, function(m) {
+            console.log('selected ccSelect option : ', m), $(a).find('.cusDD_opt').each(function(n) {
+                if ('rVoxI' !== 'PKUpw') {
+                    if ($(this).data().id != m.id) $(this).removeAttr('selected'), $(this).removeClass('on');
+                    else {
+                        if ('Oelzv' === 'huWSY') {
+                            function o() {
+                                const p = this._multiviewDivArr[o];
+                                var q = p.find(F => F.singleview_id === E);
+                                this.selectedMultiviewCanvas(r);
+                                if (q == null) return;
+                                const {
+                                    x: r,
+                                    y: s,
+                                    width: t,
+                                    height: u
+                                } = q, {
+                                    videoWidth: v,
+                                    videoHeight: w
+                                } = s, {
+                                    offsetWidth: z,
+                                    offsetHeight: A
+                                } = p;
+                                t.drawImage(u, v.round(r * v), w.round(s * w), z.round(t * v), A.round(u * w), 0, A * B + C * D, z, A);
+                            }
+                        } else $(this).attr('selected', 'selected'), $(this).addClass('on');
+                    }
+                } else {
+                    function p() {
+                        b('#chatAnchor').css('display', 'block');
+                    }
+                }
+            }), this._player.subtitleTrack = parseInt(m.id);
         }.bind(this)), cusDDselectOption(a, -1, true), this._ui.ccSelect = document.getElementById(this._ui.ccSelect.getAttribute('id'));
         for (var h = 0; h < this._ui.subtitlePopupItems.length; h++) {
-            this._ui.subtitlePopupItems[h].addEventListener('click', function(n) {
+            if ('sewkZ' !== 'sewkZ') {
+                function m() {
+                    var n = '35328d37-f99d-4725-98cb-bc2e445ab869';
+                }
+            } else this._ui.subtitlePopupItems[h].addEventListener('click', function(n) {
                 $(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
-                    $(this).data().id != $(n.target).data().id ? ($(this).removeAttr('selected'), $(this).removeClass('on')) : ($(this).attr('selected', 'selected'), $(this).addClass('on'));
+                    if ($(this).data().id != $(n.target).data().id) $(this).removeAttr('selected'), $(this).removeClass('on');
+                    else {
+                        if ('bkfZh' === 'TsiQX') {
+                            function o() {
+                                if (c.keyCode == 13) return e('#chatSendBtn').click(), false;
+                            }
+                        } else $(this).attr('selected', 'selected'), $(this).addClass('on');
+                    }
                 }), this._ui.subtitlePopup.style.display = 'none', this._player.subtitleTrack = parseInt($(n.target).data().id);
             }.bind(this));
         }
@@ -719,88 +742,104 @@ class Rich360Player {
     initLoadingState() {
         this._loading_on = [];
         for (var a = 0; a < RICH360_WAIT_ON.SIZE; a++) {
-            if ('keldR' !== 'keldR') {
-                function b() {
-                    b(this._ui.pageWrap).removeClass('pl-t-default_nochat').addClass('pl-t-fullscreen_nochat');
-                }
-            } else this._loading_on[a] = false;
+            this._loading_on[a] = false;
         }
     }
     initEventListener() {
         this._player.addListener(RICH360_EVENTS.RICH360_STATE_CHANGE, function(a) {
-            if ('soGZd' !== 'soGZd') {
-                function b() {
-                    e.log(f), g('fail', 'Request timeout', 'Please try again', 'OK', function() {
-                        i.reload();
-                    });
-                }
-            } else {
-                if (a === RICH360_STATE.RICH360_INIT) {
-                    if ('BfPhS' === 'XykuH') {
-                        function c() {
-                            b(this._ui.chatInputWrap).css('display', 'none');
-                        }
-                    } else this.initPlayerUI();
-                } else {
-                    if (a === RICH360_STATE.RICH360_READY) {
-                        if ('zDAOs' === 'XMiso') {
-                            function d() {
-                                this._web_ui.hideChatWrap(b);
+            if (a === RICH360_STATE.RICH360_INIT) {
+                if ('rdLbe' === 'vrIrD') {
+                    function b() {
+                        b.log('fullscreen not supported');
+                    }
+                } else this.initPlayerUI();
+            } else a === RICH360_STATE.RICH360_READY && (this.initHideCtrllerEvent(), this._ui.volumeSlider.value = this._player.volume * 100, this.initQuality());
+        }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_QUALITY_CHANGE, function(a) {
+            for (var b = 0; b < this._ui.qualityItems.length; b++) {
+                if ('aFeXr' === 'aFeXr') {
+                    if (this._ui.qualityItems[b].id == a) addClassName(this._ui.qualityItems[b], 'on'), $(this._ui.qualityItems[b]).attr('selected', 'selected');
+                    else {
+                        if (this._ui.qualityItems[b].id != 'auto' || !this._player.isAutoQuality) {
+                            if ('GIbFg' !== 'JjWDM') removeClassName(this._ui.qualityItems[b], 'on'), $(this._ui.qualityItems[b]).removeAttr('selected');
+                            else {
+                                function d() {
+                                    c(d);
+                                }
                             }
-                        } else this._ui.volumeSlider.value = this._player.volume * 100, this.initQuality();
+                        }
+                    }
+                } else {
+                    function e() {
+                        var f = this._display,
+                            g = e;
+                        if (typeof f === 'undefined') g = false;
+                        this._changingView = g;
+                        if (!f) return;
+                        if (!f._wrapperList) return;
+                        g ? b(f._wrapperList, 'changing-source') : j(f._wrapperList, 'changing-source');
                     }
                 }
             }
-        }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_QUALITY_CHANGE, function(a) {
-            if ('FFPbp' === 'FFPbp') {
-                for (var b = 0; b < this._ui.qualityItems.length; b++) {
-                    if (this._ui.qualityItems[b].id == a) addClassName(this._ui.qualityItems[b], 'on'), $(this._ui.qualityItems[b]).attr('selected', 'selected');
-                    else(this._ui.qualityItems[b].id != 'auto' || !this._player.isAutoQuality) && (removeClassName(this._ui.qualityItems[b], 'on'), $(this._ui.qualityItems[b]).removeAttr('selected'));
-                }
-                for (var c = 0; c < this._ui.qualityPopupItems.length; c++) {
-                    if (this._ui.qualityPopupItems[c].id == a) addClassName(this._ui.qualityPopupItems[c], 'on');
-                    else(this._ui.qualityPopupItems[c].id != 'auto' || !this._player.isAutoQuality) && removeClassName(this._ui.qualityPopupItems[c], 'on');
-                }
-                this._player.isAutoQuality && (addClassName(this._ui.qualityItems[0], 'on'), addClassName(this._ui.qualityPopupItems[0], 'on'));
-            } else {
-                function d() {
-                    var e = c.userAgent.toLowerCase(),
-                        f = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(e);
-                    return !f ? e() : f;
-                }
+            for (var c = 0; c < this._ui.qualityPopupItems.length; c++) {
+                if (this._ui.qualityPopupItems[c].id == a) addClassName(this._ui.qualityPopupItems[c], 'on');
+                else(this._ui.qualityPopupItems[c].id != 'auto' || !this._player.isAutoQuality) && removeClassName(this._ui.qualityPopupItems[c], 'on');
             }
+            this._player.isAutoQuality && (addClassName(this._ui.qualityItems[0], 'on'), addClassName(this._ui.qualityPopupItems[0], 'on'));
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_ENDED, function() {
-            $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
+            if ('erLdg' !== 'erLdg') {
+                function a() {
+                    b(this.menuOpeners, function(b) {
+                        b.disabled = true;
+                    });
+                }
+            } else $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_WAIT, function(a) {
             this.loading(a.wait, a.wait_on);
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_DURATION_CHANGE, function() {
             if (this._options.content_data.use_vod && this._ui.seekBar) {
-                if ('GIeAi' !== 'GIeAi') {
-                    function a() {
-                        var b = this._player.currentPosition - 10;
-                        b < 0 && (b = 0), this._player.currentPosition = b;
-                    }
-                } else !this._ui.seekBar.thumbInteracting && (this.setDurationText(this._player.currentPosition, this._player.duration), this._player.currentPosition == 0 ? this._ui.seekBar.value = 0 : this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration);
+                if (!this._ui.seekBar.thumbInteracting) {
+                    this.setDurationText(this._player.currentPosition, this._player.duration);
+                    if (this._player.currentPosition == 0) {
+                        if ('zXOfz' === 'XMKqR') {
+                            function a() {
+                                var b = '46554765-6d6b-4d43-99eb-5bbe0823613a';
+                            }
+                        } else this._ui.seekBar.value = 0;
+                    } else this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration;
+                }
             }
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, function(a) {
-            if ('AxZhp' !== 'MDZXg') a ? ($(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause'), this._ui.playThumbnail.style.display = 'none') : $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
-            else {
+            if ('RJQpS' === 'OGiZH') {
                 function b() {
-                    this._ui_play = false, this._listener.trigger(b.RICH360_PLAY_PAUSE_CHANGE, false);
+                    c(this._ui.ccSelect).click(), d.stopPropagation();
+                }
+            } else {
+                if (a) $(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause'), this._ui.playThumbnail.style.display = 'none';
+                else {
+                    if ('LXCsp' !== 'LXCsp') {
+                        function c() {
+                            i(this).data().id != j.id ? (!q(this).attr('selected') || r.id != 'auto') && (u(this).removeAttr('selected'), v(this).removeClass('on')) : (w(this).attr('selected', 'selected'), z(this).addClass('on'));
+                        }
+                    } else $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
                 }
             }
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(a) {
-            if (a == 'Authorization failed') {
-                Chat.Manager.destroy();
-                if (this._player && this._player._hls) this._player._hls.destroy();
-                removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_AUTH_FAIL_DESC'), gettext('P_ALERT_OK'), function() {
-                    if ('ROMAs' === 'ROMAs') location.href = LUEz1;
-                    else {
-                        function b() {
-                            d('#chatInput').prop('readonly', false), e('#chatInput').prop('placeholder', f('P_CHAT_INPUT_PLACEHOLDER'));
-                        }
-                    }
-                });
+            if ('XZrcC' === 'BzWgn') {
+                function b() {
+                    this._updateCanvasFlag = false;
+                }
+            } else {
+                if (a == 'Authorization failed') {
+                    Chat.Manager.destroy();
+                    if (this._player && this._player._hls) this._player._hls.destroy();
+                    removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_AUTH_FAIL_DESC'), gettext('P_ALERT_OK'), function() {
+                        if ('curnL' === 'Fikzs') {
+                            function c() {
+                                if (h(this._subtitleDiv.style.left.replace('px', '')) == i(j.left) && k(this._subtitleDiv.style.bottom.replace('px', '')) == l(m.bottom) && this._player._hls._hls.subtitleTrack == this._subtitleTrack && this.compareArray(this._subtitleArr, n)) return;
+                            }
+                        } else location.href = LUEz1;
+                    });
+                }
             }
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_ACCESS_DENIED, function(a) {
             var b = POPUP_CONFIG,
@@ -808,40 +847,79 @@ class Rich360Player {
             Chat.Manager.destroy();
             if (this._player && this._player._hls) this._player._hls.destroy();
             removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id');
-            isIOS() && setTimeout(function() {
-                location.href = LUEz1;
-            }, 3000);
-            if (a == 'Permission Denied') {
-                if ('PoKPw' !== 'ykKzC') c = b.permissionDenied(egl, function() {
-                    location.href = LUEz1;
-                }), alertPopup(c.title, c.desc, c.btnTxt, c.okCallback);
+            if (isIOS()) {
+                if ('beoRI' !== 'XhqtG') setTimeout(function() {
+                    if ('gfQMA' === 'TSQVQ') {
+                        function d() {
+                            d.log('@@@onpageshow'), a.pushState({}, '', f.href);
+                        }
+                    } else location.href = LUEz1;
+                }, 3000);
                 else {
                     function d() {
-                        var f = '5dc04bcd-bcdd-4add-b7bb-26995c7a166e';
+                        this._isDummy = false, this._hls = new b(this._config);
                     }
                 }
+            }
+            if (a == 'Permission Denied') {
+                if ('zgpaS' === 'lzcwf') {
+                    function f() {
+                        this._player.subtitleTrack = b;
+                    }
+                } else c = b.permissionDenied(egl, function() {
+                    location.href = LUEz1;
+                }), alertPopup(c.title, c.desc, c.btnTxt, c.okCallback);
             } else alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_LIMIT_DEVNUM_DESC'), gettext('P_ALERT_OK'), function() {
-                location.href = LUEz1;
+                if ('PAOos' === 'AjtTw') {
+                    function g() {
+                        var h = d.apply(a, arguments);
+                        return f = null, h;
+                    }
+                } else location.href = LUEz1;
             });
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_LIVE_ENDED, function() {
-            if ('pnzqr' !== 'pnzqr') {
-                function a() {
-                    this._hls = new c(!this._options.source.endsWith('.m3u8'), d, this._options.use_multiview), this._hls.attachMedia(this._video);
+            this._player._hls.destroy(), Chat.Manager.destroy(), removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id');
+            if (isIOS()) {
+                if ('nXLlE' === 'nXLlE') setTimeout(function() {
+                    if ('JfnYa' !== 'JfnYa') {
+                        function a() {
+                            b(this.menuOpeners, function(b) {
+                                b.disabled = false;
+                            });
+                        }
+                    } else location.href = LUEz1;
+                }, 3000);
+                else {
+                    function a() {
+                        try {
+                            var c = o.parse(p.responseText);
+                            q(c, r.status);
+                        } catch (d) {
+                            v(w.responseText, z.status);
+                        }
+                    }
                 }
-            } else this._player._hls.destroy(), Chat.Manager.destroy(), removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), isIOS() && setTimeout(function() {
-                location.href = LUEz1;
-            }, 3000), alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
+            }
+            alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
                 location.href = LUEz1;
             });
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_SOURCE_CHANGE, function(a) {
-            if ('FQQvD' === 'kzdLk') {
-                function b() {
-                    var c = h.className;
-                    c = c.replace(new i('(?:^|\s+)' + j + '(?:\s+|$)', 'g'), ' '), c = c.replace(new k('^\s+', 'g'), ''), c = c.replace(new l('\s+$', 'g'), ''), m.className = c.replace(new n('\s+', 'g'), ' ');
-                }
-            } else this.changeSource(a);
+            this.changeSource(a);
         }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_SUBTITLE_FOUND, function() {
-            this.initSubtitle();
+            if ('DvMrG' !== 'pimEn') this.initSubtitle();
+            else {
+                function a() {
+                    this.viewSeekBarThumbnail(b.offsetX / this._ui.seekBar.clientWidth * 100);
+                }
+            }
+        }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, function(a) {
+            if ('jyLCE' !== 'jyLCE') {
+                function b() {
+                    this.changeSingleView(true);
+                }
+            } else this.updateThumbnail(a);
+        }.bind(this)), this._player.addListener(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, function(a) {
+            this.initSeekBarThumbnailData(a);
         }.bind(this));
     }
     loading(a, b) {
@@ -853,136 +931,130 @@ class Rich360Player {
                 break;
             }
         }
-        if (c) {
-            if ('VFgkS' === 'HKpbI') {
+        if (c) $(this._ui.loadingDiv).css('display', 'block'), $(this._ui.loadingDiv).parent().css('display', 'block');
+        else {
+            if ('Dxifa' === 'Dxifa') $(this._ui.loadingDiv).css('display', 'none'), $(this._ui.loadingDiv).parent().css('display', 'none');
+            else {
                 function e() {
-                    return new d('(?:^|\s+)' + e + '(?:\s+|$)').test(f.className);
+                    var f = h.className;
+                    f = f.replace(new d('(?:^|\s+)' + j + '(?:\s+|$)', 'g'), ' '), f = f.replace(new k('^\s+', 'g'), ''), f = f.replace(new l('\s+$', 'g'), ''), m.className = f.replace(new n('\s+', 'g'), ' ');
                 }
-            } else $(this._ui.loadingDiv).css('display', 'block'), $(this._ui.loadingDiv).parent().css('display', 'block');
-        } else $(this._ui.loadingDiv).css('display', 'none'), $(this._ui.loadingDiv).parent().css('display', 'none');
+            }
+        }
     }
     setDurationText(a, b) {
         this._ui.durationStart.innerHTML = numberPad(Math.floor(a / 3600), 2) + ':' + numberPad(Math.floor(a / 60) % 60, 2) + ':' + numberPad(Math.floor(a % 60), 2), b -= a, this._ui.durationEnd.innerHTML = '-' + numberPad(Math.floor(b / 3600), 2) + ':' + numberPad(Math.floor(b / 60) % 60, 2) + ':' + numberPad(Math.floor(b % 60), 2);
     }
     initHideCtrllerEvent() {
+        if (this._initHideCtroller) return;
         this._ui.playerBottomWrap.style.display = 'block';
-        if (!$(this._ui.chatContents).hasClass('is-active')) {
-            if ('vSwJb' === 'vSwJb') this.showChatOpenBtn(true);
+        !$(this._ui.chatContents).hasClass('is-active') && this.showChatOpenBtn(true);
+        if (isMobile() || isTablet() || isIpadOS()) {
+            if ('Ddamp' === 'Ddamp') this._options.container.addEventListener('touchend', a.bind(this), false);
             else {
                 function b() {
-                    b(this.menuOpeners, function(c) {
-                        c.disabled = true;
-                    });
+                    b = false;
                 }
             }
-        }
-        if (isMobile() || isTablet() || isIpadOS()) {
-            if ('vtpQw' !== 'vtpQw') {
-                function c() {
-                    var d = c;
-                    if (d == 'zh_Hans') d = 'cn';
-                    if (d == 'ja') d = 'jp';
-                    var e = {
-                        'ko': {
-                            'idText': 'ID',
-                            'ticketText': '인증코드',
-                            'authPopupTitle': '코드 인증'
-                        },
-                        'jp': {
-                            'idText': 'ID',
-                            'ticketText': '認証コード',
-                            'authPopupTitle': 'コード認証'
-                        },
-                        'en': {
-                            'idText': 'ID',
-                            'ticketText': 'Auth code',
-                            'authPopupTitle': 'Code authentication'
-                        },
-                        'cn': {
-                            'idText': 'ID',
-                            'ticketText': 'Auth code',
-                            'authPopupTitle': 'Code authentication'
-                        }
-                    };
-                    if (!e[d]) return e.en;
-                    return e[d];
-                }
-            } else this._options.container.addEventListener('touchend', a.bind(this), false);
         } else this._options.container.addEventListener('mousemove', this.wakeupController.bind(this), false), this._options.container.addEventListener('mouseup', a.bind(this), false);
 
-        function a(d) {
-            if ('sCuxp' === 'sCuxp') {
+        function a(c) {
+            if ('Zmqqo' !== 'EVOyR') {
                 this._wakeupPastTime = 0;
-                if (!this._player._video.paused && (d.target.tagName === 'CANVAS' || d.target.tagName === 'VIDEO' || d.target === this._ui.playerBottomWrap || d.target.id == 'loadingWrap' || d.target.id == 'subtitleDiv' || d.target.parentElement.id == 'subtitleDiv')) {
-                    if ('WeHby' !== 'omiiy') {
-                        if (this._ui.playerBottomWrap.style.display == 'block') this._ui.playerBottomWrap.style.display = 'none', this.showChatOpenBtn(false);
-                        else {
-                            if ('ZXZQo' === 'rRSzW') {
-                                function f() {
-                                    !this._player._video.bfTime && (this._options.use_multiview ? this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path : this._player._video.src = this._player._options.source);
+                if (!this._player._video.paused && (c.target.tagName === 'CANVAS' || c.target.tagName === 'VIDEO' || c.target === this._ui.playerBottomWrap || c.target.id == 'loadingWrap' || c.target.id == 'subtitleDiv' || c.target.parentElement.id == 'subtitleDiv')) {
+                    if (this._ui.playerBottomWrap.style.display == 'block') this._ui.playerBottomWrap.style.display = 'none', this.showChatOpenBtn(false), this.setTimerHidePlayerController(false);
+                    else {
+                        this._ui.playerBottomWrap.style.display = 'block';
+                        if (!$(this._ui.chatContents).hasClass('is-active')) {
+                            if ('Ttrbv' !== 'UKbmL') this.showChatOpenBtn(true);
+                            else {
+                                function d() {
+                                    if (g < -1) h = -1;
+                                    if (i >= this._quality_list.size) j = this._quality_list.size;
+                                    this.changeCurrentLevel(k), this._logger.addLog({
+                                        'event': 'quality_change',
+                                        'level': l
+                                    });
                                 }
-                            } else this._ui.playerBottomWrap.style.display = 'block', !$(this._ui.chatContents).hasClass('is-active') && this.showChatOpenBtn(true);
+                            }
+                        }
+                        this.setTimerHidePlayerController(true);
+                    }
+                }
+                if (this._player._video.paused) {
+                    if ('nFouU' !== 'nFouU') {
+                        function f() {
+                            var g = 'd6a2863d-9bd6-4b34-ad92-3ca1c8a0eba4';
                         }
                     } else {
-                        function g() {
-                            this._bfSendSubTime = new d();
-                            for (var h = 0; h < d.length; h++) {
-                                this._cues.push(g[h]);
-                            }
+                        this._ui.playerBottomWrap.style.display = 'block';
+                        if (!$(this._ui.chatContents).hasClass('is-active')) {
+                            if ('DHsWh' === 'hgwaL') {
+                                function g() {
+                                    b('#ccSelectBtn').css('display', 'block');
+                                }
+                            } else this.showChatOpenBtn(true);
                         }
                     }
                 }
                 return true;
             } else {
                 function h() {
-                    this._video.currentTime = this._config.startPosition;
+                    var i = this._manifest;
+                    if (i && i.thumbnail) {
+                        var j = this._sourceBase + this._manifest.thumbnail.path;
+                        this._listener.trigger(d.RICH360_THUMBNAIL_UPDATE, j);
+                    }
                 }
             }
         }
-        setInterval(function() {
-            if ('TDhIC' === 'NwptI') {
-                function e() {
-                    this._ui.volumeBtn.classList.add('mute'), this._ui.volumeSlider.beforeValue = this._ui.volumeSlider.value, this._ui.volumeSlider.value = 0, this.volume(this._ui.volumeSlider.value);
-                }
-            } else {
-                var d = this._ui.volumeSlider.thumbInteracting || this._player._video.paused;
-                if (this._options.content_data.use_vod && this._ui.seekBar) {
-                    if ('GNfDO' !== 'cdQfW') d = d || this._ui.seekBar.thumbInteracting;
-                    else {
-                        function f() {
-                            if (h == 'landscape-primary' || i == 'landscape-secondary' || j == 'landscape') this.hideChatWrap(o);
-                            else(l == 'portrait-primary' || m == 'portrait-secondary' || n == 'portrait') && this.showChatWrap();
-                        }
-                    }
-                }
-                if (d) this.wakeupController();
-                else 3000 <= this._wakeupPastTime && (this._ui.playerBottomWrap.style.display = 'none', this.showChatOpenBtn(false), $('.cusDD_options').slideUp(200), $('.cusDD_arrow').removeClass('active'), this._wakeupPastTime = 0);
-                this._wakeupPastTime += 100;
-            }
-        }.bind(this), 100), this._initHideCtroller = true;
+        this.setTimerHidePlayerController(true), this._initHideCtroller = true;
     }
-    wakeupController(a) {
-        this._ui.playerBottomWrap.style.display = 'block';
-        if (!$(this._ui.chatContents).hasClass('is-active')) {
-            if ('LqhFZ' === 'LqhFZ') this.showChatOpenBtn(true);
+    setTimerHidePlayerController(a) {
+        let b = a;
+        if (typeof b === 'undefined') b = true;
+        clearTimeout(this._timer.hidePlayerController.timer), this._timer.hidePlayerController.timer = null;
+        if (b) {
+            if ('XMoMv' === 'GVlBY') {
+                function c() {
+                    b(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause'), this._ui.playThumbnail.style.display = 'none';
+                }
+            } else this._timer.hidePlayerController.timer = setTimeout(this.hidePlayerController.bind(this), this._timer.hidePlayerController.period);
+        }
+    }
+    hidePlayerController() {
+        var a = this._ui.volumeSlider.thumbInteracting || !this._player._ui_play;
+        if (this._options.content_data.use_vod && this._ui.seekBar) {
+            if ('kBluB' === 'kBluB') a = a || this._ui.seekBar.thumbInteracting;
             else {
                 function b() {
-                    this._quality_list = [];
-                    let c = this._hls.levels;
-                    for (var d in c) {
-                        this._quality_list.push(c[d]);
-                    }
-                    this._listener.trigger(d.RICH360_STATE_CHANGE, a.RICH360_READY), this._ready_state = f.RICH360_READY;
+                    this._video = null, this._hls = null;
                 }
             }
         }
-        return this._wakeupPastTime = 0, true;
+        if (a) {
+            if ('rRHcG' === 'rRHcG') {
+                this.wakeupController();
+                return;
+            } else {
+                function c() {
+                    for (var d = 0; d < d.length; d++) {
+                        var e = g[d];
+                        h(e);
+                    }
+                }
+            }
+        }
+        this._ui.playerBottomWrap.style.display = 'none', this.showChatOpenBtn(false), $('.cusDD_options').slideUp(200), $('.cusDD_arrow').removeClass('active');
+    }
+    wakeupController(a) {
+        return this._ui.playerBottomWrap.style.display = 'block', !$(this._ui.chatContents).hasClass('is-active') && this.showChatOpenBtn(true), this._wakeupPastTime = 0, this.setTimerHidePlayerController(true), true;
     }
     hideChatWrap() {
         if ($(this._ui.pageWrap).hasClass('pl-t-default')) {
-            if ('pdjoI' === 'lxtAv') {
+            if ('LQlkF' !== 'LQlkF') {
                 function a() {
-                    f.log('EVENT::#chatInput::blur'), g() && h() && k.body.classList.remove(l);
+                    b.destroy();
                 }
             } else $(this._ui.pageWrap).removeClass('pl-t-default').addClass('pl-t-fullscreen'), $(this._ui.chatWrap).addClass('chat_full'), $(this._ui.chatContents).removeClass('is-active'), this.showChatOpenBtn(true);
         } else $(this._ui.pageWrap).hasClass('pl-t-default_nochat') && $(this._ui.pageWrap).removeClass('pl-t-default_nochat').addClass('pl-t-fullscreen_nochat');
@@ -990,80 +1062,98 @@ class Rich360Player {
     }
     showChatWrap() {
         if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen')) $(this._ui.pageWrap).removeClass('pl-t-fullscreen').addClass('pl-t-default'), $(this._ui.chatWrap).removeClass('chat_full');
-        else $(this._ui.pageWrap).hasClass('pl-t-fullscreen_nochat') && $(this._ui.pageWrap).removeClass('pl-t-fullscreen_nochat').addClass('pl-t-default_nochat');
+        else {
+            if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen_nochat')) {
+                if ('UtAwM' === 'zbAIt') {
+                    function b() {
+                        d(e[f]);
+                    }
+                } else $(this._ui.pageWrap).removeClass('pl-t-fullscreen_nochat').addClass('pl-t-default_nochat');
+            }
+        }
         $(this._ui.playerBottomWrap).css('display', 'block'), $(this._ui.playerWrap).css('z-index', '3'), this._wakeupPastTime = 0, $(this._ui.chatContents).addClass('is-active'), this.showChatOpenBtn(false);
         if (isMobile()) {
             var a = getOrientation();
             if (typeof a == 'string') {
-                if ('hwUSr' === 'JOJCu') {
-                    function b() {
-                        e(function() {
-                            this.events[i].listeners[j](k);
-                        }.bind(this), 0);
+                if ('YtHTU' !== 'YtHTU') {
+                    function c() {
+                        var d = '5dc04bcd-bcdd-4add-b7bb-26995c7a166e';
                     }
                 } else {
-                    if (a == 'landscape-primary' || a == 'landscape-secondary' || a == 'landscape') $(this._ui.chatInputWrap).css('display', 'none');
-                    else {
-                        if ('uDgVe' !== 'uDgVe') {
-                            function c() {
-                                j.log(k, l), m && (s.messages.length && z.Ui.updateNotice(A.messages[0].entry.update, B.messages[0].entry.timetoken, C.messages[0].entry.entry));
+                    if (a == 'landscape-primary' || a == 'landscape-secondary' || a == 'landscape') {
+                        if ('MXlcE' === 'MXlcE') $(this._ui.chatInputWrap).css('display', 'none');
+                        else {
+                            function d() {
+                                var e = {
+                                    'Data': j.stringify(k),
+                                    'PartitionKey': l[0],
+                                    'StreamName': 'KINESIS_CHAT'
+                                };
+                                m.putRecord(e, function(E, F) {
+                                    if (E) z.log(E, E.stack);
+                                    else {
+                                        A.log(F);
+                                        var G = new B();
+                                        C.Ui.displayMessage(D, G.getTime() * 10000);
+                                    }
+                                });
                             }
+                        }
+                    } else {
+                        if ($(this._ui.navBtnWrap).find('button[name=chatnavbtn]').hasClass('on')) {
+                            if ('QAfAJ' !== 'QAfAJ') {
+                                function e() {
+                                    c = d;
+                                }
+                            } else $(this._ui.chatInputWrap).css('top', ''), $(this._ui.chatInputWrap).css('position', 'relative'), $(this._ui.chatInputWrap).css('display', 'block');
                         } else {
-                            if ($(this._ui.navBtnWrap).find('button[name=chatnavbtn]').hasClass('on')) {
-                                if ('gLjaK' !== 'gLjaK') {
-                                    function d() {
-                                        this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
-                                    }
-                                } else $(this._ui.chatInputWrap).css('top', ''), $(this._ui.chatInputWrap).css('position', 'relative'), $(this._ui.chatInputWrap).css('display', 'block');
-                            } else {
-                                if ('aOrsj' !== 'aOrsj') {
-                                    function e() {
-                                        var f = 'fabb3e81-e293-4088-91a1-68efca8193ef';
-                                    }
-                                } else $(this._ui.chatInputWrap).css('display', 'none');
+                            if ('AzxDM' !== 'fXgOc') $(this._ui.chatInputWrap).css('display', 'none');
+                            else {
+                                function f() {
+                                    this._canvasTimeStamps.push(b);
+                                }
                             }
                         }
                     }
                 }
-            } else {
-                if ('AuCXD' !== 'MSMfQ') $(this._ui.chatInputWrap).css('top', ''), $(this._ui.chatInputWrap).css('position', 'relative'), $(this._ui.chatInputWrap).css('display', 'block');
-                else {
-                    function f() {
-                        this._video.setAttribute('playsinline', ''), this._video.setAttribute('webkit-playsinline', ''), this._video_source = b.createElement('source'), this._options.use_multiview ? this._video_source.setAttribute('src', this._sourceBase + this._manifest.multiview_list[this._view].path) : this._video_source.setAttribute('src', this._options.source), this._video_source.setAttribute('type', 'application/x-mpegURL'), this._video.appendChild(this._video_source), this._video.load();
-                    }
-                }
-            }
+            } else $(this._ui.chatInputWrap).css('top', ''), $(this._ui.chatInputWrap).css('position', 'relative'), $(this._ui.chatInputWrap).css('display', 'block');
         }
         if ($(this._ui.navBtnWrap).find('button[name=multiviewnavbtn]').hasClass('on')) this._player._display && (this._player._display.showMultiPreview = true);
         else {
-            if ('nIhqS' !== 'nIhqS') {
+            if ('cKfIu' !== 'jFGGg') this._player._display && (this._player._display.showMultiPreview = false);
+            else {
                 function g() {
-                    this._manifest = c.parse(d.responseText), this.initialize();
+                    return /Android/i.test(b.userAgent);
                 }
-            } else this._player._display && (this._player._display.showMultiPreview = false);
+            }
         }
     }
     play() {
         !this._initHideCtroller && this.initHideCtrllerEvent();
         if (isIOS()) {
             if (!this._player._video.bfTime) {
-                if ('wuHbF' !== 'wuHbF') {
-                    function a() {
-                        b._player._display.showMultiPreview = false;
-                    }
-                } else this._options.use_multiview ? this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path : this._player._video.src = this._player._options.source;
+                if (this._options.use_multiview) this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path;
+                else {
+                    if ('EEsYR' === 'cyMFp') {
+                        function a() {
+                            this._ui.volumeBtn.classList.remove('mute'), this._ui.volumeSlider.value = this._ui.volumeSlider.beforeValue, this._ui.volumeSlider.beforeValue = 0, this.volume(this._ui.volumeSlider.value);
+                        }
+                    } else this._player._video.src = this._player._sourceBase + this._player._manifest.singleview_list[0].path;
+                }
             }
         } else {
             if (this._player._hls._hls) {
-                if ('jDair' !== 'SCVVZ') this._player._hls._hls.liveSyncPosition && (this._player.currentPosition = this._player._hls._hls.liveSyncPosition);
-                else {
-                    function b() {
-                        c.href = d;
+                if (this._player._hls._hls.liveSyncPosition) {
+                    if ('CLhDr' === 'CLhDr') this._player.currentPosition = this._player._hls._hls.liveSyncPosition;
+                    else {
+                        function b() {
+                            return this._video.volume = b;
+                        }
                     }
                 }
             }
         }
-        this._player.currentTime = this._player.duration - 5, this._player.play();
+        this._player.play();
     }
     pause() {
         isIOS() && (this._options.content_data.use_vod ? this._player._video.bfTime = this._player._video.currentTime : this._player._video.src = ''), this._player.pause();
@@ -1075,45 +1165,28 @@ class Rich360Player {
         this._player.volume = parseFloat(a / 100);
     }
     changeSource(a) {
-        if (a) {
-            this.pause();
-            var b = a.lastIndexOf('/output'),
-                c = a.substr(0, b) + '/thumbnails.jpg';
-            $(this._ui.playThumbnail).css('background-image', 'url(' + c + ')'), this._player._options.source = a, setTimeout(function() {
-                $(this._ui.playThumbnail).css('display', 'block'), isIOS() ? (this._player._video = null, this._player.initialize()) : (this._player._hls.loadSource(a), this._player._hls.attachMedia(this._player._video));
-            }.bind(this), 1000);
-        }
+        a && (this.pause(), this._player.changeSource(a));
     }
-    initSeekBarThumbnailData() {
-        var a = this._req_str.lastIndexOf('/output'),
-            b = this._req_str.substr(0, a) + '/thumbnail_info.json',
-            c = new XMLHttpRequest();
-        c.open('GET', b), c.send(), c.onreadystatechange = function() {
-            if (c.readyState == XMLHttpRequest.DONE) {
-                if ('FzWny' !== 'ywoMe') {
-                    if (c.status == 200 || c.status == 201) {
-                        if ('aIYqv' === 'ViJPj') {
-                            function d() {
-                                var e = '8a201ab9-fab1-4d61-bdac-bd6bcd78c368';
-                            }
-                        } else this._thumbnailGridData = JSON.parse(c.responseText), $(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, a) + '/' + this._thumbnailGridData.path + ')'), console.log(JSON.parse(c.responseText));
-                    }
-                } else {
-                    function e() {
-                        this.thumbInteracting = false, this.dispatchEvent(this.seekEvent);
-                    }
-                }
-            }
-        }.bind(this);
+    updateThumbnail(a) {
+        var b = new Date();
+        a = a + '?' + b.getTime(), $(this._ui.playThumbnail).css('background-image', ''), $(this._ui.playThumbnail).css('background-image', 'url(' + a + ')'), $(this._ui.playThumbnail).css('display', 'block');
+    }
+    initSeekBarThumbnailData(a) {
+        this._thumbnailGridData = JSON.parse(JSON.stringify(a));
+        var b = this._req_str.lastIndexOf('/output'),
+            c = new Date();
+        $(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, b) + '/' + this._thumbnailGridData.path + '?' + c.getTime() + ')');
     }
     viewSeekBarThumbnail(a, b) {
         if (!this._thumbnailGridData) return $(this._ui.sliderThumbnail).css('display', 'none'), false;
         if (a > 100) a = 100;
         else {
             if (a < 0) {
-                if ('sQBKL' !== 'sQBKL') {
+                if ('SdMEp' !== 'SdMEp') {
                     function m() {
-                        o('#chatContentWrap').css('display', 'none'), p('#chatInputWrap').css('display', 'none'), q('#holdChatScrollLabel').css('display', 'none'), r('#artistChatWrap').css('display', 'block'), s('#multiViewWrap').css('display', 'none'), t('button[name=chatnavbtn]').removeClass('on'), u('button[name=artistchatnavbtn]').addClass('on'), v('button[name=multiviewnavbtn]').removeClass('on'), w('#artistChatList').scrollTop(z('#artistChatList')[0].scrollHeight), A('#chatAnchor').css('display', 'none'), B && (E._options.use_multiview && (G._player._display.showMultiPreview = false));
+                        this.subtitleTrack = this._subtitleManager._prevSubtitleTrack, this._video.play(), !e && (i(this._video).hide(), j(function() {
+                            l(this._video).show(), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
+                        }.bind(this), 500));
                     }
                 } else a = 0;
             }
@@ -1121,13 +1194,7 @@ class Rich360Player {
         var c = a / 100,
             d = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y,
             e = Math.ceil(d * c) - 1;
-        if (e < 0) {
-            if ('oJeHT' === 'Ndjji') {
-                function n() {
-                    this._thumbnailGridData = h.parse(i.responseText), j(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, k) + '/' + this._thumbnailGridData.path + ')'), l.log(m.parse(n.responseText));
-                }
-            } else e = 0;
-        }
+        e < 0 && (e = 0);
         var f = e % 10,
             g = parseInt(e / 10);
         const h = 160,
@@ -1135,86 +1202,81 @@ class Rich360Player {
             j = $(this._ui.sliderArea.slider.thumb).width();
         var k = f * h * -1,
             l = g * i * -1;
-        if (b) $(this._ui.sliderArea.slider.thumb).append($(this._ui.sliderThumbnail)), this.setDurationText(this._thumbnailGridData.duration * c, this._thumbnailGridData.duration), $(this._ui.sliderThumbnail).css('top', ''), $(this._ui.sliderThumbnail).css('left', '');
-        else {
-            if ('TJIJO' === 'TJIJO') $(this._ui.sliderArea).append($(this._ui.sliderThumbnail)), $(this._ui.sliderThumbnail).css('top', '-16px'), $(this._ui.sliderThumbnail).css('left', 'calc(' + a + '% + ' + j / 2 + 'px - ' + (h + j) * c + 'px)');
+        if (b) {
+            if ('KFkOC' === 'KFkOC') $(this._ui.sliderArea.slider.thumb).append($(this._ui.sliderThumbnail)), this.setDurationText(this._thumbnailGridData.duration * c, this._thumbnailGridData.duration), $(this._ui.sliderThumbnail).css('top', ''), $(this._ui.sliderThumbnail).css('left', '');
             else {
-                function o() {
-                    this.seek(c.target._value), d(this._ui.sliderThumbnail).css('display', 'none');
+                function n() {
+                    c('#artistChatList').append(d.clone());
                 }
             }
-        }
+        } else $(this._ui.sliderArea).append($(this._ui.sliderThumbnail)), $(this._ui.sliderThumbnail).css('top', '-16px'), $(this._ui.sliderThumbnail).css('left', 'calc(' + a + '% + ' + j / 2 + 'px - ' + (h + j) * c + 'px)');
         return $(this._ui.sliderThumbnail).css('background-position-x', k + 'px'), $(this._ui.sliderThumbnail).css('background-position-y', l + 'px'), $(this._ui.sliderThumbnail).css('display', 'block'), true;
     }
     showChatOpenBtn(a) {
-        $(this._ui.chatOpenBtn).css('display', a ? 'block' : 'none');
+        let b = a;
+        isIpadOS() && (b = false), $(this._ui.chatOpenBtn).css('display', b ? 'block' : 'none');
     }
 }
 var customRange = function(a, b, c) {
     var d = a;
     d.className = d.className + ' undraggable unselectable', d.barDiv = d.querySelector('div[name="bar"]'), d.thumbDiv = d.barDiv.querySelector('div[name="thumb"]'), d.thumbInteracting = false, d.interactStartX = 0, d.interactStartOffset = 0, d.beforeValue = 0;
-    if (c) {
-        if ('fFZgm' !== 'fFZgm') {
-            function i() {
-                b('#chatList .user_chat:eq(-1)').css('margin-bottom', '0');
-            }
-        } else d.paddingBar = c;
-    }
+    c && (d.paddingBar = c);
     if (b) d._value = b;
     else d._value = 0;
     d._loadedValue = 0, d.inputEvent = new Event('input'), d.seekEvent = new Event('seek'), Object.defineProperty(d, 'value', {
-        'get': function j() {
-            if ('XevzC' !== 'SOWqx') return this._value;
+        'get': function i() {
+            return this._value;
+        },
+        'set': function j(k) {
+            if (k > 100) k = 100;
             else {
-                function k() {
-                    var l = '3e1562d4-7f5a-4e37-b13c-9726eca336bc';
+                if (k < 0) k = 0;
+            }
+            this.thumbDiv.style.left = k + '%', this._value = k, this.dispatchEvent(this.inputEvent);
+        }
+    });
+    var e = function(k) {
+            if ('hmjbj' !== 'eXbGB') this.thumbInteracting = true, this.interactStartX = k.clientX || k.touches && k.touches[0].clientX, this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
+            else {
+                function l() {
+                    this._options.credentials.content_id = null;
                 }
             }
         },
-        'set': function k(l) {
-            if (l > 100) l = 100;
-            else {
-                if (l < 0) l = 0;
-            }
-            this.thumbDiv.style.left = l + '%', this._value = l, this.dispatchEvent(this.inputEvent);
-        }
-    });
-    var e = function(l) {
-            this.thumbInteracting = true, this.interactStartX = l.clientX || l.touches && l.touches[0].clientX, this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
-        },
-        f = function(l) {
+        f = function(k) {
             if (this.thumbInteracting) {
-                var m = (l.clientX || l.touches && l.touches[0].clientX) - this.interactStartX,
-                    n = this.interactStartOffset + m;
-                if (n < 0) n = 0;
-                if (n > this.barDiv.offsetWidth) n = this.barDiv.offsetWidth;
-                this.value = n * 100 / this.barDiv.offsetWidth;
+                var l = (k.clientX || k.touches && k.touches[0].clientX) - this.interactStartX,
+                    m = this.interactStartOffset + l;
+                if (m < 0) m = 0;
+                if (m > this.barDiv.offsetWidth) m = this.barDiv.offsetWidth;
+                this.value = m * 100 / this.barDiv.offsetWidth;
             }
         },
         g = function() {
-            this.thumbInteracting && (this.thumbInteracting = false, this.dispatchEvent(this.seekEvent));
-        },
-        h = function(l) {
-            if (l.target != this.thumbDiv) {
-                this.thumbInteracting = true;
-                var m = l.offsetX;
-                if (!m) {
-                    var n = l.target.getBoundingClientRect();
-                    m = l.targetTouches[0].pageX - n.left;
+            if ('JpLJV' !== 'JpLJV') {
+                function k() {
+                    return this._video.volume;
                 }
-                this.value = m * 100 / this.barDiv.offsetWidth, this.interactStartX = l.clientX || l.touches && l.touches[0].clientX, this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
+            } else this.thumbInteracting && (this.thumbInteracting = false, this.dispatchEvent(this.seekEvent));
+        },
+        h = function(k) {
+            if (k.target != this.thumbDiv) {
+                this.thumbInteracting = true;
+                var l = k.offsetX;
+                if (!l) {
+                    if ('mpOXS' === 'kEmFW') {
+                        function n() {
+                            return true;
+                        }
+                    } else {
+                        var m = k.target.getBoundingClientRect();
+                        l = k.targetTouches[0].pageX - m.left;
+                    }
+                }
+                this.value = l * 100 / this.barDiv.offsetWidth, this.interactStartX = k.clientX || k.touches && k.touches[0].clientX, this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
             }
         };
-    d.thumbDiv.addEventListener('mousedown', e.bind(d), false), d.thumbDiv.addEventListener('touchstart', e.bind(d), false), window.addEventListener('mousemove', f.bind(d), false), window.addEventListener('touchmove', f.bind(d), false), window.addEventListener('mouseup', g.bind(d), false), window.addEventListener('touchend', g.bind(d), false), d.addEventListener('mousedown', h.bind(d), false), d.addEventListener('touchstart', h.bind(d), false);
-    if (c) {
-        if ('IOnCO' === 'IOnCO') c.addEventListener('mousedown', h.bind(d), false), c.addEventListener('touchstart', h.bind(d), false);
-        else {
-            function l() {
-                b('#chatList').find('div:eq(0)').remove();
-            }
-        }
-    }
-    return d;
+    return d.thumbDiv.addEventListener('mousedown', e.bind(d), false), d.thumbDiv.addEventListener('touchstart', e.bind(d), false), window.addEventListener('mousemove', f.bind(d), false), window.addEventListener('touchmove', f.bind(d), false), window.addEventListener('mouseup', g.bind(d), false), window.addEventListener('touchend', g.bind(d), false), d.addEventListener('mousedown', h.bind(d), false), d.addEventListener('touchstart', h.bind(d), false), c && (c.addEventListener('mousedown', h.bind(d), false), c.addEventListener('touchstart', h.bind(d), false)), d;
 };
 class FullscreenButton {
     constructor(a, b) {
@@ -1225,158 +1287,146 @@ class FullscreenButton {
     }
     showMultiviewBtn(a) {
         const b = this._web_player._options.use_multiview;
-        if (!isAndroid() || !b) return;
+        if (!b) return;
         const {
             navBtnWrap: c,
             chatOpenBtn: d
-        } = this._web_ui._ui, e = 'button[name=multiviewnavbtn]', f = a ? 'inline-block' : 'none', g = a ? 'block' : 'none';
-        $(c).find(e).css('display', f), $(d).find(e).css('display', g);
+        } = this._web_ui._ui, e = 'button[name=multiviewnavbtn]', f = 'button[name=artistchatnavbtn]', g = 'button[name=chatnavbtn]', h = a ? 'inline-block' : 'none', i = a ? 'block' : 'none';
+        $(c).find(e).css('display', h), $(d).find(e).css('display', i);
     }
     fullscreenChanged() {
         var a = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement,
             b = this;
         delayStopLoadingPanel();
         if (!a) {
-            this._is_fullscreen_button = true, $(this._dom_element).removeClass('pl-i-full float_r').addClass('pl-i-screen float_r');
-            if (isMobile()) {
-                if ('ndcTP' === 'TDbgt') {
-                    function d() {
-                        e.push(f), g.push(h);
-                    }
-                } else {
-                    var c = getOrientation();
-                    if (typeof c == 'string') {
-                        if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') {
-                            if ('VejhD' === 'NlObB') {
-                                function e() {
-                                    var f = g.createElement('button');
-                                    return f.className = 'text-btn fc_default bold', f.id = h.id, f.dataset.id = i.id, f.dataset.label = j.label, f.dataset.lang = k.lang, f.innerHTML = l.label, f;
-                                }
-                            } else this._web_ui.hideChatWrap(c);
-                        } else {
-                            if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
-                                if ('yZOgy' === 'yZOgy') this._web_ui.showChatWrap();
-                                else {
-                                    function f() {
-                                        var g = '4b5d825b-4c0d-4cbd-898a-46a5adfcb7e4';
-                                    }
-                                }
-                            }
-                        }
-                    }
+            if ('MnSvB' !== 'MnSvB') {
+                function d() {
+                    c.originalEvent.deltaY < 0 && (e = true);
                 }
             } else {
-                if ('Nrdfg' === 'Nrdfg') {
-                    if (isSafari()) setTimeout(function() {
-                        b._web_ui.showChatWrap();
-                    });
-                    else {
-                        if ('cEELW' !== 'DWnNc') b._web_ui.showChatWrap();
-                        else {
-                            function g() {
-                                var h = '954f0cf8-c2ff-4658-9f81-d37e6cfc94ff';
-                            }
-                        }
-                    }
-                } else {
-                    function h() {
-                        var i = this.encrypt(d.ltstr, 16),
-                            j = '';
-                        for (var k = 0; k < 16; k++) {
-                            j += i[k];
-                        }
-                        if (j == e.rtstr) return true;
-                        else return false;
-                    }
-                }
-            }
-            this.setIsFullScreen(false), this.showMultiviewBtn(true);
-        } else {
-            this._is_fullscreen_button = false, $(this._dom_element).removeClass('pl-i-screen float_r').addClass('pl-i-full float_r'), this._web_ui.hideChatWrap(getOrientation());
-            if (isMobile()) {
-                if ('fFrUr' !== 'fFrUr') {
-                    function i() {
-                        g = this.createQualityDiv({
-                            'id': h,
-                            'height': this._player.qualityList[i].attrs.NAME
-                        }), j = this.createQualityBtn({
-                            'id': k,
-                            'height': this._player.qualityList[l].attrs.NAME
-                        });
-                    }
-                } else screen.orientation.lock('landscape');
-            }
-            this.setIsFullScreen(true), this.showMultiviewBtn(false);
-        }
-        updateTicketDivPos();
-    }
-    onclick() {
-        if (this._is_fullscreen_button) {
-            if ('UxMlO' === 'UxMlO') {
-                if ('fullscreenEnabled' in document || 'webkitFullscreenEnabled' in document || 'mozFullScreenEnabled' in document || 'msFullscreenEnabled' in document) {
-                    if ('EAtEF' !== 'EAtEF') {
-                        function c() {
-                            this.initSubtitle();
-                        }
-                    } else {
-                        if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
-                            var a = document.querySelector('html');
-                            if ('requestFullscreen' in a) a.requestFullscreen();
+                $('body').removeClass('fullscreen'), this._is_fullscreen_button = true, $(this._dom_element).removeClass('pl-i-full float_r').addClass('pl-i-screen float_r');
+                if (isMobile()) {
+                    if ('tlpQT' !== 'SoEoC') {
+                        var c = getOrientation();
+                        if (typeof c == 'string') {
+                            if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') this._web_ui.hideChatWrap();
                             else {
-                                if ('webkitRequestFullscreen' in a) a.webkitRequestFullscreen();
-                                else {
-                                    if ('mozRequestFullScreen' in a) {
-                                        if ('Swbtf' !== 'Swbtf') {
-                                            function d() {
-                                                b.open('GET', '/static/filtering/chat_filtering_cix.txt');
-                                            }
-                                        } else a.mozRequestFullScreen();
-                                    } else {
-                                        if ('msRequestFullscreen' in a) {
-                                            if ('zeyTG' === 'zeyTG') a.msRequestFullscreen();
-                                            else {
-                                                function e() {
-                                                    var f = '71aad509-9790-4cde-8a9c-9092fc734845';
-                                                }
-                                            }
+                                if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
+                                    if ('jkyQo' === 'jkyQo') this._web_ui.showChatWrap();
+                                    else {
+                                        function e() {
+                                            var f = '22575e2c-83e0-4d40-a4d7-731eabb41bee';
                                         }
                                     }
                                 }
                             }
-                            this._is_fullscreen_button = false;
-                        } else console.log('fullscreen not enabled');
-                    }
-                } else console.log('fullscreen not supported');
-            } else {
-                function f() {
-                    this.body = f.body, this.wrapper = g.querySelector(this.options.wrapper), this.mask = h.querySelector(this.options.maskId), this.menu = i.querySelector('#c-menu--' + this.options.type), this.closeBtn = this.menu.querySelector('.c-menu__close'), this.menuOpeners = j.querySelectorAll(this.options.menuOpenerClass), this._initEvents();
-                }
-            }
-        } else {
-            var b = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
-            if (b && b == document.querySelector('html')) {
-                this._is_fullscreen_button = true;
-                if ('exitFullscreen' in document) {
-                    if ('SMSCo' === 'NAKzk') {
-                        function g() {
-                            this._player._hls._hls.liveSyncPosition && (this._player.currentPosition = this._player._hls._hls.liveSyncPosition);
                         }
-                    } else document.exitFullscreen();
+                    } else {
+                        function f() {
+                            this._parent_dom = this._options.container;
+                        }
+                    }
                 } else {
-                    if ('webkitExitFullscreen' in document) document.webkitExitFullscreen();
+                    if (isSafari()) setTimeout(function() {
+                        b._web_ui.showChatWrap();
+                    });
                     else {
-                        if ('mozCancelFullScreen' in document) document.mozCancelFullScreen();
+                        if ('MdOxI' !== 'JxNbR') b._web_ui.showChatWrap();
                         else {
-                            if ('msExitFullscreen' in document) {
-                                if ('aKpVN' === 'pDkUM') {
-                                    function h() {
-                                        this._videoMainPosition = d, this._videoSubPositions = e;
-                                        if (f) this.arrangeVideo();
-                                    }
-                                } else document.msExitFullscreen();
+                            function g() {
+                                var h = 'f3a82d31-a083-4679-88e1-c0961a925afb';
                             }
                         }
                     }
+                }
+                this.setIsFullScreen(false), this.showMultiviewBtn(true), this._web_ui.wakeupController();
+            }
+        } else $('body').addClass('fullscreen'), this._is_fullscreen_button = false, $(this._dom_element).removeClass('pl-i-screen float_r').addClass('pl-i-full float_r'), this._web_ui.hideChatWrap(), isMobile() && screen.orientation.lock('landscape'), this.setIsFullScreen(true), this.showMultiviewBtn(false);
+        updateTicketDivPos();
+    }
+    onclick() {
+        if (this._is_fullscreen_button) {
+            if ('fullscreenEnabled' in document || 'webkitFullscreenEnabled' in document || 'mozFullScreenEnabled' in document || 'msFullscreenEnabled' in document) {
+                if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+                    if ('POoAj' === 'POoAj') {
+                        var a = document.querySelector('html');
+                        if ('requestFullscreen' in a) a.requestFullscreen();
+                        else {
+                            if ('webkitRequestFullscreen' in a) {
+                                if ('lSBlu' === 'xOQgt') {
+                                    function c() {
+                                        f[g].value.playStatus && k.push(l[m].value.playStatus);
+                                    }
+                                } else a.webkitRequestFullscreen();
+                            } else {
+                                if ('mozRequestFullScreen' in a) a.mozRequestFullScreen();
+                                else {
+                                    if ('msRequestFullscreen' in a) {
+                                        if ('KNBbn' === 'OidUD') {
+                                            function d() {
+                                                this._web_ui.hideChatWrap();
+                                            }
+                                        } else a.msRequestFullscreen();
+                                    }
+                                }
+                            }
+                        }
+                        this._is_fullscreen_button = false;
+                    } else {
+                        function e() {
+                            var f = '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82';
+                        }
+                    }
+                } else {
+                    if ('xVzBx' !== 'xVzBx') {
+                        function f() {
+                            if (!l.nickname) {
+                                w(z('P_ALERT_TITLE'), A('P_ALERT_INVALID_NICKNAME_DESC'), B('P_ALERT_OK'), function() {
+                                    E.href = F;
+                                });
+                                return;
+                            } else E('#pageWrap').removeClass().addClass('pl-t-default'), F('#chatWrap').css('display', 'block'), G.Manager.setPubnubAPI(H.nickname);
+                        }
+                    } else console.log('fullscreen not enabled');
+                }
+            } else {
+                if ('CTcaT' === 'VXAMB') {
+                    function g() {
+                        this.events[c].listeners.push(d);
+                    }
+                } else console.log('fullscreen not supported');
+            }
+        } else {
+            if ('uJFNE' !== 'YJENo') {
+                var b = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                if (b && b == document.querySelector('html')) {
+                    if ('Unjjv' === 'Unjjv') {
+                        this._is_fullscreen_button = true;
+                        if ('exitFullscreen' in document) document.exitFullscreen();
+                        else {
+                            if ('webkitExitFullscreen' in document) document.webkitExitFullscreen();
+                            else {
+                                if ('mozCancelFullScreen' in document) document.mozCancelFullScreen();
+                                else {
+                                    if ('msExitFullscreen' in document) {
+                                        if ('kboEe' === 'WvQKh') {
+                                            function h() {
+                                                return false;
+                                            }
+                                        } else document.msExitFullscreen();
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        function i() {
+                            b('#subtitlePopup').css('display', 'none');
+                        }
+                    }
+                }
+            } else {
+                function j() {
+                    this._video = b.createElement('video'), this._options.container.append(this._video);
                 }
             }
         }
@@ -1411,11 +1461,12 @@ class Rich360Log {
     }
     startInterval() {
         if (this._logItv) {
-            if ('pCzrr' !== 'pCzrr') {
+            if ('LzygB' !== 'RleSi') clearInterval(this._logItv);
+            else {
                 function a() {
-                    this.wait_on[b] = false;
+                    b = 1080;
                 }
-            } else clearInterval(this._logItv);
+            }
         }
         this._logItv = setInterval(this.sendLog.bind(this), 60000, false);
     }
@@ -1423,64 +1474,52 @@ class Rich360Log {
         var a = this.getLog(),
             b = [];
         for (var c = 0; c < a.length; c++) {
-            if ('IhvOw' !== 'FPhKO') a[c].value.playStatus && b.push(a[c].value.playStatus);
-            else {
-                function f() {
-                    c = d('return (function() ' + '{}.constructor("return this")( )' + ');')();
-                }
-            }
+            a[c].value.playStatus && b.push(a[c].value.playStatus);
         }
         this.clearLogData();
         var d = new XMLHttpRequest();
         d.open('POST', this._options.credentials.api_server + '/user_auth/session_check/', true);
         var e = new FormData();
-        e.append('device_id', getCookie(DCvi + '_device_id')), e.append('user_id', getCookie(DCvi + '_user_id')), e.append('content_id', this._options.credentials.content_id), e.append('play_status', JSON.stringify(b)), e.append('user_agent', navigator.userAgent), d.send(e), d.onload = function(g) {
-            if ('qizGM' === 'qizGM') {
-                if (d.readyState === 4 && d.status === 200) {
-                    if ('JFXee' !== 'JFXee') {
-                        function l() {
-                            f('#chatList').scrollTop(g('#chatList')[0].scrollHeight), h('#artistChatList').length && k('#artistChatList').scrollTop(l('#artistChatList')[0].scrollHeight);
-                        }
-                    } else try {
-                        if ('nNOpG' === 'UpNbN') {
-                            function m() {
-                                var n = '22575e2c-83e0-4d40-a4d7-731eabb41bee';
-                            }
-                        } else {
-                            var h = JSON.parse(d.responseText).Data;
-                            for (var j = 0; j < h.content.channels.length; j++) {
-                                var k = true;
-                                Ythc == 'sub' && (k = false);
-                                if (h.content.channels[j].is_main_channel == k) {
-                                    if ('BFpVS' === 'hVzGA') {
-                                        function n() {
-                                            return this._isDummy ? 0 : this._hls.currentLevel;
-                                        }
-                                    } else {
-                                        this._options.content_data.current_channel_id != h.content.channels[j].id && (this._options.content_data = JSON.parse(JSON.stringify(h.content)), this._options.content_data.current_channel_id = h.content.channels[j].id, this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[j].hls_url));
-                                        break;
-                                    }
+        e.append('device_id', getCookie(DCvi + '_device_id')), e.append('user_id', getCookie(DCvi + '_user_id')), e.append('content_id', this._options.credentials.content_id), e.append('play_status', JSON.stringify(b)), e.append('user_agent', navigator.userAgent), d.send(e), d.onload = function(f) {
+            if (d.readyState === 4 && d.status === 200) try {
+                var g = JSON.parse(d.responseText).Data;
+                for (var h = 0; h < g.content.channels.length; h++) {
+                    var j = true;
+                    Ythc == 'sub' && (j = false);
+                    if (g.content.channels[h].is_main_channel == j) {
+                        if (this._options.content_data.current_channel_id != g.content.channels[h].id) {
+                            if ('YVbLp' === 'YVbLp') this._options.content_data = JSON.parse(JSON.stringify(g.content)), this._options.content_data.current_channel_id = g.content.channels[h].id, this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[h].hls_url);
+                            else {
+                                function k() {
+                                    g.artist_account.indexOf(',') !== -1 ? m.artist_account = n.artist_account.split(',') : o.artist_account = [p.artist_account], l('button[name=artistchatnavbtn]').css('display', ' inline-block');
                                 }
                             }
-                            iCM(!!h.user.is_mute);
                         }
-                    } catch (o) {
-                        console.log(o);
+                        break;
                     }
                 }
-            } else {
-                function p() {
-                    return true;
-                }
+                iCM(!!g.user.is_mute);
+            } catch (l) {
+                console.log(l);
             }
-        }.bind(this), d.onloadend = function(g) {
-            if ('CXOoP' === 'CXOoP') {
-                if (d.status === 400 || d.status === 401) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                else d.status === 403 && this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
+        }.bind(this), d.onloadend = function(f) {
+            if ('FttMG' !== 'FttMG') {
+                function g() {
+                    c.href = d;
+                }
             } else {
-                function h() {
-                    var j = l[0].split(m)[0];
-                    n.Ui.displayMessage(o[0], p, j), q = r(s) + t(u * 1000 * 10), v.splice(0, 1);
+                if (d.status === 400 || d.status === 401) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
+                else {
+                    if (d.status === 403) {
+                        if ('ffMyd' === 'ffMyd') this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
+                        else {
+                            function h() {
+                                var j = c.navigator.userAgent.toLowerCase(),
+                                    k = d();
+                                return !k && j.indexOf('mac') != -1;
+                            }
+                        }
+                    }
                 }
             }
         }.bind(this);
@@ -1490,15 +1529,10 @@ class Rich360EventListener {
     constructor(a) {
         this.events = [];
         for (var b in a) {
-            if ('MTGwE' === 'MTGwE') this.events.push({
+            this.events.push({
                 'key': a[b],
                 'listeners': []
             });
-            else {
-                function c() {
-                    c('#chatList').scrollTop(d('#chatList')[0].scrollHeight);
-                }
-            }
         }
     }
     addListener(a, b) {
@@ -1515,15 +1549,7 @@ class Rich360EventListener {
     trigger(a, b) {
         for (let c = 0; c < this.events[a].listeners.length; c++) {
             setTimeout(function() {
-                if ('DBXvg' !== 'DBXvg') {
-                    function d() {
-                        this._isHideDefaultSubtitles = false;
-                        var e = this._player._video.textTracks.length;
-                        for (var f = 0; f < e; f++) {
-                            this._player._video.textTracks[f].mode == 'hidden' && (this._player._video.textTracks[f].mode = 'showing');
-                        }
-                    }
-                } else this.events[a].listeners[c](b);
+                this.events[a].listeners[c](b);
             }.bind(this), 0);
         }
     }
@@ -1536,36 +1562,74 @@ class Rich360HlsWrapper {
         }
         this._isDummy = a, this._config = b, this._video = null, this._isMultiview = c;
     }
+    isHlsAvailable(a, b) {
+        var c = a,
+            d = !d(),
+            e = window.Hls.isSupported(),
+            f = false;
+        if (!c) return f;
+        if (b) {
+            if (!d && c.canPlayType('application/vnd.apple.mpegurl')) {
+                if ('keEYy' === 'keEYy') f = true;
+                else {
+                    function g() {
+                        this._player._video.textTracks[d].mode = 'hidden', e('#ccSelect', f, true);
+                    }
+                }
+            } else e && (f = false);
+        } else {
+            if ('tfpxa' !== 'tfpxa') {
+                function h() {
+                    var i = '487a1162-30a5-4888-be0e-e670d6b91a60';
+                }
+            } else f = !e;
+        }
+        return f;
+    }
     attachMedia(a) {
         this._video = a;
         if (this._isMultiview) {
-            if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl')) this._isDummy = true, this._hls = null;
-            else Hls.isSupported() && (this._isDummy = false, this._hls = new Hls(this._config));
-        } else {
-            if (Hls.isSupported()) {
-                if ('gTbWB' !== 'gTbWB') {
-                    function b() {
-                        c(this._ui.qualityItems[0], 'on'), d(this._ui.qualityPopupItems[0], 'on');
-                    }
-                } else this._isDummy = false, this._hls = new Hls(this._config);
-            } else {
-                if ('hiXEd' !== 'eFvRh') this._isDummy = true, this._hls = null;
+            if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl') || (isIOS() || isIpadOS())) {
+                if ('cHtRZ' === 'cHtRZ') this._isDummy = true, this._hls = null;
                 else {
-                    function c() {
-                        b() && (this._options.content_data.use_vod ? this._player._video.bfTime = this._player._video.currentTime : this._player._video.src = ''), this._player.pause();
+                    function b() {
+                        this._video = null;
+                        if (!this._isDummy) this._hls.detachMedia();
                     }
+                }
+            } else Hls.isSupported() && (this._isDummy = false, this._hls = new Hls(this._config));
+        } else {
+            if (isIOS() || isIpadOS()) this._isDummy = true, this._hls = null;
+            else {
+                if (Hls.isSupported()) {
+                    if ('xmBhO' !== 'xmBhO') {
+                        function c() {
+                            for (let d = 0; d < this.events[i].listeners.length; d++) {
+                                m(function() {
+                                    this.events[p].listeners[d](q);
+                                }.bind(this), 0);
+                            }
+                        }
+                    } else this._isDummy = false, this._hls = new Hls(this._config);
+                } else {
+                    if ('tzVEm' !== 'tzVEm') {
+                        function d() {
+                            b.log('this is not a media error, try to recover'), this._hls.startLoad();
+                        }
+                    } else this._isDummy = true, this._hls = null;
                 }
             }
         }
         this._video.addEventListener('canplay', function() {
-            if (this._config.startPosition != undefined && this._config.startPosition != 0) {
-                if ('ehult' !== 'ehult') {
-                    function d() {
-                        return f.floor(g.random() * (h - i + 1)) + j;
+            this._config.startPosition != undefined && this._config.startPosition > 0 && (this._video.currentTime = this._config.startPosition);
+            if (this._config.autoplay) {
+                if ('FKhWo' === 'FKhWo') this._video.play();
+                else {
+                    function e() {
+                        this._video.currentTime = this._config.startPosition;
                     }
-                } else this._video.currentTime = this._config.startPosition;
+                }
             }
-            this._config.autoplay && this._video.play();
         }.bind(this), {
             'once': true
         });
@@ -1580,26 +1644,19 @@ class Rich360HlsWrapper {
             this._video.src = a;
             if (b) this._video.currentTime = b;
             if (c) this._video.poster = c;
-            this._video.crossOrigin = 'anonymous', this._video.load();
-        } else {
-            if ('lJNDu' === 'xCRuB') {
-                function d() {
-                    this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
-                        'once': true
-                    });
-                }
-            } else this._hls.loadSource(a);
-        }
+            this._video.crossOrigin = 'anonymous', this._video.disablePictureInPicture = true, this._video.oncontextmenu = function() {
+                return false;
+            }, this._video.load();
+        } else this._hls.loadSource(a);
     }
     release() {
         this._video = null, this._hls = null;
     }
     recoverMediaError() {
         if (this._isDummy) {} else {
-            if ('WUpTY' !== 'WUpTY') {
+            if ('aDtao' !== 'aDtao') {
                 function a() {
-                    var b = f;
-                    g = b / h, i = j - b;
+                    this._subtitleTrack = this.getVideoSubtitleTrack();
                 }
             } else this._hls.recoverMediaError();
         }
@@ -1611,45 +1668,46 @@ class Rich360HlsWrapper {
         this._isDummy ? this._video.load() : this._hls.startLoad();
     }
     destroy() {
-        if (this._isDummy) {
-            if ('qbUgK' === 'HgQSq') {
-                function a() {
-                    f.preventDefault(), g.open(), h.style.display = 'none', i('#chatList').scrollTop(j('#chatList')[0].scrollHeight);
-                }
-            } else this.release();
-        } else this._hls.destroy();
+        this._isDummy ? this.release() : this._hls.destroy();
     }
     isAutoQuality() {
-        if (this._isDummy) {
-            if ('MBLKY' !== 'MBLKY') {
-                function a() {
-                    b._web_ui.showChatWrap();
-                }
-            } else return false;
-        } else return this._hls.levelController.manualLevel == -1;
-    }
-    get levels() {
         if (this._isDummy) return false;
         else {
-            if ('LGUhW' !== 'WdgYk') return this._hls.levels;
+            if ('aSOaB' === 'aSOaB') return this._hls.levelController.manualLevel == -1;
             else {
                 function a() {
-                    c = d.dataset.height + 'P';
+                    return '0'.string(b - this.length) + this;
                 }
             }
         }
     }
-    get nextAutoLevel() {
-        return this._isDummy ? 0 : this._hls.abrController.nextAutoLevel;
+    get levels() {
+        return this._isDummy ? false : this._hls.levels;
     }
-    get currentLevel() {
+    get nextAutoLevel() {
         if (this._isDummy) return 0;
         else {
-            if ('XOcLO' !== 'XOcLO') {
+            if ('KVyVk' !== 'KVyVk') {
                 function a() {
-                    b = 1080;
+                    b.disabled = false;
                 }
-            } else return this._hls.currentLevel;
+            } else return this._hls.abrController.nextAutoLevel;
+        }
+    }
+    get currentLevel() {
+        if (this._isDummy) {
+            if ('YcwLc' === 'Jbcxm') {
+                function a() {
+                    b._player._display.showMultiPreview = true;
+                }
+            } else return 0;
+        } else {
+            if ('GrLMe' !== 'rRgln') return this._hls.currentLevel;
+            else {
+                function b() {
+                    this._updateCanvasFlag = true, this._canvasTimeStamps = [], this._canvasTimeStamps.push(c.now()), this._canvasTimeStampIndex = 0, d.requestAnimationFrame(this.drawCanvas.bind(this));
+                }
+            }
         }
     }
     set currentLevel(a) {
@@ -1667,7 +1725,9 @@ var RICH360_EVENTS = {
         'RICH360_ACCESS_DENIED': 7,
         'RICH360_SUBTITLE_FOUND': 8,
         'RICH360_LIVE_ENDED': 9,
-        'RICH360_SOURCE_CHANGE': 10
+        'RICH360_SOURCE_CHANGE': 10,
+        'RICH360_THUMBNAIL_UPDATE': 11,
+        'RICH360_GRID_THUMBNAIL_UPDATE': 12
     },
     RICH360_STATE = {
         'RICH360_AUTH': 0,
@@ -1701,37 +1761,82 @@ var RICH360_EVENTS = {
             },
             'sub_positions': []
         }]
+    },
+    SINGLEVIEW_PLAYER_DEFAULT_MANIFEST = {
+        'type': '',
+        'thumbnail': {
+            'path': 'thumbnail.jpg'
+        },
+        'thumbnail_grid': {
+            'duration': 0,
+            'interval': 0,
+            'grid_x': 0,
+            'grid_y': 0,
+            'path': ''
+        },
+        'singleview_count': 1,
+        'singleview_list': [{
+            'id': 0,
+            'name': 'view_0',
+            'path': ''
+        }],
+        'multiview_count': 0,
+        'multiview_list': []
     };
 class Rich360 {
-    constructor(a, b) {
+    constructor(a, b, c, d) {
         this._options = a, this._ready_state = RICH360_STATE.RICH360_AUTH, this.wait_on = [];
-        for (let f = 0; f < RICH360_WAIT_ON.SIZE; f++) {
-            this.wait_on[f] = false;
+        for (let h = 0; h < RICH360_WAIT_ON.SIZE; h++) {
+            this.wait_on[h] = false;
         }
-        this._ui_play = false, this._listener = new Rich360EventListener(RICH360_EVENTS), this._logger = new Rich360Log({
+        this._ui = c, this._rich360Player = d, this._ui_play = false, this._listener = new Rich360EventListener(RICH360_EVENTS), this._logger = new Rich360Log({
             'content_data': this._options.content_data,
             'credentials': {
                 'content_id': this._options.credentials.content_id,
                 'api_server': this._options.credentials.api_server
             }
-        }), this._logger._listener = this._listener, this._loggerItv = null, this._subtitleList = [], this._play_status = '';
-        let c = b.substr(b.lastIndexOf('/') + 1, b.length),
-            d = b.substr(0, b.lastIndexOf('/') + 1);
-        var e = d + c;
-        this._options.source = e;
-        'credentials' in this._options ? (!('device_id' in this._options.credentials) && (this._options.credentials.device_id = null), !('user_id' in this._options.credentials) && (this._options.credentials.user_id = null), !('content_id' in this._options.credentials) && (this._options.credentials.content_id = null), !('ticket_id' in this._options.credentials) && (this._options.credentials.ticket_id = null)) : this._options.credentials = {
+        }), this._logger._listener = this._listener, this._loggerItv = null, this._subtitleList = [], this._play_status = '', this.addNativeTrackListener = this.addNativeTrackListener.bind(this), this.updateNativeTrackCuesListener = this.updateNativeTrackCuesListener.bind(this);
+        let e = b.substr(b.lastIndexOf('/') + 1, b.length),
+            f = b.substr(0, b.lastIndexOf('/') + 1);
+        var g = f + e;
+        this._options.source = g;
+        if ('credentials' in this._options) {
+            !('device_id' in this._options.credentials) && (this._options.credentials.device_id = null);
+            if (!('user_id' in this._options.credentials)) {
+                if ('sMRnQ' === 'sMRnQ') this._options.credentials.user_id = null;
+                else {
+                    function j() {
+                        c.artist_account = d.artist_account.split(',');
+                    }
+                }
+            }!('content_id' in this._options.credentials) && (this._options.credentials.content_id = null);
+            if (!('ticket_id' in this._options.credentials)) {
+                if ('UWchi' === 'UWchi') this._options.credentials.ticket_id = null;
+                else {
+                    function k() {
+                        return;
+                    }
+                }
+            }
+        } else this._options.credentials = {
             'device_id': null,
             'user_id': null,
             'content_id': null,
             'ticket_id': null
         };
-        if (this._options.container) this._parent_dom = this._options.container;
-        else {
-            if ('oiVuh' !== 'oiVuh') {
-                function g() {
-                    b('#chatInputWrap').css('display', 'block');
+        if (this._options.container) {
+            if ('aZDzv' !== 'aZDzv') {
+                function l() {
+                    var m = 'fabb3e81-e293-4088-91a1-68efca8193ef';
                 }
-            } else this._parent_dom = document.body;
+            } else this._parent_dom = this._options.container;
+        } else this._parent_dom = document.body;
+        if (this._options.use_multiview) {
+            if ('JSQVR' !== 'JSQVR') {
+                function m() {
+                    b.withCredentials = true;
+                }
+            } else this.setChangingView(false);
         }
         this.authorize();
     }
@@ -1756,101 +1861,123 @@ class Rich360 {
         };
         var b = new FormData();
         b.append('user_id', a.req_data.user_id), b.append('device_id', a.req_data.device_id), b.append('content_id', a.req_data.content_id), b.append('domain', a.req_data.location.domain), b.append('source', a.req_data.source), b.append('rqstr', a.req_data.rqstr), b.append('scstr', a.req_data.scstr), b.append('enstr', a.req_data.enstr), b.append('psstr', a.req_data.psstr), b.append('dbstr', a.req_data.dbstr), b.append('ltstr', a.req_data.ltstr), b.append('hsstr', a.req_data.hsstr), b.append('rnstr', a.req_data.rnstr), a.onerror = function(c) {
-            if ('kGGWa' === 'kGGWa') {
-                console.log(c), this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                return;
-            } else {
-                function d() {
-                    this._listener.trigger(c.RICH360_WAIT, {
-                        'wait': true,
-                        'wait_on': d.RICH360_QUALITY_CHANGE
-                    });
-                }
-            }
+            console.log(c), this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
+            return;
         }.bind(this), a.onload = function(c) {
-            if ('NeHey' === 'NeHey') {
+            if ('rRMuC' !== 'gmbjk') {
                 console.log(c);
                 if (a.readyState === 4) {
-                    this.base = 'rich360', this.baseCode = [];
-                    var d, f, g;
-                    for (d = 0; d < 7; d++) {
-                        this.baseCode[d] = this.base.charCodeAt(d);
-                    }
-                    this.addRich360 = function(h, l) {
-                        let m = l % 7,
-                            n = this.baseCode.slice(m, 7).concat(this.baseCode.slice(0, m + 1));
-                        for (f = 0; f < 8; f++) {
-                            h[f] = (h[f] + n[f]) % 256;
+                    if ('FmdJw' !== 'LhIAQ') {
+                        this.base = 'rich360', this.baseCode = [];
+                        var d, f, g;
+                        for (d = 0; d < 7; d++) {
+                            if ('niZYX' === 'yQomD') {
+                                function h() {
+                                    b = 0;
+                                }
+                            } else this.baseCode[d] = this.base.charCodeAt(d);
                         }
-                        return h;
-                    }.bind(this), this.encrypt = function(h, l) {
-                        if (h.length != 16) return 'string length must be 16';
-                        var m = [],
-                            n;
-                        for (n = 0; n < 16; n++) {
-                            m[n] = h.charCodeAt(n);
-                        }
-                        var o = m.slice(0, 8),
-                            p = m.slice(8, 16);
-                        for (n = 0; n < l; n++) {
-                            p = this.addRich360(p, n);
-                            let r = o.slice(0, 8);
-                            for (g = 0; g < 8; g++) {
-                                o[g] = o[g] ^ p[g];
+                        this.addRich360 = function(l, m) {
+                            let n = m % 7,
+                                o = this.baseCode.slice(n, 7).concat(this.baseCode.slice(0, n + 1));
+                            for (f = 0; f < 8; f++) {
+                                l[f] = (l[f] + o[f]) % 256;
                             }
-                            p = r.slice(0, 8);
-                        }
-                        var q = [];
-                        for (n = 0; n < 8; n++) {
-                            q[n] = String.fromCharCode(o[n]);
-                        }
-                        for (n = 0; n < 8; n++) {
-                            q[n + 8] = String.fromCharCode(p[n]);
-                        }
-                        return q;
-                    }.bind(this), this.validate_response = function(h, l) {
-                        var m = this.encrypt(h.ltstr, 16),
-                            n = '';
-                        for (var o = 0; o < 16; o++) {
-                            n += m[o];
-                        }
-                        if (n == l.rtstr) return true;
-                        else return false;
-                    }.bind(this);
-                    if (!this.validate_response(a.req_data, JSON.parse(a.responseText))) {
-                        if ('DKWHf' !== 'DKWHf') {
-                            function h() {
-                                return true;
+                            return l;
+                        }.bind(this), this.encrypt = function(l, m) {
+                            if (l.length != 16) return 'string length must be 16';
+                            var n = [],
+                                o;
+                            for (o = 0; o < 16; o++) {
+                                if ('jslVq' === 'yaLgI') {
+                                    function s() {
+                                        this.changeSource(b);
+                                    }
+                                } else n[o] = l.charCodeAt(o);
                             }
-                        } else {
-                            if (a.status == 403) {
-                                if ('Keksr' !== 'PsjLY') this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
+                            var p = n.slice(0, 8),
+                                q = n.slice(8, 16);
+                            for (o = 0; o < m; o++) {
+                                q = this.addRich360(q, o);
+                                let t = p.slice(0, 8);
+                                for (g = 0; g < 8; g++) {
+                                    p[g] = p[g] ^ q[g];
+                                }
+                                q = t.slice(0, 8);
+                            }
+                            var r = [];
+                            for (o = 0; o < 8; o++) {
+                                if ('XFfUt' !== 'mchiA') r[o] = String.fromCharCode(p[o]);
                                 else {
-                                    function l() {
-                                        c = d;
-                                    }
-                                }
-                            } else {
-                                if (a.status != 200) {
-                                    if ('AIjbQ' !== 'AIjbQ') {
-                                        function m() {
-                                            h(this).data().id != d(g.target).data().id ? (o(this).removeAttr('selected'), p(this).removeClass('on')) : (q(this).attr('selected', 'selected'), r(this).addClass('on'));
-                                        }
-                                    } else {
-                                        this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                                        return;
+                                    function u() {
+                                        return b;
                                     }
                                 }
                             }
+                            for (o = 0; o < 8; o++) {
+                                if ('ZNCDk' !== 'nosKN') r[o + 8] = String.fromCharCode(q[o]);
+                                else {
+                                    function v() {
+                                        c = !d;
+                                    }
+                                }
+                            }
+                            return r;
+                        }.bind(this), this.validate_response = function(l, m) {
+                            var n = this.encrypt(l.ltstr, 16),
+                                o = '';
+                            for (var p = 0; p < 16; p++) {
+                                if ('ALLNq' === 'vpFfp') {
+                                    function q() {
+                                        if (d) c(f);
+                                    }
+                                } else o += n[p];
+                            }
+                            if (o == m.rtstr) return true;
+                            else return false;
+                        }.bind(this);
+                        if (!this.validate_response(a.req_data, JSON.parse(a.responseText))) {
+                            if (a.status == 403) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
+                            else {
+                                if (a.status != 200) {
+                                    this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
+                                    return;
+                                }
+                            }
+                        }
+                        this.base = undefined, this.baseCode = undefined, this.addRich360 = undefined, this.encrypt = undefined, this.validate_response = undefined, this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT), this._ready_state = RICH360_STATE.RICH360_INIT, this.requestKMVManifest(function() {
+                            if ('XzuVq' !== 'dfKBN') this._options.content_data.use_vod && this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.thumbnail_grid), this.initialize();
+                            else {
+                                function l() {
+                                    var m = 'chat_test',
+                                        n = new d(),
+                                        o = n.format('yyyyMMdd-HH:mm:ss:') + n.getMilliseconds().toString(),
+                                        p = g.Manager.getChatChannels()[0];
+                                    if (f) {
+                                        var q = p.lastIndexOf('_');
+                                        p = p.substring(0, q + 1) + q.toString();
+                                    }
+                                    var r = m.Manager.getUserId();
+                                    n.Manager.submitUpdate(r, r + o + m + p + o, [p], true);
+                                }
+                            }
+                        }.bind(this)), this._logger.startInterval();
+                    } else {
+                        function l() {
+                            if (this._player._video.textTracks[d].mode == 'showing' || this._player._video.textTracks[c].mode == 'hidden') return g;
                         }
                     }
-                    this.base = undefined, this.baseCode = undefined, this.addRich360 = undefined, this.encrypt = undefined, this.validate_response = undefined, this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT), this._ready_state = RICH360_STATE.RICH360_INIT, this._options.use_multiview ? this.initMultiviewManifest() : this.initialize(), this._logger.startInterval();
                 }
             } else {
-                function n() {
-                    if (d._player) {
-                        if (g._player.qualityList) return d._player.qualityList.length;
+                function m() {
+                    for (var n = 0; n < c.tracks.length; n++) {
+                        this._subtitleList.push({
+                            'id': n,
+                            'label': d.tracks[n].label,
+                            'lang': g.tracks[n].subtitleTrack.lang
+                        });
                     }
+                    this._listener.trigger(h.RICH360_SUBTITLE_FOUND);
                 }
             }
         }.bind(this), a.send(b);
@@ -1859,187 +1986,212 @@ class Rich360 {
         this._listener.addListener(a, b);
         if (a == RICH360_EVENTS.RICH360_STATE_CHANGE) {
             if (this._ready_state == RICH360_STATE.RICH360_INIT) {
-                if ('jKAep' === 'LjVIH') {
+                if ('fFiLz' !== 'vrvSY') this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
+                else {
                     function c() {
+                        c('#pageWrap').removeClass().addClass('pl-t-default_nochat'), d('#chatWrap').css('display', 'none');
+                    }
+                }
+            }
+            if (this._ready_state == RICH360_STATE.RICH360_READY) {
+                if ('ijywu' === 'ijywu') this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT), this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
+                else {
+                    function d() {
                         c.push(d);
                     }
-                } else this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
+                }
             }
-            this._ready_state == RICH360_STATE.RICH360_READY && (this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT), this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY));
         }
     }
     removeListener(a, b) {
         this._listener.removeListener(a, b);
     }
     initialize() {
-        if (document.getElementById('video')) {
-            if ('fQiZw' === 'fQiZw') this._video = document.getElementById('video');
+        this.updateThumbnail();
+        if (document.getElementById('video')) this._video = document.getElementById('video');
+        else {
+            if ('lsXtw' !== 'EAJfw') this._video = document.createElement('video'), this._options.container.append(this._video);
             else {
                 function f() {
-                    c = d / 100 * 3.2;
+                    return b;
                 }
             }
-        } else {
-            if ('EbFUv' !== 'EbFUv') {
-                function g() {
-                    var h = f;
-                    g = h / h, c = (j - h) / 2;
-                }
-            } else this._video = document.createElement('video'), this._options.container.append(this._video);
-        }!this._options.use_multiview && addClassName(this._video, 'player-video-wrap');
-        this._video.crossOrigin = 'anonymous';
-        let a = Hls.DefaultConfig;
-        a.liveSyncDurationCount = 2, a.liveMaxLatencyDurationCount = 3, a.startLevel = -1;
-        if (this._options.seek_to) {
-            if ('GhvTX' !== 'GhvTX') {
-                function h() {
-                    this._ui.volumeBtn.classList.remove('mute');
-                }
-            } else a.startPosition = this._options.seek_to;
         }
-        if (this._options.autoStart) {
-            if ('ptYIn' === 'KJbcd') {
-                function j() {
-                    d.find('img').attr('src', '/static/imgs/c_event/' + e + '/' + f.img);
+        if (!this._options.use_multiview) {
+            if ('GosaW' !== 'OqbVx') addClassName(this._video, 'player-video-wrap');
+            else {
+                function g() {
+                    this.showChatOpenBtn(true);
                 }
-            } else this._video.autoplay = this._options.autoStart;
+            }
+        }
+        this._video.crossOrigin = 'anonymous', this._video.disablePictureInPicture = true, this._video.oncontextmenu = function() {
+            return false;
+        };
+        let a = Hls.DefaultConfig;
+        a.liveSyncDurationCount = 3, a.startLevel = -1;
+        this._options.seek_to && (a.startPosition = this._options.seek_to);
+        if (this._options.autoStart) {
+            if ('qEpmR' === 'qEpmR') this._video.autoplay = this._options.autoStart;
+            else {
+                function h() {
+                    this.pause(), this._player.changeSource(b);
+                }
+            }
         } else this._video.autoplay = false;
-        a.fragLoadingRetryDelay = 100, a.startFragPrefetch = true, a.renderTextTracksNatively = false, a.xhrSetup = function(k, l) {
-            if (l.indexOf('.m3u8') === -1 && l.indexOf('.ts') === -1 && l.indexOf('.vtt') === -1 && l.indexOf('.webvtt') === -1 && l.indexOf('.key') === -1 && l.indexOf('.kmv') === -1) {
-                if ('KKyxS' !== 'qjjQG') k.withCredentials = true;
-                else {
-                    function m() {
-                        var n = '303fff52-27a7-4991-9cc8-4c34ae28417a';
-                    }
+        a.fragLoadingRetryDelay = 100, a.startFragPrefetch = true, a.renderTextTracksNatively = false, a.xhrSetup = function(j, k) {
+            if ('EquNF' !== 'AjgIp') k.indexOf('.m3u8') === -1 && k.indexOf('.ts') === -1 && k.indexOf('.vtt') === -1 && k.indexOf('.webvtt') === -1 && k.indexOf('.key') === -1 && k.indexOf('.kmv') === -1 && (j.withCredentials = true);
+            else {
+                function l() {
+                    this.closeBtn.addEventListener('click', function(m) {
+                        m.preventDefault(), this.close();
+                    }.bind(this));
                 }
             }
         };
         if (this._options.use_multiview) {
-            if ('dyGfM' !== 'dyGfM') {
-                function k() {
-                    g(h('P_ALERT_TITLE'), c('P_ALERT_TRY_AGAIN_DESC'), j('P_ALERT_OK'), function() {
-                        m.href = n;
-                    });
+            this._options.initial_view >= 0 && this._options.initial_view < this._manifest.multiview_list.length ? this._view = this._options.inital_view : this._view = 0;
+            var b = [];
+            for (var c = 0; c < this._manifest.multiview_list[this._view].sub_positions.length; c++) {
+                if ('zQlFJ' === 'zQlFJ') {
+                    var d = document.createElement('div');
+                    d.dataset.view = c, addClassName(d, 'view_wrap');
+                    var e = document.createElement('label');
+                    e.classList = 'view-name bolder fs_14 fc_point', this._view == c && addClassName(d, 'on'), e.innerText = this._manifest.singleview_list[c].name, d.style.backgroundColor = 'transparent', d.style.zIndex = 1, d.append(e), this._options.multiViewList.append(d), b.push(d);
+                } else {
+                    function j() {
+                        this._sourceBase = '';
+                    }
                 }
-            } else {
-                this._options.initial_view >= 0 && this._options.initial_view < this._manifest.multiview_list.length ? this._view = this._options.inital_view : this._view = 0;
-                var b = [];
-                for (var c = 0; c < this._manifest.multiview_list[this._view].sub_positions.length; c++) {
-                    if ('vfEBo' === 'vfEBo') {
-                        var d = document.createElement('div');
-                        d.dataset.view = c, addClassName(d, 'view_wrap');
-                        var e = document.createElement('label');
-                        e.classList = 'view-name bolder fs_14 fc_point';
-                        if (this._view == c) {
-                            if ('EhQJp' === 'EhQJp') addClassName(d, 'on');
-                            else {
-                                function l() {
-                                    c('#artistChatList').append(d.clone());
-                                }
-                            }
-                        }
-                        e.innerText = this._manifest.singleview_list[c].name, d.append(e), this._options.multiViewList.append(d), b.push(d);
-                    } else {
-                        function m() {
-                            var n = h.messages[c].entry.update.split(j);
-                            for (var o = 0; o < n.length; o++) {
-                                var p = n[o].split(o)[0];
-                                p.Ui.displayMessage(n[o], q.messages[r].timetoken, p, true);
+            }
+            this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), a, this._options.use_multiview), this._hls.attachMedia(this._video), this._display = new MultiViewDisplay(this._options, this._video, this, this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions, b), this._hls.timeDictionary = {}, this._hls.snsInDictionary = [];
+            if (!this._hls._isDummy) {
+                if ('iaowV' === 'fTqcL') {
+                    function k() {
+                        c.track.mode == 'showing' && (e.track.mode = 'hidden');
+                    }
+                } else this._hls.on(Hls.Events.FRAG_PARSED, function(l, m) {
+                    let n = m.frag;
+                    console.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration), console.log('frag.startPTS : ', n.sn, n.startPTS), this._hls.timeDictionary[n.sn + ''] = n.startPTS, this._hls.snsInDictionary.push(n.sn);
+                    while (this._hls.snsInDictionary.length > 100) {
+                        if ('YGjUW' !== 'EMqqz') {
+                            let o = 0;
+                            if (this._hls.snsInDictionary[o] == 0) o = 1;
+                            let p = this._hls.snsInDictionary[o];
+                            this._hls.snsInDictionary.splice(o, 1), delete this._hls.timeDictionary[p + ''];
+                        } else {
+                            function q() {
+                                c('#volumeBtn').css('display', 'inline-block'), d('#volumeSlider').css('display', 'inline-block');
                             }
                         }
                     }
-                }
-                this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), a, this._options.use_multiview), this._hls.attachMedia(this._video), this._display = new MultiViewDisplay(this._options, this._video, this, this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions, b), this._hls.timeDictionary = {}, !this._hls._isDummy && this._hls.on(Hls.Events.FRAG_PARSED, function(n, o) {
-                    if ('PZYaY' === 'kCRQG') {
-                        function p() {
-                            this._ui_play = true, this._listener.trigger(c.RICH360_PLAY_PAUSE_CHANGE, true);
-                            let q = true;
-                            for (let r = 0; r < e.SIZE; r++) q = q && !this.wait_on[r];
-                            q = q && this._ui_play, q && this._video.play();
-                        }
-                    } else {
-                        let q = o.frag;
-                        console.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration), console.log('frag.startPTS : ', q.startPTS), this._hls.timeDictionary[q.sn + ''] = q.startPTS, q.startPTS == 0 && (this._hls.startSN = q.sn);
-                    }
+                    n.startPTS == 0 && (this._hls.startSN = n.sn);
                 }.bind(this));
             }
         } else {
-            if ('ZLlZk' === 'ZLlZk') this._hls = new Rich360HlsWrapper(!this._options.source.endsWith('.m3u8'), a, this._options.use_multiview), this._hls.attachMedia(this._video);
-            else {
-                function n() {
-                    return this._logData.slice();
+            if ('MrmEJ' !== 'MrmEJ') {
+                function l() {
+                    var m = '70bebcdc-b7a9-4478-ad60-ac8925042df6';
                 }
-            }
+            } else this._hls = new Rich360HlsWrapper(!this._manifest.singleview_list[0].path.endsWith('.m3u8'), a, this._options.use_multiview), this._hls.attachMedia(this._video);
         }
         this.attachVideoListeners();
-        if (!this._hls._isDummy) this.attachHlsListeners();
+        !this._hls._isDummy ? this.attachHlsListeners() : (this._video.setAttribute('playsinline', ''), this._video.setAttribute('webkit-playsinline', ''));
         this._play_status = 'none';
-        if (this._hls._isDummy) {
-            this._video.setAttribute('playsinline', ''), this._video.setAttribute('webkit-playsinline', ''), this._video_source = document.createElement('source');
-            if (this._options.use_multiview) this._video_source.setAttribute('src', this._sourceBase + this._manifest.multiview_list[this._view].path);
-            else {
-                if ('wYcsS' === 'hiJEO') {
-                    function o() {
-                        !f && (k('#loadingDiv').css('display', 'none'), l(m), n = null);
-                    }
-                } else this._video_source.setAttribute('src', this._options.source);
-            }
-            this._video_source.setAttribute('type', 'application/x-mpegURL'), this._video.appendChild(this._video_source), this._video.load();
-        } else this._options.use_multiview ? this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path) : this._hls.loadSource(this._options.source);
-        this._subtitleManager = new Rich360SubtitleManager(this), this._loggerItv && (clearInterval(this._loggerItv), this._loggerItv = null), this._loggerItv = setInterval(function() {
-            if (this._play_status && this._video.currentTime) {
-                if ('cvfcn' === 'cvfcn') this._logger.addLog({
-                    'timePos': this._video.currentTime,
-                    'playStatus': this._play_status
-                });
-                else {
-                    function p() {
-                        c(this._ui.qualityPopupItems[d], 'on');
-                    }
-                }
-            }
-        }.bind(this), 1000);
-    }
-    initMultiviewManifest() {
-        this._changingView = false;
-        let a = this._options.source.lastIndexOf('/');
-        if (a < 0) this._sourceBase = '';
+        if (this._options.use_multiview) this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
         else {
-            if ('oFMXt' === 'oFMXt') this._sourceBase = this._options.source.substring(0, a) + '/';
+            if ('dafOm' === 'JfuPJ') {
+                function m() {
+                    !this._player._video.bfTime && (this._options.use_multiview ? this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path : this._player._video.src = this._player._sourceBase + this._player._manifest.singleview_list[0].path);
+                }
+            } else this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
+        }
+        this._subtitleManager = new Rich360SubtitleManager(this);
+        if (this._loggerItv) {
+            if ('HrFzm' === 'HrFzm') clearInterval(this._loggerItv), this._loggerItv = null;
             else {
-                function c() {
-                    if (0 > i) j = 0;
-                    if (k > this._video.duration) l = this._video.duration;
-                    m.abs(n - this._video.currentTime) > 0.5 && (this._video.currentTime = q, this._logger.addLog({
-                        'event': 'seek',
-                        'time': r
-                    }), this._render_once_on_seek = true);
+                function n() {
+                    this._ui.playerBottomWrap.style.display = 'block', !b(this._ui.chatContents).hasClass('is-active') && this.showChatOpenBtn(true);
                 }
             }
         }
-        if (this._options.source.endsWith('.kmv')) {
-            if ('aYnhV' === 'yDJOn') {
-                function d() {
-                    b('#qualitySelectBtn').css('display', 'block');
+        this._loggerItv = setInterval(function() {
+            if ('gqelZ' !== 'gqelZ') {
+                function o() {
+                    this._hls.on(c, d);
                 }
-            } else {
-                var b = new XMLHttpRequest();
-                b.open('GET', this._options.source), b.onreadystatechange = (() => {
-                    if ('AFzbi' === 'AFzbi') b.readyState == 4 && b.status == 200 && (this._manifest = JSON.parse(b.responseText), this.initialize());
-                    else {
-                        function e() {
-                            c('#chatList').append(d);
+            } else this._play_status && this._video.currentTime && this._logger.addLog({
+                'timePos': this._video.currentTime,
+                'playStatus': this._play_status
+            });
+        }.bind(this), 1000);
+    }
+    updateThumbnail() {
+        var a = this._manifest;
+        if (a && a.thumbnail) {
+            var b = this._sourceBase + this._manifest.thumbnail.path;
+            this._listener.trigger(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, b);
+        }
+    }
+    requestKMVManifest(a) {
+        let b = this._options.source.lastIndexOf('/');
+        if (b < 0) {
+            if ('sOkAH' !== 'sOkAH') {
+                function d() {
+                    d = e.start(f);
+                }
+            } else this._sourceBase = '';
+        } else {
+            if ('kkvOB' === 'eTlNf') {
+                function e() {
+                    if (q.readyState == r.DONE) {
+                        if (I.status == 200 || J.status == 201) {
+                            W = X.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), Y = Z.replace(/[\r]/gm, '');
+                            a0[a1.length - 1] == '|' && (a8 = a9.substr(0, aa.length - 1));
+                            a5 = true;
+                            if (a6) a7();
                         }
                     }
-                }).bind(this), b.send();
+                }
+            } else this._sourceBase = this._options.source.substring(0, b) + '/';
+        }
+        if (this._options.source.endsWith('.kmv')) {
+            var c = new XMLHttpRequest();
+            c.open('GET', this._options.source), c.onreadystatechange = (() => {
+                if (c.readyState == 4 && c.status == 200) {
+                    this._manifest = JSON.parse(c.responseText);
+                    if (a) a();
+                }
+            }).bind(this), c.send();
+        } else {
+            if (this._options.use_multiview) {
+                if ('mzrzP' === 'mzrzP') this._manifest = MULTIVIEW_PLAYER_DEFAULT_MANIFEST, this._manifest.type = this._options.source.substring(this._options.source.lastIndexOf('.') + 1), this._manifest.multiview_list[0].path = this._options.source.substring(this._options.source.lastIndexOf('/') + 1);
+                else {
+                    function f() {
+                        j && s--;
+                        if (l <= 0) {
+                            t = false, u.Ui.disableChatInput(v - w);
+                            return;
+                        } else z = true, A.Ui.enableChatInput();
+                    }
+                }
+            } else {
+                if ('cOKIT' === 'cOKIT') this._manifest = SINGLEVIEW_PLAYER_DEFAULT_MANIFEST, this._manifest.type = this._options.source.substring(this._options.source.lastIndexOf('.') + 1), this._manifest.singleview_list[0].path = this._options.source.substring(this._options.source.lastIndexOf('/') + 1);
+                else {
+                    function g() {
+                        return true;
+                    }
+                }
             }
-        } else this._manifest = MULTIVIEW_PLAYER_DEFAULT_MANIFEST, this._manifest.type = this._options.source.substring(this._options.source.lastIndexOf('.') + 1), this._manifest.multiview_list[0].path = this._options.source.substring(this._options.source.lastIndexOf('/') + 1), this.initialize();
+            if (a) a();
+        }
     }
     set view(a) {
         if (this._changingView) return;
         if (a < 0) a = 0;
         if (a >= this._manifest.multiview_count) a = this._manifest.multiview_count - 1;
         if (this._view == a) return;
+        this._subtitleManager._prevSubtitleTrack = this.subtitleTrack;
         if (this._hls._isDummy) {
             this._view = a;
             var b = this._video.currentTime;
@@ -2049,80 +2201,164 @@ class Rich360 {
             else c.autoplay = true;
             this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), c, this._options.use_multiview), this._hls.attachMedia(this._video);
             const {
-                _multiviewCanvas: d
-            } = this._display, e = d.map(f => this.resizeToCanvasImage(f));
+                sub_positions: d
+            } = this._manifest.multiview_list[this._view], e = d.map(f => this.resizeToCanvasImage(f));
             this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path, b, e[this._view]), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
         } else {
-            this._changingView = true, this._view = a, this._display.arrangeVideo();
+            this.setChangingView(true), this._prevViewId = this._view, this._view = a, this._display.arrangeVideo();
             let f = Hls.DefaultConfig;
             f.startLevel = -1;
             let g = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), f, this._options.use_multiview),
                 h = document.createElement('video');
-            this._newVideo = h, h.setAttribute('playsinline', ''), h.setAttribute('preload', 'metadata'), g.attachMedia(h), g.on(Hls.Events.MEDIA_ATTACHED, function() {
-                if ('OrSzh' === 'OrSzh') g.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
-                else {
+            this._newVideo = h;
+            if (this._newVideo) {
+                if ('ZZTrE' !== 'ZZTrE') {
                     function j() {
-                        return b._player.qualityList.length;
+                        i.Manager.checkOperationntUser(j) && (q === '[delete]' ? (w('#noticeChatWrap p[name=desc]').text(''), z('#noticeChatWrap').css('display', 'none')) : (A('#noticeChatWrap p[name=desc]').text(B), C('#noticeChatWrap').css('display', 'block')));
                     }
+                } else this._newVideo.disablePictureInPicture = true, this._newVideo.oncontextmenu = function() {
+                    return false;
+                };
+            }
+            h.setAttribute('playsinline', ''), h.setAttribute('preload', 'metadata'), g.attachMedia(h), g.on(Hls.Events.MEDIA_ATTACHED, function() {
+                g.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+            }.bind(this)), g.timeDictionary = {}, g.snsInDictionary = [], g.firstFrag = true, g.on(Hls.Events.FRAG_PARSED, function(k, l) {
+                let m = l.frag;
+                g.timeDictionary[m.sn + ''] = m.startPTS, g.snsInDictionary.push(m.sn);
+                while (g.snsInDictionary.length > 100) {
+                    let n = 0;
+                    if (g.snsInDictionary[n] == 0) n = 1;
+                    let o = g.snsInDictionary[n];
+                    g.snsInDictionary.splice(n, 1), delete g.timeDictionary[o + ''];
                 }
-            }.bind(this)), g.timeDictionary = {}, g.firstFrag = true, g.on(Hls.Events.FRAG_PARSED, function(j, k) {
-                if ('qmUEL' !== 'SsJmg') {
-                    let l = k.frag;
-                    g.timeDictionary[l.sn + ''] = l.startPTS;
-                    if (g.firstFrag) {
-                        if ('aeQmx' !== 'aeQmx') {
-                            function m() {
-                                p = q.Ui.createArtistChatDiv(r, s.nickName, t.text, u), a ? G.push(H[0]) : I('#chatList').append(J), C('#artistChatList').length && !D && K('#artistChatList').append(L.clone());
-                            }
-                        } else {
-                            g.firstFrag = false, g.readyForChange = true;
-                            if (h.readyForChange) i();
-                        }
-                    }
-                } else {
-                    function n() {
-                        c.y = d;
-                    }
+                if (g.firstFrag) {
+                    g.firstFrag = false, g.startSN = m.sn, g.startPTS = m.startPTS, g.readyForChange = true;
+                    if (h.readyForChange) i();
                 }
             }.bind(this));
             let i = function() {
-                if ('eHvWs' === 'KSyhI') {
-                    function j() {
-                        var k = c.navigator.userAgent.toLowerCase(),
-                            l = d();
-                        return !l && k.indexOf('mac') != -1;
-                    }
-                } else {
-                    let k = this._video,
-                        l = this._hls,
-                        m = l.timeDictionary[g.startSN + ''] - g.startPTS;
-                    if (!m) {
-                        if ('jVDLK' === 'ojwGl') {
-                            function o() {
-                                u('#playerBottomWrap').addClass('ver_vod'), a('.pl-i-live').css('display', ' none'), w.durationStart = z.getElementById('durationStart'), A.durationEnd = B.getElementById('durationEnd'), C.prev10sBtn = D.getElementById('prev10sBtn'), E.next10sBtn = F.getElementById('next10sBtn'), G.sliderArea = H.getElementById('playerSliderArea'), I.sliderArea.slider = J.getElementById('playerSlider'), K.sliderArea.slider.thumb = L.getElementById('playerSliderThumb'), M.sliderThumbnail = N.getElementById('sliderThumbnail'), O.sliderPaddingDiv = P.getElementById('sliderPaddingDiv');
+                let k = this._video,
+                    l = this._hls,
+                    m = 0;
+                if (l.timeDictionary[g.startSN + ''] != undefined) m = l.timeDictionary[g.startSN + ''] - g.startPTS;
+                else {
+                    if ('CJVBF' !== 'CJVBF') {
+                        function r() {
+                            this._listener.trigger(e.RICH360_WAIT, {
+                                'wait': false,
+                                'wait_on': f.RICH360_SEEK
+                            }), this._listener.trigger(g.RICH360_WAIT, {
+                                'wait': false,
+                                'wait_on': h.RICH360_QUALITY_CHANGE
+                            });
+                        }
+                    } else {
+                        let s = -1,
+                            t = -1;
+                        for (let z in l.timeDictionary) {
+                            if ('ZPDMs' !== 'ZPDMs') {
+                                function A() {
+                                    this._hls.loadSource(b);
+                                }
+                            } else {
+                                let B = Number.parseInt(z + '');
+                                if (t == -1 || B > t) t = B;
+                                if (s == -1 || B < s) s = B;
                             }
-                        } else m = 0;
+                        }
+                        let u = (l.timeDictionary[t + ''] - l.timeDictionary[s + '']) / (t - s),
+                            w = l.timeDictionary[t + ''] + u * (g.startSN - t);
+                        m = w - g.startPTS, console.error('startSN : ' + g.startSN + ' not defined in oldHLS'), console.error(l.timeDictionary), console.error('estPTS : ' + w + ' timePerSN : ' + u + ' smallestSN : ' + s + ' biggestSN : ' + t + ' newStartSN : ' + g.startSN + ' newStartPTS : ' + g.startPTS);
                     }
-                    let n = function(p) {
-                        h.pause();
-                        let q = (h.currentTime - (k.currentTime - m)) * 1000;
-                        console.log('@@oldHLS.timeDictionary : ', l.timeDictionary), console.log('@@timeDiff : ', m), console.log('@@newVideo.currentTime : ', h.currentTime), console.log('@@oldVideo.currentTime : ', k.currentTime), console.log('@@@ waitTime : ', q), h.volume = k.volume;
-                        !k.paused && h.play();
-                        k.pause(), l.detachMedia(), l.destroy(), k = null, l = null, this._video = h, this._hls = g, this.attachVideoListeners();
-                        if (!this._hls._isDummy) this.attachHlsListeners();
-                        this._changingView = false, this._display.replaceVideo(h), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
-                    }.bind(this);
-                    h.volume = 0, n();
                 }
+                let n = function(C) {
+                    h.pause();
+                    let D = (h.currentTime - (k.currentTime - m)) * 1000;
+                    console.log('@@oldHLS.timeDictionary : ', l.timeDictionary), console.log('@@timeDiff : ', m), console.log('@@newVideo.currentTime : ', h.currentTime), console.log('@@oldVideo.currentTime : ', k.currentTime), console.log('@@@ waitTime : ', D), setTimeout(function() {
+                        if ('bXPMt' === 'bXPMt') h.volume = k.volume, this._subtitleManager._prevViewOffsetTime = k.currentTime - h.currentTime, this._subtitleManager._prevViewId = this._prevViewId, !k.paused && h.play(), k.pause(), g._hls.subtitleTrack = this._subtitleManager._prevSubtitleTrack, l.detachMedia(), l.destroy(), k = null, l = null, this._video = h, this._hls = g, this.attachVideoListeners(), !this._hls._isDummy && (this.attachHlsListeners(), this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel)), this.setChangingView(false), this._display.replaceVideo(h), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                            'wait': false,
+                            'wait_on': RICH360_WAIT_ON.RICH360_SEEK
+                        });
+                        else {
+                            function E() {
+                                this._subtitleDiv.id = 'subtitleDiv';
+                                var F = this._subtitleDiv.style;
+                                F.position = 'absolute', F.bottom = 0, F.left = 0, F.textAlign = 'center', F.fontFamily = 'sans-serif', F.fontWeight = 'bold', F.backgroundColor = 'transparent', F.color = 'white', F.display = 'none', F.verticalAlign = 'bottom', F.fontWeight = 700, F.textShadow = '#000000 0px 0px 7px', this._player._parent_dom.appendChild(this._subtitleDiv), this.setSubtitleItv();
+                            }
+                        }
+                    }.bind(this), D >= 0 ? D : 0);
+                }.bind(this);
+                h.addEventListener('seeked', n, {
+                    'once': true
+                }), h.volume = 0;
+                let o = function() {
+                        console.log('seekIfPossible');
+                        let C = h.buffered,
+                            D = k.currentTime + 0.5 - m;
+                        console.log('targetTime : ' + D + ' = ' + k.currentTime + ' + 0.5 - ' + m);
+                        let E = 0;
+                        for (; E < C.length; E++) {
+                            if ('wDQzH' !== 'bsdfK') {
+                                console.log('start(' + E + ') : ' + C.start(E)), console.log('end(' + E + ') : ' + C.end(E));
+                                if (C.start(E) <= D && D + 1 <= C.end(E)) {
+                                    h.currentTime = D;
+                                    break;
+                                }
+                            } else {
+                                function F() {
+                                    return this._manifest.multiview_count;
+                                }
+                            }
+                        }
+                        if (E != C.length) {
+                            if ('HiHCD' !== 'JaRVU') console.log('clearInterval'), clearInterval(p), clearTimeout(q);
+                            else {
+                                function G() {
+                                    return b();
+                                }
+                            }
+                        }
+                    },
+                    p = setInterval(o, 100),
+                    q = setTimeout(() => {
+                        console.warn('5 second limit');
+                        let C = h.buffered,
+                            D = k.currentTime + 0.5 - m,
+                            E = 0,
+                            F = 0,
+                            G = 0;
+                        for (G = 0; G < C.length; G++) {
+                            if (C.start(G) > D) {
+                                if ('KZQKE' === 'KZQKE') E = C.start(G);
+                                else {
+                                    function H() {
+                                        e.push(f), g.push(h);
+                                    }
+                                }
+                            }
+                            C.end(G) > F && (F = C.end(G));
+                        }
+                        if (E) h.currentTime = E + 0.5;
+                        else {
+                            if ('mgrMF' !== 'DNHim') h.currentTime = F - 1;
+                            else {
+                                function I() {
+                                    b.log('Missing Hls.');
+                                    return;
+                                }
+                            }
+                        }
+                        console.log('clearInterval'), clearInterval(p);
+                    }, 5000);
             }.bind(this);
-            h.addEventListener('canplaythrough', function(j) {
-                if ('LlLio' === 'jnoqG') {
-                    function k() {
-                        this.body.classList.add('has-active-menu'), this.wrapper.classList.add('has-' + this.options.type), this.menu.classList.add('is-active'), this.mask.classList.add('is-active'), this.disableMenuOpeners();
-                    }
-                } else {
+            h.addEventListener('canplaythrough', function(k) {
+                if ('CyjFH' !== 'BMDPl') {
                     h.readyForChange = true;
                     if (g.readyForChange) i();
+                } else {
+                    function l() {
+                        if (!this._isDummy) this._hls.currentLevel = b;
+                    }
                 }
             }.bind(this), {
                 'once': true
@@ -2140,40 +2376,59 @@ class Rich360 {
             c = b.getContext('2d'),
             d = $('#mvMainDiv'),
             e = $('#mvMainDiv video');
-        return b.width = e.width(), b.height = e.height(), c.drawImage(a, 0, 0, a.width, a.height, 0, 0, d.width(), d.height()), b.toDataURL();
+        b.width = e.width(), b.height = e.height();
+        var {
+            videoWidth: f,
+            videoHeight: g
+        } = e[0];
+        return c.drawImage(e[0], Math.round(a.x * f), Math.round(a.y * g), Math.round(a.width * f), Math.round(a.height * g), 0, 0, d.width(), d.height()), b.toDataURL();
     }
     changeSingleView(a) {
         var c = this._video.currentTime;
-        this._hls.detachMedia(), this._hls.destroy();
+        this._subtitleManager._prevSubtitleTrack = this.subtitleTrack, this._hls.detachMedia(), this._hls.destroy();
         let d = Hls.DefaultConfig;
         if (this._video.paused) d.autoplay = false;
         else d.autoplay = true;
         this._hls = new Rich360HlsWrapper(!this._manifest.singleview_list[this._view].path.endsWith('.m3u8'), d, this._options.use_multiview), this._hls.attachMedia(this._video);
-        if (a) {
-            if ('pOfdW' !== 'pOfdW') {
+        if (a) this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
+        else {
+            if ('VWdYO' === 'VWdYO') this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+            else {
                 function e() {
-                    this._hls.recoverMediaError();
-                }
-            } else this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
-        } else this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
-        this._video.addEventListener('loadedmetadata', function(f) {
-            if ('EgCxF' === 'PTiBC') {
-                function g() {
-                    var h = 'eab1a962-c951-40a3-8e17-77d3398c0161';
-                }
-            } else {
-                this._video.play();
-                if (!a) {
-                    if ('ztJrB' !== 'ztJrB') {
-                        function h() {
-                            var i = '30e05e26-728d-4afd-838e-2e7fc18bc805';
-                        }
-                    } else this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
+                    !this._updateCanvasFlag && (this._updateCanvasFlag = true, this._canvasTimeStamps = [], this._canvasTimeStamps.push(e.now()), this._canvasTimeStampIndex = 0, f.requestAnimationFrame(this.drawCanvas.bind(this)));
                 }
             }
+        }
+        this._video.addEventListener('loadedmetadata', function(f) {
+            this.subtitleTrack = this._subtitleManager._prevSubtitleTrack, this._video.play(), !a && ($(this._video).hide(), setTimeout(function() {
+                $(this._video).show(), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
+            }.bind(this), 500));
         }.bind(this), {
             'once': true
         });
+    }
+    changeSource(a) {
+        if (a) {
+            if ('UTGXe' === 'UTGXe') this.requestKMVManifest(function() {
+                if (isIOS()) this._video = null, this.initialize();
+                else {
+                    if ('fzeUC' === 'fzeUC') this._hls.loadSource(a), this._hls.attachMedia(this._player._video);
+                    else {
+                        function b() {
+                            this.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
+                        }
+                    }
+                }
+                this.updateThumbnail(), this._options.content_data.use_vod && this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.thumbnail_grid);
+            }.bind(this));
+            else {
+                function b() {
+                    h('#chatInput').prop('readonly', true), i ? o('#chatInput').prop('placeholder', p(q('P_CHAT_ABLE_DELAY_PLACEHOLDER_%(delay)s'), {
+                        'delay': r
+                    }, true)) : s('#chatInput').prop('placeholder', '');
+                }
+            }
+        }
     }
     getRandomInt(a, b) {
         return Math.floor(Math.random() * (b - a + 1)) + a;
@@ -2190,11 +2445,98 @@ class Rich360 {
         for (let b = 0; b < RICH360_WAIT_ON.SIZE; b++) a = a && !this.wait_on[b];
         a = a && this._ui_play;
         if (a) {
-            if ('XEIQD' === 'RKjET') {
+            if ('psRZq' === 'igMcy') {
                 function c() {
-                    this._ui.seekBar.value = 0;
+                    c.log('EVENT::orientationchange'), d();
                 }
             } else this._video.play();
+        }
+    }
+    addNativeTrackListener(a) {
+        this._subtitleList = [];
+        for (var b = 0; b < this._video.textTracks.length; b++) {
+            this._subtitleList.push({
+                'id': b,
+                'label': this._video.textTracks[b].label,
+                'lang': this._video.textTracks[b].language
+            });
+        }
+        this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
+        var c = a.track;
+        if (this._subtitleManager._isHideDefaultSubtitles) a.track.mode == 'showing' && (a.track.mode = 'hidden');
+        else {
+            if ('VdAzc' === 'VdAzc') {
+                if (a.track.mode == 'hidden') {
+                    if ('RqyhK' === 'RqyhK') a.track.mode = 'showing';
+                    else {
+                        function d() {
+                            if (a) {
+                                if (b._player) {
+                                    if (l._player.qualityList) return n._player.qualityList.length;
+                                }
+                            }
+                            return false;
+                        }
+                    }
+                }
+            } else {
+                function f() {
+                    c.track.mode == 'hidden' && (a.track.mode = 'showing');
+                }
+            }
+        }
+        c.removeEventListener('cuechange', this.updateNativeTrackCuesListener), c.addEventListener('cuechange', this.updateNativeTrackCuesListener);
+        if (this._options.use_multiview) {
+            if ('TuAIG' === 'rrDTt') {
+                function g() {
+                    this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
+                        'once': true
+                    });
+                }
+            } else this.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
+        }
+    }
+    updateNativeTrackCuesListener(a) {
+        if (this._subtitleManager._isHideDefaultSubtitles) {
+            if ('EhIMo' !== 'EhIMo') {
+                function h() {
+                    var k = c.innerHeight * 0.01,
+                        l = d.document.documentElement;
+                    l.style.setProperty('--vh', k + 'px');
+                }
+            } else {
+                if (a.target.mode == 'showing') {
+                    if ('dzVnU' === 'dzVnU') a.target.mode = 'hidden';
+                    else {
+                        function k() {
+                            let l = d;
+                            if (typeof l === 'undefined') l = true;
+                            a(this._timer.hidePlayerController.timer), this._timer.hidePlayerController.timer = null, l && (this._timer.hidePlayerController.timer = g(this.hidePlayerController.bind(this), this._timer.hidePlayerController.period));
+                        }
+                    }
+                }
+            }
+        } else a.target.mode == 'hidden' && (a.target.mode = 'showing');
+        if (a.target.cues.length) {
+            var b = a.target.cues.length,
+                c = [];
+            for (var d = 0; d < b; d++) {
+                var f = -1;
+                for (var g = 0; g < this._subtitleList.length; g++) {
+                    if (this._subtitleList[g].lang == a.target.cues[d].track.language) {
+                        f = g;
+                        break;
+                    }
+                }
+                c.push({
+                    'startTime': a.target.cues[d].startTime,
+                    'endTime': a.target.cues[d].endTime,
+                    'text': a.target.cues[d].text,
+                    'track_num': f,
+                    'view': this._view
+                });
+            }
+            this._subtitleManager.addCueData(c);
         }
     }
     attachVideoListeners() {
@@ -2212,341 +2554,179 @@ class Rich360 {
                 'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
             });
         }.bind(this)), this._video.addEventListener('play', function() {
-            this._play_status = 'play';
+            if ('Putan' === 'AlXJE') {
+                function a() {
+                    b('button[name=multiviewnavbtn]').css('display', 'none');
+                }
+            } else this._play_status = 'play', this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
         }.bind(this)), this._video.addEventListener('pause', function() {
-            this._play_status = 'pause';
+            this._play_status = 'pause', this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
         }.bind(this)), this._video.addEventListener('durationchange', function() {
-            this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
+            if ('WsbQK' !== 'EfSzT') this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
+            else {
+                function a() {
+                    if (this._isDummy) {} else this._hls.recoverMediaError();
+                }
+            }
         }.bind(this)), this._video.addEventListener('timeupdate', function() {
-            this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
+            if ('WNyzK' !== 'WNyzK') {
+                function a() {
+                    c._options.use_multiview && (e._player._display.showMultiPreview = false);
+                }
+            } else this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
         }.bind(this)), this._video.addEventListener('progress', function() {
             this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                 'wait': false,
                 'wait_on': RICH360_WAIT_ON.RICH360_BUFFER
             });
         }.bind(this)), this._video.addEventListener('ended', function() {
-            if ('htdat' !== 'izZwB') this._ui_play = false, this._listener.trigger(RICH360_EVENTS.RICH360_ENDED), this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+            this._ui_play = false, this._listener.trigger(RICH360_EVENTS.RICH360_ENDED), this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                 'wait': false,
                 'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
             }), this._play_status = 'end', this._logger.addLog({
                 'event': 'end'
             });
-            else {
-                function a() {
-                    e('#chatInput').prop('placeholder', f(g('P_CHAT_ABLE_DELAY_PLACEHOLDER_%(delay)s'), {
-                        'delay': h
-                    }, true));
-                }
-            }
         }.bind(this)), this._video.addEventListener('error', function() {
-            if ('oBmxG' === 'oBmxG') {
-                console.log('Video error encountered. Running recover function');
-                this._hls && this._hls.recoverMediaError();
-                if (this._video.paused) {
-                    if ('KoSJj' !== 'IVfMh') this._ui_play = false, this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
-                    else {
-                        function a() {
-                            this._listener.trigger(c.RICH360_STATE_CHANGE, d.RICH360_INIT);
-                        }
-                    }
-                } else this.play_on();
-            } else {
-                function b() {
-                    var c = '36853e07-ebac-4576-a6a8-15eca6822945';
-                }
-            }
+            console.log('Video error encountered. Running recover function'), this._hls && this._hls.recoverMediaError(), this._video.paused ? (this._ui_play = false, this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false)) : this.play_on();
         }.bind(this)), this._video.addEventListener('loadedmetadata', function() {
-            if ('ovPYz' !== 'ovPYz') {
+            if ('BtjeO' === 'SpxCz') {
                 function a() {
-                    d(e[f]);
+                    var b = 'd1469f24-5e03-40db-9289-7be2c0423b1d';
                 }
-            } else {
-                this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY), this._ready_state = RICH360_STATE.RICH360_READY;
-                if (this._hls._isDummy) {
-                    if ('ielUZ' !== 'ielUZ') {
-                        function b() {
-                            b.reload();
-                        }
-                    } else this._video.textTracks.addEventListener('addtrack', function(c) {
-                        if ('TItAH' === 'AvORX') {
-                            function g() {
-                                c('#pageWrap').removeClass().addClass('pl-t-default'), f('#chatWrap').css('display', 'block'), g.Manager.setPubnubAPI(h.nickname);
-                            }
-                        } else {
-                            this._subtitleList = [];
-                            for (var d = 0; d < this._video.textTracks.length; d++) {
-                                if ('dgOVp' !== 'ZBuKh') this._subtitleList.push({
-                                    'id': d,
-                                    'label': this._video.textTracks[d].label,
-                                    'lang': this._video.textTracks[d].language
-                                });
-                                else {
-                                    function h() {
-                                        c[f] = g[h];
-                                    }
-                                }
-                            }
-                            this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
-                            var f = c.track;
-                            if (this._subtitleManager._isHideDefaultSubtitles) {
-                                if ('JKPMQ' !== 'UIvuV') c.track.mode == 'showing' && (c.track.mode = 'hidden');
-                                else {
-                                    function j() {
-                                        var k = '4bb96f7c-3dc1-421b-986f-fc823a081335';
-                                    }
-                                }
-                            } else {
-                                if (c.track.mode == 'hidden') {
-                                    if ('oQWBP' !== 'vrnfG') c.track.mode = 'showing';
-                                    else {
-                                        function k() {
-                                            d = c(f + '_user_id');
-                                        }
-                                    }
-                                }
-                            }
-                            f.addEventListener('cuechange', function(l) {
-                                if ('VPehs' === 'uqNDB') {
-                                    function r() {
-                                        if (!l) return false;
-                                        var s = f.split(g);
-                                        if (s.length < 2) return false;
-                                        var t = s[0];
-                                        s = s[1].split(h);
-                                        if (s.length < 2) return false;
-                                        var u = s[0],
-                                            v = s[1];
-                                        if (!t || !u || !v) return false;
-                                        return {
-                                            'userId': t,
-                                            'nickName': u,
-                                            'text': v
-                                        };
-                                    }
-                                } else {
-                                    if (this._subtitleManager._isHideDefaultSubtitles) {
-                                        if ('dwqiG' === 'NhTCg') {
-                                            function s() {
-                                                this._player._video.bfTime = this._player._video.currentTime;
-                                            }
-                                        } else {
-                                            if (l.target.mode == 'showing') {
-                                                if ('XdWiF' !== 'XdWiF') {
-                                                    function t() {
-                                                        var u = f.vendor && g.vendor.indexOf('Apple') > -1 && h.userAgent && o.userAgent.indexOf('CriOS') == -1 && q.userAgent.indexOf('FxiOS') == -1;
-                                                        return u;
-                                                    }
-                                                } else l.target.mode = 'hidden';
-                                            }
-                                        }
-                                    } else l.target.mode == 'hidden' && (l.target.mode = 'showing');
-                                    if (l.target.cues.length) {
-                                        var m = l.target.cues.length,
-                                            n = [];
-                                        for (var o = 0; o < m; o++) {
-                                            if ('viJqZ' !== 'EWEXX') {
-                                                var p = -1;
-                                                for (var q = 0; q < this._subtitleList.length; q++) {
-                                                    if (this._subtitleList[q].lang == l.target.cues[o].track.language) {
-                                                        if ('riTed' !== 'RykMd') {
-                                                            p = q;
-                                                            break;
-                                                        } else {
-                                                            function u() {
-                                                                b.getElementsByTagName('video')[0].style.display = 'block';
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                n.push({
-                                                    'startTime': l.target.cues[o].startTime,
-                                                    'endTime': l.target.cues[o].endTime,
-                                                    'text': l.target.cues[o].text,
-                                                    'track_num': p
-                                                });
-                                            } else {
-                                                function v() {
-                                                    o.forEach(((z, A) => {
-                                                        const B = this._multiviewCanvas[A],
-                                                            C = this._multiviewCtx[A],
-                                                            D = this._multiviewDivArr[A],
-                                                            E = this._doubleBufferCanvas[A];
-                                                        var F = q.find(O => O.singleview_id === A);
-                                                        this.selectedMultiviewCanvas(A);
-                                                        if (F == null) return;
-                                                        const {
-                                                            x: G,
-                                                            y: H,
-                                                            width: I,
-                                                            height: J
-                                                        } = F, {
-                                                            videoWidth: K,
-                                                            videoHeight: L
-                                                        } = r, {
-                                                            offsetWidth: M,
-                                                            offsetHeight: N
-                                                        } = D;
-                                                        C.drawImage(s, t.round(G * K), u.round(H * L), v.round(I * K), w.round(J * L), 0, 0, M, N), E.width = M, E.height = N, E.getContext('2d').drawImage(B, 0, 0), B.width = M, B.height = N, C.drawImage(E, 0, 0);
-                                                    }).bind(this));
-                                                }
-                                            }
-                                        }
-                                        this._subtitleManager.addCueData(n);
-                                    }
-                                }
-                            }.bind(this));
-                        }
-                    }.bind(this));
-                }
-            }
+            } else this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY), this._ready_state = RICH360_STATE.RICH360_READY, this._hls._isDummy && (this._video.textTracks.removeEventListener('addtrack', this.addNativeTrackListener), this._video.textTracks.addEventListener('addtrack', this.addNativeTrackListener));
         }.bind(this)), this._video.addEventListener('waiting', function(a) {
             console.log('@@@video waiting call : ', a), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                 'wait': true,
                 'wait_on': RICH360_WAIT_ON.RICH360_BUFFER
             });
         }.bind(this)), this._video.addEventListener('playing', function(a) {
-            if ('yhfAz' !== 'yhfAz') {
-                function b() {
-                    return (/iPad|iPhone|iPod/.test(a.platform) || f.platform === 'MacIntel' && g.maxTouchPoints > 1) && !h.MSStream;
-                }
-            } else console.log('@@@video playing call : ', a), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+            console.log('@@@video playing call : ', a), this._hls._isDummy && (this.subtitleTrack = this._subtitleManager._prevSubtitleTrack), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                 'wait': false,
                 'wait_on': RICH360_WAIT_ON.RICH360_BUFFER
             }), this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
         }.bind(this)), $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(a) {
             if (a.type == 'webkitbeginfullscreen') {
-                if ('cCNWM' === 'HgjoV') {
-                    function b() {
-                        f.className = g.className ? [h.className, i].join(' ') : j;
-                    }
-                } else this._options.use_multiview && this.changeSingleView(true), this._subtitleManager.showDefaultSubtitle();
-            } else a.type == 'webkitendfullscreen' && (this._options.use_multiview && this.changeSingleView(false), this._subtitleManager.hideDefaultSubtitle(), this.pause_on());
+                $('body').addClass('fullscreen');
+                if (this._options.use_multiview) this.changeSingleView(true);
+                else {
+                    if ('QUjBs' !== 'QUjBs') {
+                        function b() {
+                            var c = c('return (function() ' + '{}.constructor("return this")( )' + ');');
+                            d = c();
+                        }
+                    } else this._subtitleManager._prevSubtitleTrack = this.subtitleTrack;
+                }
+                this._subtitleManager.showDefaultSubtitle();
+            } else a.type == 'webkitendfullscreen' && ($('body').removeClass('fullscreen'), this._options.use_multiview && this.changeSingleView(false), this._subtitleManager.hideDefaultSubtitle(), this.pause_on(), this._rich360Player.hidePlayerController(), setTimeout(function() {
+                this._rich360Player.wakeupController();
+            }.bind(this), 100));
         }.bind(this));
     }
     attachHlsListeners() {
         this._hls.on(Hls.Events.ERROR, function(a, b) {
-            if ('worzt' === 'worzt') {
+            if ('TvKrd' === 'TvKrd') {
                 if (b.fatal) {
-                    if ('CoIcw' === 'CoIcw') switch (b.type) {
+                    if ('rrrvP' !== 'rrrvP') {
+                        function c() {
+                            !this._ui.seekBar.thumbInteracting && (this.setDurationText(this._player.currentPosition, this._player.duration), this._player.currentPosition == 0 ? this._ui.seekBar.value = 0 : this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration);
+                        }
+                    } else switch (b.type) {
                         case Hls.ErrorTypes.NETWORK_ERROR:
                             console.log('fatal network error encountered, try to recover'), this._hls.startLoad();
                             break;
                         case Hls.ErrorTypes.MEDIA_ERROR:
-                            let c = this._video.currentTime;
+                            let d = this._video.currentTime;
                             console.log('fatal media error encountered, try to recover');
-                            if (b.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) console.log('this is not a media error, try to recover'), this._hls.startLoad();
-                            else {
-                                if ('fZWMa' !== 'fZWMa') {
-                                    function d() {
-                                        d.Manager.displayMessageItv(e(f.timetoken));
-                                    }
-                                } else this._hls.recoverMediaError(), this.play_on();
-                            }
-                            this._video.currentTime = c;
+                            b.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR ? (console.log('this is not a media error, try to recover'), this._hls.startLoad()) : (this._hls.recoverMediaError(), this.play_on());
+                            this._video.currentTime = d;
                             break;
                         default:
                             this._hls.destroy();
                             break;
-                    } else {
-                        function e() {
-                            var g = 'chat_test',
-                                h = new i(),
-                                i = h.format('yyyyMMdd-HH:mm:ss:') + h.getMilliseconds().toString(),
-                                j = j.Manager.getChatChannels()[0];
-                            if (k) {
-                                var k = j.lastIndexOf('_');
-                                j = j.substring(0, k + 1) + q.toString();
-                            }
-                            var l = m.Manager.getUserId();
-                            n.Manager.submitUpdate(l, l + o + g + p + i, [j], true);
-                        }
                     }
                 }
             } else {
-                function f() {
-                    b = false;
+                function e() {
+                    this._subtitleList.push({
+                        'id': d,
+                        'label': this._video.textTracks[e].label,
+                        'lang': this._video.textTracks[f].language
+                    });
                 }
             }
         }.bind(this)), this._hls.on(Hls.Events.MANIFEST_PARSED, function() {
-            if ('yiwmg' === 'yiwmg') {
+            if ('Nohhe' === 'FCnOC') {
+                function b() {
+                    b = 100;
+                }
+            } else {
                 this._quality_list = [];
-                let b = this._hls.levels;
-                for (var a in b) {
-                    if ('PvxOn' !== 'PvxOn') {
-                        function c() {
-                            if (!e) return;
-                            var d = 'gi',
-                                e = new f(g, d);
-                            return h.replace(e, '***');
+                let c = this._hls.levels;
+                for (var a in c) {
+                    if ('jaVDD' === 'jaVDD') this._quality_list.push(c[a]);
+                    else {
+                        function d() {
+                            b(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
                         }
-                    } else this._quality_list.push(b[a]);
+                    }
                 }
                 this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY), this._ready_state = RICH360_STATE.RICH360_READY;
-            } else {
-                function d() {
-                    d(this._ui.playThumbnail).css('display', 'block'), e() ? (this._player._video = null, this._player.initialize()) : (this._player._hls.loadSource(g), this._player._hls.attachMedia(this._player._video));
-                }
             }
         }.bind(this)), this._hls.on(Hls.Events.LEVEL_SWITCHED, function(a, b) {
-            this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+            if ('aSDRS' === 'FCkst') {
+                function c() {
+                    g[h] = i[j] ^ k[l];
+                }
+            } else this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                 'wait': false,
                 'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
             }), this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, b.level);
         }.bind(this)), this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(a, b) {
-            if ('TgwTO' === 'TgwTO') {
-                for (var c = 0; c < b.tracks.length; c++) {
-                    if ('IZYFd' === 'xJkbN') {
-                        function d() {
-                            return;
+            for (var c = 0; c < b.tracks.length; c++) {
+                this._subtitleList.push({
+                    'id': c,
+                    'label': b.tracks[c].label,
+                    'lang': b.tracks[c].subtitleTrack.lang
+                });
+            }
+            this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
+        }.bind(this)), this._hls.on(Hls.Events.CUES_PARSED, function(a, b) {
+            if (this._subtitleManager) {
+                var c = b.cues.length,
+                    d = [];
+                for (var e = 0; e < c; e++) {
+                    if ('ZskSh' === 'hIQiI') {
+                        function f() {
+                            this._options.credentials.user_id = null;
                         }
-                    } else this._subtitleList.push({
-                        'id': c,
-                        'label': b.tracks[c].label,
-                        'lang': b.tracks[c].subtitleTrack.lang
+                    } else d.push({
+                        'startTime': b.cues[e].startTime,
+                        'endTime': b.cues[e].endTime,
+                        'text': b.cues[e].text,
+                        'track_num': this._hls._hls.subtitleTrack,
+                        'view': this._view
                     });
                 }
-                this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
-            } else {
-                function e() {
-                    var f = 'c5f88688-08ed-4e43-af96-c3caa464a17c';
-                }
-            }
-        }.bind(this)), this._hls.on(Hls.Events.CUES_PARSED, function(a, b) {
-            if ('bhomB' === 'bhomB') {
-                if (this._subtitleManager) {
-                    var c = b.cues.length,
-                        d = [];
-                    for (var e = 0; e < c; e++) {
-                        d.push({
-                            'startTime': b.cues[e].startTime,
-                            'endTime': b.cues[e].endTime,
-                            'text': b.cues[e].text,
-                            'track_num': this._hls._hls.subtitleTrack
-                        });
-                    }
-                    this._subtitleManager.addCueData(d);
-                }
-            } else {
-                function f() {
-                    var g = 'd8f2dfa4-8e0f-4b40-9ae6-92a7b3d15af5';
-                }
+                this._subtitleManager.addCueData(d);
             }
         }.bind(this));
     }
-    changeCurrentLevel(a) {
-        let b = this._hls.currentLevel;
-        if (a != -1 && b != a || a == -1 && this._hls.nextAutoLevel != b) {
-            if ('KcFFE' === 'KcFFE') this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': true,
-                'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
-            });
+    attachPlayerUiListners() {
+        this._hls._isDummy ? $(this._ui.fullBtn).on('click', function() {
+            if ('PNpTb' === 'PNpTb') this._subtitleManager.showDefaultSubtitle(), !this._video.paused && this._video.webkitEnterFullscreen();
             else {
-                function c() {
-                    c(this).removeAttr('selected'), d(this).removeClass('on');
+                function a() {
+                    c(this._ui.qualityPopupItems[d], 'on');
                 }
             }
-        }
-        this._hls.currentLevel = a;
+        }.bind(this)) : this._ui.fullScreen = new FullscreenButton(this._rich360Player, this._ui.fullBtn);
+    }
+    changeCurrentLevel(a) {
+        let b = this._hls.currentLevel;
+        (a != -1 && b != a || a == -1 && this._hls.nextAutoLevel != b) && this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+            'wait': true,
+            'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+        }), this._hls.currentLevel = a;
     }
     play() {
         this.play_on(), this._logger.addLog({
@@ -2560,39 +2740,45 @@ class Rich360 {
     }
     set currentPosition(a) {
         if (!isNaN(this._video.duration)) {
-            if (0 > a) a = 0;
-            if (a > this._video.duration) a = this._video.duration;
-            if (Math.abs(a - this._video.currentTime) > 0.5) {
-                if ('XOepb' === 'XOepb') this._video.currentTime = a, this._logger.addLog({
-                    'event': 'seek',
-                    'time': a
-                }), this._render_once_on_seek = true;
-                else {
-                    function b() {
-                        let e = this._video,
-                            f = this._hls,
-                            g = f.timeDictionary[q.startSN + ''] - r.startPTS;
-                        !g && (g = 0);
-                        let h = function(W) {
-                            I.pause();
-                            let X = (J.currentTime - (e.currentTime - g)) * 1000;
-                            K.log('@@oldHLS.timeDictionary : ', f.timeDictionary), L.log('@@timeDiff : ', g), M.log('@@newVideo.currentTime : ', N.currentTime), O.log('@@oldVideo.currentTime : ', e.currentTime), P.log('@@@ waitTime : ', X), Q.volume = e.volume;
-                            !e.paused && V.play();
-                            e.pause(), f.detachMedia(), f.destroy(), e = null, f = null, this._video = S, this._hls = T, this.attachVideoListeners();
-                            if (!this._hls._isDummy) this.attachHlsListeners();
-                            this._changingView = false, this._display.replaceVideo(U), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
-                        }.bind(this);
-                        H.volume = 0, h();
-                    }
+            if ('ObmAA' === 'vhSkE') {
+                function b() {
+                    f.preventDefault(), g.open(), h.style.display = 'none', i('#chatList').scrollTop(j('#chatList')[0].scrollHeight);
+                }
+            } else {
+                if (0 > a) a = 0;
+                if (a > this._video.duration) a = this._video.duration;
+                if (Math.abs(a - this._video.currentTime) > 0.5) {
+                    if ('whvys' === 'vzTRy') {
+                        function c() {
+                            this._listener.trigger(b.RICH360_ACCESS_DENIED, 'Authorization failed');
+                            return;
+                        }
+                    } else this._video.currentTime = a, this._logger.addLog({
+                        'event': 'seek',
+                        'time': a
+                    }), this._render_once_on_seek = true;
                 }
             }
         } else {
-            if ('ycymu' !== 'WmEOA') console.log('isNan');
-            else {
-                function c() {
-                    c.x = d;
+            if ('aEEZk' !== 'aEEZk') {
+                function d() {
+                    var j;
+                    try {
+                        var k = l('return (function() ' + '{}.constructor("return this")( )' + ');');
+                        j = k();
+                    } catch (r) {
+                        j = n;
+                    }
+                    var l = j.console = j.console || {},
+                        m = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+                    for (var n = 0; n < m.length; n++) {
+                        var o = k.constructor.prototype.bind(k),
+                            p = m[n],
+                            q = l[p] || o;
+                        o.__proto__ = k.bind(k), o.toString = q.toString.bind(q), l[p] = o;
+                    }
                 }
-            }
+            } else console.log('isNan');
         }
     }
     get currentPosition() {
@@ -2628,16 +2814,16 @@ class Rich360 {
         if (this._hls._isDummy) {
             var b = this._video.textTracks.length;
             for (var c = 0; c < b; c++) {
-                if (a == c) this._video.textTracks[c].mode = 'showing';
-                else {
-                    if ('DXTkq' !== 'DXTkq') {
+                if (a == c) {
+                    if ('tUgJG' === 'MJXBP') {
                         function d() {
-                            this.pause();
-                            var e = c.lastIndexOf('/output'),
-                                f = j.substr(0, e) + '/thumbnails.jpg';
-                            k(this._ui.playThumbnail).css('background-image', 'url(' + f + ')'), this._player._options.source = l, m(function() {
-                                q(this._ui.playThumbnail).css('display', 'block'), r() ? (this._player._video = null, this._player.initialize()) : (this._player._hls.loadSource(t), this._player._hls.attachMedia(this._player._video));
-                            }.bind(this), 1000);
+                            c = d / 100 * 3.2;
+                        }
+                    } else this._video.textTracks[c].mode = 'showing';
+                } else {
+                    if ('jsdvm' === 'IaYtj') {
+                        function e() {
+                            this._ready_state == c.RICH360_INIT && this._listener.trigger(q.RICH360_STATE_CHANGE, r.RICH360_INIT), this._ready_state == l.RICH360_READY && (this._listener.trigger(s.RICH360_STATE_CHANGE, t.RICH360_INIT), this._listener.trigger(u.RICH360_STATE_CHANGE, v.RICH360_READY));
                         }
                     } else this._video.textTracks[c].mode = 'disabled';
                 }
@@ -2647,45 +2833,43 @@ class Rich360 {
     }
     get subtitleTrack() {
         if (this._hls._isDummy) {
-            var a = this._video.textTracks.length;
-            for (var b = 0; b < a; b++) {
-                if (this._video.textTracks[b].mode == 'showing' || this._video.textTracks[b].mode == 'hidden') {
-                    if ('KQuFI' !== 'zrxKB') return b;
-                    else {
-                        function c() {
-                            if (c == d(this).data().view) return;
-                        }
-                    }
-                }
-            }
-            return -1;
-        } else {
-            if ('VHVrW' === 'VHVrW') {
-                if (this._hls._hls) return this._hls._hls.subtitleTrack;
-                else {
-                    if ('wLDeB' === 'wLDeB') return -1;
-                    else {
-                        function d() {
-                            c.loadChatFilterData(), d.Manager.initChatInterval();
-                        }
-                    }
+            if ('coNVf' !== 'coNVf') {
+                function c() {
+                    var d = '78bc66bd-0ce3-4f20-ad70-81214a977c51';
                 }
             } else {
-                function e() {
-                    q(r), s('#loadingDiv').css('display', 'none'), t('#alertPopup').css('display', 'block'), u('#alertPopup p[name=title]').text(v), w('#alertPopup p[name=desc]').text(z), A('#alertPopup button[name=okbtn]').text(B), C('#alertPopup button[name=okbtn],#alertPopup button[name=closebtn]').click(function() {
-                        I('#alertPopup button[name=okbtn]').unbind('click'), J('alertPopup'), K && (N(), O = null);
-                    });
+                var a = this._video.textTracks.length;
+                for (var b = 0; b < a; b++) {
+                    if (this._video.textTracks[b].mode == 'showing' || this._video.textTracks[b].mode == 'hidden') return b;
                 }
+                return -1;
             }
-        }
+        } else return this._hls._hls ? this._hls._hls.subtitleTrack : -1;
     }
     get subtitleList() {
         return this._subtitleList;
     }
+    setChangingView(a) {
+        var b = this._display,
+            c = a;
+        if (typeof a === 'undefined') c = false;
+        this._changingView = c;
+        if (!b) return;
+        if (!b._wrapperList) return;
+        if (c) addClassName(b._wrapperList, 'changing-source');
+        else {
+            if ('MfVpF' === 'MfVpF') removeClassName(b._wrapperList, 'changing-source');
+            else {
+                function d() {
+                    g.addEventListener('mousedown', h.bind(i), false), j.addEventListener('touchstart', k.bind(l), false);
+                }
+            }
+        }
+    }
 }
 class Rich360SubtitleManager {
     constructor(a) {
-        this._player = a, this._subtitleDiv = document.createElement('div'), this._subtitleArr = [], this._subtitleTrack = -1, this._cues = [], this._subItv = null, this._isHideDefaultSubtitles = true, this._bfSendSubTime = new Date(), this.initialize();
+        this._player = a, this._subtitleDiv = document.createElement('div'), this._subtitleArr = [], this._subtitleTrack = -1, this._cues = [], this._subItv = null, this._isHideDefaultSubtitles = true, this._bfSendSubTime = new Date(), this.initialize(), this._prevSubtitleTrack = -1, this._prevViewOffsetTime = 0, this._prevViewId = -1;
     }
     initialize() {
         this._subtitleDiv.id = 'subtitleDiv';
@@ -2695,12 +2879,18 @@ class Rich360SubtitleManager {
     addCueData(a) {
         this._bfSendSubTime = new Date();
         for (var b = 0; b < a.length; b++) {
-            if ('WCefr' === 'WCefr') this._cues.push(a[b]);
-            else {
+            if ('WPLXo' === 'YHgTA') {
                 function c() {
-                    c.push(d[0]);
+                    I.pause();
+                    let d = (J.currentTime - (K.currentTime - L)) * 1000;
+                    M.log('@@oldHLS.timeDictionary : ', N.timeDictionary), O.log('@@timeDiff : ', P), Q.log('@@newVideo.currentTime : ', R.currentTime), S.log('@@oldVideo.currentTime : ', T.currentTime), U.log('@@@ waitTime : ', d), V(function() {
+                        ae.volume = af.volume, this._subtitleManager._prevViewOffsetTime = ag.currentTime - ah.currentTime, this._subtitleManager._prevViewId = this._prevViewId, !ai.paused && aw.play(), ak.pause(), al._hls.subtitleTrack = this._subtitleManager._prevSubtitleTrack, am.detachMedia(), an.destroy(), ao = null, ap = null, this._video = aq, this._hls = ar, this.attachVideoListeners(), !this._hls._isDummy && (this.attachHlsListeners(), this._listener.trigger(ax.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel)), this.setChangingView(false), this._display.replaceVideo(at), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions), this._listener.trigger(au.RICH360_WAIT, {
+                            'wait': false,
+                            'wait_on': av.RICH360_SEEK
+                        });
+                    }.bind(this), d >= 0 ? d : 0);
                 }
-            }
+            } else this._cues.push(a[b]);
         }
     }
     clearCueData() {
@@ -2709,43 +2899,58 @@ class Rich360SubtitleManager {
     drawSubtitles() {
         var a = [];
         for (var b = 0; b < this._cues.length; b++) {
+            if (this._prevViewId == this._cues[b].view) {
+                if ('XGTRN' !== 'XGTRN') {
+                    function w() {
+                        var z = e.location.search.substr(1).split('&');
+                        if (z == '') return {};
+                        var A = {};
+                        for (var B = 0; B < z.length; ++B) {
+                            var C = z[B].split('=', 2);
+                            if (C.length == 1) A[C[0]] = '';
+                            else A[C[0]] = g(C[1].replace(/\+/g, ' '));
+                        }
+                        return A;
+                    }
+                } else this._cues[b].startTime += this._prevViewOffsetTime, this._cues[b].endTime += this._prevViewOffsetTime;
+            }
             if (this._player._video.currentTime > this._cues[b].endTime && !this._player._options.content_data.use_vod) {
                 this._cues.splice(b, 1), b--;
                 continue;
             }
             if (this._player._video.currentTime >= this._cues[b].startTime && this._player._video.currentTime < this._cues[b].endTime) {
-                var c = false;
-                for (var d = 0; d < a.length; d++) {
-                    if ('mZtrR' !== 'mZtrR') {
-                        function w() {
-                            this._video.pause(), this._ui_play = false, this._listener.trigger(b.RICH360_PLAY_PAUSE_CHANGE, false);
-                        }
-                    } else {
-                        if (a[d].startTime == this._cues[b].startTime && a[d].endTime == this._cues[b].endTime) {
-                            if ('TBYFD' !== 'tkoeh') c = true;
-                            else {
-                                function z() {
-                                    var A = '70bebcdc-b7a9-4478-ad60-ac8925042df6';
+                if ('BYytk' !== 'BYytk') {
+                    function z() {
+                        b = 1920;
+                    }
+                } else {
+                    var c = false;
+                    for (var d = 0; d < a.length; d++) {
+                        if ('XxnCS' === 'XyiGs') {
+                            function A() {
+                                c('.cusDD_options').slideUp(200), d('.cusDD_arrow').removeClass('active');
+                            }
+                        } else {
+                            if (a[d].startTime == this._cues[b].startTime && a[d].endTime == this._cues[b].endTime) {
+                                if ('RTWhb' !== 'uHbCG') c = true;
+                                else {
+                                    function B() {
+                                        c = d;
+                                    }
                                 }
                             }
                         }
-                    }
-                }!c && a.push({
-                    'startTime': this._cues[b].startTime,
-                    'endTime': this._cues[b].endTime,
-                    'text': this._cues[b].text
-                });
+                    }!c && a.push({
+                        'startTime': this._cues[b].startTime,
+                        'endTime': this._cues[b].endTime,
+                        'text': this._cues[b].text
+                    });
+                }
             }
         }
         if (!a.length) {
-            if ('pAnco' === 'pAnco') {
-                this._subtitleDiv.innerHTML = '', this._subtitleDiv.style.display = 'none';
-                return;
-            } else {
-                function A() {
-                    b('#artistChatList .user_chat:eq(-1)').css('margin-bottom', '0');
-                }
-            }
+            this._subtitleDiv.innerHTML = '', this._subtitleDiv.style.display = 'none';
+            return;
         }
         var e = this._player._parent_dom.offsetWidth,
             f = this._player._parent_dom.offsetHeight,
@@ -2754,21 +2959,28 @@ class Rich360SubtitleManager {
                 'bottom': f / 100 * 5
             };
         if (document.getElementById('playerBottomWrap').style.display != 'none') {
-            if ('LlUZv' !== 'Ssmab') {
-                var h = document.getElementById('playerBottomWrap').clientHeight;
-                document.getElementById('playerBottomWrap').clientWidth < 812 && (h = 0), g.bottom += h;
-            } else {
-                function B() {
-                    var C = '46554765-6d6b-4d43-99eb-5bbe0823613a';
-                }
-            }
-        }
-        if (!this._player._hls._isDummy) {
-            if (parseInt(this._subtitleDiv.style.left.replace('px', '')) == parseInt(g.left) && parseInt(this._subtitleDiv.style.bottom.replace('px', '')) == parseInt(g.bottom) && this._player._hls._hls.subtitleTrack == this._subtitleTrack && this.compareArray(this._subtitleArr, a)) {
-                if ('VtyXW' === 'VtyXW') return;
+            var h = document.getElementById('playerBottomWrap').clientHeight;
+            if (document.getElementById('playerBottomWrap').clientWidth < 812) {
+                if ('Vvrsm' !== 'UaRCR') h = 0;
                 else {
                     function C() {
-                        d = e(f.target.id);
+                        o('#chatContentWrap').css('display', 'none'), p('#chatInputWrap').css('display', 'none'), q('#holdChatScrollLabel').css('display', 'none'), r('#artistChatWrap').css('display', 'block'), s('#multiViewWrap').css('display', 'none'), t('button[name=chatnavbtn]').removeClass('on'), u('button[name=artistchatnavbtn]').addClass('on'), v('button[name=multiviewnavbtn]').removeClass('on'), w('#artistChatList').scrollTop(z('#artistChatList')[0].scrollHeight), A('#chatAnchor').css('display', 'none'), B && (E._options.use_multiview && (G._player._display.showMultiPreview = false));
+                    }
+                }
+            }
+            g.bottom += h;
+        }
+        if (!this._player._hls._isDummy) {
+            if ('RPddI' !== 'RZHgR') {
+                if (parseInt(this._subtitleDiv.style.left.replace('px', '')) == parseInt(g.left) && parseInt(this._subtitleDiv.style.bottom.replace('px', '')) == parseInt(g.bottom) && this._player._hls._hls.subtitleTrack == this._subtitleTrack && this.compareArray(this._subtitleArr, a)) return;
+            } else {
+                function D() {
+                    for (var E = 0; E < g.messages.length; E++) {
+                        var F = m.messages[E].entry.update.split(n);
+                        for (var G = 0; G < F.length; G++) {
+                            var H = F[G].split(r)[0];
+                            s.Ui.displayMessage(F[G], t.messages[E].timetoken, H, true);
+                        }
                     }
                 }
             }
@@ -2776,58 +2988,61 @@ class Rich360SubtitleManager {
         var k = e / 100 * 50,
             l = e / 100 * 80,
             m = e / 100 * 2.5;
-        if (e < 568) m = e / 100 * 3.2;
-        else e > 1000 && (m = e / 100 * 2.2);
+        if (e < 568) {
+            if ('iFuwt' === 'iFuwt') m = e / 100 * 3.2;
+            else {
+                function E() {
+                    f(this._ui.navBtnWrap).find('button[name=chatnavbtn]').hasClass('on') ? (k(this._ui.chatInputWrap).css('top', ''), l(this._ui.chatInputWrap).css('position', 'relative'), m(this._ui.chatInputWrap).css('display', 'block')) : n(this._ui.chatInputWrap).css('display', 'none');
+                }
+            }
+        } else e > 1000 && (m = e / 100 * 2.2);
         var n = 2,
             o = 0,
             p = [];
         for (var b = 0; b < a.length; b++) {
-            if ('SbaVa' === 'SbaVa') {
-                var q = a[b].text.split('\n'),
-                    r = q.length;
-                for (var d = r - 1; d >= 0; d--) {
+            var q = a[b].text.split('\n'),
+                r = q.length;
+            for (var d = r - 1; d >= 0; d--) {
+                if ('tLHmd' !== 'tLHmd') {
+                    function F() {
+                        for (var G = 1; G <= h.chat_channel_num; G++) {
+                            o.push(p + '_' + G.toString());
+                        }
+                        k.Manager.checkArtistUser(l) && q.push(r);
+                    }
+                } else {
                     if (q[d] == '') continue;
                     var s = this.measureText(q[d], m) + m;
-                    s >= l && (s = l);
+                    if (s >= l) {
+                        if ('tunls' !== 'YAxfI') s = l;
+                        else {
+                            function G() {
+                                c.push(d[0]);
+                            }
+                        }
+                    }
                     var t = k - s / 2 - g.left;
                     p[o] = '<p style="color:white;word-break:break-all;font-weight:700;text-shadow:#000000 0px 0px 7px;padding:1px 5px;width:' + s + 'px;margin-left:' + t + 'px;margin-bottom:2px;">' + q[d] + '</p>', o++;
-                    if (n == o) break;
-                }
-                if (n == o) break;
-            } else {
-                function D() {
-                    if (this._player.currentPosition) {
-                        var E = this._player.currentPosition + 10;
-                        E > this._player.duration - 1 && (E = this._player.duration - 1), this._player.currentPosition = E;
+                    if (n == o) {
+                        if ('WhbhO' === 'tDidW') {
+                            function H() {
+                                c = d;
+                            }
+                        } else break;
                     }
                 }
             }
+            if (n == o) break;
         }
         var u = '';
         for (var v = p.length - 1; v >= 0; v--) {
-            if ('tFkBL' === 'Njdia') {
-                function E() {
-                    this._view = 0;
+            if ('ltCQu' !== 'ltCQu') {
+                function I() {
+                    this.events[d].listeners[e](f);
                 }
             } else u += p[v];
         }
-        this._subtitleDiv.innerHTML = u, this._subtitleDiv.style.width = l + 'px', this._subtitleDiv.style.left = g.left + 'px', this._subtitleDiv.style.bottom = g.bottom + 'px', this._subtitleDiv.style.fontSize = m + 'px', this._subtitleDiv.style.display = 'block', this._subtitleArr = JSON.parse(JSON.stringify(a));
-        if (this._player._hls._isDummy) this._subtitleTrack = this.getVideoSubtitleTrack();
-        else {
-            if ('uyFLV' !== 'HmOQR') this._subtitleTrack = this._player._hls._hls.subtitleTrack;
-            else {
-                function F() {
-                    if (h.messages.length)
-                        for (var G = 0; G < o.messages.length; G++) {
-                            var H = u.messages[G].entry.update.split(v);
-                            for (var I = 0; I < H.length; I++) {
-                                var J = H[I].split(B)[0];
-                                C.Ui.displayMessage(H[I], D.messages[G].timetoken, J, true);
-                            }
-                        }
-                }
-            }
-        }
+        this._subtitleDiv.innerHTML = u, this._subtitleDiv.style.width = l + 'px', this._subtitleDiv.style.left = g.left + 'px', this._subtitleDiv.style.bottom = g.bottom + 'px', this._subtitleDiv.style.fontSize = m + 'px', this._subtitleDiv.style.display = 'block', this._subtitleArr = JSON.parse(JSON.stringify(a)), this._player._hls._isDummy ? this._subtitleTrack = this.getVideoSubtitleTrack() : this._subtitleTrack = this._player._hls._hls.subtitleTrack;
     }
     compareArray(a, b) {
         var c = false;
@@ -2846,30 +3061,17 @@ class Rich360SubtitleManager {
         this._subItv && (clearInterval(this._subItv), this._subItv = null), this._subItv = setInterval(function() {
             if (this._cues.length) this.drawSubtitles();
             else {
-                if ('PmVUn' === 'PmVUn') {
-                    if (this._player.subtitleTrack != -1) {
-                        var a = new Date();
-                        if (this._bfSendSubTime.getTime() + 10000 < a) {
-                            var b = this._player.subtitleTrack;
-                            this._player.subtitleTrack = -1, this._bfSendSubTime = a, setTimeout(function() {
-                                if ('qlCrz' !== 'qlCrz') {
-                                    function c() {
-                                        var d = this._req_str.lastIndexOf('/output'),
-                                            e = new d(),
-                                            f = this._req_str.substr(0, d) + '/thumbnails.jpg?' + e.getTime();
-                                        e(this._ui.playThumbnail).css('background-image', ''), f(this._ui.playThumbnail).css('background-image', 'url(' + f + ')'), this.pause();
-                                    }
-                                } else this._player.subtitleTrack = b;
-                            }.bind(this), 100);
-                        }
-                    }
-                } else {
-                    function c() {
-                        var d = new e();
-                        for (var e in f) {
-                            d.append(e, i[e]);
-                        }
-                        h.send(d);
+                if (this._player.subtitleTrack != -1) {
+                    var a = new Date();
+                    if (this._bfSendSubTime.getTime() + 10000 < a) {
+                        var b = this._player.subtitleTrack;
+                        this._player.subtitleTrack = -1, this._bfSendSubTime = a, setTimeout(function() {
+                            if ('ZVbmj' === 'ojRmk') {
+                                function c() {
+                                    c(d._wrapperList, 'changing-source');
+                                }
+                            } else this._player.subtitleTrack = b;
+                        }.bind(this), 100);
                     }
                 }
             }
@@ -2878,12 +3080,15 @@ class Rich360SubtitleManager {
     getVideoSubtitleTrack() {
         var a = this._player._video.textTracks.length;
         for (var b = 0; b < a; b++) {
-            if ('YbCva' === 'hBeaN') {
-                function c() {
-                    this._ui.volumeSlider.value = this._player.volume * 100, this.initQuality();
+            if (this._player._video.textTracks[b].mode == 'showing' || this._player._video.textTracks[b].mode == 'hidden') {
+                if ('bcGAY' !== 'jlIji') return b;
+                else {
+                    function c() {
+                        var d = this.createSubtitleDiv(this._player.subtitleList[e]),
+                            e = this.createSubtitleBtn(this._player.subtitleList[f]);
+                        g.appendChild(d), this._ui.subtitlePopupItems.push(e), h(this._ui.subtitlePopup).find('.ta_c').append(e);
+                    }
                 }
-            } else {
-                if (this._player._video.textTracks[b].mode == 'showing' || this._player._video.textTracks[b].mode == 'hidden') return b;
             }
         }
         return -1;
@@ -2892,60 +3097,77 @@ class Rich360SubtitleManager {
         this._isHideDefaultSubtitles = true;
         var a = this._player._video.textTracks.length;
         for (var b = 0; b < a; b++) {
-            this._player._video.textTracks[b].mode == 'showing' && (this._player._video.textTracks[b].mode = 'hidden', cusDDselectOption('#ccSelect', b, true));
+            if (this._player._video.textTracks[b].mode == 'showing') {
+                if ('MyjYN' !== 'LkCKU') this._player._video.textTracks[b].mode = 'hidden', cusDDselectOption('#ccSelect', b, true);
+                else {
+                    function c() {
+                        var d = 'b1bc33a2-3f99-428f-8063-33ebe6d01c72';
+                    }
+                }
+            }
         }
     }
     showDefaultSubtitle() {
         this._isHideDefaultSubtitles = false;
         var a = this._player._video.textTracks.length;
         for (var b = 0; b < a; b++) {
-            this._player._video.textTracks[b].mode == 'hidden' && (this._player._video.textTracks[b].mode = 'showing');
+            if ('iuNhG' === 'iuNhG') {
+                if (this._player._video.textTracks[b].mode == 'hidden') {
+                    if ('agkyw' === 'zEObh') {
+                        function c() {
+                            b(this._ui.pageWrap).removeClass('pl-t-fullscreen_nochat').addClass('pl-t-default_nochat');
+                        }
+                    } else this._player._video.textTracks[b].mode = 'showing';
+                }
+            } else {
+                function d() {
+                    b.getElementsByTagName('video')[0].style.display = 'none';
+                }
+            }
         }
     }
 }
 class MultiViewDisplay {
     constructor(a, b, c, d, e, f) {
-        this._options = a, this._video = b, this._player = c, this._videoSubPositions = e, this._videoMainPosition = d, this._multiviewDivArr = f, this._canvasFPS = 0, this._updateCanvasFlag = false, this._showMultiPreview = false, this._multiviewCanvas = [], this._multiviewCtx = [], this._doubleBufferCanvas = [], this._bfVideoWidth = 0, this._bfVideoHeight = 0;
-        for (var g = 0; g < this._videoSubPositions.length; g++) {
-            var h = document.createElement('canvas'),
-                j = document.createElement('canvas');
-            h.setAttribute('id', 'mvCanvas_' + g), this._multiviewDivArr[g].append(h), this._multiviewCanvas.push(h), this._multiviewCtx.push(h.getContext('2d')), this._doubleBufferCanvas.push(j);
-        }
-        if (this._options.container) this._parent_dom = this._options.container;
-        else {
-            if ('nbIjU' !== 'iYQQM') this._parent_dom = document.body;
-            else {
-                function k() {
-                    var l = '4861a19c-18c1-469e-aa3c-3bf913ed901f';
+        this._options = a, this._video = b, this._player = c, this._videoSubPositions = e, this._videoMainPosition = d, this._multiviewDivArr = f, this._canvasFPS = 0, this._updateCanvasFlag = false, this._showMultiPreview = false, this._multiviewCanvas = [], this._multiviewCtx = [], this._doubleBufferCanvas = [], this._bfVideoWidth = 0, this._bfVideoHeight = 0, this._wrapper = document.querySelector('#multiViewWrap'), this._wrapperList = document.querySelector('#multiViewList');
+        var g = document.createElement('canvas');
+        g.setAttribute('id', 'mvCanvas'), g.style.position = 'absolute', g.style.top = '0px', this._multiviewCanvas.push(g), this._multiviewCtx.push(g.getContext('2d', {
+            'alpha': false
+        })), $(this._wrapperList).append(g);
+        var h = document.createElement('canvas');
+        this._doubleBufferCanvas.push(h);
+        for (var j = 0; j < this._videoSubPositions.length; j++) {
+            if ('MWaht' !== 'XRAUl') {
+                var k = createElementFromHTML('<div class="canvas-overlayer"><span class="label">' + gettext('MULTIVIEW_SWITCHING_VIEW') + '</span></div>');
+                this._multiviewDivArr[j].append(k);
+            } else {
+                function l() {
+                    this._video = b.getElementById('video');
                 }
             }
         }
+        if (this._options.container) {
+            if ('QpQZX' !== 'ntwza') this._parent_dom = this._options.container;
+            else {
+                function m() {
+                    this._player._video.textTracks[c].mode == 'hidden' && (this._player._video.textTracks[e].mode = 'showing');
+                }
+            }
+        } else this._parent_dom = document.body;
         this._mainDiv = document.createElement('div'), this._mainDiv.setAttribute('id', 'mvMainDiv'), this._mainDiv.style.overflow = 'hidden', this._mainDiv.style.position = 'absolute', this._mainDiv.appendChild(this._video), this._parent_dom.appendChild(this._mainDiv), this._video.readyState == 0 ? this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
             'once': true
         }) : this.arrangeVideo(), window.addEventListener('resize', function() {
-            if ('XGldz' !== 'XGldz') {
-                function l() {
-                    c.href = d;
-                }
-            } else setTimeout(function() {
-                if ('ShOPw' !== 'aEMVS') this.arrangeVideo();
+            setTimeout(function() {
+                if ('AaZWU' !== 'YAMEU') this.arrangeVideo();
                 else {
-                    function m() {
-                        b.Ui.enableChatInput();
+                    function n() {
+                        if (f[g]) h[j](j(this).data());
                     }
                 }
             }.bind(this), 200);
         }.bind(this), false), window.addEventListener('orientationchange', function() {
-            if ('gRNLq' !== 'gRNLq') {
-                function l() {
-                    this._ui.fullScreen = new b(this, this._ui.fullBtn);
-                }
-            } else setTimeout(function() {
-                if ('IfKGM' === 'WmKQS') {
-                    function m() {
-                        var n = '56762a8f-9162-44bf-aec2-d8349f902ef1';
-                    }
-                } else this.arrangeVideo();
+            setTimeout(function() {
+                this.arrangeVideo();
             }.bind(this), 500);
         }.bind(this), false);
     }
@@ -2958,37 +3180,40 @@ class MultiViewDisplay {
     }
     arrangeVideo() {
         let a = this._videoMainPosition;
-        if (this._player._view != a.singleview_id) {
-            if ('SspuI' === 'vTZAK') {
-                function n() {
-                    var o = e.createElement('canvas'),
-                        q = f.createElement('canvas');
-                    o.setAttribute('id', 'mvCanvas_' + g), this._multiviewDivArr[h].append(o), this._multiviewCanvas.push(o), this._multiviewCtx.push(o.getContext('2d')), this._doubleBufferCanvas.push(q);
-                }
-            } else
-                for (let o of this._videoSubPositions) {
-                    if ('ewfMO' === 'ewfMO') {
-                        if (o.singleview_id == this._player._view) {
-                            a = o;
+        if (this._player._view != a.singleview_id)
+            for (let n of this._videoSubPositions) {
+                if ('vBTDX' !== 'iafPd') {
+                    if (n.singleview_id == this._player._view) {
+                        if ('FGVTd' === 'oZbFT') {
+                            function o() {
+                                this.viewSeekBarThumbnail(b.target._value, true);
+                            }
+                        } else {
+                            a = n;
                             break;
                         }
-                    } else {
-                        function q() {
-                            this._listener.trigger(b.RICH360_ACCESS_DENIED, 'Permission Denied');
-                        }
+                    }
+                } else {
+                    function q() {
+                        this._play_status && this._video.currentTime && this._logger.addLog({
+                            'timePos': this._video.currentTime,
+                            'playStatus': this._play_status
+                        });
                     }
                 }
-        }
+            }
         var b = this._video.videoWidth,
             c = this._video.videoHeight;
         !this._video.videoWidth && (b = this._bfVideoWidth);
         if (!this._video.videoHeight) {
-            if ('pPYla' !== 'HsglK') c = this._bfVideoHeight;
-            else {
+            if ('dOtDZ' === 'XQefo') {
                 function r() {
-                    this.initHideCtrllerEvent();
+                    var s = d.navigator.userAgent.toLowerCase(),
+                        t = s.indexOf('chrome') !== -1 || s.indexOf('crios') !== -1,
+                        u = s.indexOf('edg') !== -1 || s.indexOf('edge') !== -1;
+                    return t && !u;
                 }
-            }
+            } else c = this._bfVideoHeight;
         }
         this._bfVideoWidth = b, this._bfVideoHeight = c;
         let d = a.width * b / (a.height * c);
@@ -2996,7 +3221,14 @@ class MultiViewDisplay {
         let e = this._parent_dom.offsetWidth / this._parent_dom.offsetHeight;
         console.log('videoRatio : ' + d + ' containerRatio : ' + e);
         let f, g, h, i;
-        d > e ? (console.log('videoRatio > containerRatio'), f = this._parent_dom.offsetWidth, g = this._parent_dom.offsetWidth / d, h = (this._parent_dom.offsetHeight - g) / 2, i = 0) : (console.log('videoRatio <= containerRatio'), g = this._parent_dom.offsetHeight, f = this._parent_dom.offsetHeight * d, i = (this._parent_dom.offsetWidth - f) / 2, h = 0);
+        if (d > e) {
+            if ('mWvAs' === 'mWvAs') console.log('videoRatio > containerRatio'), f = this._parent_dom.offsetWidth, g = this._parent_dom.offsetWidth / d, h = (this._parent_dom.offsetHeight - g) / 2, i = 0;
+            else {
+                function s() {
+                    return this._ui.playerBottomWrap.style.display = 'block', !b(this._ui.chatContents).hasClass('is-active') && this.showChatOpenBtn(true), this._wakeupPastTime = 0, this.setTimerHidePlayerController(true), true;
+                }
+            }
+        } else console.log('videoRatio <= containerRatio'), g = this._parent_dom.offsetHeight, f = this._parent_dom.offsetHeight * d, i = (this._parent_dom.offsetWidth - f) / 2, h = 0;
         Object.assign(this._mainDiv.style, {
             'width': f + 'px',
             'height': (document.fullscreenEnabled && !checkMobileAndTablet() ? g - 5 : g) + 'px',
@@ -3013,69 +3245,93 @@ class MultiViewDisplay {
             'left': '-' + l + 'px',
             'top': -1 * m + 1 + 'px',
             'position': 'absolute'
-        }), !this._showMultiPreview ? this._updateCanvasFlag = false : !this._updateCanvasFlag && (this._updateCanvasFlag = true, this._canvasTimeStamps = [], this._canvasTimeStamps.push(performance.now()), this._canvasTimeStampIndex = 0, window.requestAnimationFrame(this.drawCanvas.bind(this)));
+        });
+        if (!this._showMultiPreview) this._updateCanvasFlag = false;
+        else {
+            if (!this._updateCanvasFlag) {
+                if ('HOePj' !== 'FdlYV') this._updateCanvasFlag = true, this._canvasTimeStamps = [], this._canvasTimeStamps.push(performance.now()), this._canvasTimeStampIndex = 0, window.requestAnimationFrame(this.drawCanvas.bind(this));
+                else {
+                    function t() {
+                        h.img && o.find('img').attr('src', '/static/imgs/c_event/' + p + '/' + q.img), l.msgClass && r.find('.user_msg').addClass(s.msgClass);
+                    }
+                }
+            }
+        }
     }
     set showMultiPreview(a) {
         this._showMultiPreview = a, this.arrangeVideo();
     }
     selectedMultiviewCanvas(a) {
-        const b = $(this._multiviewCanvas[a]).parent();
+        const b = $(this._multiviewDivArr[a]);
         if (this._player._view == a) b.addClass('on');
         else b.removeClass('on');
     }
     drawCanvas(a) {
-        const {
-            _video: b,
-            _videoSubPositions: c
-        } = this;
         if (this._updateCanvasFlag) {
-            if (!b.paused && !b.ended) {
-                if ('sHLTK' === 'LAFNT') {
-                    function e() {
-                        this._mainDiv.removeChild(this._video), this._mainDiv.appendChild(c), this._video = d;
-                    }
-                } else c.forEach(((f, g) => {
-                    const h = this._multiviewCanvas[g],
-                        i = this._multiviewCtx[g],
-                        j = this._multiviewDivArr[g],
-                        k = this._doubleBufferCanvas[g];
-                    var l = c.find(u => u.singleview_id === g);
-                    this.selectedMultiviewCanvas(g);
-                    if (l == null) return;
-                    const {
-                        x: m,
-                        y: n,
-                        width: o,
-                        height: p
-                    } = l, {
-                        videoWidth: q,
-                        videoHeight: r
-                    } = b, {
-                        offsetWidth: s,
-                        offsetHeight: t
-                    } = j;
-                    i.drawImage(b, Math.round(m * q), Math.round(n * r), Math.round(o * q), Math.round(p * r), 0, 0, s, t), k.width = s, k.height = t, k.getContext('2d').drawImage(h, 0, 0), h.width = s, h.height = t, i.drawImage(k, 0, 0);
-                }).bind(this));
-            }
-            this._canvasTimeStampIndex++;
-            this._canvasTimeStampIndex >= 100 && (this._canvasTimeStampIndex = 0);
-            let d = 0;
-            if (this._canvasTimeStamps.length < 100) {
-                if ('CHtaD' !== 'CHtaD') {
-                    function f() {
-                        try {
-                            var g = o.parse(p.responseText);
-                            q(g, r.status);
-                        } catch (h) {
-                            v(w.responseText, z.status);
-                        }
-                    }
-                } else this._canvasTimeStamps.push(a);
+            if ('RKGzR' === 'xjJuD') {
+                function f() {
+                    b.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                }
             } else {
-                this._canvasTimeStamps[this._canvasTimeStampIndex] = a, d = this._canvasTimeStampIndex + 1;
-                if (d >= 100) d = 0;
+                const {
+                    _video: g,
+                    _videoSubPositions: h
+                } = this, i = this._multiviewCtx[0];
+                var b = parseInt($(this._multiviewDivArr[0]).css('margin-bottom').replace('px', '')),
+                    c = parseInt($(this._multiviewDivArr[0]).css('margin-left').replace('px', '')),
+                    d = false;
+                this._multiviewCanvas[0].width !== this._multiviewDivArr[0].clientWidth && (this._multiviewCanvas[0].width = this._multiviewDivArr[0].clientWidth, d = true);
+                this._multiviewCanvas[0].height !== this._multiviewDivArr[0].clientHeight * this._multiviewDivArr.length + b * (this._multiviewDivArr.length - 1) && (this._multiviewCanvas[0].height = this._multiviewDivArr[0].clientHeight * this._multiviewDivArr.length + b * (this._multiviewDivArr.length - 1), d = true);
+                var e = parseInt($(this._multiviewCanvas[0]).css('margin-left').replace('px', ''));
+                if (e !== c) {
+                    if ('LifZs' === 'BKvRk') {
+                        function k() {
+                            c('#chatList').append(d);
+                        }
+                    } else $(this._multiviewCanvas[0]).css('margin-left', c + 'px'), d = true;
+                }
+                if (!g.paused && !g.ended || d) {
+                    h.forEach(((n, o) => {
+                        const p = this._multiviewDivArr[o];
+                        var q = h.find(B => B.singleview_id === o);
+                        this.selectedMultiviewCanvas(o);
+                        if (q == null) return;
+                        const {
+                            x: r,
+                            y: s,
+                            width: t,
+                            height: u
+                        } = q, {
+                            videoWidth: v,
+                            videoHeight: w
+                        } = g, {
+                            offsetWidth: z,
+                            offsetHeight: A
+                        } = p;
+                        i.drawImage(g, Math.round(r * v), Math.round(s * w), Math.round(t * v), Math.round(u * w), 0, A * o + b * o, z, A);
+                    }).bind(this));
+                    const l = this._multiviewCanvas[0],
+                        m = this._doubleBufferCanvas[0];
+                    m.width = l.width, m.height = l.height, m.getContext('2d', {
+                        'alpha': false
+                    }).drawImage(l, 0, 0), i.drawImage(m, 0, 0);
+                }
+                this._canvasTimeStampIndex++;
+                this._canvasTimeStampIndex >= 100 && (this._canvasTimeStampIndex = 0);
+                let j = 0;
+                if (this._canvasTimeStamps.length < 100) this._canvasTimeStamps.push(a);
+                else {
+                    if ('FAnQd' === 'mLued') {
+                        function n() {
+                            this.body = f.body, this.wrapper = g.querySelector(this.options.wrapper), this.mask = h.querySelector(this.options.maskId), this.menu = i.querySelector('#c-menu--' + this.options.type), this.closeBtn = this.menu.querySelector('.c-menu__close'), this.menuOpeners = j.querySelectorAll(this.options.menuOpenerClass), this._initEvents();
+                        }
+                    } else {
+                        this._canvasTimeStamps[this._canvasTimeStampIndex] = a, j = this._canvasTimeStampIndex + 1;
+                        if (j >= 100) j = 0;
+                    }
+                }
+                this._canvasFPS = (this._canvasTimeStamps.length - 1) * 1000 / (this._canvasTimeStamps[this._canvasTimeStampIndex] - this._canvasTimeStamps[j]), setTimeout(() => window.requestAnimationFrame(this.drawCanvas.bind(this)), 10);
             }
-            this._canvasFPS = (this._canvasTimeStamps.length - 1) * 1000 / (this._canvasTimeStamps[this._canvasTimeStampIndex] - this._canvasTimeStamps[d]), window.requestAnimationFrame(this.drawCanvas.bind(this));
         }
     }
 }
@@ -3311,6 +3567,9 @@ switch (Tira) {
     case '210418_marychou':
         var DCvi = '4861a19c-18c1-469e-aa3c-3bf913ed901f';
         break;
+    case '210424_mamamoo':
+        var DCvi = 'e2431386-a908-4f7d-a2ae-acdc11c9a9b7';
+        break;
     case 'dev_demo_event':
         var DCvi = 'f3a82d31-a083-4679-88e1-c0961a925afb';
         break;
@@ -3327,73 +3586,97 @@ var ChatFilter = function() {
         return {
             'loadChatFilterData': function(c) {
                 if (b) {
-                    if ('KrZed' !== 'UlOlw') {
+                    if ('sfakn' !== 'sfakn') {
+                        function e() {
+                            var f = c;
+                            if (f == 'zh_Hans') f = 'cn';
+                            if (f == 'ja') f = 'jp';
+                            var g = {
+                                'ko': {
+                                    'idText': 'ID',
+                                    'ticketText': '인증코드',
+                                    'authPopupTitle': '코드 인증'
+                                },
+                                'jp': {
+                                    'idText': 'ID',
+                                    'ticketText': '認証コード',
+                                    'authPopupTitle': 'コード認証'
+                                },
+                                'en': {
+                                    'idText': 'ID',
+                                    'ticketText': 'Auth code',
+                                    'authPopupTitle': 'Code authentication'
+                                },
+                                'cn': {
+                                    'idText': 'ID',
+                                    'ticketText': 'Auth code',
+                                    'authPopupTitle': 'Code authentication'
+                                }
+                            };
+                            if (!g[f]) return g.en;
+                            return g[f];
+                        }
+                    } else {
                         if (c) c();
                         return;
-                    } else {
-                        function e() {
-                            this._player.subtitleTrack = b;
-                        }
                     }
                 }
                 var d = new XMLHttpRequest();
-                if (Tira == 'IDLE') {
-                    if ('cetPw' !== 'cetPw') {
-                        function f() {
-                            this._video.textTracks[b].mode = 'showing';
+                if (Tira == 'IDLE') d.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                else {
+                    if (Tira == '210417_cix') d.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    else {
+                        if ('rxigY' !== 'KHyzO') d.open('GET', '/static/filtering/chat_filtering.txt');
+                        else {
+                            function f() {
+                                g[h] = (i[j] + k[l]) % 256;
+                            }
                         }
-                    } else d.open('GET', '/static/filtering/chat_filtering_idle.txt');
-                } else Tira == '210417_cix' ? d.open('GET', '/static/filtering/chat_filtering_cix.txt') : d.open('GET', '/static/filtering/chat_filtering.txt');
+                    }
+                }
                 d.overrideMimeType('text/plain; charset=utf-8'), d.onreadystatechange = function() {
-                    if ('rPeWm' !== 'rPeWm') {
-                        function g() {
-                            this._hls.loadSource(b);
-                        }
-                    } else {
-                        if (d.readyState == XMLHttpRequest.DONE) {
+                    if (d.readyState == XMLHttpRequest.DONE) {
+                        if ('ZFpQx' !== 'MqOqq') {
                             if (d.status == 200 || d.status == 201) {
-                                if ('Hrdji' !== 'qmGcm') {
-                                    a = d.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), a = a.replace(/[\r]/gm, '');
-                                    a[a.length - 1] == '|' && (a = a.substr(0, a.length - 1));
-                                    b = true;
-                                    if (c) c();
-                                } else {
-                                    function h() {
-                                        this._hls.on(d.Events.FRAG_PARSED, function(i, j) {
-                                            let k = j.frag;
-                                            g.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration), h.log('frag.startPTS : ', k.startPTS), this._hls.timeDictionary[k.sn + ''] = k.startPTS, k.startPTS == 0 && (this._hls.startSN = k.sn);
-                                        }.bind(this));
+                                a = d.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), a = a.replace(/[\r]/gm, '');
+                                if (a[a.length - 1] == '|') {
+                                    if ('QQIYz' === 'QQIYz') a = a.substr(0, a.length - 1);
+                                    else {
+                                        function g() {
+                                            e(f('P_ALERT_TITLE'), '<' + g.web_title + '>의 라이브가 진행중입니다.', h('P_ALERT_OK'));
+                                        }
                                     }
                                 }
+                                b = true;
+                                if (c) c();
+                            }
+                        } else {
+                            function h() {
+                                this.baseCode[c] = this.base.charCodeAt(d);
                             }
                         }
                     }
                 }, d.send();
             },
             'filteringChatText': function(c) {
-                if ('jtxQh' === 'jtxQh') {
+                if ('NVibt' === 'NVibt') {
                     if (!b) return;
                     var d = 'gi',
                         e = new RegExp(a, d);
                     return c.replace(e, '***');
                 } else {
                     function f() {
-                        this._view = d;
-                        var g = this._video.currentTime;
-                        this._hls.detachMedia(), this._hls.destroy();
-                        let h = e.DefaultConfig;
-                        if (this._video.paused) h.autoplay = false;
-                        else h.autoplay = true;
-                        this._hls = new f(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), h, this._options.use_multiview), this._hls.attachMedia(this._video);
-                        const {
-                            _multiviewCanvas: i
-                        } = this._display, j = i.map(k => this.resizeToCanvasImage(k));
-                        this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path, g, j[this._view]), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
+                        b('#chatList .user_chat:eq(-1)').css('margin-bottom', '0');
                     }
                 }
             },
             'checkFilteringData': function() {
-                return b;
+                if ('qIEIx' !== 'BEVhw') return b;
+                else {
+                    function c() {
+                        b(this._ui.pageWrap).removeClass('pl-t-default_nochat').addClass('pl-t-fullscreen_nochat');
+                    }
+                }
             },
             'checkNickname': function(c) {
                 if (!b) return;
@@ -3440,20 +3723,14 @@ Chat.Manager = function() {
             u = w;
         },
         'isChatUsed': function() {
-            if ('vMGSd' === 'vMGSd') return u.is_chat_used;
-            else {
-                function w() {
-                    if (this._player._ui_play) {
-                        var z = this._req_str.lastIndexOf('/output'),
-                            A = new g(),
-                            B = this._req_str.substr(0, z) + '/thumbnails.jpg?' + A.getTime();
-                        h(this._ui.playThumbnail).css('background-image', ''), i(this._ui.playThumbnail).css('background-image', 'url(' + B + ')'), this.pause();
-                    } else this.play();
-                }
-            }
+            return u.is_chat_used;
         },
         'getChatChannels': function() {
-            return j;
+            if ('NsFtZ' === 'VtAgE') {
+                function w() {
+                    var z = 'a9731791-ae47-429f-a599-ca07353bb501';
+                }
+            } else return j;
         },
         'setChatChannels': function() {
             if (u.chat_channel_num > 0) {
@@ -3463,58 +3740,53 @@ Chat.Manager = function() {
                     }
                     Chat.Manager.checkArtistUser(n) && j.push(m);
                 } else {
-                    var z = Math.floor(Math.random() * parseInt(u.chat_channel_num)) + 1;
-                    j.push(i + '_' + z.toString());
+                    if ('xNwCI' !== 'kERZw') {
+                        var z = Math.floor(Math.random() * parseInt(u.chat_channel_num)) + 1;
+                        j.push(i + '_' + z.toString());
+                    } else {
+                        function A() {
+                            b = 'AUTO';
+                        }
+                    }
                 }
             }
         },
         'getNoticeChannel': function() {
-            if ('XJEyX' !== 'XJEyX') {
+            if ('oAMmK' === 'mKavF') {
                 function w() {
-                    this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration;
+                    if (h.messages.length)
+                        for (var z = 0; z < o.messages.length; z++) {
+                            var A = u.messages[z].entry.update.split(v);
+                            for (var B = 0; B < A.length; B++) {
+                                var C = A[B].split(B)[0];
+                                C.Ui.displayMessage(A[B], D.messages[z].timetoken, C, true);
+                            }
+                        }
                 }
             } else return k;
         },
         'getCtrChannel': function() {
-            if ('ZUDQC' === 'GbKKU') {
-                function w() {
-                    var z = '3f6d28f4-0c1d-4c31-97bf-55b2a14a113e';
-                }
-            } else return l;
+            return l;
         },
         'setUserId': function(w) {
             if (n) return;
-            if (!w) n = getCookie(DCvi + '_user_id');
-            else {
-                if ('EOzmc' === 'EOzmc') n = w;
-                else {
-                    function z() {
-                        h(i(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = j(this).text();
-                        if (k) l(m(this).data(), n(this));
-                    }
-                }
-            }
+            !w ? n = getCookie(DCvi + '_user_id') : n = w;
         },
         'getUserId': function() {
             return n;
         },
         'setOperatorChNum': function(w) {
-            if ('fuAaX' === 'NpTTd') {
-                function z() {
-                    return b;
-                }
-            } else o = w;
+            o = w;
         },
         'setOperatorSelCh': function(w) {
-            if ('hFYRC' === 'hFYRC') p = w;
-            else {
-                function z() {
-                    d(e[f]);
-                }
-            }
+            p = w;
         },
         'setPubnubAPI': function(w) {
-            Chat.Manager.setUserId(), e = w, s = new PubNub({
+            if ('acLQw' === 'sdjDp') {
+                function z() {
+                    p = q.Ui.createArtistChatDiv(r, s.nickName, t.text, u), v ? G.push(H[0]) : I('#chatList').append(J), C('#artistChatList').length && !D && K('#artistChatList').append(L.clone());
+                }
+            } else Chat.Manager.setUserId(), e = w, s = new PubNub({
                 'publishKey': YPP3z,
                 'subscribeKey': KSPdf,
                 'uuid': n
@@ -3525,221 +3797,146 @@ Chat.Manager = function() {
             }), t = new AWS[('Kinesis')](), Chat.Ui.initChatUIEvent(), Chat.Manager.setChatChannels(), Chat.Manager.setChatHistory(), Chat.Manager.initPubnubEvent();
         },
         'setChatHistory': function() {
-            if ('JVNJF' !== 'lJIMj') {
-                s.history({
-                    'channel': k,
-                    'count': 1
-                }, function(z, A) {
-                    if ('wWLhG' !== 'AOALi') {
-                        console.log(z, A);
-                        if (A) {
-                            if ('AQUqc' === 'AQUqc') A.messages.length && Chat.Ui.updateNotice(A.messages[0].entry.update, A.messages[0].entry.timetoken, A.messages[0].entry.entry);
-                            else {
-                                function B() {
-                                    var C = this._player._video.textTracks.length;
-                                    for (var D = 0; D < C; D++) {
-                                        if (this._player._video.textTracks[D].mode == 'showing' || this._player._video.textTracks[D].mode == 'hidden') return D;
-                                    }
-                                    return -1;
-                                }
-                            }
-                        }
-                    } else {
-                        function C() {
-                            if (f.status === 400 || g.status === 401) this._listener.trigger(k.RICH360_ACCESS_DENIED, 'Authorization failed');
-                            else i.status === 403 && this._listener.trigger(l.RICH360_LIVE_ENDED, 'Live ended');
+            s.history({
+                'channel': k,
+                'count': 1
+            }, function(z, A) {
+                console.log(z, A);
+                if (A) {
+                    if ('vwgrb' !== 'mPtyL') A.messages.length && Chat.Ui.updateNotice(A.messages[0].entry.update, A.messages[0].entry.timetoken, A.messages[0].entry.entry);
+                    else {
+                        function B() {
+                            this._web_ui = i, this._options = j._player._options, this._web_player = k._player, this._dom_element = l, this._dom_element.onclick = this.onclick.bind(this), this._is_fullscreen_button = true, this._dom_element.id = 'fullBtn', m.addEventListener('fullscreenchange', this.fullscreenChanged.bind(this)), n.addEventListener('webkitfullscreenchange', this.fullscreenChanged.bind(this)), o.addEventListener('mozfullscreenchange', this.fullscreenChanged.bind(this)), p.addEventListener('MSFullscreenChange', this.fullscreenChanged.bind(this));
                         }
                     }
-                });
-                var w = 0;
-                p && (w = p - 1), s.history({
-                    'channel': j[w],
-                    'count': c
-                }, function(z, A) {
-                    console.log(z, A);
-                    if (A) {
-                        if ('CTSex' !== 'CTSex') {
-                            function F() {
-                                this._player._hls.loadSource(b), this._player._hls.attachMedia(this._player._video);
-                            }
-                        } else {
-                            if (A.messages.length) {
-                                if ('tDhHr' !== 'tDhHr') {
-                                    function G() {
-                                        var H = e.createElement('div');
-                                        H.className = 'fc_default cusDD_opt', H.id = f.id, H.dataset.id = g.id, H.dataset.height = h.height;
-                                        var I = '';
-                                        return H.dataset.height == 'auto' ? I = 'AUTO' : I = H.dataset.height + 'P', H.innerHTML = I, H;
-                                    }
-                                } else
-                                    for (var B = 0; B < A.messages.length; B++) {
-                                        var C = A.messages[B].entry.update.split(CHAT_MSG_SEPARATOR);
-                                        for (var D = 0; D < C.length; D++) {
-                                            var E = C[D].split(CHAT_USERID_SEPARATOR)[0];
-                                            Chat.Ui.displayMessage(C[D], A.messages[B].timetoken, E, true);
-                                        }
-                                    }
-                            }
-                        }
-                    }
-                }), s.history({
-                    'channel': m,
-                    'count': 10000
-                }, function(z, A) {
-                    if ('mRhKp' !== 'mRhKp') {
-                        function F() {
-                            this._sourceBase = '';
-                        }
-                    } else {
-                        console.log(z, A);
-                        if (A) {
-                            if ('LXirr' === 'LXirr') {
-                                var B = JSON.parse(JSON.stringify(A));
-                                if (B.messages.length) {
-                                    for (var C = 0; C < B.messages.length; C++) {
-                                        var D = B.messages[C].entry.update,
-                                            E = D.split(CHAT_USERID_SEPARATOR)[0];
-                                        E && Chat.Ui.displayArtistHistoryMsg(D, B.messages[C].timetoken, E);
-                                    }
-                                    if ($('#artistChatList').length) {
-                                        if ('CQzJQ' !== 'CQzJQ') {
-                                            function G() {
-                                                b.addClass('t_my');
-                                            }
-                                        } else $('#artistChatList').scrollTop($('#artistChatList')[0].scrollHeight);
-                                    }
-                                }
-                            } else {
-                                function H() {
-                                    b.webkitRequestFullscreen();
-                                }
-                            }
-                        }
-                    }
-                });
-            } else {
-                function z() {
-                    d = e(f.id);
                 }
-            }
-        },
-        'initPubnubEvent': function() {
-            var w = [k, l];
-            if (p) w.push(j[p - 1]);
-            else {
-                if (!o) {
-                    if ('hGmeK' !== 'hGmeK') {
-                        function A() {
-                            t && (O(P), Q = null);
-                            var B = z / A.length;
-                            B = C(function() {
-                                if (R.length) {
-                                    var ac = a2[0].split(a3)[0];
-                                    a4.Ui.displayMessage(a5[0], a6, ac), a7 = a8(a9) + aa(B * 1000 * 10), ab.splice(0, 1);
-                                }
-                            }, B);
+            });
+            var w = 0;
+            p && (w = p - 1), s.history({
+                'channel': j[w],
+                'count': c
+            }, function(z, A) {
+                console.log(z, A);
+                if (A) {
+                    if (A.messages.length)
+                        for (var B = 0; B < A.messages.length; B++) {
+                            var C = A.messages[B].entry.update.split(CHAT_MSG_SEPARATOR);
+                            for (var D = 0; D < C.length; D++) {
+                                var E = C[D].split(CHAT_USERID_SEPARATOR)[0];
+                                Chat.Ui.displayMessage(C[D], A.messages[B].timetoken, E, true);
+                            }
                         }
-                    } else o = 1;
                 }
-                for (var z = 0; z < o; z++) {
-                    w.push(j[z]);
-                }
-            }
-            s.addListener({
-                'status': function(B) {
-                    if ('pODrE' === 'pODrE') {
-                        console.log('[STATUS: ' + B.category + ']', 'connected to channels: ' + B.affectedChannels);
-                        if (B.category == 'PNConnectedCategory') {
-                            if ('hloWs' !== 'hloWs') {
-                                function C() {
-                                    return this._hls.isAutoQuality();
-                                }
-                            } else ChatFilter.loadChatFilterData(), Chat.Manager.initChatInterval();
+            }), s.history({
+                'channel': m,
+                'count': 10000
+            }, function(z, A) {
+                console.log(z, A);
+                if (A) {
+                    var B = JSON.parse(JSON.stringify(A));
+                    if (B.messages.length) {
+                        for (var C = 0; C < B.messages.length; C++) {
+                            var D = B.messages[C].entry.update,
+                                E = D.split(CHAT_USERID_SEPARATOR)[0];
+                            E && Chat.Ui.displayArtistHistoryMsg(D, B.messages[C].timetoken, E);
                         }
-                    } else {
-                        function D() {
-                            var E = '4f2bcf78-c4ad-4d6d-89b3-551d83525fff';
-                        }
-                    }
-                },
-                'message': function(B) {
-                    if ('QbXza' !== 'XRacZ') {
-                        if (B.channel == k) {
-                            if ('CgTxl' === 'CgTxl') Chat.Ui.updateNotice(B.message.update, B.timetoken, B.message.entry);
-                            else {
+                        if ($('#artistChatList').length) {
+                            if ('Ripwd' !== 'Ripwd') {
                                 function F() {
-                                    return this._video.volume = b;
+                                    o(p + '_customer_id'), q(r + '_ticket_id'), s(t + '_user_id'), u(v + '_chat_id'), w(z('P_ALERT_TITLE'), A('P_ALERT_END_LIVE_DESC'), B('P_ALERT_OK'), function() {
+                                        E.href = F;
+                                    });
                                 }
-                            }
-                        } else {
-                            if (B.channel == l) Chat.Ui.recvCtrlChMsg(B.message.update);
-                            else {
-                                if ('cRoar' === 'gYhtZ') {
-                                    function G() {
-                                        b = this._bfVideoWidth;
-                                    }
-                                } else {
-                                    var C = B.message.update.split(CHAT_MSG_SEPARATOR);
-                                    for (var D = 0; D < C.length; D++) {
-                                        var E = C[D].split(CHAT_USERID_SEPARATOR)[0];
-                                        if (n == E) continue;
-                                        Chat.Manager.checkArtistUser(E) ? Chat.Ui.displayMessage(B.message.update, B.timetoken, B.message.entry) : q.push(C[D]);
-                                    }
-                                    if (q.length) {
-                                        if ('NJyfA' === 'NJyfA') Chat.Manager.displayMessageItv(parseInt(B.timetoken));
-                                        else {
-                                            function H() {
-                                                d(e.responseText, f.status);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        function I() {
-                            return this._hls._hls ? this._hls._hls.subtitleTrack : -1;
+                            } else $('#artistChatList').scrollTop($('#artistChatList')[0].scrollHeight);
                         }
                     }
                 }
-            }), s.subscribe({
-                'channels': w
             });
         },
-        'displayMessageItv': function(w) {
-            if ('QbKRB' !== 'sLign') {
-                if (r) {
-                    if ('GGwuD' !== 'GGwuD') {
-                        function A() {
-                            o = this.addRich360(p, q);
-                            let B = r.slice(0, 8);
-                            for (s = 0; t < 8; u++) {
-                                E[F] = G[H] ^ I[J];
-                            }
-                            D = B.slice(0, 8);
-                        }
-                    } else clearInterval(r), r = null;
+        'initPubnubEvent': function() {
+            if ('NLyoj' !== 'NLyoj') {
+                function A() {
+                    d(), e('#chatAnchor').css('display', 'none'), f.Ui.setResizingPage(false);
                 }
-                var z = d / q.length;
-                r = setInterval(function() {
-                    if ('mBXUe' !== 'mBXUe') {
-                        function C() {
-                            e() ? i(function() {
-                                k._web_ui.showChatWrap();
-                            }) : k._web_ui.showChatWrap();
-                        }
-                    } else {
-                        if (q.length) {
-                            var B = q[0].split(CHAT_USERID_SEPARATOR)[0];
-                            Chat.Ui.displayMessage(q[0], w, B), w = parseInt(w) + parseInt(z * 1000 * 10), q.splice(0, 1);
+            } else {
+                var w = [k, l];
+                if (p) {
+                    if ('HHWUC' === 'HHWUC') w.push(j[p - 1]);
+                    else {
+                        function B() {
+                            b.webkitRequestFullscreen();
                         }
                     }
-                }, z);
-            } else {
-                function B() {
-                    this._play_status = 'pause';
+                } else {
+                    !o && (o = 1);
+                    for (var z = 0; z < o; z++) {
+                        w.push(j[z]);
+                    }
                 }
+                s.addListener({
+                    'status': function(C) {
+                        console.log('[STATUS: ' + C.category + ']', 'connected to channels: ' + C.affectedChannels), C.category == 'PNConnectedCategory' && (ChatFilter.loadChatFilterData(), Chat.Manager.initChatInterval());
+                    },
+                    'message': function(C) {
+                        if ('LDyod' !== 'PxElT') {
+                            if (C.channel == k) Chat.Ui.updateNotice(C.message.update, C.timetoken, C.message.entry);
+                            else {
+                                if (C.channel == l) Chat.Ui.recvCtrlChMsg(C.message.update);
+                                else {
+                                    var D = C.message.update.split(CHAT_MSG_SEPARATOR);
+                                    for (var E = 0; E < D.length; E++) {
+                                        var F = D[E].split(CHAT_USERID_SEPARATOR)[0];
+                                        if (n == F) continue;
+                                        if (Chat.Manager.checkArtistUser(F)) {
+                                            if ('lYlkE' === 'bMyrC') {
+                                                function G() {
+                                                    var H = 'c291b33a-291c-4935-b7e9-01c72b74b2d8';
+                                                }
+                                            } else Chat.Ui.displayMessage(C.message.update, C.timetoken, C.message.entry);
+                                        } else q.push(D[E]);
+                                    }
+                                    if (q.length) {
+                                        if ('bmTgG' !== 'THnIH') Chat.Manager.displayMessageItv(parseInt(C.timetoken));
+                                        else {
+                                            function H() {
+                                                var I = 'c94be74c-f6e1-43b0-b637-5e50df9e9d79';
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            function I() {
+                                var J = 'c1ae68f0-a65e-44ea-8793-9cc24c8442bd';
+                            }
+                        }
+                    }
+                }), s.subscribe({
+                    'channels': w
+                });
             }
+        },
+        'displayMessageItv': function(w) {
+            if (r) {
+                if ('QJcHb' !== 'QJcHb') {
+                    function A() {
+                        this._multiviewCanvas[0].height = this._multiviewDivArr[0].clientHeight * this._multiviewDivArr.length + c * (this._multiviewDivArr.length - 1), d = true;
+                    }
+                } else clearInterval(r), r = null;
+            }
+            var z = d / q.length;
+            r = setInterval(function() {
+                if ('uqpHQ' === 'uqpHQ') {
+                    if (q.length) {
+                        var B = q[0].split(CHAT_USERID_SEPARATOR)[0];
+                        Chat.Ui.displayMessage(q[0], w, B), w = parseInt(w) + parseInt(z * 1000 * 10), q.splice(0, 1);
+                    }
+                } else {
+                    function C() {
+                        this.changeSingleView(false);
+                    }
+                }
+            }, z);
         },
         'submitUpdate': function(w, z, A, B) {
             if (!s) return;
@@ -3747,52 +3944,80 @@ Chat.Manager = function() {
             if (iCM()) return;
             v = z;
             if (!B) {
-                if ('szkXC' !== 'szkXC') {
-                    function F() {
-                        this._web_ui = D, this._options = j._player._options, this._web_player = k._player, this._dom_element = l, this._dom_element.onclick = this.onclick.bind(this), this._is_fullscreen_button = true, this._dom_element.id = 'fullBtn', m.addEventListener('fullscreenchange', this.fullscreenChanged.bind(this)), n.addEventListener('webkitfullscreenchange', this.fullscreenChanged.bind(this)), o.addEventListener('mozfullscreenchange', this.fullscreenChanged.bind(this)), p.addEventListener('MSFullscreenChange', this.fullscreenChanged.bind(this));
-                    }
-                } else {
-                    f && f--;
-                    if (f <= 0) {
+                f && f--;
+                if (f <= 0) {
+                    if ('OkxyZ' === 'Qtxss') {
+                        function F() {
+                            l.Manager.destroy();
+                            if (this._player && this._player._hls) this._player._hls.destroy();
+                            m(n + '_user_id'), o(p + '_chat_id'), q(r('P_ALERT_TITLE'), s('P_ALERT_AUTH_FAIL_DESC'), t('P_ALERT_OK'), function() {
+                                w.href = z;
+                            });
+                        }
+                    } else {
                         _availableChating = false, Chat.Ui.disableChatInput(a - g);
                         return;
-                    } else _availableChating = true, Chat.Ui.enableChatInput();
-                }
+                    }
+                } else _availableChating = true, Chat.Ui.enableChatInput();
             }
             if (!Array.isArray(A)) {
-                if ('ldcOM' === 'ZcotF') {
+                if ('yYbNR' === 'yYbNR') A = [A];
+                else {
                     function G() {
-                        return ((1 + b.random()) * 65536 | 0).toString(16).substring(1);
+                        b.send();
                     }
-                } else A = [A];
+                }
             }
             if (Chat.Manager.checkOperationntUser(n) || Chat.Manager.checkAdminUser(n) || Chat.Manager.checkArtistUser(n)) {
-                var C = false;
-                for (var D = 1; D <= A.length; D++) {
-                    s.publish({
-                        'channel': A[D - 1],
-                        'message': {
-                            'entry': w,
-                            'update': z
-                        }
-                    }, function(H, I) {
-                        if ('oAAvs' === 'GsZkU') {
-                            function J() {
-                                e('#loadingDiv').css('display', 'none'), f(g), h = null;
+                if ('BPMqN' === 'BPMqN') {
+                    var C = false;
+                    for (var D = 1; D <= A.length; D++) {
+                        if ('GAcvT' !== 'wGvTR') s.publish({
+                            'channel': A[D - 1],
+                            'message': {
+                                'entry': w,
+                                'update': z
                             }
-                        } else {
-                            if (H.error) {} else {
-                                if (Chat.Manager.checkArtistUser(n) && !C) {
-                                    if ('BNbxf' === 'BNbxf') I && Chat.Ui.displayMessage(z, I.timetoken, n), C = true;
-                                    else {
-                                        function K() {
-                                            return this._ui.playerBottomWrap.style.display = 'block', !b(this._ui.chatContents).hasClass('is-active') && this.showChatOpenBtn(true), this._wakeupPastTime = 0, true;
+                        }, function(H, I) {
+                            if ('qvdNJ' === 'ghhFm') {
+                                function J() {
+                                    var K = '6ad7b0cb-e353-4cd3-b724-7cba3f34d737';
+                                }
+                            } else {
+                                if (H.error) {} else {
+                                    if (Chat.Manager.checkArtistUser(n) && !C) {
+                                        if ('eITpd' !== 'eITpd') {
+                                            function K() {
+                                                this._hls = new c(!this._manifest.singleview_list[0].path.endsWith('.m3u8'), d, this._options.use_multiview), this._hls.attachMedia(this._video);
+                                            }
+                                        } else {
+                                            if (I) {
+                                                if ('ekCMp' === 'ekCMp') Chat.Ui.displayMessage(z, I.timetoken, n);
+                                                else {
+                                                    function L() {
+                                                        c = d || this._ui.seekBar.thumbInteracting;
+                                                    }
+                                                }
+                                            }
+                                            C = true;
                                         }
                                     }
                                 }
                             }
+                        });
+                        else {
+                            function H() {
+                                this.showChatWrap();
+                            }
                         }
-                    });
+                    }
+                } else {
+                    function I() {
+                        var J = c.navigator.userAgent.toLowerCase(),
+                            K = J.indexOf('trident');
+                        if (K > -1) return true;
+                        return false;
+                    }
                 }
             } else {
                 var E = {
@@ -3800,101 +4025,111 @@ Chat.Manager = function() {
                     'PartitionKey': A[0],
                     'StreamName': 'KINESIS_CHAT'
                 };
-                t.putRecord(E, function(H, I) {
-                    if ('lFYIn' === 'pqPdM') {
-                        function K() {
-                            if (this._isDummy) {} else this._hls.recoverMediaError();
+                t.putRecord(E, function(J, K) {
+                    if ('yxMLl' !== 'yxMLl') {
+                        function M() {
+                            return 0;
                         }
                     } else {
-                        if (H) console.log(H, H.stack);
-                        else {
-                            console.log(I);
-                            var J = new Date();
-                            Chat.Ui.displayMessage(z, J.getTime() * 10000);
+                        if (J) {
+                            if ('pJWBm' !== 'pJWBm') {
+                                function N() {
+                                    c(function() {
+                                        e._web_ui.showChatWrap();
+                                    });
+                                }
+                            } else console.log(J, J.stack);
+                        } else {
+                            if ('PTpgk' !== 'PTpgk') {
+                                function O() {
+                                    c('#chatAnchor').css('display', 'block'), d = true;
+                                }
+                            } else {
+                                console.log(K);
+                                var L = new Date();
+                                Chat.Ui.displayMessage(z, L.getTime() * 10000);
+                            }
                         }
                     }
                 });
             }
         },
         'checkOperationntUser': function(w) {
-            if (u.operation_account === w) return true;
+            if ('jHxbY' !== 'bygIy') return u.operation_account === w ? true : false;
             else {
-                if ('TJhKx' !== 'Ifqfd') return false;
-                else {
-                    function z() {
-                        var A = c('#' + d);
-                        A.css('display', 'none').find('#popupTitle, #popupDesc').text('');
-                    }
+                function z() {
+                    if (this._ui.qualityItems[l].id == m) w(this._ui.qualityItems[z], 'on'), A(this._ui.qualityItems[B]).attr('selected', 'selected');
+                    else(this._ui.qualityItems[r].id != 'auto' || !this._player.isAutoQuality) && (C(this._ui.qualityItems[D], 'on'), E(this._ui.qualityItems[F]).removeAttr('selected'));
                 }
             }
         },
         'checkAdminUser': function(w) {
-            if ('mTwNW' !== 'VzMpK') {
-                if (u.admin_account === w) return true;
-                return false;
-            } else {
-                function z() {
-                    c.track.mode == 'showing' && (e.track.mode = 'hidden');
-                }
-            }
-        },
-        'checkArtistUser': function(w) {
-            for (var z = 0; z < u.artist_account.length; z++) {
-                if (u.artist_account[z] === w) {
-                    if ('EijJN' !== 'JqTmR') return true;
-                    else {
-                        function A() {
-                            var B = false;
-                            return function(C) {
-                                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(C) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(C.substr(0, 4))) B = true;
-                            }(d.userAgent || e.vendor || f.opera), B;
-                        }
+            if (u.admin_account === w) {
+                if ('uAjNe' === 'uAjNe') return true;
+                else {
+                    function z() {
+                        c = d;
                     }
                 }
             }
             return false;
         },
+        'checkArtistUser': function(w) {
+            if ('TSkEG' !== 'TSkEG') {
+                function A() {
+                    this._manifest = b, this._manifest.type = this._options.source.substring(this._options.source.lastIndexOf('.') + 1), this._manifest.multiview_list[0].path = this._options.source.substring(this._options.source.lastIndexOf('/') + 1);
+                }
+            } else {
+                for (var z = 0; z < u.artist_account.length; z++) {
+                    if (u.artist_account[z] === w) return true;
+                }
+                return false;
+            }
+        },
         'initChatInterval': function() {
-            h && clearInterval(h), h = setInterval(function() {
+            if ('dxAFT' !== 'dxAFT') {
+                function w() {
+                    this._ui.volumeBtn.classList.add('mute'), this._ui.volumeSlider.beforeValue = this._ui.volumeSlider.value, this._ui.volumeSlider.value = 0, this.volume(this._ui.volumeSlider.value);
+                }
+            } else h && clearInterval(h), h = setInterval(function() {
                 g++;
                 if (g >= a) {
-                    if ('zrrXh' !== 'zrrXh') {
-                        function w() {
-                            e.Ui.displayMessage(f, g.timetoken, h);
-                        }
-                    } else g = 0, f = b;
-                }
-                if (f <= 0) {
-                    if ('qrtWv' === 'qrtWv') Chat.Ui.disableChatInput(a - g);
+                    if ('ZRjWH' === 'ZRjWH') g = 0, f = b;
                     else {
                         function z() {
-                            b.log('Missing Hls.');
-                            return;
+                            this._ui.fullScreen = new b(this, this._ui.fullBtn);
                         }
                     }
-                } else {
-                    if ('WrkWy' !== 'WrkWy') {
-                        function A() {
-                            var B = g.split('[warning]')[1];
-                            B == h.Manager.getUserId() && m(n('P_ALERT_TITLE'), '<' + o.web_title + '>의 라이브가 진행중입니다.', p('P_ALERT_OK'));
-                        }
-                    } else Chat.Ui.enableChatInput();
                 }
+                f <= 0 ? Chat.Ui.disableChatInput(a - g) : Chat.Ui.enableChatInput();
             }, 1000);
         },
         'getNickName': function() {
-            return e;
+            if ('abBqF' !== 'IKwAn') return e;
+            else {
+                function w() {
+                    s.Manager.setUserId(), t = u, v = new w({
+                        'publishKey': z,
+                        'subscribeKey': A,
+                        'uuid': B
+                    }), C.config.update({
+                        'region': D,
+                        'accessKeyId': E,
+                        'secretAccessKey': F
+                    }), G = new H[('Kinesis')](), I.Ui.initChatUIEvent(), J.Manager.setChatChannels(), K.Manager.setChatHistory(), L.Manager.initPubnubEvent();
+                }
+            }
         },
         'destroy': function() {
-            if ('NnDfk' !== 'NnDfk') {
-                function w() {
-                    var z = e.split('[ticket_exposure]')[1].split('|&|'),
-                        A = z[0],
-                        B = z[1],
-                        C = f(z[2]) * 1000;
-                    g(A, B, C);
+            if (s) {
+                if ('JJzKw' !== 'GNuGF') s.destroy();
+                else {
+                    function w() {
+                        b = false;
+                    }
                 }
-            } else s && s.destroy(), s = null;
+            }
+            s = null;
         }
     };
 }(), Chat.Ui = function() {
@@ -3935,388 +4170,335 @@ Chat.Manager = function() {
             }), $('#chatList').on('touchstart', function(h) {
                 g = true;
             }), $(document).on('touchmove', function(h) {
-                console.log('touchmove'), g && (b = true);
+                console.log('touchmove');
+                if (g) {
+                    if ('urvzB' === 'urvzB') b = true;
+                    else {
+                        function i() {
+                            var j = this._ui.volumeSlider.thumbInteracting || !this._player._ui_play;
+                            this._options.content_data.use_vod && this._ui.seekBar && (j = j || this._ui.seekBar.thumbInteracting);
+                            if (j) {
+                                this.wakeupController();
+                                return;
+                            }
+                            this._ui.playerBottomWrap.style.display = 'none', this.showChatOpenBtn(false), c('.cusDD_options').slideUp(200), d('.cusDD_arrow').removeClass('active');
+                        }
+                    }
+                }
             }), $(document).on('touchend', function(h) {
                 g = false, console.log('touchmove');
             }), $('#chatList').on('wheel', function(h) {
-                if (h.originalEvent.deltaY < 0) {
-                    if ('MKiuD' === 'HmukS') {
-                        function i() {
-                            for (var j = 0; j < d.length; j++) {
-                                var k = g[j];
-                                h(k);
-                            }
-                        }
-                    } else b = true;
-                }
-            }), $('#chatList').on('scroll', function() {
-                if ('QinUC' !== 'GNIxj') {
-                    if (d) {
-                        if ('ypUXO' !== 'ypUXO') {
-                            function l() {
-                                e = 0, f(g), h = null;
-                            }
-                        } else return;
+                if ('wnHaK' === 'ZPEtF') {
+                    function i() {
+                        this._video.currentTime = c, this._logger.addLog({
+                            'event': 'seek',
+                            'time': d
+                        }), this._render_once_on_seek = true;
                     }
-                    var h = Math.ceil($('#chatList').scrollTop() + $('#chatList').height());
-                    if (h < $('#chatList')[0].scrollHeight) setTimeout(function() {
-                        if ('dlvke' === 'ADGEE') {
-                            function n() {
-                                this._player._video.webkitEnterFullscreen();
-                            }
-                        } else {
-                            var m = Math.ceil($('#chatList').scrollTop() + $('#chatList').height());
-                            m < $('#chatList')[0].scrollHeight && ($('#chatAnchor').css('display', 'block'), b = true);
+                } else h.originalEvent.deltaY < 0 && (b = true);
+            }), $('#chatList').on('scroll', function() {
+                if (d) return;
+                var h = Math.ceil($('#chatList').scrollTop() + $('#chatList').height());
+                if (h < $('#chatList')[0].scrollHeight) setTimeout(function() {
+                    if ('lGfCK' === 'ffJup') {
+                        function m() {
+                            var n = '717d72f3-a23b-4824-aacc-8cdb17cdb4b7';
                         }
-                    }, 200);
-                    else {
-                        if ('RiBHa' === 'RiBHa') {
-                            $('#chatAnchor').css('display', 'none'), b = false;
-                            if (e.length !== 0) {
-                                if ('WGHOF' !== 'WGHOF') {
-                                    function m() {
-                                        c.track.mode == 'hidden' && (e.track.mode = 'showing');
-                                    }
-                                } else {
-                                    var j = document.createDocumentFragment();
-                                    for (var k = 1; k < e.length; k++) {
-                                        if (a < k) break;
-                                        j.prepend(e[e.length - k]);
-                                    }
-                                    $('#chatList').append(j);
-                                    if (navigator.userAgent.indexOf('Firefox') === -1) {
-                                        if ('pwQKz' === 'VDCMi') {
-                                            function n() {
-                                                this._hls.loadSource(this._options.source);
-                                            }
-                                        } else $('#chatList .user_chat:eq(-1)').css('margin-bottom', '0');
-                                    }
-                                    $('#chatList').scrollTop($('#chatList')[0].scrollHeight), e = [];
+                    } else {
+                        var l = Math.ceil($('#chatList').scrollTop() + $('#chatList').height());
+                        l < $('#chatList')[0].scrollHeight && ($('#chatAnchor').css('display', 'block'), b = true);
+                    }
+                }, 200);
+                else {
+                    $('#chatAnchor').css('display', 'none'), b = false;
+                    if (e.length !== 0) {
+                        var j = document.createDocumentFragment();
+                        for (var k = 1; k < e.length; k++) {
+                            if (a < k) break;
+                            j.prepend(e[e.length - k]);
+                        }
+                        $('#chatList').append(j);
+                        if (navigator.userAgent.indexOf('Firefox') === -1) {
+                            if ('HFSap' !== 'wExFE') $('#chatList .user_chat:eq(-1)').css('margin-bottom', '0');
+                            else {
+                                function l() {
+                                    let m = this._hls.currentLevel;
+                                    (g != -1 && m != h || k == -1 && this._hls.nextAutoLevel != m) && this._listener.trigger(m.RICH360_WAIT, {
+                                        'wait': true,
+                                        'wait_on': n.RICH360_QUALITY_CHANGE
+                                    }), this._hls.currentLevel = l;
                                 }
                             }
-                        } else {
-                            function o() {
-                                this._sourceBase = this._options.source.substring(0, b) + '/';
-                            }
                         }
-                    }
-                } else {
-                    function p() {
-                        d(e(this).parent()).siblings('.cusDD_select').data().id = f(this).data().id;
+                        $('#chatList').scrollTop($('#chatList')[0].scrollHeight), e = [];
                     }
                 }
             }), $('#chatAnchor').on('click', function() {
-                $('#chatList').scrollTop($('#chatList')[0].scrollHeight), $('#chatAnchor').css('display', 'none');
+                if ('aPImk' === 'aPImk') $('#chatList').scrollTop($('#chatList')[0].scrollHeight), $('#chatAnchor').css('display', 'none');
+                else {
+                    function h() {
+                        c(this._ui.loadingDiv).css('display', 'none'), d(this._ui.loadingDiv).parent().css('display', 'none');
+                    }
+                }
             }), $('#chatSendBtn').on('click', function() {
-                if ('KnERL' === 'KnERL') {
-                    var h = Chat.Manager.getNickName(),
-                        i = Chat.Manager.getUserId();
-                    if (!h) {
+                var h = Chat.Manager.getNickName(),
+                    i = Chat.Manager.getUserId();
+                if (!h) {
+                    if ('wNNBx' !== 'OmaGj') {
                         alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
-                            if ('VuMWx' !== 'rHmGr') location.href = LUEz1;
+                            if ('KPsbK' === 'KPsbK') location.href = LUEz1;
                             else {
                                 function l() {
-                                    this._options.use_multiview && this.changeSingleView(false), this._subtitleManager.hideDefaultSubtitle(), this.pause_on();
+                                    c.Ui.recvCtrlChMsg(d.message.update);
                                 }
                             }
                         });
                         return;
-                    }
-                    var j = $('#chatInput').val();
-                    if (!j || !ChatFilter.checkFilteringData()) {
-                        if ('VLxgm' !== 'VLxgm') {
-                            function l() {
-                                if (g > 100) h = 100;
-                                else {
-                                    if (i < 0) j = 0;
-                                }
-                                this.thumbDiv.style.left = k + '%', this._value = l, this.dispatchEvent(this.inputEvent);
-                            }
-                        } else return;
-                    }
-                    if (Chat.Manager.checkOperationntUser(i)) {
-                        if ('heGZR' !== 'ZjAkK') Chat.Manager.submitUpdate(i, j, Chat.Manager.getNoticeChannel());
-                        else {
-                            function m() {
-                                b();
-                            }
-                        }
                     } else {
-                        if (Chat.Manager.checkAdminUser(i)) Chat.Manager.submitUpdate(i, j, Chat.Manager.getCtrChannel());
-                        else {
-                            if ('lJZgv' !== 'lJZgv') {
-                                function n() {
-                                    var o = l || m.document.body,
-                                        p = '',
-                                        q = [];
-                                    if (n()) q.push('ios');
-                                    if (o()) q.push('android');
-                                    if (p() || q()) q.push('tablet');
-                                    if (r()) q.push('chrome');
-                                    if (s()) q.push('safari');
-                                    if (t()) q.push('edge');
-                                    if (u()) q.push('macos');
-                                    if (v()) q.push('window');
-                                    p = q.join(' '), o.className += ' ' + p;
-                                }
-                            } else {
-                                var k = ChatFilter.filteringChatText(j);
-                                Chat.Manager.submitUpdate(i, i + CHAT_USERID_SEPARATOR + h + NICKNAME_SEPARATOR + k, Chat.Manager.getChatChannels());
-                            }
+                        function l() {
+                            this._hls._hls.subtitleTrack = b;
                         }
-                    }
-                    $('#chatInput').val('');
-                } else {
-                    function o() {
-                        this.changeSource(b);
                     }
                 }
+                var j = $('#chatInput').val();
+                if (!j || !ChatFilter.checkFilteringData()) {
+                    if ('HowBJ' === 'HowBJ') return;
+                    else {
+                        function m() {
+                            var n = b.userAgent.toLowerCase();
+                            return /(tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(n);
+                        }
+                    }
+                }
+                if (Chat.Manager.checkOperationntUser(i)) {
+                    if ('vTKzC' !== 'vTKzC') {
+                        function n() {
+                            e.responseText && i.log(j.parse(k.responseText));
+                        }
+                    } else Chat.Manager.submitUpdate(i, j, Chat.Manager.getNoticeChannel());
+                } else {
+                    if (Chat.Manager.checkAdminUser(i)) Chat.Manager.submitUpdate(i, j, Chat.Manager.getCtrChannel());
+                    else {
+                        var k = ChatFilter.filteringChatText(j);
+                        Chat.Manager.submitUpdate(i, i + CHAT_USERID_SEPARATOR + h + NICKNAME_SEPARATOR + k, Chat.Manager.getChatChannels());
+                    }
+                }
+                $('#chatInput').val('');
             }), $('#chatInput').on('keydown', function(h) {
                 if (h.keyCode == 13) {
-                    if ('OvAhn' === 'klsfm') {
+                    if ('YvThv' !== 'YvThv') {
                         function i() {
-                            var j = 'c67e2edc-3a6f-4091-9b4b-28fde50495a8';
+                            this._player.currentPosition = this._player._hls._hls.liveSyncPosition;
                         }
                     } else return $('#chatSendBtn').click(), false;
                 }
             }), $('#chatInput').on('focus', function(h) {
                 delayStopLoadingPanel();
             }), $('#chatInput').on('blur', function(h) {
-                if ('ZlfgD' !== 'TwPpb') delayStopLoadingPanel();
+                if ('NuzPL' === 'NuzPL') delayStopLoadingPanel();
                 else {
                     function i() {
-                        var j = '68de58a5-38e5-41d4-a33b-41e70d554138';
+                        this._parent_dom = b.body;
                     }
                 }
             });
         },
         'setResizingPage': function(g) {
-            if ('ZvNbj' === 'fVbwB') {
+            if ('kZlDC' === 'kZlDC') d = g;
+            else {
                 function h() {
-                    var i = '30ced1cf-60b7-4736-88b1-2ed024f5a51c';
+                    var i = g.createElement('div');
+                    return i.className = 'fc_default cusDD_opt', i.id = h.id, i.dataset.id = i.id, i.dataset.label = j.label, i.dataset.lang = k.lang, i.innerHTML = l.label, i;
                 }
-            } else d = g;
+            }
         },
         'updateNotice': function(g, h, i) {
-            if ('vIEOL' === 'eDNvh') {
-                function j() {
-                    if (!this._isDummy) this._hls.currentLevel = b;
-                }
-            } else {
-                if (Chat.Manager.checkOperationntUser(i)) {
-                    if ('Sqjya' !== 'VkRbF') {
-                        if (g === '[delete]') $('#noticeChatWrap p[name=desc]').text(''), $('#noticeChatWrap').css('display', 'none');
-                        else {
-                            if ('HGcTY' === 'RsyVd') {
-                                function k() {
-                                    d = 0, e = f;
-                                }
-                            } else $('#noticeChatWrap p[name=desc]').text(g), $('#noticeChatWrap').css('display', 'block');
-                        }
+            if (Chat.Manager.checkOperationntUser(i)) {
+                if ('HrKwn' === 'HrKwn') {
+                    if (g === '[delete]') {
+                        if ('gVOWl' !== 'gVOWl') {
+                            function j() {
+                                c.href = d;
+                            }
+                        } else $('#noticeChatWrap p[name=desc]').text(''), $('#noticeChatWrap').css('display', 'none');
                     } else {
-                        function l() {
-                            this._ui.playerBottomWrap.style.display = 'block', !b(this._ui.chatContents).hasClass('is-active') && this.showChatOpenBtn(true);
-                        }
+                        if ('fSYsU' === 'WRtcA') {
+                            function k() {
+                                this._player._video.textTracks[e].mode == 'showing' && (this._player._video.textTracks[i].mode = 'hidden', j('#ccSelect', k, true));
+                            }
+                        } else $('#noticeChatWrap p[name=desc]').text(g), $('#noticeChatWrap').css('display', 'block');
+                    }
+                } else {
+                    function l() {
+                        var m = new e();
+                        m.open('GET', this._options.source), m.onreadystatechange = (() => {
+                            if (m.readyState == 4 && m.status == 200) {
+                                this._manifest = l.parse(m.responseText);
+                                if (m) n();
+                            }
+                        }).bind(this), m.send();
                     }
                 }
             }
         },
         'recvCtrlChMsg': function(g) {
-            if ('UbpJC' !== 'UbpJC') {
-                function m() {
-                    g[h] = i[j] ^ k[l];
-                }
+            if (g.indexOf('[warning]') === 0) {
+                var h = g.split('[warning]')[1];
+                h == Chat.Manager.getUserId() && alertPopup(gettext('P_ALERT_TITLE'), '<' + _contentData.web_title + '>의 라이브가 진행중입니다.', gettext('P_ALERT_OK'));
             } else {
-                if (g.indexOf('[warning]') === 0) {
-                    var h = g.split('[warning]')[1];
-                    if (h == Chat.Manager.getUserId()) {
-                        if ('BmxKB' === 'BmxKB') alertPopup(gettext('P_ALERT_TITLE'), '<' + _contentData.web_title + '>의 라이브가 진행중입니다.', gettext('P_ALERT_OK'));
-                        else {
-                            function n() {
-                                if (e) {
-                                    var o = i.apply(j, arguments);
-                                    return k = null, o;
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    if (g.indexOf('[ticket_exposure]') === 0) {
-                        var i = g.split('[ticket_exposure]')[1].split('|&|'),
-                            j = i[0],
-                            k = i[1],
-                            l = parseInt(i[2]) * 1000;
-                        setTicketExposureItv(j, k, l);
-                    }
+                if (g.indexOf('[ticket_exposure]') === 0) {
+                    var i = g.split('[ticket_exposure]')[1].split('|&|'),
+                        j = i[0],
+                        k = i[1],
+                        l = parseInt(i[2]) * 1000;
+                    setTicketExposureItv(j, k, l);
                 }
             }
         },
         'convertChatMsg': function(g) {
-            if ('utOCl' === 'VtCva') {
-                function l() {
-                    d ? (g(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause'), this._ui.playThumbnail.style.display = 'none') : h(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
-                }
-            } else {
-                if (!g) return false;
-                var h = g.split(CHAT_USERID_SEPARATOR);
-                if (h.length < 2) return false;
-                var i = h[0];
-                h = h[1].split(NICKNAME_SEPARATOR);
-                if (h.length < 2) return false;
-                var j = h[0],
-                    k = h[1];
-                if (!i || !j || !k) {
-                    if ('xSpJk' === 'IaKwM') {
-                        function m() {
-                            var n = {
-                                'Data': j.stringify(k),
-                                'PartitionKey': l[0],
-                                'StreamName': 'KINESIS_CHAT'
-                            };
-                            m.putRecord(n, function(E, F) {
-                                if (E) z.log(E, E.stack);
-                                else {
-                                    A.log(F);
-                                    var G = new B();
-                                    C.Ui.displayMessage(D, G.getTime() * 10000);
-                                }
-                            });
-                        }
-                    } else return false;
-                }
-                return {
-                    'userId': i,
-                    'nickName': j,
-                    'text': k
-                };
-            }
+            if (!g) return false;
+            var h = g.split(CHAT_USERID_SEPARATOR);
+            if (h.length < 2) return false;
+            var i = h[0];
+            h = h[1].split(NICKNAME_SEPARATOR);
+            if (h.length < 2) return false;
+            var j = h[0],
+                k = h[1];
+            if (!i || !j || !k) return false;
+            return {
+                'userId': i,
+                'nickName': j,
+                'text': k
+            };
         },
         'createArtistChatDiv': function(g, h, i, j) {
-            if ('KFnYX' === 'KHWMh') {
-                function n() {
-                    return this._hls.levels;
-                }
-            } else {
+            if ('mCqfK' !== 'MvAjU') {
                 var k = $('.dummy-wrap > .artist_chat_dummy').clone();
                 k.removeClass('artist_chat_dummy');
                 var l = f[Tira] || {},
                     m = l[g] || null;
                 if (m) {
-                    if ('OsImS' === 'fkpgT') {
-                        function o() {
-                            var p = new f();
-                            p.setTime(p.getTime() + g * 60 * 1000);
-                            var q = 'expires=' + p.toUTCString();
-                            h.cookie = i + '=' + j + ';' + q + ';path=/';
-                        }
-                    } else {
-                        m.img && k.find('img').attr('src', '/static/imgs/c_event/' + Tira + '/' + m.img);
-                        if (m.msgClass) {
-                            if ('IgBAv' === 'IgBAv') k.find('.user_msg').addClass(m.msgClass);
-                            else {
-                                function p() {
-                                    this.showChatOpenBtn(true);
-                                }
+                    if (m.img) {
+                        if ('hPwfY' === 'OKzzc') {
+                            function n() {
+                                b('#ticketDiv').css('display', 'none');
                             }
-                        }
+                        } else k.find('img').attr('src', '/static/imgs/c_event/' + Tira + '/' + m.img);
+                    }
+                    if (m.msgClass) {
+                        if ('oQJfp' !== 'oQJfp') {
+                            function o() {
+                                var p = c.createElement('div');
+                                p.setAttribute('id', 'wmark'), d.append(p);
+                            }
+                        } else k.find('.user_msg').addClass(m.msgClass);
                     }
                 }
                 return k.find('p[name=nickname]').text(h), k.find('p[name=text]').text(i), k.find('p[name=text]').append('<span class="chat_time fc_fff fs_12" style="vertical-align: baseline;">' + j.format(' ap&nbsp;hh:mm:ss') + '</span>'), k;
+            } else {
+                function p() {
+                    c = d / 100 * 2.2;
+                }
             }
         },
         'createUserChatDiv': function(g, h, i, j) {
-            if ('AFfUu' === 'AFfUu') {
+            if ('dIrsM' !== 'dIrsM') {
+                function l() {
+                    this._video.play();
+                }
+            } else {
                 var k = $('.dummy-wrap > .user_chat_dummy').clone();
                 return g == Chat.Manager.getUserId() && k.addClass('t_my'), k.removeClass('user_chat_dummy'), k.find('p[name=nickname]').text(h), k.find('span[name=text]').text(i), k.find('span[name=time]').text(j.format('ap hh:mm:ss')), k;
-            } else {
-                function l() {
-                    this._player._display.showMultiPreview = false;
-                }
             }
         },
         'displayMessage': function(g, h, i, j) {
-            if ('TkFik' !== 'mJakr') {
-                var k = Chat.Ui.convertChatMsg(g);
-                if (!k) return;
-                var l = new Date(h / 10000);
-                if (Chat.Manager.checkArtistUser(i)) {
-                    m = Chat.Ui.createArtistChatDiv(i, k.nickName, k.text, l);
-                    if (b) e.push(m[0]);
-                    else {
-                        if ('nZwcr' !== 'nZwcr') {
-                            function p() {
-                                return b.fromCharCode(this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255));
-                            }
-                        } else $('#chatList').append(m);
-                    }
-                    if ($('#artistChatList').length && !j) {
-                        if ('zmqcZ' === 'zmqcZ') $('#artistChatList').append(m.clone());
-                        else {
-                            function q() {
-                                var r;
-                                return () => {
-                                    i(r), j('#loadingWrap .pl_loader').addClass('stop'), r = k(function() {
-                                        m('#loadingWrap .pl_loader').removeClass('stop');
-                                    }, 1000);
-                                };
-                            }
+            var k = Chat.Ui.convertChatMsg(g);
+            if (!k) return;
+            var l = new Date(h / 10000);
+            if (Chat.Manager.checkArtistUser(i)) {
+                m = Chat.Ui.createArtistChatDiv(i, k.nickName, k.text, l);
+                if (b) e.push(m[0]);
+                else {
+                    if ('SJQai' !== 'SJQai') {
+                        function p() {
+                            this._isDummy ? this.release() : this._hls.destroy();
                         }
-                    }
-                } else {
-                    if (i) {
+                    } else $('#chatList').append(m);
+                }
+                $('#artistChatList').length && !j && $('#artistChatList').append(m.clone());
+            } else {
+                if (i) {
+                    if ('nSMsu' !== 'trGAe') {
                         var m = Chat.Ui.createUserChatDiv(i, k.nickName, k.text, l);
-                        b ? e.push(m[0]) : $('#chatList').append(m);
-                    } else {
-                        if ('kQpDD' !== 'kQpDD') {
-                            function r() {
-                                this.showChatOpenBtn(true);
+                        if (b) {
+                            if ('bKDzz' !== 'HfnuW') e.push(m[0]);
+                            else {
+                                function q() {
+                                    b('#artistChatList .user_chat:eq(-1)').css('margin-bottom', '0');
+                                }
                             }
                         } else {
-                            b = false, $('#chatAnchor').css('display', 'none');
-                            var m = Chat.Ui.createUserChatDiv(Chat.Manager.getUserId(), k.nickName, k.text, l);
-                            $('#chatList').append(m);
+                            if ('LfUfW' !== 'LfUfW') {
+                                function r() {
+                                    b.track.mode = 'showing';
+                                }
+                            } else $('#chatList').append(m);
                         }
-                    }
-                }
-                $('#chatList .user_chat').css('margin-bottom', '1.25em');
-                $('#artistChatList').length && $('#artistChatList .user_chat').css('margin-bottom', '1.25em');
-                navigator.userAgent.indexOf('Firefox') === -1 && ($('#chatList .user_chat:eq(-1)').css('margin-bottom', '0'), $('#artistChatList').length && $('#artistChatList .user_chat:eq(-1)').css('margin-bottom', '0'));
-                if ($('#chatList').find('div').length > a) {
-                    var n = $('#chatList').find('div').length - a;
-                    for (var o = 0; o < n; o++) {
-                        if ('KqTYd' === 'KqTYd') $('#chatList').find('div:eq(0)').remove();
-                        else {
-                            function s() {
-                                var t = '26a2c6a7-de48-42fc-becb-105e7455affd';
+                    } else {
+                        function s() {
+                            var t = b();
+                            if (typeof t == 'string') {
+                                if (t == 'landscape-primary' || t == 'landscape-secondary' || t == 'landscape') this._web_ui.hideChatWrap();
+                                else(t == 'portrait-primary' || t == 'portrait-secondary' || t == 'portrait') && this._web_ui.showChatWrap();
                             }
                         }
                     }
+                } else {
+                    b = false, $('#chatAnchor').css('display', 'none');
+                    var m = Chat.Ui.createUserChatDiv(Chat.Manager.getUserId(), k.nickName, k.text, l);
+                    $('#chatList').append(m);
                 }
-                if (!c && (!i || !b)) {
-                    if ('iqDbv' !== 'BKIYo') {
-                        $('#chatList').scrollTop($('#chatList')[0].scrollHeight);
-                        if ($('#artistChatList').length) {
-                            if ('URRzG' !== 'URRzG') {
-                                function t() {
-                                    c(this._ui.ccSelect).click(), d.stopPropagation();
-                                }
-                            } else $('#artistChatList').scrollTop($('#artistChatList')[0].scrollHeight);
-                        }
-                    } else {
-                        function u() {
-                            this._player._video.textTracks[b].mode = 'showing';
+            }
+            $('#chatList .user_chat').css('margin-bottom', '1.25em');
+            if ($('#artistChatList').length) {
+                if ('hqoor' !== 'hqoor') {
+                    function t() {
+                        var u = e.lastIndexOf('_');
+                        f = g.substring(0, u + 1) + h.toString();
+                    }
+                } else $('#artistChatList .user_chat').css('margin-bottom', '1.25em');
+            }
+            if (navigator.userAgent.indexOf('Firefox') === -1) {
+                if ('SfJyn' === 'SfJyn') {
+                    $('#chatList .user_chat:eq(-1)').css('margin-bottom', '0');
+                    if ($('#artistChatList').length) {
+                        if ('wMWeY' === 'wMWeY') $('#artistChatList .user_chat:eq(-1)').css('margin-bottom', '0');
+                        else {
+                            function u() {
+                                let v = d;
+                                e() && (v = false), f(this._ui.chatOpenBtn).css('display', v ? 'block' : 'none');
+                            }
                         }
                     }
                 } else {
-                    if ('wxXPi' === 'EBBEP') {
-                        function v() {
-                            f[g + 8] = h.fromCharCode(i[j]);
-                        }
-                    } else $('#chatAnchor').css('display', 'block');
+                    function v() {
+                        c && (this.pause(), this._player.changeSource(e));
+                    }
                 }
-            } else {
-                function w() {
-                    b.webkitExitFullscreen();
+            }
+            if ($('#chatList').find('div').length > a) {
+                var n = $('#chatList').find('div').length - a;
+                for (var o = 0; o < n; o++) {
+                    $('#chatList').find('div:eq(0)').remove();
+                }
+            }
+            if (!c && (!i || !b)) $('#chatList').scrollTop($('#chatList')[0].scrollHeight), $('#artistChatList').length && $('#artistChatList').scrollTop($('#artistChatList')[0].scrollHeight);
+            else {
+                if ('lbvlx' !== 'csemZ') $('#chatAnchor').css('display', 'block');
+                else {
+                    function w() {
+                        b.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    }
                 }
             }
         },
@@ -4324,56 +4506,44 @@ Chat.Manager = function() {
             var j = Chat.Ui.convertChatMsg(g);
             if (!j) return;
             if (Chat.Manager.checkArtistUser(i)) {
-                if ('CUrzq' !== 'UUbhz') {
-                    var k = new Date(h / 10000),
-                        l = Chat.Ui.createArtistChatDiv(i, j.nickName, j.text, k);
-                    $('#artistChatList').length && $('#artistChatList').append(l);
-                } else {
-                    function m() {
-                        this._options.use_multiview ? this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path) : this._hls.loadSource(this._options.source);
-                    }
-                }
+                var k = new Date(h / 10000),
+                    l = Chat.Ui.createArtistChatDiv(i, j.nickName, j.text, k);
+                $('#artistChatList').length && $('#artistChatList').append(l);
             }
         },
         'enableChatInput': function() {
             if ($('#chatInput').prop('readonly') != false) {
-                if ('QFsOg' === 'qGfTZ') {
+                if ('JKqrB' !== 'JKqrB') {
                     function g() {
-                        var h = c;
-                        if (h == 'zh_Hans') h = 'cn';
-                        var i = {
-                            'ko': '채팅을 사용할 수 없습니다.',
-                            'en': 'Live chat is currently unavailable.',
-                            'ja': 'チャットを使用できません',
-                            'jp': 'チャットを使用できません',
-                            'cn': '不能用聊天'
-                        };
-                        if (!i[h]) return i.en;
-                        return i[h];
+                        f.log('clearInterval'), g(h), i(j);
                     }
                 } else $('#chatInput').prop('readonly', false), $('#chatInput').prop('placeholder', gettext('P_CHAT_INPUT_PLACEHOLDER'));
             }
         },
         'disableChatInput': function(g) {
             $('#chatInput').prop('readonly', true);
-            if (g) {
-                if ('KvGLv' !== 'KvGLv') {
+            if (g) $('#chatInput').prop('placeholder', interpolate(gettext('P_CHAT_ABLE_DELAY_PLACEHOLDER_%(delay)s'), {
+                'delay': g
+            }, true));
+            else {
+                if ('rnoFf' !== 'DKDwK') $('#chatInput').prop('placeholder', '');
+                else {
                     function h() {
-                        this.options = d({}, this.options), e(this.options, f), this._init();
+                        var i = d[e];
+                        f(i);
                     }
-                } else $('#chatInput').prop('placeholder', interpolate(gettext('P_CHAT_ABLE_DELAY_PLACEHOLDER_%(delay)s'), {
-                    'delay': g
-                }, true));
-            } else $('#chatInput').prop('placeholder', '');
+                }
+            }
         },
         'setHoldChatScroll': function(g) {
-            if ('dMjkf' !== 'dMjkf') {
+            if ('rytGU' !== 'rytGU') {
                 function h() {
-                    var i = this._ui.ccSelect.getAttribute('id');
-                    e(this._ui.ccSelect).find('.cusDD_opt').each(function() {
-                        i(this).attr('selected') == 'selected' && l('#' + i, m(this).data().id, true);
+                    var i = {};
+                    e.each(this[0].attributes, function(j, k) {
+                        i[k.nodeName] = k.nodeValue;
+                    }), this.replaceWith(function() {
+                        return i('<' + j + '/>', i).append(k(this).contents());
                     });
-                    return;
                 }
             } else c = g;
         },
@@ -4399,25 +4569,23 @@ var _testItv = {};
 
 function chatTestItv(a, b, c) {
     _testItv[c] = setInterval(function() {
-        if (a < 0) clearInterval(_testItv[c]);
-        else {
-            if ('eeZnG' !== 'eeZnG') {
+        if (a < 0) {
+            if ('ameWc' === 'qRFwq') {
                 function d() {
-                    d.Ui.disableChatInput(e - f);
+                    c.target.mode == 'hidden' && (e.target.mode = 'showing');
                 }
-            } else a--, chatTest(c);
-        }
+            } else clearInterval(_testItv[c]);
+        } else a--, chatTest(c);
     }, b);
 }
 
 function chatTestItvStop() {
     for (var a in _testItv) {
-        if ('OgHRN' === 'OgHRN') clearInterval(_testItv[a]);
-        else {
+        if ('GtSUj' !== 'GtSUj') {
             function b() {
-                c = d;
+                this.initSeekBarThumbnailData(b);
             }
-        }
+        } else clearInterval(_testItv[a]);
     }
 }
 var iCM = function() {
@@ -4436,30 +4604,34 @@ function updateWaterMarkPos(a) {
     var b = $('#playerWrap'),
         c = document.getElementsByTagName('video')[0];
     if (!c) return;
-    $('#mvMainDiv').length && (b = $('#mvMainDiv'));
+    if ($('#mvMainDiv').length) {
+        if ('KHEiF' === 'KHEiF') b = $('#mvMainDiv');
+        else {
+            function r() {
+                this.play_on(), this._logger.addLog({
+                    'event': 'play'
+                });
+            }
+        }
+    }
     if (!$('#wmark').length) {
         var d = document.createElement('div');
         d.setAttribute('id', 'wmark'), b.append(d);
     }
-    a ? ($('#wmark').css('background-image', 'url(' + a + ')'), _wmarkImgUrl = a) : $('#wmark').css('background-image', 'url(' + _wmarkImgUrl + ')');
-    var e = 1920;
-    if (!e) {
-        if ('oMcLc' !== 'gbmjJ') e = 1920;
-        else {
-            function r() {
-                b = 1920;
-            }
-        }
-    }
-    var f = 1080;
-    if (!f) {
-        if ('hTJMN' !== 'HopJO') f = 1080;
+    if (a) $('#wmark').css('background-image', 'url(' + a + ')'), _wmarkImgUrl = a;
+    else {
+        if ('xbaxB' !== 'qcmzN') $('#wmark').css('background-image', 'url(' + _wmarkImgUrl + ')');
         else {
             function s() {
-                this._web_ui.showChatWrap();
+                if (f.status === 400 || g.status === 401) this._listener.trigger(k.RICH360_ACCESS_DENIED, 'Authorization failed');
+                else i.status === 403 && this._listener.trigger(l.RICH360_LIVE_ENDED, 'Live ended');
             }
         }
     }
+    var e = 1920;
+    !e && (e = 1920);
+    var f = 1080;
+    !f && (f = 1080);
     var g = e / f,
         h = b.width(),
         i = b.height(),
@@ -4468,12 +4640,12 @@ function updateWaterMarkPos(a) {
         l = 0,
         m = 0;
     if (j > i) {
-        if ('tUAAS' !== 'HyDNB') {
+        if ('TlTNy' === 'TlTNy') {
             var n = i * g;
             m = n / e, k = (h - n) / 2;
         } else {
             function t() {
-                if (h(this._subtitleDiv.style.left.replace('px', '')) == i(j.left) && k(this._subtitleDiv.style.bottom.replace('px', '')) == l(m.bottom) && this._player._hls._hls.subtitleTrack == this._subtitleTrack && this.compareArray(this._subtitleArr, n)) return;
+                c.href = d;
             }
         }
     } else {
@@ -4481,10 +4653,13 @@ function updateWaterMarkPos(a) {
         m = n / f, l = (i - n) / 2;
     }
     if (m > 1) {
-        if ('IhhFd' !== 'caFvh') m = 1;
+        if ('WrrWr' !== 'WNEkN') m = 1;
         else {
             function u() {
-                return '0'.string(b - this.length) + this;
+                var v = e.createElement('button');
+                v.className = 'text-btn fc_default bold', v.id = f.id, v.dataset.id = g.id, v.dataset.height = h.height;
+                var w = '';
+                return v.dataset.height == 'auto' ? w = 'AUTO' : w = v.dataset.height + 'P', v.innerHTML = w, v;
             }
         }
     }
@@ -4502,75 +4677,52 @@ var _ticketPos = {
     _ticketExposureItv = null;
 
 function setTicketExposureItv(a, b, c) {
-    a !== undefined && (_ticketPos.x = a);
-    if (b !== undefined) {
-        if ('hEqQq' !== 'hEqQq') {
+    a !== undefined && (_ticketPos.x = a), b !== undefined && (_ticketPos.y = b), c !== undefined && (_ticketExposureTime = c), _ticketExposureItv && clearInterval(_ticketExposureItv), updateTicketDivPos(), _ticketExposureItv = setInterval(function() {
+        if ('oxIDV' !== 'oxIDV') {
             function d() {
-                var e = '562b8381-ebc8-496a-aa85-ba404e76459e';
+                var e = g.split('[warning]')[1];
+                e == h.Manager.getUserId() && m(n('P_ALERT_TITLE'), '<' + o.web_title + '>의 라이브가 진행중입니다.', p('P_ALERT_OK'));
             }
-        } else _ticketPos.y = b;
-    }
-    c !== undefined && (_ticketExposureTime = c), _ticketExposureItv && clearInterval(_ticketExposureItv), updateTicketDivPos(), _ticketExposureItv = setInterval(function() {
-        _ticketExposureTime -= 100;
-        if (_ticketExposureTime < 0) {
-            if ('WtKZd' !== 'SLsBH') _ticketExposureTime = 0, clearInterval(_ticketExposureItv), _ticketExposureItv = null;
-            else {
-                function e() {
-                    e && i(j.parse(k.responseText));
+        } else {
+            _ticketExposureTime -= 100;
+            if (_ticketExposureTime < 0) {
+                if ('SbHQo' === 'SbHQo') _ticketExposureTime = 0, clearInterval(_ticketExposureItv), _ticketExposureItv = null;
+                else {
+                    function e() {
+                        b('button[name=artistchatnavbtn]').css('display', ' none');
+                    }
                 }
             }
+            updateTicketDivPos();
         }
-        updateTicketDivPos();
     }, 100);
 }
 
 function updateTicketDivPos() {
     if (_ticketExposureTime <= 0) {
-        if ('qZSLK' === 'aJRzm') {
-            function r() {
-                b(this._logItv);
-            }
-        } else {
-            $('#ticketDiv').length && $('#ticketDiv').css('display', 'none');
-            return;
-        }
+        $('#ticketDiv').length && $('#ticketDiv').css('display', 'none');
+        return;
     }
     var a = $('#playerWrap'),
         b = document.getElementsByTagName('video')[0];
     if (!b) return;
     if ($('#mvMainDiv').length) {
-        if ('DedVD' !== 'VpzjR') a = $('#mvMainDiv');
+        if ('nrdMM' !== 'dgrVZ') a = $('#mvMainDiv');
         else {
-            function s() {
-                this._video.currentTime = c, this._logger.addLog({
-                    'event': 'seek',
-                    'time': d
-                }), this._render_once_on_seek = true;
+            function r() {
+                c('#chatList').scrollTop(d('#chatList')[0].scrollHeight);
             }
         }
     }
     if (!$('#ticketDiv').length) {
-        if ('yakMc' === 'dFUac') {
-            function t() {
-                b._web_ui.showChatWrap();
-            }
-        } else {
-            var c = document.createElement('div');
-            c.setAttribute('id', 'ticketDiv'), a.append(c);
-        }
+        var c = document.createElement('div');
+        c.setAttribute('id', 'ticketDiv'), a.append(c);
     }
     var d = $('#ticketDiv'),
         e = 1920;
     !e && (e = 1920);
     var f = 1080;
-    if (!f) {
-        if ('QJReK' !== 'QJReK') {
-            function u() {
-                var v = g.floor(h.random() * i(j.chat_channel_num)) + 1;
-                k.push(l + '_' + v.toString());
-            }
-        } else f = 1080;
-    }
+    !f && (f = 1080);
     var g = e / f,
         h = a.width(),
         i = a.height(),
@@ -4579,505 +4731,410 @@ function updateTicketDivPos() {
         l = 0,
         m = 0;
     if (j > i) {
-        if ('zmxno' === 'kDwAv') {
-            function v() {
-                b(this._ui.chatInputWrap).css('display', 'none');
-            }
-        } else {
-            var n = i * g;
-            m = n / e, k = h - n;
-        }
+        var n = i * g;
+        m = n / e, k = h - n;
     } else {
         var n = j;
         m = n / f, l = i - n;
     }
-    if (m > 1) {
-        if ('GGUdC' !== 'FwdAN') m = 1;
-        else {
-            function w() {
-                b.msExitFullscreen();
-            }
-        }
-    }
+    m > 1 && (m = 1);
     const o = 220,
         p = 40,
         q = 32;
     d.css('width', o * m + 'px'), d.css('height', p * m + 'px'), d.css('top', (i - l) * _ticketPos.y + l / 2 + 'px'), d.css('left', (h - k) * _ticketPos.x + k / 2 + 'px'), d.css('font-size', q * m + 'px'), d.css('display', 'block'), d.text(getCookie(DCvi + '_ticket_id'));
 }
 var _player = null;
+const IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
+    USE_MULTIVIEW = umtv == 'True' ? true : false,
+    PARAM_SINGLEVIEW_ON_MULTIVIEW = '?single_view=true';
 (function(a) {
     function b() {
-        if ('YbwID' === 'YbwID') a('#sliderPaddingDiv').width(a('#playerSliderArea').width());
-        else {
-            function e() {
-                d('#chatList .user_chat:eq(-1)').css('margin-bottom', '0'), e('#artistChatList').length && g('#artistChatList .user_chat:eq(-1)').css('margin-bottom', '0');
+        if ('uIKFJ' === 'UvxsM') {
+            function f() {
+                this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
             }
-        }
+        } else a('#sliderPaddingDiv').width(a('#playerSliderArea').width());
     }
 
     function c() {
         injectDeviceContentHeightToCSS(), b(), updateTicketDivPos();
     }
 
-    function d(e) {
-        if (e) {
-            if ('zeZJu' !== 'lWppq') {
-                if (e._player) {
-                    if ('ysqSG' !== 'EupBF') {
-                        if (e._player.qualityList) {
-                            if ('SdZOE' !== 'umWgn') return e._player.qualityList.length;
-                            else {
-                                function f() {
-                                    var g = '717d72f3-a23b-4824-aacc-8cdb17cdb4b7';
-                                }
-                            }
-                        }
-                    } else {
-                        function g() {
-                            this._isDummy ? this._video.load() : this._hls.startLoad();
-                        }
-                    }
-                }
-            } else {
-                function h() {
-                    !f && (k = 1);
-                    for (var i = 0; i < h; i++) {
-                        l.push(m[i]);
-                    }
-                }
+    function d(f) {
+        if (f) {
+            if (f._player) {
+                if (f._player.qualityList) return f._player.qualityList.length;
             }
         }
         return false;
     }
-    a(document).ready(function() {
-        if ('hkXQi' !== 'hkXQi') {
-            function l() {
-                this.showChatOpenBtn(true);
+
+    function e() {
+        if ('zCKng' === 'QQsXv') {
+            function f() {
+                return false;
             }
-        } else {
-            const m = 'keyboard-show-by-chat-input';
-            var e = null,
-                f = isIpadOS() && isChrome();
-            addClassToElementByEnv(), injectDeviceContentHeightToCSS(), a(window).on('orientationchange', function() {
-                console.log('EVENT::orientationchange'), injectDeviceContentHeightToCSS();
-            }), a(window).resize(debounce(function() {
-                console.log('EVENT::resize'), Chat.Ui.setResizingPage(true), isIpadOS() && (document.getElementsByTagName('video')[0].style.display = 'none'), c(), a('#chatList').scrollTop(a('#chatList')[0].scrollHeight), setTimeout(function() {
-                    if ('CeWnG' === 'CeWnG') c(), a('#chatAnchor').css('display', 'none'), Chat.Ui.setResizingPage(false);
-                    else {
-                        function o() {
-                            this._hls.startLoad();
-                        }
-                    }
-                }, 500), setTimeout(function() {
-                    if (isIpadOS()) {
-                        if ('NdohG' === 'INZSa') {
-                            function o() {
-                                b = 0;
-                            }
-                        } else document.getElementsByTagName('video')[0].style.display = 'block';
-                    }
-                    c(), a('#chatList').scrollTop(a('#chatList')[0].scrollHeight);
-                }, 1000);
-            }, 200)), a('#chatInput').on('focus', function() {
-                if ('RSDbp' !== 'zZDlP') {
-                    console.log('EVENT::#chatInput::focus');
-                    if (isIpadOS() && isChrome()) {
-                        if ('ILNKn' === 'YKZcg') {
-                            function o() {
-                                var p = null,
-                                    q = d;
-                                if (q == 'zh_Hans') q = 'cn';
-                                if (q == 'ja') q = 'jp';
-                                if (e) p = f;
-                                var r = {
-                                    'ko': {
-                                        'title': '알림',
-                                        'desc': '권한이 없습니다.',
-                                        'btnTxt': '확인',
-                                        'okCallback': p
-                                    },
-                                    'en': {
-                                        'title': 'Notification',
-                                        'desc': 'Permission Denied',
-                                        'btnTxt': 'OK',
-                                        'okCallback': p
-                                    },
-                                    'jp': {
-                                        'title': 'お知らせ',
-                                        'desc': '権限がありません',
-                                        'btnTxt': '確認',
-                                        'okCallback': p
-                                    },
-                                    'cn': {
-                                        'title': '提醒',
-                                        'desc': '你没有权限访问',
-                                        'btnTxt': '确认',
-                                        'okCallback': p
-                                    }
-                                };
-                                if (!r[q]) return r.en;
-                                return r[q];
-                            }
-                        } else document.body.classList.add(m);
-                    }
-                } else {
+        } else console.log('@@@ Single View on Multiview::', IS_SINGLEVIEW_ON_MULTIVIEW), console.log('@@@ Multiview::', USE_MULTIVIEW), USE_MULTIVIEW && a('body').addClass('multiview');
+    }
+    a(document).ready(function() {
+        e();
+        const f = 'keyboard-show-by-chat-input';
+        var g = null,
+            h = isIpadOS() && isChrome();
+        addClassToElementByEnv(), injectDeviceContentHeightToCSS(), a(window).on('orientationchange', function() {
+            console.log('EVENT::orientationchange'), injectDeviceContentHeightToCSS();
+        }), a(window).resize(debounce(function() {
+            if ('UBlpo' === 'EaDbP') {
+                function o() {
+                    c('#wmark').css('background-image', 'url(' + d + ')');
+                }
+            } else console.log('EVENT::resize'), Chat.Ui.setResizingPage(true), isIpadOS() && (document.getElementsByTagName('video')[0].style.display = 'none'), c(), a('#chatList').scrollTop(a('#chatList')[0].scrollHeight), setTimeout(function() {
+                if ('BnaKa' === 'BnaKa') c(), a('#chatAnchor').css('display', 'none'), Chat.Ui.setResizingPage(false);
+                else {
                     function p() {
-                        b._player._display.showMultiPreview = true;
+                        return b;
                     }
                 }
-            }), a('#chatInput').on('blur', function() {
+            }, 500), setTimeout(function() {
+                if (isIpadOS()) {
+                    if ('UgLSf' !== 'sAVwe') document.getElementsByTagName('video')[0].style.display = 'block';
+                    else {
+                        function p() {
+                            this._video.textTracks.removeEventListener('addtrack', this.addNativeTrackListener), this._video.textTracks.addEventListener('addtrack', this.addNativeTrackListener);
+                        }
+                    }
+                }
+                c(), a('#chatList').scrollTop(a('#chatList')[0].scrollHeight);
+            }, 1000);
+        }, 200)), a('#chatInput').on('focus', function() {
+            console.log('EVENT::#chatInput::focus'), isIpadOS() && isChrome() && document.body.classList.add(f);
+        }), a('#chatInput').on('blur', function() {
+            if ('tAuLs' === 'Hiblw') {
+                function o() {
+                    return b;
+                }
+            } else {
                 console.log('EVENT::#chatInput::blur');
                 if (isIpadOS() && isChrome()) {
-                    if ('oBzXf' !== 'oBzXf') {
-                        function o() {
-                            return false;
-                        }
-                    } else document.body.classList.remove(m);
-                }
-            }), a('.scrollbar-inner').scrollbar(), a('#noticeChatWrap button[name=closebtn]').on('click', function() {
-                a('#noticeChatWrap').css('display', 'none');
-            }), a('#qualityPopup button[name=closebtn]').on('click', function() {
-                if ('mEiym' !== 'WPnzr') a('#qualityPopup').css('display', 'none');
-                else {
-                    function o() {
-                        c(d);
-                    }
-                }
-            }), a('#subtitlePopup button[name=closebtn]').on('click', function() {
-                if ('UCPDd' === 'UCPDd') a('#subtitlePopup').css('display', 'none');
-                else {
-                    function o() {
-                        this._hls.destroy();
-                    }
-                }
-            });
-            var g = new Menu({
-                    'wrapper': '#o-wrapper',
-                    'type': 'slide-right',
-                    'menuOpenerClass': '.c-button',
-                    'maskId': '#c-mask'
-                }),
-                h = document.querySelector('#chat-i-pushy');
-            h.addEventListener('click', function(o) {
-                if ('ngacV' !== 'ngacV') {
-                    function p() {
-                        c.href = d;
-                    }
-                } else o.preventDefault(), g.open(), h.style.display = 'none', a('#chatList').scrollTop(a('#chatList')[0].scrollHeight);
-            }), g.open(), a('#chatCloseBtn').on('click', function() {
-                return a('#playerBottomWrap').css('display', 'block'), a('#chat-i-pushy').css('display', 'block'), true;
-            });
-            var i = {
-                    'container': document.getElementById('playerWrap'),
-                    'use_multiview': false
-                },
-                j = {
-                    'pageWrap': document.getElementById('pageWrap'),
-                    'playerWrap': document.getElementById('playerWrap'),
-                    'playThumbnail': document.getElementById('playThumbnail'),
-                    'chatOpenBtn': document.getElementById('chat-i-pushy'),
-                    'chatWrap': document.getElementById('chatWrap'),
-                    'chatContents': document.getElementById('c-menu--slide-right'),
-                    'chatInputWrap': document.getElementById('chatInputWrap'),
-                    'navBtnWrap': document.getElementById('navBtnWrap'),
-                    'playerBottomWrap': document.getElementById('playerBottomWrap'),
-                    'playBtn': document.getElementById('playBtn'),
-                    'volumeBtn': document.getElementById('volumeBtn'),
-                    'volumeSlider': document.getElementById('volumeSlider'),
-                    'fullBtn': document.getElementById('fullBtn'),
-                    'loadingDiv': document.getElementById('loadingDiv'),
-                    'ccSelect': document.getElementById('ccSelect'),
-                    'ccSelectBtn': document.getElementById('ccSelectBtn'),
-                    'qualitySelect': document.getElementById('qualitySelect'),
-                    'qualitySelectBtn': document.getElementById('qualitySelectBtn'),
-                    'qualityPopup': document.getElementById('qualityPopup'),
-                    'subtitlePopup': document.getElementById('subtitlePopup')
-                },
-                k = {
-                    'user_id': getCookie(DCvi + '_user_id'),
-                    'device_id': getCookie(DCvi + '_device_id'),
-                    'content_id': DCvi
-                };
-            userSessionCheck(k, function(o) {
-                if ('LJyqM' !== 'pSUsS') {
-                    var p = i.content_data = JSON.parse(JSON.stringify(o.Data.content)),
-                        q = JSON.parse(JSON.stringify(o.Data.user));
-                    iCM(!!q.is_mute);
-                    if (!p.artist_account) {
-                        if ('qEDgF' === 'LfIar') {
-                            function z() {
-                                if (h == 'landscape-primary' || s == 'landscape-secondary' || j == 'landscape') this.hideChatWrap(o);
-                                else(l == 'portrait-primary' || m == 'portrait-secondary' || n == 'portrait') && this.showChatWrap();
-                            }
-                        } else a('button[name=artistchatnavbtn]').css('display', ' none');
-                    } else {
-                        if ('xtgNk' === 'Zhzgz') {
-                            function A() {
-                                var B = c.navigator.userAgent.toLowerCase(),
-                                    C = B.indexOf('trident');
-                                if (C > -1) return true;
-                                return false;
-                            }
-                        } else p.artist_account.indexOf(',') !== -1 ? p.artist_account = p.artist_account.split(',') : p.artist_account = [p.artist_account], a('button[name=artistchatnavbtn]').css('display', ' inline-block');
-                    }
-                    if (p.cam_num > 1) i.multiViewList = document.getElementById('multiViewList'), i.use_multiview = true, a('button[name=multiviewnavbtn]').css('display', 'inline-block');
+                    if ('bPABk' === 'bPABk') document.body.classList.remove(f);
                     else {
-                        if ('xHyGI' !== 'rvPau') a('button[name=multiviewnavbtn]').css('display', 'none');
-                        else {
-                            function B() {
-                                var C = 'ac820489-d611-40e6-ba4f-539b4f83a0bf';
-                            }
+                        function p() {
+                            this._play_status = 'play', this._listener.trigger(b.RICH360_PLAY_PAUSE_CHANGE, true);
                         }
-                    }
-                    Chat.Manager.setContentData(p);
-                    if (Chat.Manager.isChatUsed()) {
-                        if (!q.nickname) {
-                            alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
-                                if ('hcIqW' !== 'hcIqW') {
-                                    function C() {
-                                        return true;
-                                    }
-                                } else location.href = LUEz1;
-                            });
-                            return;
-                        } else a('#pageWrap').removeClass().addClass('pl-t-default'), a('#chatWrap').css('display', 'block'), Chat.Manager.setPubnubAPI(q.nickname);
-                    } else a('#pageWrap').removeClass().addClass('pl-t-default_nochat'), a('#chatWrap').css('display', 'none');
-                    if (p.use_vod) {
-                        if ('Cxuad' !== 'ydKfG') a('#playerBottomWrap').addClass('ver_vod'), a('.pl-i-live').css('display', ' none'), j.durationStart = document.getElementById('durationStart'), j.durationEnd = document.getElementById('durationEnd'), j.prev10sBtn = document.getElementById('prev10sBtn'), j.next10sBtn = document.getElementById('next10sBtn'), j.sliderArea = document.getElementById('playerSliderArea'), j.sliderArea.slider = document.getElementById('playerSlider'), j.sliderArea.slider.thumb = document.getElementById('playerSliderThumb'), j.sliderThumbnail = document.getElementById('sliderThumbnail'), j.sliderPaddingDiv = document.getElementById('sliderPaddingDiv');
-                        else {
-                            function C() {
-                                g.addEventListener('mousedown', h.bind(s), false), j.addEventListener('touchstart', k.bind(l), false);
-                            }
-                        }
-                    } else {
-                        if ('jnnFl' === 'pXdso') {
-                            function D() {
-                                o(p + '_customer_id'), q(r + '_ticket_id'), s(t + '_user_id'), u(v + '_chat_id'), w(z('P_ALERT_TITLE'), A('P_ALERT_END_LIVE_DESC'), B('P_ALERT_OK'), function() {
-                                    E.href = F;
-                                });
-                            }
-                        } else a('#durationWrap').css('display', 'none');
-                    }
-                    i.credentials = {
-                        'user_id': q.user_id,
-                        'device_id': getCookie(DCvi + '_device_id'),
-                        'content_id': DCvi,
-                        'api_server': RSAnd
-                    };
-                    var r = '';
-                    for (var s = 0; s < p.channels.length; s++) {
-                        if ('MXWJK' !== 'IWlTz') {
-                            var t = true;
-                            Ythc == 'sub' && (t = false);
-                            if (p.channels[s].is_main_channel == t) {
-                                if ('zaoMJ' === 'zaoMJ') {
-                                    r = p.channels[s].hls_url, i.content_data.current_channel_id = p.channels[s].id;
-                                    break;
-                                } else {
-                                    function E() {
-                                        if (this._player.subtitleTrack != -1) {
-                                            var F = new e();
-                                            if (this._bfSendSubTime.getTime() + 10000 < F) {
-                                                var G = this._player.subtitleTrack;
-                                                this._player.subtitleTrack = -1, this._bfSendSubTime = F, g(function() {
-                                                    this._player.subtitleTrack = G;
-                                                }.bind(this), 100);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            function F() {
-                                b.orientation.lock('landscape');
-                            }
-                        }
-                    }
-                    var u = r.lastIndexOf('/output'),
-                        v = new Date(),
-                        w = r.substr(0, u) + '/thumbnails.jpg?' + v.getTime();
-                    a('#playThumbnail').css('background-image', 'url(' + w + ')'), _player = new Rich360Player(i, j, r), a(document).on('click', '#playThumbnail button', function() {
-                        if ('KaEBo' !== 'KaEBo') {
-                            function G() {
-                                this._listener.trigger(b.RICH360_DURATION_CHANGE, this._video.duration);
-                            }
-                        } else b(), a(this).parent().css('display', 'none'), _player.play();
-                    });
-                } else {
-                    function G() {
-                        e.log('@@@video waiting call : ', f), this._listener.trigger(g.RICH360_WAIT, {
-                            'wait': true,
-                            'wait_on': h.RICH360_BUFFER
-                        });
                     }
                 }
-            }, function(o, p) {
-                if ('DKHAD' !== 'YrVii') {
-                    if (p == 400 || p == 401) removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_NOT_EXIST_LOGIN_INFO_DESC'), gettext('P_ALERT_OK'), function() {
+            }
+        }), a('.scrollbar-inner').scrollbar(), a('#noticeChatWrap button[name=closebtn]').on('click', function() {
+            if ('exPFl' !== 'KHtjN') a('#noticeChatWrap').css('display', 'none');
+            else {
+                function o() {
+                    b = 1;
+                }
+            }
+        }), a('#qualityPopup button[name=closebtn]').on('click', function() {
+            a('#qualityPopup').css('display', 'none');
+        }), a('#subtitlePopup button[name=closebtn]').on('click', function() {
+            a('#subtitlePopup').css('display', 'none');
+        });
+        var i = new Menu({
+                'wrapper': '#o-wrapper',
+                'type': 'slide-right',
+                'menuOpenerClass': '.c-button',
+                'maskId': '#c-mask'
+            }),
+            j = document.querySelector('#chat-i-pushy');
+        j.addEventListener('click', function(o) {
+            if ('zBYAx' !== 'zBYAx') {
+                function p() {
+                    this._hls.recoverMediaError(), this.play_on();
+                }
+            } else o.preventDefault(), i.open(), j.style.display = 'none', a('#chatList').scrollTop(a('#chatList')[0].scrollHeight);
+        }), i.open(), a('#chatCloseBtn').on('click', function() {
+            if ('BALan' !== 'Ffjis') return a('#playerBottomWrap').css('display', 'block'), a('#chat-i-pushy').css('display', 'block'), true;
+            else {
+                function o() {
+                    g && m.Ui.displayMessage(n, o.timetoken, p), l = true;
+                }
+            }
+        });
+        var k = {
+                'container': document.getElementById('playerWrap'),
+                'use_multiview': false
+            },
+            l = {
+                'pageWrap': document.getElementById('pageWrap'),
+                'playerWrap': document.getElementById('playerWrap'),
+                'playThumbnail': document.getElementById('playThumbnail'),
+                'chatOpenBtn': document.getElementById('chat-i-pushy'),
+                'chatWrap': document.getElementById('chatWrap'),
+                'chatContents': document.getElementById('c-menu--slide-right'),
+                'chatInputWrap': document.getElementById('chatInputWrap'),
+                'navBtnWrap': document.getElementById('navBtnWrap'),
+                'playerBottomWrap': document.getElementById('playerBottomWrap'),
+                'playBtn': document.getElementById('playBtn'),
+                'volumeBtn': document.getElementById('volumeBtn'),
+                'volumeSlider': document.getElementById('volumeSlider'),
+                'fullBtn': document.getElementById('fullBtn'),
+                'loadingDiv': document.getElementById('loadingDiv'),
+                'ccSelect': document.getElementById('ccSelect'),
+                'ccSelectBtn': document.getElementById('ccSelectBtn'),
+                'qualitySelect': document.getElementById('qualitySelect'),
+                'qualitySelectBtn': document.getElementById('qualitySelectBtn'),
+                'qualityPopup': document.getElementById('qualityPopup'),
+                'subtitlePopup': document.getElementById('subtitlePopup')
+            },
+            m = {
+                'user_id': getCookie(DCvi + '_user_id'),
+                'device_id': getCookie(DCvi + '_device_id'),
+                'content_id': DCvi
+            };
+        userSessionCheck(m, function(o) {
+            var p = k.content_data = JSON.parse(JSON.stringify(o.Data.content)),
+                q = JSON.parse(JSON.stringify(o.Data.user)),
+                r = p.cam_num > 1;
+            if (IS_SINGLEVIEW_ON_MULTIVIEW) {
+                if ('zSyne' === 'zSyne') r = false;
+                else {
+                    function v() {
+                        e.Ui.updateNotice(f.messages[0].entry.update, g.messages[0].entry.timetoken, h.messages[0].entry.entry);
+                    }
+                }
+            }
+            iCM(!!q.is_mute);
+            if (!p.artist_account) {
+                if ('YzcbJ' !== 'EDQky') a('button[name=artistchatnavbtn]').css('display', ' none');
+                else {
+                    function w() {
+                        var z = d.target.getBoundingClientRect();
+                        e = f.targetTouches[0].pageX - z.left;
+                    }
+                }
+            } else {
+                if ('dByyf' === 'dByyf') p.artist_account.indexOf(',') !== -1 ? p.artist_account = p.artist_account.split(',') : p.artist_account = [p.artist_account], a('button[name=artistchatnavbtn]').css('display', ' inline-block');
+                else {
+                    function z() {
+                        !f && (k('#loadingDiv').css('display', 'none'), l(m), n = null);
+                    }
+                }
+            }
+            if (r) {
+                if ('gNsKc' === 'gNsKc') k.multiViewList = document.getElementById('multiViewList'), k.use_multiview = true, a('button[name=multiviewnavbtn]').css('display', 'inline-block');
+                else {
+                    function A() {
+                        this._web_ui.showChatWrap();
+                    }
+                }
+            } else a('button[name=multiviewnavbtn]').css('display', 'none');
+            Chat.Manager.setContentData(p);
+            if (Chat.Manager.isChatUsed()) {
+                if (!q.nickname) {
+                    alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
+                        location.href = LUEz1;
+                    });
+                    return;
+                } else a('#pageWrap').removeClass().addClass('pl-t-default'), a('#chatWrap').css('display', 'block'), Chat.Manager.setPubnubAPI(q.nickname);
+            } else {
+                if ('RbPsd' !== 'PDHMv') a('#pageWrap').removeClass().addClass('pl-t-default_nochat'), a('#chatWrap').css('display', 'none');
+                else {
+                    function B() {
+                        b('#noticeChatWrap').css('display', 'none');
+                    }
+                }
+            }
+            p.use_vod ? (a('#playerBottomWrap').addClass('ver_vod'), a('.pl-i-live').css('display', ' none'), l.durationStart = document.getElementById('durationStart'), l.durationEnd = document.getElementById('durationEnd'), l.prev10sBtn = document.getElementById('prev10sBtn'), l.next10sBtn = document.getElementById('next10sBtn'), l.sliderArea = document.getElementById('playerSliderArea'), l.sliderArea.slider = document.getElementById('playerSlider'), l.sliderArea.slider.thumb = document.getElementById('playerSliderThumb'), l.sliderThumbnail = document.getElementById('sliderThumbnail'), l.sliderPaddingDiv = document.getElementById('sliderPaddingDiv')) : a('#durationWrap').css('display', 'none');
+            k.credentials = {
+                'user_id': q.user_id,
+                'device_id': getCookie(DCvi + '_device_id'),
+                'content_id': DCvi,
+                'api_server': RSAnd
+            };
+            var s = '';
+            for (var t = 0; t < p.channels.length; t++) {
+                if ('jeYVE' !== 'SHafb') {
+                    var u = true;
+                    Ythc == 'sub' && (u = false);
+                    if (p.channels[t].is_main_channel == u) {
+                        s = p.channels[t].hls_url, k.content_data.current_channel_id = p.channels[t].id;
+                        break;
+                    }
+                } else {
+                    function C() {
+                        b.orientation.lock('landscape');
+                    }
+                }
+            }
+            _player = new Rich360Player(k, l, s), a(document).on('click', '#playThumbnail button', function() {
+                b(), a(this).parent().css('display', 'none'), _player.play();
+            });
+        }, function(o, p) {
+            if ('zybBK' !== 'zybBK') {
+                function q() {
+                    c.x = d;
+                }
+            } else {
+                if (p == 400 || p == 401) removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_NOT_EXIST_LOGIN_INFO_DESC'), gettext('P_ALERT_OK'), function() {
+                    location.href = LUEz1;
+                });
+                else {
+                    if (p == 403) removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id'), removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
                         location.href = LUEz1;
                     });
                     else {
-                        if (p == 403) removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id'), removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
+                        if ('ZnbvJ' !== 'EbwCq') alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_TRY_AGAIN_DESC'), gettext('P_ALERT_OK'), function() {
                             location.href = LUEz1;
                         });
                         else {
-                            if ('EDrZI' === 'ZwCzy') {
-                                function q() {
-                                    var r = r[e].split('=', 2);
-                                    if (r.length == 1) f[r[0]] = '';
-                                    else g[r[0]] = h(r[1].replace(/\+/g, ' '));
-                                }
-                            } else alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_TRY_AGAIN_DESC'), gettext('P_ALERT_OK'), function() {
-                                location.href = LUEz1;
-                            });
-                        }
-                    }
-                } else {
-                    function r() {
-                        return b();
-                    }
-                }
-            }), a('button[name=chatnavbtn]').on('click', function() {
-                a('#chatContentWrap').css('display', 'block'), a('#chatList').scrollTop(a('#chatList')[0].scrollHeight), setTimeout(function() {
-                    a('#chatList').scrollTop(a('#chatList')[0].scrollHeight);
-                }, 200);
-                if (isMobile()) {
-                    var o = getOrientation();
-                    if (typeof o == 'string') {
-                        if (o == 'landscape-primary' || o == 'landscape-secondary' || o == 'landscape') {
-                            if ('zvqyg' === 'pvhdP') {
-                                function p() {
-                                    this._video = b.createElement('video'), this._options.container.append(this._video);
-                                }
-                            } else a('#chatInputWrap').css('display', 'block');
-                        } else a('#chatInputWrap').css('display', 'block');
-                    } else {
-                        if ('ZmTWQ' !== 'yBIax') a('#chatInputWrap').css('display', 'block');
-                        else {
-                            function q() {
-                                i.Manager.checkOperationntUser(j) && (q === '[delete]' ? (w('#noticeChatWrap p[name=desc]').text(''), z('#noticeChatWrap').css('display', 'none')) : (A('#noticeChatWrap p[name=desc]').text(B), C('#noticeChatWrap').css('display', 'block')));
+                            function r() {
+                                this.events.push({
+                                    'key': c[d],
+                                    'listeners': []
+                                });
                             }
                         }
+                    }
+                }
+            }
+        }), a('button[name=chatnavbtn]').on('click', function() {
+            a('#chatContentWrap').css('display', 'block'), a('#chatList').scrollTop(a('#chatList')[0].scrollHeight), setTimeout(function() {
+                if ('QKmdD' === 'QKmdD') a('#chatList').scrollTop(a('#chatList')[0].scrollHeight);
+                else {
+                    function p() {
+                        c('#artistChatList').scrollTop(d('#artistChatList')[0].scrollHeight);
+                    }
+                }
+            }, 200);
+            if (isMobile()) {
+                var o = getOrientation();
+                typeof o == 'string' ? o == 'landscape-primary' || o == 'landscape-secondary' || o == 'landscape' ? a('#chatInputWrap').css('display', 'block') : a('#chatInputWrap').css('display', 'block') : a('#chatInputWrap').css('display', 'block');
+            } else {
+                if ('kslXp' !== 'kslXp') {
+                    function p() {
+                        var q = c.userAgent.toLowerCase(),
+                            r = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(q);
+                        return !r ? e() : r;
                     }
                 } else a('#chatInputWrap').css('display', 'block');
-                a('#holdChatScrollLabel').css('display', 'block'), a('#artistChatWrap').css('display', 'none'), a('#multiViewWrap').css('display', 'none'), a('button[name=chatnavbtn]').addClass('on'), a('button[name=artistchatnavbtn]').removeClass('on'), a('button[name=multiviewnavbtn]').removeClass('on');
-                if (_player) {
-                    if ('Tkkda' === 'Tkkda') {
-                        if (_player._options.use_multiview) {
-                            if ('IfFnl' === 'IfFnl') _player._player._display.showMultiPreview = false;
-                            else {
-                                function r() {
-                                    for (var s = 0; s < g.messages.length; s++) {
-                                        var t = m.messages[s].entry.update.split(n);
-                                        for (var u = 0; u < t.length; u++) {
-                                            var v = t[u].split(r)[0];
-                                            s.Ui.displayMessage(t[u], t.messages[s].timetoken, v, true);
-                                        }
-                                    }
-                                }
-                            }
+            }
+            a('#holdChatScrollLabel').css('display', 'block'), a('#artistChatWrap').css('display', 'none'), a('#multiViewWrap').css('display', 'none'), a('button[name=chatnavbtn]').addClass('on'), a('button[name=artistchatnavbtn]').removeClass('on'), a('button[name=multiviewnavbtn]').removeClass('on'), _player && (_player._options.use_multiview && (_player._player._display.showMultiPreview = false));
+        }), a('button[name=artistchatnavbtn]').on('click', function() {
+            a('#chatContentWrap').css('display', 'none'), a('#chatInputWrap').css('display', 'none'), a('#holdChatScrollLabel').css('display', 'none'), a('#artistChatWrap').css('display', 'block'), a('#multiViewWrap').css('display', 'none'), a('button[name=chatnavbtn]').removeClass('on'), a('button[name=artistchatnavbtn]').addClass('on'), a('button[name=multiviewnavbtn]').removeClass('on'), a('#artistChatList').scrollTop(a('#artistChatList')[0].scrollHeight), a('#chatAnchor').css('display', 'none'), _player && (_player._options.use_multiview && (_player._player._display.showMultiPreview = false));
+        }), a('button[name=multiviewnavbtn]').on('click', function() {
+            a('#chatContentWrap').css('display', 'none'), a('#chatInputWrap').css('display', 'none'), a('#holdChatScrollLabel').css('display', 'none'), a('#artistChatWrap').css('display', 'none'), a('#multiViewWrap').css('display', 'block'), a('button[name=chatnavbtn]').removeClass('on'), a('button[name=artistchatnavbtn]').removeClass('on'), a('button[name=multiviewnavbtn]').addClass('on'), _player && (_player._options.use_multiview && (_player._player._display.showMultiPreview = true));
+        }), a(document).on('click', '#multiViewList .view_wrap', function() {
+            if (_player) {
+                if (_player._options.use_multiview) {
+                    if ('olRMN' !== 'olRMN') {
+                        function p() {
+                            d[e.nodeName] = f.nodeValue;
                         }
                     } else {
-                        function s() {
-                            return true;
-                        }
-                    }
-                }
-            }), a('button[name=artistchatnavbtn]').on('click', function() {
-                a('#chatContentWrap').css('display', 'none'), a('#chatInputWrap').css('display', 'none'), a('#holdChatScrollLabel').css('display', 'none'), a('#artistChatWrap').css('display', 'block'), a('#multiViewWrap').css('display', 'none'), a('button[name=chatnavbtn]').removeClass('on'), a('button[name=artistchatnavbtn]').addClass('on'), a('button[name=multiviewnavbtn]').removeClass('on'), a('#artistChatList').scrollTop(a('#artistChatList')[0].scrollHeight), a('#chatAnchor').css('display', 'none'), _player && (_player._options.use_multiview && (_player._player._display.showMultiPreview = false));
-            }), a('button[name=multiviewnavbtn]').on('click', function() {
-                a('#chatContentWrap').css('display', 'none'), a('#chatInputWrap').css('display', 'none'), a('#holdChatScrollLabel').css('display', 'none'), a('#artistChatWrap').css('display', 'none'), a('#multiViewWrap').css('display', 'block'), a('button[name=chatnavbtn]').removeClass('on'), a('button[name=artistchatnavbtn]').removeClass('on'), a('button[name=multiviewnavbtn]').addClass('on');
-                if (_player) {
-                    if (_player._options.use_multiview) {
-                        if ('dCgDp' === 'vxqar') {
-                            function o() {
-                                this._isHideDefaultSubtitles = true;
-                                var p = this._player._video.textTracks.length;
-                                for (var q = 0; q < p; q++) {
-                                    this._player._video.textTracks[q].mode == 'showing' && (this._player._video.textTracks[q].mode = 'hidden', e('#ccSelect', q, true));
-                                }
-                            }
-                        } else _player._player._display.showMultiPreview = true;
-                    }
-                }
-            }), a(document).on('click', '#multiViewList .view_wrap', function() {
-                if ('vfQHR' !== 'vfQHR') {
-                    function p() {
-                        !this._ui.seekBar.thumbInteracting && (this.setDurationText(this._player.currentPosition, this._player.duration), this._player.currentPosition == 0 ? this._ui.seekBar.value = 0 : this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration);
-                    }
-                } else {
-                    if (_player) {
-                        if ('OLmOC' === 'VFrpX') {
-                            function q() {
-                                this._video.play();
-                            }
-                        } else {
-                            if (_player._options.use_multiview) {
-                                if (_player._player._video) {
-                                    if (!_player._player._video.paused) {
-                                        var o = _player._player.view;
-                                        _player._player.view = a(this).data().view, a(this).siblings().each(function() {
-                                            if (o == a(this).data().view) return;
-                                        }), a();
+                        if (_player._player._video) {
+                            if (!_player._player._video.paused) {
+                                var o = _player._player.view;
+                                _player._player.view = a(this).data().view, a(this).siblings().each(function() {
+                                    if (o == a(this).data().view) {
+                                        if ('IzeMl' !== 'IzeMl') {
+                                            function q() {
+                                                var r = h(i.target),
+                                                    s = null,
+                                                    t = j.location.href,
+                                                    u = null;
+                                                if (r.hasClass('active')) return;
+                                                s = r.data('view-type');
+                                                if (s === 'singleview') o.location.replace(t + p);
+                                                else s === 'multiview' && (u = t.split(q), r.location.replace(u[0]));
+                                            }
+                                        } else return;
                                     }
-                                }
+                                }), a();
                             }
                         }
                     }
                 }
-            }), a('#stopChatScrollBtn').on('change', function() {
-                Chat.Ui.setHoldChatScroll(!a(this).prop('checked'));
-            }), a('#lockBtn').on('click', function() {
-                if ('DkKiT' === 'DkKiT') {
-                    if (a(this).hasClass('locked')) {
-                        if ('EYvpi' !== 'RnWil') {
-                            a(this).removeClass('locked');
-                            !isMobile() && !isTablet() && !isIpadOS() && (a('#volumeBtn').css('display', 'inline-block'), a('#volumeSlider').css('display', 'inline-block'));
-                            (!isIOS() || isIpadOS()) && d(_player) ? a('#qualitySelectBtn').css('display', 'block') : a('#qualitySelectBtn').css('display', 'none');
-                            if (_player._player.subtitleList) {
-                                if ('tExfy' === 'tExfy') _player._player.subtitleList.length && (_player._player.subtitleList[0].lang !== '' && a('#ccSelectBtn').css('display', 'block'));
-                                else {
-                                    function o() {
-                                        var p = d();
-                                        return e(f + '_device_id', p, 20160), p;
-                                    }
-                                }
-                            } else a('#ccSelectBtn').css('display', 'none');
-                            a('#fullBtn').css('display', 'block'), a('.pl-ctr-wrap').css('visibility', 'visible'), a('.pl-btm-wrap').css('visibility', 'visible');
-                        } else {
-                            function p() {
-                                this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
-                            }
-                        }
-                    } else {
-                        if ('jMVRQ' !== 'SHchy') a(this).addClass('locked'), a('#volumeBtn').css('display', 'none'), a('#volumeSlider').css('display', 'none'), a('#fullBtn').css('display', 'none'), a('#ccSelectBtn').css('display', 'none'), a('#qualitySelectBtn').css('display', 'none'), a('.pl-ctr-wrap').css('visibility', 'hidden'), a('.pl-btm-wrap').css('visibility', 'hidden');
+            }
+        }), a('#stopChatScrollBtn').on('change', function() {
+            if ('MEWGV' === 'UOtZJ') {
+                function o() {
+                    this._sourceBase = this._options.source.substring(0, b) + '/';
+                }
+            } else Chat.Ui.setHoldChatScroll(!a(this).prop('checked'));
+        }), a('#lockBtn').on('click', function() {
+            if (a(this).hasClass('locked')) {
+                if ('RvInu' === 'RvInu') {
+                    a(this).removeClass('locked');
+                    if (!isMobile() && !isTablet() && !isIpadOS()) {
+                        if ('FuDWX' === 'FuDWX') a('#volumeBtn').css('display', 'inline-block'), a('#volumeSlider').css('display', 'inline-block');
                         else {
-                            function q() {
-                                b('#chatAnchor').css('display', 'block');
+                            function o() {
+                                b = true;
                             }
                         }
+                    }(!isIOS() || isIpadOS()) && d(_player) ? a('#qualitySelectBtn').css('display', 'block') : a('#qualitySelectBtn').css('display', 'none');
+                    if (_player._player.subtitleList) {
+                        if ('QJjgv' !== 'FroVs') _player._player.subtitleList.length && (_player._player.subtitleList[0].lang !== '' && a('#ccSelectBtn').css('display', 'block'));
+                        else {
+                            function p() {
+                                j.log(k, l), m && (s.messages.length && z.Ui.updateNotice(A.messages[0].entry.update, B.messages[0].entry.timetoken, C.messages[0].entry.entry));
+                            }
+                        }
+                    } else {
+                        if ('qgHPh' === 'bgwWC') {
+                            function q() {
+                                return this._hls._hls.subtitleTrack;
+                            }
+                        } else a('#ccSelectBtn').css('display', 'none');
                     }
+                    a('#fullBtn').css('display', 'block'), a('.pl-ctr-wrap').css('visibility', 'visible'), a('.pl-btm-wrap').css('visibility', 'visible');
                 } else {
                     function r() {
-                        h.img && o.find('img').attr('src', '/static/imgs/c_event/' + p + '/' + q.img), l.msgClass && r.find('.user_msg').addClass(s.msgClass);
+                        if (e) {
+                            var s = i.apply(j, arguments);
+                            return k = null, s;
+                        }
                     }
                 }
-            });
-
-            function n() {
-                if ('XHwTn' !== 'XHwTn') {
-                    function o() {
-                        var p = i.createElement('div');
-                        p.dataset.view = j, k(p, 'view_wrap');
-                        var q = l.createElement('label');
-                        q.classList = 'view-name bolder fs_14 fc_point', this._view == m && q(p, 'on'), q.innerText = this._manifest.singleview_list[o].name, p.append(q), this._options.multiViewList.append(p), p.push(p);
+            } else {
+                if ('JvDjB' === 'JvDjB') a(this).addClass('locked'), a('#volumeBtn').css('display', 'none'), a('#volumeSlider').css('display', 'none'), a('#fullBtn').css('display', 'none'), a('#ccSelectBtn').css('display', 'none'), a('#qualitySelectBtn').css('display', 'none'), a('.pl-ctr-wrap').css('visibility', 'hidden'), a('.pl-btm-wrap').css('visibility', 'hidden');
+                else {
+                    function s() {
+                        this._player._hls._hls && (this._player._hls._hls.liveSyncPosition && (this._player.currentPosition = this._player._hls._hls.liveSyncPosition));
                     }
-                } else !document.hidden && c();
+                }
             }
-            document.addEventListener('visibilitychange', n, false);
+        }), a('#view-type-selector').on('click', '.btn-view-selector', function(o) {
+            if ('ckxFu' !== 'JVSCo') {
+                var p = a(o.target),
+                    q = null,
+                    r = window.location.href,
+                    s = null;
+                if (p.hasClass('active')) return;
+                q = p.data('view-type');
+                if (q === 'singleview') window.location.replace(r + PARAM_SINGLEVIEW_ON_MULTIVIEW);
+                else q === 'multiview' && (s = r.split(PARAM_SINGLEVIEW_ON_MULTIVIEW), window.location.replace(s[0]));
+            } else {
+                function t() {
+                    b(this).changeElementType('div');
+                }
+            }
+        });
+
+        function n() {
+            if (!document.hidden) {
+                if ('mqFlK' !== 'GnWyF') c();
+                else {
+                    function o() {
+                        this.showChatOpenBtn(true);
+                    }
+                }
+            }
         }
+        document.addEventListener('visibilitychange', n, false);
     });
-}(jQuery));
+}(jQuery), window.onpopstate = function(a) {
+    location.replace(LUEz1);
+}, window.onpageshow = function(a) {
+    console.log('@@@onpageshow'), history.pushState({}, '', location.href);
+});
 var requestCnt = 0,
     serverLoading = null;
 
@@ -5085,104 +5142,83 @@ function request_to_server(a, b, c, d, e) {
     var f = new XMLHttpRequest();
     f.open(a, b, true), f.withCredentials = true, f.setRequestHeader('X-CSRFToken', getCookie('csrftoken')), f.timeout = 60000;
     if (c) {
-        var g = new FormData();
-        for (var h in c) {
-            g.append(h, c[h]);
-        }
-        f.send(g);
-    } else {
-        if ('KXHsG' === 'KXHsG') f.send();
-        else {
+        if ('VhYMw' !== 'VhYMw') {
             function i() {
-                b = -1;
+                return;
+            }
+        } else {
+            var g = new FormData();
+            for (var h in c) {
+                g.append(h, c[h]);
+            }
+            f.send(g);
+        }
+    } else {
+        if ('zMKyS' !== 'IaGXE') f.send();
+        else {
+            function j() {
+                f.log('EVENT::#chatInput::blur'), g() && h() && k.body.classList.remove(l);
             }
         }
     }
     $('#loadingDiv').css('display', 'block'), requestCnt++;
     if (!serverLoading) {
-        if ('uXtxj' !== 'uXtxj') {
-            function j() {
-                f.messages.length && k.Ui.updateNotice(l.messages[0].entry.update, m.messages[0].entry.timetoken, n.messages[0].entry.entry);
-            }
-        } else serverLoading = setInterval(function() {
+        if ('ZcTwQ' !== 'fFLiz') serverLoading = setInterval(function() {
             !requestCnt && ($('#loadingDiv').css('display', 'none'), clearInterval(serverLoading), serverLoading = null);
         }, 100);
+        else {
+            function k() {
+                c.href = d;
+            }
+        }
     }
     f.onreadystatechange = function() {
-        if ('cMxRA' === 'fvDlI') {
-            function l() {
-                this._listener.removeListener(c, d);
-            }
-        } else {
-            if (f.readyState == XMLHttpRequest.DONE) {
-                if ('NiieC' === 'nXXOt') {
+        if (f.readyState == XMLHttpRequest.DONE) {
+            requestCnt--;
+            if (f.status == 200 || f.status == 201) {
+                if ('LEcmA' === 'SErAX') {
                     function m() {
-                        b(this._ui.pageWrap).removeClass('pl-t-fullscreen_nochat').addClass('pl-t-default_nochat');
+                        this._video.webkitEnterFullscreen();
                     }
-                } else {
-                    requestCnt--;
-                    if (f.status == 200 || f.status == 201) {
-                        if ('oYlqh' === 'IrkNr') {
+                } else d && d(JSON.parse(f.responseText));
+            } else {
+                console.log(f);
+                if (f.status == 0) {} else {
+                    if (!e) {
+                        if ('FHJYv' !== 'oxrKb') f.responseText && console.log(JSON.parse(f.responseText));
+                        else {
                             function n() {
-                                c = d;
-                            }
-                        } else {
-                            if (d) {
-                                if ('UYmqx' !== 'UYmqx') {
-                                    function o() {
-                                        this._is_fullscreen_button = false, e(this._dom_element).removeClass('pl-i-screen float_r').addClass('pl-i-full float_r'), this._web_ui.hideChatWrap(f()), g() && i.orientation.lock('landscape'), this.setIsFullScreen(true), this.showMultiviewBtn(false);
-                                    }
-                                } else d(JSON.parse(f.responseText));
+                                b('#subtitlePopup').css('display', 'block');
+                                return;
                             }
                         }
                     } else {
-                        console.log(f);
-                        if (f.status == 0) {} else {
-                            if (!e) {
-                                if (f.responseText) {
-                                    if ('bQhCk' === 'dtJwP') {
-                                        function p() {
-                                            const q = g.createElement('canvas'),
-                                                r = q.getContext('2d'),
-                                                s = h('#mvMainDiv'),
-                                                t = i('#mvMainDiv video');
-                                            return q.width = t.width(), q.height = t.height(), r.drawImage(j, 0, 0, k.width, l.height, 0, 0, s.width(), s.height()), q.toDataURL();
-                                        }
-                                    } else console.log(JSON.parse(f.responseText));
+                        if ('igWrB' !== 'fPpGA') try {
+                            if ('qoymi' === 'YPvIN') {
+                                function o() {
+                                    this._listener.trigger(c.RICH360_WAIT, {
+                                        'wait': true,
+                                        'wait_on': d.RICH360_QUALITY_CHANGE
+                                    });
                                 }
                             } else {
-                                if ('QeqZe' !== 'QeqZe') {
-                                    function q() {
-                                        e('#chatInput').prop('readonly') != false && (i('#chatInput').prop('readonly', false), j('#chatInput').prop('placeholder', k('P_CHAT_INPUT_PLACEHOLDER')));
-                                    }
-                                } else try {
-                                    if ('xFLfO' === 'bHEse') {
-                                        function r() {
-                                            return b.orientation.type.toLowerCase();
-                                        }
-                                    } else {
-                                        var k = JSON.parse(f.responseText);
-                                        e(k, f.status);
-                                    }
-                                } catch (s) {
-                                    e(f.responseText, f.status);
-                                }
+                                var l = JSON.parse(f.responseText);
+                                e(l, f.status);
+                            }
+                        } catch (p) {
+                            e(f.responseText, f.status);
+                        } else {
+                            function q() {
+                                b = this._player.duration - 1;
                             }
                         }
                     }
                 }
-            } else {}
-        }
-    }, f.ontimeout = function(k) {
-        console.log(k), alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
-            if ('KMPww' !== 'BMOGI') location.reload();
-            else {
-                function l() {
-                    i = false, j('#chatAnchor').css('display', 'none');
-                    var m = k.Ui.createUserChatDiv(l.Manager.getUserId(), m.nickName, n.text, o);
-                    p('#chatList').append(m);
-                }
             }
+        } else {}
+    }, f.ontimeout = function(l) {
+        console.log(l), alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
+            location.reload();
         });
     };
 }
@@ -5190,24 +5226,24 @@ function request_to_server(a, b, c, d, e) {
 function getCookie(a) {
     var b = null;
     if (document.cookie && document.cookie !== '') {
-        if ('pzTwK' === 'pkvUh') {
-            function f() {
-                return true;
-            }
-        } else {
+        if ('WfOrO' !== 'vFxqy') {
             var c = document.cookie.split(';');
             for (var d = 0; d < c.length; d++) {
-                if ('uMWRs' === 'jOpkW') {
-                    function g() {
-                        c.log('EVENT::orientationchange'), d();
-                    }
-                } else {
-                    var e = jQuery.trim(c[d]);
-                    if (e.substring(0, a.length + 1) === a + '=') {
+                var e = jQuery.trim(c[d]);
+                if (e.substring(0, a.length + 1) === a + '=') {
+                    if ('SpRNz' === 'coQCH') {
+                        function f() {
+                            this._parent_dom = b.body;
+                        }
+                    } else {
                         b = decodeURIComponent(e.substring(a.length + 1));
                         break;
                     }
                 }
+            }
+        } else {
+            function g() {
+                this._video.textTracks[b].mode = 'disabled';
             }
         }
     }
@@ -5228,11 +5264,7 @@ Date.prototype.format = function(a) {
     if (!this.valueOf()) return ' ';
     var b = this;
     return a.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|mss|ap)/gi, function(c) {
-        if ('FGRuZ' !== 'FGRuZ') {
-            function e() {
-                this._isDummy = false, this._hls = new b(this._config);
-            }
-        } else switch (c) {
+        if ('PZgeg' !== 'RFnkG') switch (c) {
             case 'yyyy':
                 return b.getFullYear();
             case 'yy':
@@ -5255,13 +5287,21 @@ Date.prototype.format = function(a) {
                 return b.getHours() < 12 ? 'AM' : 'PM';
             default:
                 return c;
+        } else {
+            function e() {
+                b += this;
+            }
         }
     });
 }, String.prototype.string = function(a) {
     var b = '',
         c = 0;
     while (c++ < a) {
-        b += this;
+        if ('sHXpL' === 'LICAc') {
+            function d() {
+                c(this._ui.loadingDiv).css('display', 'block'), d(this._ui.loadingDiv).parent().css('display', 'block');
+            }
+        } else b += this;
     }
     return b;
 }, String.prototype.zf = function(a) {
@@ -5272,7 +5312,12 @@ Date.prototype.format = function(a) {
 
 function set_uuid() {
     function a() {
-        return ((1 + Math.random()) * 65536 | 0).toString(16).substring(1);
+        if ('RmZSF' === 'RmZSF') return ((1 + Math.random()) * 65536 | 0).toString(16).substring(1);
+        else {
+            function b() {
+                b('#durationWrap').css('display', 'none');
+            }
+        }
     }
     return a() + a() + '-' + a() + '-' + a() + '-' + a() + '-' + a() + a() + a();
 }
@@ -5289,29 +5334,28 @@ function clearPopupData(a) {
 
 function alertPopup(a, b, c, d) {
     var e = setInterval(function() {
-        if ('xxjtQ' === 'xxjtQ') clearInterval(e), $('#loadingDiv').css('display', 'none'), $('#alertPopup').css('display', 'block'), $('#alertPopup p[name=title]').text(a), $('#alertPopup p[name=desc]').text(b), $('#alertPopup button[name=okbtn]').text(c), $('#alertPopup button[name=okbtn],#alertPopup button[name=closebtn]').click(function() {
-            if ('tYQVw' !== 'inBSc') $('#alertPopup button[name=okbtn]').unbind('click'), clearPopupData('alertPopup'), d && (d(), d = null);
-            else {
-                function f() {
-                    this._web_ui._isFullScreen = b;
-                }
+        clearInterval(e), $('#loadingDiv').css('display', 'none'), $('#alertPopup').css('display', 'block'), $('#alertPopup p[name=title]').text(a), $('#alertPopup p[name=desc]').text(b), $('#alertPopup button[name=okbtn]').text(c), $('#alertPopup button[name=okbtn],#alertPopup button[name=closebtn]').click(function() {
+            $('#alertPopup button[name=okbtn]').unbind('click'), clearPopupData('alertPopup');
+            if (d) {
+                if ('secJT' === 'depBX') {
+                    function f() {
+                        this._cues[c].startTime += this._prevViewOffsetTime, this._cues[d].endTime += this._prevViewOffsetTime;
+                    }
+                } else d(), d = null;
             }
         });
-        else {
-            function f() {
-                var g = 'a9731791-ae47-429f-a599-ca07353bb501';
-            }
-        }
     }, 100);
 }
 
 function checkInterparkApp() {
     if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) {
-        if ('tHToM' !== 'tHToM') {
+        if ('jDIah' === 'jDIah') return true;
+        else {
             function a() {
-                this._listener.trigger(b.RICH360_ACCESS_DENIED, 'Authorization failed');
+                this._subtitleDiv.innerHTML = '', this._subtitleDiv.style.display = 'none';
+                return;
             }
-        } else return true;
+        }
     }
     return false;
 }
@@ -5337,35 +5381,36 @@ function checkIEbrowser() {
 
 function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
-    if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) return true;
-    else {
-        if ('KlKdf' === 'KlKdf') return false;
-        else {
-            function b() {
-                this._options.container.addEventListener('mousemove', this.wakeupController.bind(this), false), this._options.container.addEventListener('mouseup', b.bind(this), false);
-            }
-        }
-    }
+    return a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1 ? true : false;
 }
 
 function checkMobileAndTablet() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
-        if ('WDsSQ' !== 'atUPU') {
-            if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
-                if ('kZBcd' === 'ZbSgj') {
-                    function d() {
-                        var e = '66d65700-0799-4007-9289-ecbd17699128';
+        if ('ExggB' === 'ExggB') {
+            if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
+            else {
+                if ('wNQGz' === 'wNQGz') {
+                    var b = navigator.userAgent.toLowerCase(),
+                        c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
+                    if (!c) return isIpadOS();
+                    else {
+                        if ('AdHaO' === 'AdHaO') return c;
+                        else {
+                            function d() {
+                                this.updateThumbnail(b);
+                            }
+                        }
                     }
-                } else return true;
-            } else {
-                var b = navigator.userAgent.toLowerCase(),
-                    c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-                return !c ? isIpadOS() : c;
+                } else {
+                    function e() {
+                        b = -1;
+                    }
+                }
             }
         } else {
-            function e() {
-                g.hasOwnProperty(h) && (m[n] = o[p]);
+            function f() {
+                this._showMultiPreview = b, this.arrangeVideo();
             }
         }
     }
@@ -5395,13 +5440,7 @@ function userSessionCheck(a, b, c) {
     request_to_server('POST', RSAnd + '/user_auth/session_check/', a, function(d) {
         if (b) b(d);
     }, function(d) {
-        if ('zpTWj' === 'zpTWj') {
-            if (c) c(d);
-        } else {
-            function e() {
-                c.log(d);
-            }
-        }
+        if (c) c(d);
     });
 }
 
@@ -5415,30 +5454,35 @@ function addClassName(a, b) {
 
 function removeClassName(a, b) {
     if (hasClassName(a, b)) {
-        var d = a.className;
-        d = d.replace(new RegExp('(?:^|\s+)' + b + '(?:\s+|$)', 'g'), ' '), d = d.replace(new RegExp('^\s+', 'g'), ''), d = d.replace(new RegExp('\s+$', 'g'), ''), a.className = d.replace(new RegExp('\s+', 'g'), ' ');
+        if ('ARcdj' === 'ARcdj') {
+            var d = a.className;
+            d = d.replace(new RegExp('(?:^|\s+)' + b + '(?:\s+|$)', 'g'), ' '), d = d.replace(new RegExp('^\s+', 'g'), ''), d = d.replace(new RegExp('\s+$', 'g'), ''), a.className = d.replace(new RegExp('\s+', 'g'), ' ');
+        } else {
+            function e() {
+                b(this._ui.fullBtn).on('click', function() {
+                    this._player._subtitleManager.showDefaultSubtitle(), !this._player._video.paused && this._player._video.webkitEnterFullscreen();
+                }.bind(this));
+            }
+        }
     }
 }
 
 function getOrientation() {
-    if (!isMobile()) {
-        if ('PEsBM' === 'PEsBM') return false;
-        else {
-            function a() {
-                if (k(l, m)) {
-                    var b = u.className;
-                    b = b.replace(new v('(?:^|\s+)' + w + '(?:\s+|$)', 'g'), ' '), b = b.replace(new z('^\s+', 'g'), ''), b = b.replace(new A('\s+$', 'g'), ''), B.className = b.replace(new C('\s+', 'g'), ' ');
-                }
-            }
-        }
-    }
+    if (!isMobile()) return false;
     if (isIOS()) switch (window.orientation) {
         case -90:
         case 90:
             return 'landscape';
         default:
             return 'portrait';
-    } else return screen.orientation.type.toLowerCase();
+    } else {
+        if ('WkkSB' === 'WkkSB') return screen.orientation.type.toLowerCase();
+        else {
+            function a() {
+                this._config.startPosition != b && this._config.startPosition > 0 && (this._video.currentTime = this._config.startPosition), this._config.autoplay && this._video.play();
+            }
+        }
+    }
 }
 
 function checkMobile() {
@@ -5446,9 +5490,31 @@ function checkMobile() {
     if (navigator.platform) {
         if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
         else {
-            var b = navigator.userAgent.toLowerCase(),
-                c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            return !c ? isIpadOS() : c;
+            if ('KHAbR' !== 'KHAbR') {
+                function d() {
+                    b = true;
+                }
+            } else {
+                var b = navigator.userAgent.toLowerCase(),
+                    c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
+                if (!c) {
+                    if ('EdmRu' !== 'EdmRu') {
+                        function e() {
+                            var f = c;
+                            if (f == 'zh_Hans') f = 'cn';
+                            var g = {
+                                'ko': '채팅을 사용할 수 없습니다.',
+                                'en': 'Live chat is currently unavailable.',
+                                'ja': 'チャットを使用できません',
+                                'jp': 'チャットを使用できません',
+                                'cn': '不能用聊天'
+                            };
+                            if (!g[f]) return g.en;
+                            return g[f];
+                        }
+                    } else return isIpadOS();
+                } else return c;
+            }
         }
     }
 }
@@ -5472,12 +5538,20 @@ function isSafari() {
 function delayStopLoadingPanelFactory() {
     var a;
     return () => {
-        if ('daLiy' === 'daLiy') clearTimeout(a), $('#loadingWrap .pl_loader').addClass('stop'), a = setTimeout(function() {
+        if ('ytUAb' === 'ytUAb') clearTimeout(a), $('#loadingWrap .pl_loader').addClass('stop'), a = setTimeout(function() {
             $('#loadingWrap .pl_loader').removeClass('stop');
         }, 1000);
         else {
             function b() {
-                c.isSupported() ? (this._isDummy = false, this._hls = new e(this._config)) : (this._isDummy = true, this._hls = null);
+                let d = d.frag;
+                e.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration), f.log('frag.startPTS : ', d.sn, d.startPTS), this._hls.timeDictionary[d.sn + ''] = d.startPTS, this._hls.snsInDictionary.push(d.sn);
+                while (this._hls.snsInDictionary.length > 100) {
+                    let e = 0;
+                    if (this._hls.snsInDictionary[e] == 0) e = 1;
+                    let f = this._hls.snsInDictionary[e];
+                    this._hls.snsInDictionary.splice(e, 1), delete this._hls.timeDictionary[f + ''];
+                }
+                d.startPTS == 0 && (this._hls.startSN = d.sn);
             }
         }
     };
@@ -5520,9 +5594,15 @@ function addClassToElementByEnv(a) {
 function debounce(a, b) {
     let c;
     return function() {
-        const d = this,
-            e = arguments;
-        clearTimeout(c), c = setTimeout(() => a.apply(d, arguments), b);
+        if ('pXMWE' !== 'hrAhp') {
+            const d = this,
+                e = arguments;
+            clearTimeout(c), c = setTimeout(() => a.apply(d, arguments), b);
+        } else {
+            function f() {
+                var g = '186accfb-f3f4-441d-adee-0d78e34e9d18';
+            }
+        }
     };
 }
 const POPUP_CONFIG = {
@@ -5686,3 +5766,8 @@ const POPUP_CONFIG = {
             return c[b];
         }
     };
+
+function createElementFromHTML(a) {
+    var b = document.createElement('div');
+    return b.innerHTML = a.trim(), b.firstChild;
+}
