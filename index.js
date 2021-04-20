@@ -3,34 +3,26 @@
 const fetch = require('node-fetch');
 const beautify = require('js-beautify');
 const {parse} = require('@babel/parser');
+const traverse = require('@babel/traverse').default;
+const generate = require('@babel/generator').default;
 const fs = require('fs');
 
-const getBody = (ifSrc, node) => {
-    if (node.type === 'BlockStatement') return ifSrc.substring(node.start + 1, node.end - 1);
-    else return ifSrc.substring(node.start, node.end);
-}
-
-const removeMeaninglessBranch = (src) => {
-    while (true) {
-        const match = src.match(/if \('[a-z]{5}' [!=]== '[a-z]{5}'\)/i);
-        if (!match) break;
-
-        let ifSrc;
-        let ifStatement;
-        try {
-            parse(src.substring(match.index), {errorRecovery: true});
-        } catch (err) {
-            ifSrc = src.substring(match.index, match.index + err.pos);
-            ifStatement = parse(ifSrc, {errorRecovery: true}).program.body[0];
+const removeMeaninglessBranch = (source) => {
+    const ast = parse(source);
+    traverse(ast, {
+        IfStatement: (path) => {
+            const {test: {left, right, operator}, consequent, alternate} = path.node;
+            if (left?.type === 'StringLiteral' && right?.type === 'StringLiteral') {
+                const replacement = (left.value === right.value) === (operator === '===') ? consequent : alternate;
+                if (replacement.type === 'BlockStatement') {
+                    path.replaceWithMultiple(replacement.body);
+                } else {
+                    path.replaceWith(replacement);
+                }
+            }
         }
-
-        const consequent = getBody(ifSrc, ifStatement.consequent).trim();
-        const alternate = getBody(ifSrc, ifStatement.alternate).trim();
-
-        const {left: {value: left}, right: {value: right}, operator} = ifStatement.test;
-        src = src.substring(0, match.index) + ((left === right) === (operator === '===') ? consequent : alternate) + src.substring(match.index + ifStatement.end);
-    }
-    return src;
+    });
+    return generate(ast, {compact: true, jsescOption: {numbers: 'decimal'}}).code;
 }
 
 const deobfuscate = async (url) => {
@@ -50,7 +42,6 @@ const deobfuscate = async (url) => {
             .replace(/\\x0d/g, '\\r')
             .replace(/\\x27/g, '\\\'')
             .replace(/\\x([0-9a-f]{2})/g, (_, g1) => String.fromCharCode(parseInt(g1, 16)))
-            .replace(/0x([0-9a-f]+)/g, (_, g1) => parseInt(g1, 16))
             .replace(/!!\[\]/g, 'true')
             .replace(/!\[\]/g, 'false')
             .replace(/\nif \(Tira == ('[^']*')\) (var DCvi = '[^']*'(,\n *LUPn9 = LUEz1 \+ '[^']*')?);\n *else {/g, 'switch(Tira){case $1:$2;break;')

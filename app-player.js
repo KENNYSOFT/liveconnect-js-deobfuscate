@@ -89,7 +89,7 @@ function cusDD(a, b, c) {
             return c('<' + f + '/>', g).append(c(this).contents());
         });
     };
-}(jQuery));
+})(jQuery);
 
 function cusDDselectOption(a, b, c) {
     $(a).find('.cusDD_opt').each(function() {
@@ -159,7 +159,7 @@ function cusDDselectOption(a, b, c) {
             e.disabled = false;
         });
     }, a.Menu = d;
-}(window));
+})(window);
 class Rich360Player {
     constructor(a, b, c) {
         this._options = a, this._ui = b, this._req_str = c, this._player = new Rich360(a, c, b, this), this._initHideCtroller = false, this._initQualityUI = false, this._initSubtitleUI = false, this._loading_on = [], this._wakeupPastTime = 0, this._timer = {
@@ -935,7 +935,7 @@ class Rich360HlsWrapper {
     attachMedia(a) {
         this._video = a;
         if (this._isMultiview) {
-            if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl') || (isIOS() || isIpadOS())) {
+            if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl') || isIOS() || isIpadOS()) {
                 this._isDummy = true, this._hls = null;
             } else Hls.isSupported() && (this._isDummy = false, this._hls = new Hls(this._config));
         } else {
@@ -2447,7 +2447,7 @@ Chat.Manager = function() {
                 'region': Nierw,
                 'accessKeyId': Yacaw,
                 'secretAccessKey': Ytcsw
-            }), t = new AWS[('Kinesis')](), Chat.Ui.initChatUIEvent(), Chat.Manager.setChatChannels(), Chat.Manager.setChatHistory(), Chat.Manager.initPubnubEvent();
+            }), t = new AWS['Kinesis'](), Chat.Ui.initChatUIEvent(), Chat.Manager.setChatChannels(), Chat.Manager.setChatHistory(), Chat.Manager.initPubnubEvent();
         },
         'setChatHistory': function() {
             s.history({
@@ -3178,11 +3178,11 @@ const IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
             } else {
                 a('#chatInputWrap').css('display', 'block');
             }
-            a('#holdChatScrollLabel').css('display', 'block'), a('#artistChatWrap').css('display', 'none'), a('#multiViewWrap').css('display', 'none'), a('button[name=chatnavbtn]').addClass('on'), a('button[name=artistchatnavbtn]').removeClass('on'), a('button[name=multiviewnavbtn]').removeClass('on'), _player && (_player._options.use_multiview && (_player._player._display.showMultiPreview = false));
+            a('#holdChatScrollLabel').css('display', 'block'), a('#artistChatWrap').css('display', 'none'), a('#multiViewWrap').css('display', 'none'), a('button[name=chatnavbtn]').addClass('on'), a('button[name=artistchatnavbtn]').removeClass('on'), a('button[name=multiviewnavbtn]').removeClass('on'), _player && _player._options.use_multiview && (_player._player._display.showMultiPreview = false);
         }), a('button[name=artistchatnavbtn]').on('click', function() {
-            a('#chatContentWrap').css('display', 'none'), a('#chatInputWrap').css('display', 'none'), a('#holdChatScrollLabel').css('display', 'none'), a('#artistChatWrap').css('display', 'block'), a('#multiViewWrap').css('display', 'none'), a('button[name=chatnavbtn]').removeClass('on'), a('button[name=artistchatnavbtn]').addClass('on'), a('button[name=multiviewnavbtn]').removeClass('on'), a('#artistChatList').scrollTop(a('#artistChatList')[0].scrollHeight), a('#chatAnchor').css('display', 'none'), _player && (_player._options.use_multiview && (_player._player._display.showMultiPreview = false));
+            a('#chatContentWrap').css('display', 'none'), a('#chatInputWrap').css('display', 'none'), a('#holdChatScrollLabel').css('display', 'none'), a('#artistChatWrap').css('display', 'block'), a('#multiViewWrap').css('display', 'none'), a('button[name=chatnavbtn]').removeClass('on'), a('button[name=artistchatnavbtn]').addClass('on'), a('button[name=multiviewnavbtn]').removeClass('on'), a('#artistChatList').scrollTop(a('#artistChatList')[0].scrollHeight), a('#chatAnchor').css('display', 'none'), _player && _player._options.use_multiview && (_player._player._display.showMultiPreview = false);
         }), a('button[name=multiviewnavbtn]').on('click', function() {
-            a('#chatContentWrap').css('display', 'none'), a('#chatInputWrap').css('display', 'none'), a('#holdChatScrollLabel').css('display', 'none'), a('#artistChatWrap').css('display', 'none'), a('#multiViewWrap').css('display', 'block'), a('button[name=chatnavbtn]').removeClass('on'), a('button[name=artistchatnavbtn]').removeClass('on'), a('button[name=multiviewnavbtn]').addClass('on'), _player && (_player._options.use_multiview && (_player._player._display.showMultiPreview = true));
+            a('#chatContentWrap').css('display', 'none'), a('#chatInputWrap').css('display', 'none'), a('#holdChatScrollLabel').css('display', 'none'), a('#artistChatWrap').css('display', 'none'), a('#multiViewWrap').css('display', 'block'), a('button[name=chatnavbtn]').removeClass('on'), a('button[name=artistchatnavbtn]').removeClass('on'), a('button[name=multiviewnavbtn]').addClass('on'), _player && _player._options.use_multiview && (_player._player._display.showMultiPreview = true);
         }), a(document).on('click', '#multiViewList .view_wrap', function() {
             if (_player) {
                 if (_player._options.use_multiview) {
@@ -3207,7 +3207,7 @@ const IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
                     a('#volumeBtn').css('display', 'inline-block'), a('#volumeSlider').css('display', 'inline-block');
                 }(!isIOS() || isIpadOS()) && d(_player) ? a('#qualitySelectBtn').css('display', 'block') : a('#qualitySelectBtn').css('display', 'none');
                 if (_player._player.subtitleList) {
-                    _player._player.subtitleList.length && (_player._player.subtitleList[0].lang !== '' && a('#ccSelectBtn').css('display', 'block'));
+                    _player._player.subtitleList.length && _player._player.subtitleList[0].lang !== '' && a('#ccSelectBtn').css('display', 'block');
                 } else {
                     a('#ccSelectBtn').css('display', 'none');
                 }
@@ -3233,11 +3233,11 @@ const IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
         }
         document.addEventListener('visibilitychange', n, false);
     });
-}(jQuery), window.onpopstate = function(a) {
+})(jQuery), window.onpopstate = function(a) {
     location.replace(LUEz1);
 }, window.onpageshow = function(a) {
     console.log('@@@onpageshow'), history.pushState({}, '', location.href);
-});
+};
 var requestCnt = 0,
     serverLoading = null;
 

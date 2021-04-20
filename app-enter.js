@@ -59,7 +59,7 @@ function cusDD(a, b, c) {
             return a('<' + b + '/>', c).append(a(this).contents());
         });
     };
-}(jQuery));
+})(jQuery);
 
 function cusDDselectOption(a, b, c) {
     $(a).find('.cusDD_opt').each(function() {
@@ -1004,7 +1004,7 @@ var ChatFilter = function() {
             console.log(A), (w.persisted || A == 'back_forward' || x == 2) && location.reload();
         };
     }
-}(jQuery), window.onpageshow = function(a) {
+})(jQuery), window.onpageshow = function(a) {
     var b = performance.getEntriesByType('navigation'),
         c = b[0],
         d = null;
@@ -1012,7 +1012,7 @@ var ChatFilter = function() {
         var e = c.toJSON();
         e && (d = e.type);
     }(a.persisted || window.performance && window.performance.navigation.type == 2 || d == 2) && location.reload();
-});
+};
 var requestCnt = 0,
     serverLoading = null;
 
