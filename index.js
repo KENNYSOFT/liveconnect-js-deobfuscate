@@ -44,9 +44,9 @@ const deobfuscate = async (url) => {
             .replace(/\\x([0-9a-f]{2})/g, (_, g1) => String.fromCharCode(parseInt(g1, 16)))
             .replace(/!!\[\]/g, 'true')
             .replace(/!\[\]/g, 'false')
-            .replace(/\nif \(Tira == ('[^']*')\) (var DCvi = '[^']*'(,\n *LUPn9 = LUEz1 \+ '[^']*')?);\n *else {/g, 'switch(Tira){case $1:$2;break;')
-            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*'(,\n *LUPn9 = LUEz1 \+ '[^']*')?);\n *else {/g, 'case $1:$2;break;')
-            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*'(,\n *LUPn9 = LUEz1 \+ '[^']*')?);(\n *})*/g, 'case $1:$2;break;}')
+            .replace(/\nif \(Tira == ('[^']*')\) (var DCvi = '[^']*');\n *else {/g, 'switch(Tira){case $1:$2;break;')
+            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*');\n *else {/g, 'case $1:$2;break;')
+            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*');(\n *})*/g, 'case $1:$2;break;}')
     ));
 };
 
