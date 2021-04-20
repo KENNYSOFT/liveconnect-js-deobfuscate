@@ -1224,7 +1224,7 @@ function userSessionCheck(a, b, c) {
 }
 
 function hasClassName(a, b) {
-    return new RegExp('(?:^|\s+)' + b + '(?:\s+|$)').test(a.className);
+    return new RegExp('(?:^|\\s+)' + b + '(?:\\s+|$)').test(a.className);
 }
 
 function addClassName(a, b) {
@@ -1234,7 +1234,7 @@ function addClassName(a, b) {
 function removeClassName(a, b) {
     if (hasClassName(a, b)) {
         var d = a.className;
-        d = d.replace(new RegExp('(?:^|\s+)' + b + '(?:\s+|$)', 'g'), ' '), d = d.replace(new RegExp('^\s+', 'g'), ''), d = d.replace(new RegExp('\s+$', 'g'), ''), a.className = d.replace(new RegExp('\s+', 'g'), ' ');
+        d = d.replace(new RegExp('(?:^|\\s+)' + b + '(?:\\s+|$)', 'g'), ' '), d = d.replace(new RegExp('^\\s+', 'g'), ''), d = d.replace(new RegExp('\\s+$', 'g'), ''), a.className = d.replace(new RegExp('\\s+', 'g'), ' ');
     }
 }
 
