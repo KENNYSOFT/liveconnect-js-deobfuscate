@@ -73,8 +73,9 @@ const deobfuscate = async (url) => {
             }
         },
         StringLiteral: (path) => {
-            if (path.node.extra?.raw.indexOf('\\x') >= 0) {
-                path.replaceWith(t.stringLiteral(path.node.value));
+            const {extra, value} = path.node;
+            if (extra?.raw.indexOf('\\x') >= 0) {
+                path.replaceWith(t.stringLiteral(value));
             }
         },
     });
