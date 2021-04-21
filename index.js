@@ -13,51 +13,51 @@ const checkSwitchableTest = ({type, left, right, operator}) => type === 'BinaryE
 
 const checkSwitchableMultiTest = ({type, left, right, operator}) => type === 'LogicalExpression' && checkSwitchableTest(left) && operator === '||' && checkSwitchableTest(right);
 
+const convertStatementToCaseConsequent = (statement) => statement.type === 'BlockStatement' ? [...statement.body, t.breakStatement()] : [statement, t.breakStatement()];
+
+const convertExpressionToCaseConsequent = (expression) => [t.expressionStatement(expression), t.breakStatement()];
+
 const createExpressionStatements = (expressions) => expressions.map(expression => t.expressionStatement(expression));
+
+const flattenExpressionToStatement = (expression) => expression.type === 'SequenceExpression' ? t.blockStatement(createExpressionStatements(expression.expressions)) : t.expressionStatement(expression);
 
 const ifToCases = (cases, ifStatement) => {
     const {test, consequent, alternate} = ifStatement;
     if (checkSwitchableTest(test)) {
-        if (consequent.type === 'BlockStatement') {
-            cases.push(t.switchCase(test.right, [...consequent.body, t.breakStatement()]));
-        } else {
-            cases.push(t.switchCase(test.right, [consequent, t.breakStatement()]));
-        }
+        cases.push(t.switchCase(test.right, convertStatementToCaseConsequent(consequent)));
     } else if (checkSwitchableMultiTest(test)) {
         cases.push(t.switchCase(test.left.right, []));
-        if (consequent.type === 'BlockStatement') {
-            cases.push(t.switchCase(test.right.right, [...consequent.body, t.breakStatement()]));
-        } else {
-            cases.push(t.switchCase(test.right.right, [consequent, t.breakStatement()]));
-        }
+        cases.push(t.switchCase(test.right.right, convertStatementToCaseConsequent(consequent)));
+    } else {
+        console.error('Unsupported test while constructing cases');
     }
-    if (alternate) {
-        switch (alternate.type) {
-            case 'BlockStatement':
-                if (alternate.body[0].type === 'IfStatement') {
-                    ifToCases(cases, alternate.body[0]);
-                } else {
-                    cases.push(t.switchCase(null, [...alternate.body, t.breakStatement()]));
-                }
-                break;
-            case 'IfStatement': 
-                ifToCases(cases, alternate);
-                break;
-            case 'ExpressionStatement':
-                const {expression} = alternate;
-                if (expression.type === 'LogicalExpression' && checkSwitchableTest(expression.left)) {
-                    cases.push(t.switchCase(expression.left.right, [t.expressionStatement(expression.right), t.breakStatement()]));
-                } else if (expression.type === 'ConditionalExpression' && checkSwitchableTest(expression.test)) {
-                    cases.push(t.switchCase(expression.test.right, [t.expressionStatement(expression.consequent), t.breakStatement()]));
-                    cases.push(t.switchCase(null, [t.expressionStatement(expression.alternate), t.breakStatement()]));
-                } else {
-                    cases.push(t.switchCase(null, [alternate, t.breakStatement()]));
-                }
-                break;
-            default:
+    switch (alternate?.type) {
+        case 'BlockStatement':
+            if (alternate.body[0].type === 'IfStatement') {
+                ifToCases(cases, alternate.body[0]);
+            } else {
+                cases.push(t.switchCase(null, convertStatementToCaseConsequent(alternate)));
+            }
+            break;
+        case 'IfStatement': 
+            ifToCases(cases, alternate);
+            break;
+        case 'ExpressionStatement':
+            const {expression} = alternate;
+            if (expression.type === 'LogicalExpression' && checkSwitchableTest(expression.left)) {
+                cases.push(t.switchCase(expression.left.right, convertExpressionToCaseConsequent(expression.right)));
+            } else if (expression.type === 'ConditionalExpression' && checkSwitchableTest(expression.test)) {
+                cases.push(t.switchCase(expression.test.right, convertExpressionToCaseConsequent(expression.consequent)));
+                cases.push(t.switchCase(null, convertExpressionToCaseConsequent(expression.alternate)));
+            } else {
                 cases.push(t.switchCase(null, [alternate, t.breakStatement()]));
-                break;
-        }
+            }
+            break;
+        case undefined:
+            break;
+        default:
+            console.error(`Unsupported type of alternate while constructing cases: ${alternate.type}`);
+            break;
     }
 };
 
@@ -131,10 +131,13 @@ const deobfuscate = async (url) => {
                 case 'ConditionalExpression':
                     const {test, consequent, alternate} = path.parent;
                     if (path.parentPath.parentPath.type === 'ExpressionStatement') {
-                        const consequentStatement = consequent.type === 'SequenceExpression' ? t.blockStatement(createExpressionStatements(consequent.expressions)) : t.expressionStatement(consequent);
-                        const alternateStatement = alternate.type === 'SequenceExpression' ? t.blockStatement(createExpressionStatements(alternate.expressions)) : t.expressionStatement(alternate);
+                        const consequentStatement = flattenExpressionToStatement(consequent);
+                        const alternateStatement = flattenExpressionToStatement(alternate);
                         path.parentPath.parentPath.replaceWith(t.ifStatement(test, consequentStatement, alternateStatement));
                     }
+                    break;
+                default:
+                    console.error(`Unsupported type of parent while flattening SequenceExpression: ${path.parent.type}`);
                     break;
             }
         },
