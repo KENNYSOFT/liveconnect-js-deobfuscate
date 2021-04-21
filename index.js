@@ -64,7 +64,7 @@ const deobfuscate = async (url) => {
     const js = await res.text();
     const [_, decryptor, source] = js.match(/^(.*var a0b=function\([^}]*};)(.*)$/);
     eval(decryptor);
-    const ast = parse(source);
+    const ast = parse(source.replace(/!!\[\]/g, ' true').replace(/!\[\]/g, ' false'));
     traverse(ast, {
         CallExpression: (path) => {
             const {callee: {name}, arguments} = path.node;
@@ -121,7 +121,7 @@ const deobfuscate = async (url) => {
             }
         },
     });
-    return beautify(generate(ast, {compact: true, jsescOption: {numbers: 'decimal', quotes: 'single', minimal: true}}).code).replace(/!!\[\]/g, 'true').replace(/!\[\]/g, 'false');
+    return beautify(generate(ast, {compact: true, jsescOption: {numbers: 'decimal', quotes: 'single', minimal: true}}).code);
 };
 
 const main = async () => {
