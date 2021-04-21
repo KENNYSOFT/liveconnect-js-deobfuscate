@@ -13,6 +13,8 @@ const checkSwitchableTest = ({type, left, right, operator}) => type === 'BinaryE
 
 const checkSwitchableMultiTest = ({type, left, right, operator}) => type === 'LogicalExpression' && checkSwitchableTest(left) && operator === '||' && checkSwitchableTest(right);
 
+const createExpressionStatements = (expressions) => expressions.map(expression => t.expressionStatement(expression));
+
 const ifToCases = (cases, ifStatement) => {
     const {test, consequent, alternate} = ifStatement;
     if (checkSwitchableTest(test)) {
@@ -109,6 +111,31 @@ const deobfuscate = async (url) => {
             const {key: {type, value}} = path.node;
             if (type === 'StringLiteral' && isVarName(value)) {
                 path.node.key = t.identifier(value);
+            }
+        },
+        SequenceExpression: (path) => {
+            const {expressions} = path.node;
+            switch (path.parent.type) {
+                case 'ExpressionStatement':
+                    path.replaceWithMultiple(createExpressionStatements(expressions));
+                    break;
+                case 'ReturnStatement':
+                    path.parentPath.replaceWithMultiple([...createExpressionStatements(expressions.slice(0, -1)), t.returnStatement(expressions[expressions.length - 1])]);
+                    break;
+                case 'LogicalExpression':
+                    const {left, right, operator} = path.parent;
+                    if (path.parentPath.parentPath.type === 'ExpressionStatement' && path.node === right) {
+                        path.parentPath.parentPath.replaceWith(t.ifStatement(operator === '&&' ? left : t.unaryExpression('!', left), t.blockStatement(createExpressionStatements(expressions))));
+                    }
+                    break;
+                case 'ConditionalExpression':
+                    const {test, consequent, alternate} = path.parent;
+                    if (path.parentPath.parentPath.type === 'ExpressionStatement') {
+                        const consequentStatement = consequent.type === 'SequenceExpression' ? t.blockStatement(createExpressionStatements(consequent.expressions)) : t.expressionStatement(consequent);
+                        const alternateStatement = alternate.type === 'SequenceExpression' ? t.blockStatement(createExpressionStatements(alternate.expressions)) : t.expressionStatement(alternate);
+                        path.parentPath.parentPath.replaceWith(t.ifStatement(test, consequentStatement, alternateStatement));
+                    }
+                    break;
             }
         },
     });

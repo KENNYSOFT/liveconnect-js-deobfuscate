@@ -6,10 +6,15 @@ function cusDD(a, b, c) {
     var d = false;
     for (var e = 0; e < selectArr.length; e++) {
         if (selectArr[e] == a) {
-            callbackArr[e] = c, d = true;
+            callbackArr[e] = c;
+            d = true;
             break;
         }
-    }!d && (selectArr.push(a), callbackArr.push(c));
+    }
+    if (!d) {
+        selectArr.push(a);
+        callbackArr.push(c);
+    }
     var f = '';
     if (!b) f = 'cusDD_default';
     else {
@@ -22,17 +27,26 @@ function cusDD(a, b, c) {
     }
     for (var g = 0; g < $(a).length; g++) {
         var h = $($(a)[g]);
-        h.addClass(f + ' cusDD').changeElementType('div'), h = $($(a)[g]), h.find('option').wrapAll('<div class=\'cusDD_options\' />'), h.find('option').addClass('cusDD_opt').each(function() {
+        h.addClass(f + ' cusDD').changeElementType('div');
+        h = $($(a)[g]);
+        h.find('option').wrapAll('<div class=\'cusDD_options\' />');
+        h.find('option').addClass('cusDD_opt').each(function() {
             $(this).changeElementType('div');
-        }), h.prepend('<div class=\'cusDD_select\' name=title><div class=\'cusDD_arrow\'></div></div>');
+        });
+        h.prepend('<div class=\'cusDD_select\' name=title><div class=\'cusDD_arrow\'></div></div>');
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
     $(document).click(function(m) {
-        $('.cusDD_options').slideUp(200), $('.cusDD_arrow').removeClass('active');
-    }), $(a).click(function(m) {
+        $('.cusDD_options').slideUp(200);
+        $('.cusDD_arrow').removeClass('active');
+    });
+    $(a).click(function(m) {
         var n = a;
-        $('.cusDD').not(n).find('.cusDD_options').slideUp(200), $('.cusDD').not(n).find('.cusDD_arrow').removeClass('active'), console.log(' select : ', n), m.stopPropagation();
+        $('.cusDD').not(n).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(n).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', n);
+        m.stopPropagation();
         if ($(m.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
@@ -47,8 +61,10 @@ function cusDD(a, b, c) {
                 o = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(o), $(this).find('.cusDD_arrow').toggleClass('active');
-    }), $(a).find('.cusDD_opt').click(function() {
+        $(this).find('.cusDD_options').slideToggle(o);
+        $(this).find('.cusDD_arrow').toggleClass('active');
+    });
+    $(a).find('.cusDD_opt').click(function() {
         $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
         if (c) c($(this).data(), $(this));
     });
@@ -59,10 +75,12 @@ function cusDD(a, b, c) {
                 var i = f ? function() {
                     if (h) {
                         var j = h.apply(g, arguments);
-                        return h = null, j;
+                        h = null;
+                        return j;
                     }
                 } : function() {};
-                return f = false, i;
+                f = false;
+                return i;
             };
         }(),
         e = d(this, function() {
@@ -79,14 +97,18 @@ function cusDD(a, b, c) {
                 var k = d.constructor.prototype.bind(d),
                     l = i[j],
                     m = h[l] || k;
-                k.__proto__ = d.bind(d), k.toString = m.toString.bind(m), h[l] = k;
+                k.__proto__ = d.bind(d);
+                k.toString = m.toString.bind(m);
+                h[l] = k;
             }
         });
-    e(), c.fn.changeElementType = function(f) {
+    e();
+    c.fn.changeElementType = function(f) {
         var g = {};
         c.each(this[0].attributes, function(h, i) {
             g[i.nodeName] = i.nodeValue;
-        }), this.replaceWith(function() {
+        });
+        this.replaceWith(function() {
             return c('<' + f + '/>', g).append(c(this).contents());
         });
     };
@@ -377,16 +399,19 @@ var ChatFilter = function() {
                         e.open('GET', '/static/filtering/chat_filtering.txt');
                         break;
                 }
-                e.overrideMimeType('text/plain; charset=utf-8'), e.onreadystatechange = function() {
+                e.overrideMimeType('text/plain; charset=utf-8');
+                e.onreadystatechange = function() {
                     if (e.readyState == XMLHttpRequest.DONE) {
                         if (e.status == 200 || e.status == 201) {
-                            a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|'), a = a.replace(/[\r]/gm, '');
+                            a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
+                            a = a.replace(/[\r]/gm, '');
                             a[a.length - 1] == '|' && (a = a.substr(0, a.length - 1));
                             b = true;
                             if (d) d();
                         }
                     }
-                }, e.send();
+                };
+                e.send();
             },
             filteringChatText: function d(e) {
                 if (!b) return;
@@ -408,9 +433,13 @@ var ChatFilter = function() {
     NicknameFilter = function() {
         var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira,
             b = '';
-        return a == '210424_mamamoo' && (b = '솔라, SOLAR, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(','), b = b.map(function(c) {
-            return c.replace(/ /gi, '');
-        }).join('|')), {
+        if (a == '210424_mamamoo') {
+            b = '솔라, SOLAR, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
+            b = b.map(function(c) {
+                return c.replace(/ /gi, '');
+            }).join('|');
+        }
+        return {
             hasForbidden: function c(d) {
                 if (b === '') return false;
                 var e = new RegExp(b, 'gi');
@@ -420,7 +449,17 @@ var ChatFilter = function() {
     }();
 (function(a) {
     function b() {
-        a('#dayWrap').css('display', 'none'), a('#readyBtn').css('display', 'none'), a('#enterBtn').css('display', 'none'), a('#authBtn').css('display', 'none'), a('#authMsg1').css('display', 'none'), a('#authMsg2').css('display', 'none'), a('#endBtn').css('display', 'inline-block'), removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id'), removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id');
+        a('#dayWrap').css('display', 'none');
+        a('#readyBtn').css('display', 'none');
+        a('#enterBtn').css('display', 'none');
+        a('#authBtn').css('display', 'none');
+        a('#authMsg1').css('display', 'none');
+        a('#authMsg2').css('display', 'none');
+        a('#endBtn').css('display', 'inline-block');
+        removeCookie(DCvi + '_customer_id');
+        removeCookie(DCvi + '_ticket_id');
+        removeCookie(DCvi + '_user_id');
+        removeCookie(DCvi + '_chat_id');
     }
     if (ddv) a(document).ready(function() {
         b();
@@ -428,7 +467,8 @@ var ChatFilter = function() {
     else {
         var c = function t(u, v, w) {
                 request_to_server('POST', RSAnd + '/user_auth/customer_login/', u, function(x) {
-                    m = JSON.parse(JSON.stringify(x.Data.content)), n = JSON.parse(JSON.stringify(x.Data.user));
+                    m = JSON.parse(JSON.stringify(x.Data.content));
+                    n = JSON.parse(JSON.stringify(x.Data.user));
                     if (v) v();
                 }, function() {
                     if (w) w();
@@ -478,11 +518,19 @@ var ChatFilter = function() {
                 if (r) E.device_id = r;
                 if (D) E.content_id = D;
                 e(E, function(I) {
-                    a('#loadingDiv').css('display', 'none'), console.log(I), F = I && I.Data ? I.Data : null, G = F && F.content ? F.content.player_code : null;
-                    if (G) setCookie(DCvi + '_user_id', n.user_id, 20160), setCookie(DCvi + '_chat_id', n.chat_id, 20160), setCookie(DCvi + '_content_id', DCvi, 20160), location.href = LUEz1 + '/' + G;
-                    else A && alertPopup(A.title, A.desc, A.btnTxt, A.okCallback);
+                    a('#loadingDiv').css('display', 'none');
+                    console.log(I);
+                    F = I && I.Data ? I.Data : null;
+                    G = F && F.content ? F.content.player_code : null;
+                    if (G) {
+                        setCookie(DCvi + '_user_id', n.user_id, 20160);
+                        setCookie(DCvi + '_chat_id', n.chat_id, 20160);
+                        setCookie(DCvi + '_content_id', DCvi, 20160);
+                        location.href = LUEz1 + '/' + G;
+                    } else A && alertPopup(A.title, A.desc, A.btnTxt, A.okCallback);
                 }, function(I) {
-                    a('#loadingDiv').css('display', 'none'), console.log(I);
+                    a('#loadingDiv').css('display', 'none');
+                    console.log(I);
                     if (A) {
                         alertPopup(A.title, A.desc, A.btnTxt, A.okCallback);
                     }
@@ -559,7 +607,12 @@ var ChatFilter = function() {
                 }
             },
             k = function B(C) {
-                a('#authPopup').css('display', 'none'), a('#authBtn').css('display', 'none'), a('#authMsg1').css('display', 'none'), a('#authMsg2').css('display', 'none'), a('#readyBtn').css('display', 'inline-block'), a('#nicknamePopup').css('display', 'none');
+                a('#authPopup').css('display', 'none');
+                a('#authBtn').css('display', 'none');
+                a('#authMsg1').css('display', 'none');
+                a('#authMsg2').css('display', 'none');
+                a('#readyBtn').css('display', 'inline-block');
+                a('#nicknamePopup').css('display', 'none');
                 if (C && C == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
                     switch (egl) {
                         case 'ko':
@@ -617,11 +670,13 @@ var ChatFilter = function() {
                             a('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
                             break;
                     }
-                    a('#nicknamePopup').css('display', 'block'), a('#nickname').focus();
+                    a('#nicknamePopup').css('display', 'block');
+                    a('#nickname').focus();
                 });
             };
         if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
-            a('#enterBtn').css('display', 'none'), a('#notSupportedBrowser').css('display', 'inline-block');
+            a('#enterBtn').css('display', 'none');
+            a('#notSupportedBrowser').css('display', 'inline-block');
         }
         var m = null,
             n = null,
@@ -666,29 +721,50 @@ var ChatFilter = function() {
                     requestCreateNickname: null
                 },
                 a9 = false;
-            P.css('display', 'none'), Q.css('display', 'none');
+            P.css('display', 'none');
+            Q.css('display', 'none');
             var aa = function ah(ai) {
-                    P.css('display', 'none'), Q.css('display', 'none'), H.css('display', 'none');
+                    P.css('display', 'none');
+                    Q.css('display', 'none');
+                    H.css('display', 'none');
                     if (ai) {
-                        G.css('display', 'inline-block'), I.css('display', 'none');
+                        G.css('display', 'inline-block');
+                        I.css('display', 'none');
                     } else {
-                        G.css('display', 'none'), I.css('display', 'inline-block');
+                        G.css('display', 'none');
+                        I.css('display', 'inline-block');
                     }
                     if (rtd) G.css('display', 'inline-block');
                 },
                 ab = function ai() {
                     a8.requestCreateNickname = setTimeout(function() {
-                        console.log('@@@RESET'), U.text(''), a7 = true;
+                        console.log('@@@RESET');
+                        U.text('');
+                        a7 = true;
                     }, 1000);
                 },
                 ac = function aj() {
-                    Z.text(''), a0.text(''), a1.text(''), W.prop('checked', true), O.css('display', 'block'), !Z.val() && getCookie(DCvi + '_customer_id') && Z.val(getCookie(DCvi + '_customer_id')), !a0.val() && getCookie(DCvi + '_ticket_id') && a0.val(getCookie(DCvi + '_ticket_id')), Z.focus();
+                    Z.text('');
+                    a0.text('');
+                    a1.text('');
+                    W.prop('checked', true);
+                    O.css('display', 'block');
+                    !Z.val() && getCookie(DCvi + '_customer_id') && Z.val(getCookie(DCvi + '_customer_id'));
+                    !a0.val() && getCookie(DCvi + '_ticket_id') && a0.val(getCookie(DCvi + '_ticket_id'));
+                    Z.focus();
                 },
                 ad = function ak() {
                     var al = egl,
                         am = DCvi,
                         an = null;
-                    am == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82' && (an = POPUP_CONFIG.authorizedByCode(al), a('.popupbox .label_customer_id').text(an.idText), a('.popupbox .label_ticket_id').text(an.ticketText), R.prop('autofocus', false).prop('readonly', true).val('UNIVERSE'), Z.prop('autofocus', false).prop('readonly', true).val('UNIVERSE'), O.find('.pop-tt.auth').text(an.authPopupTitle));
+                    if (am == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+                        an = POPUP_CONFIG.authorizedByCode(al);
+                        a('.popupbox .label_customer_id').text(an.idText);
+                        a('.popupbox .label_ticket_id').text(an.ticketText);
+                        R.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
+                        Z.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
+                        O.find('.pop-tt.auth').text(an.authPopupTitle);
+                    }
                 },
                 ae = function al(am, an) {
                     var ao = DCvi;
@@ -700,9 +776,15 @@ var ChatFilter = function() {
                         G.click();
                     }
                 };
-            ad(), q = a4.getTime() - a5.getTime();
+            ad();
+            q = a4.getTime() - a5.getTime();
             if (a3 < a4) {
-                K.css('display', 'none'), !checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp() && G.css('display', 'inline-block'), I.css('display', 'none'), H.css('display', 'none'), P.css('display', 'none'), Q.css('display', 'none');
+                K.css('display', 'none');
+                !checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp() && G.css('display', 'inline-block');
+                I.css('display', 'none');
+                H.css('display', 'none');
+                P.css('display', 'none');
+                Q.css('display', 'none');
             } else {
                 dsev ? K.css('display', 'none') : K.css('display', 'block');
                 G.css('display', 'none');
@@ -711,14 +793,23 @@ var ChatFilter = function() {
                 }
                 var af = function ao() {
                     var ap = new Date();
-                    ap.setTime(ap.getTime() + q), a9 = a3 <= ap;
+                    ap.setTime(ap.getTime() + q);
+                    a9 = a3 <= ap;
                     if (a3 <= ap) {
-                        K.css('display', 'none'), G.css('display', 'inline-block'), I.css('display', 'none'), H.css('display', 'none'), P.css('display', 'none'), Q.css('display', 'none');
+                        K.css('display', 'none');
+                        G.css('display', 'inline-block');
+                        I.css('display', 'none');
+                        H.css('display', 'none');
+                        P.css('display', 'none');
+                        Q.css('display', 'none');
                         if (o) {
                             clearInterval(o);
                             return;
                         }
-                    } else !rtd && G.css('display', 'none'), !a6 && aa(false);
+                    } else {
+                        !rtd && G.css('display', 'none');
+                        !a6 && aa(false);
+                    }
                     var aq = (a3 - ap) / 1000,
                         ar = parseInt(aq / 60 / 60 / 24),
                         as = parseInt(aq / 60 / 60 % 24),
@@ -741,33 +832,51 @@ var ChatFilter = function() {
                     }
                     document.getElementById('second') && (document.getElementById('second').innerHTML = au);
                 };
-                af(), o = setInterval(af, 1000);
+                af();
+                o = setInterval(af, 1000);
             }
             if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
-                G.css('display', 'none'), J.css('display', 'inline-block');
+                G.css('display', 'none');
+                J.css('display', 'inline-block');
             } else {
                 var ag = {
                     content_id: DCvi,
                     user_id: getCookie(DCvi + '_user_id'),
                     device_id: getCookie(DCvi + '_device_id')
                 };
-                a3 > a4 && (!a6 ? aa(false) : !ag.user_id && (H.css('display', 'inline-block'), !dsev && (P.css('display', 'block'), Q.css('display', 'block')))), userSessionCheck(ag, function(aq) {
-                    n = JSON.parse(JSON.stringify(aq.Data.user)), m = JSON.parse(JSON.stringify(aq.Data.content));
-                    if (m.status == 'end') clearInterval(o), b();
-                    else {
+                a3 > a4 && (!a6 ? aa(false) : !ag.user_id && (H.css('display', 'inline-block'), !dsev && (P.css('display', 'block'), Q.css('display', 'block'))));
+                userSessionCheck(ag, function(aq) {
+                    n = JSON.parse(JSON.stringify(aq.Data.user));
+                    m = JSON.parse(JSON.stringify(aq.Data.content));
+                    if (m.status == 'end') {
+                        clearInterval(o);
+                        b();
+                    } else {
                         if (m.is_chat_used) {
                             if (n.nickname) {
-                                a3 > a4 && (!a6 ? aa(false) : I.css('display', 'inline-block')), H.css('display', 'none'), P.css('display', 'none'), Q.css('display', 'none');
+                                a3 > a4 && (!a6 ? aa(false) : I.css('display', 'inline-block'));
+                                H.css('display', 'none');
+                                P.css('display', 'none');
+                                Q.css('display', 'none');
                             } else {
                                 if (a3 > a4) {
-                                    !a6 ? aa(false) : H.css('display', 'inline-block'), !dsev && a6 && (P.css('display', 'block'), Q.css('display', 'block'));
+                                    !a6 ? aa(false) : H.css('display', 'inline-block');
+                                    if (!dsev && a6) {
+                                        P.css('display', 'block');
+                                        Q.css('display', 'block');
+                                    }
                                 }
                             }
                         } else {
                             if (a3 > a4) {
-                                !a6 ? aa(false) : (H.css('display', 'inline-block'), ae(true, false));
+                                if (!a6) aa(false);
+                                else {
+                                    H.css('display', 'inline-block');
+                                    ae(true, false);
+                                }
                                 if (!dsev && a6) {
-                                    P.css('display', 'block'), Q.css('display', 'block');
+                                    P.css('display', 'block');
+                                    Q.css('display', 'block');
                                 }
                             }
                         }
@@ -775,24 +884,36 @@ var ChatFilter = function() {
                 }, function(aq) {
                     if (aq.Data) {
                         if (aq.Data.content.status == 'end') {
-                            clearInterval(o), b();
+                            clearInterval(o);
+                            b();
                         } else {
                             if (a3 > a4) {
                                 if (!a6) {
                                     aa(false);
-                                } else H.css('display', 'inline-block'), ae(true, false);
+                                } else {
+                                    H.css('display', 'inline-block');
+                                    ae(true, false);
+                                }
                                 if (!dsev && a6) {
-                                    P.css('display', 'block'), Q.css('display', 'block');
+                                    P.css('display', 'block');
+                                    Q.css('display', 'block');
                                 }
                             } else {
-                                ae(false, false), H.css('display', 'none'), P.css('display', 'none'), Q.css('display', 'none');
+                                ae(false, false);
+                                H.css('display', 'none');
+                                P.css('display', 'none');
+                                Q.css('display', 'none');
                             }
                         }
                     }
                 });
             }
             G.on('click', function() {
-                R.val(''), S.val(''), V.text(''), X.prop('checked', true), ad();
+                R.val('');
+                S.val('');
+                V.text('');
+                X.prop('checked', true);
+                ad();
                 var ar = {
                     user_id: getCookie(DCvi + '_user_id'),
                     device_id: getCookie(DCvi + '_device_id'),
@@ -809,19 +930,30 @@ var ChatFilter = function() {
                     return;
                 }
                 userSessionCheck(ar, function(av) {
-                    m = JSON.parse(JSON.stringify(av.Data.content)), n = JSON.parse(JSON.stringify(av.Data.user)), m.is_chat_used ? l('enter', n.nickname) : h();
+                    m = JSON.parse(JSON.stringify(av.Data.content));
+                    n = JSON.parse(JSON.stringify(av.Data.user));
+                    m.is_chat_used ? l('enter', n.nickname) : h();
                 }, function(av) {
                     if (av.Data) {
                         if (av.Data.content.status == 'end') {
-                            clearInterval(o), b();
+                            clearInterval(o);
+                            b();
                         } else {
-                            removeCookie(DCvi + '_user_id'), removeCookie(DCvi + '_chat_id'), M.css('display', 'block'), N.css('display', 'none'), !R.val() && getCookie(DCvi + '_customer_id') && R.val(getCookie(DCvi + '_customer_id')), !S.val() && getCookie(DCvi + '_ticket_id') && S.val(getCookie(DCvi + '_ticket_id')), R.focus();
+                            removeCookie(DCvi + '_user_id');
+                            removeCookie(DCvi + '_chat_id');
+                            M.css('display', 'block');
+                            N.css('display', 'none');
+                            !R.val() && getCookie(DCvi + '_customer_id') && R.val(getCookie(DCvi + '_customer_id'));
+                            !S.val() && getCookie(DCvi + '_ticket_id') && S.val(getCookie(DCvi + '_ticket_id'));
+                            R.focus();
                         }
                     }
                 });
-            }), a('#loginPopup button[name=closebtn]').on('click', function() {
+            });
+            a('#loginPopup button[name=closebtn]').on('click', function() {
                 M.css('display', 'none');
-            }), L.on('click', function() {
+            });
+            L.on('click', function() {
                 var ar = R.val().trim(),
                     as = S.val().trim();
                 if (a6 && (!ar || !as)) {
@@ -834,12 +966,18 @@ var ChatFilter = function() {
                     content_id: DCvi,
                     device_id: r
                 };
-                !a6 && (at.customer_id = null, at.ticket_id = null), c(at, function() {
+                if (!a6) {
+                    at.customer_id = null;
+                    at.ticket_id = null;
+                }
+                c(at, function() {
                     if (a6) {
                         if (X.prop('checked')) {
-                            setCookie(DCvi + '_customer_id', at.customer_id, 20160), setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
+                            setCookie(DCvi + '_customer_id', at.customer_id, 20160);
+                            setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
                         } else {
-                            removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id');
+                            removeCookie(DCvi + '_customer_id');
+                            removeCookie(DCvi + '_ticket_id');
                         }
                         setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
                     }
@@ -847,9 +985,13 @@ var ChatFilter = function() {
                 }, function() {
                     j(V, DCvi);
                 });
-            }), a('#nicknamePopup button[name=closebtn]').on('click', function() {
-                T.val(''), U.text(''), N.css('display', 'none');
-            }), Y.on('click', function() {
+            });
+            a('#nicknamePopup button[name=closebtn]').on('click', function() {
+                T.val('');
+                U.text('');
+                N.css('display', 'none');
+            });
+            Y.on('click', function() {
                 var ar = T.val();
                 if (!ar) {
                     switch (egl) {
@@ -955,7 +1097,10 @@ var ChatFilter = function() {
                                     }
                                 } else {
                                     clearTimeout(a8.requestCreateNickname);
-                                    !a7 && (U.text(POPUP_CONFIG.duplicatedNickname(egl).desc), ab());
+                                    if (!a7) {
+                                        U.text(POPUP_CONFIG.duplicatedNickname(egl).desc);
+                                        ab();
+                                    }
                                     if (!a7) return;
                                     var as = {
                                         user_id: n.user_id,
@@ -963,37 +1108,49 @@ var ChatFilter = function() {
                                         nickname: ar,
                                         content_id: DCvi
                                     };
-                                    a('#loadingDiv').css('display', 'block'), d(as, function() {
-                                        a7 = true, clearTimeout(a8.requestCreateNickname);
+                                    a('#loadingDiv').css('display', 'block');
+                                    d(as, function() {
+                                        a7 = true;
+                                        clearTimeout(a8.requestCreateNickname);
                                         if (p == 'auth') {
                                             k(DCvi);
                                             if (a9) I.css('display', 'none');
                                         } else {
                                             if (p == 'enter') {
-                                                a('#loadingDiv').css('display', 'none'), N.css('display', 'none');
+                                                a('#loadingDiv').css('display', 'none');
+                                                N.css('display', 'none');
                                                 var aD = '',
                                                     aE = '',
                                                     aF = '';
                                                 switch (egl) {
                                                     case 'ko':
-                                                        aE = '알림', aD = '닉네임 생성이 완료되었습니다.', aF = '확인';
+                                                        aE = '알림';
+                                                        aD = '닉네임 생성이 완료되었습니다.';
+                                                        aF = '확인';
                                                         break;
                                                     case 'en':
-                                                        aE = 'Notification', aD = 'Nickname successfully created.', aF = 'OK';
+                                                        aE = 'Notification';
+                                                        aD = 'Nickname successfully created.';
+                                                        aF = 'OK';
                                                         break;
                                                     case 'ja':
                                                     case 'jp':
-                                                        aE = 'お知らせ', aD = 'ニックネーム作成を完了しました', aF = '確認';
+                                                        aE = 'お知らせ';
+                                                        aD = 'ニックネーム作成を完了しました';
+                                                        aF = '確認';
                                                         break;
                                                     case 'cn':
-                                                        aE = '提醒', aD = '账户名生成完毕', aF = '确认';
+                                                        aE = '提醒';
+                                                        aD = '账户名生成完毕';
+                                                        aF = '确认';
                                                         break;
                                                 }
                                                 alertPopup(aE, aD, aF, h);
                                             }
                                         }
                                     }, function(aD, aE) {
-                                        a7 = false, ab();
+                                        a7 = false;
+                                        ab();
                                         var aF = aD && aD.Message == 'nickname duplicated.' || aE == 409;
                                         if (aF) {
                                             switch (egl) {
@@ -1034,13 +1191,17 @@ var ChatFilter = function() {
                         }
                     }
                 }
-            }), a('#customerId,#ticketId').on('keydown', function(ar) {
+            });
+            a('#customerId,#ticketId').on('keydown', function(ar) {
                 if (ar.keyCode == 13) {
                     L.click();
                 }
-            }), T.on('keydown', function(ar) {
+            });
+            T.on('keydown', function(ar) {
                 ar.keyCode == 13 && Y.click();
-            }), H.on('click', ac), a2.on('click', function() {
+            });
+            H.on('click', ac);
+            a2.on('click', function() {
                 var ar = Z.val().trim(),
                     as = a0.val().trim();
                 if (!ar || !as) {
@@ -1055,26 +1216,44 @@ var ChatFilter = function() {
                 };
                 c(at, function() {
                     if (W.prop('checked')) {
-                        setCookie(DCvi + '_customer_id', at.customer_id, 20160), setCookie(DCvi + '_ticket_id', at.ticket_id, 20160), n && setCookie(DCvi + '_user_id', n.user_id, 20160);
-                    } else removeCookie(DCvi + '_customer_id'), removeCookie(DCvi + '_ticket_id'), removeCookie(DCvi + '_user_id');
+                        setCookie(DCvi + '_customer_id', at.customer_id, 20160);
+                        setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
+                        n && setCookie(DCvi + '_user_id', n.user_id, 20160);
+                    } else {
+                        removeCookie(DCvi + '_customer_id');
+                        removeCookie(DCvi + '_ticket_id');
+                        removeCookie(DCvi + '_user_id');
+                    }
                     m.is_chat_used ? l('auth', n.nickname) : k(DCvi);
                 }, function() {
                     j(a1, DCvi);
                 });
-            }), a('#authCustomerId, #authTicketId').on('keydown', function(ar) {
+            });
+            a('#authCustomerId, #authTicketId').on('keydown', function(ar) {
                 ar.keyCode == 13 && a2.click();
-            }), a('#authPopup button[name=closebtn]').on('click', function() {
+            });
+            a('#authPopup button[name=closebtn]').on('click', function() {
                 O.css('display', 'none');
-            }), rtd && (G.css('display', 'inline-block'), I.remove(), H.remove(), P.remove(), Q.remove());
-        }), window.onpageshow = function(F) {
+            });
+            if (rtd) {
+                G.css('display', 'inline-block');
+                I.remove();
+                H.remove();
+                P.remove();
+                Q.remove();
+            }
+        });
+        window.onpageshow = function(F) {
             var G = null,
                 H = window.performance,
                 I = H && H.getEntriesByType ? H.getEntriesByType('navigation') : null,
                 J = I && I[0] ? I[0].type : null;
-            console.log(J), (F.persisted || J == 'back_forward' || G == 2) && location.reload();
+            console.log(J);
+            (F.persisted || J == 'back_forward' || G == 2) && location.reload();
         };
     }
-})(jQuery), window.onpageshow = function(a) {
+})(jQuery);
+window.onpageshow = function(a) {
     var b = performance.getEntriesByType('navigation'),
         c = b[0],
         d = null;
@@ -1093,7 +1272,10 @@ var requestCnt = 0,
 
 function request_to_server(a, b, c, d, e) {
     var f = new XMLHttpRequest();
-    f.open(a, b, true), f.withCredentials = true, f.setRequestHeader('X-CSRFToken', getCookie('csrftoken')), f.timeout = 60000;
+    f.open(a, b, true);
+    f.withCredentials = true;
+    f.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+    f.timeout = 60000;
     if (c) {
         var g = new FormData();
         for (var h in c) {
@@ -1103,11 +1285,16 @@ function request_to_server(a, b, c, d, e) {
     } else {
         f.send();
     }
-    $('#loadingDiv').css('display', 'block'), requestCnt++, !serverLoading && (serverLoading = setInterval(function() {
+    $('#loadingDiv').css('display', 'block');
+    requestCnt++;
+    !serverLoading && (serverLoading = setInterval(function() {
         if (!requestCnt) {
-            $('#loadingDiv').css('display', 'none'), clearInterval(serverLoading), serverLoading = null;
+            $('#loadingDiv').css('display', 'none');
+            clearInterval(serverLoading);
+            serverLoading = null;
         }
-    }, 100)), f.onreadystatechange = function() {
+    }, 100));
+    f.onreadystatechange = function() {
         if (f.readyState == XMLHttpRequest.DONE) {
             requestCnt--;
             if (f.status == 200 || f.status == 201) {
@@ -1128,8 +1315,10 @@ function request_to_server(a, b, c, d, e) {
                 }
             }
         } else {}
-    }, f.ontimeout = function(k) {
-        console.log(k), alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
+    };
+    f.ontimeout = function(k) {
+        console.log(k);
+        alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
     };
@@ -1189,16 +1378,19 @@ Date.prototype.format = function(a) {
                 return c;
         }
     });
-}, String.prototype.string = function(a) {
+};
+String.prototype.string = function(a) {
     var b = '',
         c = 0;
     while (c++ < a) {
         b += this;
     }
     return b;
-}, String.prototype.zf = function(a) {
+};
+String.prototype.zf = function(a) {
     return '0'.string(a - this.length) + this;
-}, Number.prototype.zf = function(a) {
+};
+Number.prototype.zf = function(a) {
     return this.toString().zf(a);
 };
 
@@ -1211,7 +1403,8 @@ function set_uuid() {
 
 function createDeviceId(a) {
     var b = set_uuid();
-    return setCookie(a + '_device_id', b, 20160), b;
+    setCookie(a + '_device_id', b, 20160);
+    return b;
 }
 
 function clearPopupData(a) {
@@ -1221,10 +1414,18 @@ function clearPopupData(a) {
 
 function alertPopup(a, b, c, d) {
     var e = setInterval(function() {
-        clearInterval(e), $('#loadingDiv').css('display', 'none'), $('#alertPopup').css('display', 'block'), $('#alertPopup p[name=title]').text(a), $('#alertPopup p[name=desc]').text(b), $('#alertPopup button[name=okbtn]').text(c), $('#alertPopup button[name=okbtn],#alertPopup button[name=closebtn]').click(function() {
-            $('#alertPopup button[name=okbtn]').unbind('click'), clearPopupData('alertPopup');
+        clearInterval(e);
+        $('#loadingDiv').css('display', 'none');
+        $('#alertPopup').css('display', 'block');
+        $('#alertPopup p[name=title]').text(a);
+        $('#alertPopup p[name=desc]').text(b);
+        $('#alertPopup button[name=okbtn]').text(c);
+        $('#alertPopup button[name=okbtn],#alertPopup button[name=closebtn]').click(function() {
+            $('#alertPopup button[name=okbtn]').unbind('click');
+            clearPopupData('alertPopup');
             if (d) {
-                d(), d = null;
+                d();
+                d = null;
             }
         });
     }, 100);
@@ -1282,9 +1483,10 @@ function checkMobileAndTablet() {
 
 function isMobile() {
     var a = false;
-    return function(b) {
+    (function(b) {
         if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(b) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(b.substr(0, 4))) a = true;
-    }(navigator.userAgent || navigator.vendor || window.opera), a;
+    })(navigator.userAgent || navigator.vendor || window.opera);
+    return a;
 }
 
 function isIOS() {
@@ -1321,7 +1523,10 @@ function addClassName(a, b) {
 function removeClassName(a, b) {
     if (hasClassName(a, b)) {
         var d = a.className;
-        d = d.replace(new RegExp('(?:^|\\s+)' + b + '(?:\\s+|$)', 'g'), ' '), d = d.replace(new RegExp('^\\s+', 'g'), ''), d = d.replace(new RegExp('\\s+$', 'g'), ''), a.className = d.replace(new RegExp('\\s+', 'g'), ' ');
+        d = d.replace(new RegExp('(?:^|\\s+)' + b + '(?:\\s+|$)', 'g'), ' ');
+        d = d.replace(new RegExp('^\\s+', 'g'), '');
+        d = d.replace(new RegExp('\\s+$', 'g'), '');
+        a.className = d.replace(new RegExp('\\s+', 'g'), ' ');
     }
 }
 
@@ -1371,7 +1576,9 @@ function isSafari() {
 function delayStopLoadingPanelFactory() {
     var a;
     return function() {
-        clearTimeout(a), $('#loadingWrap .pl_loader').addClass('stop'), a = setTimeout(function() {
+        clearTimeout(a);
+        $('#loadingWrap .pl_loader').addClass('stop');
+        a = setTimeout(function() {
             $('#loadingWrap .pl_loader').removeClass('stop');
         }, 1000);
     };
@@ -1408,7 +1615,8 @@ function addClassToElementByEnv(a) {
     if (checkEdgeBrowser()) d.push('edge');
     if (isMac()) d.push('macos');
     if (isWindow()) d.push('window');
-    c = d.join(' '), b.className += ' ' + c;
+    c = d.join(' ');
+    b.className += ' ' + c;
 }
 
 function debounce(a, b) {
@@ -1417,7 +1625,8 @@ function debounce(a, b) {
         var d = arguments,
             e = this,
             f = arguments;
-        clearTimeout(c), c = setTimeout(function() {
+        clearTimeout(c);
+        c = setTimeout(function() {
             return a.apply(e, d);
         }, b);
     };
@@ -1586,5 +1795,6 @@ var POPUP_CONFIG = {
 
 function createElementFromHTML(a) {
     var b = document.createElement('div');
-    return b.innerHTML = a.trim(), b.firstChild;
+    b.innerHTML = a.trim();
+    return b.firstChild;
 }
