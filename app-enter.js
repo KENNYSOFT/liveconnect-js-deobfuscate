@@ -332,9 +332,17 @@ var ChatFilter = function() {
                 return;
             }
             var d = new XMLHttpRequest();
-            if (Tira == 'IDLE') {
-                d.open('GET', '/static/filtering/chat_filtering_idle.txt');
-            } else Tira == '210417_cix' ? d.open('GET', '/static/filtering/chat_filtering_cix.txt') : d.open('GET', '/static/filtering/chat_filtering.txt');
+            switch (Tira) {
+                case 'IDLE':
+                    d.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                    break;
+                case '210417_cix':
+                    d.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    break;
+                default:
+                    d.open('GET', '/static/filtering/chat_filtering.txt');
+                    break;
+            }
             d.overrideMimeType('text/plain; charset=utf-8'), d.onreadystatechange = function() {
                 if (d.readyState == XMLHttpRequest.DONE) {
                     if (d.status == 200 || d.status == 201) {
@@ -487,50 +495,72 @@ var ChatFilter = function() {
 
         function s(w, x) {
             if (x == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                if (egl == 'ko') w.text('인증코드를 입력해 주세요.');
-                else {
-                    if (egl == 'en') {
+                switch (egl) {
+                    case 'ko':
+                        w.text('인증코드를 입력해 주세요.');
+                        break;
+                    case 'en':
                         w.text('Enter authentication code.');
-                    } else {
-                        if (egl == 'ja' || egl == 'jp') w.text('認証コードを入力してください');
-                        else egl == 'cn' && w.text('Enter authentication code');
-                    }
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        w.text('認証コードを入力してください');
+                        break;
+                    case 'cn':
+                        w.text('Enter authentication code');
+                        break;
                 }
             } else {
-                if (egl == 'ko') w.text('인터파크ID와 예매번호를 입력해 주세요.');
-                else {
-                    if (egl == 'en') w.text('Enter INTERPARK ID and reservation number.');
-                    else {
-                        if (egl == 'ja' || egl == 'jp') w.text('INTERPARK IDと購入番号を入力してください。');
-                        else {
-                            if (egl == 'cn') {
-                                w.text('请输入INTERPARK账户和预订号码');
-                            }
-                        }
-                    }
+                switch (egl) {
+                    case 'ko':
+                        w.text('인터파크ID와 예매번호를 입력해 주세요.');
+                        break;
+                    case 'en':
+                        w.text('Enter INTERPARK ID and reservation number.');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        w.text('INTERPARK IDと購入番号を入力してください。');
+                        break;
+                    case 'cn':
+                        w.text('请输入INTERPARK账户和预订号码');
+                        break;
                 }
             }
         }
 
         function t(w, x) {
             if (x == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                if (egl == 'ko') w.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
-                else {
-                    if (egl == 'en') w.text('Authentication code is not valid. Please check and try again.');
-                    else {
-                        if (egl == 'ja' || egl == 'jp') w.text('認証コードが正しくありません。確認後、正確に入力してください。');
-                        else egl == 'cn' && w.text('Authentication code is not valid. Please check and try again.');
-                    }
+                switch (egl) {
+                    case 'ko':
+                        w.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                        break;
+                    case 'en':
+                        w.text('Authentication code is not valid. Please check and try again.');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        w.text('認証コードが正しくありません。確認後、正確に入力してください。');
+                        break;
+                    case 'cn':
+                        w.text('Authentication code is not valid. Please check and try again.');
+                        break;
                 }
             } else {
-                if (egl == 'ko') w.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
-                else {
-                    if (egl == 'en') {
+                switch (egl) {
+                    case 'ko':
+                        w.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                        break;
+                    case 'en':
                         w.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
-                    } else {
-                        if (egl == 'ja' || egl == 'jp') w.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
-                        else egl == 'cn' && w.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
-                    }
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        w.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
+                        break;
+                    case 'cn':
+                        w.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
+                        break;
                 }
             }
         }
@@ -774,68 +804,89 @@ var ChatFilter = function() {
             }), P.on('click', function() {
                 var af = K.val();
                 if (!af) {
-                    if (egl == 'ko') {
-                        L.text('닉네임을 입력해주세요.');
-                    } else {
-                        if (egl == 'en') {
+                    switch (egl) {
+                        case 'ko':
+                            L.text('닉네임을 입력해주세요.');
+                            break;
+                        case 'en':
                             L.text('Please enter your nickname.');
-                        } else {
-                            if (egl == 'ja' || egl == 'jp') L.text('ニックネームを入力してください');
-                            else egl == 'cn' && L.text('请输入账户名');
-                        }
+                            break;
+                        case 'ja':
+                        case 'jp':
+                            L.text('ニックネームを入力してください');
+                            break;
+                        case 'cn':
+                            L.text('请输入账户名');
+                            break;
                     }
                     return;
                 }
                 if (p(af)) {
-                    if (egl == 'ko') L.text('닉네임에는 특수문자를 포함할 수 없습니다.');
-                    else {
-                        if (egl == 'en') L.text('Nickname cannot contain any special characters.');
-                        else {
-                            if (egl == 'ja' || egl == 'jp') L.text('ニックネームに特殊文字を含めることはできません');
-                            else {
-                                if (egl == 'cn') {
-                                    L.text('账户名不能添加特殊文字');
-                                }
-                            }
-                        }
+                    switch (egl) {
+                        case 'ko':
+                            L.text('닉네임에는 특수문자를 포함할 수 없습니다.');
+                            break;
+                        case 'en':
+                            L.text('Nickname cannot contain any special characters.');
+                            break;
+                        case 'ja':
+                        case 'jp':
+                            L.text('ニックネームに特殊文字を含めることはできません');
+                            break;
+                        case 'cn':
+                            L.text('账户名不能添加特殊文字');
+                            break;
                     }
                 } else {
                     if (q(af)) {
-                        if (egl == 'ko') L.text('닉네임에는 공백을 포함할 수 없습니다.');
-                        else {
-                            if (egl == 'en') L.text('Nickname cannot contain any space.');
-                            else {
-                                if (egl == 'ja' || egl == 'jp') L.text('ニックネームに空白を含めることはできません');
-                                else egl == 'cn' && L.text('账户名不包含空白');
-                            }
+                        switch (egl) {
+                            case 'ko':
+                                L.text('닉네임에는 공백을 포함할 수 없습니다.');
+                                break;
+                            case 'en':
+                                L.text('Nickname cannot contain any space.');
+                                break;
+                            case 'ja':
+                            case 'jp':
+                                L.text('ニックネームに空白を含めることはできません');
+                                break;
+                            case 'cn':
+                                L.text('账户名不包含空白');
+                                break;
                         }
                     } else {
                         if (af.length < 2 || af.length > 12) {
-                            if (egl == 'ko') {
-                                L.text('닉네임은 2~12자로 입력해 주세요.');
-                            } else {
-                                if (egl == 'en') {
+                            switch (egl) {
+                                case 'ko':
+                                    L.text('닉네임은 2~12자로 입력해 주세요.');
+                                    break;
+                                case 'en':
                                     L.text('Please enter 2 to 12 characters.');
-                                } else {
-                                    if (egl == 'ja' || egl == 'jp') {
-                                        L.text('ニックネームは2〜12文字に入力してください');
-                                    } else {
-                                        if (egl == 'cn') {
-                                            L.text('账户名仅限2~12字节');
-                                        }
-                                    }
-                                }
+                                    break;
+                                case 'ja':
+                                case 'jp':
+                                    L.text('ニックネームは2〜12文字に入力してください');
+                                    break;
+                                case 'cn':
+                                    L.text('账户名仅限2~12字节');
+                                    break;
                             }
                         } else {
                             if (ChatFilter.checkNickname(af)) {
-                                if (egl == 'ko') {
-                                    L.text('닉네임에 비속어가 포함되어 있습니다.');
-                                } else {
-                                    if (egl == 'en') L.text('Nickname contains inappropriate words.');
-                                    else {
-                                        if (egl == 'ja' || egl == 'jp') L.text('ニックネームに使用できない言葉が含まれています');
-                                        else egl == 'cn' && L.text('账户名不包含辱骂等词语');
-                                    }
+                                switch (egl) {
+                                    case 'ko':
+                                        L.text('닉네임에 비속어가 포함되어 있습니다.');
+                                        break;
+                                    case 'en':
+                                        L.text('Nickname contains inappropriate words.');
+                                        break;
+                                    case 'ja':
+                                    case 'jp':
+                                        L.text('ニックネームに使用できない言葉が含まれています');
+                                        break;
+                                    case 'cn':
+                                        L.text('账户名不包含辱骂等词语');
+                                        break;
                                 }
                             } else {
                                 clearTimeout(Z.requestCreateNickname);
@@ -858,13 +909,20 @@ var ChatFilter = function() {
                                             var aq = '',
                                                 ar = '',
                                                 as = '';
-                                            if (egl == 'ko') ar = '알림', aq = '닉네임 생성이 완료되었습니다.', as = '확인';
-                                            else {
-                                                if (egl == 'en') ar = 'Notification', aq = 'Nickname successfully created.', as = 'OK';
-                                                else {
-                                                    if (egl == 'ja' || egl == 'jp') ar = 'お知らせ', aq = 'ニックネーム作成を完了しました', as = '確認';
-                                                    else egl == 'cn' && (ar = '提醒', aq = '账户名生成完毕', as = '确认');
-                                                }
+                                            switch (egl) {
+                                                case 'ko':
+                                                    ar = '알림', aq = '닉네임 생성이 완료되었습니다.', as = '확인';
+                                                    break;
+                                                case 'en':
+                                                    ar = 'Notification', aq = 'Nickname successfully created.', as = 'OK';
+                                                    break;
+                                                case 'ja':
+                                                case 'jp':
+                                                    ar = 'お知らせ', aq = 'ニックネーム作成を完了しました', as = '確認';
+                                                    break;
+                                                case 'cn':
+                                                    ar = '提醒', aq = '账户名生成完毕', as = '确认';
+                                                    break;
                                             }
                                             alertPopup(ar, aq, as, r);
                                         }
@@ -873,28 +931,36 @@ var ChatFilter = function() {
                                     Y = false, a2();
                                     var as = aq && aq.Message == 'nickname duplicated.' || ar == 409;
                                     if (as) {
-                                        if (egl == 'ko') {
-                                            L.text('이미 사용 중인 닉네임입니다.');
-                                        } else {
-                                            if (egl == 'en') L.text('This nickname is already taken.');
-                                            else {
-                                                if (egl == 'ja' || egl == 'jp') L.text('既に使用中のニックネームです');
-                                                else egl == 'cn' && L.text('此用户名已被注册');
-                                            }
+                                        switch (egl) {
+                                            case 'ko':
+                                                L.text('이미 사용 중인 닉네임입니다.');
+                                                break;
+                                            case 'en':
+                                                L.text('This nickname is already taken.');
+                                                break;
+                                            case 'ja':
+                                            case 'jp':
+                                                L.text('既に使用中のニックネームです');
+                                                break;
+                                            case 'cn':
+                                                L.text('此用户名已被注册');
+                                                break;
                                         }
                                     } else {
-                                        if (egl == 'ko') {
-                                            L.text('닉네임 생성에 실패하였습니다. 다시 시도해 주세요.');
-                                        } else {
-                                            if (egl == 'en') L.text('Failed to create a nickname. Please try again.');
-                                            else {
-                                                if (egl == 'ja' || egl == 'jp') L.text('ニックネーム作成に失敗しました。もう一度入力してください。');
-                                                else {
-                                                    if (egl == 'cn') {
-                                                        L.text('生成账户名失败，请重新输入');
-                                                    }
-                                                }
-                                            }
+                                        switch (egl) {
+                                            case 'ko':
+                                                L.text('닉네임 생성에 실패하였습니다. 다시 시도해 주세요.');
+                                                break;
+                                            case 'en':
+                                                L.text('Failed to create a nickname. Please try again.');
+                                                break;
+                                            case 'ja':
+                                            case 'jp':
+                                                L.text('ニックネーム作成に失敗しました。もう一度入力してください。');
+                                                break;
+                                            case 'cn':
+                                                L.text('生成账户名失败，请重新输入');
+                                                break;
                                         }
                                     }
                                 });
@@ -950,28 +1016,36 @@ var ChatFilter = function() {
         function u(w) {
             c('#authPopup').css('display', 'none'), c('#authBtn').css('display', 'none'), c('#authMsg1').css('display', 'none'), c('#authMsg2').css('display', 'none'), c('#readyBtn').css('display', 'inline-block'), c('#nicknamePopup').css('display', 'none');
             if (w && w == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                if (egl == 'ko') alertPopup('알림', '인증이 완료되었습니다.', '확인');
-                else {
-                    if (egl == 'en') {
+                switch (egl) {
+                    case 'ko':
+                        alertPopup('알림', '인증이 완료되었습니다.', '확인');
+                        break;
+                    case 'en':
                         alertPopup('Notification', 'Verification completed.', 'OK');
-                    } else {
-                        if (egl == 'ja' || egl == 'jp') alertPopup('お知らせ', '認証が完了しました。', '確認');
-                        else {
-                            if (egl == 'cn') {
-                                alertPopup('提醒', '购票认证已完毕', '确认');
-                            }
-                        }
-                    }
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        alertPopup('お知らせ', '認証が完了しました。', '確認');
+                        break;
+                    case 'cn':
+                        alertPopup('提醒', '购票认证已完毕', '确认');
+                        break;
                 }
             } else {
-                if (egl == 'ko') alertPopup('알림', '티켓 인증이 완료되었습니다.', '확인');
-                else {
-                    if (egl == 'en') {
+                switch (egl) {
+                    case 'ko':
+                        alertPopup('알림', '티켓 인증이 완료되었습니다.', '확인');
+                        break;
+                    case 'en':
                         alertPopup('Notification', 'Ticket verification completed.', 'OK');
-                    } else {
-                        if (egl == 'ja' || egl == 'jp') alertPopup('お知らせ', '観覧券認証が完了しました', '確認');
-                        else egl == 'cn' && alertPopup('提醒', '购票认证已完毕', '确认');
-                    }
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        alertPopup('お知らせ', '観覧券認証が完了しました', '確認');
+                        break;
+                    case 'cn':
+                        alertPopup('提醒', '购票认证已完毕', '确认');
+                        break;
                 }
             }
         }
@@ -983,15 +1057,20 @@ var ChatFilter = function() {
                     c('#loginPopup').css('display', 'none');
                 } else w == 'auth' && c('#authPopup').css('display', 'none');
                 x && c('#nickname').val(x);
-                if (egl == 'ko') {
-                    c('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
-                } else {
-                    if (egl == 'en') c('#nicknameFailTxt').text('Nickname is required to join LIVE CHAT for this show and it is for single-use. (Valid only during the show, and will become invalid and deleted after the show.)');
-                    else {
-                        if (egl == 'ja' || egl == 'jp') {
-                            c('#nicknameFailTxt').text('ニックネームはライブ内でチャット使用のために必要であり、一回用のニックネームです。(ライブ内で使用され、ライブ終了後に削除されます。)');
-                        } else egl == 'cn' && c('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
-                    }
+                switch (egl) {
+                    case 'ko':
+                        c('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
+                        break;
+                    case 'en':
+                        c('#nicknameFailTxt').text('Nickname is required to join LIVE CHAT for this show and it is for single-use. (Valid only during the show, and will become invalid and deleted after the show.)');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        c('#nicknameFailTxt').text('ニックネームはライブ内でチャット使用のために必要であり、一回用のニックネームです。(ライブ内で使用され、ライブ終了後に削除されます。)');
+                        break;
+                    case 'cn':
+                        c('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
+                        break;
                 }
                 c('#nicknamePopup').css('display', 'block'), c('#nickname').focus();
             });

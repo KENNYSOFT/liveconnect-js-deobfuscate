@@ -8,6 +8,56 @@ const t = require('@babel/types');
 const generate = require('@babel/generator').default;
 const fs = require('fs');
 
+const checkSwitchableTest = ({type, left, right, operator}) => type === 'BinaryExpression' && left.type === 'Identifier' && (left.name === 'Tira' || left.name === 'egl') && operator === '==' && right.type === 'StringLiteral';
+
+const checkSwitchableMultiTest = ({type, left, right, operator}) => type === 'LogicalExpression' && checkSwitchableTest(left) && operator === '||' && checkSwitchableTest(right);
+
+const ifToCases = (cases, ifStatement) => {
+    const {test, consequent, alternate} = ifStatement;
+    if (checkSwitchableTest(test)) {
+        if (consequent.type === 'BlockStatement') {
+            cases.push(t.switchCase(test.right, [...consequent.body, t.breakStatement()]));
+        } else {
+            cases.push(t.switchCase(test.right, [consequent, t.breakStatement()]));
+        }
+    } else if (checkSwitchableMultiTest(test)) {
+        cases.push(t.switchCase(test.left.right, []));
+        if (consequent.type === 'BlockStatement') {
+            cases.push(t.switchCase(test.right.right, [...consequent.body, t.breakStatement()]));
+        } else {
+            cases.push(t.switchCase(test.right.right, [consequent, t.breakStatement()]));
+        }
+    }
+    if (alternate) {
+        switch (alternate.type) {
+            case 'BlockStatement':
+                if (alternate.body[0].type === 'IfStatement') {
+                    ifToCases(cases, alternate.body[0]);
+                } else {
+                    cases.push(t.switchCase(null, [...alternate.body, t.breakStatement()]));
+                }
+                break;
+            case 'IfStatement': 
+                ifToCases(cases, alternate);
+                break;
+            case 'ExpressionStatement':
+                const {expression} = alternate;
+                if (expression.type === 'LogicalExpression' && checkSwitchableTest(expression.left)) {
+                    cases.push(t.switchCase(expression.left.right, [t.expressionStatement(expression.right), t.breakStatement()]));
+                } else if (expression.type === 'ConditionalExpression' && checkSwitchableTest(expression.test)) {
+                    cases.push(t.switchCase(expression.test.right, [t.expressionStatement(expression.consequent), t.breakStatement()]));
+                    cases.push(t.switchCase(null, [t.expressionStatement(expression.alternate), t.breakStatement()]));
+                } else {
+                    cases.push(t.switchCase(null, [alternate, t.breakStatement()]));
+                }
+                break;
+            default:
+                cases.push(t.switchCase(null, [alternate, t.breakStatement()]));
+                break;
+        }
+    }
+};
+
 const deobfuscate = async (url) => {
     const res = await fetch(url);
     const js = await res.text();
@@ -29,8 +79,8 @@ const deobfuscate = async (url) => {
     });
     traverse(ast, {
         IfStatement: (path) => {
-            const {test: {left, right, operator}, consequent, alternate} = path.node;
-            if (left?.type === 'StringLiteral' && right?.type === 'StringLiteral') {
+            const {test: {type, left, right, operator}, consequent, alternate} = path.node;
+            if (type === 'BinaryExpression' && left.type === 'StringLiteral' && right.type === 'StringLiteral') {
                 const replacement = (left.value === right.value) === (operator === '===') ? consequent : alternate;
                 if (replacement.type === 'BlockStatement') {
                     path.replaceWithMultiple(replacement.body);
@@ -54,13 +104,17 @@ const deobfuscate = async (url) => {
             }
         },
     });
-    return beautify(beautify(generate(ast, {compact: true, jsescOption: {numbers: 'decimal', quotes: 'single', minimal: true}}).code)
-            .replace(/!!\[\]/g, 'true')
-            .replace(/!\[\]/g, 'false')
-            .replace(/\nif \(Tira == ('[^']*')\) (var DCvi = '[^']*');\n *else {/g, 'switch(Tira){case $1:$2;break;')
-            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*');\n *else {/g, 'case $1:$2;break;')
-            .replace(/\n *if \(Tira == ('[^']*')\) (var DCvi = '[^']*');(\n *})*/g, 'case $1:$2;break;}')
-    );
+    traverse(ast, {
+        IfStatement: (path) => {
+            const {test} = path.node;
+            if (checkSwitchableTest(test)) {
+                const cases = [];
+                ifToCases(cases, path.node);
+                path.replaceWith(t.switchStatement(test.left, cases));
+            }
+        },
+    });
+    return beautify(generate(ast, {compact: true, jsescOption: {numbers: 'decimal', quotes: 'single', minimal: true}}).code).replace(/!!\[\]/g, 'true').replace(/!\[\]/g, 'false');
 };
 
 const main = async () => {

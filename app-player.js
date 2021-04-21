@@ -2327,12 +2327,16 @@ var ChatFilter = function() {
                     return;
                 }
                 var d = new XMLHttpRequest();
-                if (Tira == 'IDLE') d.open('GET', '/static/filtering/chat_filtering_idle.txt');
-                else {
-                    if (Tira == '210417_cix') d.open('GET', '/static/filtering/chat_filtering_cix.txt');
-                    else {
+                switch (Tira) {
+                    case 'IDLE':
+                        d.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                        break;
+                    case '210417_cix':
+                        d.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                        break;
+                    default:
                         d.open('GET', '/static/filtering/chat_filtering.txt');
-                    }
+                        break;
                 }
                 d.overrideMimeType('text/plain; charset=utf-8'), d.onreadystatechange = function() {
                     if (d.readyState == XMLHttpRequest.DONE) {
