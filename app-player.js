@@ -131,10 +131,10 @@ function cusDDselectOption(a, b, c) {
         this.options = b({}, this.options), b(this.options, e), this._init();
     }
     d.prototype.options = {
-        'wrapper': '#o-wrapper',
-        'type': 'slide-left',
-        'menuOpenerClass': '.c-button',
-        'maskId': '#c-mask'
+        wrapper: '#o-wrapper',
+        type: 'slide-left',
+        menuOpenerClass: '.c-button',
+        maskId: '#c-mask'
     }, d.prototype._init = function() {
         this.body = document.body, this.wrapper = document.querySelector(this.options.wrapper), this.mask = document.querySelector(this.options.maskId), this.menu = document.querySelector('#c-menu--' + this.options.type), this.closeBtn = this.menu.querySelector('.c-menu__close'), this.menuOpeners = document.querySelectorAll(this.options.menuOpenerClass), this._initEvents();
     }, d.prototype._initEvents = function() {
@@ -163,9 +163,9 @@ function cusDDselectOption(a, b, c) {
 class Rich360Player {
     constructor(a, b, c) {
         this._options = a, this._ui = b, this._req_str = c, this._player = new Rich360(a, c, b, this), this._initHideCtroller = false, this._initQualityUI = false, this._initSubtitleUI = false, this._loading_on = [], this._wakeupPastTime = 0, this._timer = {
-            'hidePlayerController': {
-                'timer': null,
-                'period': 5000
+            hidePlayerController: {
+                timer: null,
+                period: 5000
             }
         }, this._isFullScreen = true, this._thumbnailGridData = null, this.initLoadingState(), this.initEventListener();
     }
@@ -275,12 +275,12 @@ class Rich360Player {
         }
         this._ui.qualitySelect.style.display = 'block', this._ui.qualitySelectBtn.style.display = 'block';
         var a = this.createQualityDiv({
-                'id': 'auto',
-                'height': 'auto'
+                id: 'auto',
+                height: 'auto'
             }),
             b = this.createQualityBtn({
-                'id': 'auto',
-                'height': 'auto'
+                id: 'auto',
+                height: 'auto'
             }),
             c = document.createElement('div');
         c.className = 'cusDD_options', c.appendChild(a), b.className += ' on', $(this._ui.qualityPopup).find('.ta_c').append(b), this._ui.qualityItems.push(a), this._ui.qualityPopupItems.push(b);
@@ -288,19 +288,19 @@ class Rich360Player {
             for (var d = 0; d < this._player.qualityList.length; d++) {
                 if (!this._player.qualityList[d].height) continue;
                 var e = this.createQualityDiv({
-                        'id': d,
-                        'height': this._player.qualityList[d].height
+                        id: d,
+                        height: this._player.qualityList[d].height
                     }),
                     f = this.createQualityBtn({
-                        'id': d,
-                        'height': this._player.qualityList[d].height
+                        id: d,
+                        height: this._player.qualityList[d].height
                     });
                 'NAME' in this._player.qualityList[d].attrs && (e = this.createQualityDiv({
-                    'id': d,
-                    'height': this._player.qualityList[d].attrs.NAME
+                    id: d,
+                    height: this._player.qualityList[d].attrs.NAME
                 }), f = this.createQualityBtn({
-                    'id': d,
-                    'height': this._player.qualityList[d].attrs.NAME
+                    id: d,
+                    height: this._player.qualityList[d].attrs.NAME
                 }));
                 if (this._player.quality) {
                     if (this._player.quality == d) addClassName(e, 'on');
@@ -372,14 +372,14 @@ class Rich360Player {
             }
         }
         var b = this.createSubtitleDiv({
-                'id': '-1',
-                'label': 'OFF',
-                'lang': 'OFF'
+                id: '-1',
+                label: 'OFF',
+                lang: 'OFF'
             }),
             c = this.createSubtitleBtn({
-                'id': '-1',
-                'label': 'OFF',
-                'lang': 'OFF'
+                id: '-1',
+                label: 'OFF',
+                lang: 'OFF'
             }),
             d = document.createElement('div');
         addClassName(b, 'on'), addClassName(c, 'on'), d.className = 'cusDD_options', d.appendChild(b), this._ui.subtitlePopupItems.push(c), $(this._ui.subtitlePopup).find('.ta_c').append(c);
@@ -682,10 +682,10 @@ var customRange = function(a, b, c) {
     if (b) d._value = b;
     else d._value = 0;
     d._loadedValue = 0, d.inputEvent = new Event('input'), d.seekEvent = new Event('seek'), Object.defineProperty(d, 'value', {
-        'get': function i() {
+        get: function i() {
             return this._value;
         },
-        'set': function j(k) {
+        set: function j(k) {
             if (k > 100) k = 100;
             else {
                 if (k < 0) k = 0;
@@ -827,8 +827,8 @@ class Rich360Log {
     addLog(a) {
         if (this._logData.length >= this._logMaxLength) this._logData.splice(0, 1);
         this._logData.push({
-            'value': a,
-            'timeStamp': this.getTimeStamp()
+            value: a,
+            timeStamp: this.getTimeStamp()
         });
     }
     clearLogData() {
@@ -885,8 +885,8 @@ class Rich360EventListener {
         this.events = [];
         for (var b in a) {
             this.events.push({
-                'key': a[b],
-                'listeners': []
+                key: a[b],
+                listeners: []
             });
         }
     }
@@ -954,7 +954,7 @@ class Rich360HlsWrapper {
                 this._video.play();
             }
         }.bind(this), {
-            'once': true
+            once: true
         });
         if (!this._isDummy) this._hls.attachMedia(a);
     }
@@ -1016,73 +1016,73 @@ class Rich360HlsWrapper {
     }
 }
 var RICH360_EVENTS = {
-        'RICH360_STATE_CHANGE': 0,
-        'RICH360_QUALITY_CHANGE': 1,
-        'RICH360_DURATION_CHANGE': 2,
-        'RICH360_PLAY_PAUSE_CHANGE': 3,
-        'RICH360_ENDED': 4,
-        'RICH360_ERROR': 5,
-        'RICH360_WAIT': 6,
-        'RICH360_ACCESS_DENIED': 7,
-        'RICH360_SUBTITLE_FOUND': 8,
-        'RICH360_LIVE_ENDED': 9,
-        'RICH360_SOURCE_CHANGE': 10,
-        'RICH360_THUMBNAIL_UPDATE': 11,
-        'RICH360_GRID_THUMBNAIL_UPDATE': 12
+        RICH360_STATE_CHANGE: 0,
+        RICH360_QUALITY_CHANGE: 1,
+        RICH360_DURATION_CHANGE: 2,
+        RICH360_PLAY_PAUSE_CHANGE: 3,
+        RICH360_ENDED: 4,
+        RICH360_ERROR: 5,
+        RICH360_WAIT: 6,
+        RICH360_ACCESS_DENIED: 7,
+        RICH360_SUBTITLE_FOUND: 8,
+        RICH360_LIVE_ENDED: 9,
+        RICH360_SOURCE_CHANGE: 10,
+        RICH360_THUMBNAIL_UPDATE: 11,
+        RICH360_GRID_THUMBNAIL_UPDATE: 12
     },
     RICH360_STATE = {
-        'RICH360_AUTH': 0,
-        'RICH360_INIT': 1,
-        'RICH360_READY': 2
+        RICH360_AUTH: 0,
+        RICH360_INIT: 1,
+        RICH360_READY: 2
     },
     RICH360_WAIT_ON = {
-        'RICH360_QUALITY_CHANGE': 0,
-        'RICH360_BUFFER': 1,
-        'RICH360_SEEK': 2,
-        'SIZE': 3
+        RICH360_QUALITY_CHANGE: 0,
+        RICH360_BUFFER: 1,
+        RICH360_SEEK: 2,
+        SIZE: 3
     },
     MULTIVIEW_PLAYER_DEFAULT_MANIFEST = {
-        'type': '',
-        'singleview_count': 1,
-        'singleview_list': [{
-            'id': 0,
-            'name': '',
-            'path': ''
+        type: '',
+        singleview_count: 1,
+        singleview_list: [{
+            id: 0,
+            name: '',
+            path: ''
         }],
-        'multiview_count': 1,
-        'multiview_list': [{
-            'id': 0,
-            'path': '',
-            'main_position': {
-                'singleview_id': 0,
-                'x': 0,
-                'y': 0,
-                'width': 1,
-                'height': 1
+        multiview_count: 1,
+        multiview_list: [{
+            id: 0,
+            path: '',
+            main_position: {
+                singleview_id: 0,
+                x: 0,
+                y: 0,
+                width: 1,
+                height: 1
             },
-            'sub_positions': []
+            sub_positions: []
         }]
     },
     SINGLEVIEW_PLAYER_DEFAULT_MANIFEST = {
-        'type': '',
-        'thumbnail': {
-            'path': 'thumbnail.jpg'
+        type: '',
+        thumbnail: {
+            path: 'thumbnail.jpg'
         },
-        'thumbnail_grid': {
-            'duration': 0,
-            'interval': 0,
-            'grid_x': 0,
-            'grid_y': 0,
-            'path': ''
+        thumbnail_grid: {
+            duration: 0,
+            interval: 0,
+            grid_x: 0,
+            grid_y: 0,
+            path: ''
         },
-        'singleview_count': 1,
-        'singleview_list': [{
-            'id': 0,
-            'name': 'view_0',
-            'path': ''
+        singleview_count: 1,
+        singleview_list: [{
+            id: 0,
+            name: 'view_0',
+            path: ''
         }],
-        'multiview_count': 0,
-        'multiview_list': []
+        multiview_count: 0,
+        multiview_list: []
     };
 class Rich360 {
     constructor(a, b, c, d) {
@@ -1091,10 +1091,10 @@ class Rich360 {
             this.wait_on[h] = false;
         }
         this._ui = c, this._rich360Player = d, this._ui_play = false, this._listener = new Rich360EventListener(RICH360_EVENTS), this._logger = new Rich360Log({
-            'content_data': this._options.content_data,
-            'credentials': {
-                'content_id': this._options.credentials.content_id,
-                'api_server': this._options.credentials.api_server
+            content_data: this._options.content_data,
+            credentials: {
+                content_id: this._options.credentials.content_id,
+                api_server: this._options.credentials.api_server
             }
         }), this._logger._listener = this._listener, this._loggerItv = null, this._subtitleList = [], this._play_status = '', this.addNativeTrackListener = this.addNativeTrackListener.bind(this), this.updateNativeTrackCuesListener = this.updateNativeTrackCuesListener.bind(this);
         let e = b.substr(b.lastIndexOf('/') + 1, b.length),
@@ -1110,10 +1110,10 @@ class Rich360 {
                 this._options.credentials.ticket_id = null;
             }
         } else this._options.credentials = {
-            'device_id': null,
-            'user_id': null,
-            'content_id': null,
-            'ticket_id': null
+            device_id: null,
+            user_id: null,
+            content_id: null,
+            ticket_id: null
         };
         if (this._options.container) {
             this._parent_dom = this._options.container;
@@ -1126,21 +1126,21 @@ class Rich360 {
     authorize() {
         var a = new XMLHttpRequest();
         a.open('POST', this._options.credentials.api_server + '/user_auth/player_authorize/', true), a.withCredentials = true, a.req_data = {
-            'user_id': this._options.credentials.user_id,
-            'device_id': this._options.credentials.device_id,
-            'content_id': this._options.credentials.content_id,
-            'location': {
-                'domain': window.location.hostname
+            user_id: this._options.credentials.user_id,
+            device_id: this._options.credentials.device_id,
+            content_id: this._options.credentials.content_id,
+            location: {
+                domain: window.location.hostname
             },
-            'source': this._options.source,
-            'rqstr': this.generate16byte(),
-            'scstr': this.generate16byte(),
-            'enstr': this.generate16byte(),
-            'psstr': this.generate16byte(),
-            'dbstr': this.generate16byte(),
-            'ltstr': this.generate16byte(),
-            'hsstr': this.generate16byte(),
-            'rnstr': this.generate16byte()
+            source: this._options.source,
+            rqstr: this.generate16byte(),
+            scstr: this.generate16byte(),
+            enstr: this.generate16byte(),
+            psstr: this.generate16byte(),
+            dbstr: this.generate16byte(),
+            ltstr: this.generate16byte(),
+            hsstr: this.generate16byte(),
+            rnstr: this.generate16byte()
         };
         var b = new FormData();
         b.append('user_id', a.req_data.user_id), b.append('device_id', a.req_data.device_id), b.append('content_id', a.req_data.content_id), b.append('domain', a.req_data.location.domain), b.append('source', a.req_data.source), b.append('rqstr', a.req_data.rqstr), b.append('scstr', a.req_data.scstr), b.append('enstr', a.req_data.enstr), b.append('psstr', a.req_data.psstr), b.append('dbstr', a.req_data.dbstr), b.append('ltstr', a.req_data.ltstr), b.append('hsstr', a.req_data.hsstr), b.append('rnstr', a.req_data.rnstr), a.onerror = function(c) {
@@ -1284,8 +1284,8 @@ class Rich360 {
         }
         this._loggerItv = setInterval(function() {
             this._play_status && this._video.currentTime && this._logger.addLog({
-                'timePos': this._video.currentTime,
-                'playStatus': this._play_status
+                timePos: this._video.currentTime,
+                playStatus: this._play_status
             });
         }.bind(this), 1000);
     }
@@ -1388,13 +1388,13 @@ class Rich360 {
                     let D = (h.currentTime - (k.currentTime - m)) * 1000;
                     console.log('@@oldHLS.timeDictionary : ', l.timeDictionary), console.log('@@timeDiff : ', m), console.log('@@newVideo.currentTime : ', h.currentTime), console.log('@@oldVideo.currentTime : ', k.currentTime), console.log('@@@ waitTime : ', D), setTimeout(function() {
                         h.volume = k.volume, this._subtitleManager._prevViewOffsetTime = k.currentTime - h.currentTime, this._subtitleManager._prevViewId = this._prevViewId, !k.paused && h.play(), k.pause(), g._hls.subtitleTrack = this._subtitleManager._prevSubtitleTrack, l.detachMedia(), l.destroy(), k = null, l = null, this._video = h, this._hls = g, this.attachVideoListeners(), !this._hls._isDummy && (this.attachHlsListeners(), this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel)), this.setChangingView(false), this._display.replaceVideo(h), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                            'wait': false,
-                            'wait_on': RICH360_WAIT_ON.RICH360_SEEK
+                            wait: false,
+                            wait_on: RICH360_WAIT_ON.RICH360_SEEK
                         });
                     }.bind(this), D >= 0 ? D : 0);
                 }.bind(this);
                 h.addEventListener('seeked', n, {
-                    'once': true
+                    once: true
                 }), h.volume = 0;
                 let o = function() {
                         console.log('seekIfPossible');
@@ -1438,7 +1438,7 @@ class Rich360 {
                 h.readyForChange = true;
                 if (g.readyForChange) i();
             }.bind(this), {
-                'once': true
+                once: true
             });
         }
     }
@@ -1476,7 +1476,7 @@ class Rich360 {
                 $(this._video).show(), this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
             }.bind(this), 500));
         }.bind(this), {
-            'once': true
+            once: true
         });
     }
     changeSource(a) {
@@ -1512,9 +1512,9 @@ class Rich360 {
         this._subtitleList = [];
         for (var b = 0; b < this._video.textTracks.length; b++) {
             this._subtitleList.push({
-                'id': b,
-                'label': this._video.textTracks[b].label,
-                'lang': this._video.textTracks[b].language
+                id: b,
+                label: this._video.textTracks[b].label,
+                lang: this._video.textTracks[b].language
             });
         }
         this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
@@ -1548,11 +1548,11 @@ class Rich360 {
                     }
                 }
                 c.push({
-                    'startTime': a.target.cues[d].startTime,
-                    'endTime': a.target.cues[d].endTime,
-                    'text': a.target.cues[d].text,
-                    'track_num': f,
-                    'view': this._view
+                    startTime: a.target.cues[d].startTime,
+                    endTime: a.target.cues[d].endTime,
+                    text: a.target.cues[d].text,
+                    track_num: f,
+                    view: this._view
                 });
             }
             this._subtitleManager.addCueData(c);
@@ -1561,16 +1561,16 @@ class Rich360 {
     attachVideoListeners() {
         this._video.addEventListener('seeking', function() {
             this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': true,
-                'wait_on': RICH360_WAIT_ON.RICH360_SEEK
+                wait: true,
+                wait_on: RICH360_WAIT_ON.RICH360_SEEK
             });
         }.bind(this)), this._video.addEventListener('seeked', function() {
             this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': false,
-                'wait_on': RICH360_WAIT_ON.RICH360_SEEK
+                wait: false,
+                wait_on: RICH360_WAIT_ON.RICH360_SEEK
             }), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': false,
-                'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+                wait: false,
+                wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
             });
         }.bind(this)), this._video.addEventListener('play', function() {
             this._play_status = 'play', this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
@@ -1582,15 +1582,15 @@ class Rich360 {
             this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
         }.bind(this)), this._video.addEventListener('progress', function() {
             this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': false,
-                'wait_on': RICH360_WAIT_ON.RICH360_BUFFER
+                wait: false,
+                wait_on: RICH360_WAIT_ON.RICH360_BUFFER
             });
         }.bind(this)), this._video.addEventListener('ended', function() {
             this._ui_play = false, this._listener.trigger(RICH360_EVENTS.RICH360_ENDED), this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': false,
-                'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+                wait: false,
+                wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
             }), this._play_status = 'end', this._logger.addLog({
-                'event': 'end'
+                event: 'end'
             });
         }.bind(this)), this._video.addEventListener('error', function() {
             console.log('Video error encountered. Running recover function'), this._hls && this._hls.recoverMediaError(), this._video.paused ? (this._ui_play = false, this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false)) : this.play_on();
@@ -1598,13 +1598,13 @@ class Rich360 {
             this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY), this._ready_state = RICH360_STATE.RICH360_READY, this._hls._isDummy && (this._video.textTracks.removeEventListener('addtrack', this.addNativeTrackListener), this._video.textTracks.addEventListener('addtrack', this.addNativeTrackListener));
         }.bind(this)), this._video.addEventListener('waiting', function(a) {
             console.log('@@@video waiting call : ', a), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': true,
-                'wait_on': RICH360_WAIT_ON.RICH360_BUFFER
+                wait: true,
+                wait_on: RICH360_WAIT_ON.RICH360_BUFFER
             });
         }.bind(this)), this._video.addEventListener('playing', function(a) {
             console.log('@@@video playing call : ', a), this._hls._isDummy && (this.subtitleTrack = this._subtitleManager._prevSubtitleTrack), this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': false,
-                'wait_on': RICH360_WAIT_ON.RICH360_BUFFER
+                wait: false,
+                wait_on: RICH360_WAIT_ON.RICH360_BUFFER
             }), this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
         }.bind(this)), $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(a) {
             if (a.type == 'webkitbeginfullscreen') {
@@ -1646,15 +1646,15 @@ class Rich360 {
             this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY), this._ready_state = RICH360_STATE.RICH360_READY;
         }.bind(this)), this._hls.on(Hls.Events.LEVEL_SWITCHED, function(a, b) {
             this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                'wait': false,
-                'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+                wait: false,
+                wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
             }), this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, b.level);
         }.bind(this)), this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(a, b) {
             for (var c = 0; c < b.tracks.length; c++) {
                 this._subtitleList.push({
-                    'id': c,
-                    'label': b.tracks[c].label,
-                    'lang': b.tracks[c].subtitleTrack.lang
+                    id: c,
+                    label: b.tracks[c].label,
+                    lang: b.tracks[c].subtitleTrack.lang
                 });
             }
             this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
@@ -1664,11 +1664,11 @@ class Rich360 {
                     d = [];
                 for (var e = 0; e < c; e++) {
                     d.push({
-                        'startTime': b.cues[e].startTime,
-                        'endTime': b.cues[e].endTime,
-                        'text': b.cues[e].text,
-                        'track_num': this._hls._hls.subtitleTrack,
-                        'view': this._view
+                        startTime: b.cues[e].startTime,
+                        endTime: b.cues[e].endTime,
+                        text: b.cues[e].text,
+                        track_num: this._hls._hls.subtitleTrack,
+                        view: this._view
                     });
                 }
                 this._subtitleManager.addCueData(d);
@@ -1683,18 +1683,18 @@ class Rich360 {
     changeCurrentLevel(a) {
         let b = this._hls.currentLevel;
         (a != -1 && b != a || a == -1 && this._hls.nextAutoLevel != b) && this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-            'wait': true,
-            'wait_on': RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+            wait: true,
+            wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
         }), this._hls.currentLevel = a;
     }
     play() {
         this.play_on(), this._logger.addLog({
-            'event': 'play'
+            event: 'play'
         });
     }
     pause() {
         this.pause_on(), this._logger.addLog({
-            'event': 'pause'
+            event: 'pause'
         });
     }
     set currentPosition(a) {
@@ -1703,8 +1703,8 @@ class Rich360 {
             if (a > this._video.duration) a = this._video.duration;
             if (Math.abs(a - this._video.currentTime) > 0.5) {
                 this._video.currentTime = a, this._logger.addLog({
-                    'event': 'seek',
-                    'time': a
+                    event: 'seek',
+                    time: a
                 }), this._render_once_on_seek = true;
             }
         } else {
@@ -1727,8 +1727,8 @@ class Rich360 {
         if (a < -1) a = -1;
         if (a >= this._quality_list.size) a = this._quality_list.size;
         this.changeCurrentLevel(a), this._logger.addLog({
-            'event': 'quality_change',
-            'level': a
+            event: 'quality_change',
+            level: a
         });
     }
     get quality() {
@@ -1813,9 +1813,9 @@ class Rich360SubtitleManager {
                         c = true;
                     }
                 }!c && a.push({
-                    'startTime': this._cues[b].startTime,
-                    'endTime': this._cues[b].endTime,
-                    'text': this._cues[b].text
+                    startTime: this._cues[b].startTime,
+                    endTime: this._cues[b].endTime,
+                    text: this._cues[b].text
                 });
             }
         }
@@ -1826,8 +1826,8 @@ class Rich360SubtitleManager {
         var e = this._player._parent_dom.offsetWidth,
             f = this._player._parent_dom.offsetHeight,
             g = {
-                'left': e / 100 * 10,
-                'bottom': f / 100 * 5
+                left: e / 100 * 10,
+                bottom: f / 100 * 5
             };
         if (document.getElementById('playerBottomWrap').style.display != 'none') {
             var h = document.getElementById('playerBottomWrap').clientHeight;
@@ -1933,7 +1933,7 @@ class MultiViewDisplay {
         this._options = a, this._video = b, this._player = c, this._videoSubPositions = e, this._videoMainPosition = d, this._multiviewDivArr = f, this._canvasFPS = 0, this._updateCanvasFlag = false, this._showMultiPreview = false, this._multiviewCanvas = [], this._multiviewCtx = [], this._doubleBufferCanvas = [], this._bfVideoWidth = 0, this._bfVideoHeight = 0, this._wrapper = document.querySelector('#multiViewWrap'), this._wrapperList = document.querySelector('#multiViewList');
         var g = document.createElement('canvas');
         g.setAttribute('id', 'mvCanvas'), g.style.position = 'absolute', g.style.top = '0px', this._multiviewCanvas.push(g), this._multiviewCtx.push(g.getContext('2d', {
-            'alpha': false
+            alpha: false
         })), $(this._wrapperList).append(g);
         var h = document.createElement('canvas');
         this._doubleBufferCanvas.push(h);
@@ -1945,7 +1945,7 @@ class MultiViewDisplay {
             this._parent_dom = this._options.container;
         } else this._parent_dom = document.body;
         this._mainDiv = document.createElement('div'), this._mainDiv.setAttribute('id', 'mvMainDiv'), this._mainDiv.style.overflow = 'hidden', this._mainDiv.style.position = 'absolute', this._mainDiv.appendChild(this._video), this._parent_dom.appendChild(this._mainDiv), this._video.readyState == 0 ? this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
-            'once': true
+            once: true
         }) : this.arrangeVideo(), window.addEventListener('resize', function() {
             setTimeout(function() {
                 this.arrangeVideo();
@@ -1988,21 +1988,21 @@ class MultiViewDisplay {
             console.log('videoRatio > containerRatio'), f = this._parent_dom.offsetWidth, g = this._parent_dom.offsetWidth / d, h = (this._parent_dom.offsetHeight - g) / 2, i = 0;
         } else console.log('videoRatio <= containerRatio'), g = this._parent_dom.offsetHeight, f = this._parent_dom.offsetHeight * d, i = (this._parent_dom.offsetWidth - f) / 2, h = 0;
         Object.assign(this._mainDiv.style, {
-            'width': f + 'px',
-            'height': (document.fullscreenEnabled && !checkMobileAndTablet() ? g - 5 : g) + 'px',
-            'left': i + 'px',
-            'top': h + 'px'
+            width: f + 'px',
+            height: (document.fullscreenEnabled && !checkMobileAndTablet() ? g - 5 : g) + 'px',
+            left: i + 'px',
+            top: h + 'px'
         });
         let j = f / a.width,
             k = g / a.height,
             l = a.x * b * j / b,
             m = a.y * c * k / c;
         Object.assign(this._video.style, {
-            'width': j + 'px',
-            'height': k + 'px',
-            'left': '-' + l + 'px',
-            'top': -1 * m + 1 + 'px',
-            'position': 'absolute'
+            width: j + 'px',
+            height: k + 'px',
+            left: '-' + l + 'px',
+            top: -1 * m + 1 + 'px',
+            position: 'absolute'
         });
         if (!this._showMultiPreview) this._updateCanvasFlag = false;
         else {
@@ -2057,7 +2057,7 @@ class MultiViewDisplay {
                 const l = this._multiviewCanvas[0],
                     m = this._doubleBufferCanvas[0];
                 m.width = l.width, m.height = l.height, m.getContext('2d', {
-                    'alpha': false
+                    alpha: false
                 }).drawImage(l, 0, 0), i.drawImage(m, 0, 0);
             }
             this._canvasTimeStampIndex++;
@@ -2321,7 +2321,7 @@ var ChatFilter = function() {
         var a = '',
             b = false;
         return {
-            'loadChatFilterData': function(c) {
+            loadChatFilterData: function(c) {
                 if (b) {
                     if (c) c();
                     return;
@@ -2351,16 +2351,16 @@ var ChatFilter = function() {
                     }
                 }, d.send();
             },
-            'filteringChatText': function(c) {
+            filteringChatText: function(c) {
                 if (!b) return;
                 var d = 'gi',
                     e = new RegExp(a, d);
                 return c.replace(e, '***');
             },
-            'checkFilteringData': function() {
+            checkFilteringData: function() {
                 return b;
             },
-            'checkNickname': function(c) {
+            checkNickname: function(c) {
                 if (!b) return;
                 var d = 'gi',
                     e = new RegExp(a, d);
@@ -2393,24 +2393,24 @@ Chat.Manager = function() {
         r = null,
         s = null;
     AWS.config.update({
-        'region': Nierw,
-        'accessKeyId': Yacaw,
-        'secretAccessKey': Ytcsw
+        region: Nierw,
+        accessKeyId: Yacaw,
+        secretAccessKey: Ytcsw
     });
     var t = null,
         u = {},
         v = '';
     return {
-        'setContentData': function(w) {
+        setContentData: function(w) {
             u = w;
         },
-        'isChatUsed': function() {
+        isChatUsed: function() {
             return u.is_chat_used;
         },
-        'getChatChannels': function() {
+        getChatChannels: function() {
             return j;
         },
-        'setChatChannels': function() {
+        setChatChannels: function() {
             if (u.chat_channel_num > 0) {
                 if (Chat.Manager.checkArtistUser(n) || Chat.Manager.checkOperationntUser(n) || Chat.Manager.checkAdminUser(n)) {
                     for (var w = 1; w <= u.chat_channel_num; w++) {
@@ -2423,40 +2423,40 @@ Chat.Manager = function() {
                 }
             }
         },
-        'getNoticeChannel': function() {
+        getNoticeChannel: function() {
             return k;
         },
-        'getCtrChannel': function() {
+        getCtrChannel: function() {
             return l;
         },
-        'setUserId': function(w) {
+        setUserId: function(w) {
             if (n) return;
             !w ? n = getCookie(DCvi + '_user_id') : n = w;
         },
-        'getUserId': function() {
+        getUserId: function() {
             return n;
         },
-        'setOperatorChNum': function(w) {
+        setOperatorChNum: function(w) {
             o = w;
         },
-        'setOperatorSelCh': function(w) {
+        setOperatorSelCh: function(w) {
             p = w;
         },
-        'setPubnubAPI': function(w) {
+        setPubnubAPI: function(w) {
             Chat.Manager.setUserId(), e = w, s = new PubNub({
-                'publishKey': YPP3z,
-                'subscribeKey': KSPdf,
-                'uuid': n
+                publishKey: YPP3z,
+                subscribeKey: KSPdf,
+                uuid: n
             }), AWS.config.update({
-                'region': Nierw,
-                'accessKeyId': Yacaw,
-                'secretAccessKey': Ytcsw
+                region: Nierw,
+                accessKeyId: Yacaw,
+                secretAccessKey: Ytcsw
             }), t = new AWS.Kinesis(), Chat.Ui.initChatUIEvent(), Chat.Manager.setChatChannels(), Chat.Manager.setChatHistory(), Chat.Manager.initPubnubEvent();
         },
-        'setChatHistory': function() {
+        setChatHistory: function() {
             s.history({
-                'channel': k,
-                'count': 1
+                channel: k,
+                count: 1
             }, function(z, A) {
                 console.log(z, A);
                 if (A) {
@@ -2465,8 +2465,8 @@ Chat.Manager = function() {
             });
             var w = 0;
             p && (w = p - 1), s.history({
-                'channel': j[w],
-                'count': c
+                channel: j[w],
+                count: c
             }, function(z, A) {
                 console.log(z, A);
                 if (A) {
@@ -2480,8 +2480,8 @@ Chat.Manager = function() {
                         }
                 }
             }), s.history({
-                'channel': m,
-                'count': 10000
+                channel: m,
+                count: 10000
             }, function(z, A) {
                 console.log(z, A);
                 if (A) {
@@ -2499,7 +2499,7 @@ Chat.Manager = function() {
                 }
             });
         },
-        'initPubnubEvent': function() {
+        initPubnubEvent: function() {
             var w = [k, l];
             if (p) {
                 w.push(j[p - 1]);
@@ -2510,10 +2510,10 @@ Chat.Manager = function() {
                 }
             }
             s.addListener({
-                'status': function(C) {
+                status: function(C) {
                     console.log('[STATUS: ' + C.category + ']', 'connected to channels: ' + C.affectedChannels), C.category == 'PNConnectedCategory' && (ChatFilter.loadChatFilterData(), Chat.Manager.initChatInterval());
                 },
-                'message': function(C) {
+                message: function(C) {
                     if (C.channel == k) Chat.Ui.updateNotice(C.message.update, C.timetoken, C.message.entry);
                     else {
                         if (C.channel == l) Chat.Ui.recvCtrlChMsg(C.message.update);
@@ -2533,10 +2533,10 @@ Chat.Manager = function() {
                     }
                 }
             }), s.subscribe({
-                'channels': w
+                channels: w
             });
         },
-        'displayMessageItv': function(w) {
+        displayMessageItv: function(w) {
             if (r) {
                 clearInterval(r), r = null;
             }
@@ -2548,7 +2548,7 @@ Chat.Manager = function() {
                 }
             }, z);
         },
-        'submitUpdate': function(w, z, A, B) {
+        submitUpdate: function(w, z, A, B) {
             if (!s) return;
             if (z === v) return;
             if (iCM()) return;
@@ -2567,10 +2567,10 @@ Chat.Manager = function() {
                 var C = false;
                 for (var D = 1; D <= A.length; D++) {
                     s.publish({
-                        'channel': A[D - 1],
-                        'message': {
-                            'entry': w,
-                            'update': z
+                        channel: A[D - 1],
+                        message: {
+                            entry: w,
+                            update: z
                         }
                     }, function(H, I) {
                         if (H.error) {} else {
@@ -2585,9 +2585,9 @@ Chat.Manager = function() {
                 }
             } else {
                 var E = {
-                    'Data': JSON.stringify(z),
-                    'PartitionKey': A[0],
-                    'StreamName': 'KINESIS_CHAT'
+                    Data: JSON.stringify(z),
+                    PartitionKey: A[0],
+                    StreamName: 'KINESIS_CHAT'
                 };
                 t.putRecord(E, function(J, K) {
                     if (J) {
@@ -2600,22 +2600,22 @@ Chat.Manager = function() {
                 });
             }
         },
-        'checkOperationntUser': function(w) {
+        checkOperationntUser: function(w) {
             return u.operation_account === w ? true : false;
         },
-        'checkAdminUser': function(w) {
+        checkAdminUser: function(w) {
             if (u.admin_account === w) {
                 return true;
             }
             return false;
         },
-        'checkArtistUser': function(w) {
+        checkArtistUser: function(w) {
             for (var z = 0; z < u.artist_account.length; z++) {
                 if (u.artist_account[z] === w) return true;
             }
             return false;
         },
-        'initChatInterval': function() {
+        initChatInterval: function() {
             h && clearInterval(h), h = setInterval(function() {
                 g++;
                 if (g >= a) {
@@ -2624,10 +2624,10 @@ Chat.Manager = function() {
                 f <= 0 ? Chat.Ui.disableChatInput(a - g) : Chat.Ui.enableChatInput();
             }, 1000);
         },
-        'getNickName': function() {
+        getNickName: function() {
             return e;
         },
-        'destroy': function() {
+        destroy: function() {
             if (s) {
                 s.destroy();
             }
@@ -2643,29 +2643,29 @@ Chat.Manager = function() {
         f = {
             '210417_cix': {
                 '84893d8f-e5f9-4a85-a7bb-9028c865488c': {
-                    'img': 'BX.png',
-                    'msgClass': ''
+                    img: 'BX.png',
+                    msgClass: ''
                 },
                 '362762e8-4b89-4fa4-8fa4-a448fadb2c03': {
-                    'img': 'seunghun.png',
-                    'msgClass': ''
+                    img: 'seunghun.png',
+                    msgClass: ''
                 },
                 'fa73fcc5-2425-45cb-aaa8-eb81ba07170e': {
-                    'img': 'baejinyoung.png',
-                    'msgClass': ''
+                    img: 'baejinyoung.png',
+                    msgClass: ''
                 },
                 '36bd9d74-a541-42e8-af1a-efaf063456cd': {
-                    'img': 'yonghee.png',
-                    'msgClass': ''
+                    img: 'yonghee.png',
+                    msgClass: ''
                 },
                 '37dcc7d7-a844-408f-aed7-3478464f94ff': {
-                    'img': 'hyunsuk.png',
-                    'msgClass': ''
+                    img: 'hyunsuk.png',
+                    msgClass: ''
                 }
             }
         };
     return {
-        'initChatUIEvent': function() {
+        initChatUIEvent: function() {
             var g = false;
             $('#chatContentWrap .scroll-bar').on('touchstart', function() {
                 b = true;
@@ -2737,10 +2737,10 @@ Chat.Manager = function() {
                 delayStopLoadingPanel();
             });
         },
-        'setResizingPage': function(g) {
+        setResizingPage: function(g) {
             d = g;
         },
-        'updateNotice': function(g, h, i) {
+        updateNotice: function(g, h, i) {
             if (Chat.Manager.checkOperationntUser(i)) {
                 if (g === '[delete]') {
                     $('#noticeChatWrap p[name=desc]').text(''), $('#noticeChatWrap').css('display', 'none');
@@ -2749,7 +2749,7 @@ Chat.Manager = function() {
                 }
             }
         },
-        'recvCtrlChMsg': function(g) {
+        recvCtrlChMsg: function(g) {
             if (g.indexOf('[warning]') === 0) {
                 var h = g.split('[warning]')[1];
                 h == Chat.Manager.getUserId() && alertPopup(gettext('P_ALERT_TITLE'), '<' + _contentData.web_title + '>의 라이브가 진행중입니다.', gettext('P_ALERT_OK'));
@@ -2763,7 +2763,7 @@ Chat.Manager = function() {
                 }
             }
         },
-        'convertChatMsg': function(g) {
+        convertChatMsg: function(g) {
             if (!g) return false;
             var h = g.split(CHAT_USERID_SEPARATOR);
             if (h.length < 2) return false;
@@ -2774,12 +2774,12 @@ Chat.Manager = function() {
                 k = h[1];
             if (!i || !j || !k) return false;
             return {
-                'userId': i,
-                'nickName': j,
-                'text': k
+                userId: i,
+                nickName: j,
+                text: k
             };
         },
-        'createArtistChatDiv': function(g, h, i, j) {
+        createArtistChatDiv: function(g, h, i, j) {
             var k = $('.dummy-wrap > .artist_chat_dummy').clone();
             k.removeClass('artist_chat_dummy');
             var l = f[Tira] || {},
@@ -2794,11 +2794,11 @@ Chat.Manager = function() {
             }
             return k.find('p[name=nickname]').text(h), k.find('p[name=text]').text(i), k.find('p[name=text]').append('<span class="chat_time fc_fff fs_12" style="vertical-align: baseline;">' + j.format(' ap&nbsp;hh:mm:ss') + '</span>'), k;
         },
-        'createUserChatDiv': function(g, h, i, j) {
+        createUserChatDiv: function(g, h, i, j) {
             var k = $('.dummy-wrap > .user_chat_dummy').clone();
             return g == Chat.Manager.getUserId() && k.addClass('t_my'), k.removeClass('user_chat_dummy'), k.find('p[name=nickname]').text(h), k.find('span[name=text]').text(i), k.find('span[name=time]').text(j.format('ap hh:mm:ss')), k;
         },
-        'displayMessage': function(g, h, i, j) {
+        displayMessage: function(g, h, i, j) {
             var k = Chat.Ui.convertChatMsg(g);
             if (!k) return;
             var l = new Date(h / 10000);
@@ -2844,7 +2844,7 @@ Chat.Manager = function() {
                 $('#chatAnchor').css('display', 'block');
             }
         },
-        'displayArtistHistoryMsg': function(g, h, i) {
+        displayArtistHistoryMsg: function(g, h, i) {
             var j = Chat.Ui.convertChatMsg(g);
             if (!j) return;
             if (Chat.Manager.checkArtistUser(i)) {
@@ -2853,24 +2853,24 @@ Chat.Manager = function() {
                 $('#artistChatList').length && $('#artistChatList').append(l);
             }
         },
-        'enableChatInput': function() {
+        enableChatInput: function() {
             if ($('#chatInput').prop('readonly') != false) {
                 $('#chatInput').prop('readonly', false), $('#chatInput').prop('placeholder', gettext('P_CHAT_INPUT_PLACEHOLDER'));
             }
         },
-        'disableChatInput': function(g) {
+        disableChatInput: function(g) {
             $('#chatInput').prop('readonly', true);
             if (g) $('#chatInput').prop('placeholder', interpolate(gettext('P_CHAT_ABLE_DELAY_PLACEHOLDER_%(delay)s'), {
-                'delay': g
+                delay: g
             }, true));
             else {
                 $('#chatInput').prop('placeholder', '');
             }
         },
-        'setHoldChatScroll': function(g) {
+        setHoldChatScroll: function(g) {
             c = g;
         },
-        'getHoldChatScroll': function() {
+        getHoldChatScroll: function() {
             return c;
         }
     };
@@ -2958,8 +2958,8 @@ function updateWaterMarkPos(a) {
     $('#wmark').css('top', q * m + l + 'px'), $('#wmark').css('right', q * m + k + 'px');
 }
 var _ticketPos = {
-        'x': 0,
-        'y': 0
+        x: 0,
+        y: 0
     },
     _ticketExposureTime = 0,
     _ticketExposureItv = null;
@@ -3070,10 +3070,10 @@ const IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
             a('#subtitlePopup').css('display', 'none');
         });
         var i = new Menu({
-                'wrapper': '#o-wrapper',
-                'type': 'slide-right',
-                'menuOpenerClass': '.c-button',
-                'maskId': '#c-mask'
+                wrapper: '#o-wrapper',
+                type: 'slide-right',
+                menuOpenerClass: '.c-button',
+                maskId: '#c-mask'
             }),
             j = document.querySelector('#chat-i-pushy');
         j.addEventListener('click', function(o) {
@@ -3082,35 +3082,35 @@ const IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
             return a('#playerBottomWrap').css('display', 'block'), a('#chat-i-pushy').css('display', 'block'), true;
         });
         var k = {
-                'container': document.getElementById('playerWrap'),
-                'use_multiview': false
+                container: document.getElementById('playerWrap'),
+                use_multiview: false
             },
             l = {
-                'pageWrap': document.getElementById('pageWrap'),
-                'playerWrap': document.getElementById('playerWrap'),
-                'playThumbnail': document.getElementById('playThumbnail'),
-                'chatOpenBtn': document.getElementById('chat-i-pushy'),
-                'chatWrap': document.getElementById('chatWrap'),
-                'chatContents': document.getElementById('c-menu--slide-right'),
-                'chatInputWrap': document.getElementById('chatInputWrap'),
-                'navBtnWrap': document.getElementById('navBtnWrap'),
-                'playerBottomWrap': document.getElementById('playerBottomWrap'),
-                'playBtn': document.getElementById('playBtn'),
-                'volumeBtn': document.getElementById('volumeBtn'),
-                'volumeSlider': document.getElementById('volumeSlider'),
-                'fullBtn': document.getElementById('fullBtn'),
-                'loadingDiv': document.getElementById('loadingDiv'),
-                'ccSelect': document.getElementById('ccSelect'),
-                'ccSelectBtn': document.getElementById('ccSelectBtn'),
-                'qualitySelect': document.getElementById('qualitySelect'),
-                'qualitySelectBtn': document.getElementById('qualitySelectBtn'),
-                'qualityPopup': document.getElementById('qualityPopup'),
-                'subtitlePopup': document.getElementById('subtitlePopup')
+                pageWrap: document.getElementById('pageWrap'),
+                playerWrap: document.getElementById('playerWrap'),
+                playThumbnail: document.getElementById('playThumbnail'),
+                chatOpenBtn: document.getElementById('chat-i-pushy'),
+                chatWrap: document.getElementById('chatWrap'),
+                chatContents: document.getElementById('c-menu--slide-right'),
+                chatInputWrap: document.getElementById('chatInputWrap'),
+                navBtnWrap: document.getElementById('navBtnWrap'),
+                playerBottomWrap: document.getElementById('playerBottomWrap'),
+                playBtn: document.getElementById('playBtn'),
+                volumeBtn: document.getElementById('volumeBtn'),
+                volumeSlider: document.getElementById('volumeSlider'),
+                fullBtn: document.getElementById('fullBtn'),
+                loadingDiv: document.getElementById('loadingDiv'),
+                ccSelect: document.getElementById('ccSelect'),
+                ccSelectBtn: document.getElementById('ccSelectBtn'),
+                qualitySelect: document.getElementById('qualitySelect'),
+                qualitySelectBtn: document.getElementById('qualitySelectBtn'),
+                qualityPopup: document.getElementById('qualityPopup'),
+                subtitlePopup: document.getElementById('subtitlePopup')
             },
             m = {
-                'user_id': getCookie(DCvi + '_user_id'),
-                'device_id': getCookie(DCvi + '_device_id'),
-                'content_id': DCvi
+                user_id: getCookie(DCvi + '_user_id'),
+                device_id: getCookie(DCvi + '_device_id'),
+                content_id: DCvi
             };
         userSessionCheck(m, function(o) {
             var p = k.content_data = JSON.parse(JSON.stringify(o.Data.content)),
@@ -3141,10 +3141,10 @@ const IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
             }
             p.use_vod ? (a('#playerBottomWrap').addClass('ver_vod'), a('.pl-i-live').css('display', ' none'), l.durationStart = document.getElementById('durationStart'), l.durationEnd = document.getElementById('durationEnd'), l.prev10sBtn = document.getElementById('prev10sBtn'), l.next10sBtn = document.getElementById('next10sBtn'), l.sliderArea = document.getElementById('playerSliderArea'), l.sliderArea.slider = document.getElementById('playerSlider'), l.sliderArea.slider.thumb = document.getElementById('playerSliderThumb'), l.sliderThumbnail = document.getElementById('sliderThumbnail'), l.sliderPaddingDiv = document.getElementById('sliderPaddingDiv')) : a('#durationWrap').css('display', 'none');
             k.credentials = {
-                'user_id': q.user_id,
-                'device_id': getCookie(DCvi + '_device_id'),
-                'content_id': DCvi,
-                'api_server': RSAnd
+                user_id: q.user_id,
+                device_id: getCookie(DCvi + '_device_id'),
+                content_id: DCvi,
+                api_server: RSAnd
             };
             var s = '';
             for (var t = 0; t < p.channels.length; t++) {
@@ -3570,145 +3570,145 @@ function debounce(a, b) {
     };
 }
 const POPUP_CONFIG = {
-        'failToGetPlayerCode': function(a, b) {
+        failToGetPlayerCode: function(a, b) {
             var c = null,
                 d = a;
             if (d == 'zh_Hans') d = 'cn';
             if (b) c = b;
             var e = {
-                'ko': {
-                    'title': '알림',
-                    'desc': '잠시 후 다시 시도해주세요.',
-                    'btnTxt': '확인',
-                    'okCallback': c
+                ko: {
+                    title: '알림',
+                    desc: '잠시 후 다시 시도해주세요.',
+                    btnTxt: '확인',
+                    okCallback: c
                 },
-                'en': {
-                    'title': 'Notification',
-                    'desc': 'Please try again later',
-                    'btnTxt': 'OK',
-                    'okCallback': c
+                en: {
+                    title: 'Notification',
+                    desc: 'Please try again later',
+                    btnTxt: 'OK',
+                    okCallback: c
                 },
-                'ja': {
-                    'title': 'お知らせ',
-                    'desc': 'しばらくしてから再度お試しください',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                ja: {
+                    title: 'お知らせ',
+                    desc: 'しばらくしてから再度お試しください',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'jp': {
-                    'title': 'お知らせ',
-                    'desc': 'しばらくしてから再度お試しください',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                jp: {
+                    title: 'お知らせ',
+                    desc: 'しばらくしてから再度お試しください',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'cn': {
-                    'title': '提醒',
-                    'desc': '请稍后再试一次',
-                    'btnTxt': '确认',
-                    'okCallback': c
+                cn: {
+                    title: '提醒',
+                    desc: '请稍后再试一次',
+                    btnTxt: '确认',
+                    okCallback: c
                 }
             };
             if (!e[d]) return e.en;
             return e[d];
         },
-        'duplicatedNickname': function(a, b) {
+        duplicatedNickname: function(a, b) {
             var c = null,
                 d = a;
             if (d == 'zh_Hans') d = 'cn';
             if (b) c = b;
             var e = {
-                'ko': {
-                    'title': '알림',
-                    'desc': '잠시 후 다시 시도해주세요.',
-                    'btnTxt': '확인',
-                    'okCallback': c
+                ko: {
+                    title: '알림',
+                    desc: '잠시 후 다시 시도해주세요.',
+                    btnTxt: '확인',
+                    okCallback: c
                 },
-                'en': {
-                    'title': 'Notification',
-                    'desc': 'Please try again later',
-                    'btnTxt': 'OK',
-                    'okCallback': c
+                en: {
+                    title: 'Notification',
+                    desc: 'Please try again later',
+                    btnTxt: 'OK',
+                    okCallback: c
                 },
-                'ja': {
-                    'title': 'お知らせ',
-                    'desc': 'しばらくしてから再度お試しください',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                ja: {
+                    title: 'お知らせ',
+                    desc: 'しばらくしてから再度お試しください',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'jp': {
-                    'title': 'お知らせ',
-                    'desc': 'しばらくしてから再度お試しください',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                jp: {
+                    title: 'お知らせ',
+                    desc: 'しばらくしてから再度お試しください',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'cn': {
-                    'title': '提醒',
-                    'desc': '请稍后再试一次',
-                    'btnTxt': '确认',
-                    'okCallback': c
+                cn: {
+                    title: '提醒',
+                    desc: '请稍后再试一次',
+                    btnTxt: '确认',
+                    okCallback: c
                 }
             };
             if (!e[d]) return e.en;
             return e[d];
         },
-        'permissionDenied': function(a, b) {
+        permissionDenied: function(a, b) {
             var c = null,
                 d = a;
             if (d == 'zh_Hans') d = 'cn';
             if (d == 'ja') d = 'jp';
             if (b) c = b;
             var e = {
-                'ko': {
-                    'title': '알림',
-                    'desc': '권한이 없습니다.',
-                    'btnTxt': '확인',
-                    'okCallback': c
+                ko: {
+                    title: '알림',
+                    desc: '권한이 없습니다.',
+                    btnTxt: '확인',
+                    okCallback: c
                 },
-                'en': {
-                    'title': 'Notification',
-                    'desc': 'Permission Denied',
-                    'btnTxt': 'OK',
-                    'okCallback': c
+                en: {
+                    title: 'Notification',
+                    desc: 'Permission Denied',
+                    btnTxt: 'OK',
+                    okCallback: c
                 },
-                'jp': {
-                    'title': 'お知らせ',
-                    'desc': '権限がありません',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                jp: {
+                    title: 'お知らせ',
+                    desc: '権限がありません',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'cn': {
-                    'title': '提醒',
-                    'desc': '你没有权限访问',
-                    'btnTxt': '确认',
-                    'okCallback': c
+                cn: {
+                    title: '提醒',
+                    desc: '你没有权限访问',
+                    btnTxt: '确认',
+                    okCallback: c
                 }
             };
             if (!e[d]) return e.en;
             return e[d];
         },
-        'authorizedByCode': function(a) {
+        authorizedByCode: function(a) {
             var b = a;
             if (b == 'zh_Hans') b = 'cn';
             if (b == 'ja') b = 'jp';
             var c = {
-                'ko': {
-                    'idText': 'ID',
-                    'ticketText': '인증코드',
-                    'authPopupTitle': '코드 인증'
+                ko: {
+                    idText: 'ID',
+                    ticketText: '인증코드',
+                    authPopupTitle: '코드 인증'
                 },
-                'jp': {
-                    'idText': 'ID',
-                    'ticketText': '認証コード',
-                    'authPopupTitle': 'コード認証'
+                jp: {
+                    idText: 'ID',
+                    ticketText: '認証コード',
+                    authPopupTitle: 'コード認証'
                 },
-                'en': {
-                    'idText': 'ID',
-                    'ticketText': 'Auth code',
-                    'authPopupTitle': 'Code authentication'
+                en: {
+                    idText: 'ID',
+                    ticketText: 'Auth code',
+                    authPopupTitle: 'Code authentication'
                 },
-                'cn': {
-                    'idText': 'ID',
-                    'ticketText': 'Auth code',
-                    'authPopupTitle': 'Code authentication'
+                cn: {
+                    idText: 'ID',
+                    ticketText: 'Auth code',
+                    authPopupTitle: 'Code authentication'
                 }
             };
             if (!c[b]) return c.en;
@@ -3716,15 +3716,15 @@ const POPUP_CONFIG = {
         }
     },
     CHAT_MESSAGE_CONFIG = {
-        'placeholderOnMuteChat': function(a) {
+        placeholderOnMuteChat: function(a) {
             var b = a;
             if (b == 'zh_Hans') b = 'cn';
             var c = {
-                'ko': '채팅을 사용할 수 없습니다.',
-                'en': 'Live chat is currently unavailable.',
-                'ja': 'チャットを使用できません',
-                'jp': 'チャットを使用できません',
-                'cn': '不能用聊天'
+                ko: '채팅을 사용할 수 없습니다.',
+                en: 'Live chat is currently unavailable.',
+                ja: 'チャットを使用できません',
+                jp: 'チャットを使用できません',
+                cn: '不能用聊天'
             };
             if (!c[b]) return c.en;
             return c[b];

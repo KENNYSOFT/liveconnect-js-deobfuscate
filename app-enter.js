@@ -326,7 +326,7 @@ var ChatFilter = function() {
     var a = '',
         b = false;
     return {
-        'loadChatFilterData': function(c) {
+        loadChatFilterData: function(c) {
             if (b) {
                 if (c) c();
                 return;
@@ -356,16 +356,16 @@ var ChatFilter = function() {
                 }
             }, d.send();
         },
-        'filteringChatText': function(c) {
+        filteringChatText: function(c) {
             if (!b) return;
             var d = 'gi',
                 e = new RegExp(a, d);
             return c.replace(e, '***');
         },
-        'checkFilteringData': function() {
+        checkFilteringData: function() {
             return b;
         },
-        'checkNickname': function(c) {
+        checkNickname: function(c) {
             if (!b) return;
             var d = 'gi',
                 e = new RegExp(a, d);
@@ -470,9 +470,9 @@ var ChatFilter = function() {
                 z = g,
                 A = (z && z.id ? z.id : null) || DCvi,
                 B = {
-                    'user_id': null,
-                    'content_id': null,
-                    'device_id': null
+                    user_id: null,
+                    content_id: null,
+                    device_id: null
                 },
                 C = null,
                 D = null;
@@ -595,7 +595,7 @@ var ChatFilter = function() {
                 X = uath,
                 Y = true,
                 Z = {
-                    'requestCreateNickname': null
+                    requestCreateNickname: null
                 },
                 a0 = false;
             G.css('display', 'none'), H.css('display', 'none');
@@ -683,9 +683,9 @@ var ChatFilter = function() {
             if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) x.css('display', 'none'), A.css('display', 'inline-block');
             else {
                 var a7 = {
-                    'content_id': DCvi,
-                    'user_id': getCookie(DCvi + '_user_id'),
-                    'device_id': getCookie(DCvi + '_device_id')
+                    content_id: DCvi,
+                    user_id: getCookie(DCvi + '_user_id'),
+                    device_id: getCookie(DCvi + '_device_id')
                 };
                 if (U > V) {
                     if (!X) {
@@ -739,9 +739,9 @@ var ChatFilter = function() {
             x.on('click', function() {
                 I.val(''), J.val(''), M.text(''), O.prop('checked', true), a4();
                 var af = {
-                    'user_id': getCookie(DCvi + '_user_id'),
-                    'device_id': getCookie(DCvi + '_device_id'),
-                    'content_id': DCvi
+                    user_id: getCookie(DCvi + '_user_id'),
+                    device_id: getCookie(DCvi + '_device_id'),
+                    content_id: DCvi
                 };
                 if (!X) {
                     if (af.user_id) {
@@ -782,10 +782,10 @@ var ChatFilter = function() {
                     return;
                 }
                 var ah = {
-                    'customer_id': af,
-                    'ticket_id': ag,
-                    'content_id': DCvi,
-                    'device_id': l
+                    customer_id: af,
+                    ticket_id: ag,
+                    content_id: DCvi,
+                    device_id: l
                 };
                 !X && (ah.customer_id = null, ah.ticket_id = null), m(ah, function() {
                     if (X) {
@@ -893,10 +893,10 @@ var ChatFilter = function() {
                                 !Y && (L.text(POPUP_CONFIG.duplicatedNickname(egl).desc), a2());
                                 if (!Y) return;
                                 var ag = {
-                                    'user_id': h.user_id,
-                                    'device_id': l,
-                                    'nickname': af,
-                                    'content_id': DCvi
+                                    user_id: h.user_id,
+                                    device_id: l,
+                                    nickname: af,
+                                    content_id: DCvi
                                 };
                                 c('#loadingDiv').css('display', 'block'), n(ag, function() {
                                     Y = true, clearTimeout(Z.requestCreateNickname);
@@ -982,10 +982,10 @@ var ChatFilter = function() {
                     return;
                 }
                 var ah = {
-                    'customer_id': af,
-                    'ticket_id': ag,
-                    'content_id': DCvi,
-                    'device_id': l
+                    customer_id: af,
+                    ticket_id: ag,
+                    content_id: DCvi,
+                    device_id: l
                 };
                 m(ah, function() {
                     if (N.prop('checked')) {
@@ -1414,145 +1414,145 @@ function debounce(a, b) {
     };
 }
 const POPUP_CONFIG = {
-        'failToGetPlayerCode': function(a, b) {
+        failToGetPlayerCode: function(a, b) {
             var c = null,
                 d = a;
             if (d == 'zh_Hans') d = 'cn';
             if (b) c = b;
             var e = {
-                'ko': {
-                    'title': '알림',
-                    'desc': '잠시 후 다시 시도해주세요.',
-                    'btnTxt': '확인',
-                    'okCallback': c
+                ko: {
+                    title: '알림',
+                    desc: '잠시 후 다시 시도해주세요.',
+                    btnTxt: '확인',
+                    okCallback: c
                 },
-                'en': {
-                    'title': 'Notification',
-                    'desc': 'Please try again later',
-                    'btnTxt': 'OK',
-                    'okCallback': c
+                en: {
+                    title: 'Notification',
+                    desc: 'Please try again later',
+                    btnTxt: 'OK',
+                    okCallback: c
                 },
-                'ja': {
-                    'title': 'お知らせ',
-                    'desc': 'しばらくしてから再度お試しください',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                ja: {
+                    title: 'お知らせ',
+                    desc: 'しばらくしてから再度お試しください',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'jp': {
-                    'title': 'お知らせ',
-                    'desc': 'しばらくしてから再度お試しください',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                jp: {
+                    title: 'お知らせ',
+                    desc: 'しばらくしてから再度お試しください',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'cn': {
-                    'title': '提醒',
-                    'desc': '请稍后再试一次',
-                    'btnTxt': '确认',
-                    'okCallback': c
+                cn: {
+                    title: '提醒',
+                    desc: '请稍后再试一次',
+                    btnTxt: '确认',
+                    okCallback: c
                 }
             };
             if (!e[d]) return e.en;
             return e[d];
         },
-        'duplicatedNickname': function(a, b) {
+        duplicatedNickname: function(a, b) {
             var c = null,
                 d = a;
             if (d == 'zh_Hans') d = 'cn';
             if (b) c = b;
             var e = {
-                'ko': {
-                    'title': '알림',
-                    'desc': '잠시 후 다시 시도해주세요.',
-                    'btnTxt': '확인',
-                    'okCallback': c
+                ko: {
+                    title: '알림',
+                    desc: '잠시 후 다시 시도해주세요.',
+                    btnTxt: '확인',
+                    okCallback: c
                 },
-                'en': {
-                    'title': 'Notification',
-                    'desc': 'Please try again later',
-                    'btnTxt': 'OK',
-                    'okCallback': c
+                en: {
+                    title: 'Notification',
+                    desc: 'Please try again later',
+                    btnTxt: 'OK',
+                    okCallback: c
                 },
-                'ja': {
-                    'title': 'お知らせ',
-                    'desc': 'しばらくしてから再度お試しください',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                ja: {
+                    title: 'お知らせ',
+                    desc: 'しばらくしてから再度お試しください',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'jp': {
-                    'title': 'お知らせ',
-                    'desc': 'しばらくしてから再度お試しください',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                jp: {
+                    title: 'お知らせ',
+                    desc: 'しばらくしてから再度お試しください',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'cn': {
-                    'title': '提醒',
-                    'desc': '请稍后再试一次',
-                    'btnTxt': '确认',
-                    'okCallback': c
+                cn: {
+                    title: '提醒',
+                    desc: '请稍后再试一次',
+                    btnTxt: '确认',
+                    okCallback: c
                 }
             };
             if (!e[d]) return e.en;
             return e[d];
         },
-        'permissionDenied': function(a, b) {
+        permissionDenied: function(a, b) {
             var c = null,
                 d = a;
             if (d == 'zh_Hans') d = 'cn';
             if (d == 'ja') d = 'jp';
             if (b) c = b;
             var e = {
-                'ko': {
-                    'title': '알림',
-                    'desc': '권한이 없습니다.',
-                    'btnTxt': '확인',
-                    'okCallback': c
+                ko: {
+                    title: '알림',
+                    desc: '권한이 없습니다.',
+                    btnTxt: '확인',
+                    okCallback: c
                 },
-                'en': {
-                    'title': 'Notification',
-                    'desc': 'Permission Denied',
-                    'btnTxt': 'OK',
-                    'okCallback': c
+                en: {
+                    title: 'Notification',
+                    desc: 'Permission Denied',
+                    btnTxt: 'OK',
+                    okCallback: c
                 },
-                'jp': {
-                    'title': 'お知らせ',
-                    'desc': '権限がありません',
-                    'btnTxt': '確認',
-                    'okCallback': c
+                jp: {
+                    title: 'お知らせ',
+                    desc: '権限がありません',
+                    btnTxt: '確認',
+                    okCallback: c
                 },
-                'cn': {
-                    'title': '提醒',
-                    'desc': '你没有权限访问',
-                    'btnTxt': '确认',
-                    'okCallback': c
+                cn: {
+                    title: '提醒',
+                    desc: '你没有权限访问',
+                    btnTxt: '确认',
+                    okCallback: c
                 }
             };
             if (!e[d]) return e.en;
             return e[d];
         },
-        'authorizedByCode': function(a) {
+        authorizedByCode: function(a) {
             var b = a;
             if (b == 'zh_Hans') b = 'cn';
             if (b == 'ja') b = 'jp';
             var c = {
-                'ko': {
-                    'idText': 'ID',
-                    'ticketText': '인증코드',
-                    'authPopupTitle': '코드 인증'
+                ko: {
+                    idText: 'ID',
+                    ticketText: '인증코드',
+                    authPopupTitle: '코드 인증'
                 },
-                'jp': {
-                    'idText': 'ID',
-                    'ticketText': '認証コード',
-                    'authPopupTitle': 'コード認証'
+                jp: {
+                    idText: 'ID',
+                    ticketText: '認証コード',
+                    authPopupTitle: 'コード認証'
                 },
-                'en': {
-                    'idText': 'ID',
-                    'ticketText': 'Auth code',
-                    'authPopupTitle': 'Code authentication'
+                en: {
+                    idText: 'ID',
+                    ticketText: 'Auth code',
+                    authPopupTitle: 'Code authentication'
                 },
-                'cn': {
-                    'idText': 'ID',
-                    'ticketText': 'Auth code',
-                    'authPopupTitle': 'Code authentication'
+                cn: {
+                    idText: 'ID',
+                    ticketText: 'Auth code',
+                    authPopupTitle: 'Code authentication'
                 }
             };
             if (!c[b]) return c.en;
@@ -1560,15 +1560,15 @@ const POPUP_CONFIG = {
         }
     },
     CHAT_MESSAGE_CONFIG = {
-        'placeholderOnMuteChat': function(a) {
+        placeholderOnMuteChat: function(a) {
             var b = a;
             if (b == 'zh_Hans') b = 'cn';
             var c = {
-                'ko': '채팅을 사용할 수 없습니다.',
-                'en': 'Live chat is currently unavailable.',
-                'ja': 'チャットを使用できません',
-                'jp': 'チャットを使用できません',
-                'cn': '不能用聊天'
+                ko: '채팅을 사용할 수 없습니다.',
+                en: 'Live chat is currently unavailable.',
+                ja: 'チャットを使用できません',
+                jp: 'チャットを使用できません',
+                cn: '不能用聊天'
             };
             if (!c[b]) return c.en;
             return c[b];
