@@ -39,14 +39,22 @@ const deobfuscate = async (url) => {
                 }
             }
         },
+        MemberExpression: (path) => {
+            const {computed, property: {type, value}} = path.node;
+            if (computed && type === 'StringLiteral' && value.match(/^[0-9a-z_-]*$/i)) {
+                path.node.computed = false;
+                path.node.property = t.identifier(value);
+            }
+        },
+        ClassMethod: (path) => {
+            const {computed, key: {type, value}} = path.node;
+            if (computed && type === 'StringLiteral' && value.match(/^[0-9a-z_-]*$/i)) {
+                path.node.computed = false;
+                path.node.key = t.identifier(value);
+            }
+        },
     });
     return beautify(beautify(generate(ast, {compact: true, jsescOption: {numbers: 'decimal', quotes: 'single', minimal: true}}).code)
-            .replace(/    (get|set)\['([0-9a-z_-]*)'\]/ig, '$1 $2')
-            .replace(/(\/[a-z]*|') \['([0-9a-z_-]*)'\]/ig, '$1.$2')
-            .replace(/([^ ])\['([0-9a-z_-]*)'\]/ig, '$1.$2')
-            .replace(/([^ ])\['([0-9a-z_-]*)'\]/ig, '$1.$2')
-            .replace(/ \['bind'\]\(this\)/g, '.bind(this)')
-            .replace(/\} \['([0-9a-z_-]*)'\]/ig, '} $1')
             .replace(/!!\[\]/g, 'true')
             .replace(/!\[\]/g, 'false')
             .replace(/\nif \(Tira == ('[^']*')\) (var DCvi = '[^']*');\n *else {/g, 'switch(Tira){case $1:$2;break;')
