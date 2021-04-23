@@ -19,7 +19,7 @@ const convertExpressionToCaseConsequent = (expression) => [t.expressionStatement
 
 const createExpressionStatements = (expressions) => expressions.map(expression => t.expressionStatement(expression));
 
-const flattenExpressionToStatement = (expression) => expression.type === 'SequenceExpression' ? t.blockStatement(createExpressionStatements(expression.expressions)) : t.expressionStatement(expression);
+const flattenExpressionToStatement = (expression) => t.blockStatement(expression.type === 'SequenceExpression' ? createExpressionStatements(expression.expressions) : [t.expressionStatement(expression)]);
 
 const ifToCases = (cases, ifStatement) => {
     const {test, consequent, alternate} = ifStatement;
@@ -123,22 +123,26 @@ const deobfuscate = async (url) => {
                     path.parentPath.replaceWithMultiple([...createExpressionStatements(expressions.slice(0, -1)), t.returnStatement(expressions[expressions.length - 1])]);
                     break;
                 case 'LogicalExpression':
-                    const {left, right, operator} = path.parent;
-                    if (path.parentPath.parentPath.type === 'ExpressionStatement' && path.node === right) {
-                        path.parentPath.parentPath.replaceWith(t.ifStatement(operator === '&&' ? left : t.unaryExpression('!', left), t.blockStatement(createExpressionStatements(expressions))));
-                    }
-                    break;
                 case 'ConditionalExpression':
-                    const {test, consequent, alternate} = path.parent;
-                    if (path.parentPath.parentPath.type === 'ExpressionStatement') {
-                        const consequentStatement = flattenExpressionToStatement(consequent);
-                        const alternateStatement = flattenExpressionToStatement(alternate);
-                        path.parentPath.parentPath.replaceWith(t.ifStatement(test, consequentStatement, alternateStatement));
-                    }
+                    // ignored
                     break;
                 default:
                     console.error(`Unsupported type of parent while flattening SequenceExpression: ${path.parent.type}`);
                     break;
+            }
+        },
+        LogicalExpression: (path) => {
+            if (path.parent.type === 'ExpressionStatement') {
+                const {operator, left, right} = path.node;
+                if (operator === '&&' || operator === '||') {
+                    path.parentPath.replaceWith(t.ifStatement(operator === '&&' ? left : t.unaryExpression('!', left), flattenExpressionToStatement(right)));
+                }
+            }
+        },
+        ConditionalExpression: (path) => {
+            if (path.parent.type === 'ExpressionStatement') {
+                const {test, consequent, alternate} = path.node;
+                path.parentPath.replaceWith(t.ifStatement(test, flattenExpressionToStatement(consequent), flattenExpressionToStatement(alternate)));
             }
         },
     });

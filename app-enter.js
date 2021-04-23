@@ -57,7 +57,9 @@ function cusDD(a, b, c) {
         }
         var o = 200;
         if ($(this).find('.cusDD_options').children()) {
-            $(this).find('.cusDD_options').children().length > 30 && (o = 0);
+            if ($(this).find('.cusDD_options').children().length > 30) {
+                o = 0;
+            }
         }
         $(this).find('.cusDD_options').slideToggle(o);
         $(this).find('.cusDD_arrow').toggleClass('active');
@@ -405,7 +407,9 @@ var ChatFilter = function() {
                         if (i.status == 200 || i.status == 201) {
                             e = i.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
                             e = e.replace(/[\r]/gm, '');
-                            e[e.length - 1] == '|' && (e = e.substr(0, e.length - 1));
+                            if (e[e.length - 1] == '|') {
+                                e = e.substr(0, e.length - 1);
+                            }
                             f = true;
                             if (h) h();
                         }
@@ -526,11 +530,15 @@ var ChatFilter = function() {
                         setCookie(DCvi + '_chat_id', n.chat_id, 20160);
                         setCookie(DCvi + '_content_id', DCvi, 20160);
                         location.href = LUEz1 + '/' + F;
-                    } else z && alertPopup(z.title, z.desc, z.btnTxt, z.okCallback);
+                    } else if (z) {
+                        alertPopup(z.title, z.desc, z.btnTxt, z.okCallback);
+                    }
                 }, function(G) {
                     a('#loadingDiv').css('display', 'none');
                     console.log(G);
-                    z && alertPopup(z.title, z.desc, z.btnTxt, z.okCallback);
+                    if (z) {
+                        alertPopup(z.title, z.desc, z.btnTxt, z.okCallback);
+                    }
                 });
             },
             i = function y(z, A) {
@@ -648,8 +656,12 @@ var ChatFilter = function() {
                 ChatFilter.loadChatFilterData(function() {
                     p = C;
                     if (C == 'enter') a('#loginPopup').css('display', 'none');
-                    else C == 'auth' && a('#authPopup').css('display', 'none');
-                    D && a('#nickname').val(D);
+                    else if (C == 'auth') {
+                        a('#authPopup').css('display', 'none');
+                    }
+                    if (D) {
+                        a('#nickname').val(D);
+                    }
                     switch (egl) {
                         case 'ko':
                             a('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
@@ -679,7 +691,9 @@ var ChatFilter = function() {
             p = '',
             q = 0,
             r = getCookie(DCvi + '_device_id');
-        !r && (r = createDeviceId(DCvi));
+        if (!r) {
+            r = createDeviceId(DCvi);
+        }
         a(document).ready(function() {
             var C = ['e48fcdad-a485-4f0d-9ef4-df37b43bb560'],
                 D = a('#enterBtn'),
@@ -742,7 +756,9 @@ var ChatFilter = function() {
                     Y.text('');
                     T.prop('checked', true);
                     L.css('display', 'block');
-                    !W.val() && getCookie(DCvi + '_customer_id') && W.val(getCookie(DCvi + '_customer_id'));
+                    if (!W.val() && getCookie(DCvi + '_customer_id')) {
+                        W.val(getCookie(DCvi + '_customer_id'));
+                    }
                     if (!X.val() && getCookie(DCvi + '_ticket_id')) {
                         X.val(getCookie(DCvi + '_ticket_id'));
                     }
@@ -764,8 +780,12 @@ var ChatFilter = function() {
                 ab = function ai(aj, ak) {
                     var al = DCvi;
                     if (C.indexOf(al) < 0) return;
-                    aj && !ak && a9();
-                    !aj && !ak && D.click();
+                    if (aj && !ak) {
+                        a9();
+                    }
+                    if (!aj && !ak) {
+                        D.click();
+                    }
                 };
             aa();
             q = a1.getTime() - a2.getTime();
@@ -779,9 +799,15 @@ var ChatFilter = function() {
                 M.css('display', 'none');
                 N.css('display', 'none');
             } else {
-                dsev ? H.css('display', 'none') : H.css('display', 'block');
+                if (dsev) {
+                    H.css('display', 'none');
+                } else {
+                    H.css('display', 'block');
+                }
                 D.css('display', 'none');
-                !a3 && a7(false);
+                if (!a3) {
+                    a7(false);
+                }
                 var ac = function am() {
                     var an = new Date();
                     an.setTime(an.getTime() + q);
@@ -798,25 +824,39 @@ var ChatFilter = function() {
                             return;
                         }
                     } else {
-                        !rtd && D.css('display', 'none');
-                        !a3 && a7(false);
+                        if (!rtd) {
+                            D.css('display', 'none');
+                        }
+                        if (!a3) {
+                            a7(false);
+                        }
                     }
                     var ao = (a0 - an) / 1000,
                         ap = parseInt(ao / 60 / 60 / 24),
                         aq = parseInt(ao / 60 / 60 % 24),
                         ar = parseInt(ao / 60 % 60),
                         as = parseInt(ao % 60);
-                    ap < 10 && (ap = '0' + ap);
-                    aq < 10 && (aq = '0' + aq);
-                    ar < 10 && (ar = '0' + ar);
+                    if (ap < 10) {
+                        ap = '0' + ap;
+                    }
+                    if (aq < 10) {
+                        aq = '0' + aq;
+                    }
+                    if (ar < 10) {
+                        ar = '0' + ar;
+                    }
                     if (as < 10) {
                         as = '0' + as;
                     }
-                    document.getElementById('day') && (document.getElementById('day').innerHTML = ap);
+                    if (document.getElementById('day')) {
+                        document.getElementById('day').innerHTML = ap;
+                    }
                     if (document.getElementById('hour')) {
                         document.getElementById('hour').innerHTML = aq;
                     }
-                    document.getElementById('minute') && (document.getElementById('minute').innerHTML = ar);
+                    if (document.getElementById('minute')) {
+                        document.getElementById('minute').innerHTML = ar;
+                    }
                     if (document.getElementById('second')) {
                         document.getElementById('second').innerHTML = as;
                     }
@@ -855,7 +895,11 @@ var ChatFilter = function() {
                         if (m.is_chat_used) {
                             if (n.nickname) {
                                 if (a0 > a1) {
-                                    !a3 ? a7(false) : F.css('display', 'inline-block');
+                                    if (!a3) {
+                                        a7(false);
+                                    } else {
+                                        F.css('display', 'inline-block');
+                                    }
                                 }
                                 E.css('display', 'none');
                                 M.css('display', 'none');
@@ -873,8 +917,9 @@ var ChatFilter = function() {
                             }
                         } else {
                             if (a0 > a1) {
-                                if (!a3) a7(false);
-                                else {
+                                if (!a3) {
+                                    a7(false);
+                                } else {
                                     E.css('display', 'inline-block');
                                     ab(true, false);
                                 }
@@ -936,7 +981,11 @@ var ChatFilter = function() {
                 userSessionCheck(ap, function(av) {
                     m = JSON.parse(JSON.stringify(av.Data.content));
                     n = JSON.parse(JSON.stringify(av.Data.user));
-                    m.is_chat_used ? l('enter', n.nickname) : h();
+                    if (m.is_chat_used) {
+                        l('enter', n.nickname);
+                    } else {
+                        h();
+                    }
                 }, function(av) {
                     if (av.Data) {
                         if (av.Data.content.status == 'end') {
@@ -1208,7 +1257,9 @@ var ChatFilter = function() {
                 }
             });
             Q.on('keydown', function(ap) {
-                ap.keyCode == 13 && V.click();
+                if (ap.keyCode == 13) {
+                    V.click();
+                }
             });
             E.on('click', a9);
             Z.on('click', function() {
@@ -1244,7 +1295,9 @@ var ChatFilter = function() {
                 });
             });
             a('#authCustomerId, #authTicketId').on('keydown', function(ap) {
-                ap.keyCode == 13 && Z.click();
+                if (ap.keyCode == 13) {
+                    Z.click();
+                }
             });
             a('#authPopup button[name=closebtn]').on('click', function() {
                 L.css('display', 'none');
@@ -1275,8 +1328,13 @@ window.onpageshow = function(a) {
         d = null;
     if (c) {
         var e = c.toJSON();
-        e && (d = e.type);
-    }(a.persisted || window.performance && window.performance.navigation.type == 2 || d == 2) && location.reload();
+        if (e) {
+            d = e.type;
+        }
+    }
+    if (a.persisted || window.performance && window.performance.navigation.type == 2 || d == 2) {
+        location.reload();
+    }
 };
 var requestCnt = 0,
     serverLoading = null;
@@ -1296,13 +1354,15 @@ function request_to_server(a, b, c, d, e) {
     } else f.send();
     $('#loadingDiv').css('display', 'block');
     requestCnt++;
-    !serverLoading && (serverLoading = setInterval(function() {
-        if (!requestCnt) {
-            $('#loadingDiv').css('display', 'none');
-            clearInterval(serverLoading);
-            serverLoading = null;
-        }
-    }, 100));
+    if (!serverLoading) {
+        serverLoading = setInterval(function() {
+            if (!requestCnt) {
+                $('#loadingDiv').css('display', 'none');
+                clearInterval(serverLoading);
+                serverLoading = null;
+            }
+        }, 100);
+    }
     f.onreadystatechange = function() {
         if (f.readyState == XMLHttpRequest.DONE) {
             requestCnt--;
@@ -1313,8 +1373,11 @@ function request_to_server(a, b, c, d, e) {
             } else {
                 console.log(f);
                 if (f.status == 0) {} else {
-                    if (!e) f.responseText && console.log(JSON.parse(f.responseText));
-                    else {
+                    if (!e) {
+                        if (f.responseText) {
+                            console.log(JSON.parse(f.responseText));
+                        }
+                    } else {
                         try {
                             var i = JSON.parse(f.responseText);
                             e(i, f.status);
@@ -1522,7 +1585,9 @@ function hasClassName(a, b) {
 }
 
 function addClassName(a, b) {
-    !hasClassName(a, b) && (a.className = a.className ? [a.className, b].join(' ') : b);
+    if (!hasClassName(a, b)) {
+        a.className = a.className ? [a.className, b].join(' ') : b;
+    }
 }
 
 function removeClassName(a, b) {
