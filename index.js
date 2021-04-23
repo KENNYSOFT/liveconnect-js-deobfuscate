@@ -9,17 +9,17 @@ const generate = require('@babel/generator').default;
 const isVarName = require('is-var-name');
 const fs = require('fs');
 
-const checkSwitchableTest = ({type, left, right, operator}) => type === 'BinaryExpression' && left.type === 'Identifier' && (left.name === 'Tira' || left.name === 'egl') && operator === '==' && right.type === 'StringLiteral';
+const checkSwitchableTest = (expression) => t.isBinaryExpression(expression, {operator: '=='}) && (t.isIdentifier(expression.left, {name: 'Tira'}) || t.isIdentifier(expression.left, {name: 'egl'})) && t.isStringLiteral(expression.right);
 
-const checkSwitchableMultiTest = ({type, left, right, operator}) => type === 'LogicalExpression' && checkSwitchableTest(left) && operator === '||' && checkSwitchableTest(right);
+const checkSwitchableMultiTest = (expression) => t.isLogicalExpression(expression, {operator: '||'}) && checkSwitchableTest(expression.left) && checkSwitchableTest(expression.right);
 
-const convertStatementToCaseConsequent = (statement) => statement.type === 'BlockStatement' ? [...statement.body, t.breakStatement()] : [statement, t.breakStatement()];
+const convertStatementToCaseConsequent = (statement) => t.isBlockStatement(statement) ? [...statement.body, t.breakStatement()] : [statement, t.breakStatement()];
 
 const convertExpressionToCaseConsequent = (expression) => [t.expressionStatement(expression), t.breakStatement()];
 
 const createExpressionStatements = (expressions) => expressions.map(expression => t.expressionStatement(expression));
 
-const flattenExpressionToStatement = (expression) => t.blockStatement(expression.type === 'SequenceExpression' ? createExpressionStatements(expression.expressions) : [t.expressionStatement(expression)]);
+const flattenExpressionToStatement = (expression) => t.blockStatement(t.isSequenceExpression(expression) ? createExpressionStatements(expression.expressions) : [t.expressionStatement(expression)]);
 
 const ifToCases = (cases, ifStatement) => {
     const {test, consequent, alternate} = ifStatement;
@@ -33,7 +33,7 @@ const ifToCases = (cases, ifStatement) => {
     }
     switch (alternate?.type) {
         case 'BlockStatement':
-            if (alternate.body[0].type === 'IfStatement') {
+            if (t.isIfStatement(alternate.body[0])) {
                 ifToCases(cases, alternate.body[0]);
             } else {
                 cases.push(t.switchCase(null, convertStatementToCaseConsequent(alternate)));
@@ -44,9 +44,9 @@ const ifToCases = (cases, ifStatement) => {
             break;
         case 'ExpressionStatement':
             const {expression} = alternate;
-            if (expression.type === 'LogicalExpression' && checkSwitchableTest(expression.left)) {
+            if (t.isLogicalExpression(expression) && checkSwitchableTest(expression.left)) {
                 cases.push(t.switchCase(expression.left.right, convertExpressionToCaseConsequent(expression.right)));
-            } else if (expression.type === 'ConditionalExpression' && checkSwitchableTest(expression.test)) {
+            } else if (t.isConditionalExpression(expression) && checkSwitchableTest(expression.test)) {
                 cases.push(t.switchCase(expression.test.right, convertExpressionToCaseConsequent(expression.consequent)));
                 cases.push(t.switchCase(null, convertExpressionToCaseConsequent(expression.alternate)));
             } else {
@@ -64,13 +64,13 @@ const ifToCases = (cases, ifStatement) => {
 const deobfuscate = async (url) => {
     const res = await fetch(url);
     const js = await res.text();
-    const [_, decryptor, source] = js.match(/^(.*var a0b=function\([^}]*};)(.*)$/);
+    const [, decryptor, source] = js.match(/^(.*var a0b=function\([^}]*};)(.*)$/);
     eval(decryptor);
     const ast = parse(source.replace(/!!\[\]/g, ' true').replace(/!\[\]/g, ' false'));
     traverse(ast, {
         CallExpression: (path) => {
-            const {callee: {type, name}, arguments} = path.node;
-            if (type === 'Identifier' && name === 'a0b') {
+            const {callee, callee: {name}, arguments} = path.node;
+            if (t.isIdentifier(callee) && name === 'a0b') {
                 path.replaceWith(t.stringLiteral(a0b(arguments[0].value)));
             }
         },
@@ -83,10 +83,10 @@ const deobfuscate = async (url) => {
     });
     traverse(ast, {
         IfStatement: (path) => {
-            const {test: {type, left, right, operator}, consequent, alternate} = path.node;
-            if (type === 'BinaryExpression' && left.type === 'StringLiteral' && right.type === 'StringLiteral') {
+            const {test, test: {left, right, operator}, consequent, alternate} = path.node;
+            if (t.isBinaryExpression(test) && t.isStringLiteral(left) && t.isStringLiteral(right)) {
                 const replacement = (left.value === right.value) === (operator === '===') ? consequent : alternate;
-                if (replacement.type === 'BlockStatement') {
+                if (t.isBlockStatement(replacement)) {
                     path.replaceWithMultiple(replacement.body);
                 } else {
                     path.replaceWith(replacement);
@@ -94,22 +94,22 @@ const deobfuscate = async (url) => {
             }
         },
         MemberExpression: (path) => {
-            const {computed, property: {type, value}} = path.node;
-            if (computed && type === 'StringLiteral' && isVarName(value)) {
+            const {computed, property, property: {value}} = path.node;
+            if (computed && t.isStringLiteral(property) && isVarName(value)) {
                 path.node.computed = false;
                 path.node.property = t.identifier(value);
             }
         },
         ClassMethod: (path) => {
-            const {computed, key: {type, value}} = path.node;
-            if (computed && type === 'StringLiteral' && isVarName(value)) {
+            const {computed, key, key: {value}} = path.node;
+            if (computed && t.isStringLiteral(key) && isVarName(value)) {
                 path.node.computed = false;
                 path.node.key = t.identifier(value);
             }
         },
         ObjectProperty: (path) => {
-            const {key: {type, value}} = path.node;
-            if (type === 'StringLiteral' && isVarName(value)) {
+            const {key, key: {value}} = path.node;
+            if (t.isStringLiteral(key) && isVarName(value)) {
                 path.node.key = t.identifier(value);
             }
         },
@@ -132,22 +132,20 @@ const deobfuscate = async (url) => {
             }
         },
         LogicalExpression: (path) => {
-            if (path.parent.type === 'ExpressionStatement') {
+            if (t.isExpressionStatement(path.parent) && (t.isLogicalExpression(path.node, {operator: '&&'}) || t.isLogicalExpression(path.node, {operator: '||'}))) {
                 const {operator, left, right} = path.node;
-                if (operator === '&&' || operator === '||') {
-                    path.parentPath.replaceWith(t.ifStatement(operator === '&&' ? left : t.unaryExpression('!', left), flattenExpressionToStatement(right)));
-                }
+                path.parentPath.replaceWith(t.ifStatement(operator === '&&' ? left : t.unaryExpression('!', left), flattenExpressionToStatement(right)));
             }
         },
         ConditionalExpression: (path) => {
-            if (path.parent.type === 'ExpressionStatement') {
+            if (t.isExpressionStatement(path.parent)) {
                 const {test, consequent, alternate} = path.node;
                 path.parentPath.replaceWith(t.ifStatement(test, flattenExpressionToStatement(consequent), flattenExpressionToStatement(alternate)));
             }
         },
         CallExpression: (path) => {
-            const {callee: {type, params, body}, arguments} = path.node;
-            if (type === 'FunctionExpression' && params.length === 1 && arguments.length === 1 && arguments[0]?.name === 'jQuery') {
+            const {callee, callee: {params, body}, arguments} = path.node;
+            if (t.isFunctionExpression(callee) && params.length === 1 && arguments.length === 1 && arguments[0]?.name === 'jQuery') {
                 path.get('callee').scope.rename(params[0].name, '$');
                 path.replaceWithMultiple(body.body);
             }
