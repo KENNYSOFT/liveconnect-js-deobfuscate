@@ -107,11 +107,17 @@ function cusDD(a, b, c) {
         callbackArr.push(c);
     }
     var f = '';
-    if (!b) {
-        f = 'cusDD_default';
-    } else {
-        if (b == 'slick dark') f = 'cusDD_slick_d';
-        else b == 'slick light' ? f = 'cusDD_slick_l' : f = b;
+    if (!b) f = 'cusDD_default';
+    else {
+        if (b == 'slick dark') {
+            f = 'cusDD_slick_d';
+        } else {
+            if (b == 'slick light') {
+                f = 'cusDD_slick_l';
+            } else {
+                f = b;
+            }
+        }
     }
     for (var g = 0; g < $(a).length; g++) {
         var h = $($(a)[g]);
@@ -125,27 +131,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(m) {
+    $(document).click(function(p) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(m) {
-        var n = a;
-        $('.cusDD').not(n).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(n).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', n);
-        m.stopPropagation();
-        if ($(m.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(p) {
+        var q = a;
+        $('.cusDD').not(q).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(q).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', q);
+        p.stopPropagation();
+        if ($(p.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(m.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(p.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var o = 200;
-        $(this).find('.cusDD_options').children() && $(this).find('.cusDD_options').children().length > 30 && (o = 0);
-        $(this).find('.cusDD_options').slideToggle(o);
+        var r = 200;
+        if ($(this).find('.cusDD_options').children()) {
+            if ($(this).find('.cusDD_options').children().length > 30) {
+                r = 0;
+            }
+        }
+        $(this).find('.cusDD_options').slideToggle(r);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -155,8 +165,8 @@ function cusDD(a, b, c) {
 }(function(a) {
     a.fn.changeElementType = function(b) {
         var c = {};
-        a.each(this[0].attributes, function(d, e) {
-            c[e.nodeName] = e.nodeValue;
+        a.each(this[0].attributes, function(e, f) {
+            c[f.nodeName] = f.nodeValue;
         });
         this.replaceWith(function() {
             return a('<' + b + '/>', c).append(a(this).contents());
@@ -168,7 +178,9 @@ function cusDDselectOption(a, b, c) {
     $(a).find('.cusDD_opt').each(function() {
         if ($(this).data().id == b) {
             $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
-            $(this).data().id && ($($(this).parent()).siblings('.cusDD_select').data().id = $(this).data().id);
+            if ($(this).data().id) {
+                $($(this).parent()).siblings('.cusDD_select').data().id = $(this).data().id;
+            }
             if (c) {
                 var d = '#' + $(this).parent().parent().attr('id');
                 for (var e = 0; e < selectArr.length; e++) {
@@ -179,35 +191,72 @@ function cusDDselectOption(a, b, c) {
             }
         }
     });
-}(function(a) {
+}(function(c) {
+    var d = function() {
+            var i = true;
+            return function(j, k) {
+                var l = i ? function() {
+                    if (k) {
+                        var n = k.apply(j, arguments);
+                        k = null;
+                        return n;
+                    }
+                } : function() {};
+                i = false;
+                return l;
+            };
+        }(),
+        e = d(this, function() {
+            var i = function() {
+                    var q;
+                    try {
+                        q = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
+                    } catch (s) {
+                        q = c;
+                    }
+                    return q;
+                },
+                j = i(),
+                k = j.console = j.console || {},
+                l = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+            for (var m = 0; m < l.length; m++) {
+                var n = d.constructor.prototype.bind(d),
+                    o = l[m],
+                    p = k[o] || n;
+                n.__proto__ = d.bind(d);
+                n.toString = p.toString.bind(p);
+                k[o] = n;
+            }
+        });
+    e();
     'use strict';
 
-    function b(e, f) {
-        for (var g in f) {
-            f.hasOwnProperty(g) && (e[g] = f[g]);
+    function f(i, j) {
+        for (var k in j) {
+            j.hasOwnProperty(k) && (i[k] = j[k]);
         }
-        return e;
+        return i;
     }
 
-    function c(e, f) {
-        for (var g = 0; g < e.length; g++) {
-            var h = e[g];
-            f(h);
+    function g(j, k) {
+        for (var l = 0; l < j.length; l++) {
+            var m = j[l];
+            k(m);
         }
     }
 
-    function d(e) {
-        this.options = b({}, this.options);
-        b(this.options, e);
+    function h(i) {
+        this.options = f({}, this.options);
+        f(this.options, i);
         this._init();
     }
-    d.prototype.options = {
+    h.prototype.options = {
         wrapper: '#o-wrapper',
         type: 'slide-left',
         menuOpenerClass: '.c-button',
         maskId: '#c-mask'
     };
-    d.prototype._init = function() {
+    h.prototype._init = function() {
         this.body = document.body;
         this.wrapper = document.querySelector(this.options.wrapper);
         this.mask = document.querySelector(this.options.maskId);
@@ -216,45 +265,43 @@ function cusDDselectOption(a, b, c) {
         this.menuOpeners = document.querySelectorAll(this.options.menuOpenerClass);
         this._initEvents();
     };
-    d.prototype._initEvents = function() {
-        if (this.closeBtn) {
-            this.closeBtn.addEventListener('click', function(f) {
-                f.preventDefault();
-                this.close();
-            }.bind(this));
-        }
+    h.prototype._initEvents = function() {
+        this.closeBtn && this.closeBtn.addEventListener('click', function(i) {
+            i.preventDefault();
+            this.close();
+        }.bind(this));
         if (this.mask) {
-            this.mask.addEventListener('click', function(f) {
-                f.preventDefault();
+            this.mask.addEventListener('click', function(i) {
+                i.preventDefault();
                 this.close();
             }.bind(this));
         }
     };
-    d.prototype.open = function() {
+    h.prototype.open = function() {
         this.body.classList.add('has-active-menu');
         this.wrapper.classList.add('has-' + this.options.type);
         this.menu.classList.add('is-active');
         this.mask.classList.add('is-active');
         this.disableMenuOpeners();
     };
-    d.prototype.close = function() {
+    h.prototype.close = function() {
         this.body.classList.remove('has-active-menu');
         this.wrapper.classList.remove('has-' + this.options.type);
         this.menu.classList.remove('is-active');
         this.mask.classList.remove('is-active');
         this.enableMenuOpeners();
     };
-    d.prototype.disableMenuOpeners = function() {
-        c(this.menuOpeners, function(e) {
-            e.disabled = true;
+    h.prototype.disableMenuOpeners = function() {
+        g(this.menuOpeners, function(i) {
+            i.disabled = true;
         });
     };
-    d.prototype.enableMenuOpeners = function() {
-        c(this.menuOpeners, function(e) {
-            e.disabled = false;
+    h.prototype.enableMenuOpeners = function() {
+        g(this.menuOpeners, function(i) {
+            i.disabled = false;
         });
     };
-    a.Menu = d;
+    c.Menu = h;
 })(window);
 var Rich360Player = function() {
         function a(b, c, d) {
@@ -285,9 +332,7 @@ var Rich360Player = function() {
                 this._ui.playBtn.onclick = function() {
                     if (this._player._ui_play) {
                         this.pause();
-                    } else {
-                        this.play();
-                    }
+                    } else this.play();
                 }.bind(this);
                 this._ui.volumeSlider = new customRange(this._ui.volumeSlider);
                 if (isMobile() || isTablet() || isIpadOS()) {
@@ -299,8 +344,8 @@ var Rich360Player = function() {
                         this._ui.volumeSlider.barDiv.style.backgroundImage = 'linear-gradient(to right, #fff 0%, #fff ' + this._ui.volumeSlider._value + '%, transparent ' + this._ui.volumeSlider._value + '%, transparent 100%)';
                         this.volume(this._ui.volumeSlider._value);
                     }.bind(this));
-                    this._ui.volumeSlider.addEventListener('seek', function(d) {
-                        this.volume(d.target._value);
+                    this._ui.volumeSlider.addEventListener('seek', function(f) {
+                        this.volume(f.target._value);
                     }.bind(this));
                     this._ui.volumeBtn.onclick = function() {
                         if (this._ui.volumeBtn.classList.contains('mute')) {
@@ -320,36 +365,38 @@ var Rich360Player = function() {
                 }
                 if (this._options.content_data.use_vod) {
                     this._ui.seekBar = new customRange(this._ui.sliderArea, 0, this._ui.sliderPaddingDiv);
-                    this._ui.seekBar.addEventListener('input', function(d) {
-                        this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + d.target._value + '%, #ea0029 ' + d.target._value + '%, transparent ' + d.target._loadedValue + '%, transparent ' + d.target._loadedValue + '%)';
+                    this._ui.seekBar.addEventListener('input', function(f) {
+                        this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + f.target._value + '%, #ea0029 ' + f.target._value + '%, transparent ' + f.target._loadedValue + '%, transparent ' + f.target._loadedValue + '%)';
                         if (this._ui.seekBar.thumbInteracting) {
-                            this.viewSeekBarThumbnail(d.target._value, true);
+                            this.viewSeekBarThumbnail(f.target._value, true);
                         }
                     }.bind(this));
-                    this._ui.seekBar.paddingBar.addEventListener('mousemove', function(d) {
-                        this.viewSeekBarThumbnail(d.offsetX / this._ui.seekBar.clientWidth * 100);
+                    this._ui.seekBar.paddingBar.addEventListener('mousemove', function(f) {
+                        this.viewSeekBarThumbnail(f.offsetX / this._ui.seekBar.clientWidth * 100);
                     }.bind(this));
-                    this._ui.seekBar.paddingBar.addEventListener('mouseout', function(d) {
+                    this._ui.seekBar.paddingBar.addEventListener('mouseout', function(f) {
                         $(this._ui.sliderThumbnail).css('display', 'none');
                     }.bind(this));
-                    this._ui.seekBar.addEventListener('seek', function(d) {
-                        this.seek(d.target._value);
+                    this._ui.seekBar.addEventListener('seek', function(f) {
+                        this.seek(f.target._value);
                         $(this._ui.sliderThumbnail).css('display', 'none');
                     }.bind(this));
                     $(this._ui.prev10sBtn).on('click', function() {
                         if (this._player.currentPosition) {
-                            var d = this._player.currentPosition - 10;
-                            if (d < 0) {
-                                d = 0;
+                            var f = this._player.currentPosition - 10;
+                            if (f < 0) {
+                                f = 0;
                             }
-                            this._player.currentPosition = d;
+                            this._player.currentPosition = f;
                         }
                     }.bind(this));
                     $(this._ui.next10sBtn).on('click', function() {
                         if (this._player.currentPosition) {
-                            var d = this._player.currentPosition + 10;
-                            d > this._player.duration - 1 && (d = this._player.duration - 1);
-                            this._player.currentPosition = d;
+                            var f = this._player.currentPosition + 10;
+                            if (f > this._player.duration - 1) {
+                                f = this._player.duration - 1;
+                            }
+                            this._player.currentPosition = f;
                         }
                     }.bind(this));
                 }
@@ -362,23 +409,29 @@ var Rich360Player = function() {
                 if (isMobile()) {
                     var c = getOrientation();
                     if (typeof c == 'string') {
-                        if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') {
-                            this.hideChatWrap();
-                        } else(c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') && this.showChatWrap();
+                        if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') this.hideChatWrap();
+                        else {
+                            if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
+                                this.showChatWrap();
+                            }
+                        }
                     }
                     $(window).on('orientationchange', function() {
-                        var g = getOrientation();
-                        if (typeof g == 'string') {
-                            if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') this.hideChatWrap();
-                            else {
-                                if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
+                        var i = getOrientation();
+                        if (typeof i == 'string') {
+                            if (i == 'landscape-primary' || i == 'landscape-secondary' || i == 'landscape') {
+                                this.hideChatWrap();
+                            } else {
+                                if (i == 'portrait-primary' || i == 'portrait-secondary' || i == 'portrait') {
                                     this.showChatWrap();
                                 }
                             }
                         }
                     }.bind(this));
                 }
-                this._options.content_data.use_vod && $(this._ui.sliderPaddingDiv).width($(this._ui.sliderArea).width());
+                if (this._options.content_data.use_vod) {
+                    $(this._ui.sliderPaddingDiv).width($(this._ui.sliderArea).width());
+                }
             }
         }, {
             key: 'createQualityDiv',
@@ -405,7 +458,10 @@ var Rich360Player = function() {
                 f.dataset.id = e.id;
                 f.dataset.height = e.height;
                 var g = '';
-                f.dataset.height == 'auto' ? g = 'AUTO' : g = f.dataset.height + 'P';
+                if (f.dataset.height == 'auto') g = 'AUTO';
+                else {
+                    g = f.dataset.height + 'P';
+                }
                 f.innerHTML = g;
                 return f;
             }
@@ -491,28 +547,25 @@ var Rich360Player = function() {
                         this._ui.qualityPopupItems.push(n);
                     }
                     for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
-                        this._ui.qualityPopupItems[o].addEventListener('click', function(q) {
-                            var r = null;
-                            if (q.target.id == 'auto') {
-                                r = -1;
-                            } else {
-                                r = parseInt(q.target.id);
+                        this._ui.qualityPopupItems[o].addEventListener('click', function(r) {
+                            var s = null;
+                            r.target.id == 'auto' ? s = -1 : s = parseInt(r.target.id);
+                            for (var t = 0; t < this._ui.qualityPopupItems.length; t++) {
+                                removeClassName(this._ui.qualityPopupItems[t], 'on');
                             }
-                            for (var s = 0; s < this._ui.qualityPopupItems.length; s++) {
-                                removeClassName(this._ui.qualityPopupItems[s], 'on');
-                            }
-                            q.target.classList.add('on');
+                            r.target.classList.add('on');
                             this._ui.qualityPopup.style.display = 'none';
-                            if (this._player.quality == r) return;
-                            this._player.quality = r;
-                            if (q.target.id == 'auto') {
-                                for (var t = 0; t < this._ui.qualityPopupItems.length; t++) {
-                                    if (this._ui.qualityPopupItems[t].id == this._player._hls.nextAutoLevel) {
-                                        addClassName(this._ui.qualityPopupItems[t], 'on');
+                            if (this._player.quality == s) {
+                                return;
+                            }
+                            this._player.quality = s;
+                            if (r.target.id == 'auto')
+                                for (var u = 0; u < this._ui.qualityPopupItems.length; u++) {
+                                    if (this._ui.qualityPopupItems[u].id == this._player._hls.nextAutoLevel) {
+                                        addClassName(this._ui.qualityPopupItems[u], 'on');
                                         break;
                                     }
                                 }
-                            }
                         }.bind(this));
                     }
                 }
@@ -531,10 +584,7 @@ var Rich360Player = function() {
                             $(this).addClass('on');
                         }
                     });
-                    if (r.id == 'auto') s = -1;
-                    else {
-                        s = parseInt(r.id);
-                    }
+                    r.id == 'auto' ? s = -1 : s = parseInt(r.id);
                     this._player.quality = s;
                 }.bind(this));
                 cusDDselectOption(p, 'auto', true);
@@ -569,9 +619,7 @@ var Rich360Player = function() {
                         this._ui.ccSelectBtn.style.display = 'none';
                         return;
                     } else {
-                        if (!this._player.subtitleList[0].lang) {
-                            return;
-                        }
+                        if (!this._player.subtitleList[0].lang) return;
                     }
                 }
                 var k = this.createSubtitleDiv({
@@ -605,15 +653,15 @@ var Rich360Player = function() {
                     }
                 }
                 this._ui.ccSelect.appendChild(m);
-                $(this._ui.ccSelectBtn).on('click', function(v) {
+                $(this._ui.ccSelectBtn).on('click', function(u) {
                     $(this._ui.ccSelect).click();
-                    v.stopPropagation();
+                    u.stopPropagation();
                 }.bind(this));
                 var j = '#' + this._ui.ccSelect.getAttribute('id');
-                cusDD(j, null, function(v) {
-                    console.log('selected ccSelect option : ', v);
-                    $(j).find('.cusDD_opt').each(function(w) {
-                        if ($(this).data().id != v.id) {
+                cusDD(j, null, function(u) {
+                    console.log('selected ccSelect option : ', u);
+                    $(j).find('.cusDD_opt').each(function(v) {
+                        if ($(this).data().id != u.id) {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         } else {
@@ -621,14 +669,14 @@ var Rich360Player = function() {
                             $(this).addClass('on');
                         }
                     });
-                    this._player.subtitleTrack = parseInt(v.id);
+                    this._player.setSubtitleTrack(parseInt(u.id));
                 }.bind(this));
                 cusDDselectOption(j, -1, true);
                 this._ui.ccSelect = document.getElementById(this._ui.ccSelect.getAttribute('id'));
                 for (var q = 0; q < this._ui.subtitlePopupItems.length; q++) {
-                    this._ui.subtitlePopupItems[q].addEventListener('click', function(v) {
+                    this._ui.subtitlePopupItems[q].addEventListener('click', function(u) {
                         $(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
-                            if ($(this).data().id != $(v.target).data().id) {
+                            if ($(this).data().id != $(u.target).data().id) {
                                 $(this).removeAttr('selected');
                                 $(this).removeClass('on');
                             } else {
@@ -637,10 +685,10 @@ var Rich360Player = function() {
                             }
                         });
                         this._ui.subtitlePopup.style.display = 'none';
-                        this._player.subtitleTrack = parseInt($(v.target).data().id);
+                        this._player.setSubtitleTrack(parseInt($(u.target).data().id));
                     }.bind(this));
                 }
-                this._player.subtitleTrack = -1;
+                this._player.setSubtitleTrack(-1);
                 this._initSubtitleUI = true;
             }
         }, {
@@ -667,9 +715,11 @@ var Rich360Player = function() {
                         if (this._ui.qualityItems[l].id == k) {
                             addClassName(this._ui.qualityItems[l], 'on');
                             $(this._ui.qualityItems[l]).attr('selected', 'selected');
-                        } else if (this._ui.qualityItems[l].id != 'auto' || !this._player.isAutoQuality) {
-                            removeClassName(this._ui.qualityItems[l], 'on');
-                            $(this._ui.qualityItems[l]).removeAttr('selected');
+                        } else {
+                            if (this._ui.qualityItems[l].id != 'auto' || !this._player.isAutoQuality) {
+                                removeClassName(this._ui.qualityItems[l], 'on');
+                                $(this._ui.qualityItems[l]).removeAttr('selected');
+                            }
                         }
                     }
                     for (var m = 0; m < this._ui.qualityPopupItems.length; m++) {
@@ -700,9 +750,7 @@ var Rich360Player = function() {
                     if (k) {
                         $(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause');
                         this._ui.playThumbnail.style.display = 'none';
-                    } else {
-                        $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
-                    }
+                    } else $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
                 }.bind(this));
                 this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(k) {
                     if (k == 'Authorization failed') {
@@ -739,9 +787,11 @@ var Rich360Player = function() {
                     Chat.Manager.destroy();
                     removeCookie(DCvi + '_user_id');
                     removeCookie(DCvi + '_chat_id');
-                    isIOS() && setTimeout(function() {
-                        location.href = LUEz1;
-                    }, 3000);
+                    if (isIOS()) {
+                        setTimeout(function() {
+                            location.href = LUEz1;
+                        }, 3000);
+                    }
                     alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
                         location.href = LUEz1;
                     });
@@ -853,9 +903,7 @@ var Rich360Player = function() {
             key: 'wakeupController',
             value: function p(q) {
                 this._ui.playerBottomWrap.style.display = 'block';
-                if (!$(this._ui.chatContents).hasClass('is-active')) {
-                    this.showChatOpenBtn(true);
-                }
+                !$(this._ui.chatContents).hasClass('is-active') && this.showChatOpenBtn(true);
                 this._wakeupPastTime = 0;
                 this.setTimerHidePlayerController(true);
                 return true;
@@ -920,17 +968,9 @@ var Rich360Player = function() {
         }, {
             key: 'play',
             value: function s() {
-                if (!this._initHideCtroller) {
-                    this.initHideCtrllerEvent();
-                }
-                if (isIOS()) {
-                    if (!this._player._video.bfTime) {
-                        if (this._options.use_multiview) this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path;
-                        else {
-                            this._player._video.src = this._player._sourceBase + this._player._manifest.singleview_list[0].path;
-                        }
-                    }
-                } else {
+                !this._initHideCtroller && this.initHideCtrllerEvent();
+                if (this._player._hls._isDummy) !this._player._video.bfTime && (this._options.use_multiview ? this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path : this._player._video.src = this._player._sourceBase + this._player._manifest.singleview_list[0].path);
+                else {
                     if (this._player._hls._hls) {
                         if (this._player._hls._hls.liveSyncPosition) {
                             this._player.currentPosition = this._player._hls._hls.liveSyncPosition;
@@ -942,10 +982,10 @@ var Rich360Player = function() {
         }, {
             key: 'pause',
             value: function t() {
-                if (isIOS()) {
-                    if (this._options.content_data.use_vod) {
-                        this._player._video.bfTime = this._player._video.currentTime;
-                    } else {
+                this._player._subtitleManager._prevSubtitleTrack = this._player.getSubtitleTrack();
+                if (this._player._hls._isDummy) {
+                    if (this._options.content_data.use_vod) this._player._video.bfTime = this._player._video.currentTime;
+                    else {
                         this._player._video.src = '';
                     }
                 }
@@ -993,8 +1033,13 @@ var Rich360Player = function() {
                     $(this._ui.sliderThumbnail).css('display', 'none');
                     return false;
                 }
-                if (A > 100) A = 100;
-                else A < 0 && (A = 0);
+                if (A > 100) {
+                    A = 100;
+                } else {
+                    if (A < 0) {
+                        A = 0;
+                    }
+                }
                 var C = A / 100,
                     D = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y,
                     E = Math.ceil(D * C) - 1;
@@ -1025,9 +1070,7 @@ var Rich360Player = function() {
             key: 'showChatOpenBtn',
             value: function A(B) {
                 var C = B;
-                if (isIpadOS()) {
-                    C = false;
-                }
+                isIpadOS() && (C = false);
                 $(this._ui.chatOpenBtn).css('display', C ? 'block' : 'none');
             }
         }]);
@@ -1159,11 +1202,17 @@ var Rich360Player = function() {
                         var g = getOrientation();
                         if (typeof g == 'string') {
                             if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') this._web_ui.hideChatWrap();
-                            else(g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') && this._web_ui.showChatWrap();
+                            else {
+                                if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
+                                    this._web_ui.showChatWrap();
+                                }
+                            }
                         }
-                    } else isSafari() ? setTimeout(function() {
-                        f._web_ui.showChatWrap();
-                    }) : f._web_ui.showChatWrap();
+                    } else {
+                        isSafari() ? setTimeout(function() {
+                            f._web_ui.showChatWrap();
+                        }) : f._web_ui.showChatWrap();
+                    }
                     this.setIsFullScreen(false);
                     this.showMultiviewBtn(true);
                     this._web_ui.wakeupController();
@@ -1172,9 +1221,7 @@ var Rich360Player = function() {
                     this._is_fullscreen_button = false;
                     $(this._dom_element).removeClass('pl-i-screen float_r').addClass('pl-i-full float_r');
                     this._web_ui.hideChatWrap();
-                    if (isMobile()) {
-                        screen.orientation.lock('landscape');
-                    }
+                    isMobile() && screen.orientation.lock('landscape');
                     this.setIsFullScreen(true);
                     this.showMultiviewBtn(false);
                 }
@@ -1189,11 +1236,11 @@ var Rich360Player = function() {
                             var f = document.querySelector('html');
                             if ('requestFullscreen' in f) f.requestFullscreen();
                             else {
-                                if ('webkitRequestFullscreen' in f) f.webkitRequestFullscreen();
-                                else {
-                                    if ('mozRequestFullScreen' in f) {
-                                        f.mozRequestFullScreen();
-                                    } else {
+                                if ('webkitRequestFullscreen' in f) {
+                                    f.webkitRequestFullscreen();
+                                } else {
+                                    if ('mozRequestFullScreen' in f) f.mozRequestFullScreen();
+                                    else {
                                         if ('msRequestFullscreen' in f) {
                                             f.msRequestFullscreen();
                                         }
@@ -1202,9 +1249,7 @@ var Rich360Player = function() {
                             }
                             this._is_fullscreen_button = false;
                         } else console.log('fullscreen not enabled');
-                    } else {
-                        console.log('fullscreen not supported');
-                    }
+                    } else console.log('fullscreen not supported');
                 } else {
                     var g = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
                     if (g && g == document.querySelector('html')) {
@@ -1212,8 +1257,9 @@ var Rich360Player = function() {
                         if ('exitFullscreen' in document) {
                             document.exitFullscreen();
                         } else {
-                            if ('webkitExitFullscreen' in document) document.webkitExitFullscreen();
-                            else {
+                            if ('webkitExitFullscreen' in document) {
+                                document.webkitExitFullscreen();
+                            } else {
                                 if ('mozCancelFullScreen' in document) document.mozCancelFullScreen();
                                 else 'msExitFullscreen' in document && document.msExitFullscreen();
                             }
@@ -1276,7 +1322,9 @@ var Rich360Log = function() {
                 var h = this.getLog(),
                     j = [];
                 for (var k = 0; k < h.length; k++) {
-                    h[k].value.playStatus && j.push(h[k].value.playStatus);
+                    if (h[k].value.playStatus) {
+                        j.push(h[k].value.playStatus);
+                    }
                 }
                 this.clearLogData();
                 var l = new XMLHttpRequest();
@@ -1288,31 +1336,34 @@ var Rich360Log = function() {
                 m.append('play_status', JSON.stringify(j));
                 m.append('user_agent', navigator.userAgent);
                 l.send(m);
-                l.onload = function(o) {
-                    if (l.readyState === 4 && l.status === 200) {
-                        try {
-                            var p = JSON.parse(l.responseText).Data;
-                            for (var q = 0; q < p.content.channels.length; q++) {
-                                var r = true;
-                                Ythc == 'sub' && (r = false);
-                                if (p.content.channels[q].is_main_channel == r) {
-                                    if (this._options.content_data.current_channel_id != p.content.channels[q].id) {
-                                        this._options.content_data = JSON.parse(JSON.stringify(p.content));
-                                        this._options.content_data.current_channel_id = p.content.channels[q].id;
-                                        this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[q].hls_url);
-                                    }
-                                    break;
+                l.onload = function(p) {
+                    if (l.readyState === 4 && l.status === 200) try {
+                        var q = JSON.parse(l.responseText).Data;
+                        for (var r = 0; r < q.content.channels.length; r++) {
+                            var s = true;
+                            Ythc == 'sub' && (s = false);
+                            if (q.content.channels[r].is_main_channel == s) {
+                                if (this._options.content_data.current_channel_id != q.content.channels[r].id) {
+                                    this._options.content_data = JSON.parse(JSON.stringify(q.content));
+                                    this._options.content_data.current_channel_id = q.content.channels[r].id;
+                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[r].hls_url);
                                 }
+                                break;
                             }
-                            iCM(!!p.user.is_mute);
-                        } catch (u) {
-                            console.log(u);
                         }
+                        iCM(!!q.user.is_mute);
+                    } catch (t) {
+                        console.log(t);
                     }
                 }.bind(this);
-                l.onloadend = function(o) {
-                    if (l.status === 400 || l.status === 401) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                    else l.status === 403 && this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
+                l.onloadend = function(p) {
+                    if (l.status === 400 || l.status === 401) {
+                        this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
+                    } else {
+                        if (l.status === 403) {
+                            this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
+                        }
+                    }
                 }.bind(this);
             }
         }]);
@@ -1361,74 +1412,36 @@ var Rich360Log = function() {
         return a;
     }(),
     Rich360HlsWrapper = function() {
-        var c = function() {
-                var f = true;
-                return function(h, i) {
-                    var j = f ? function() {
-                        if (i) {
-                            var l = i.apply(h, arguments);
-                            i = null;
-                            return l;
-                        }
-                    } : function() {};
-                    f = false;
-                    return j;
-                };
-            }(),
-            d = c(this, function() {
-                var f;
-                try {
-                    var g = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
-                    f = g();
-                } catch (o) {
-                    f = window;
-                }
-                var h = f.console = f.console || {},
-                    i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-                for (var j = 0; j < i.length; j++) {
-                    var k = c.constructor.prototype.bind(c),
-                        l = i[j],
-                        m = h[l] || k;
-                    k.__proto__ = c.bind(c);
-                    k.toString = m.toString.bind(m);
-                    h[l] = k;
-                }
-            });
-        d();
-
-        function e(f, g, h) {
-            _classCallCheck(this, e);
+        function a(b, c, d) {
+            _classCallCheck(this, a);
             if (!Hls) {
                 console.log('Missing Hls.');
                 return;
             }
-            this._isDummy = f;
-            this._config = g;
+            this._isDummy = b;
+            (isIOS() || isIpadOS()) && (this._isDummy = true);
+            this._config = c;
             this._video = null;
-            this._isMultiview = h;
+            this._isMultiview = d;
         }
-        _createClass(e, [{
+        _createClass(a, [{
             key: 'isHlsAvailable',
-            value: function f(g, h) {
-                var i = g,
-                    j = !j(),
-                    k = window.Hls.isSupported(),
-                    l = false;
-                if (!i) return l;
-                if (h) {
-                    if (!j && i.canPlayType('application/vnd.apple.mpegurl')) l = true;
-                    else {
-                        if (k) {
-                            l = false;
-                        }
-                    }
-                } else l = !k;
-                return l;
+            value: function b(c, d) {
+                var e = c,
+                    f = !f(),
+                    g = window.Hls.isSupported(),
+                    h = false;
+                if (!e) return h;
+                if (d) {
+                    if (!f && e.canPlayType('application/vnd.apple.mpegurl')) h = true;
+                    else g && (h = false);
+                } else h = !g;
+                return h;
             }
         }, {
             key: 'attachMedia',
-            value: function g(h) {
-                this._video = h;
+            value: function c(d) {
+                this._video = d;
                 if (this._isMultiview) {
                     if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl') || isIOS() || isIpadOS()) {
                         this._isDummy = true;
@@ -1441,104 +1454,111 @@ var Rich360Log = function() {
                     if (isIOS() || isIpadOS()) {
                         this._isDummy = true;
                         this._hls = null;
-                    } else if (Hls.isSupported()) {
-                        this._isDummy = false;
-                        this._hls = new Hls(this._config);
                     } else {
-                        this._isDummy = true;
-                        this._hls = null;
+                        if (Hls.isSupported()) {
+                            this._isDummy = false;
+                            this._hls = new Hls(this._config);
+                        } else {
+                            this._isDummy = true;
+                            this._hls = null;
+                        }
                     }
                 }
                 this._video.addEventListener('canplay', function() {
-                    this._config.startPosition != undefined && this._config.startPosition > 0 && (this._video.currentTime = this._config.startPosition);
-                    this._config.autoplay && this._video.play();
+                    if (this._config.startPosition != undefined && this._config.startPosition > 0) {
+                        this._video.currentTime = this._config.startPosition;
+                    }
+                    if (this._config.autoplay) {
+                        this._video.play();
+                    }
                 }.bind(this), {
                     once: true
                 });
-                if (!this._isDummy) this._hls.attachMedia(h);
+                if (!this._isDummy) this._hls.attachMedia(d);
             }
         }, {
             key: 'detachMedia',
-            value: function h() {
+            value: function d() {
                 this._video = null;
                 if (!this._isDummy) this._hls.detachMedia();
             }
         }, {
             key: 'loadSource',
-            value: function i(j, k, l) {
+            value: function e(f, g, h) {
                 if (this._isDummy) {
-                    this._video.src = j;
-                    if (k) this._video.currentTime = k;
-                    if (l) this._video.poster = l;
+                    this._video.src = f;
+                    if (g) this._video.currentTime = g;
+                    if (h) this._video.poster = h;
                     this._video.crossOrigin = 'anonymous';
                     this._video.disablePictureInPicture = true;
                     this._video.oncontextmenu = function() {
                         return false;
                     };
                     this._video.load();
-                } else this._hls.loadSource(j);
+                } else {
+                    this._hls.loadSource(f);
+                }
             }
         }, {
             key: 'release',
-            value: function j() {
+            value: function f() {
                 this._video = null;
                 this._hls = null;
             }
         }, {
             key: 'recoverMediaError',
-            value: function k() {
-                if (this._isDummy) {} else {
-                    this._hls.recoverMediaError();
-                }
+            value: function g() {
+                if (this._isDummy) {} else this._hls.recoverMediaError();
             }
         }, {
             key: 'on',
-            value: function l(m, n) {
-                !this._isDummy && this._hls.on(m, n);
+            value: function h(i, j) {
+                if (!this._isDummy) {
+                    this._hls.on(i, j);
+                }
             }
         }, {
             key: 'startLoad',
-            value: function m() {
-                if (this._isDummy) this._video.load();
-                else {
-                    this._hls.startLoad();
-                }
+            value: function i() {
+                this._isDummy ? this._video.load() : this._hls.startLoad();
             }
         }, {
             key: 'destroy',
-            value: function n() {
-                if (this._isDummy) this.release();
-                else {
-                    this._hls.destroy();
-                }
+            value: function j() {
+                this._isDummy ? this.release() : this._hls.destroy();
             }
         }, {
             key: 'isAutoQuality',
-            value: function o() {
+            value: function k() {
                 if (this._isDummy) {
                     return false;
                 } else return this._hls.levelController.manualLevel == -1;
             }
         }, {
             key: 'levels',
-            get: function p() {
-                return this._isDummy ? false : this._hls.levels;
+            get: function l() {
+                if (this._isDummy) return false;
+                else {
+                    return this._hls.levels;
+                }
             }
         }, {
             key: 'nextAutoLevel',
-            get: function q() {
+            get: function m() {
                 return this._isDummy ? 0 : this._hls.abrController.nextAutoLevel;
             }
         }, {
             key: 'currentLevel',
-            get: function r() {
-                return this._isDummy ? 0 : this._hls.currentLevel;
+            get: function n() {
+                if (this._isDummy) {
+                    return 0;
+                } else return this._hls.currentLevel;
             },
-            set: function s(t) {
-                if (!this._isDummy) this._hls.currentLevel = t;
+            set: function o(p) {
+                if (!this._isDummy) this._hls.currentLevel = p;
             }
         }]);
-        return e;
+        return a;
     }(),
     RICH360_EVENTS = {
         RICH360_STATE_CHANGE: 0,
@@ -1633,6 +1653,7 @@ var Rich360Log = function() {
             this._loggerItv = null;
             this._subtitleList = [];
             this._play_status = '';
+            this._view = 0;
             this.addNativeTrackListener = this.addNativeTrackListener.bind(this);
             this.updateNativeTrackCuesListener = this.updateNativeTrackCuesListener.bind(this);
             var g = c.substr(c.lastIndexOf('/') + 1, c.length),
@@ -1640,23 +1661,22 @@ var Rich360Log = function() {
                 j = h + g;
             this._options.source = j;
             if ('credentials' in this._options) {
-                !('device_id' in this._options.credentials) && (this._options.credentials.device_id = null);
-                !('user_id' in this._options.credentials) && (this._options.credentials.user_id = null);
-                if (!('content_id' in this._options.credentials)) {
-                    this._options.credentials.content_id = null;
+                if (!('device_id' in this._options.credentials)) {
+                    this._options.credentials.device_id = null;
                 }
-                if (!('ticket_id' in this._options.credentials)) {
-                    this._options.credentials.ticket_id = null;
-                }
-            } else this._options.credentials = {
-                device_id: null,
-                user_id: null,
-                content_id: null,
-                ticket_id: null
-            };
-            if (this._options.container) {
-                this._parent_dom = this._options.container;
-            } else this._parent_dom = document.body;
+                if (!('user_id' in this._options.credentials)) {
+                    this._options.credentials.user_id = null;
+                }!('content_id' in this._options.credentials) && (this._options.credentials.content_id = null);
+                !('ticket_id' in this._options.credentials) && (this._options.credentials.ticket_id = null);
+            } else {
+                this._options.credentials = {
+                    device_id: null,
+                    user_id: null,
+                    content_id: null,
+                    ticket_id: null
+                };
+            }
+            this._options.container ? this._parent_dom = this._options.container : this._parent_dom = document.body;
             if (this._options.use_multiview) {
                 this.setChangingView(false);
             }
@@ -1759,9 +1779,8 @@ var Rich360Log = function() {
                             else return false;
                         }.bind(this);
                         if (!this.validate_response(c.req_data, JSON.parse(c.responseText))) {
-                            if (c.status == 403) {
-                                this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
-                            } else {
+                            if (c.status == 403) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
+                            else {
                                 if (c.status != 200) {
                                     this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
                                     return;
@@ -1776,9 +1795,7 @@ var Rich360Log = function() {
                         this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
                         this._ready_state = RICH360_STATE.RICH360_INIT;
                         this.requestKMVManifest(function() {
-                            if (this._options.content_data.use_vod) {
-                                this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.thumbnail_grid);
-                            }
+                            this._options.content_data.use_vod && this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.singleview_list[0].thumbnail_grid);
                             this.initialize();
                         }.bind(this));
                         this._logger.startInterval();
@@ -1823,17 +1840,18 @@ var Rich360Log = function() {
                 var f = Hls.DefaultConfig;
                 f.liveSyncDurationCount = 3;
                 f.startLevel = -1;
-                if (this._options.seek_to) {
-                    f.startPosition = this._options.seek_to;
+                this._options.seek_to && (f.startPosition = this._options.seek_to);
+                if (this._options.autoStart) this._video.autoplay = this._options.autoStart;
+                else {
+                    this._video.autoplay = false;
                 }
-                if (this._options.autoStart) {
-                    this._video.autoplay = this._options.autoStart;
-                } else this._video.autoplay = false;
                 f.fragLoadingRetryDelay = 100;
                 f.startFragPrefetch = true;
                 f.renderTextTracksNatively = false;
-                f.xhrSetup = function(p, q) {
-                    q.indexOf('.m3u8') === -1 && q.indexOf('.ts') === -1 && q.indexOf('.vtt') === -1 && q.indexOf('.webvtt') === -1 && q.indexOf('.key') === -1 && q.indexOf('.kmv') === -1 && (p.withCredentials = true);
+                f.xhrSetup = function(o, p) {
+                    if (p.indexOf('.m3u8') === -1 && p.indexOf('.ts') === -1 && p.indexOf('.vtt') === -1 && p.indexOf('.webvtt') === -1 && p.indexOf('.key') === -1 && p.indexOf('.kmv') === -1) {
+                        o.withCredentials = true;
+                    }
                 };
                 if (this._options.use_multiview) {
                     if (this._options.initial_view >= 0 && this._options.initial_view < this._manifest.multiview_list.length) {
@@ -1846,7 +1864,9 @@ var Rich360Log = function() {
                         addClassName(j, 'view_wrap');
                         var k = document.createElement('label');
                         k.classList = 'view-name bolder fs_14 fc_point';
-                        this._view == h && addClassName(j, 'on');
+                        if (this._view == h) {
+                            addClassName(j, 'on');
+                        }
                         k.innerText = this._manifest.singleview_list[h].name;
                         j.style.backgroundColor = 'transparent';
                         j.style.zIndex = 1;
@@ -1857,25 +1877,7 @@ var Rich360Log = function() {
                     this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), f, this._options.use_multiview);
                     this._hls.attachMedia(this._video);
                     this._display = new MultiViewDisplay(this._options, this._video, this, this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions, g);
-                    this._hls.timeDictionary = {};
-                    this._hls.snsInDictionary = [];
-                    if (!this._hls._isDummy) {
-                        this._hls.on(Hls.Events.FRAG_PARSED, function(r, s) {
-                            var t = s.frag;
-                            console.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration);
-                            console.log('frag.startPTS : ', t.sn, t.startPTS);
-                            this._hls.timeDictionary[t.sn + ''] = t.startPTS;
-                            this._hls.snsInDictionary.push(t.sn);
-                            while (this._hls.snsInDictionary.length > 100) {
-                                var u = 0;
-                                if (this._hls.snsInDictionary[u] == 0) u = 1;
-                                var v = this._hls.snsInDictionary[u];
-                                this._hls.snsInDictionary.splice(u, 1);
-                                delete this._hls.timeDictionary[v + ''];
-                            }
-                            t.startPTS == 0 && (this._hls.startSN = t.sn);
-                        }.bind(this));
-                    }
+                    this.addHlsFragParsedListener();
                 } else {
                     this._hls = new Rich360HlsWrapper(!this._manifest.singleview_list[0].path.endsWith('.m3u8'), f, this._options.use_multiview);
                     this._hls.attachMedia(this._video);
@@ -1887,11 +1889,7 @@ var Rich360Log = function() {
                     this._video.setAttribute('webkit-playsinline', '');
                 }
                 this._play_status = 'none';
-                if (this._options.use_multiview) {
-                    this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
-                } else {
-                    this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
-                }
+                this._options.use_multiview ? this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path) : this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
                 this._subtitleManager = new Rich360SubtitleManager(this);
                 if (this._loggerItv) {
                     clearInterval(this._loggerItv);
@@ -1961,7 +1959,7 @@ var Rich360Log = function() {
                 if (j < 0) j = 0;
                 if (j >= this._manifest.multiview_count) j = this._manifest.multiview_count - 1;
                 if (this._view == j) return;
-                this._subtitleManager._prevSubtitleTrack = this.subtitleTrack;
+                this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
                 if (this._hls._isDummy) {
                     this._view = j;
                     var l = this._video.currentTime;
@@ -1980,7 +1978,6 @@ var Rich360Log = function() {
                     this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
                 } else {
                     this.setChangingView(true);
-                    this._prevViewId = this._view;
                     this._view = j;
                     this._display.arrangeVideo();
                     var p = Hls.DefaultConfig;
@@ -2026,9 +2023,8 @@ var Rich360Log = function() {
                         var u = this._video,
                             w = this._hls,
                             x = 0;
-                        if (w.timeDictionary[q.startSN + ''] != undefined) {
-                            x = w.timeDictionary[q.startSN + ''] - q.startPTS;
-                        } else {
+                        if (w.timeDictionary[q.startSN + ''] != undefined) x = w.timeDictionary[q.startSN + ''] - q.startPTS;
+                        else {
                             var y = -1,
                                 z = -1;
                             for (var A in w.timeDictionary) {
@@ -2053,8 +2049,7 @@ var Rich360Log = function() {
                             console.log('@@@ waitTime : ', K);
                             setTimeout(function() {
                                 r.volume = u.volume;
-                                this._subtitleManager._prevViewOffsetTime = u.currentTime - r.currentTime;
-                                this._subtitleManager._prevViewId = this._prevViewId;
+                                !this._options.content_data.use_vod && (this._subtitleManager._prevViewOffsetTime = u.currentTime - r.currentTime);
                                 if (!u.paused) {
                                     r.play();
                                 }
@@ -2118,10 +2113,7 @@ var Rich360Log = function() {
                                     }
                                     K.end(O) > N && (N = K.end(O));
                                 }
-                                if (M) r.currentTime = M + 0.5;
-                                else {
-                                    r.currentTime = N - 1;
-                                }
+                                M ? r.currentTime = M + 0.5 : r.currentTime = N - 1;
                                 console.log('clearInterval');
                                 clearInterval(G);
                             }, 5000);
@@ -2158,7 +2150,7 @@ var Rich360Log = function() {
             key: 'changeSingleView',
             value: function l(m) {
                 var n = this._video.currentTime;
-                this._subtitleManager._prevSubtitleTrack = this.subtitleTrack;
+                this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
                 this._hls.detachMedia();
                 this._hls.destroy();
                 var o = Hls.DefaultConfig;
@@ -2168,9 +2160,11 @@ var Rich360Log = function() {
                 this._hls.attachMedia(this._video);
                 if (m) {
                     this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
-                } else this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
-                this._video.addEventListener('loadedmetadata', function(r) {
-                    this.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
+                } else {
+                    this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+                }
+                this._video.addEventListener('loadedmetadata', function(s) {
+                    this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                     this._video.play();
                     if (!m) {
                         $(this._video).hide();
@@ -2186,17 +2180,38 @@ var Rich360Log = function() {
         }, {
             key: 'changeSource',
             value: function m(n) {
-                n && this.requestKMVManifest(function() {
-                    if (isIOS()) {
-                        this._video = null;
-                        this.initialize();
-                    } else {
-                        this._hls.loadSource(n);
-                        this._hls.attachMedia(this._player._video);
-                    }
-                    this.updateThumbnail();
-                    this._options.content_data.use_vod && this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.thumbnail_grid);
-                }.bind(this));
+                if (n) {
+                    this._options.source = n;
+                    this.requestKMVManifest(function() {
+                        var q = this._video.currentTime;
+                        this._hls.detachMedia();
+                        this._hls.destroy();
+                        var r = Hls.DefaultConfig,
+                            s = '';
+                        this._options.use_multiview ? s = this._sourceBase + this._manifest.multiview_list[this._view].path : s = this._sourceBase + this._manifest.singleview_list[0].path;
+                        this._hls = new Rich360HlsWrapper(!s.endsWith('.m3u8'), r, this._options.use_multiview);
+                        this._hls.attachMedia(this._video);
+                        this._hls.loadSource(s);
+                        if (!this._hls._isDummy) {
+                            this.addHlsFragParsedListener();
+                            this.attachHlsListeners();
+                            this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
+                        }
+                        this._video.addEventListener('loadedmetadata', function(t) {
+                            if (this._options.content_data.use_vod) {
+                                this._video.currentTime = q;
+                                this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
+                            } else {
+                                this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
+                                this._subtitleManager._prevViewOffsetTime = q - this._video.currentTime;
+                            }
+                            this._rich360Player.wakeupController();
+                        }.bind(this), {
+                            once: true
+                        });
+                        this._options.content_data.use_vod && this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.singleview_list[0].thumbnail_grid);
+                    }.bind(this));
+                }
             }
         }, {
             key: 'getRandomInt',
@@ -2243,21 +2258,24 @@ var Rich360Log = function() {
                 this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
                 var u = s.track;
                 if (this._subtitleManager._isHideDefaultSubtitles) {
-                    s.track.mode == 'showing' && (s.track.mode = 'hidden');
+                    if (s.track.mode == 'showing') {
+                        s.track.mode = 'hidden';
+                    }
                 } else {
                     s.track.mode == 'hidden' && (s.track.mode = 'showing');
                 }
                 u.removeEventListener('cuechange', this.updateNativeTrackCuesListener);
                 u.addEventListener('cuechange', this.updateNativeTrackCuesListener);
-                if (this._options.use_multiview) {
-                    this.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
-                }
+                this._options.use_multiview && this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
             }
         }, {
             key: 'updateNativeTrackCuesListener',
             value: function s(t) {
-                if (this._subtitleManager._isHideDefaultSubtitles) t.target.mode == 'showing' && (t.target.mode = 'hidden');
-                else {
+                if (this._subtitleManager._isHideDefaultSubtitles) {
+                    if (t.target.mode == 'showing') {
+                        t.target.mode = 'hidden';
+                    }
+                } else {
                     t.target.mode == 'hidden' && (t.target.mode = 'showing');
                 }
                 if (t.target.cues.length) {
@@ -2303,6 +2321,7 @@ var Rich360Log = function() {
                 }.bind(this));
                 this._video.addEventListener('play', function() {
                     this._play_status = 'play';
+                    this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                     this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
                 }.bind(this));
                 this._video.addEventListener('pause', function() {
@@ -2343,9 +2362,7 @@ var Rich360Log = function() {
                     if (this._video.paused) {
                         this._ui_play = false;
                         this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
-                    } else {
-                        this.play_on();
-                    }
+                    } else this.play_on();
                 }.bind(this));
                 this._video.addEventListener('loadedmetadata', function() {
                     this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
@@ -2364,7 +2381,7 @@ var Rich360Log = function() {
                 }.bind(this));
                 this._video.addEventListener('playing', function(u) {
                     console.log('@@@video playing call : ', u);
-                    this._hls._isDummy && (this.subtitleTrack = this._subtitleManager._prevSubtitleTrack);
+                    this._hls._isDummy && this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                     this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                         wait: false,
                         wait_on: RICH360_WAIT_ON.RICH360_BUFFER
@@ -2377,93 +2394,122 @@ var Rich360Log = function() {
                         if (this._options.use_multiview) {
                             this.changeSingleView(true);
                         } else {
-                            this._subtitleManager._prevSubtitleTrack = this.subtitleTrack;
+                            this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
                         }
                         this._subtitleManager.showDefaultSubtitle();
-                    } else if (u.type == 'webkitendfullscreen') {
-                        $('body').removeClass('fullscreen');
-                        this._options.use_multiview && this.changeSingleView(false);
-                        this._subtitleManager.hideDefaultSubtitle();
-                        this.pause_on();
-                        this._rich360Player.hidePlayerController();
-                        setTimeout(function() {
-                            this._rich360Player.wakeupController();
-                        }.bind(this), 100);
+                    } else {
+                        if (u.type == 'webkitendfullscreen') {
+                            $('body').removeClass('fullscreen');
+                            if (this._options.use_multiview) {
+                                this.changeSingleView(false);
+                            }
+                            this._subtitleManager.hideDefaultSubtitle();
+                            this.pause_on();
+                            this._rich360Player.hidePlayerController();
+                            setTimeout(function() {
+                                this._rich360Player.wakeupController();
+                            }.bind(this), 100);
+                        }
+                    }
+                }.bind(this));
+            }
+        }, {
+            key: 'addHlsFragParsedListener',
+            value: function u() {
+                this._hls.timeDictionary = {};
+                this._hls.snsInDictionary = [];
+                !this._hls._isDummy && this._hls.on(Hls.Events.FRAG_PARSED, function(v, w) {
+                    var x = w.frag;
+                    console.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration);
+                    console.log('frag.startPTS : ', x.sn, x.startPTS);
+                    this._hls.timeDictionary[x.sn + ''] = x.startPTS;
+                    this._hls.snsInDictionary.push(x.sn);
+                    while (this._hls.snsInDictionary.length > 100) {
+                        var y = 0;
+                        if (this._hls.snsInDictionary[y] == 0) y = 1;
+                        var z = this._hls.snsInDictionary[y];
+                        this._hls.snsInDictionary.splice(y, 1);
+                        delete this._hls.timeDictionary[z + ''];
+                    }
+                    if (x.startPTS == 0) {
+                        this._hls.startSN = x.sn;
                     }
                 }.bind(this));
             }
         }, {
             key: 'attachHlsListeners',
-            value: function u() {
-                this._hls.on(Hls.Events.ERROR, function(v, w) {
-                    if (w.fatal) switch (w.type) {
-                        case Hls.ErrorTypes.NETWORK_ERROR:
-                            console.log('fatal network error encountered, try to recover');
-                            this._hls.startLoad();
-                            break;
-                        case Hls.ErrorTypes.MEDIA_ERROR:
-                            var x = this._video.currentTime;
-                            console.log('fatal media error encountered, try to recover');
-                            if (w.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) {
-                                console.log('this is not a media error, try to recover');
+            value: function v() {
+                this._hls.on(Hls.Events.ERROR, function(w, x) {
+                    if (x.fatal) {
+                        switch (x.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                console.log('fatal network error encountered, try to recover');
                                 this._hls.startLoad();
-                            } else {
-                                this._hls.recoverMediaError();
-                                this.play_on();
-                            }
-                            this._video.currentTime = x;
-                            break;
-                        default:
-                            this._hls.destroy();
-                            break;
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                var y = this._video.currentTime;
+                                console.log('fatal media error encountered, try to recover');
+                                if (x.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) {
+                                    console.log('this is not a media error, try to recover');
+                                    this._hls.startLoad();
+                                } else {
+                                    this._hls.recoverMediaError();
+                                    this.play_on();
+                                }
+                                this._video.currentTime = y;
+                                break;
+                            default:
+                                this._hls.destroy();
+                                break;
+                        }
                     }
                 }.bind(this));
                 this._hls.on(Hls.Events.MANIFEST_PARSED, function() {
                     this._quality_list = [];
-                    var v = this._hls.levels;
-                    for (var w in v) {
-                        this._quality_list.push(v[w]);
+                    var w = this._hls.levels;
+                    for (var x in w) {
+                        this._quality_list.push(w[x]);
                     }
                     this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
                     this._ready_state = RICH360_STATE.RICH360_READY;
                 }.bind(this));
-                this._hls.on(Hls.Events.LEVEL_SWITCHED, function(v, w) {
+                this._hls.on(Hls.Events.LEVEL_SWITCHED, function(w, x) {
                     this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                         wait: false,
                         wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
                     });
-                    this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, w.level);
+                    this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, x.level);
                 }.bind(this));
-                this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(v, w) {
-                    for (var x = 0; x < w.tracks.length; x++) {
+                this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(w, x) {
+                    for (var y = 0; y < x.tracks.length; y++) {
                         this._subtitleList.push({
-                            id: x,
-                            label: w.tracks[x].label,
-                            lang: w.tracks[x].subtitleTrack.lang
+                            id: y,
+                            label: x.tracks[y].label,
+                            lang: x.tracks[y].subtitleTrack.lang
                         });
                     }
                     this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
                 }.bind(this));
-                this._hls.on(Hls.Events.CUES_PARSED, function(v, w) {
+                this._hls.on(Hls.Events.CUES_PARSED, function(w, x) {
                     if (this._subtitleManager) {
-                        var x = w.cues.length,
-                            y = [];
-                        for (var z = 0; z < x; z++) {
-                            y.push({
-                                startTime: w.cues[z].startTime,
-                                endTime: w.cues[z].endTime,
-                                text: w.cues[z].text,
+                        var y = x.cues.length,
+                            z = [];
+                        for (var A = 0; A < y; A++) {
+                            z.push({
+                                startTime: x.cues[A].startTime,
+                                endTime: x.cues[A].endTime,
+                                text: x.cues[A].text,
                                 track_num: this._hls._hls.subtitleTrack,
                                 view: this._view
                             });
                         }
-                        this._subtitleManager.addCueData(y);
+                        this._subtitleManager.addCueData(z);
                     }
                 }.bind(this));
             }
         }, {
             key: 'attachPlayerUiListners',
-            value: function v() {
+            value: function w() {
                 if (this._hls._isDummy) {
                     $(this._ui.fullBtn).on('click', function() {
                         this._subtitleManager.showDefaultSubtitle();
@@ -2473,17 +2519,17 @@ var Rich360Log = function() {
             }
         }, {
             key: 'changeCurrentLevel',
-            value: function w(x) {
-                var y = this._hls.currentLevel;
-                (x != -1 && y != x || x == -1 && this._hls.nextAutoLevel != y) && this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+            value: function x(y) {
+                var z = this._hls.currentLevel;
+                (y != -1 && z != y || y == -1 && this._hls.nextAutoLevel != z) && this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                     wait: true,
                     wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
                 });
-                this._hls.currentLevel = x;
+                this._hls.currentLevel = y;
             }
         }, {
             key: 'play',
-            value: function x() {
+            value: function y() {
                 this.play_on();
                 this._logger.addLog({
                     event: 'play'
@@ -2491,7 +2537,7 @@ var Rich360Log = function() {
             }
         }, {
             key: 'pause',
-            value: function y() {
+            value: function z() {
                 this.pause_on();
                 this._logger.addLog({
                     event: 'pause'
@@ -2499,99 +2545,113 @@ var Rich360Log = function() {
             }
         }, {
             key: 'currentPosition',
-            get: function z() {
+            get: function A() {
                 return this._video.currentTime;
             },
-            set: function A(B) {
+            set: function B(C) {
                 if (!isNaN(this._video.duration)) {
-                    if (0 > B) B = 0;
-                    if (B > this._video.duration) B = this._video.duration;
-                    if (Math.abs(B - this._video.currentTime) > 0.5) {
-                        this._video.currentTime = B;
+                    if (0 > C) C = 0;
+                    if (C > this._video.duration) C = this._video.duration;
+                    if (Math.abs(C - this._video.currentTime) > 0.5) {
+                        this._video.currentTime = C;
                         this._logger.addLog({
                             event: 'seek',
-                            time: B
+                            time: C
                         });
                         this._render_once_on_seek = true;
                     }
-                } else {
-                    console.log('isNan');
-                }
+                } else console.log('isNan');
             }
         }, {
             key: 'duration',
-            get: function B() {
+            get: function C() {
                 return this._video.duration;
             }
         }, {
             key: 'volume',
-            get: function C() {
+            get: function D() {
                 return this._video.volume;
             },
-            set: function D(E) {
-                return this._video.volume = E;
+            set: function E(F) {
+                return this._video.volume = F;
             }
         }, {
             key: 'quality',
-            get: function E() {
+            get: function F() {
                 return this._hls.currentLevel;
             },
-            set: function F(G) {
-                if (G < -1) G = -1;
-                if (G >= this._quality_list.size) G = this._quality_list.size;
-                this.changeCurrentLevel(G);
+            set: function G(H) {
+                if (H < -1) H = -1;
+                if (H >= this._quality_list.size) H = this._quality_list.size;
+                this.changeCurrentLevel(H);
                 this._logger.addLog({
                     event: 'quality_change',
-                    level: G
+                    level: H
                 });
             }
         }, {
             key: 'isAutoQuality',
-            get: function G() {
+            get: function H() {
                 return this._hls.isAutoQuality();
             }
         }, {
             key: 'qualityList',
-            get: function H() {
+            get: function I() {
                 return this._quality_list;
             }
         }, {
-            key: 'subtitleTrack',
-            get: function I() {
+            key: 'setSubtitleTrack',
+            value: function J(K) {
+                var L = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
                 if (this._hls._isDummy) {
-                    var J = this._video.textTracks.length;
-                    for (var K = 0; K < J; K++) {
-                        if (this._video.textTracks[K].mode == 'showing' || this._video.textTracks[K].mode == 'hidden') {
-                            return K;
+                    var M = this._video.textTracks.length;
+                    for (var N = 0; N < M; N++) {
+                        if (K == N) this._video.textTracks[N].mode = 'showing';
+                        else {
+                            this._video.textTracks[N].mode = 'disabled';
                         }
                     }
-                    return -1;
-                } else return this._hls._hls ? this._hls._hls.subtitleTrack : -1;
-            },
-            set: function J(K) {
+                } else {
+                    this._hls._hls.subtitleTrack = K;
+                }
+                L && this._subtitleManager.clearCueData();
+            }
+        }, {
+            key: 'getSubtitleTrack',
+            value: function K() {
                 if (this._hls._isDummy) {
                     var L = this._video.textTracks.length;
                     for (var M = 0; M < L; M++) {
-                        K == M ? this._video.textTracks[M].mode = 'showing' : this._video.textTracks[M].mode = 'disabled';
+                        if (this._video.textTracks[M].mode == 'showing' || this._video.textTracks[M].mode == 'hidden') {
+                            return M;
+                        }
                     }
-                } else this._hls._hls.subtitleTrack = K;
-                this._subtitleManager.clearCueData();
+                    return -1;
+                } else {
+                    if (this._hls._hls) {
+                        return this._hls._hls.subtitleTrack;
+                    } else {
+                        return -1;
+                    }
+                }
             }
         }, {
             key: 'subtitleList',
-            get: function K() {
+            get: function L() {
                 return this._subtitleList;
             }
         }, {
             key: 'setChangingView',
-            value: function L(M) {
-                var N = this._display,
-                    O = M;
-                if (typeof M === 'undefined') O = false;
-                this._changingView = O;
-                if (!N) return;
-                if (!N._wrapperList) return;
-                O ? addClassName(N._wrapperList, 'changing-source') : removeClassName(N._wrapperList, 'changing-source');
+            value: function M(N) {
+                var O = this._display,
+                    P = N;
+                if (typeof N === 'undefined') P = false;
+                this._changingView = P;
+                if (!O) return;
+                if (!O._wrapperList) return;
+                if (P) {
+                    addClassName(O._wrapperList, 'changing-source');
+                } else removeClassName(O._wrapperList, 'changing-source');
             }
         }]);
         return a;
@@ -2610,7 +2670,6 @@ var Rich360Log = function() {
             this.initialize();
             this._prevSubtitleTrack = -1;
             this._prevViewOffsetTime = 0;
-            this._prevViewId = -1;
         }
         _createClass(a, [{
             key: 'initialize',
@@ -2652,9 +2711,9 @@ var Rich360Log = function() {
             value: function e() {
                 var f = [];
                 for (var g = 0; g < this._cues.length; g++) {
-                    if (this._prevViewId == this._cues[g].view) {
-                        this._cues[g].startTime += this._prevViewOffsetTime;
-                        this._cues[g].endTime += this._prevViewOffsetTime;
+                    if (this._prevViewOffsetTime) {
+                        this._cues[g].startTime -= this._prevViewOffsetTime;
+                        this._cues[g].endTime -= this._prevViewOffsetTime;
                     }
                     if (this._player._video.currentTime > this._cues[g].endTime && !this._player._options.content_data.use_vod) {
                         this._cues.splice(g, 1);
@@ -2664,7 +2723,9 @@ var Rich360Log = function() {
                     if (this._player._video.currentTime >= this._cues[g].startTime && this._player._video.currentTime < this._cues[g].endTime) {
                         var h = false;
                         for (var k = 0; k < f.length; k++) {
-                            f[k].startTime == this._cues[g].startTime && f[k].endTime == this._cues[g].endTime && (h = true);
+                            if (f[k].startTime == this._cues[g].startTime && f[k].endTime == this._cues[g].endTime) {
+                                h = true;
+                            }
                         }!h && f.push({
                             startTime: this._cues[g].startTime,
                             endTime: this._cues[g].endTime,
@@ -2672,6 +2733,7 @@ var Rich360Log = function() {
                         });
                     }
                 }
+                this._prevViewOffsetTime = 0;
                 if (!f.length) {
                     this._subtitleDiv.innerHTML = '';
                     this._subtitleDiv.style.display = 'none';
@@ -2685,7 +2747,9 @@ var Rich360Log = function() {
                     };
                 if (document.getElementById('playerBottomWrap').style.display != 'none') {
                     var o = document.getElementById('playerBottomWrap').clientHeight;
-                    document.getElementById('playerBottomWrap').clientWidth < 812 && (o = 0);
+                    if (document.getElementById('playerBottomWrap').clientWidth < 812) {
+                        o = 0;
+                    }
                     n.bottom += o;
                 }
                 if (!this._player._hls._isDummy) {
@@ -2695,11 +2759,7 @@ var Rich360Log = function() {
                     q = l / 100 * 80,
                     r = l / 100 * 2.5;
                 if (l < 568) r = l / 100 * 3.2;
-                else {
-                    if (l > 1000) {
-                        r = l / 100 * 2.2;
-                    }
-                }
+                else l > 1000 && (r = l / 100 * 2.2);
                 var s = 2,
                     t = 0,
                     u = [];
@@ -2715,7 +2775,9 @@ var Rich360Log = function() {
                         var y = p - x / 2 - n.left;
                         u[t] = '<p style="color:white;word-break:break-all;font-weight:700;text-shadow:#000000 0px 0px 7px;padding:1px 5px;width:' + x + 'px;margin-left:' + y + 'px;margin-bottom:2px;">' + v[k] + '</p>';
                         t++;
-                        if (s == t) break;
+                        if (s == t) {
+                            break;
+                        }
                     }
                     if (s == t) {
                         break;
@@ -2732,10 +2794,9 @@ var Rich360Log = function() {
                 this._subtitleDiv.style.fontSize = r + 'px';
                 this._subtitleDiv.style.display = 'block';
                 this._subtitleArr = JSON.parse(JSON.stringify(f));
-                if (this._player._hls._isDummy) this._subtitleTrack = this.getVideoSubtitleTrack();
-                else {
-                    this._subtitleTrack = this._player._hls._hls.subtitleTrack;
-                }
+                if (this._player._hls._isDummy) {
+                    this._subtitleTrack = this.getVideoSubtitleTrack();
+                } else this._subtitleTrack = this._player._hls._hls.subtitleTrack;
             }
         }, {
             key: 'compareArray',
@@ -2744,9 +2805,9 @@ var Rich360Log = function() {
                 if (g.length != h.length) {
                     return i;
                 }
-                g.forEach(function(k) {
-                    var l = h.indexOf(k);
-                    if (l > -1) h.splice(l, 1);
+                g.forEach(function(l) {
+                    var m = h.indexOf(l);
+                    if (m > -1) h.splice(m, 1);
                 });
                 i = h.length == 0;
                 return i;
@@ -2773,14 +2834,14 @@ var Rich360Log = function() {
                     if (this._cues.length) {
                         this.drawSubtitles();
                     } else {
-                        if (this._player.subtitleTrack != -1) {
+                        if (this._player.getSubtitleTrack() != -1) {
                             var j = new Date();
                             if (this._bfSendSubTime.getTime() + 10000 < j) {
-                                var k = this._player.subtitleTrack;
-                                this._player.subtitleTrack = -1;
+                                var k = this._player.getSubtitleTrack();
+                                this._player.setSubtitleTrack(-1);
                                 this._bfSendSubTime = j;
                                 setTimeout(function() {
-                                    this._player.subtitleTrack = k;
+                                    this._player.setSubtitleTrack(k);
                                 }.bind(this), 100);
                             }
                         }
@@ -2792,7 +2853,9 @@ var Rich360Log = function() {
             value: function i() {
                 var j = this._player._video.textTracks.length;
                 for (var k = 0; k < j; k++) {
-                    if (this._player._video.textTracks[k].mode == 'showing' || this._player._video.textTracks[k].mode == 'hidden') return k;
+                    if (this._player._video.textTracks[k].mode == 'showing' || this._player._video.textTracks[k].mode == 'hidden') {
+                        return k;
+                    }
                 }
                 return -1;
             }
@@ -2814,7 +2877,9 @@ var Rich360Log = function() {
                 this._isHideDefaultSubtitles = false;
                 var l = this._player._video.textTracks.length;
                 for (var m = 0; m < l; m++) {
-                    this._player._video.textTracks[m].mode == 'hidden' && (this._player._video.textTracks[m].mode = 'showing');
+                    if (this._player._video.textTracks[m].mode == 'hidden') {
+                        this._player._video.textTracks[m].mode = 'showing';
+                    }
                 }
             }
         }]);
@@ -2867,7 +2932,9 @@ var Rich360Log = function() {
                 this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
                     once: true
                 });
-            } else this.arrangeVideo();
+            } else {
+                this.arrangeVideo();
+            }
             window.addEventListener('resize', function() {
                 setTimeout(function() {
                     this.arrangeVideo();
@@ -2909,17 +2976,15 @@ var Rich360Log = function() {
                                 break;
                             }
                         }
-                    } catch (z) {
-                        f.e(z);
+                    } catch (v) {
+                        f.e(v);
                     } finally {
                         f.f();
                     }
                 }
                 var i = this._video.videoWidth,
                     j = this._video.videoHeight;
-                if (!this._video.videoWidth) {
-                    i = this._bfVideoWidth;
-                }
+                !this._video.videoWidth && (i = this._bfVideoWidth);
                 if (!this._video.videoHeight) {
                     j = this._bfVideoHeight;
                 }
@@ -2960,16 +3025,7 @@ var Rich360Log = function() {
                     top: -1 * u + 1 + 'px',
                     position: 'absolute'
                 });
-                if (!this._showMultiPreview) this._updateCanvasFlag = false;
-                else {
-                    if (!this._updateCanvasFlag) {
-                        this._updateCanvasFlag = true;
-                        this._canvasTimeStamps = [];
-                        this._canvasTimeStamps.push(performance.now());
-                        this._canvasTimeStampIndex = 0;
-                        window.requestAnimationFrame(this.drawCanvas.bind(this));
-                    }
-                }
+                !this._showMultiPreview ? this._updateCanvasFlag = false : !this._updateCanvasFlag && (this._updateCanvasFlag = true, this._canvasTimeStamps = [], this._canvasTimeStamps.push(performance.now()), this._canvasTimeStampIndex = 0, window.requestAnimationFrame(this.drawCanvas.bind(this)));
             }
         }, {
             key: 'showMultiPreview',
@@ -3009,22 +3065,22 @@ var Rich360Log = function() {
                         o = true;
                     }
                     if (!j.paused && !j.ended || o) {
-                        k.forEach(function(t, u) {
-                            var v = i._multiviewDivArr[u],
-                                w = k.find(function(H) {
-                                    return H.singleview_id === u;
+                        k.forEach(function(v, w) {
+                            var z = i._multiviewDivArr[w],
+                                A = k.find(function(K) {
+                                    return K.singleview_id === w;
                                 });
-                            i.selectedMultiviewCanvas(u);
-                            if (w == null) return;
-                            var z = w.x,
-                                A = w.y,
-                                B = w.width,
-                                C = w.height,
-                                D = j.videoWidth,
-                                E = j.videoHeight,
-                                F = v.offsetWidth,
-                                G = v.offsetHeight;
-                            l.drawImage(j, Math.round(z * D), Math.round(A * E), Math.round(B * D), Math.round(C * E), 0, G * u + m * u, F, G);
+                            i.selectedMultiviewCanvas(w);
+                            if (A == null) return;
+                            var B = A.x,
+                                C = A.y,
+                                D = A.width,
+                                E = A.height,
+                                F = j.videoWidth,
+                                G = j.videoHeight,
+                                H = z.offsetWidth,
+                                I = z.offsetHeight;
+                            l.drawImage(j, Math.round(B * F), Math.round(C * G), Math.round(D * F), Math.round(E * G), 0, I * w + m * w, H, I);
                         }.bind(this));
                         var q = this._multiviewCanvas[0],
                             r = this._doubleBufferCanvas[0];
@@ -3357,7 +3413,7 @@ var ChatFilter = function() {
         var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira,
             b = '';
         if (a == '210424_mamamoo') {
-            b = '솔라, SOLAR, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
+            b = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
             b = b.map(function(c) {
                 return c.replace(/ /gi, '');
             }).join('|');
@@ -3418,7 +3474,9 @@ Chat.Manager = function() {
                     for (var A = 1; A <= u.chat_channel_num; A++) {
                         j.push(i + '_' + A.toString());
                     }
-                    Chat.Manager.checkArtistUser(n) && j.push(m);
+                    if (Chat.Manager.checkArtistUser(n)) {
+                        j.push(m);
+                    }
                 } else {
                     var B = Math.floor(Math.random() * parseInt(u.chat_channel_num)) + 1;
                     j.push(i + '_' + B.toString());
@@ -3469,48 +3527,43 @@ Chat.Manager = function() {
                 count: 1
             }, function(J, K) {
                 console.log(J, K);
-                if (K) {
-                    if (K.messages.length) {
-                        Chat.Ui.updateNotice(K.messages[0].entry.update, K.messages[0].entry.timetoken, K.messages[0].entry.entry);
-                    }
-                }
+                K && K.messages.length && Chat.Ui.updateNotice(K.messages[0].entry.update, K.messages[0].entry.timetoken, K.messages[0].entry.entry);
             });
             var I = 0;
-            p && (I = p - 1);
+            if (p) {
+                I = p - 1;
+            }
             s.history({
                 channel: j[I],
                 count: c
-            }, function(J, K) {
-                console.log(J, K);
-                if (K) {
-                    if (K.messages.length)
-                        for (var L = 0; L < K.messages.length; L++) {
-                            var M = K.messages[L].entry.update.split(CHAT_MSG_SEPARATOR);
-                            for (var N = 0; N < M.length; N++) {
-                                var O = M[N].split(CHAT_USERID_SEPARATOR)[0];
-                                Chat.Ui.displayMessage(M[N], K.messages[L].timetoken, O, true);
+            }, function(K, L) {
+                console.log(K, L);
+                if (L) {
+                    if (L.messages.length) {
+                        for (var M = 0; M < L.messages.length; M++) {
+                            var N = L.messages[M].entry.update.split(CHAT_MSG_SEPARATOR);
+                            for (var O = 0; O < N.length; O++) {
+                                var P = N[O].split(CHAT_USERID_SEPARATOR)[0];
+                                Chat.Ui.displayMessage(N[O], L.messages[M].timetoken, P, true);
                             }
                         }
+                    }
                 }
             });
             s.history({
                 channel: m,
                 count: 10000
-            }, function(J, K) {
-                console.log(J, K);
-                if (K) {
-                    var L = JSON.parse(JSON.stringify(K));
-                    if (L.messages.length) {
-                        for (var M = 0; M < L.messages.length; M++) {
-                            var N = L.messages[M].entry.update,
-                                O = N.split(CHAT_USERID_SEPARATOR)[0];
-                            if (O) {
-                                Chat.Ui.displayArtistHistoryMsg(N, L.messages[M].timetoken, O);
-                            }
+            }, function(K, L) {
+                console.log(K, L);
+                if (L) {
+                    var M = JSON.parse(JSON.stringify(L));
+                    if (M.messages.length) {
+                        for (var N = 0; N < M.messages.length; N++) {
+                            var O = M.messages[N].entry.update,
+                                P = O.split(CHAT_USERID_SEPARATOR)[0];
+                            P && Chat.Ui.displayArtistHistoryMsg(O, M.messages[N].timetoken, P);
                         }
-                        if ($('#artistChatList').length) {
-                            $('#artistChatList').scrollTop($('#artistChatList')[0].scrollHeight);
-                        }
+                        $('#artistChatList').length && $('#artistChatList').scrollTop($('#artistChatList')[0].scrollHeight);
                     }
                 }
             });
@@ -3519,33 +3572,34 @@ Chat.Manager = function() {
             var J = [k, l];
             if (p) J.push(j[p - 1]);
             else {
-                if (!o) {
-                    o = 1;
-                }
+                !o && (o = 1);
                 for (var K = 0; K < o; K++) {
                     J.push(j[K]);
                 }
             }
             s.addListener({
-                status: function N(O) {
-                    console.log('[STATUS: ' + O.category + ']', 'connected to channels: ' + O.affectedChannels);
-                    if (O.category == 'PNConnectedCategory') {
+                status: function O(P) {
+                    console.log('[STATUS: ' + P.category + ']', 'connected to channels: ' + P.affectedChannels);
+                    if (P.category == 'PNConnectedCategory') {
                         ChatFilter.loadChatFilterData();
                         Chat.Manager.initChatInterval();
                     }
                 },
-                message: function O(P) {
-                    if (P.channel == k) Chat.Ui.updateNotice(P.message.update, P.timetoken, P.message.entry);
-                    else {
-                        if (P.channel == l) Chat.Ui.recvCtrlChMsg(P.message.update);
+                message: function P(Q) {
+                    if (Q.channel == k) {
+                        Chat.Ui.updateNotice(Q.message.update, Q.timetoken, Q.message.entry);
+                    } else {
+                        if (Q.channel == l) Chat.Ui.recvCtrlChMsg(Q.message.update);
                         else {
-                            var Q = P.message.update.split(CHAT_MSG_SEPARATOR);
-                            for (var R = 0; R < Q.length; R++) {
-                                var S = Q[R].split(CHAT_USERID_SEPARATOR)[0];
-                                if (n == S) continue;
-                                Chat.Manager.checkArtistUser(S) ? Chat.Ui.displayMessage(P.message.update, P.timetoken, P.message.entry) : q.push(Q[R]);
+                            var R = Q.message.update.split(CHAT_MSG_SEPARATOR);
+                            for (var S = 0; S < R.length; S++) {
+                                var T = R[S].split(CHAT_USERID_SEPARATOR)[0];
+                                if (n == T) continue;
+                                if (Chat.Manager.checkArtistUser(T)) {
+                                    Chat.Ui.displayMessage(Q.message.update, Q.timetoken, Q.message.entry);
+                                } else q.push(R[S]);
                             }
-                            q.length && Chat.Manager.displayMessageItv(parseInt(P.timetoken));
+                            q.length && Chat.Manager.displayMessageItv(parseInt(Q.timetoken));
                         }
                     }
                 }
@@ -3562,20 +3616,26 @@ Chat.Manager = function() {
             var L = d / q.length;
             r = setInterval(function() {
                 if (q.length) {
-                    var O = q[0].split(CHAT_USERID_SEPARATOR)[0];
-                    Chat.Ui.displayMessage(q[0], K, O);
+                    var N = q[0].split(CHAT_USERID_SEPARATOR)[0];
+                    Chat.Ui.displayMessage(q[0], K, N);
                     K = parseInt(K) + parseInt(L * 1000 * 10);
                     q.splice(0, 1);
                 }
             }, L);
         },
-        submitUpdate: function K(L, M, N, O) {
+        isSuperUser: function K() {
+            var L = this.getUserId();
+            return this.checkOperationntUser(L) || this.checkAdminUser(L) || this.checkArtistUser(L);
+        },
+        submitUpdate: function L(M, N, O, P) {
             if (!s) return;
-            if (M === v) return;
+            if (N === v && !this.isSuperUser()) return;
             if (iCM()) return;
-            v = M;
-            if (!O) {
-                f && f--;
+            v = N;
+            if (!P) {
+                if (f) {
+                    f--;
+                }
                 if (f <= 0) {
                     _availableChating = false;
                     Chat.Ui.disableChatInput(a - g);
@@ -3584,57 +3644,65 @@ Chat.Manager = function() {
                     _availableChating = true;
                     Chat.Ui.enableChatInput();
                 }
-            }!Array.isArray(N) && (N = [N]);
-            if (Chat.Manager.checkOperationntUser(n) || Chat.Manager.checkAdminUser(n) || Chat.Manager.checkArtistUser(n)) {
-                var P = false;
-                for (var Q = 1; Q <= N.length; Q++) {
+            }
+            if (!Array.isArray(O)) {
+                O = [O];
+            }
+            if (this.isSuperUser()) {
+                var Q = false;
+                for (var R = 1; R <= O.length; R++) {
                     s.publish({
-                        channel: N[Q - 1],
+                        channel: O[R - 1],
                         message: {
-                            entry: L,
-                            update: M
+                            entry: M,
+                            update: N
                         }
-                    }, function(V, W) {
-                        if (V.error) {} else if (Chat.Manager.checkArtistUser(n) && !P) {
-                            W && Chat.Ui.displayMessage(M, W.timetoken, n);
-                            P = true;
+                    }, function(Y, Z) {
+                        if (Y.error) {} else {
+                            if (Chat.Manager.checkArtistUser(n) && !Q) {
+                                Z && Chat.Ui.displayMessage(N, Z.timetoken, n);
+                                Q = true;
+                            }
                         }
                     });
                 }
             } else {
-                var R = {
-                    Data: JSON.stringify(M),
-                    PartitionKey: N[0],
+                var S = {
+                    Data: JSON.stringify(N),
+                    PartitionKey: O[0],
                     StreamName: 'KINESIS_CHAT'
                 };
-                t.putRecord(R, function(V, W) {
-                    if (V) console.log(V, V.stack);
+                t.putRecord(S, function(Y, Z) {
+                    if (Y) console.log(Y, Y.stack);
                     else {
-                        console.log(W);
-                        var X = new Date();
-                        Chat.Ui.displayMessage(M, X.getTime() * 10000);
+                        console.log(Z);
+                        var a0 = new Date();
+                        Chat.Ui.displayMessage(N, a0.getTime() * 10000);
                     }
                 });
             }
         },
-        checkOperationntUser: function L(M) {
-            if (u.operation_account === M) {
-                return true;
-            } else {
+        checkOperationntUser: function M(N) {
+            if (u.operation_account === N) return true;
+            else {
                 return false;
             }
         },
-        checkAdminUser: function M(N) {
-            if (u.admin_account === N) return true;
-            return false;
-        },
-        checkArtistUser: function N(O) {
-            for (var P = 0; P < u.artist_account.length; P++) {
-                if (u.artist_account[P] === O) return true;
+        checkAdminUser: function N(O) {
+            if (u.admin_account === O) {
+                return true;
             }
             return false;
         },
-        initChatInterval: function O() {
+        checkArtistUser: function O(P) {
+            for (var Q = 0; Q < u.artist_account.length; Q++) {
+                if (u.artist_account[Q] === P) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        initChatInterval: function P() {
             h && clearInterval(h);
             h = setInterval(function() {
                 g++;
@@ -3642,18 +3710,14 @@ Chat.Manager = function() {
                     g = 0;
                     f = b;
                 }
-                if (f <= 0) {
-                    Chat.Ui.disableChatInput(a - g);
-                } else Chat.Ui.enableChatInput();
+                f <= 0 ? Chat.Ui.disableChatInput(a - g) : Chat.Ui.enableChatInput();
             }, 1000);
         },
-        getNickName: function P() {
+        getNickName: function Q() {
             return e;
         },
-        destroy: function Q() {
-            if (s) {
-                s.destroy();
-            }
+        destroy: function R() {
+            s && s.destroy();
             s = null;
         }
     };
@@ -3686,6 +3750,12 @@ Chat.Ui = function() {
                     img: 'hyunsuk.png',
                     msgClass: ''
                 }
+            },
+            '210424_mamamoo': {
+                '6bc4c64e-4fa9-4669-bea2-ead0bf38b5c7': {
+                    img: 'chat-img.png',
+                    msgClass: ''
+                }
             }
         };
     return {
@@ -3699,9 +3769,7 @@ Chat.Ui = function() {
             });
             $(document).on('touchmove', function(i) {
                 console.log('touchmove');
-                if (h) {
-                    b = true;
-                }
+                h && (b = true);
             });
             $(document).on('touchend', function(i) {
                 h = false;
@@ -3711,17 +3779,19 @@ Chat.Ui = function() {
                 i.originalEvent.deltaY < 0 && (b = true);
             });
             $('#chatList').on('scroll', function() {
-                if (d) return;
+                if (d) {
+                    return;
+                }
                 var i = $('#chatAnchor'),
                     j = $('#chatList'),
-                    k = function r() {
+                    k = function s() {
                         return Math.ceil(j.scrollTop() + j.height());
                     },
-                    l = function s() {
-                        var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : k();
-                        return t < j[0].scrollHeight;
+                    l = function t() {
+                        var u = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : k();
+                        return u < j[0].scrollHeight;
                     },
-                    m = function t() {
+                    m = function u() {
                         i.css('display', 'block');
                         b = true;
                     };
@@ -3864,14 +3934,20 @@ Chat.Ui = function() {
             var t = new Date(p / 10000);
             if (Chat.Manager.checkArtistUser(q)) {
                 u = Chat.Ui.createArtistChatDiv(q, s.nickName, s.text, t);
-                b ? e.push(u[0]) : $('#chatList').append(u);
-                $('#artistChatList').length && !r && $('#artistChatList').append(u.clone());
+                if (b) e.push(u[0]);
+                else {
+                    $('#chatList').append(u);
+                }
+                if ($('#artistChatList').length && !r) {
+                    $('#artistChatList').append(u.clone());
+                }
             } else {
                 if (q) {
                     var u = Chat.Ui.createUserChatDiv(q, s.nickName, s.text, t);
-                    if (b) {
-                        e.push(u[0]);
-                    } else $('#chatList').append(u);
+                    if (b) e.push(u[0]);
+                    else {
+                        $('#chatList').append(u);
+                    }
                 } else {
                     b = false;
                     $('#chatAnchor').css('display', 'none');
@@ -3883,9 +3959,7 @@ Chat.Ui = function() {
             $('#artistChatList').length && $('#artistChatList .user_chat').css('margin-bottom', '1.25em');
             if (navigator.userAgent.indexOf('Firefox') === -1) {
                 $('#chatList .user_chat:eq(-1)').css('margin-bottom', '0');
-                if ($('#artistChatList').length) {
-                    $('#artistChatList .user_chat:eq(-1)').css('margin-bottom', '0');
-                }
+                $('#artistChatList').length && $('#artistChatList .user_chat:eq(-1)').css('margin-bottom', '0');
             }
             if ($('#chatList').find('div').length > a) {
                 var v = $('#chatList').find('div').length - a;
@@ -3906,9 +3980,7 @@ Chat.Ui = function() {
             if (Chat.Manager.checkArtistUser(r)) {
                 var t = new Date(q / 10000),
                     u = Chat.Ui.createArtistChatDiv(r, s.nickName, s.text, t);
-                if ($('#artistChatList').length) {
-                    $('#artistChatList').append(u);
-                }
+                $('#artistChatList').length && $('#artistChatList').append(u);
             }
         },
         enableChatInput: function p() {
@@ -3923,7 +3995,9 @@ Chat.Ui = function() {
                 $('#chatInput').prop('placeholder', interpolate(gettext('P_CHAT_ABLE_DELAY_PLACEHOLDER_%(delay)s'), {
                     delay: r
                 }, true));
-            } else $('#chatInput').prop('placeholder', '');
+            } else {
+                $('#chatInput').prop('placeholder', '');
+            }
         },
         setHoldChatScroll: function r(s) {
             c = s;
@@ -4029,9 +4103,7 @@ var _ticketPos = {
     _ticketExposureItv = null;
 
 function setTicketExposureItv(a, b, c) {
-    if (a !== undefined) {
-        _ticketPos.x = a;
-    }
+    a !== undefined && (_ticketPos.x = a);
     b !== undefined && (_ticketPos.y = b);
     c !== undefined && (_ticketExposureTime = c);
     _ticketExposureItv && clearInterval(_ticketExposureItv);
@@ -4049,15 +4121,15 @@ function setTicketExposureItv(a, b, c) {
 
 function updateTicketDivPos() {
     if (_ticketExposureTime <= 0) {
-        if ($('#ticketDiv').length) {
-            $('#ticketDiv').css('display', 'none');
-        }
+        $('#ticketDiv').length && $('#ticketDiv').css('display', 'none');
         return;
     }
     var a = $('#playerWrap'),
         b = document.getElementsByTagName('video')[0];
     if (!b) return;
-    $('#mvMainDiv').length && (a = $('#mvMainDiv'));
+    if ($('#mvMainDiv').length) {
+        a = $('#mvMainDiv');
+    }
     if (!$('#ticketDiv').length) {
         var c = document.createElement('div');
         c.setAttribute('id', 'ticketDiv');
@@ -4065,11 +4137,11 @@ function updateTicketDivPos() {
     }
     var d = $('#ticketDiv'),
         e = 1920;
-    !e && (e = 1920);
-    var f = 1080;
-    if (!f) {
-        f = 1080;
+    if (!e) {
+        e = 1920;
     }
+    var f = 1080;
+    !f && (f = 1080);
     var g = e / f,
         h = a.width(),
         i = a.height(),
@@ -4161,7 +4233,9 @@ var _player = null,
         }, 200));
         a('#chatInput').on('focus', function() {
             console.log('EVENT::#chatInput::focus');
-            isIpadOS() && isChrome() && document.body.classList.add(f);
+            if (isIpadOS() && isChrome()) {
+                document.body.classList.add(f);
+            }
         });
         a('#chatInput').on('blur', function() {
             console.log('EVENT::#chatInput::blur');
@@ -4231,10 +4305,13 @@ var _player = null,
             var p = k.content_data = JSON.parse(JSON.stringify(o.Data.content)),
                 q = JSON.parse(JSON.stringify(o.Data.user)),
                 r = p.cam_num > 1;
-            IS_SINGLEVIEW_ON_MULTIVIEW && (r = false);
+            if (IS_SINGLEVIEW_ON_MULTIVIEW) {
+                r = false;
+            }
             iCM(!!q.is_mute);
-            if (!p.artist_account) a('button[name=artistchatnavbtn]').css('display', ' none');
-            else {
+            if (!p.artist_account) {
+                a('button[name=artistchatnavbtn]').css('display', ' none');
+            } else {
                 if (p.artist_account.indexOf(',') !== -1) {
                     p.artist_account = p.artist_account.split(',');
                 } else p.artist_account = [p.artist_account];
@@ -4244,9 +4321,7 @@ var _player = null,
                 k.multiViewList = document.getElementById('multiViewList');
                 k.use_multiview = true;
                 a('button[name=multiviewnavbtn]').css('display', 'inline-block');
-            } else {
-                a('button[name=multiviewnavbtn]').css('display', 'none');
-            }
+            } else a('button[name=multiviewnavbtn]').css('display', 'none');
             Chat.Manager.setContentData(p);
             if (Chat.Manager.isChatUsed()) {
                 if (!q.nickname) {
@@ -4275,7 +4350,9 @@ var _player = null,
                 l.sliderArea.slider.thumb = document.getElementById('playerSliderThumb');
                 l.sliderThumbnail = document.getElementById('sliderThumbnail');
                 l.sliderPaddingDiv = document.getElementById('sliderPaddingDiv');
-            } else a('#durationWrap').css('display', 'none');
+            } else {
+                a('#durationWrap').css('display', 'none');
+            }
             k.credentials = {
                 user_id: q.user_id,
                 device_id: getCookie(DCvi + '_device_id'),
@@ -4285,9 +4362,7 @@ var _player = null,
             var s = '';
             for (var t = 0; t < p.channels.length; t++) {
                 var u = true;
-                if (Ythc == 'sub') {
-                    u = false;
-                }
+                Ythc == 'sub' && (u = false);
                 if (p.channels[t].is_main_channel == u) {
                     s = p.channels[t].hls_url;
                     k.content_data.current_channel_id = p.channels[t].id;
@@ -4307,19 +4382,17 @@ var _player = null,
                 alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_NOT_EXIST_LOGIN_INFO_DESC'), gettext('P_ALERT_OK'), function() {
                     location.href = LUEz1;
                 });
-            } else {
-                if (p == 403) {
-                    removeCookie(DCvi + '_customer_id');
-                    removeCookie(DCvi + '_ticket_id');
-                    removeCookie(DCvi + '_user_id');
-                    removeCookie(DCvi + '_chat_id');
-                    alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
-                        location.href = LUEz1;
-                    });
-                } else alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_TRY_AGAIN_DESC'), gettext('P_ALERT_OK'), function() {
+            } else if (p == 403) {
+                removeCookie(DCvi + '_customer_id');
+                removeCookie(DCvi + '_ticket_id');
+                removeCookie(DCvi + '_user_id');
+                removeCookie(DCvi + '_chat_id');
+                alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
                     location.href = LUEz1;
                 });
-            }
+            } else alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_TRY_AGAIN_DESC'), gettext('P_ALERT_OK'), function() {
+                location.href = LUEz1;
+            });
         });
         a('button[name=chatnavbtn]').on('click', function() {
             a('#chatContentWrap').css('display', 'block');
@@ -4330,24 +4403,19 @@ var _player = null,
             if (isMobile()) {
                 var o = getOrientation();
                 if (typeof o == 'string') {
-                    if (o == 'landscape-primary' || o == 'landscape-secondary' || o == 'landscape') {
+                    if (o == 'landscape-primary' || o == 'landscape-secondary' || o == 'landscape') a('#chatInputWrap').css('display', 'block');
+                    else {
                         a('#chatInputWrap').css('display', 'block');
-                    } else a('#chatInputWrap').css('display', 'block');
+                    }
                 } else a('#chatInputWrap').css('display', 'block');
-            } else {
-                a('#chatInputWrap').css('display', 'block');
-            }
+            } else a('#chatInputWrap').css('display', 'block');
             a('#holdChatScrollLabel').css('display', 'block');
             a('#artistChatWrap').css('display', 'none');
             a('#multiViewWrap').css('display', 'none');
             a('button[name=chatnavbtn]').addClass('on');
             a('button[name=artistchatnavbtn]').removeClass('on');
             a('button[name=multiviewnavbtn]').removeClass('on');
-            if (_player) {
-                if (_player._options.use_multiview) {
-                    _player._player._display.showMultiPreview = false;
-                }
-            }
+            _player && _player._options.use_multiview && (_player._player._display.showMultiPreview = false);
         });
         a('button[name=artistchatnavbtn]').on('click', function() {
             a('#chatContentWrap').css('display', 'none');
@@ -4371,11 +4439,7 @@ var _player = null,
             a('button[name=chatnavbtn]').removeClass('on');
             a('button[name=artistchatnavbtn]').removeClass('on');
             a('button[name=multiviewnavbtn]').addClass('on');
-            if (_player) {
-                if (_player._options.use_multiview) {
-                    _player._player._display.showMultiPreview = true;
-                }
-            }
+            _player && _player._options.use_multiview && (_player._player._display.showMultiPreview = true);
         });
         a(document).on('click', '#multiViewList .view_wrap', function() {
             if (_player) {
@@ -4385,7 +4449,9 @@ var _player = null,
                             var o = _player._player.view;
                             _player._player.view = a(this).data().view;
                             a(this).siblings().each(function() {
-                                if (o == a(this).data().view) return;
+                                if (o == a(this).data().view) {
+                                    return;
+                                }
                             });
                             a();
                         }
@@ -4403,11 +4469,20 @@ var _player = null,
                     a('#volumeBtn').css('display', 'inline-block');
                     a('#volumeSlider').css('display', 'inline-block');
                 }
-                if ((!isIOS() || isIpadOS()) && d(_player)) a('#qualitySelectBtn').css('display', 'block');
-                else {
+                if ((!isIOS() || isIpadOS()) && d(_player)) {
+                    a('#qualitySelectBtn').css('display', 'block');
+                } else {
                     a('#qualitySelectBtn').css('display', 'none');
                 }
-                _player._player.subtitleList ? _player._player.subtitleList.length && _player._player.subtitleList[0].lang !== '' && a('#ccSelectBtn').css('display', 'block') : a('#ccSelectBtn').css('display', 'none');
+                if (_player._player.subtitleList) {
+                    if (_player._player.subtitleList.length) {
+                        if (_player._player.subtitleList[0].lang !== '') {
+                            a('#ccSelectBtn').css('display', 'block');
+                        }
+                    }
+                } else {
+                    a('#ccSelectBtn').css('display', 'none');
+                }
                 a('#fullBtn').css('display', 'block');
                 a('.pl-ctr-wrap').css('visibility', 'visible');
                 a('.pl-btm-wrap').css('visibility', 'visible');
@@ -4431,11 +4506,9 @@ var _player = null,
             q = p.data('view-type');
             if (q === 'singleview') {
                 window.location.replace(r + PARAM_SINGLEVIEW_ON_MULTIVIEW);
-            } else {
-                if (q === 'multiview') {
-                    s = r.split(PARAM_SINGLEVIEW_ON_MULTIVIEW);
-                    window.location.replace(s[0]);
-                }
+            } else if (q === 'multiview') {
+                s = r.split(PARAM_SINGLEVIEW_ON_MULTIVIEW);
+                window.location.replace(s[0]);
             }
         });
 
@@ -4486,8 +4559,9 @@ function request_to_server(a, b, c, d, e) {
     f.onreadystatechange = function() {
         if (f.readyState == XMLHttpRequest.DONE) {
             requestCnt--;
-            if (f.status == 200 || f.status == 201) d && d(JSON.parse(f.responseText));
-            else {
+            if (f.status == 200 || f.status == 201) {
+                d && d(JSON.parse(f.responseText));
+            } else {
                 console.log(f);
                 if (f.status == 0) {} else {
                     if (!e) {
@@ -4495,17 +4569,17 @@ function request_to_server(a, b, c, d, e) {
                             console.log(JSON.parse(f.responseText));
                         }
                     } else try {
-                        var l = JSON.parse(f.responseText);
-                        e(l, f.status);
-                    } catch (o) {
+                        var k = JSON.parse(f.responseText);
+                        e(k, f.status);
+                    } catch (r) {
                         e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(l) {
-        console.log(l);
+    f.ontimeout = function(k) {
+        console.log(k);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -4620,7 +4694,9 @@ function alertPopup(a, b, c, d) {
 }
 
 function checkInterparkApp() {
-    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) return true;
+    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) {
+        return true;
+    }
     return false;
 }
 
@@ -4639,15 +4715,16 @@ function getQueryStringObject() {
 function checkIEbrowser() {
     var a = window.navigator.userAgent.toLowerCase(),
         b = a.indexOf('trident');
-    if (b > -1) return true;
+    if (b > -1) {
+        return true;
+    }
     return false;
 }
 
 function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
-    if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) {
-        return true;
-    } else {
+    if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) return true;
+    else {
         return false;
     }
 }
@@ -4659,7 +4736,10 @@ function checkMobileAndTablet() {
         else {
             var b = navigator.userAgent.toLowerCase(),
                 c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            return !c ? isIpadOS() : c;
+            if (!c) return isIpadOS();
+            else {
+                return c;
+            }
         }
     }
 }
@@ -4698,7 +4778,9 @@ function hasClassName(a, b) {
 }
 
 function addClassName(a, b) {
-    !hasClassName(a, b) && (a.className = a.className ? [a.className, b].join(' ') : b);
+    if (!hasClassName(a, b)) {
+        a.className = a.className ? [a.className, b].join(' ') : b;
+    }
 }
 
 function removeClassName(a, b) {
@@ -4712,27 +4794,28 @@ function removeClassName(a, b) {
 }
 
 function getOrientation() {
-    if (!isMobile()) return false;
+    if (!isMobile()) {
+        return false;
+    }
     if (isIOS()) switch (window.orientation) {
         case -90:
         case 90:
             return 'landscape';
         default:
             return 'portrait';
-    } else {
-        return screen.orientation.type.toLowerCase();
-    }
+    } else return screen.orientation.type.toLowerCase();
 }
 
 function checkMobile() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
-        if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
-            return true;
-        } else {
+        if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
+        else {
             var b = navigator.userAgent.toLowerCase(),
                 c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            return !c ? isIpadOS() : c;
+            if (!c) {
+                return isIpadOS();
+            } else return c;
         }
     }
 }
