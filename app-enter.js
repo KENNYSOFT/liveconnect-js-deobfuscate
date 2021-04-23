@@ -68,17 +68,16 @@ function cusDD(a, b, c) {
         $($(this).parent()).siblings('.cusDD_select').contents()[0].nodeValue = $(this).text();
         if (c) c($(this).data(), $(this));
     });
-}(function(a) {
-    a.fn.changeElementType = function(b) {
-        var c = {};
-        a.each(this[0].attributes, function(d, e) {
-            c[e.nodeName] = e.nodeValue;
-        });
-        this.replaceWith(function() {
-            return a('<' + b + '/>', c).append(a(this).contents());
-        });
-    };
-})(jQuery);
+}
+$.fn.changeElementType = function(b) {
+    var c = {};
+    $.each(this[0].attributes, function(d, e) {
+        c[e.nodeName] = e.nodeValue;
+    });
+    this.replaceWith(function() {
+        return $('<' + b + '/>', c).append($(this).contents());
+    });
+};
 
 function cusDDselectOption(a, b, c) {
     $(a).find('.cusDD_opt').each(function() {
@@ -451,877 +450,876 @@ var ChatFilter = function() {
             }
         };
     }();
-(function(a) {
-    function b() {
-        a('#dayWrap').css('display', 'none');
-        a('#readyBtn').css('display', 'none');
-        a('#enterBtn').css('display', 'none');
-        a('#authBtn').css('display', 'none');
-        a('#authMsg1').css('display', 'none');
-        a('#authMsg2').css('display', 'none');
-        a('#endBtn').css('display', 'inline-block');
-        removeCookie(DCvi + '_customer_id');
-        removeCookie(DCvi + '_ticket_id');
-        removeCookie(DCvi + '_user_id');
-        removeCookie(DCvi + '_chat_id');
+
+function b() {
+    $('#dayWrap').css('display', 'none');
+    $('#readyBtn').css('display', 'none');
+    $('#enterBtn').css('display', 'none');
+    $('#authBtn').css('display', 'none');
+    $('#authMsg1').css('display', 'none');
+    $('#authMsg2').css('display', 'none');
+    $('#endBtn').css('display', 'inline-block');
+    removeCookie(DCvi + '_customer_id');
+    removeCookie(DCvi + '_ticket_id');
+    removeCookie(DCvi + '_user_id');
+    removeCookie(DCvi + '_chat_id');
+}
+if (ddv) $(document).ready(function() {
+    b();
+});
+else {
+    var c = function s(t, u, v) {
+            request_to_server('POST', RSAnd + '/user_auth/customer_login/', t, function(x) {
+                m = JSON.parse(JSON.stringify(x.Data.content));
+                n = JSON.parse(JSON.stringify(x.Data.user));
+                if (u) u();
+            }, function() {
+                if (v) v();
+            });
+        },
+        d = function t(u, v, w) {
+            request_to_server('POST', RSAnd + '/user_auth/nickname/', u, function(x) {
+                if (v) v(x);
+            }, function(x, y) {
+                if (w) w(x, y);
+            });
+        },
+        e = function u(v, w, x) {
+            request_to_server('POST', RSAnd + '/user_auth/player_enter/', v, function(y) {
+                if (w) w(y);
+            }, function(y) {
+                if (x) x(y);
+            });
+        },
+        f = function v(w) {
+            var x = /[\/\\:*?<>|"]/gi;
+            if (x.test(w)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        g = function w(x) {
+            return x.search(/\s/) != -1 ? true : false;
+        },
+        h = function x() {
+            $('#loadingDiv').css('display', 'block');
+            var y = egl,
+                z = POPUP_CONFIG.failToGetPlayerCode(y, null),
+                A = n,
+                B = m,
+                C = (B && B.id ? B.id : null) || DCvi,
+                D = {
+                    user_id: null,
+                    content_id: null,
+                    device_id: null
+                },
+                E = null,
+                F = null;
+            if (A && A.user_id) D.user_id = A.user_id;
+            if (r) D.device_id = r;
+            if (C) D.content_id = C;
+            e(D, function(G) {
+                $('#loadingDiv').css('display', 'none');
+                console.log(G);
+                E = G && G.Data ? G.Data : null;
+                F = E && E.content ? E.content.player_code : null;
+                if (F) {
+                    setCookie(DCvi + '_user_id', n.user_id, 20160);
+                    setCookie(DCvi + '_chat_id', n.chat_id, 20160);
+                    setCookie(DCvi + '_content_id', DCvi, 20160);
+                    location.href = LUEz1 + '/' + F;
+                } else if (z) {
+                    alertPopup(z.title, z.desc, z.btnTxt, z.okCallback);
+                }
+            }, function(G) {
+                $('#loadingDiv').css('display', 'none');
+                console.log(G);
+                if (z) {
+                    alertPopup(z.title, z.desc, z.btnTxt, z.okCallback);
+                }
+            });
+        },
+        i = function y(z, A) {
+            if (A == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+                switch (egl) {
+                    case 'ko':
+                        z.text('인증코드를 입력해 주세요.');
+                        break;
+                    case 'en':
+                        z.text('Enter authentication code.');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        z.text('認証コードを入力してください');
+                        break;
+                    case 'cn':
+                        z.text('Enter authentication code');
+                        break;
+                }
+            } else {
+                switch (egl) {
+                    case 'ko':
+                        z.text('인터파크ID와 예매번호를 입력해 주세요.');
+                        break;
+                    case 'en':
+                        z.text('Enter INTERPARK ID and reservation number.');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        z.text('INTERPARK IDと購入番号を入力してください。');
+                        break;
+                    case 'cn':
+                        z.text('请输入INTERPARK账户和预订号码');
+                        break;
+                }
+            }
+        },
+        j = function z(A, B) {
+            if (B == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+                switch (egl) {
+                    case 'ko':
+                        A.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                        break;
+                    case 'en':
+                        A.text('Authentication code is not valid. Please check and try again.');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        A.text('認証コードが正しくありません。確認後、正確に入力してください。');
+                        break;
+                    case 'cn':
+                        A.text('Authentication code is not valid. Please check and try again.');
+                        break;
+                }
+            } else {
+                switch (egl) {
+                    case 'ko':
+                        A.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                        break;
+                    case 'en':
+                        A.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        A.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
+                        break;
+                    case 'cn':
+                        A.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
+                        break;
+                }
+            }
+        },
+        k = function A(B) {
+            $('#authPopup').css('display', 'none');
+            $('#authBtn').css('display', 'none');
+            $('#authMsg1').css('display', 'none');
+            $('#authMsg2').css('display', 'none');
+            $('#readyBtn').css('display', 'inline-block');
+            $('#nicknamePopup').css('display', 'none');
+            if (B && B == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+                switch (egl) {
+                    case 'ko':
+                        alertPopup('알림', '인증이 완료되었습니다.', '확인');
+                        break;
+                    case 'en':
+                        alertPopup('Notification', 'Verification completed.', 'OK');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        alertPopup('お知らせ', '認証が完了しました。', '確認');
+                        break;
+                    case 'cn':
+                        alertPopup('提醒', '购票认证已完毕', '确认');
+                        break;
+                }
+            } else {
+                switch (egl) {
+                    case 'ko':
+                        alertPopup('알림', '티켓 인증이 완료되었습니다.', '확인');
+                        break;
+                    case 'en':
+                        alertPopup('Notification', 'Ticket verification completed.', 'OK');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        alertPopup('お知らせ', '観覧券認証が完了しました', '確認');
+                        break;
+                    case 'cn':
+                        alertPopup('提醒', '购票认证已完毕', '确认');
+                        break;
+                }
+            }
+        },
+        l = function B(C, D) {
+            ChatFilter.loadChatFilterData(function() {
+                p = C;
+                if (C == 'enter') $('#loginPopup').css('display', 'none');
+                else if (C == 'auth') {
+                    $('#authPopup').css('display', 'none');
+                }
+                if (D) {
+                    $('#nickname').val(D);
+                }
+                switch (egl) {
+                    case 'ko':
+                        $('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
+                        break;
+                    case 'en':
+                        $('#nicknameFailTxt').text('Nickname is required to join LIVE CHAT for this show and it is for single-use. (Valid only during the show, and will become invalid and deleted after the show.)');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        $('#nicknameFailTxt').text('ニックネームはライブ内でチャット使用のために必要であり、一回用のニックネームです。(ライブ内で使用され、ライブ終了後に削除されます。)');
+                        break;
+                    case 'cn':
+                        $('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
+                        break;
+                }
+                $('#nicknamePopup').css('display', 'block');
+                $('#nickname').focus();
+            });
+        };
+    if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
+        $('#enterBtn').css('display', 'none');
+        $('#notSupportedBrowser').css('display', 'inline-block');
     }
-    if (ddv) a(document).ready(function() {
-        b();
-    });
-    else {
-        var c = function s(t, u, v) {
-                request_to_server('POST', RSAnd + '/user_auth/customer_login/', t, function(x) {
-                    m = JSON.parse(JSON.stringify(x.Data.content));
-                    n = JSON.parse(JSON.stringify(x.Data.user));
-                    if (u) u();
-                }, function() {
-                    if (v) v();
-                });
+    var m = null,
+        n = null,
+        o = null,
+        p = '',
+        q = 0,
+        r = getCookie(DCvi + '_device_id');
+    if (!r) {
+        r = createDeviceId(DCvi);
+    }
+    $(document).ready(function() {
+        var C = ['e48fcdad-a485-4f0d-9ef4-df37b43bb560'],
+            D = $('#enterBtn'),
+            E = $('#authBtn'),
+            F = $('#readyBtn'),
+            G = $('#notSupportedBrowser'),
+            H = $('#dayWrap'),
+            I = $('#loginBtn'),
+            J = $('#loginPopup'),
+            K = $('#nicknamePopup'),
+            L = $('#authPopup'),
+            M = $('#authMsg1'),
+            N = $('#authMsg2'),
+            O = $('#customerId'),
+            P = $('#ticketId'),
+            Q = $('#nickname'),
+            R = $('#nicknameFailTxt'),
+            S = $('#loginFailTxt'),
+            T = $('#chk_save'),
+            U = $('#chk_save2'),
+            V = $('#createNickBtn'),
+            W = $('#authCustomerId'),
+            X = $('#authTicketId'),
+            Y = $('#authFailTxt'),
+            Z = $('#authCheckBtn'),
+            a0 = new Date(parseInt(ete)),
+            a1 = new Date(parseInt(cte)),
+            a2 = new Date(),
+            a3 = uath,
+            a4 = true,
+            a5 = {
+                requestCreateNickname: null
             },
-            d = function t(u, v, w) {
-                request_to_server('POST', RSAnd + '/user_auth/nickname/', u, function(x) {
-                    if (v) v(x);
-                }, function(x, y) {
-                    if (w) w(x, y);
-                });
-            },
-            e = function u(v, w, x) {
-                request_to_server('POST', RSAnd + '/user_auth/player_enter/', v, function(y) {
-                    if (w) w(y);
-                }, function(y) {
-                    if (x) x(y);
-                });
-            },
-            f = function v(w) {
-                var x = /[\/\\:*?<>|"]/gi;
-                if (x.test(w)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            g = function w(x) {
-                return x.search(/\s/) != -1 ? true : false;
-            },
-            h = function x() {
-                a('#loadingDiv').css('display', 'block');
-                var y = egl,
-                    z = POPUP_CONFIG.failToGetPlayerCode(y, null),
-                    A = n,
-                    B = m,
-                    C = (B && B.id ? B.id : null) || DCvi,
-                    D = {
-                        user_id: null,
-                        content_id: null,
-                        device_id: null
-                    },
-                    E = null,
-                    F = null;
-                if (A && A.user_id) D.user_id = A.user_id;
-                if (r) D.device_id = r;
-                if (C) D.content_id = C;
-                e(D, function(G) {
-                    a('#loadingDiv').css('display', 'none');
-                    console.log(G);
-                    E = G && G.Data ? G.Data : null;
-                    F = E && E.content ? E.content.player_code : null;
-                    if (F) {
-                        setCookie(DCvi + '_user_id', n.user_id, 20160);
-                        setCookie(DCvi + '_chat_id', n.chat_id, 20160);
-                        setCookie(DCvi + '_content_id', DCvi, 20160);
-                        location.href = LUEz1 + '/' + F;
-                    } else if (z) {
-                        alertPopup(z.title, z.desc, z.btnTxt, z.okCallback);
-                    }
-                }, function(G) {
-                    a('#loadingDiv').css('display', 'none');
-                    console.log(G);
-                    if (z) {
-                        alertPopup(z.title, z.desc, z.btnTxt, z.okCallback);
-                    }
-                });
-            },
-            i = function y(z, A) {
-                if (A == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                    switch (egl) {
-                        case 'ko':
-                            z.text('인증코드를 입력해 주세요.');
-                            break;
-                        case 'en':
-                            z.text('Enter authentication code.');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            z.text('認証コードを入力してください');
-                            break;
-                        case 'cn':
-                            z.text('Enter authentication code');
-                            break;
-                    }
-                } else {
-                    switch (egl) {
-                        case 'ko':
-                            z.text('인터파크ID와 예매번호를 입력해 주세요.');
-                            break;
-                        case 'en':
-                            z.text('Enter INTERPARK ID and reservation number.');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            z.text('INTERPARK IDと購入番号を入力してください。');
-                            break;
-                        case 'cn':
-                            z.text('请输入INTERPARK账户和预订号码');
-                            break;
-                    }
-                }
-            },
-            j = function z(A, B) {
-                if (B == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                    switch (egl) {
-                        case 'ko':
-                            A.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
-                            break;
-                        case 'en':
-                            A.text('Authentication code is not valid. Please check and try again.');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            A.text('認証コードが正しくありません。確認後、正確に入力してください。');
-                            break;
-                        case 'cn':
-                            A.text('Authentication code is not valid. Please check and try again.');
-                            break;
-                    }
-                } else {
-                    switch (egl) {
-                        case 'ko':
-                            A.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
-                            break;
-                        case 'en':
-                            A.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            A.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
-                            break;
-                        case 'cn':
-                            A.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
-                            break;
-                    }
-                }
-            },
-            k = function A(B) {
-                a('#authPopup').css('display', 'none');
-                a('#authBtn').css('display', 'none');
-                a('#authMsg1').css('display', 'none');
-                a('#authMsg2').css('display', 'none');
-                a('#readyBtn').css('display', 'inline-block');
-                a('#nicknamePopup').css('display', 'none');
-                if (B && B == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                    switch (egl) {
-                        case 'ko':
-                            alertPopup('알림', '인증이 완료되었습니다.', '확인');
-                            break;
-                        case 'en':
-                            alertPopup('Notification', 'Verification completed.', 'OK');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            alertPopup('お知らせ', '認証が完了しました。', '確認');
-                            break;
-                        case 'cn':
-                            alertPopup('提醒', '购票认证已完毕', '确认');
-                            break;
-                    }
-                } else {
-                    switch (egl) {
-                        case 'ko':
-                            alertPopup('알림', '티켓 인증이 완료되었습니다.', '확인');
-                            break;
-                        case 'en':
-                            alertPopup('Notification', 'Ticket verification completed.', 'OK');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            alertPopup('お知らせ', '観覧券認証が完了しました', '確認');
-                            break;
-                        case 'cn':
-                            alertPopup('提醒', '购票认证已完毕', '确认');
-                            break;
-                    }
-                }
-            },
-            l = function B(C, D) {
-                ChatFilter.loadChatFilterData(function() {
-                    p = C;
-                    if (C == 'enter') a('#loginPopup').css('display', 'none');
-                    else if (C == 'auth') {
-                        a('#authPopup').css('display', 'none');
-                    }
-                    if (D) {
-                        a('#nickname').val(D);
-                    }
-                    switch (egl) {
-                        case 'ko':
-                            a('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
-                            break;
-                        case 'en':
-                            a('#nicknameFailTxt').text('Nickname is required to join LIVE CHAT for this show and it is for single-use. (Valid only during the show, and will become invalid and deleted after the show.)');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            a('#nicknameFailTxt').text('ニックネームはライブ内でチャット使用のために必要であり、一回用のニックネームです。(ライブ内で使用され、ライブ終了後に削除されます。)');
-                            break;
-                        case 'cn':
-                            a('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
-                            break;
-                    }
-                    a('#nicknamePopup').css('display', 'block');
-                    a('#nickname').focus();
-                });
-            };
-        if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
-            a('#enterBtn').css('display', 'none');
-            a('#notSupportedBrowser').css('display', 'inline-block');
-        }
-        var m = null,
-            n = null,
-            o = null,
-            p = '',
-            q = 0,
-            r = getCookie(DCvi + '_device_id');
-        if (!r) {
-            r = createDeviceId(DCvi);
-        }
-        a(document).ready(function() {
-            var C = ['e48fcdad-a485-4f0d-9ef4-df37b43bb560'],
-                D = a('#enterBtn'),
-                E = a('#authBtn'),
-                F = a('#readyBtn'),
-                G = a('#notSupportedBrowser'),
-                H = a('#dayWrap'),
-                I = a('#loginBtn'),
-                J = a('#loginPopup'),
-                K = a('#nicknamePopup'),
-                L = a('#authPopup'),
-                M = a('#authMsg1'),
-                N = a('#authMsg2'),
-                O = a('#customerId'),
-                P = a('#ticketId'),
-                Q = a('#nickname'),
-                R = a('#nicknameFailTxt'),
-                S = a('#loginFailTxt'),
-                T = a('#chk_save'),
-                U = a('#chk_save2'),
-                V = a('#createNickBtn'),
-                W = a('#authCustomerId'),
-                X = a('#authTicketId'),
-                Y = a('#authFailTxt'),
-                Z = a('#authCheckBtn'),
-                a0 = new Date(parseInt(ete)),
-                a1 = new Date(parseInt(cte)),
-                a2 = new Date(),
-                a3 = uath,
-                a4 = true,
-                a5 = {
-                    requestCreateNickname: null
-                },
-                a6 = false;
-            M.css('display', 'none');
-            N.css('display', 'none');
-            var a7 = function ae(af) {
-                    M.css('display', 'none');
-                    N.css('display', 'none');
-                    E.css('display', 'none');
-                    if (af) {
-                        D.css('display', 'inline-block');
-                        F.css('display', 'none');
-                    } else {
-                        D.css('display', 'none');
-                        F.css('display', 'inline-block');
-                    }
-                    if (rtd) D.css('display', 'inline-block');
-                },
-                a8 = function af() {
-                    a5.requestCreateNickname = setTimeout(function() {
-                        console.log('@@@RESET');
-                        R.text('');
-                        a4 = true;
-                    }, 1000);
-                },
-                a9 = function ag() {
-                    W.text('');
-                    X.text('');
-                    Y.text('');
-                    T.prop('checked', true);
-                    L.css('display', 'block');
-                    if (!W.val() && getCookie(DCvi + '_customer_id')) {
-                        W.val(getCookie(DCvi + '_customer_id'));
-                    }
-                    if (!X.val() && getCookie(DCvi + '_ticket_id')) {
-                        X.val(getCookie(DCvi + '_ticket_id'));
-                    }
-                    W.focus();
-                },
-                aa = function ah() {
-                    var ai = egl,
-                        aj = DCvi,
-                        ak = null;
-                    if (aj == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                        ak = POPUP_CONFIG.authorizedByCode(ai);
-                        a('.popupbox .label_customer_id').text(ak.idText);
-                        a('.popupbox .label_ticket_id').text(ak.ticketText);
-                        O.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
-                        W.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
-                        L.find('.pop-tt.auth').text(ak.authPopupTitle);
-                    }
-                },
-                ab = function ai(aj, ak) {
-                    var al = DCvi;
-                    if (C.indexOf(al) < 0) return;
-                    if (aj && !ak) {
-                        a9();
-                    }
-                    if (!aj && !ak) {
-                        D.click();
-                    }
-                };
-            aa();
-            q = a1.getTime() - a2.getTime();
-            if (a0 < a1) {
-                H.css('display', 'none');
-                if (!checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp()) {
-                    D.css('display', 'inline-block');
-                }
-                F.css('display', 'none');
-                E.css('display', 'none');
+            a6 = false;
+        M.css('display', 'none');
+        N.css('display', 'none');
+        var a7 = function ae(af) {
                 M.css('display', 'none');
                 N.css('display', 'none');
-            } else {
-                if (dsev) {
-                    H.css('display', 'none');
+                E.css('display', 'none');
+                if (af) {
+                    D.css('display', 'inline-block');
+                    F.css('display', 'none');
                 } else {
-                    H.css('display', 'block');
+                    D.css('display', 'none');
+                    F.css('display', 'inline-block');
                 }
-                D.css('display', 'none');
-                if (!a3) {
-                    a7(false);
+                if (rtd) D.css('display', 'inline-block');
+            },
+            a8 = function af() {
+                a5.requestCreateNickname = setTimeout(function() {
+                    console.log('@@@RESET');
+                    R.text('');
+                    a4 = true;
+                }, 1000);
+            },
+            a9 = function ag() {
+                W.text('');
+                X.text('');
+                Y.text('');
+                T.prop('checked', true);
+                L.css('display', 'block');
+                if (!W.val() && getCookie(DCvi + '_customer_id')) {
+                    W.val(getCookie(DCvi + '_customer_id'));
                 }
-                var ac = function am() {
-                    var an = new Date();
-                    an.setTime(an.getTime() + q);
-                    a6 = a0 <= an;
-                    if (a0 <= an) {
-                        H.css('display', 'none');
-                        D.css('display', 'inline-block');
-                        F.css('display', 'none');
-                        E.css('display', 'none');
-                        M.css('display', 'none');
-                        N.css('display', 'none');
-                        if (o) {
-                            clearInterval(o);
-                            return;
+                if (!X.val() && getCookie(DCvi + '_ticket_id')) {
+                    X.val(getCookie(DCvi + '_ticket_id'));
+                }
+                W.focus();
+            },
+            aa = function ah() {
+                var ai = egl,
+                    aj = DCvi,
+                    ak = null;
+                if (aj == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+                    ak = POPUP_CONFIG.authorizedByCode(ai);
+                    $('.popupbox .label_customer_id').text(ak.idText);
+                    $('.popupbox .label_ticket_id').text(ak.ticketText);
+                    O.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
+                    W.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
+                    L.find('.pop-tt.auth').text(ak.authPopupTitle);
+                }
+            },
+            ab = function ai(aj, ak) {
+                var al = DCvi;
+                if (C.indexOf(al) < 0) return;
+                if (aj && !ak) {
+                    a9();
+                }
+                if (!aj && !ak) {
+                    D.click();
+                }
+            };
+        aa();
+        q = a1.getTime() - a2.getTime();
+        if (a0 < a1) {
+            H.css('display', 'none');
+            if (!checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp()) {
+                D.css('display', 'inline-block');
+            }
+            F.css('display', 'none');
+            E.css('display', 'none');
+            M.css('display', 'none');
+            N.css('display', 'none');
+        } else {
+            if (dsev) {
+                H.css('display', 'none');
+            } else {
+                H.css('display', 'block');
+            }
+            D.css('display', 'none');
+            if (!a3) {
+                a7(false);
+            }
+            var ac = function am() {
+                var an = new Date();
+                an.setTime(an.getTime() + q);
+                a6 = a0 <= an;
+                if (a0 <= an) {
+                    H.css('display', 'none');
+                    D.css('display', 'inline-block');
+                    F.css('display', 'none');
+                    E.css('display', 'none');
+                    M.css('display', 'none');
+                    N.css('display', 'none');
+                    if (o) {
+                        clearInterval(o);
+                        return;
+                    }
+                } else {
+                    if (!rtd) {
+                        D.css('display', 'none');
+                    }
+                    if (!a3) {
+                        a7(false);
+                    }
+                }
+                var ao = (a0 - an) / 1000,
+                    ap = parseInt(ao / 60 / 60 / 24),
+                    aq = parseInt(ao / 60 / 60 % 24),
+                    ar = parseInt(ao / 60 % 60),
+                    as = parseInt(ao % 60);
+                if (ap < 10) {
+                    ap = '0' + ap;
+                }
+                if (aq < 10) {
+                    aq = '0' + aq;
+                }
+                if (ar < 10) {
+                    ar = '0' + ar;
+                }
+                if (as < 10) {
+                    as = '0' + as;
+                }
+                if (document.getElementById('day')) {
+                    document.getElementById('day').innerHTML = ap;
+                }
+                if (document.getElementById('hour')) {
+                    document.getElementById('hour').innerHTML = aq;
+                }
+                if (document.getElementById('minute')) {
+                    document.getElementById('minute').innerHTML = ar;
+                }
+                if (document.getElementById('second')) {
+                    document.getElementById('second').innerHTML = as;
+                }
+            };
+            ac();
+            o = setInterval(ac, 1000);
+        }
+        if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
+            D.css('display', 'none');
+            G.css('display', 'inline-block');
+        } else {
+            var ad = {
+                content_id: DCvi,
+                user_id: getCookie(DCvi + '_user_id'),
+                device_id: getCookie(DCvi + '_device_id')
+            };
+            if (a0 > a1) {
+                if (!a3) a7(false);
+                else {
+                    if (!ad.user_id) {
+                        E.css('display', 'inline-block');
+                        if (!dsev) {
+                            M.css('display', 'block');
+                            N.css('display', 'block');
+                        }
+                    }
+                }
+            }
+            userSessionCheck(ad, function(ap) {
+                n = JSON.parse(JSON.stringify(ap.Data.user));
+                m = JSON.parse(JSON.stringify(ap.Data.content));
+                if (m.status == 'end') {
+                    clearInterval(o);
+                    b();
+                } else {
+                    if (m.is_chat_used) {
+                        if (n.nickname) {
+                            if (a0 > a1) {
+                                if (!a3) {
+                                    a7(false);
+                                } else {
+                                    F.css('display', 'inline-block');
+                                }
+                            }
+                            E.css('display', 'none');
+                            M.css('display', 'none');
+                            N.css('display', 'none');
+                        } else {
+                            if (a0 > a1) {
+                                if (!a3) {
+                                    a7(false);
+                                } else E.css('display', 'inline-block');
+                                if (!dsev && a3) {
+                                    M.css('display', 'block');
+                                    N.css('display', 'block');
+                                }
+                            }
                         }
                     } else {
-                        if (!rtd) {
-                            D.css('display', 'none');
-                        }
-                        if (!a3) {
-                            a7(false);
-                        }
-                    }
-                    var ao = (a0 - an) / 1000,
-                        ap = parseInt(ao / 60 / 60 / 24),
-                        aq = parseInt(ao / 60 / 60 % 24),
-                        ar = parseInt(ao / 60 % 60),
-                        as = parseInt(ao % 60);
-                    if (ap < 10) {
-                        ap = '0' + ap;
-                    }
-                    if (aq < 10) {
-                        aq = '0' + aq;
-                    }
-                    if (ar < 10) {
-                        ar = '0' + ar;
-                    }
-                    if (as < 10) {
-                        as = '0' + as;
-                    }
-                    if (document.getElementById('day')) {
-                        document.getElementById('day').innerHTML = ap;
-                    }
-                    if (document.getElementById('hour')) {
-                        document.getElementById('hour').innerHTML = aq;
-                    }
-                    if (document.getElementById('minute')) {
-                        document.getElementById('minute').innerHTML = ar;
-                    }
-                    if (document.getElementById('second')) {
-                        document.getElementById('second').innerHTML = as;
-                    }
-                };
-                ac();
-                o = setInterval(ac, 1000);
-            }
-            if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
-                D.css('display', 'none');
-                G.css('display', 'inline-block');
-            } else {
-                var ad = {
-                    content_id: DCvi,
-                    user_id: getCookie(DCvi + '_user_id'),
-                    device_id: getCookie(DCvi + '_device_id')
-                };
-                if (a0 > a1) {
-                    if (!a3) a7(false);
-                    else {
-                        if (!ad.user_id) {
-                            E.css('display', 'inline-block');
-                            if (!dsev) {
+                        if (a0 > a1) {
+                            if (!a3) {
+                                a7(false);
+                            } else {
+                                E.css('display', 'inline-block');
+                                ab(true, false);
+                            }
+                            if (!dsev && a3) {
                                 M.css('display', 'block');
                                 N.css('display', 'block');
                             }
                         }
                     }
                 }
-                userSessionCheck(ad, function(ap) {
-                    n = JSON.parse(JSON.stringify(ap.Data.user));
-                    m = JSON.parse(JSON.stringify(ap.Data.content));
-                    if (m.status == 'end') {
+            }, function(ap) {
+                if (ap.Data) {
+                    if (ap.Data.content.status == 'end') {
                         clearInterval(o);
                         b();
                     } else {
-                        if (m.is_chat_used) {
-                            if (n.nickname) {
-                                if (a0 > a1) {
-                                    if (!a3) {
-                                        a7(false);
-                                    } else {
-                                        F.css('display', 'inline-block');
-                                    }
-                                }
-                                E.css('display', 'none');
-                                M.css('display', 'none');
-                                N.css('display', 'none');
-                            } else {
-                                if (a0 > a1) {
-                                    if (!a3) {
-                                        a7(false);
-                                    } else E.css('display', 'inline-block');
-                                    if (!dsev && a3) {
-                                        M.css('display', 'block');
-                                        N.css('display', 'block');
-                                    }
-                                }
+                        if (a0 > a1) {
+                            if (!a3) a7(false);
+                            else {
+                                E.css('display', 'inline-block');
+                                ab(true, false);
+                            }
+                            if (!dsev && a3) {
+                                M.css('display', 'block');
+                                N.css('display', 'block');
                             }
                         } else {
-                            if (a0 > a1) {
-                                if (!a3) {
-                                    a7(false);
-                                } else {
-                                    E.css('display', 'inline-block');
-                                    ab(true, false);
-                                }
-                                if (!dsev && a3) {
-                                    M.css('display', 'block');
-                                    N.css('display', 'block');
-                                }
-                            }
+                            ab(false, false);
+                            E.css('display', 'none');
+                            M.css('display', 'none');
+                            N.css('display', 'none');
                         }
                     }
-                }, function(ap) {
-                    if (ap.Data) {
-                        if (ap.Data.content.status == 'end') {
-                            clearInterval(o);
-                            b();
-                        } else {
-                            if (a0 > a1) {
-                                if (!a3) a7(false);
-                                else {
-                                    E.css('display', 'inline-block');
-                                    ab(true, false);
-                                }
-                                if (!dsev && a3) {
-                                    M.css('display', 'block');
-                                    N.css('display', 'block');
-                                }
-                            } else {
-                                ab(false, false);
-                                E.css('display', 'none');
-                                M.css('display', 'none');
-                                N.css('display', 'none');
-                            }
-                        }
-                    }
-                });
-            }
-            D.on('click', function() {
-                O.val('');
-                P.val('');
-                S.text('');
-                U.prop('checked', true);
-                aa();
-                var ap = {
-                    user_id: getCookie(DCvi + '_user_id'),
-                    device_id: getCookie(DCvi + '_device_id'),
-                    content_id: DCvi
-                };
-                if (!a3) {
-                    if (ap.user_id) {
-                        if (m && m.is_chat_used) l('enter', n.nickname);
-                        else {
-                            h();
-                        }
-                    } else {
-                        I.click();
-                    }
-                    return;
                 }
-                userSessionCheck(ap, function(av) {
-                    m = JSON.parse(JSON.stringify(av.Data.content));
-                    n = JSON.parse(JSON.stringify(av.Data.user));
-                    if (m.is_chat_used) {
-                        l('enter', n.nickname);
-                    } else {
+            });
+        }
+        D.on('click', function() {
+            O.val('');
+            P.val('');
+            S.text('');
+            U.prop('checked', true);
+            aa();
+            var ap = {
+                user_id: getCookie(DCvi + '_user_id'),
+                device_id: getCookie(DCvi + '_device_id'),
+                content_id: DCvi
+            };
+            if (!a3) {
+                if (ap.user_id) {
+                    if (m && m.is_chat_used) l('enter', n.nickname);
+                    else {
                         h();
                     }
-                }, function(av) {
-                    if (av.Data) {
-                        if (av.Data.content.status == 'end') {
-                            clearInterval(o);
-                            b();
-                        } else {
-                            removeCookie(DCvi + '_user_id');
-                            removeCookie(DCvi + '_chat_id');
-                            J.css('display', 'block');
-                            K.css('display', 'none');
-                            if (!O.val() && getCookie(DCvi + '_customer_id')) {
-                                O.val(getCookie(DCvi + '_customer_id'));
-                            }
-                            if (!P.val() && getCookie(DCvi + '_ticket_id')) {
-                                P.val(getCookie(DCvi + '_ticket_id'));
-                            }
-                            O.focus();
-                        }
-                    }
-                });
-            });
-            a('#loginPopup button[name=closebtn]').on('click', function() {
-                J.css('display', 'none');
-            });
-            I.on('click', function() {
-                var ap = O.val().trim(),
-                    aq = P.val().trim();
-                if (a3 && (!ap || !aq)) {
-                    i(S, DCvi);
-                    return;
-                }
-                var ar = {
-                    customer_id: ap,
-                    ticket_id: aq,
-                    content_id: DCvi,
-                    device_id: r
-                };
-                if (!a3) {
-                    ar.customer_id = null;
-                    ar.ticket_id = null;
-                }
-                c(ar, function() {
-                    if (a3) {
-                        if (U.prop('checked')) {
-                            setCookie(DCvi + '_customer_id', ar.customer_id, 20160);
-                            setCookie(DCvi + '_ticket_id', ar.ticket_id, 20160);
-                        } else {
-                            removeCookie(DCvi + '_customer_id');
-                            removeCookie(DCvi + '_ticket_id');
-                        }
-                        setCookie(DCvi + '_ticket_id', ar.ticket_id, 20160);
-                    }
-                    if (m.is_chat_used) {
-                        l('enter', n.nickname);
-                    } else h();
-                }, function() {
-                    j(S, DCvi);
-                });
-            });
-            a('#nicknamePopup button[name=closebtn]').on('click', function() {
-                Q.val('');
-                R.text('');
-                K.css('display', 'none');
-            });
-            V.on('click', function() {
-                var ap = Q.val();
-                if (!ap) {
-                    switch (egl) {
-                        case 'ko':
-                            R.text('닉네임을 입력해주세요.');
-                            break;
-                        case 'en':
-                            R.text('Please enter your nickname.');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            R.text('ニックネームを入力してください');
-                            break;
-                        case 'cn':
-                            R.text('请输入账户名');
-                            break;
-                    }
-                    return;
-                }
-                if (f(ap)) {
-                    switch (egl) {
-                        case 'ko':
-                            R.text('닉네임에는 특수문자를 포함할 수 없습니다.');
-                            break;
-                        case 'en':
-                            R.text('Nickname cannot contain any special characters.');
-                            break;
-                        case 'ja':
-                        case 'jp':
-                            R.text('ニックネームに特殊文字を含めることはできません');
-                            break;
-                        case 'cn':
-                            R.text('账户名不能添加特殊文字');
-                            break;
-                    }
                 } else {
-                    if (g(ap)) {
-                        switch (egl) {
-                            case 'ko':
-                                R.text('닉네임에는 공백을 포함할 수 없습니다.');
-                                break;
-                            case 'en':
-                                R.text('Nickname cannot contain any space.');
-                                break;
-                            case 'ja':
-                            case 'jp':
-                                R.text('ニックネームに空白を含めることはできません');
-                                break;
-                            case 'cn':
-                                R.text('账户名不包含空白');
-                                break;
-                        }
-                    } else {
-                        if (ap.length < 2 || ap.length > 12) {
-                            switch (egl) {
-                                case 'ko':
-                                    R.text('닉네임은 2~12자로 입력해 주세요.');
-                                    break;
-                                case 'en':
-                                    R.text('Please enter 2 to 12 characters.');
-                                    break;
-                                case 'ja':
-                                case 'jp':
-                                    R.text('ニックネームは2〜12文字に入力してください');
-                                    break;
-                                case 'cn':
-                                    R.text('账户名仅限2~12字节');
-                                    break;
-                            }
-                        } else {
-                            if (NicknameFilter.hasForbidden(ap)) {
-                                switch (egl) {
-                                    case 'ko':
-                                        R.text('사용할 수 없는 닉네임입니다.');
-                                        break;
-                                    case 'en':
-                                        R.text('This nickname cannot be used.');
-                                        break;
-                                    case 'ja':
-                                    case 'jp':
-                                        R.text('使用できないニックネームです');
-                                        break;
-                                    case 'cn':
-                                        R.text('不能使用该账户名。');
-                                        break;
-                                }
-                            } else {
-                                if (ChatFilter.checkNickname(ap)) {
-                                    switch (egl) {
-                                        case 'ko':
-                                            R.text('닉네임에 비속어가 포함되어 있습니다.');
-                                            break;
-                                        case 'en':
-                                            R.text('Nickname contains inappropriate words.');
-                                            break;
-                                        case 'ja':
-                                        case 'jp':
-                                            R.text('ニックネームに使用できない言葉が含まれています');
-                                            break;
-                                        case 'cn':
-                                            R.text('账户名不包含辱骂等词语');
-                                            break;
-                                    }
-                                } else {
-                                    clearTimeout(a5.requestCreateNickname);
-                                    if (!a4) {
-                                        R.text(POPUP_CONFIG.duplicatedNickname(egl).desc);
-                                        a8();
-                                    }
-                                    if (!a4) return;
-                                    var aq = {
-                                        user_id: n.user_id,
-                                        device_id: r,
-                                        nickname: ap,
-                                        content_id: DCvi
-                                    };
-                                    a('#loadingDiv').css('display', 'block');
-                                    d(aq, function() {
-                                        a4 = true;
-                                        clearTimeout(a5.requestCreateNickname);
-                                        if (p == 'auth') {
-                                            k(DCvi);
-                                            if (a6) F.css('display', 'none');
-                                        } else {
-                                            if (p == 'enter') {
-                                                a('#loadingDiv').css('display', 'none');
-                                                K.css('display', 'none');
-                                                var aE = '',
-                                                    aF = '',
-                                                    aG = '';
-                                                switch (egl) {
-                                                    case 'ko':
-                                                        aF = '알림';
-                                                        aE = '닉네임 생성이 완료되었습니다.';
-                                                        aG = '확인';
-                                                        break;
-                                                    case 'en':
-                                                        aF = 'Notification';
-                                                        aE = 'Nickname successfully created.';
-                                                        aG = 'OK';
-                                                        break;
-                                                    case 'ja':
-                                                    case 'jp':
-                                                        aF = 'お知らせ';
-                                                        aE = 'ニックネーム作成を完了しました';
-                                                        aG = '確認';
-                                                        break;
-                                                    case 'cn':
-                                                        aF = '提醒';
-                                                        aE = '账户名生成完毕';
-                                                        aG = '确认';
-                                                        break;
-                                                }
-                                                alertPopup(aF, aE, aG, h);
-                                            }
-                                        }
-                                    }, function(aE, aF) {
-                                        a4 = false;
-                                        a8();
-                                        var aG = aE && aE.Message == 'nickname duplicated.' || aF == 409;
-                                        if (aG) {
-                                            switch (egl) {
-                                                case 'ko':
-                                                    R.text('이미 사용 중인 닉네임입니다.');
-                                                    break;
-                                                case 'en':
-                                                    R.text('This nickname is already taken.');
-                                                    break;
-                                                case 'ja':
-                                                case 'jp':
-                                                    R.text('既に使用中のニックネームです');
-                                                    break;
-                                                case 'cn':
-                                                    R.text('此用户名已被注册');
-                                                    break;
-                                            }
-                                        } else {
-                                            switch (egl) {
-                                                case 'ko':
-                                                    R.text('닉네임 생성에 실패하였습니다. 다시 시도해 주세요.');
-                                                    break;
-                                                case 'en':
-                                                    R.text('Failed to create a nickname. Please try again.');
-                                                    break;
-                                                case 'ja':
-                                                case 'jp':
-                                                    R.text('ニックネーム作成に失敗しました。もう一度入力してください。');
-                                                    break;
-                                                case 'cn':
-                                                    R.text('生成账户名失败，请重新输入');
-                                                    break;
-                                            }
-                                        }
-                                    });
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-            a('#customerId,#ticketId').on('keydown', function(ap) {
-                if (ap.keyCode == 13) {
                     I.click();
                 }
-            });
-            Q.on('keydown', function(ap) {
-                if (ap.keyCode == 13) {
-                    V.click();
+                return;
+            }
+            userSessionCheck(ap, function(av) {
+                m = JSON.parse(JSON.stringify(av.Data.content));
+                n = JSON.parse(JSON.stringify(av.Data.user));
+                if (m.is_chat_used) {
+                    l('enter', n.nickname);
+                } else {
+                    h();
+                }
+            }, function(av) {
+                if (av.Data) {
+                    if (av.Data.content.status == 'end') {
+                        clearInterval(o);
+                        b();
+                    } else {
+                        removeCookie(DCvi + '_user_id');
+                        removeCookie(DCvi + '_chat_id');
+                        J.css('display', 'block');
+                        K.css('display', 'none');
+                        if (!O.val() && getCookie(DCvi + '_customer_id')) {
+                            O.val(getCookie(DCvi + '_customer_id'));
+                        }
+                        if (!P.val() && getCookie(DCvi + '_ticket_id')) {
+                            P.val(getCookie(DCvi + '_ticket_id'));
+                        }
+                        O.focus();
+                    }
                 }
             });
-            E.on('click', a9);
-            Z.on('click', function() {
-                var ap = W.val().trim(),
-                    aq = X.val().trim();
-                if (!ap || !aq) {
-                    i(Y, DCvi);
-                    return;
-                }
-                var ar = {
-                    customer_id: ap,
-                    ticket_id: aq,
-                    content_id: DCvi,
-                    device_id: r
-                };
-                c(ar, function() {
-                    if (T.prop('checked')) {
+        });
+        $('#loginPopup button[name=closebtn]').on('click', function() {
+            J.css('display', 'none');
+        });
+        I.on('click', function() {
+            var ap = O.val().trim(),
+                aq = P.val().trim();
+            if (a3 && (!ap || !aq)) {
+                i(S, DCvi);
+                return;
+            }
+            var ar = {
+                customer_id: ap,
+                ticket_id: aq,
+                content_id: DCvi,
+                device_id: r
+            };
+            if (!a3) {
+                ar.customer_id = null;
+                ar.ticket_id = null;
+            }
+            c(ar, function() {
+                if (a3) {
+                    if (U.prop('checked')) {
                         setCookie(DCvi + '_customer_id', ar.customer_id, 20160);
                         setCookie(DCvi + '_ticket_id', ar.ticket_id, 20160);
-                        if (n) {
-                            setCookie(DCvi + '_user_id', n.user_id, 20160);
-                        }
                     } else {
                         removeCookie(DCvi + '_customer_id');
                         removeCookie(DCvi + '_ticket_id');
-                        removeCookie(DCvi + '_user_id');
                     }
-                    if (m.is_chat_used) {
-                        l('auth', n.nickname);
-                    } else k(DCvi);
-                }, function() {
-                    j(Y, DCvi);
-                });
-            });
-            a('#authCustomerId, #authTicketId').on('keydown', function(ap) {
-                if (ap.keyCode == 13) {
-                    Z.click();
+                    setCookie(DCvi + '_ticket_id', ar.ticket_id, 20160);
                 }
+                if (m.is_chat_used) {
+                    l('enter', n.nickname);
+                } else h();
+            }, function() {
+                j(S, DCvi);
             });
-            a('#authPopup button[name=closebtn]').on('click', function() {
-                L.css('display', 'none');
-            });
-            if (rtd) {
-                D.css('display', 'inline-block');
-                F.remove();
-                E.remove();
-                M.remove();
-                N.remove();
+        });
+        $('#nicknamePopup button[name=closebtn]').on('click', function() {
+            Q.val('');
+            R.text('');
+            K.css('display', 'none');
+        });
+        V.on('click', function() {
+            var ap = Q.val();
+            if (!ap) {
+                switch (egl) {
+                    case 'ko':
+                        R.text('닉네임을 입력해주세요.');
+                        break;
+                    case 'en':
+                        R.text('Please enter your nickname.');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        R.text('ニックネームを入力してください');
+                        break;
+                    case 'cn':
+                        R.text('请输入账户名');
+                        break;
+                }
+                return;
+            }
+            if (f(ap)) {
+                switch (egl) {
+                    case 'ko':
+                        R.text('닉네임에는 특수문자를 포함할 수 없습니다.');
+                        break;
+                    case 'en':
+                        R.text('Nickname cannot contain any special characters.');
+                        break;
+                    case 'ja':
+                    case 'jp':
+                        R.text('ニックネームに特殊文字を含めることはできません');
+                        break;
+                    case 'cn':
+                        R.text('账户名不能添加特殊文字');
+                        break;
+                }
+            } else {
+                if (g(ap)) {
+                    switch (egl) {
+                        case 'ko':
+                            R.text('닉네임에는 공백을 포함할 수 없습니다.');
+                            break;
+                        case 'en':
+                            R.text('Nickname cannot contain any space.');
+                            break;
+                        case 'ja':
+                        case 'jp':
+                            R.text('ニックネームに空白を含めることはできません');
+                            break;
+                        case 'cn':
+                            R.text('账户名不包含空白');
+                            break;
+                    }
+                } else {
+                    if (ap.length < 2 || ap.length > 12) {
+                        switch (egl) {
+                            case 'ko':
+                                R.text('닉네임은 2~12자로 입력해 주세요.');
+                                break;
+                            case 'en':
+                                R.text('Please enter 2 to 12 characters.');
+                                break;
+                            case 'ja':
+                            case 'jp':
+                                R.text('ニックネームは2〜12文字に入力してください');
+                                break;
+                            case 'cn':
+                                R.text('账户名仅限2~12字节');
+                                break;
+                        }
+                    } else {
+                        if (NicknameFilter.hasForbidden(ap)) {
+                            switch (egl) {
+                                case 'ko':
+                                    R.text('사용할 수 없는 닉네임입니다.');
+                                    break;
+                                case 'en':
+                                    R.text('This nickname cannot be used.');
+                                    break;
+                                case 'ja':
+                                case 'jp':
+                                    R.text('使用できないニックネームです');
+                                    break;
+                                case 'cn':
+                                    R.text('不能使用该账户名。');
+                                    break;
+                            }
+                        } else {
+                            if (ChatFilter.checkNickname(ap)) {
+                                switch (egl) {
+                                    case 'ko':
+                                        R.text('닉네임에 비속어가 포함되어 있습니다.');
+                                        break;
+                                    case 'en':
+                                        R.text('Nickname contains inappropriate words.');
+                                        break;
+                                    case 'ja':
+                                    case 'jp':
+                                        R.text('ニックネームに使用できない言葉が含まれています');
+                                        break;
+                                    case 'cn':
+                                        R.text('账户名不包含辱骂等词语');
+                                        break;
+                                }
+                            } else {
+                                clearTimeout(a5.requestCreateNickname);
+                                if (!a4) {
+                                    R.text(POPUP_CONFIG.duplicatedNickname(egl).desc);
+                                    a8();
+                                }
+                                if (!a4) return;
+                                var aq = {
+                                    user_id: n.user_id,
+                                    device_id: r,
+                                    nickname: ap,
+                                    content_id: DCvi
+                                };
+                                $('#loadingDiv').css('display', 'block');
+                                d(aq, function() {
+                                    a4 = true;
+                                    clearTimeout(a5.requestCreateNickname);
+                                    if (p == 'auth') {
+                                        k(DCvi);
+                                        if (a6) F.css('display', 'none');
+                                    } else {
+                                        if (p == 'enter') {
+                                            $('#loadingDiv').css('display', 'none');
+                                            K.css('display', 'none');
+                                            var aE = '',
+                                                aF = '',
+                                                aG = '';
+                                            switch (egl) {
+                                                case 'ko':
+                                                    aF = '알림';
+                                                    aE = '닉네임 생성이 완료되었습니다.';
+                                                    aG = '확인';
+                                                    break;
+                                                case 'en':
+                                                    aF = 'Notification';
+                                                    aE = 'Nickname successfully created.';
+                                                    aG = 'OK';
+                                                    break;
+                                                case 'ja':
+                                                case 'jp':
+                                                    aF = 'お知らせ';
+                                                    aE = 'ニックネーム作成を完了しました';
+                                                    aG = '確認';
+                                                    break;
+                                                case 'cn':
+                                                    aF = '提醒';
+                                                    aE = '账户名生成完毕';
+                                                    aG = '确认';
+                                                    break;
+                                            }
+                                            alertPopup(aF, aE, aG, h);
+                                        }
+                                    }
+                                }, function(aE, aF) {
+                                    a4 = false;
+                                    a8();
+                                    var aG = aE && aE.Message == 'nickname duplicated.' || aF == 409;
+                                    if (aG) {
+                                        switch (egl) {
+                                            case 'ko':
+                                                R.text('이미 사용 중인 닉네임입니다.');
+                                                break;
+                                            case 'en':
+                                                R.text('This nickname is already taken.');
+                                                break;
+                                            case 'ja':
+                                            case 'jp':
+                                                R.text('既に使用中のニックネームです');
+                                                break;
+                                            case 'cn':
+                                                R.text('此用户名已被注册');
+                                                break;
+                                        }
+                                    } else {
+                                        switch (egl) {
+                                            case 'ko':
+                                                R.text('닉네임 생성에 실패하였습니다. 다시 시도해 주세요.');
+                                                break;
+                                            case 'en':
+                                                R.text('Failed to create a nickname. Please try again.');
+                                                break;
+                                            case 'ja':
+                                            case 'jp':
+                                                R.text('ニックネーム作成に失敗しました。もう一度入力してください。');
+                                                break;
+                                            case 'cn':
+                                                R.text('生成账户名失败，请重新输入');
+                                                break;
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }
             }
         });
-        window.onpageshow = function(C) {
-            var D = null,
-                E = window.performance,
-                F = E && E.getEntriesByType ? E.getEntriesByType('navigation') : null,
-                G = F && F[0] ? F[0].type : null;
-            console.log(G);
-            if (C.persisted || G == 'back_forward' || D == 2) {
-                location.reload();
+        $('#customerId,#ticketId').on('keydown', function(ap) {
+            if (ap.keyCode == 13) {
+                I.click();
             }
-        };
-    }
-})(jQuery);
+        });
+        Q.on('keydown', function(ap) {
+            if (ap.keyCode == 13) {
+                V.click();
+            }
+        });
+        E.on('click', a9);
+        Z.on('click', function() {
+            var ap = W.val().trim(),
+                aq = X.val().trim();
+            if (!ap || !aq) {
+                i(Y, DCvi);
+                return;
+            }
+            var ar = {
+                customer_id: ap,
+                ticket_id: aq,
+                content_id: DCvi,
+                device_id: r
+            };
+            c(ar, function() {
+                if (T.prop('checked')) {
+                    setCookie(DCvi + '_customer_id', ar.customer_id, 20160);
+                    setCookie(DCvi + '_ticket_id', ar.ticket_id, 20160);
+                    if (n) {
+                        setCookie(DCvi + '_user_id', n.user_id, 20160);
+                    }
+                } else {
+                    removeCookie(DCvi + '_customer_id');
+                    removeCookie(DCvi + '_ticket_id');
+                    removeCookie(DCvi + '_user_id');
+                }
+                if (m.is_chat_used) {
+                    l('auth', n.nickname);
+                } else k(DCvi);
+            }, function() {
+                j(Y, DCvi);
+            });
+        });
+        $('#authCustomerId, #authTicketId').on('keydown', function(ap) {
+            if (ap.keyCode == 13) {
+                Z.click();
+            }
+        });
+        $('#authPopup button[name=closebtn]').on('click', function() {
+            L.css('display', 'none');
+        });
+        if (rtd) {
+            D.css('display', 'inline-block');
+            F.remove();
+            E.remove();
+            M.remove();
+            N.remove();
+        }
+    });
+    window.onpageshow = function(C) {
+        var D = null,
+            E = window.performance,
+            F = E && E.getEntriesByType ? E.getEntriesByType('navigation') : null,
+            G = F && F[0] ? F[0].type : null;
+        console.log(G);
+        if (C.persisted || G == 'back_forward' || D == 2) {
+            location.reload();
+        }
+    };
+}
 window.onpageshow = function(a) {
     var b = performance.getEntriesByType('navigation'),
         c = b[0],

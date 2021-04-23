@@ -69,8 +69,8 @@ const deobfuscate = async (url) => {
     const ast = parse(source.replace(/!!\[\]/g, ' true').replace(/!\[\]/g, ' false'));
     traverse(ast, {
         CallExpression: (path) => {
-            const {callee: {name}, arguments} = path.node;
-            if (name === 'a0b') {
+            const {callee: {type, name}, arguments} = path.node;
+            if (type === 'Identifier' && name === 'a0b') {
                 path.replaceWith(t.stringLiteral(a0b(arguments[0].value)));
             }
         },
@@ -143,6 +143,13 @@ const deobfuscate = async (url) => {
             if (path.parent.type === 'ExpressionStatement') {
                 const {test, consequent, alternate} = path.node;
                 path.parentPath.replaceWith(t.ifStatement(test, flattenExpressionToStatement(consequent), flattenExpressionToStatement(alternate)));
+            }
+        },
+        CallExpression: (path) => {
+            const {callee: {type, params, body}, arguments} = path.node;
+            if (type === 'FunctionExpression' && params.length === 1 && arguments.length === 1 && arguments[0]?.name === 'jQuery') {
+                path.get('callee').scope.rename(params[0].name, '$');
+                path.replaceWithMultiple(body.body);
             }
         },
     });
