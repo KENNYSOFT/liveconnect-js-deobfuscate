@@ -7,6 +7,7 @@ const traverse = require('@babel/traverse').default;
 const t = require('@babel/types');
 const generate = require('@babel/generator').default;
 const isProperty = require('is-property');
+const isVarName = require('is-var-name');
 const fs = require('fs');
 
 const checkSwitchableTest = (expression) => t.isBinaryExpression(expression, {operator: '=='}) && (t.isIdentifier(expression.left, {name: 'Tira'}) || t.isIdentifier(expression.left, {name: 'egl'})) && t.isStringLiteral(expression.right);
@@ -158,6 +159,21 @@ const deobfuscate = async (url) => {
                 const cases = [];
                 ifToCases(cases, path.node);
                 path.replaceWith(t.switchStatement(test.left, cases));
+            }
+        },
+        VariableDeclarator: (path) => {
+            const {id, init} = path.node;
+            if (t.isIdentifier(id) && t.isCallExpression(init)) {
+                const {arguments, callee} = init;
+                if (callee.name === '$' && arguments.length === 1 && t.isStringLiteral(arguments[0])) {
+                    const value = arguments[0].value;
+                    const varName = value.replace(/#/g, '').replace(/ /g, '__');
+                    if (isVarName(varName)) {
+                        path.parentPath.scope.rename(id.name, varName);
+                    } else {
+                        console.error(`Cannot construct variable name from jQuery selector: ${value}`);
+                    }
+                }
             }
         },
     });

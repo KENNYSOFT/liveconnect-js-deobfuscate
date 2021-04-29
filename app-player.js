@@ -2236,14 +2236,14 @@ var Rich360Log = function() {
             value: function k(l) {
                 var m = document.createElement('canvas'),
                     n = m.getContext('2d'),
-                    o = $('#mvMainDiv'),
-                    p = $('#mvMainDiv video');
-                m.width = p.width();
-                m.height = p.height();
-                var q = p[0],
+                    mvMainDiv = $('#mvMainDiv'),
+                    mvMainDiv__video = $('#mvMainDiv video');
+                m.width = mvMainDiv__video.width();
+                m.height = mvMainDiv__video.height();
+                var q = mvMainDiv__video[0],
                     r = q.videoWidth,
                     s = q.videoHeight;
-                n.drawImage(p[0], Math.round(l.x * r), Math.round(l.y * s), Math.round(l.width * r), Math.round(l.height * s), 0, 0, o.width(), o.height());
+                n.drawImage(mvMainDiv__video[0], Math.round(l.x * r), Math.round(l.y * s), Math.round(l.width * r), Math.round(l.height * s), 0, 0, mvMainDiv.width(), mvMainDiv.height());
                 return m.toDataURL();
             }
         }, {
@@ -3945,24 +3945,24 @@ Chat.Ui = function() {
             });
             $('#chatList').on('scroll', function() {
                 if (d) return;
-                var i = $('#chatAnchor'),
-                    j = $('#chatList'),
+                var chatAnchor = $('#chatAnchor'),
+                    chatList = $('#chatList'),
                     k = function r() {
-                        return Math.ceil(j.scrollTop() + j.height());
+                        return Math.ceil(chatList.scrollTop() + chatList.height());
                     },
                     l = function s() {
                         var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : k();
-                        return t < j[0].scrollHeight;
+                        return t < chatList[0].scrollHeight;
                     },
                     m = function t() {
-                        i.css('display', 'block');
+                        chatAnchor.css('display', 'block');
                         b = true;
                     };
                 if (l()) setTimeout(function() {
                     return l() && m();
                 }, 200);
                 else {
-                    i.css('display', 'none');
+                    chatAnchor.css('display', 'none');
                     b = false;
                     if (e.length !== 0) {
                         var n = document.createDocumentFragment(),
@@ -3971,10 +3971,10 @@ Chat.Ui = function() {
                             if (a <= p) break;
                             n.prepend(o[p]);
                         }
-                        j.find('.user_chat:eq(-1)').css('margin-bottom', '1.25em');
-                        j.append(n);
-                        if (navigator.userAgent.indexOf('Firefox') === -1) j.find('.user_chat:eq(-1)').css('margin-bottom', '0');
-                        j.scrollTop(j[0].scrollHeight);
+                        chatList.find('.user_chat:eq(-1)').css('margin-bottom', '1.25em');
+                        chatList.append(n);
+                        if (navigator.userAgent.indexOf('Firefox') === -1) chatList.find('.user_chat:eq(-1)').css('margin-bottom', '0');
+                        chatList.scrollTop(chatList[0].scrollHeight);
                         e = [];
                     }
                 }
@@ -4211,29 +4211,29 @@ function chatTestItvStop() {
 var iCM = function() {
         var a = false;
         return function(b) {
-            var c = $('#chatInput'),
-                d = $('#chatSendBtn');
+            var chatInput = $('#chatInput'),
+                chatSendBtn = $('#chatSendBtn');
             if (typeof b !== 'undefined') a = b;
-            if (b) c.val('');
-            c.prop('placeholder', a ? gettext('CHAT_PLACEHOLDER_ON_MUTE') : gettext('P_CHAT_INPUT_PLACEHOLDER'));
-            c.attr('disabled', a);
-            d.attr('disabled', a);
+            if (b) chatInput.val('');
+            chatInput.prop('placeholder', a ? gettext('CHAT_PLACEHOLDER_ON_MUTE') : gettext('P_CHAT_INPUT_PLACEHOLDER'));
+            chatInput.attr('disabled', a);
+            chatSendBtn.attr('disabled', a);
             return a;
         };
     }(),
     _wmarkImgUrl = '';
 
 function updateWaterMarkPos(a) {
-    var b = $('#playerWrap'),
+    var playerWrap = $('#playerWrap'),
         c = document.getElementsByTagName('video')[0];
     if (!c) return;
     if ($('#mvMainDiv').length) {
-        b = $('#mvMainDiv');
+        playerWrap = $('#mvMainDiv');
     }
     if (!$('#wmark').length) {
         var d = document.createElement('div');
         d.setAttribute('id', 'wmark');
-        b.append(d);
+        playerWrap.append(d);
     }
     if (a) {
         $('#wmark').css('background-image', 'url(' + a + ')');
@@ -4248,8 +4248,8 @@ function updateWaterMarkPos(a) {
         f = 1080;
     }
     var g = e / f,
-        h = b.width(),
-        i = b.height(),
+        h = playerWrap.width(),
+        i = playerWrap.height(),
         j = h / g,
         k = 0,
         l = 0,
@@ -4313,18 +4313,18 @@ function updateTicketDivPos() {
         }
         return;
     }
-    var a = $('#playerWrap'),
+    var playerWrap = $('#playerWrap'),
         b = document.getElementsByTagName('video')[0];
     if (!b) return;
     if ($('#mvMainDiv').length) {
-        a = $('#mvMainDiv');
+        playerWrap = $('#mvMainDiv');
     }
     if (!$('#ticketDiv').length) {
         var c = document.createElement('div');
         c.setAttribute('id', 'ticketDiv');
-        a.append(c);
+        playerWrap.append(c);
     }
-    var d = $('#ticketDiv'),
+    var ticketDiv = $('#ticketDiv'),
         e = 1920;
     if (!e) {
         e = 1920;
@@ -4334,8 +4334,8 @@ function updateTicketDivPos() {
         f = 1080;
     }
     var g = e / f,
-        h = a.width(),
-        i = a.height(),
+        h = playerWrap.width(),
+        i = playerWrap.height(),
         j = h / g,
         k = 0,
         l = 0,
@@ -4355,13 +4355,13 @@ function updateTicketDivPos() {
     var o = 220,
         p = 40,
         q = 32;
-    d.css('width', o * m + 'px');
-    d.css('height', p * m + 'px');
-    d.css('top', (i - l) * _ticketPos.y + l / 2 + 'px');
-    d.css('left', (h - k) * _ticketPos.x + k / 2 + 'px');
-    d.css('font-size', q * m + 'px');
-    d.css('display', 'block');
-    d.text(getCookie(DCvi + '_ticket_id'));
+    ticketDiv.css('width', o * m + 'px');
+    ticketDiv.css('height', p * m + 'px');
+    ticketDiv.css('top', (i - l) * _ticketPos.y + l / 2 + 'px');
+    ticketDiv.css('left', (h - k) * _ticketPos.x + k / 2 + 'px');
+    ticketDiv.css('font-size', q * m + 'px');
+    ticketDiv.css('display', 'block');
+    ticketDiv.text(getCookie(DCvi + '_ticket_id'));
 }
 var _player = null,
     IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
