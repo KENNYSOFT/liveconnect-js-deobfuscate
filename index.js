@@ -151,6 +151,23 @@ const deobfuscate = async (url) => {
                 path.replaceWithMultiple(body.body);
             }
         },
+        VariableDeclaration: (path) => {
+            const {kind, declarations} = path.node;
+            if (declarations.length > 1) {
+                switch (path.parent.type) {
+                    case 'Program':
+                    case 'BlockStatement':
+                        path.replaceWithMultiple(declarations.map(declaration => t.variableDeclaration(kind, [declaration])));
+                        break;
+                    case 'ForStatement':
+                        // ignored
+                        break;
+                    default:
+                        console.error(`Unsupported type of parent while flattening VariableDeclaration: ${path.parent.type}`);
+                        break;
+                }
+            }
+        },
     });
     traverse(ast, {
         IfStatement: (path) => {

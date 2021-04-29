@@ -5,8 +5,8 @@ function _createForOfIteratorHelper(a, b) {
     if (!c) {
         if (Array.isArray(a) || (c = _unsupportedIterableToArray(a)) || b && a && typeof a.length === 'number') {
             if (c) a = c;
-            var d = 0,
-                g = function l() {};
+            var d = 0;
+            var g = function l() {};
             return {
                 s: g,
                 n: function m() {
@@ -26,9 +26,9 @@ function _createForOfIteratorHelper(a, b) {
         }
         throw new TypeError('Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.');
     }
-    var h = true,
-        j = false,
-        k;
+    var h = true;
+    var j = false;
+    var k;
     return {
         s: function r() {
             c = c.call(a);
@@ -90,8 +90,8 @@ function _createClass(a, b, c) {
     if (c) _defineProperties(a, c);
     return a;
 }
-var selectArr = [],
-    callbackArr = [];
+var selectArr = [];
+var callbackArr = [];
 
 function cusDD(a, b, c) {
     var d = false;
@@ -269,380 +269,395 @@ function cusDDselectOption(a, b, c) {
     a.Menu = d;
 })(window);
 var Rich360Player = function() {
-        function a(b, c, d) {
-            _classCallCheck(this, a);
-            this._options = b;
-            this._ui = c;
-            this._req_str = d;
-            this._player = new Rich360(b, d, c, this);
-            this._initHideCtroller = false;
-            this._initQualityUI = false;
-            this._initSubtitleUI = false;
-            this._loading_on = [];
-            this._wakeupPastTime = 0;
-            this._timer = {
-                hidePlayerController: {
-                    timer: null,
-                    period: 5000
+    function a(b, c, d) {
+        _classCallCheck(this, a);
+        this._options = b;
+        this._ui = c;
+        this._req_str = d;
+        this._player = new Rich360(b, d, c, this);
+        this._initHideCtroller = false;
+        this._initQualityUI = false;
+        this._initSubtitleUI = false;
+        this._loading_on = [];
+        this._wakeupPastTime = 0;
+        this._timer = {
+            hidePlayerController: {
+                timer: null,
+                period: 5000
+            }
+        };
+        this._isFullScreen = true;
+        this._thumbnailGridData = null;
+        this.initLoadingState();
+        this.initEventListener();
+    }
+    _createClass(a, [{
+        key: 'initPlayerUI',
+        value: function b() {
+            this._ui.playBtn.onclick = function() {
+                if (this._player._ui_play) {
+                    this.pause();
+                } else {
+                    this.play();
                 }
-            };
-            this._isFullScreen = true;
-            this._thumbnailGridData = null;
-            this.initLoadingState();
-            this.initEventListener();
-        }
-        _createClass(a, [{
-            key: 'initPlayerUI',
-            value: function b() {
-                this._ui.playBtn.onclick = function() {
-                    if (this._player._ui_play) {
-                        this.pause();
+            }.bind(this);
+            this._ui.volumeSlider = new customRange(this._ui.volumeSlider);
+            if (isMobile() || isTablet() || isIpadOS()) {
+                this._ui.volumeBtn.style.display = 'none';
+                $(this._ui.volumeSlider).parent().css('display', 'none');
+            } else {
+                this._ui.volumeSlider.addEventListener('input', function() {
+                    if (this._ui.volumeSlider._value == 0) {
+                        this._ui.volumeBtn.classList.add('mute');
                     } else {
-                        this.play();
+                        this._ui.volumeBtn.classList.remove('mute');
+                    }
+                    this._ui.volumeSlider.barDiv.style.backgroundImage = 'linear-gradient(to right, #fff 0%, #fff ' + this._ui.volumeSlider._value + '%, transparent ' + this._ui.volumeSlider._value + '%, transparent 100%)';
+                    this.volume(this._ui.volumeSlider._value);
+                }.bind(this));
+                this._ui.volumeSlider.addEventListener('seek', function(d) {
+                    this.volume(d.target._value);
+                }.bind(this));
+                this._ui.volumeBtn.onclick = function() {
+                    if (this._ui.volumeBtn.classList.contains('mute')) {
+                        this._ui.volumeBtn.classList.remove('mute');
+                        this._ui.volumeSlider.value = this._ui.volumeSlider.beforeValue;
+                        this._ui.volumeSlider.beforeValue = 0;
+                        this.volume(this._ui.volumeSlider.value);
+                    } else {
+                        this._ui.volumeBtn.classList.add('mute');
+                        this._ui.volumeSlider.beforeValue = this._ui.volumeSlider.value;
+                        this._ui.volumeSlider.value = 0;
+                        this.volume(this._ui.volumeSlider.value);
                     }
                 }.bind(this);
-                this._ui.volumeSlider = new customRange(this._ui.volumeSlider);
-                if (isMobile() || isTablet() || isIpadOS()) {
-                    this._ui.volumeBtn.style.display = 'none';
-                    $(this._ui.volumeSlider).parent().css('display', 'none');
-                } else {
-                    this._ui.volumeSlider.addEventListener('input', function() {
-                        if (this._ui.volumeSlider._value == 0) {
-                            this._ui.volumeBtn.classList.add('mute');
-                        } else {
-                            this._ui.volumeBtn.classList.remove('mute');
+                this._ui.volumeBtn.style.display = 'inline-block';
+                $(this._ui.volumeSlider).parent().css('display', 'inline-block');
+            }
+            if (this._options.content_data.use_vod) {
+                this._ui.seekBar = new customRange(this._ui.sliderArea, 0, this._ui.sliderPaddingDiv);
+                this._ui.seekBar.addEventListener('input', function(d) {
+                    this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + d.target._value + '%, #ea0029 ' + d.target._value + '%, transparent ' + d.target._loadedValue + '%, transparent ' + d.target._loadedValue + '%)';
+                    if (this._ui.seekBar.thumbInteracting) {
+                        this.viewSeekBarThumbnail(d.target._value, true);
+                    }
+                }.bind(this));
+                this._ui.seekBar.paddingBar.addEventListener('mousemove', function(d) {
+                    this.viewSeekBarThumbnail(d.offsetX / this._ui.seekBar.clientWidth * 100);
+                }.bind(this));
+                this._ui.seekBar.paddingBar.addEventListener('mouseout', function(d) {
+                    $(this._ui.sliderThumbnail).css('display', 'none');
+                }.bind(this));
+                this._ui.seekBar.addEventListener('seek', function(d) {
+                    this.seek(d.target._value);
+                    $(this._ui.sliderThumbnail).css('display', 'none');
+                }.bind(this));
+                $(this._ui.prev10sBtn).on('click', function() {
+                    if (this._player.currentPosition) {
+                        var d = this._player.currentPosition - 10;
+                        if (d < 0) {
+                            d = 0;
                         }
-                        this._ui.volumeSlider.barDiv.style.backgroundImage = 'linear-gradient(to right, #fff 0%, #fff ' + this._ui.volumeSlider._value + '%, transparent ' + this._ui.volumeSlider._value + '%, transparent 100%)';
-                        this.volume(this._ui.volumeSlider._value);
-                    }.bind(this));
-                    this._ui.volumeSlider.addEventListener('seek', function(d) {
-                        this.volume(d.target._value);
-                    }.bind(this));
-                    this._ui.volumeBtn.onclick = function() {
-                        if (this._ui.volumeBtn.classList.contains('mute')) {
-                            this._ui.volumeBtn.classList.remove('mute');
-                            this._ui.volumeSlider.value = this._ui.volumeSlider.beforeValue;
-                            this._ui.volumeSlider.beforeValue = 0;
-                            this.volume(this._ui.volumeSlider.value);
-                        } else {
-                            this._ui.volumeBtn.classList.add('mute');
-                            this._ui.volumeSlider.beforeValue = this._ui.volumeSlider.value;
-                            this._ui.volumeSlider.value = 0;
-                            this.volume(this._ui.volumeSlider.value);
+                        this._player.currentPosition = d;
+                    }
+                }.bind(this));
+                $(this._ui.next10sBtn).on('click', function() {
+                    if (this._player.currentPosition) {
+                        var d = this._player.currentPosition + 10;
+                        if (d > this._player.duration - 1) {
+                            d = this._player.duration - 1;
                         }
-                    }.bind(this);
-                    this._ui.volumeBtn.style.display = 'inline-block';
-                    $(this._ui.volumeSlider).parent().css('display', 'inline-block');
+                        this._player.currentPosition = d;
+                    }
+                }.bind(this));
+            }
+            if (isIOS()) {
+                $(this._ui.fullBtn).on('click', function() {
+                    this._player._subtitleManager.showDefaultSubtitle();
+                    if (!this._player._video.paused) {
+                        this._player._video.webkitEnterFullscreen();
+                    }
+                }.bind(this));
+            } else this._ui.fullScreen = new FullscreenButton(this, this._ui.fullBtn);
+            if (isMobile()) {
+                var c = getOrientation();
+                if (typeof c == 'string') {
+                    if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') this.hideChatWrap();
+                    else {
+                        if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
+                            this.showChatWrap();
+                        }
+                    }
                 }
-                if (this._options.content_data.use_vod) {
-                    this._ui.seekBar = new customRange(this._ui.sliderArea, 0, this._ui.sliderPaddingDiv);
-                    this._ui.seekBar.addEventListener('input', function(d) {
-                        this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + d.target._value + '%, #ea0029 ' + d.target._value + '%, transparent ' + d.target._loadedValue + '%, transparent ' + d.target._loadedValue + '%)';
-                        if (this._ui.seekBar.thumbInteracting) {
-                            this.viewSeekBarThumbnail(d.target._value, true);
-                        }
-                    }.bind(this));
-                    this._ui.seekBar.paddingBar.addEventListener('mousemove', function(d) {
-                        this.viewSeekBarThumbnail(d.offsetX / this._ui.seekBar.clientWidth * 100);
-                    }.bind(this));
-                    this._ui.seekBar.paddingBar.addEventListener('mouseout', function(d) {
-                        $(this._ui.sliderThumbnail).css('display', 'none');
-                    }.bind(this));
-                    this._ui.seekBar.addEventListener('seek', function(d) {
-                        this.seek(d.target._value);
-                        $(this._ui.sliderThumbnail).css('display', 'none');
-                    }.bind(this));
-                    $(this._ui.prev10sBtn).on('click', function() {
-                        if (this._player.currentPosition) {
-                            var d = this._player.currentPosition - 10;
-                            if (d < 0) {
-                                d = 0;
-                            }
-                            this._player.currentPosition = d;
-                        }
-                    }.bind(this));
-                    $(this._ui.next10sBtn).on('click', function() {
-                        if (this._player.currentPosition) {
-                            var d = this._player.currentPosition + 10;
-                            if (d > this._player.duration - 1) {
-                                d = this._player.duration - 1;
-                            }
-                            this._player.currentPosition = d;
-                        }
-                    }.bind(this));
-                }
-                if (isIOS()) {
-                    $(this._ui.fullBtn).on('click', function() {
-                        this._player._subtitleManager.showDefaultSubtitle();
-                        if (!this._player._video.paused) {
-                            this._player._video.webkitEnterFullscreen();
-                        }
-                    }.bind(this));
-                } else this._ui.fullScreen = new FullscreenButton(this, this._ui.fullBtn);
-                if (isMobile()) {
-                    var c = getOrientation();
-                    if (typeof c == 'string') {
-                        if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') this.hideChatWrap();
-                        else {
-                            if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
+                $(window).on('orientationchange', function() {
+                    var h = getOrientation();
+                    if (typeof h == 'string') {
+                        if (h == 'landscape-primary' || h == 'landscape-secondary' || h == 'landscape') {
+                            this.hideChatWrap();
+                        } else {
+                            if (h == 'portrait-primary' || h == 'portrait-secondary' || h == 'portrait') {
                                 this.showChatWrap();
                             }
                         }
                     }
-                    $(window).on('orientationchange', function() {
-                        var h = getOrientation();
-                        if (typeof h == 'string') {
-                            if (h == 'landscape-primary' || h == 'landscape-secondary' || h == 'landscape') {
-                                this.hideChatWrap();
-                            } else {
-                                if (h == 'portrait-primary' || h == 'portrait-secondary' || h == 'portrait') {
-                                    this.showChatWrap();
+                }.bind(this));
+            }
+            if (this._options.content_data.use_vod) {
+                $(this._ui.sliderPaddingDiv).width($(this._ui.sliderArea).width());
+            }
+        }
+    }, {
+        key: 'createQualityDiv',
+        value: function c(d) {
+            var e = document.createElement('div');
+            e.className = 'fc_default cusDD_opt';
+            e.id = d.id;
+            e.dataset.id = d.id;
+            e.dataset.height = d.height;
+            var f = '';
+            if (e.dataset.height == 'auto') {
+                f = 'AUTO';
+            } else f = e.dataset.height + 'P';
+            e.innerHTML = f;
+            return e;
+        }
+    }, {
+        key: 'createQualityBtn',
+        value: function d(e) {
+            var f = document.createElement('button');
+            f.className = 'text-btn fc_default bold';
+            f.id = e.id;
+            f.dataset.id = e.id;
+            f.dataset.height = e.height;
+            var g = '';
+            if (f.dataset.height == 'auto') {
+                g = 'AUTO';
+            } else {
+                g = f.dataset.height + 'P';
+            }
+            f.innerHTML = g;
+            return f;
+        }
+    }, {
+        key: 'createSubtitleDiv',
+        value: function e(f) {
+            var g = document.createElement('div');
+            g.className = 'fc_default cusDD_opt';
+            g.id = f.id;
+            g.dataset.id = f.id;
+            g.dataset.label = f.label;
+            g.dataset.lang = f.lang;
+            g.innerHTML = f.label;
+            return g;
+        }
+    }, {
+        key: 'createSubtitleBtn',
+        value: function f(g) {
+            var h = document.createElement('button');
+            h.className = 'text-btn fc_default bold';
+            h.id = g.id;
+            h.dataset.id = g.id;
+            h.dataset.label = g.label;
+            h.dataset.lang = g.lang;
+            h.innerHTML = g.label;
+            return h;
+        }
+    }, {
+        key: 'initQuality',
+        value: function g() {
+            if (this._initQualityUI) return;
+            this._ui.qualityItems = [];
+            this._ui.qualityPopupItems = [];
+            if (!this._player.qualityList) {
+                this._ui.qualitySelect.style.display = 'none';
+                this._ui.qualitySelectBtn.style.display = 'none';
+                return;
+            }
+            this._ui.qualitySelect.style.display = 'block';
+            this._ui.qualitySelectBtn.style.display = 'block';
+            var h = this.createQualityDiv({
+                id: 'auto',
+                height: 'auto'
+            });
+            var j = this.createQualityBtn({
+                id: 'auto',
+                height: 'auto'
+            });
+            var k = document.createElement('div');
+            k.className = 'cusDD_options';
+            k.appendChild(h);
+            j.className += ' on';
+            $(this._ui.qualityPopup).find('.ta_c').append(j);
+            this._ui.qualityItems.push(h);
+            this._ui.qualityPopupItems.push(j);
+            if (this._player.qualityList) {
+                for (var l = 0; l < this._player.qualityList.length; l++) {
+                    if (!this._player.qualityList[l].height) continue;
+                    var m = this.createQualityDiv({
+                        id: l,
+                        height: this._player.qualityList[l].height
+                    });
+                    var n = this.createQualityBtn({
+                        id: l,
+                        height: this._player.qualityList[l].height
+                    });
+                    if ('NAME' in this._player.qualityList[l].attrs) {
+                        m = this.createQualityDiv({
+                            id: l,
+                            height: this._player.qualityList[l].attrs.NAME
+                        });
+                        n = this.createQualityBtn({
+                            id: l,
+                            height: this._player.qualityList[l].attrs.NAME
+                        });
+                    }
+                    if (this._player.quality) {
+                        if (this._player.quality == l) addClassName(m, 'on');
+                    }
+                    k.appendChild(m);
+                    $(this._ui.qualityPopup).find('.ta_c').append(n);
+                    this._ui.qualityItems.push(m);
+                    this._ui.qualityPopupItems.push(n);
+                }
+                for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
+                    this._ui.qualityPopupItems[o].addEventListener('click', function(s) {
+                        var t = null;
+                        if (s.target.id == 'auto') {
+                            t = -1;
+                        } else {
+                            t = parseInt(s.target.id);
+                        }
+                        for (var u = 0; u < this._ui.qualityPopupItems.length; u++) {
+                            removeClassName(this._ui.qualityPopupItems[u], 'on');
+                        }
+                        s.target.classList.add('on');
+                        this._ui.qualityPopup.style.display = 'none';
+                        if (this._player.quality == t) {
+                            return;
+                        }
+                        this._player.quality = t;
+                        if (s.target.id == 'auto')
+                            for (var v = 0; v < this._ui.qualityPopupItems.length; v++) {
+                                if (this._ui.qualityPopupItems[v].id == this._player._hls.nextAutoLevel) {
+                                    addClassName(this._ui.qualityPopupItems[v], 'on');
+                                    break;
                                 }
                             }
-                        }
                     }.bind(this));
                 }
-                if (this._options.content_data.use_vod) {
-                    $(this._ui.sliderPaddingDiv).width($(this._ui.sliderArea).width());
-                }
             }
-        }, {
-            key: 'createQualityDiv',
-            value: function c(d) {
-                var e = document.createElement('div');
-                e.className = 'fc_default cusDD_opt';
-                e.id = d.id;
-                e.dataset.id = d.id;
-                e.dataset.height = d.height;
-                var f = '';
-                if (e.dataset.height == 'auto') {
-                    f = 'AUTO';
-                } else f = e.dataset.height + 'P';
-                e.innerHTML = f;
-                return e;
-            }
-        }, {
-            key: 'createQualityBtn',
-            value: function d(e) {
-                var f = document.createElement('button');
-                f.className = 'text-btn fc_default bold';
-                f.id = e.id;
-                f.dataset.id = e.id;
-                f.dataset.height = e.height;
-                var g = '';
-                if (f.dataset.height == 'auto') {
-                    g = 'AUTO';
-                } else {
-                    g = f.dataset.height + 'P';
-                }
-                f.innerHTML = g;
-                return f;
-            }
-        }, {
-            key: 'createSubtitleDiv',
-            value: function e(f) {
-                var g = document.createElement('div');
-                g.className = 'fc_default cusDD_opt';
-                g.id = f.id;
-                g.dataset.id = f.id;
-                g.dataset.label = f.label;
-                g.dataset.lang = f.lang;
-                g.innerHTML = f.label;
-                return g;
-            }
-        }, {
-            key: 'createSubtitleBtn',
-            value: function f(g) {
-                var h = document.createElement('button');
-                h.className = 'text-btn fc_default bold';
-                h.id = g.id;
-                h.dataset.id = g.id;
-                h.dataset.label = g.label;
-                h.dataset.lang = g.lang;
-                h.innerHTML = g.label;
-                return h;
-            }
-        }, {
-            key: 'initQuality',
-            value: function g() {
-                if (this._initQualityUI) return;
-                this._ui.qualityItems = [];
-                this._ui.qualityPopupItems = [];
-                if (!this._player.qualityList) {
-                    this._ui.qualitySelect.style.display = 'none';
-                    this._ui.qualitySelectBtn.style.display = 'none';
-                    return;
-                }
-                this._ui.qualitySelect.style.display = 'block';
-                this._ui.qualitySelectBtn.style.display = 'block';
-                var h = this.createQualityDiv({
-                        id: 'auto',
-                        height: 'auto'
-                    }),
-                    j = this.createQualityBtn({
-                        id: 'auto',
-                        height: 'auto'
-                    }),
-                    k = document.createElement('div');
-                k.className = 'cusDD_options';
-                k.appendChild(h);
-                j.className += ' on';
-                $(this._ui.qualityPopup).find('.ta_c').append(j);
-                this._ui.qualityItems.push(h);
-                this._ui.qualityPopupItems.push(j);
-                if (this._player.qualityList) {
-                    for (var l = 0; l < this._player.qualityList.length; l++) {
-                        if (!this._player.qualityList[l].height) continue;
-                        var m = this.createQualityDiv({
-                                id: l,
-                                height: this._player.qualityList[l].height
-                            }),
-                            n = this.createQualityBtn({
-                                id: l,
-                                height: this._player.qualityList[l].height
-                            });
-                        if ('NAME' in this._player.qualityList[l].attrs) {
-                            m = this.createQualityDiv({
-                                id: l,
-                                height: this._player.qualityList[l].attrs.NAME
-                            });
-                            n = this.createQualityBtn({
-                                id: l,
-                                height: this._player.qualityList[l].attrs.NAME
-                            });
+            this._ui.qualitySelect.appendChild(k);
+            var p = '#' + this._ui.qualitySelect.getAttribute('id');
+            cusDD(p, null, function(t) {
+                var u = null;
+                $(p).find('.cusDD_opt').each(function() {
+                    if ($(this).data().id != t.id) {
+                        if (!$(this).attr('selected') || t.id != 'auto') {
+                            $(this).removeAttr('selected');
+                            $(this).removeClass('on');
                         }
-                        if (this._player.quality) {
-                            if (this._player.quality == l) addClassName(m, 'on');
-                        }
-                        k.appendChild(m);
-                        $(this._ui.qualityPopup).find('.ta_c').append(n);
-                        this._ui.qualityItems.push(m);
-                        this._ui.qualityPopupItems.push(n);
-                    }
-                    for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
-                        this._ui.qualityPopupItems[o].addEventListener('click', function(s) {
-                            var t = null;
-                            if (s.target.id == 'auto') {
-                                t = -1;
-                            } else {
-                                t = parseInt(s.target.id);
-                            }
-                            for (var u = 0; u < this._ui.qualityPopupItems.length; u++) {
-                                removeClassName(this._ui.qualityPopupItems[u], 'on');
-                            }
-                            s.target.classList.add('on');
-                            this._ui.qualityPopup.style.display = 'none';
-                            if (this._player.quality == t) {
-                                return;
-                            }
-                            this._player.quality = t;
-                            if (s.target.id == 'auto')
-                                for (var v = 0; v < this._ui.qualityPopupItems.length; v++) {
-                                    if (this._ui.qualityPopupItems[v].id == this._player._hls.nextAutoLevel) {
-                                        addClassName(this._ui.qualityPopupItems[v], 'on');
-                                        break;
-                                    }
-                                }
-                        }.bind(this));
-                    }
-                }
-                this._ui.qualitySelect.appendChild(k);
-                var p = '#' + this._ui.qualitySelect.getAttribute('id');
-                cusDD(p, null, function(t) {
-                    var u = null;
-                    $(p).find('.cusDD_opt').each(function() {
-                        if ($(this).data().id != t.id) {
-                            if (!$(this).attr('selected') || t.id != 'auto') {
-                                $(this).removeAttr('selected');
-                                $(this).removeClass('on');
-                            }
-                        } else {
-                            $(this).attr('selected', 'selected');
-                            $(this).addClass('on');
-                        }
-                    });
-                    if (t.id == 'auto') {
-                        u = -1;
                     } else {
-                        u = parseInt(t.id);
+                        $(this).attr('selected', 'selected');
+                        $(this).addClass('on');
                     }
-                    this._player.quality = u;
-                }.bind(this));
-                cusDDselectOption(p, 'auto', true);
-                this._ui.qualitySelect = document.getElementById(this._ui.qualitySelect.getAttribute('id'));
-                $(this._ui.qualitySelectBtn).on('click', function(t) {
-                    $(this._ui.qualitySelect).click();
-                    t.stopPropagation();
-                }.bind(this));
-                this._initQualityUI = true;
-            }
-        }, {
-            key: 'initSubtitle',
-            value: function h() {
-                if (this._initSubtitleUI) {
-                    return;
-                    var j = this._ui.ccSelect.getAttribute('id');
-                    $(this._ui.ccSelect).find('.cusDD_opt').each(function() {
-                        if ($(this).attr('selected') == 'selected') {
-                            cusDDselectOption('#' + j, $(this).data().id, true);
-                        }
-                    });
-                    return;
+                });
+                if (t.id == 'auto') {
+                    u = -1;
+                } else {
+                    u = parseInt(t.id);
                 }
-                this._ui.subtitlePopupItems = [];
-                if (!this._player.subtitleList) {
+                this._player.quality = u;
+            }.bind(this));
+            cusDDselectOption(p, 'auto', true);
+            this._ui.qualitySelect = document.getElementById(this._ui.qualitySelect.getAttribute('id'));
+            $(this._ui.qualitySelectBtn).on('click', function(t) {
+                $(this._ui.qualitySelect).click();
+                t.stopPropagation();
+            }.bind(this));
+            this._initQualityUI = true;
+        }
+    }, {
+        key: 'initSubtitle',
+        value: function h() {
+            if (this._initSubtitleUI) {
+                return;
+                var j = this._ui.ccSelect.getAttribute('id');
+                $(this._ui.ccSelect).find('.cusDD_opt').each(function() {
+                    if ($(this).attr('selected') == 'selected') {
+                        cusDDselectOption('#' + j, $(this).data().id, true);
+                    }
+                });
+                return;
+            }
+            this._ui.subtitlePopupItems = [];
+            if (!this._player.subtitleList) {
+                this._ui.ccSelect.style.display = 'none';
+                this._ui.ccSelectBtn.style.display = 'none';
+                return;
+            } else {
+                if (!this._player.subtitleList.length) {
                     this._ui.ccSelect.style.display = 'none';
                     this._ui.ccSelectBtn.style.display = 'none';
                     return;
                 } else {
-                    if (!this._player.subtitleList.length) {
-                        this._ui.ccSelect.style.display = 'none';
-                        this._ui.ccSelectBtn.style.display = 'none';
-                        return;
+                    if (!this._player.subtitleList[0].lang) return;
+                }
+            }
+            var k = this.createSubtitleDiv({
+                id: '-1',
+                label: 'OFF',
+                lang: 'OFF'
+            });
+            var l = this.createSubtitleBtn({
+                id: '-1',
+                label: 'OFF',
+                lang: 'OFF'
+            });
+            var m = document.createElement('div');
+            addClassName(k, 'on');
+            addClassName(l, 'on');
+            m.className = 'cusDD_options';
+            m.appendChild(k);
+            this._ui.subtitlePopupItems.push(l);
+            $(this._ui.subtitlePopup).find('.ta_c').append(l);
+            if (this._player.subtitleList) {
+                for (var n = 0; n < this._player.subtitleList.length; n++) {
+                    var o = this.createSubtitleDiv(this._player.subtitleList[n]);
+                    var p = this.createSubtitleBtn(this._player.subtitleList[n]);
+                    m.appendChild(o);
+                    this._ui.subtitlePopupItems.push(p);
+                    $(this._ui.subtitlePopup).find('.ta_c').append(p);
+                }
+                if (this._player.subtitleList.length) {
+                    $(this._ui.ccSelectBtn).css('display', 'block');
+                    $(this._ui.ccSelect).css('display', 'block');
+                }
+            }
+            this._ui.ccSelect.appendChild(m);
+            $(this._ui.ccSelectBtn).on('click', function(u) {
+                $(this._ui.ccSelect).click();
+                u.stopPropagation();
+            }.bind(this));
+            var j = '#' + this._ui.ccSelect.getAttribute('id');
+            cusDD(j, null, function(u) {
+                console.log('selected ccSelect option : ', u);
+                $(j).find('.cusDD_opt').each(function(v) {
+                    if ($(this).data().id != u.id) {
+                        $(this).removeAttr('selected');
+                        $(this).removeClass('on');
                     } else {
-                        if (!this._player.subtitleList[0].lang) return;
+                        $(this).attr('selected', 'selected');
+                        $(this).addClass('on');
                     }
-                }
-                var k = this.createSubtitleDiv({
-                        id: '-1',
-                        label: 'OFF',
-                        lang: 'OFF'
-                    }),
-                    l = this.createSubtitleBtn({
-                        id: '-1',
-                        label: 'OFF',
-                        lang: 'OFF'
-                    }),
-                    m = document.createElement('div');
-                addClassName(k, 'on');
-                addClassName(l, 'on');
-                m.className = 'cusDD_options';
-                m.appendChild(k);
-                this._ui.subtitlePopupItems.push(l);
-                $(this._ui.subtitlePopup).find('.ta_c').append(l);
-                if (this._player.subtitleList) {
-                    for (var n = 0; n < this._player.subtitleList.length; n++) {
-                        var o = this.createSubtitleDiv(this._player.subtitleList[n]),
-                            p = this.createSubtitleBtn(this._player.subtitleList[n]);
-                        m.appendChild(o);
-                        this._ui.subtitlePopupItems.push(p);
-                        $(this._ui.subtitlePopup).find('.ta_c').append(p);
-                    }
-                    if (this._player.subtitleList.length) {
-                        $(this._ui.ccSelectBtn).css('display', 'block');
-                        $(this._ui.ccSelect).css('display', 'block');
-                    }
-                }
-                this._ui.ccSelect.appendChild(m);
-                $(this._ui.ccSelectBtn).on('click', function(u) {
-                    $(this._ui.ccSelect).click();
-                    u.stopPropagation();
-                }.bind(this));
-                var j = '#' + this._ui.ccSelect.getAttribute('id');
-                cusDD(j, null, function(u) {
-                    console.log('selected ccSelect option : ', u);
-                    $(j).find('.cusDD_opt').each(function(v) {
-                        if ($(this).data().id != u.id) {
+                });
+                this._player.setSubtitleTrack(parseInt(u.id));
+            }.bind(this));
+            cusDDselectOption(j, -1, true);
+            this._ui.ccSelect = document.getElementById(this._ui.ccSelect.getAttribute('id'));
+            for (var q = 0; q < this._ui.subtitlePopupItems.length; q++) {
+                this._ui.subtitlePopupItems[q].addEventListener('click', function(u) {
+                    $(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
+                        if ($(this).data().id != $(u.target).data().id) {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         } else {
@@ -650,647 +665,632 @@ var Rich360Player = function() {
                             $(this).addClass('on');
                         }
                     });
-                    this._player.setSubtitleTrack(parseInt(u.id));
+                    this._ui.subtitlePopup.style.display = 'none';
+                    this._player.setSubtitleTrack(parseInt($(u.target).data().id));
                 }.bind(this));
-                cusDDselectOption(j, -1, true);
-                this._ui.ccSelect = document.getElementById(this._ui.ccSelect.getAttribute('id'));
-                for (var q = 0; q < this._ui.subtitlePopupItems.length; q++) {
-                    this._ui.subtitlePopupItems[q].addEventListener('click', function(u) {
-                        $(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
-                            if ($(this).data().id != $(u.target).data().id) {
-                                $(this).removeAttr('selected');
-                                $(this).removeClass('on');
-                            } else {
-                                $(this).attr('selected', 'selected');
-                                $(this).addClass('on');
-                            }
-                        });
-                        this._ui.subtitlePopup.style.display = 'none';
-                        this._player.setSubtitleTrack(parseInt($(u.target).data().id));
-                    }.bind(this));
-                }
-                this._player.setSubtitleTrack(-1);
-                this._initSubtitleUI = true;
             }
-        }, {
-            key: 'initLoadingState',
-            value: function i() {
-                this._loading_on = [];
-                for (var j = 0; j < RICH360_WAIT_ON.SIZE; j++) {
-                    this._loading_on[j] = false;
-                }
+            this._player.setSubtitleTrack(-1);
+            this._initSubtitleUI = true;
+        }
+    }, {
+        key: 'initLoadingState',
+        value: function i() {
+            this._loading_on = [];
+            for (var j = 0; j < RICH360_WAIT_ON.SIZE; j++) {
+                this._loading_on[j] = false;
             }
-        }, {
-            key: 'initEventListener',
-            value: function j() {
-                this._player.addListener(RICH360_EVENTS.RICH360_STATE_CHANGE, function(l) {
-                    if (l === RICH360_STATE.RICH360_INIT) {
-                        this.initPlayerUI();
+        }
+    }, {
+        key: 'initEventListener',
+        value: function j() {
+            this._player.addListener(RICH360_EVENTS.RICH360_STATE_CHANGE, function(l) {
+                if (l === RICH360_STATE.RICH360_INIT) {
+                    this.initPlayerUI();
+                } else {
+                    if (l === RICH360_STATE.RICH360_READY) {
+                        this.initHideCtrllerEvent();
+                        this._ui.volumeSlider.value = this._player.volume * 100;
+                        this.initQuality();
+                    }
+                }
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_QUALITY_CHANGE, function(l) {
+                for (var m = 0; m < this._ui.qualityItems.length; m++) {
+                    if (this._ui.qualityItems[m].id == l) {
+                        addClassName(this._ui.qualityItems[m], 'on');
+                        $(this._ui.qualityItems[m]).attr('selected', 'selected');
+                    } else if (this._ui.qualityItems[m].id != 'auto' || !this._player.isAutoQuality) {
+                        removeClassName(this._ui.qualityItems[m], 'on');
+                        $(this._ui.qualityItems[m]).removeAttr('selected');
+                    }
+                }
+                for (var n = 0; n < this._ui.qualityPopupItems.length; n++) {
+                    if (this._ui.qualityPopupItems[n].id == l) {
+                        addClassName(this._ui.qualityPopupItems[n], 'on');
                     } else {
-                        if (l === RICH360_STATE.RICH360_READY) {
-                            this.initHideCtrllerEvent();
-                            this._ui.volumeSlider.value = this._player.volume * 100;
-                            this.initQuality();
+                        if (this._ui.qualityPopupItems[n].id != 'auto' || !this._player.isAutoQuality) {
+                            removeClassName(this._ui.qualityPopupItems[n], 'on');
                         }
                     }
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_QUALITY_CHANGE, function(l) {
-                    for (var m = 0; m < this._ui.qualityItems.length; m++) {
-                        if (this._ui.qualityItems[m].id == l) {
-                            addClassName(this._ui.qualityItems[m], 'on');
-                            $(this._ui.qualityItems[m]).attr('selected', 'selected');
-                        } else if (this._ui.qualityItems[m].id != 'auto' || !this._player.isAutoQuality) {
-                            removeClassName(this._ui.qualityItems[m], 'on');
-                            $(this._ui.qualityItems[m]).removeAttr('selected');
-                        }
+                }
+                if (this._player.isAutoQuality) {
+                    addClassName(this._ui.qualityItems[0], 'on');
+                    addClassName(this._ui.qualityPopupItems[0], 'on');
+                }
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_ENDED, function() {
+                $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_WAIT, function(l) {
+                this.loading(l.wait, l.wait_on);
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_DURATION_CHANGE, function() {
+                if (this._options.content_data.use_vod && this._ui.seekBar) {
+                    if (!this._ui.seekBar.thumbInteracting) {
+                        this.setDurationText(this._player.currentPosition, this._player.duration);
+                        if (this._player.currentPosition == 0) {
+                            this._ui.seekBar.value = 0;
+                        } else this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration;
                     }
-                    for (var n = 0; n < this._ui.qualityPopupItems.length; n++) {
-                        if (this._ui.qualityPopupItems[n].id == l) {
-                            addClassName(this._ui.qualityPopupItems[n], 'on');
-                        } else {
-                            if (this._ui.qualityPopupItems[n].id != 'auto' || !this._player.isAutoQuality) {
-                                removeClassName(this._ui.qualityPopupItems[n], 'on');
-                            }
-                        }
-                    }
-                    if (this._player.isAutoQuality) {
-                        addClassName(this._ui.qualityItems[0], 'on');
-                        addClassName(this._ui.qualityPopupItems[0], 'on');
-                    }
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_ENDED, function() {
+                }
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, function(l) {
+                if (l) {
+                    $(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause');
+                    this._ui.playThumbnail.style.display = 'none';
+                } else {
                     $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_WAIT, function(l) {
-                    this.loading(l.wait, l.wait_on);
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_DURATION_CHANGE, function() {
-                    if (this._options.content_data.use_vod && this._ui.seekBar) {
-                        if (!this._ui.seekBar.thumbInteracting) {
-                            this.setDurationText(this._player.currentPosition, this._player.duration);
-                            if (this._player.currentPosition == 0) {
-                                this._ui.seekBar.value = 0;
-                            } else this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration;
-                        }
-                    }
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, function(l) {
-                    if (l) {
-                        $(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause');
-                        this._ui.playThumbnail.style.display = 'none';
-                    } else {
-                        $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
-                    }
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(l) {
-                    if (l == 'Authorization failed') {
-                        Chat.Manager.destroy();
-                        if (this._player && this._player._hls) this._player._hls.destroy();
-                        removeCookie(DCvi + '_user_id');
-                        removeCookie(DCvi + '_chat_id');
-                        alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_AUTH_FAIL_DESC'), gettext('P_ALERT_OK'), function() {
-                            location.href = LUEz1;
-                        });
-                    }
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_ACCESS_DENIED, function(l) {
-                    var m = POPUP_CONFIG,
-                        n = null;
+                }
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(l) {
+                if (l == 'Authorization failed') {
                     Chat.Manager.destroy();
                     if (this._player && this._player._hls) this._player._hls.destroy();
                     removeCookie(DCvi + '_user_id');
                     removeCookie(DCvi + '_chat_id');
-                    if (isIOS()) {
-                        setTimeout(function() {
-                            location.href = LUEz1;
-                        }, 3000);
-                    }
-                    if (l == 'Permission Denied') {
-                        n = m.permissionDenied(egl, function() {
-                            location.href = LUEz1;
-                        });
-                        alertPopup(n.title, n.desc, n.btnTxt, n.okCallback);
-                    } else {
-                        alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_LIMIT_DEVNUM_DESC'), gettext('P_ALERT_OK'), function() {
-                            location.href = LUEz1;
-                        });
-                    }
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_LIVE_ENDED, function() {
-                    this._player._hls.destroy();
-                    Chat.Manager.destroy();
-                    removeCookie(DCvi + '_user_id');
-                    removeCookie(DCvi + '_chat_id');
-                    if (isIOS()) {
-                        setTimeout(function() {
-                            location.href = LUEz1;
-                        }, 3000);
-                    }
-                    alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
+                    alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_AUTH_FAIL_DESC'), gettext('P_ALERT_OK'), function() {
                         location.href = LUEz1;
                     });
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_SOURCE_CHANGE, function(l) {
-                    this.changeSource(l);
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_SUBTITLE_FOUND, function() {
-                    this.initSubtitle();
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, function(l) {
-                    this.updateThumbnail(l);
-                }.bind(this));
-                this._player.addListener(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, function(l) {
-                    this.initSeekBarThumbnailData(l);
-                }.bind(this));
-            }
-        }, {
-            key: 'loading',
-            value: function k(l, m) {
-                this._loading_on[m] = l;
-                var n = false;
-                for (var o = 0; o < RICH360_WAIT_ON.SIZE; o++) {
-                    if (this._loading_on[o]) {
-                        n = true;
-                        break;
-                    }
                 }
-                if (n) {
-                    $(this._ui.loadingDiv).css('display', 'block');
-                    $(this._ui.loadingDiv).parent().css('display', 'block');
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_ACCESS_DENIED, function(l) {
+                var m = POPUP_CONFIG;
+                var n = null;
+                Chat.Manager.destroy();
+                if (this._player && this._player._hls) this._player._hls.destroy();
+                removeCookie(DCvi + '_user_id');
+                removeCookie(DCvi + '_chat_id');
+                if (isIOS()) {
+                    setTimeout(function() {
+                        location.href = LUEz1;
+                    }, 3000);
+                }
+                if (l == 'Permission Denied') {
+                    n = m.permissionDenied(egl, function() {
+                        location.href = LUEz1;
+                    });
+                    alertPopup(n.title, n.desc, n.btnTxt, n.okCallback);
                 } else {
-                    $(this._ui.loadingDiv).css('display', 'none');
-                    $(this._ui.loadingDiv).parent().css('display', 'none');
+                    alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_LIMIT_DEVNUM_DESC'), gettext('P_ALERT_OK'), function() {
+                        location.href = LUEz1;
+                    });
+                }
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_LIVE_ENDED, function() {
+                this._player._hls.destroy();
+                Chat.Manager.destroy();
+                removeCookie(DCvi + '_user_id');
+                removeCookie(DCvi + '_chat_id');
+                if (isIOS()) {
+                    setTimeout(function() {
+                        location.href = LUEz1;
+                    }, 3000);
+                }
+                alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
+                    location.href = LUEz1;
+                });
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_SOURCE_CHANGE, function(l) {
+                this.changeSource(l);
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_SUBTITLE_FOUND, function() {
+                this.initSubtitle();
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, function(l) {
+                this.updateThumbnail(l);
+            }.bind(this));
+            this._player.addListener(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, function(l) {
+                this.initSeekBarThumbnailData(l);
+            }.bind(this));
+        }
+    }, {
+        key: 'loading',
+        value: function k(l, m) {
+            this._loading_on[m] = l;
+            var n = false;
+            for (var o = 0; o < RICH360_WAIT_ON.SIZE; o++) {
+                if (this._loading_on[o]) {
+                    n = true;
+                    break;
                 }
             }
-        }, {
-            key: 'setDurationText',
-            value: function l(m, n) {
-                this._ui.durationStart.innerHTML = numberPad(Math.floor(m / 3600), 2) + ':' + numberPad(Math.floor(m / 60) % 60, 2) + ':' + numberPad(Math.floor(m % 60), 2);
-                n -= m;
-                this._ui.durationEnd.innerHTML = '-' + numberPad(Math.floor(n / 3600), 2) + ':' + numberPad(Math.floor(n / 60) % 60, 2) + ':' + numberPad(Math.floor(n % 60), 2);
+            if (n) {
+                $(this._ui.loadingDiv).css('display', 'block');
+                $(this._ui.loadingDiv).parent().css('display', 'block');
+            } else {
+                $(this._ui.loadingDiv).css('display', 'none');
+                $(this._ui.loadingDiv).parent().css('display', 'none');
             }
-        }, {
-            key: 'initHideCtrllerEvent',
-            value: function m() {
-                if (this._initHideCtroller) return;
-                this._ui.playerBottomWrap.style.display = 'block';
-                if (!$(this._ui.chatContents).hasClass('is-active')) {
-                    this.showChatOpenBtn(true);
-                }
-                if (isMobile() || isTablet() || isIpadOS()) {
-                    this._options.container.addEventListener('touchend', n.bind(this), false);
-                } else {
-                    this._options.container.addEventListener('mousemove', this.wakeupController.bind(this), false);
-                    this._options.container.addEventListener('mouseup', n.bind(this), false);
-                }
+        }
+    }, {
+        key: 'setDurationText',
+        value: function l(m, n) {
+            this._ui.durationStart.innerHTML = numberPad(Math.floor(m / 3600), 2) + ':' + numberPad(Math.floor(m / 60) % 60, 2) + ':' + numberPad(Math.floor(m % 60), 2);
+            n -= m;
+            this._ui.durationEnd.innerHTML = '-' + numberPad(Math.floor(n / 3600), 2) + ':' + numberPad(Math.floor(n / 60) % 60, 2) + ':' + numberPad(Math.floor(n % 60), 2);
+        }
+    }, {
+        key: 'initHideCtrllerEvent',
+        value: function m() {
+            if (this._initHideCtroller) return;
+            this._ui.playerBottomWrap.style.display = 'block';
+            if (!$(this._ui.chatContents).hasClass('is-active')) {
+                this.showChatOpenBtn(true);
+            }
+            if (isMobile() || isTablet() || isIpadOS()) {
+                this._options.container.addEventListener('touchend', n.bind(this), false);
+            } else {
+                this._options.container.addEventListener('mousemove', this.wakeupController.bind(this), false);
+                this._options.container.addEventListener('mouseup', n.bind(this), false);
+            }
 
-                function n(r) {
-                    this._wakeupPastTime = 0;
-                    if (!this._player._video.paused && (r.target.tagName === 'CANVAS' || r.target.tagName === 'VIDEO' || r.target === this._ui.playerBottomWrap || r.target.id == 'loadingWrap' || r.target.id == 'subtitleDiv' || r.target.parentElement.id == 'subtitleDiv')) {
-                        if (this._ui.playerBottomWrap.style.display == 'block') {
-                            this._ui.playerBottomWrap.style.display = 'none';
-                            this.showChatOpenBtn(false);
-                            this.setTimerHidePlayerController(false);
-                        } else {
-                            this._ui.playerBottomWrap.style.display = 'block';
-                            if (!$(this._ui.chatContents).hasClass('is-active')) {
-                                this.showChatOpenBtn(true);
-                            }
-                            this.setTimerHidePlayerController(true);
-                        }
-                    }
-                    if (this._player._video.paused) {
+            function n(r) {
+                this._wakeupPastTime = 0;
+                if (!this._player._video.paused && (r.target.tagName === 'CANVAS' || r.target.tagName === 'VIDEO' || r.target === this._ui.playerBottomWrap || r.target.id == 'loadingWrap' || r.target.id == 'subtitleDiv' || r.target.parentElement.id == 'subtitleDiv')) {
+                    if (this._ui.playerBottomWrap.style.display == 'block') {
+                        this._ui.playerBottomWrap.style.display = 'none';
+                        this.showChatOpenBtn(false);
+                        this.setTimerHidePlayerController(false);
+                    } else {
                         this._ui.playerBottomWrap.style.display = 'block';
                         if (!$(this._ui.chatContents).hasClass('is-active')) {
                             this.showChatOpenBtn(true);
                         }
+                        this.setTimerHidePlayerController(true);
                     }
-                    return true;
                 }
-                this.setTimerHidePlayerController(true);
-                this._initHideCtroller = true;
-            }
-        }, {
-            key: 'setTimerHidePlayerController',
-            value: function n(o) {
-                var p = o;
-                if (typeof p === 'undefined') p = true;
-                clearTimeout(this._timer.hidePlayerController.timer);
-                this._timer.hidePlayerController.timer = null;
-                if (p) {
-                    this._timer.hidePlayerController.timer = setTimeout(this.hidePlayerController.bind(this), this._timer.hidePlayerController.period);
+                if (this._player._video.paused) {
+                    this._ui.playerBottomWrap.style.display = 'block';
+                    if (!$(this._ui.chatContents).hasClass('is-active')) {
+                        this.showChatOpenBtn(true);
+                    }
                 }
-            }
-        }, {
-            key: 'hidePlayerController',
-            value: function o() {
-                var p = this._ui.volumeSlider.thumbInteracting || !this._player._ui_play;
-                if (this._options.content_data.use_vod && this._ui.seekBar) {
-                    p = p || this._ui.seekBar.thumbInteracting;
-                }
-                if (p) {
-                    this.wakeupController();
-                    return;
-                }
-                this._ui.playerBottomWrap.style.display = 'none';
-                this.showChatOpenBtn(false);
-                $('.cusDD_options').slideUp(200);
-                $('.cusDD_arrow').removeClass('active');
-            }
-        }, {
-            key: 'wakeupController',
-            value: function p(q) {
-                this._ui.playerBottomWrap.style.display = 'block';
-                if (!$(this._ui.chatContents).hasClass('is-active')) {
-                    this.showChatOpenBtn(true);
-                }
-                this._wakeupPastTime = 0;
-                this.setTimerHidePlayerController(true);
                 return true;
             }
-        }, {
-            key: 'hideChatWrap',
-            value: function q() {
-                if ($(this._ui.pageWrap).hasClass('pl-t-default')) {
-                    $(this._ui.pageWrap).removeClass('pl-t-default').addClass('pl-t-fullscreen');
-                    $(this._ui.chatWrap).addClass('chat_full');
-                    $(this._ui.chatContents).removeClass('is-active');
-                    this.showChatOpenBtn(true);
-                } else if ($(this._ui.pageWrap).hasClass('pl-t-default_nochat')) {
-                    $(this._ui.pageWrap).removeClass('pl-t-default_nochat').addClass('pl-t-fullscreen_nochat');
-                }
-                $(this._ui.playerBottomWrap).css('display', 'block');
-                $(this._ui.playerWrap).css('z-index', 'auto');
-                $(this._ui.playerWrap).css('position', '');
-                this._wakeupPastTime = 0;
+            this.setTimerHidePlayerController(true);
+            this._initHideCtroller = true;
+        }
+    }, {
+        key: 'setTimerHidePlayerController',
+        value: function n(o) {
+            var p = o;
+            if (typeof p === 'undefined') p = true;
+            clearTimeout(this._timer.hidePlayerController.timer);
+            this._timer.hidePlayerController.timer = null;
+            if (p) {
+                this._timer.hidePlayerController.timer = setTimeout(this.hidePlayerController.bind(this), this._timer.hidePlayerController.period);
             }
-        }, {
-            key: 'showChatWrap',
-            value: function r() {
-                if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen')) {
-                    $(this._ui.pageWrap).removeClass('pl-t-fullscreen').addClass('pl-t-default');
-                    $(this._ui.chatWrap).removeClass('chat_full');
+        }
+    }, {
+        key: 'hidePlayerController',
+        value: function o() {
+            var p = this._ui.volumeSlider.thumbInteracting || !this._player._ui_play;
+            if (this._options.content_data.use_vod && this._ui.seekBar) {
+                p = p || this._ui.seekBar.thumbInteracting;
+            }
+            if (p) {
+                this.wakeupController();
+                return;
+            }
+            this._ui.playerBottomWrap.style.display = 'none';
+            this.showChatOpenBtn(false);
+            $('.cusDD_options').slideUp(200);
+            $('.cusDD_arrow').removeClass('active');
+        }
+    }, {
+        key: 'wakeupController',
+        value: function p(q) {
+            this._ui.playerBottomWrap.style.display = 'block';
+            if (!$(this._ui.chatContents).hasClass('is-active')) {
+                this.showChatOpenBtn(true);
+            }
+            this._wakeupPastTime = 0;
+            this.setTimerHidePlayerController(true);
+            return true;
+        }
+    }, {
+        key: 'hideChatWrap',
+        value: function q() {
+            if ($(this._ui.pageWrap).hasClass('pl-t-default')) {
+                $(this._ui.pageWrap).removeClass('pl-t-default').addClass('pl-t-fullscreen');
+                $(this._ui.chatWrap).addClass('chat_full');
+                $(this._ui.chatContents).removeClass('is-active');
+                this.showChatOpenBtn(true);
+            } else if ($(this._ui.pageWrap).hasClass('pl-t-default_nochat')) {
+                $(this._ui.pageWrap).removeClass('pl-t-default_nochat').addClass('pl-t-fullscreen_nochat');
+            }
+            $(this._ui.playerBottomWrap).css('display', 'block');
+            $(this._ui.playerWrap).css('z-index', 'auto');
+            $(this._ui.playerWrap).css('position', '');
+            this._wakeupPastTime = 0;
+        }
+    }, {
+        key: 'showChatWrap',
+        value: function r() {
+            if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen')) {
+                $(this._ui.pageWrap).removeClass('pl-t-fullscreen').addClass('pl-t-default');
+                $(this._ui.chatWrap).removeClass('chat_full');
+            } else {
+                if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen_nochat')) {
+                    $(this._ui.pageWrap).removeClass('pl-t-fullscreen_nochat').addClass('pl-t-default_nochat');
+                }
+            }
+            $(this._ui.playerBottomWrap).css('display', 'block');
+            $(this._ui.playerWrap).css('z-index', '3');
+            this._wakeupPastTime = 0;
+            $(this._ui.chatContents).addClass('is-active');
+            this.showChatOpenBtn(false);
+            if (isMobile()) {
+                var s = getOrientation();
+                if (typeof s == 'string') {
+                    if (s == 'landscape-primary' || s == 'landscape-secondary' || s == 'landscape') $(this._ui.chatInputWrap).css('display', 'none');
+                    else {
+                        if ($(this._ui.navBtnWrap).find('button[name=chatnavbtn]').hasClass('on')) {
+                            $(this._ui.chatInputWrap).css('top', '');
+                            $(this._ui.chatInputWrap).css('position', 'relative');
+                            $(this._ui.chatInputWrap).css('display', 'block');
+                        } else {
+                            $(this._ui.chatInputWrap).css('display', 'none');
+                        }
+                    }
                 } else {
-                    if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen_nochat')) {
-                        $(this._ui.pageWrap).removeClass('pl-t-fullscreen_nochat').addClass('pl-t-default_nochat');
+                    $(this._ui.chatInputWrap).css('top', '');
+                    $(this._ui.chatInputWrap).css('position', 'relative');
+                    $(this._ui.chatInputWrap).css('display', 'block');
+                }
+            }
+            if ($(this._ui.navBtnWrap).find('button[name=multiviewnavbtn]').hasClass('on')) {
+                if (this._player._display) {
+                    this._player._display.showMultiPreview = true;
+                }
+            } else if (this._player._display) {
+                this._player._display.showMultiPreview = false;
+            }
+        }
+    }, {
+        key: 'play',
+        value: function s() {
+            if (!this._initHideCtroller) {
+                this.initHideCtrllerEvent();
+            }
+            if (this._player._hls._isDummy) {
+                if (!this._player._video.bfTime) {
+                    if (this._options.use_multiview) {
+                        this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path;
+                    } else {
+                        this._player._video.src = this._player._sourceBase + this._player._manifest.singleview_list[0].path;
                     }
                 }
-                $(this._ui.playerBottomWrap).css('display', 'block');
-                $(this._ui.playerWrap).css('z-index', '3');
-                this._wakeupPastTime = 0;
-                $(this._ui.chatContents).addClass('is-active');
-                this.showChatOpenBtn(false);
+            } else {
+                if (this._player._hls._hls) {
+                    if (this._player._hls._hls.liveSyncPosition) {
+                        this._player.currentPosition = this._player._hls._hls.liveSyncPosition;
+                    }
+                }
+            }
+            this._player.play();
+        }
+    }, {
+        key: 'pause',
+        value: function t() {
+            this._player._subtitleManager._prevSubtitleTrack = this._player.getSubtitleTrack();
+            if (this._player._hls._isDummy) {
+                if (this._options.content_data.use_vod) {
+                    this._player._video.bfTime = this._player._video.currentTime;
+                } else this._player._video.src = '';
+            }
+            this._player.pause();
+        }
+    }, {
+        key: 'seek',
+        value: function u(v) {
+            this._player.currentPosition = this._player.duration * v / 100;
+        }
+    }, {
+        key: 'volume',
+        value: function v(w) {
+            this._player.volume = parseFloat(w / 100);
+        }
+    }, {
+        key: 'changeSource',
+        value: function w(x) {
+            if (x) {
+                this.pause();
+                this._player.changeSource(x);
+            }
+        }
+    }, {
+        key: 'updateThumbnail',
+        value: function x(y) {
+            var z = new Date();
+            y = y + '?' + z.getTime();
+            $(this._ui.playThumbnail).css('background-image', '');
+            $(this._ui.playThumbnail).css('background-image', 'url(' + y + ')');
+            $(this._ui.playThumbnail).css('display', 'block');
+        }
+    }, {
+        key: 'initSeekBarThumbnailData',
+        value: function y(z) {
+            this._thumbnailGridData = JSON.parse(JSON.stringify(z));
+            var A = this._req_str.lastIndexOf('/output');
+            var B = new Date();
+            $(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, A) + '/' + this._thumbnailGridData.path + '?' + B.getTime() + ')');
+        }
+    }, {
+        key: 'viewSeekBarThumbnail',
+        value: function z(A, B) {
+            if (!this._thumbnailGridData) {
+                $(this._ui.sliderThumbnail).css('display', 'none');
+                return false;
+            }
+            if (A > 100) A = 100;
+            else if (A < 0) {
+                A = 0;
+            }
+            var C = A / 100;
+            var D = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y;
+            var E = Math.ceil(D * C) - 1;
+            if (E < 0) {
+                E = 0;
+            }
+            var F = E % 10;
+            var G = parseInt(E / 10);
+            var H = 160;
+            var I = 90;
+            var J = $(this._ui.sliderArea.slider.thumb).width();
+            var K = F * H * -1;
+            var L = G * I * -1;
+            if (B) {
+                $(this._ui.sliderArea.slider.thumb).append($(this._ui.sliderThumbnail));
+                this.setDurationText(this._thumbnailGridData.duration * C, this._thumbnailGridData.duration);
+                $(this._ui.sliderThumbnail).css('top', '');
+                $(this._ui.sliderThumbnail).css('left', '');
+            } else {
+                $(this._ui.sliderArea).append($(this._ui.sliderThumbnail));
+                $(this._ui.sliderThumbnail).css('top', '-16px');
+                $(this._ui.sliderThumbnail).css('left', 'calc(' + A + '% + ' + J / 2 + 'px - ' + (H + J) * C + 'px)');
+            }
+            $(this._ui.sliderThumbnail).css('background-position-x', K + 'px');
+            $(this._ui.sliderThumbnail).css('background-position-y', L + 'px');
+            $(this._ui.sliderThumbnail).css('display', 'block');
+            return true;
+        }
+    }, {
+        key: 'showChatOpenBtn',
+        value: function A(B) {
+            var C = B;
+            if (isIpadOS()) {
+                C = false;
+            }
+            $(this._ui.chatOpenBtn).css('display', C ? 'block' : 'none');
+        }
+    }]);
+    return a;
+}();
+var customRange = function customRange(a, b, c) {
+    var d = a;
+    d.className = d.className + ' undraggable unselectable';
+    d.barDiv = d.querySelector('div[name="bar"]');
+    d.thumbDiv = d.barDiv.querySelector('div[name="thumb"]');
+    d.thumbInteracting = false;
+    d.interactStartX = 0;
+    d.interactStartOffset = 0;
+    d.beforeValue = 0;
+    if (c) {
+        d.paddingBar = c;
+    }
+    if (b) d._value = b;
+    else d._value = 0;
+    d._loadedValue = 0;
+    d.inputEvent = new Event('input');
+    d.seekEvent = new Event('seek');
+    Object.defineProperty(d, 'value', {
+        get: function i() {
+            return this._value;
+        },
+        set: function j(k) {
+            if (k > 100) k = 100;
+            else {
+                if (k < 0) k = 0;
+            }
+            this.thumbDiv.style.left = k + '%';
+            this._value = k;
+            this.dispatchEvent(this.inputEvent);
+        }
+    });
+    var e = function k(l) {
+        this.thumbInteracting = true;
+        this.interactStartX = l.clientX || l.touches && l.touches[0].clientX;
+        this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
+    };
+    var f = function l(m) {
+        if (this.thumbInteracting) {
+            var n = (m.clientX || m.touches && m.touches[0].clientX) - this.interactStartX;
+            var o = this.interactStartOffset + n;
+            if (o < 0) o = 0;
+            if (o > this.barDiv.offsetWidth) o = this.barDiv.offsetWidth;
+            this.value = o * 100 / this.barDiv.offsetWidth;
+        }
+    };
+    var g = function m() {
+        if (this.thumbInteracting) {
+            this.thumbInteracting = false;
+            this.dispatchEvent(this.seekEvent);
+        }
+    };
+    var h = function n(o) {
+        if (o.target != this.thumbDiv) {
+            this.thumbInteracting = true;
+            var p = o.offsetX;
+            if (!p) {
+                var q = o.target.getBoundingClientRect();
+                p = o.targetTouches[0].pageX - q.left;
+            }
+            this.value = p * 100 / this.barDiv.offsetWidth;
+            this.interactStartX = o.clientX || o.touches && o.touches[0].clientX;
+            this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
+        }
+    };
+    d.thumbDiv.addEventListener('mousedown', e.bind(d), false);
+    d.thumbDiv.addEventListener('touchstart', e.bind(d), false);
+    window.addEventListener('mousemove', f.bind(d), false);
+    window.addEventListener('touchmove', f.bind(d), false);
+    window.addEventListener('mouseup', g.bind(d), false);
+    window.addEventListener('touchend', g.bind(d), false);
+    d.addEventListener('mousedown', h.bind(d), false);
+    d.addEventListener('touchstart', h.bind(d), false);
+    if (c) {
+        c.addEventListener('mousedown', h.bind(d), false);
+        c.addEventListener('touchstart', h.bind(d), false);
+    }
+    return d;
+};
+var FullscreenButton = function() {
+    function a(b, c) {
+        _classCallCheck(this, a);
+        this._web_ui = b;
+        this._options = b._player._options;
+        this._web_player = b._player;
+        this._dom_element = c;
+        this._dom_element.onclick = this.onclick.bind(this);
+        this._is_fullscreen_button = true;
+        this._dom_element.id = 'fullBtn';
+        document.addEventListener('fullscreenchange', this.fullscreenChanged.bind(this));
+        document.addEventListener('webkitfullscreenchange', this.fullscreenChanged.bind(this));
+        document.addEventListener('mozfullscreenchange', this.fullscreenChanged.bind(this));
+        document.addEventListener('MSFullscreenChange', this.fullscreenChanged.bind(this));
+    }
+    _createClass(a, [{
+        key: 'setIsFullScreen',
+        value: function b(c) {
+            this._web_ui._isFullScreen = c;
+        }
+    }, {
+        key: 'showMultiviewBtn',
+        value: function c(d) {
+            var e = this._web_player._options.use_multiview;
+            if (!e) return;
+            var f = this._web_ui._ui;
+            var g = f.navBtnWrap;
+            var h = f.chatOpenBtn;
+            var i = 'button[name=multiviewnavbtn]';
+            var j = 'button[name=artistchatnavbtn]';
+            var k = 'button[name=chatnavbtn]';
+            var l = d ? 'inline-block' : 'none';
+            var m = d ? 'block' : 'none';
+            $(g).find(i).css('display', l);
+            $(h).find(i).css('display', m);
+        }
+    }, {
+        key: 'fullscreenChanged',
+        value: function d() {
+            var e = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+            var f = this;
+            delayStopLoadingPanel();
+            if (!e) {
+                $('body').removeClass('fullscreen');
+                this._is_fullscreen_button = true;
+                $(this._dom_element).removeClass('pl-i-full float_r').addClass('pl-i-screen float_r');
                 if (isMobile()) {
-                    var s = getOrientation();
-                    if (typeof s == 'string') {
-                        if (s == 'landscape-primary' || s == 'landscape-secondary' || s == 'landscape') $(this._ui.chatInputWrap).css('display', 'none');
-                        else {
-                            if ($(this._ui.navBtnWrap).find('button[name=chatnavbtn]').hasClass('on')) {
-                                $(this._ui.chatInputWrap).css('top', '');
-                                $(this._ui.chatInputWrap).css('position', 'relative');
-                                $(this._ui.chatInputWrap).css('display', 'block');
-                            } else {
-                                $(this._ui.chatInputWrap).css('display', 'none');
-                            }
-                        }
-                    } else {
-                        $(this._ui.chatInputWrap).css('top', '');
-                        $(this._ui.chatInputWrap).css('position', 'relative');
-                        $(this._ui.chatInputWrap).css('display', 'block');
-                    }
-                }
-                if ($(this._ui.navBtnWrap).find('button[name=multiviewnavbtn]').hasClass('on')) {
-                    if (this._player._display) {
-                        this._player._display.showMultiPreview = true;
-                    }
-                } else if (this._player._display) {
-                    this._player._display.showMultiPreview = false;
-                }
-            }
-        }, {
-            key: 'play',
-            value: function s() {
-                if (!this._initHideCtroller) {
-                    this.initHideCtrllerEvent();
-                }
-                if (this._player._hls._isDummy) {
-                    if (!this._player._video.bfTime) {
-                        if (this._options.use_multiview) {
-                            this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path;
+                    var g = getOrientation();
+                    if (typeof g == 'string') {
+                        if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') {
+                            this._web_ui.hideChatWrap();
                         } else {
-                            this._player._video.src = this._player._sourceBase + this._player._manifest.singleview_list[0].path;
+                            if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
+                                this._web_ui.showChatWrap();
+                            }
                         }
                     }
                 } else {
-                    if (this._player._hls._hls) {
-                        if (this._player._hls._hls.liveSyncPosition) {
-                            this._player.currentPosition = this._player._hls._hls.liveSyncPosition;
-                        }
-                    }
-                }
-                this._player.play();
-            }
-        }, {
-            key: 'pause',
-            value: function t() {
-                this._player._subtitleManager._prevSubtitleTrack = this._player.getSubtitleTrack();
-                if (this._player._hls._isDummy) {
-                    if (this._options.content_data.use_vod) {
-                        this._player._video.bfTime = this._player._video.currentTime;
-                    } else this._player._video.src = '';
-                }
-                this._player.pause();
-            }
-        }, {
-            key: 'seek',
-            value: function u(v) {
-                this._player.currentPosition = this._player.duration * v / 100;
-            }
-        }, {
-            key: 'volume',
-            value: function v(w) {
-                this._player.volume = parseFloat(w / 100);
-            }
-        }, {
-            key: 'changeSource',
-            value: function w(x) {
-                if (x) {
-                    this.pause();
-                    this._player.changeSource(x);
-                }
-            }
-        }, {
-            key: 'updateThumbnail',
-            value: function x(y) {
-                var z = new Date();
-                y = y + '?' + z.getTime();
-                $(this._ui.playThumbnail).css('background-image', '');
-                $(this._ui.playThumbnail).css('background-image', 'url(' + y + ')');
-                $(this._ui.playThumbnail).css('display', 'block');
-            }
-        }, {
-            key: 'initSeekBarThumbnailData',
-            value: function y(z) {
-                this._thumbnailGridData = JSON.parse(JSON.stringify(z));
-                var A = this._req_str.lastIndexOf('/output'),
-                    B = new Date();
-                $(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, A) + '/' + this._thumbnailGridData.path + '?' + B.getTime() + ')');
-            }
-        }, {
-            key: 'viewSeekBarThumbnail',
-            value: function z(A, B) {
-                if (!this._thumbnailGridData) {
-                    $(this._ui.sliderThumbnail).css('display', 'none');
-                    return false;
-                }
-                if (A > 100) A = 100;
-                else if (A < 0) {
-                    A = 0;
-                }
-                var C = A / 100,
-                    D = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y,
-                    E = Math.ceil(D * C) - 1;
-                if (E < 0) {
-                    E = 0;
-                }
-                var F = E % 10,
-                    G = parseInt(E / 10),
-                    H = 160,
-                    I = 90,
-                    J = $(this._ui.sliderArea.slider.thumb).width(),
-                    K = F * H * -1,
-                    L = G * I * -1;
-                if (B) {
-                    $(this._ui.sliderArea.slider.thumb).append($(this._ui.sliderThumbnail));
-                    this.setDurationText(this._thumbnailGridData.duration * C, this._thumbnailGridData.duration);
-                    $(this._ui.sliderThumbnail).css('top', '');
-                    $(this._ui.sliderThumbnail).css('left', '');
-                } else {
-                    $(this._ui.sliderArea).append($(this._ui.sliderThumbnail));
-                    $(this._ui.sliderThumbnail).css('top', '-16px');
-                    $(this._ui.sliderThumbnail).css('left', 'calc(' + A + '% + ' + J / 2 + 'px - ' + (H + J) * C + 'px)');
-                }
-                $(this._ui.sliderThumbnail).css('background-position-x', K + 'px');
-                $(this._ui.sliderThumbnail).css('background-position-y', L + 'px');
-                $(this._ui.sliderThumbnail).css('display', 'block');
-                return true;
-            }
-        }, {
-            key: 'showChatOpenBtn',
-            value: function A(B) {
-                var C = B;
-                if (isIpadOS()) {
-                    C = false;
-                }
-                $(this._ui.chatOpenBtn).css('display', C ? 'block' : 'none');
-            }
-        }]);
-        return a;
-    }(),
-    customRange = function customRange(a, b, c) {
-        var d = a;
-        d.className = d.className + ' undraggable unselectable';
-        d.barDiv = d.querySelector('div[name="bar"]');
-        d.thumbDiv = d.barDiv.querySelector('div[name="thumb"]');
-        d.thumbInteracting = false;
-        d.interactStartX = 0;
-        d.interactStartOffset = 0;
-        d.beforeValue = 0;
-        if (c) {
-            d.paddingBar = c;
-        }
-        if (b) d._value = b;
-        else d._value = 0;
-        d._loadedValue = 0;
-        d.inputEvent = new Event('input');
-        d.seekEvent = new Event('seek');
-        Object.defineProperty(d, 'value', {
-            get: function i() {
-                return this._value;
-            },
-            set: function j(k) {
-                if (k > 100) k = 100;
-                else {
-                    if (k < 0) k = 0;
-                }
-                this.thumbDiv.style.left = k + '%';
-                this._value = k;
-                this.dispatchEvent(this.inputEvent);
-            }
-        });
-        var e = function k(l) {
-                this.thumbInteracting = true;
-                this.interactStartX = l.clientX || l.touches && l.touches[0].clientX;
-                this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
-            },
-            f = function l(m) {
-                if (this.thumbInteracting) {
-                    var n = (m.clientX || m.touches && m.touches[0].clientX) - this.interactStartX,
-                        o = this.interactStartOffset + n;
-                    if (o < 0) o = 0;
-                    if (o > this.barDiv.offsetWidth) o = this.barDiv.offsetWidth;
-                    this.value = o * 100 / this.barDiv.offsetWidth;
-                }
-            },
-            g = function m() {
-                if (this.thumbInteracting) {
-                    this.thumbInteracting = false;
-                    this.dispatchEvent(this.seekEvent);
-                }
-            },
-            h = function n(o) {
-                if (o.target != this.thumbDiv) {
-                    this.thumbInteracting = true;
-                    var p = o.offsetX;
-                    if (!p) {
-                        var q = o.target.getBoundingClientRect();
-                        p = o.targetTouches[0].pageX - q.left;
-                    }
-                    this.value = p * 100 / this.barDiv.offsetWidth;
-                    this.interactStartX = o.clientX || o.touches && o.touches[0].clientX;
-                    this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
-                }
-            };
-        d.thumbDiv.addEventListener('mousedown', e.bind(d), false);
-        d.thumbDiv.addEventListener('touchstart', e.bind(d), false);
-        window.addEventListener('mousemove', f.bind(d), false);
-        window.addEventListener('touchmove', f.bind(d), false);
-        window.addEventListener('mouseup', g.bind(d), false);
-        window.addEventListener('touchend', g.bind(d), false);
-        d.addEventListener('mousedown', h.bind(d), false);
-        d.addEventListener('touchstart', h.bind(d), false);
-        if (c) {
-            c.addEventListener('mousedown', h.bind(d), false);
-            c.addEventListener('touchstart', h.bind(d), false);
-        }
-        return d;
-    },
-    FullscreenButton = function() {
-        function a(b, c) {
-            _classCallCheck(this, a);
-            this._web_ui = b;
-            this._options = b._player._options;
-            this._web_player = b._player;
-            this._dom_element = c;
-            this._dom_element.onclick = this.onclick.bind(this);
-            this._is_fullscreen_button = true;
-            this._dom_element.id = 'fullBtn';
-            document.addEventListener('fullscreenchange', this.fullscreenChanged.bind(this));
-            document.addEventListener('webkitfullscreenchange', this.fullscreenChanged.bind(this));
-            document.addEventListener('mozfullscreenchange', this.fullscreenChanged.bind(this));
-            document.addEventListener('MSFullscreenChange', this.fullscreenChanged.bind(this));
-        }
-        _createClass(a, [{
-            key: 'setIsFullScreen',
-            value: function b(c) {
-                this._web_ui._isFullScreen = c;
-            }
-        }, {
-            key: 'showMultiviewBtn',
-            value: function c(d) {
-                var e = this._web_player._options.use_multiview;
-                if (!e) return;
-                var f = this._web_ui._ui,
-                    g = f.navBtnWrap,
-                    h = f.chatOpenBtn,
-                    i = 'button[name=multiviewnavbtn]',
-                    j = 'button[name=artistchatnavbtn]',
-                    k = 'button[name=chatnavbtn]',
-                    l = d ? 'inline-block' : 'none',
-                    m = d ? 'block' : 'none';
-                $(g).find(i).css('display', l);
-                $(h).find(i).css('display', m);
-            }
-        }, {
-            key: 'fullscreenChanged',
-            value: function d() {
-                var e = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement,
-                    f = this;
-                delayStopLoadingPanel();
-                if (!e) {
-                    $('body').removeClass('fullscreen');
-                    this._is_fullscreen_button = true;
-                    $(this._dom_element).removeClass('pl-i-full float_r').addClass('pl-i-screen float_r');
-                    if (isMobile()) {
-                        var g = getOrientation();
-                        if (typeof g == 'string') {
-                            if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') {
-                                this._web_ui.hideChatWrap();
-                            } else {
-                                if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
-                                    this._web_ui.showChatWrap();
-                                }
-                            }
-                        }
-                    } else {
-                        if (isSafari()) {
-                            setTimeout(function() {
-                                f._web_ui.showChatWrap();
-                            });
-                        } else {
+                    if (isSafari()) {
+                        setTimeout(function() {
                             f._web_ui.showChatWrap();
-                        }
+                        });
+                    } else {
+                        f._web_ui.showChatWrap();
                     }
-                    this.setIsFullScreen(false);
-                    this.showMultiviewBtn(true);
-                    this._web_ui.wakeupController();
-                } else {
-                    $('body').addClass('fullscreen');
-                    this._is_fullscreen_button = false;
-                    $(this._dom_element).removeClass('pl-i-screen float_r').addClass('pl-i-full float_r');
-                    this._web_ui.hideChatWrap();
-                    if (isMobile()) {
-                        screen.orientation.lock('landscape');
-                    }
-                    this.setIsFullScreen(true);
-                    this.showMultiviewBtn(false);
                 }
-                updateTicketDivPos();
+                this.setIsFullScreen(false);
+                this.showMultiviewBtn(true);
+                this._web_ui.wakeupController();
+            } else {
+                $('body').addClass('fullscreen');
+                this._is_fullscreen_button = false;
+                $(this._dom_element).removeClass('pl-i-screen float_r').addClass('pl-i-full float_r');
+                this._web_ui.hideChatWrap();
+                if (isMobile()) {
+                    screen.orientation.lock('landscape');
+                }
+                this.setIsFullScreen(true);
+                this.showMultiviewBtn(false);
             }
-        }, {
-            key: 'onclick',
-            value: function e() {
-                if (this._is_fullscreen_button) {
-                    if ('fullscreenEnabled' in document || 'webkitFullscreenEnabled' in document || 'mozFullScreenEnabled' in document || 'msFullscreenEnabled' in document) {
-                        if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
-                            var f = document.querySelector('html');
-                            if ('requestFullscreen' in f) f.requestFullscreen();
-                            else {
-                                if ('webkitRequestFullscreen' in f) {
-                                    f.webkitRequestFullscreen();
-                                } else {
-                                    if ('mozRequestFullScreen' in f) f.mozRequestFullScreen();
-                                    else if ('msRequestFullscreen' in f) {
-                                        f.msRequestFullscreen();
-                                    }
-                                }
-                            }
-                            this._is_fullscreen_button = false;
-                        } else console.log('fullscreen not enabled');
-                    } else console.log('fullscreen not supported');
-                } else {
-                    var g = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
-                    if (g && g == document.querySelector('html')) {
-                        this._is_fullscreen_button = true;
-                        if ('exitFullscreen' in document) {
-                            document.exitFullscreen();
-                        } else {
-                            if ('webkitExitFullscreen' in document) document.webkitExitFullscreen();
-                            else {
-                                if ('mozCancelFullScreen' in document) document.mozCancelFullScreen();
-                                else {
-                                    if ('msExitFullscreen' in document) {
-                                        document.msExitFullscreen();
-                                    }
+            updateTicketDivPos();
+        }
+    }, {
+        key: 'onclick',
+        value: function e() {
+            if (this._is_fullscreen_button) {
+                if ('fullscreenEnabled' in document || 'webkitFullscreenEnabled' in document || 'mozFullScreenEnabled' in document || 'msFullscreenEnabled' in document) {
+                    if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+                        var f = document.querySelector('html');
+                        if ('requestFullscreen' in f) f.requestFullscreen();
+                        else {
+                            if ('webkitRequestFullscreen' in f) {
+                                f.webkitRequestFullscreen();
+                            } else {
+                                if ('mozRequestFullScreen' in f) f.mozRequestFullScreen();
+                                else if ('msRequestFullscreen' in f) {
+                                    f.msRequestFullscreen();
                                 }
                             }
                         }
+                        this._is_fullscreen_button = false;
+                    } else console.log('fullscreen not enabled');
+                } else console.log('fullscreen not supported');
+            } else {
+                var g = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                if (g && g == document.querySelector('html')) {
+                    this._is_fullscreen_button = true;
+                    if ('exitFullscreen' in document) {
+                        document.exitFullscreen();
+                    } else {
+                        if ('webkitExitFullscreen' in document) document.webkitExitFullscreen();
+                        else {
+                            if ('mozCancelFullScreen' in document) document.mozCancelFullScreen();
+                            else {
+                                if ('msExitFullscreen' in document) {
+                                    document.msExitFullscreen();
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }]);
-        return a;
-    }();
+        }
+    }]);
+    return a;
+}();
 
 function numberPad(a, b) {
     var c = b - a.toString().length + 1;
@@ -1298,1960 +1298,1965 @@ function numberPad(a, b) {
 }
 'use strict';
 var Rich360Log = function() {
-        function a(b) {
-            _classCallCheck(this, a);
-            this._options = b;
-            this._logMaxLength = 1000;
+    function a(b) {
+        _classCallCheck(this, a);
+        this._options = b;
+        this._logMaxLength = 1000;
+        this._logData = [];
+        this._listener = null;
+        this._logItv = null;
+    }
+    _createClass(a, [{
+        key: 'getTimeStamp',
+        value: function b() {
+            var c = new Date();
+            return c.format('yyyy-MM-dd HH:mm:ss:mss');
+        }
+    }, {
+        key: 'addLog',
+        value: function c(d) {
+            if (this._logData.length >= this._logMaxLength) this._logData.splice(0, 1);
+            this._logData.push({
+                value: d,
+                timeStamp: this.getTimeStamp()
+            });
+        }
+    }, {
+        key: 'clearLogData',
+        value: function d() {
             this._logData = [];
-            this._listener = null;
-            this._logItv = null;
         }
-        _createClass(a, [{
-            key: 'getTimeStamp',
-            value: function b() {
-                var c = new Date();
-                return c.format('yyyy-MM-dd HH:mm:ss:mss');
+    }, {
+        key: 'getLog',
+        value: function e() {
+            return this._logData.slice();
+        }
+    }, {
+        key: 'startInterval',
+        value: function f() {
+            if (this._logItv) {
+                clearInterval(this._logItv);
             }
-        }, {
-            key: 'addLog',
-            value: function c(d) {
-                if (this._logData.length >= this._logMaxLength) this._logData.splice(0, 1);
-                this._logData.push({
-                    value: d,
-                    timeStamp: this.getTimeStamp()
-                });
-            }
-        }, {
-            key: 'clearLogData',
-            value: function d() {
-                this._logData = [];
-            }
-        }, {
-            key: 'getLog',
-            value: function e() {
-                return this._logData.slice();
-            }
-        }, {
-            key: 'startInterval',
-            value: function f() {
-                if (this._logItv) {
-                    clearInterval(this._logItv);
+            this._logItv = setInterval(this.sendLog.bind(this), 60000, false);
+        }
+    }, {
+        key: 'sendLog',
+        value: function g() {
+            var h = this.getLog();
+            var j = [];
+            for (var k = 0; k < h.length; k++) {
+                if (h[k].value.playStatus) {
+                    j.push(h[k].value.playStatus);
                 }
-                this._logItv = setInterval(this.sendLog.bind(this), 60000, false);
             }
-        }, {
-            key: 'sendLog',
-            value: function g() {
-                var h = this.getLog(),
-                    j = [];
-                for (var k = 0; k < h.length; k++) {
-                    if (h[k].value.playStatus) {
-                        j.push(h[k].value.playStatus);
-                    }
-                }
-                this.clearLogData();
-                var l = new XMLHttpRequest();
-                l.open('POST', this._options.credentials.api_server + '/user_auth/session_check/', true);
-                var m = new FormData();
-                m.append('device_id', getCookie(DCvi + '_device_id'));
-                m.append('user_id', getCookie(DCvi + '_user_id'));
-                m.append('content_id', this._options.credentials.content_id);
-                m.append('play_status', JSON.stringify(j));
-                m.append('user_agent', navigator.userAgent);
-                l.send(m);
-                l.onload = function(o) {
-                    if (l.readyState === 4 && l.status === 200) try {
-                        var p = JSON.parse(l.responseText).Data;
-                        for (var q = 0; q < p.content.channels.length; q++) {
-                            var r = true;
-                            if (Ythc == 'sub') {
-                                r = false;
+            this.clearLogData();
+            var l = new XMLHttpRequest();
+            l.open('POST', this._options.credentials.api_server + '/user_auth/session_check/', true);
+            var m = new FormData();
+            m.append('device_id', getCookie(DCvi + '_device_id'));
+            m.append('user_id', getCookie(DCvi + '_user_id'));
+            m.append('content_id', this._options.credentials.content_id);
+            m.append('play_status', JSON.stringify(j));
+            m.append('user_agent', navigator.userAgent);
+            l.send(m);
+            l.onload = function(o) {
+                if (l.readyState === 4 && l.status === 200) try {
+                    var p = JSON.parse(l.responseText).Data;
+                    for (var q = 0; q < p.content.channels.length; q++) {
+                        var r = true;
+                        if (Ythc == 'sub') {
+                            r = false;
+                        }
+                        if (p.content.channels[q].is_main_channel == r) {
+                            if (this._options.content_data.current_channel_id != p.content.channels[q].id) {
+                                this._options.content_data = JSON.parse(JSON.stringify(p.content));
+                                this._options.content_data.current_channel_id = p.content.channels[q].id;
+                                this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[q].hls_url);
                             }
-                            if (p.content.channels[q].is_main_channel == r) {
-                                if (this._options.content_data.current_channel_id != p.content.channels[q].id) {
-                                    this._options.content_data = JSON.parse(JSON.stringify(p.content));
-                                    this._options.content_data.current_channel_id = p.content.channels[q].id;
-                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[q].hls_url);
-                                }
-                                break;
-                            }
-                        }
-                        iCM(!!p.user.is_mute);
-                    } catch (u) {
-                        console.log(u);
-                    }
-                }.bind(this);
-                l.onloadend = function(o) {
-                    if (l.status === 400 || l.status === 401) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                    else {
-                        if (l.status === 403) {
-                            this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
+                            break;
                         }
                     }
-                }.bind(this);
-            }
-        }]);
-        return a;
-    }(),
-    Rich360EventListener = function() {
-        function a(b) {
-            _classCallCheck(this, a);
-            this.events = [];
-            for (var c in b) {
-                this.events.push({
-                    key: b[c],
-                    listeners: []
-                });
-            }
-        }
-        _createClass(a, [{
-            key: 'addListener',
-            value: function b(c, d) {
-                this.events[c].listeners.push(d);
-            }
-        }, {
-            key: 'removeListener',
-            value: function c(d, e) {
-                var f;
-                for (f = 0; f < this.events[d].listeners.length; f++) {
-                    if (this.events[d].listeners[f] == e) break;
+                    iCM(!!p.user.is_mute);
+                } catch (u) {
+                    console.log(u);
                 }
-                if (f >= this.events[d].listeners.length) return;
-                this.events[d].listeners.splice(f, 1);
-            }
-        }, {
-            key: 'trigger',
-            value: function d(e, f) {
-                var g = this,
-                    h = function k(l) {
-                        setTimeout(function() {
-                            this.events[e].listeners[l](f);
-                        }.bind(g), 0);
-                    };
-                for (var j = 0; j < this.events[e].listeners.length; j++) {
-                    h(j);
-                }
-            }
-        }]);
-        return a;
-    }(),
-    Rich360HlsWrapper = function() {
-        var c = function() {
-                var f = true;
-                return function(g, h) {
-                    var i = f ? function() {
-                        if (h) {
-                            var j = h.apply(g, arguments);
-                            h = null;
-                            return j;
-                        }
-                    } : function() {};
-                    f = false;
-                    return i;
-                };
-            }(),
-            d = c(this, function() {
-                var f;
-                try {
-                    var g = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
-                    f = g();
-                } catch (o) {
-                    f = window;
-                }
-                var h = f.console = f.console || {},
-                    i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-                for (var j = 0; j < i.length; j++) {
-                    var k = c.constructor.prototype.bind(c),
-                        l = i[j],
-                        m = h[l] || k;
-                    k.__proto__ = c.bind(c);
-                    k.toString = m.toString.bind(m);
-                    h[l] = k;
-                }
-            });
-        d();
-
-        function e(f, g, h) {
-            _classCallCheck(this, e);
-            if (!Hls) {
-                console.log('Missing Hls.');
-                return;
-            }
-            this._isDummy = f;
-            if (isIOS() || isIpadOS()) {
-                this._isDummy = true;
-            }
-            this._config = g;
-            this._video = null;
-            this._isMultiview = h;
-        }
-        _createClass(e, [{
-            key: 'isHlsAvailable',
-            value: function f(g, h) {
-                var i = g,
-                    j = !j(),
-                    k = window.Hls.isSupported(),
-                    l = false;
-                if (!i) return l;
-                if (h) {
-                    if (!j && i.canPlayType('application/vnd.apple.mpegurl')) {
-                        l = true;
-                    } else if (k) {
-                        l = false;
-                    }
-                } else l = !k;
-                return l;
-            }
-        }, {
-            key: 'attachMedia',
-            value: function g(h) {
-                this._video = h;
-                if (this._isMultiview) {
-                    if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl') || isIOS() || isIpadOS()) {
-                        this._isDummy = true;
-                        this._hls = null;
-                    } else if (Hls.isSupported()) {
-                        this._isDummy = false;
-                        this._hls = new Hls(this._config);
-                    }
-                } else {
-                    if (isIOS() || isIpadOS()) {
-                        this._isDummy = true;
-                        this._hls = null;
-                    } else if (Hls.isSupported()) {
-                        this._isDummy = false;
-                        this._hls = new Hls(this._config);
-                    } else {
-                        this._isDummy = true;
-                        this._hls = null;
-                    }
-                }
-                this._video.addEventListener('canplay', function() {
-                    if (this._config.startPosition != undefined && this._config.startPosition > 0) {
-                        this._video.currentTime = this._config.startPosition;
-                    }
-                    if (this._config.autoplay) {
-                        this._video.play();
-                    }
-                }.bind(this), {
-                    once: true
-                });
-                if (!this._isDummy) this._hls.attachMedia(h);
-            }
-        }, {
-            key: 'detachMedia',
-            value: function h() {
-                this._video = null;
-                if (!this._isDummy) this._hls.detachMedia();
-            }
-        }, {
-            key: 'loadSource',
-            value: function i(j, k, l) {
-                if (this._isDummy) {
-                    this._video.src = j;
-                    if (k) this._video.currentTime = k;
-                    if (l) this._video.poster = l;
-                    this._video.crossOrigin = 'anonymous';
-                    this._video.disablePictureInPicture = true;
-                    this._video.oncontextmenu = function() {
-                        return false;
-                    };
-                    this._video.load();
-                } else this._hls.loadSource(j);
-            }
-        }, {
-            key: 'release',
-            value: function j() {
-                this._video = null;
-                this._hls = null;
-            }
-        }, {
-            key: 'recoverMediaError',
-            value: function k() {
-                if (this._isDummy) {} else {
-                    this._hls.recoverMediaError();
-                }
-            }
-        }, {
-            key: 'on',
-            value: function l(m, n) {
-                if (!this._isDummy) {
-                    this._hls.on(m, n);
-                }
-            }
-        }, {
-            key: 'startLoad',
-            value: function m() {
-                if (this._isDummy) {
-                    this._video.load();
-                } else {
-                    this._hls.startLoad();
-                }
-            }
-        }, {
-            key: 'destroy',
-            value: function n() {
-                if (this._isDummy) {
-                    this.release();
-                } else this._hls.destroy();
-            }
-        }, {
-            key: 'isAutoQuality',
-            value: function o() {
-                return this._isDummy ? false : this._hls.levelController.manualLevel == -1;
-            }
-        }, {
-            key: 'levels',
-            get: function p() {
-                if (this._isDummy) return false;
+            }.bind(this);
+            l.onloadend = function(o) {
+                if (l.status === 400 || l.status === 401) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
                 else {
-                    return this._hls.levels;
+                    if (l.status === 403) {
+                        this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
+                    }
                 }
-            }
-        }, {
-            key: 'nextAutoLevel',
-            get: function q() {
-                return this._isDummy ? 0 : this._hls.abrController.nextAutoLevel;
-            }
-        }, {
-            key: 'currentLevel',
-            get: function r() {
-                if (this._isDummy) {
-                    return 0;
-                } else return this._hls.currentLevel;
-            },
-            set: function s(t) {
-                if (!this._isDummy) this._hls.currentLevel = t;
-            }
-        }]);
-        return e;
-    }(),
-    RICH360_EVENTS = {
-        RICH360_STATE_CHANGE: 0,
-        RICH360_QUALITY_CHANGE: 1,
-        RICH360_DURATION_CHANGE: 2,
-        RICH360_PLAY_PAUSE_CHANGE: 3,
-        RICH360_ENDED: 4,
-        RICH360_ERROR: 5,
-        RICH360_WAIT: 6,
-        RICH360_ACCESS_DENIED: 7,
-        RICH360_SUBTITLE_FOUND: 8,
-        RICH360_LIVE_ENDED: 9,
-        RICH360_SOURCE_CHANGE: 10,
-        RICH360_THUMBNAIL_UPDATE: 11,
-        RICH360_GRID_THUMBNAIL_UPDATE: 12
-    },
-    RICH360_STATE = {
-        RICH360_AUTH: 0,
-        RICH360_INIT: 1,
-        RICH360_READY: 2
-    },
-    RICH360_WAIT_ON = {
-        RICH360_QUALITY_CHANGE: 0,
-        RICH360_BUFFER: 1,
-        RICH360_SEEK: 2,
-        SIZE: 3
-    },
-    MULTIVIEW_PLAYER_DEFAULT_MANIFEST = {
-        type: '',
-        singleview_count: 1,
-        singleview_list: [{
-            id: 0,
-            name: '',
-            path: ''
-        }],
-        multiview_count: 1,
-        multiview_list: [{
-            id: 0,
-            path: '',
-            main_position: {
-                singleview_id: 0,
-                x: 0,
-                y: 0,
-                width: 1,
-                height: 1
-            },
-            sub_positions: []
-        }]
-    },
-    SINGLEVIEW_PLAYER_DEFAULT_MANIFEST = {
-        type: '',
-        thumbnail: {
-            path: 'thumbnail.jpg'
-        },
-        thumbnail_grid: {
-            duration: 0,
-            interval: 0,
-            grid_x: 0,
-            grid_y: 0,
-            path: ''
-        },
-        singleview_count: 1,
-        singleview_list: [{
-            id: 0,
-            name: 'view_0',
-            path: ''
-        }],
-        multiview_count: 0,
-        multiview_list: []
-    },
-    Rich360 = function() {
-        function a(b, c, d, e) {
-            _classCallCheck(this, a);
-            this._options = b;
-            this._ready_state = RICH360_STATE.RICH360_AUTH;
-            this.wait_on = [];
-            for (var f = 0; f < RICH360_WAIT_ON.SIZE; f++) {
-                this.wait_on[f] = false;
-            }
-            this._ui = d;
-            this._rich360Player = e;
-            this._ui_play = false;
-            this._listener = new Rich360EventListener(RICH360_EVENTS);
-            this._logger = new Rich360Log({
-                content_data: this._options.content_data,
-                credentials: {
-                    content_id: this._options.credentials.content_id,
-                    api_server: this._options.credentials.api_server
-                }
-            });
-            this._logger._listener = this._listener;
-            this._loggerItv = null;
-            this._subtitleList = [];
-            this._play_status = '';
-            this._view = 0;
-            this.addNativeTrackListener = this.addNativeTrackListener.bind(this);
-            this.updateNativeTrackCuesListener = this.updateNativeTrackCuesListener.bind(this);
-            var g = c.substr(c.lastIndexOf('/') + 1, c.length),
-                h = c.substr(0, c.lastIndexOf('/') + 1),
-                j = h + g;
-            this._options.source = j;
-            if ('credentials' in this._options) {
-                if (!('device_id' in this._options.credentials)) {
-                    this._options.credentials.device_id = null;
-                }
-                if (!('user_id' in this._options.credentials)) {
-                    this._options.credentials.user_id = null;
-                }
-                if (!('content_id' in this._options.credentials)) {
-                    this._options.credentials.content_id = null;
-                }
-                if (!('ticket_id' in this._options.credentials)) {
-                    this._options.credentials.ticket_id = null;
-                }
-            } else {
-                this._options.credentials = {
-                    device_id: null,
-                    user_id: null,
-                    content_id: null,
-                    ticket_id: null
-                };
-            }
-            if (this._options.container) {
-                this._parent_dom = this._options.container;
-            } else {
-                this._parent_dom = document.body;
-            }
-            if (this._options.use_multiview) {
-                this.setChangingView(false);
-            }
-            this.authorize();
+            }.bind(this);
         }
-        _createClass(a, [{
-            key: 'authorize',
-            value: function b() {
-                var c = new XMLHttpRequest();
-                c.open('POST', this._options.credentials.api_server + '/user_auth/player_authorize/', true);
-                c.withCredentials = true;
-                c.req_data = {
-                    user_id: this._options.credentials.user_id,
-                    device_id: this._options.credentials.device_id,
-                    content_id: this._options.credentials.content_id,
-                    location: {
-                        domain: window.location.hostname
-                    },
-                    source: this._options.source,
-                    rqstr: this.generate16byte(),
-                    scstr: this.generate16byte(),
-                    enstr: this.generate16byte(),
-                    psstr: this.generate16byte(),
-                    dbstr: this.generate16byte(),
-                    ltstr: this.generate16byte(),
-                    hsstr: this.generate16byte(),
-                    rnstr: this.generate16byte()
-                };
-                var d = new FormData();
-                d.append('user_id', c.req_data.user_id);
-                d.append('device_id', c.req_data.device_id);
-                d.append('content_id', c.req_data.content_id);
-                d.append('domain', c.req_data.location.domain);
-                d.append('source', c.req_data.source);
-                d.append('rqstr', c.req_data.rqstr);
-                d.append('scstr', c.req_data.scstr);
-                d.append('enstr', c.req_data.enstr);
-                d.append('psstr', c.req_data.psstr);
-                d.append('dbstr', c.req_data.dbstr);
-                d.append('ltstr', c.req_data.ltstr);
-                d.append('hsstr', c.req_data.hsstr);
-                d.append('rnstr', c.req_data.rnstr);
-                c.onerror = function(f) {
-                    console.log(f);
-                    this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                    return;
-                }.bind(this);
-                c.onload = function(f) {
-                    console.log(f);
-                    if (c.readyState === 4) {
-                        this.base = 'rich360';
-                        this.baseCode = [];
-                        var g, h, l;
-                        for (g = 0; g < 7; g++) {
-                            this.baseCode[g] = this.base.charCodeAt(g);
-                        }
-                        this.addRich360 = function(n, o) {
-                            var p = o % 7,
-                                q = this.baseCode.slice(p, 7).concat(this.baseCode.slice(0, p + 1));
-                            for (h = 0; h < 8; h++) {
-                                n[h] = (n[h] + q[h]) % 256;
-                            }
-                            return n;
-                        }.bind(this);
-                        this.encrypt = function(n, o) {
-                            if (n.length != 16) return 'string length must be 16';
-                            var p = [],
-                                q;
-                            for (q = 0; q < 16; q++) {
-                                p[q] = n.charCodeAt(q);
-                            }
-                            var r = p.slice(0, 8),
-                                s = p.slice(8, 16);
-                            for (q = 0; q < o; q++) {
-                                s = this.addRich360(s, q);
-                                var t = r.slice(0, 8);
-                                for (l = 0; l < 8; l++) {
-                                    r[l] = r[l] ^ s[l];
-                                }
-                                s = t.slice(0, 8);
-                            }
-                            var u = [];
-                            for (q = 0; q < 8; q++) {
-                                u[q] = String.fromCharCode(r[q]);
-                            }
-                            for (q = 0; q < 8; q++) {
-                                u[q + 8] = String.fromCharCode(s[q]);
-                            }
-                            return u;
-                        }.bind(this);
-                        this.validate_response = function(n, o) {
-                            var p = this.encrypt(n.ltstr, 16),
-                                q = '';
-                            for (var r = 0; r < 16; r++) {
-                                q += p[r];
-                            }
-                            if (q == o.rtstr) return true;
-                            else return false;
-                        }.bind(this);
-                        if (!this.validate_response(c.req_data, JSON.parse(c.responseText))) {
-                            if (c.status == 403) {
-                                this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
-                            } else {
-                                if (c.status != 200) {
-                                    this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                                    return;
-                                }
-                            }
-                        }
-                        this.base = undefined;
-                        this.baseCode = undefined;
-                        this.addRich360 = undefined;
-                        this.encrypt = undefined;
-                        this.validate_response = undefined;
-                        this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
-                        this._ready_state = RICH360_STATE.RICH360_INIT;
-                        this.requestKMVManifest(function() {
-                            if (this._options.content_data.use_vod) {
-                                this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.singleview_list[0].thumbnail_grid);
-                            }
-                            this.initialize();
-                        }.bind(this));
-                        this._logger.startInterval();
-                    }
-                }.bind(this);
-                c.send(d);
+    }]);
+    return a;
+}();
+var Rich360EventListener = function() {
+    function a(b) {
+        _classCallCheck(this, a);
+        this.events = [];
+        for (var c in b) {
+            this.events.push({
+                key: b[c],
+                listeners: []
+            });
+        }
+    }
+    _createClass(a, [{
+        key: 'addListener',
+        value: function b(c, d) {
+            this.events[c].listeners.push(d);
+        }
+    }, {
+        key: 'removeListener',
+        value: function c(d, e) {
+            var f;
+            for (f = 0; f < this.events[d].listeners.length; f++) {
+                if (this.events[d].listeners[f] == e) break;
             }
-        }, {
-            key: 'addListener',
-            value: function c(d, e) {
-                this._listener.addListener(d, e);
-                if (d == RICH360_EVENTS.RICH360_STATE_CHANGE) {
-                    if (this._ready_state == RICH360_STATE.RICH360_INIT) {
-                        this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
-                    }
-                    if (this._ready_state == RICH360_STATE.RICH360_READY) {
-                        this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
-                        this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
-                    }
+            if (f >= this.events[d].listeners.length) return;
+            this.events[d].listeners.splice(f, 1);
+        }
+    }, {
+        key: 'trigger',
+        value: function d(e, f) {
+            var g = this;
+            var h = function k(l) {
+                setTimeout(function() {
+                    this.events[e].listeners[l](f);
+                }.bind(g), 0);
+            };
+            for (var j = 0; j < this.events[e].listeners.length; j++) {
+                h(j);
+            }
+        }
+    }]);
+    return a;
+}();
+var Rich360HlsWrapper = function() {
+    var c = function() {
+        var f = true;
+        return function(g, h) {
+            var i = f ? function() {
+                if (h) {
+                    var j = h.apply(g, arguments);
+                    h = null;
+                    return j;
                 }
-            }
-        }, {
-            key: 'removeListener',
-            value: function d(e, f) {
-                this._listener.removeListener(e, f);
-            }
-        }, {
-            key: 'initialize',
-            value: function e() {
-                this.updateThumbnail();
-                if (document.getElementById('video')) {
-                    this._video = document.getElementById('video');
+            } : function() {};
+            f = false;
+            return i;
+        };
+    }();
+    var d = c(this, function() {
+        var f;
+        try {
+            var g = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
+            f = g();
+        } catch (o) {
+            f = window;
+        }
+        var h = f.console = f.console || {};
+        var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+        for (var j = 0; j < i.length; j++) {
+            var k = c.constructor.prototype.bind(c);
+            var l = i[j];
+            var m = h[l] || k;
+            k.__proto__ = c.bind(c);
+            k.toString = m.toString.bind(m);
+            h[l] = k;
+        }
+    });
+    d();
+
+    function e(f, g, h) {
+        _classCallCheck(this, e);
+        if (!Hls) {
+            console.log('Missing Hls.');
+            return;
+        }
+        this._isDummy = f;
+        if (isIOS() || isIpadOS()) {
+            this._isDummy = true;
+        }
+        this._config = g;
+        this._video = null;
+        this._isMultiview = h;
+    }
+    _createClass(e, [{
+        key: 'isHlsAvailable',
+        value: function f(g, h) {
+            var i = g;
+            var j = !j();
+            var k = window.Hls.isSupported();
+            var l = false;
+            if (!i) return l;
+            if (h) {
+                if (!j && i.canPlayType('application/vnd.apple.mpegurl')) {
+                    l = true;
+                } else if (k) {
+                    l = false;
+                }
+            } else l = !k;
+            return l;
+        }
+    }, {
+        key: 'attachMedia',
+        value: function g(h) {
+            this._video = h;
+            if (this._isMultiview) {
+                if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl') || isIOS() || isIpadOS()) {
+                    this._isDummy = true;
+                    this._hls = null;
+                } else if (Hls.isSupported()) {
+                    this._isDummy = false;
+                    this._hls = new Hls(this._config);
+                }
+            } else {
+                if (isIOS() || isIpadOS()) {
+                    this._isDummy = true;
+                    this._hls = null;
+                } else if (Hls.isSupported()) {
+                    this._isDummy = false;
+                    this._hls = new Hls(this._config);
                 } else {
-                    this._video = document.createElement('video');
-                    this._options.container.append(this._video);
+                    this._isDummy = true;
+                    this._hls = null;
                 }
-                if (!this._options.use_multiview) {
-                    addClassName(this._video, 'player-video-wrap');
+            }
+            this._video.addEventListener('canplay', function() {
+                if (this._config.startPosition != undefined && this._config.startPosition > 0) {
+                    this._video.currentTime = this._config.startPosition;
                 }
+                if (this._config.autoplay) {
+                    this._video.play();
+                }
+            }.bind(this), {
+                once: true
+            });
+            if (!this._isDummy) this._hls.attachMedia(h);
+        }
+    }, {
+        key: 'detachMedia',
+        value: function h() {
+            this._video = null;
+            if (!this._isDummy) this._hls.detachMedia();
+        }
+    }, {
+        key: 'loadSource',
+        value: function i(j, k, l) {
+            if (this._isDummy) {
+                this._video.src = j;
+                if (k) this._video.currentTime = k;
+                if (l) this._video.poster = l;
                 this._video.crossOrigin = 'anonymous';
                 this._video.disablePictureInPicture = true;
                 this._video.oncontextmenu = function() {
                     return false;
                 };
-                var f = Hls.DefaultConfig;
-                f.liveSyncDurationCount = 3;
-                f.startLevel = -1;
-                if (this._options.seek_to) {
-                    f.startPosition = this._options.seek_to;
-                }
-                if (this._options.autoStart) {
-                    this._video.autoplay = this._options.autoStart;
-                } else {
-                    this._video.autoplay = false;
-                }
-                f.fragLoadingRetryDelay = 100;
-                f.startFragPrefetch = true;
-                f.renderTextTracksNatively = false;
-                f.xhrSetup = function(m, n) {
-                    if (n.indexOf('.m3u8') === -1 && n.indexOf('.ts') === -1 && n.indexOf('.vtt') === -1 && n.indexOf('.webvtt') === -1 && n.indexOf('.key') === -1 && n.indexOf('.kmv') === -1) {
-                        m.withCredentials = true;
-                    }
-                };
-                if (this._options.use_multiview) {
-                    if (this._options.initial_view >= 0 && this._options.initial_view < this._manifest.multiview_list.length) {
-                        this._view = this._options.inital_view;
-                    } else {
-                        this._view = 0;
-                    }
-                    var g = [];
-                    for (var h = 0; h < this._manifest.multiview_list[this._view].sub_positions.length; h++) {
-                        var j = document.createElement('div');
-                        j.dataset.view = h;
-                        addClassName(j, 'view_wrap');
-                        var k = document.createElement('label');
-                        k.classList = 'view-name bolder fs_14 fc_point';
-                        if (this._view == h) {
-                            addClassName(j, 'on');
-                        }
-                        k.innerText = this._manifest.singleview_list[h].name;
-                        j.style.backgroundColor = 'transparent';
-                        j.style.zIndex = 1;
-                        j.append(k);
-                        this._options.multiViewList.append(j);
-                        g.push(j);
-                    }
-                    this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), f, this._options.use_multiview);
-                    this._hls.attachMedia(this._video);
-                    this._display = new MultiViewDisplay(this._options, this._video, this, this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions, g);
-                    this.addHlsFragParsedListener();
-                } else {
-                    this._hls = new Rich360HlsWrapper(!this._manifest.singleview_list[0].path.endsWith('.m3u8'), f, this._options.use_multiview);
-                    this._hls.attachMedia(this._video);
-                }
-                this.attachVideoListeners();
-                if (!this._hls._isDummy) {
-                    this.attachHlsListeners();
-                } else {
-                    this._video.setAttribute('playsinline', '');
-                    this._video.setAttribute('webkit-playsinline', '');
-                }
-                this._play_status = 'none';
-                if (this._options.use_multiview) {
-                    this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
-                } else {
-                    this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
-                }
-                this._subtitleManager = new Rich360SubtitleManager(this);
-                if (this._loggerItv) {
-                    clearInterval(this._loggerItv);
-                    this._loggerItv = null;
-                }
-                this._loggerItv = setInterval(function() {
-                    if (this._play_status && this._video.currentTime) {
-                        this._logger.addLog({
-                            timePos: this._video.currentTime,
-                            playStatus: this._play_status
-                        });
-                    }
-                }.bind(this), 1000);
+                this._video.load();
+            } else this._hls.loadSource(j);
+        }
+    }, {
+        key: 'release',
+        value: function j() {
+            this._video = null;
+            this._hls = null;
+        }
+    }, {
+        key: 'recoverMediaError',
+        value: function k() {
+            if (this._isDummy) {} else {
+                this._hls.recoverMediaError();
             }
-        }, {
-            key: 'updateThumbnail',
-            value: function f() {
-                var g = this._manifest;
-                if (g && g.singleview_list) {
-                    if (g.singleview_list.length) {
-                        if (g.singleview_list[0].thumbnail) {
-                            var h = this._sourceBase + g.singleview_list[0].thumbnail.path;
-                            this._listener.trigger(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, h);
-                        }
-                    }
-                }
+        }
+    }, {
+        key: 'on',
+        value: function l(m, n) {
+            if (!this._isDummy) {
+                this._hls.on(m, n);
             }
-        }, {
-            key: 'requestKMVManifest',
-            value: function g(h) {
-                var i = this,
-                    j = this._options.source.lastIndexOf('/');
-                if (j < 0) {
-                    this._sourceBase = '';
-                } else {
-                    this._sourceBase = this._options.source.substring(0, j) + '/';
-                }
-                if (this._options.source.endsWith('.kmv')) {
-                    var k = new XMLHttpRequest();
-                    k.open('GET', this._options.source);
-                    k.onreadystatechange = function() {
-                        if (k.readyState == 4 && k.status == 200) {
-                            i._manifest = JSON.parse(k.responseText);
-                            if (h) h();
+        }
+    }, {
+        key: 'startLoad',
+        value: function m() {
+            if (this._isDummy) {
+                this._video.load();
+            } else {
+                this._hls.startLoad();
+            }
+        }
+    }, {
+        key: 'destroy',
+        value: function n() {
+            if (this._isDummy) {
+                this.release();
+            } else this._hls.destroy();
+        }
+    }, {
+        key: 'isAutoQuality',
+        value: function o() {
+            return this._isDummy ? false : this._hls.levelController.manualLevel == -1;
+        }
+    }, {
+        key: 'levels',
+        get: function p() {
+            if (this._isDummy) return false;
+            else {
+                return this._hls.levels;
+            }
+        }
+    }, {
+        key: 'nextAutoLevel',
+        get: function q() {
+            return this._isDummy ? 0 : this._hls.abrController.nextAutoLevel;
+        }
+    }, {
+        key: 'currentLevel',
+        get: function r() {
+            if (this._isDummy) {
+                return 0;
+            } else return this._hls.currentLevel;
+        },
+        set: function s(t) {
+            if (!this._isDummy) this._hls.currentLevel = t;
+        }
+    }]);
+    return e;
+}();
+var RICH360_EVENTS = {
+    RICH360_STATE_CHANGE: 0,
+    RICH360_QUALITY_CHANGE: 1,
+    RICH360_DURATION_CHANGE: 2,
+    RICH360_PLAY_PAUSE_CHANGE: 3,
+    RICH360_ENDED: 4,
+    RICH360_ERROR: 5,
+    RICH360_WAIT: 6,
+    RICH360_ACCESS_DENIED: 7,
+    RICH360_SUBTITLE_FOUND: 8,
+    RICH360_LIVE_ENDED: 9,
+    RICH360_SOURCE_CHANGE: 10,
+    RICH360_THUMBNAIL_UPDATE: 11,
+    RICH360_GRID_THUMBNAIL_UPDATE: 12
+};
+var RICH360_STATE = {
+    RICH360_AUTH: 0,
+    RICH360_INIT: 1,
+    RICH360_READY: 2
+};
+var RICH360_WAIT_ON = {
+    RICH360_QUALITY_CHANGE: 0,
+    RICH360_BUFFER: 1,
+    RICH360_SEEK: 2,
+    SIZE: 3
+};
+var MULTIVIEW_PLAYER_DEFAULT_MANIFEST = {
+    type: '',
+    singleview_count: 1,
+    singleview_list: [{
+        id: 0,
+        name: '',
+        path: ''
+    }],
+    multiview_count: 1,
+    multiview_list: [{
+        id: 0,
+        path: '',
+        main_position: {
+            singleview_id: 0,
+            x: 0,
+            y: 0,
+            width: 1,
+            height: 1
+        },
+        sub_positions: []
+    }]
+};
+var SINGLEVIEW_PLAYER_DEFAULT_MANIFEST = {
+    type: '',
+    thumbnail: {
+        path: 'thumbnail.jpg'
+    },
+    thumbnail_grid: {
+        duration: 0,
+        interval: 0,
+        grid_x: 0,
+        grid_y: 0,
+        path: ''
+    },
+    singleview_count: 1,
+    singleview_list: [{
+        id: 0,
+        name: 'view_0',
+        path: ''
+    }],
+    multiview_count: 0,
+    multiview_list: []
+};
+var Rich360 = function() {
+    function a(b, c, d, e) {
+        _classCallCheck(this, a);
+        this._options = b;
+        this._ready_state = RICH360_STATE.RICH360_AUTH;
+        this.wait_on = [];
+        for (var f = 0; f < RICH360_WAIT_ON.SIZE; f++) {
+            this.wait_on[f] = false;
+        }
+        this._ui = d;
+        this._rich360Player = e;
+        this._ui_play = false;
+        this._listener = new Rich360EventListener(RICH360_EVENTS);
+        this._logger = new Rich360Log({
+            content_data: this._options.content_data,
+            credentials: {
+                content_id: this._options.credentials.content_id,
+                api_server: this._options.credentials.api_server
+            }
+        });
+        this._logger._listener = this._listener;
+        this._loggerItv = null;
+        this._subtitleList = [];
+        this._play_status = '';
+        this._view = 0;
+        this.addNativeTrackListener = this.addNativeTrackListener.bind(this);
+        this.updateNativeTrackCuesListener = this.updateNativeTrackCuesListener.bind(this);
+        var g = c.substr(c.lastIndexOf('/') + 1, c.length);
+        var h = c.substr(0, c.lastIndexOf('/') + 1);
+        var j = h + g;
+        this._options.source = j;
+        if ('credentials' in this._options) {
+            if (!('device_id' in this._options.credentials)) {
+                this._options.credentials.device_id = null;
+            }
+            if (!('user_id' in this._options.credentials)) {
+                this._options.credentials.user_id = null;
+            }
+            if (!('content_id' in this._options.credentials)) {
+                this._options.credentials.content_id = null;
+            }
+            if (!('ticket_id' in this._options.credentials)) {
+                this._options.credentials.ticket_id = null;
+            }
+        } else {
+            this._options.credentials = {
+                device_id: null,
+                user_id: null,
+                content_id: null,
+                ticket_id: null
+            };
+        }
+        if (this._options.container) {
+            this._parent_dom = this._options.container;
+        } else {
+            this._parent_dom = document.body;
+        }
+        if (this._options.use_multiview) {
+            this.setChangingView(false);
+        }
+        this.authorize();
+    }
+    _createClass(a, [{
+        key: 'authorize',
+        value: function b() {
+            var c = new XMLHttpRequest();
+            c.open('POST', this._options.credentials.api_server + '/user_auth/player_authorize/', true);
+            c.withCredentials = true;
+            c.req_data = {
+                user_id: this._options.credentials.user_id,
+                device_id: this._options.credentials.device_id,
+                content_id: this._options.credentials.content_id,
+                location: {
+                    domain: window.location.hostname
+                },
+                source: this._options.source,
+                rqstr: this.generate16byte(),
+                scstr: this.generate16byte(),
+                enstr: this.generate16byte(),
+                psstr: this.generate16byte(),
+                dbstr: this.generate16byte(),
+                ltstr: this.generate16byte(),
+                hsstr: this.generate16byte(),
+                rnstr: this.generate16byte()
+            };
+            var d = new FormData();
+            d.append('user_id', c.req_data.user_id);
+            d.append('device_id', c.req_data.device_id);
+            d.append('content_id', c.req_data.content_id);
+            d.append('domain', c.req_data.location.domain);
+            d.append('source', c.req_data.source);
+            d.append('rqstr', c.req_data.rqstr);
+            d.append('scstr', c.req_data.scstr);
+            d.append('enstr', c.req_data.enstr);
+            d.append('psstr', c.req_data.psstr);
+            d.append('dbstr', c.req_data.dbstr);
+            d.append('ltstr', c.req_data.ltstr);
+            d.append('hsstr', c.req_data.hsstr);
+            d.append('rnstr', c.req_data.rnstr);
+            c.onerror = function(f) {
+                console.log(f);
+                this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
+                return;
+            }.bind(this);
+            c.onload = function(f) {
+                console.log(f);
+                if (c.readyState === 4) {
+                    this.base = 'rich360';
+                    this.baseCode = [];
+                    var g;
+                    var h;
+                    var l;
+                    for (g = 0; g < 7; g++) {
+                        this.baseCode[g] = this.base.charCodeAt(g);
+                    }
+                    this.addRich360 = function(n, o) {
+                        var p = o % 7;
+                        var q = this.baseCode.slice(p, 7).concat(this.baseCode.slice(0, p + 1));
+                        for (h = 0; h < 8; h++) {
+                            n[h] = (n[h] + q[h]) % 256;
                         }
+                        return n;
                     }.bind(this);
-                    k.send();
-                } else {
-                    if (this._options.use_multiview) {
-                        this._manifest = MULTIVIEW_PLAYER_DEFAULT_MANIFEST;
-                        this._manifest.type = this._options.source.substring(this._options.source.lastIndexOf('.') + 1);
-                        this._manifest.multiview_list[0].path = this._options.source.substring(this._options.source.lastIndexOf('/') + 1);
-                    } else {
-                        this._manifest = SINGLEVIEW_PLAYER_DEFAULT_MANIFEST;
-                        this._manifest.type = this._options.source.substring(this._options.source.lastIndexOf('.') + 1);
-                        this._manifest.singleview_list[0].path = this._options.source.substring(this._options.source.lastIndexOf('/') + 1);
-                    }
-                    if (h) h();
-                }
-            }
-        }, {
-            key: 'view',
-            get: function h() {
-                return this._view;
-            },
-            set: function i(j) {
-                var k = this;
-                if (this._changingView) return;
-                if (j < 0) j = 0;
-                if (j >= this._manifest.multiview_count) j = this._manifest.multiview_count - 1;
-                if (this._view == j) return;
-                this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
-                if (this._hls._isDummy) {
-                    this._view = j;
-                    var l = this._video.currentTime;
-                    this._hls.detachMedia();
-                    this._hls.destroy();
-                    var m = Hls.DefaultConfig;
-                    if (this._video.paused) m.autoplay = false;
-                    else m.autoplay = true;
-                    this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), m, this._options.use_multiview);
-                    this._hls.attachMedia(this._video);
-                    var n = this._manifest.multiview_list[this._view].sub_positions,
-                        o = n.map(function(t) {
-                            return k.resizeToCanvasImage(t);
-                        });
-                    this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path, l, o[this._view]);
-                    this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
-                } else {
-                    this.setChangingView(true);
-                    this._view = j;
-                    this._display.arrangeVideo();
-                    var p = Hls.DefaultConfig;
-                    p.startLevel = -1;
-                    var q = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), p, this._options.use_multiview),
-                        r = document.createElement('video');
-                    this._newVideo = r;
-                    if (this._newVideo) {
-                        this._newVideo.disablePictureInPicture = true;
-                        this._newVideo.oncontextmenu = function() {
-                            return false;
-                        };
-                    }
-                    r.setAttribute('playsinline', '');
-                    r.setAttribute('preload', 'metadata');
-                    q.attachMedia(r);
-                    q.on(Hls.Events.MEDIA_ATTACHED, function() {
-                        q.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
-                    }.bind(this));
-                    q.timeDictionary = {};
-                    q.snsInDictionary = [];
-                    q.firstFrag = true;
-                    q.on(Hls.Events.FRAG_PARSED, function(u, w) {
-                        var x = w.frag;
-                        q.timeDictionary[x.sn + ''] = x.startPTS;
-                        q.snsInDictionary.push(x.sn);
-                        while (q.snsInDictionary.length > 100) {
-                            var y = 0;
-                            if (q.snsInDictionary[y] == 0) y = 1;
-                            var z = q.snsInDictionary[y];
-                            q.snsInDictionary.splice(y, 1);
-                            delete q.timeDictionary[z + ''];
+                    this.encrypt = function(n, o) {
+                        if (n.length != 16) return 'string length must be 16';
+                        var p = [];
+                        var q;
+                        for (q = 0; q < 16; q++) {
+                            p[q] = n.charCodeAt(q);
                         }
-                        if (q.firstFrag) {
-                            q.firstFrag = false;
-                            q.startSN = x.sn;
-                            q.startPTS = x.startPTS;
-                            q.readyForChange = true;
-                            if (r.readyForChange) s();
-                        }
-                    }.bind(this));
-                    var s = function() {
-                        var u = this._video,
-                            w = this._hls,
-                            x = 0;
-                        if (w.timeDictionary[q.startSN + ''] != undefined) {
-                            x = w.timeDictionary[q.startSN + ''] - q.startPTS;
-                        } else {
-                            var y = -1,
-                                z = -1;
-                            for (var A in w.timeDictionary) {
-                                var B = Number.parseInt(A + '');
-                                if (z == -1 || B > z) z = B;
-                                if (y == -1 || B < y) y = B;
+                        var r = p.slice(0, 8);
+                        var s = p.slice(8, 16);
+                        for (q = 0; q < o; q++) {
+                            s = this.addRich360(s, q);
+                            var t = r.slice(0, 8);
+                            for (l = 0; l < 8; l++) {
+                                r[l] = r[l] ^ s[l];
                             }
-                            var C = (w.timeDictionary[z + ''] - w.timeDictionary[y + '']) / (z - y),
-                                D = w.timeDictionary[z + ''] + C * (q.startSN - z);
-                            x = D - q.startPTS;
-                            console.error('startSN : ' + q.startSN + ' not defined in oldHLS');
-                            console.error(w.timeDictionary);
-                            console.error('estPTS : ' + D + ' timePerSN : ' + C + ' smallestSN : ' + y + ' biggestSN : ' + z + ' newStartSN : ' + q.startSN + ' newStartPTS : ' + q.startPTS);
+                            s = t.slice(0, 8);
                         }
-                        var E = function(J) {
-                            r.pause();
-                            var K = (r.currentTime - (u.currentTime - x)) * 1000;
-                            console.log('@@oldHLS.timeDictionary : ', w.timeDictionary);
-                            console.log('@@timeDiff : ', x);
-                            console.log('@@newVideo.currentTime : ', r.currentTime);
-                            console.log('@@oldVideo.currentTime : ', u.currentTime);
-                            console.log('@@@ waitTime : ', K);
-                            setTimeout(function() {
-                                r.volume = u.volume;
-                                if (!this._options.content_data.use_vod) {
-                                    this._subtitleManager._prevViewOffsetTime = u.currentTime - r.currentTime;
-                                }
-                                if (!u.paused) {
-                                    r.play();
-                                }
-                                u.pause();
-                                q._hls.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
-                                w.detachMedia();
-                                w.destroy();
-                                u = null;
-                                w = null;
-                                this._video = r;
-                                this._hls = q;
-                                this.attachVideoListeners();
-                                if (!this._hls._isDummy) {
-                                    this.attachHlsListeners();
-                                    this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
-                                }
-                                this.setChangingView(false);
-                                this._display.replaceVideo(r);
-                                this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
-                                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                                    wait: false,
-                                    wait_on: RICH360_WAIT_ON.RICH360_SEEK
-                                });
-                            }.bind(this), K >= 0 ? K : 0);
-                        }.bind(this);
-                        r.addEventListener('seeked', E, {
-                            once: true
-                        });
-                        r.volume = 0;
-                        var F = function J() {
-                                console.log('seekIfPossible');
-                                var K = r.buffered,
-                                    L = u.currentTime + 0.5 - x;
-                                console.log('targetTime : ' + L + ' = ' + u.currentTime + ' + 0.5 - ' + x);
-                                var M = 0;
-                                for (; M < K.length; M++) {
-                                    console.log('start(' + M + ') : ' + K.start(M));
-                                    console.log('end(' + M + ') : ' + K.end(M));
-                                    if (K.start(M) <= L && L + 1 <= K.end(M)) {
-                                        r.currentTime = L;
-                                        break;
-                                    }
-                                }
-                                if (M != K.length) {
-                                    console.log('clearInterval');
-                                    clearInterval(G);
-                                    clearTimeout(H);
-                                }
-                            },
-                            G = setInterval(F, 100),
-                            H = setTimeout(function() {
-                                console.warn('5 second limit');
-                                var K = r.buffered,
-                                    L = u.currentTime + 0.5 - x,
-                                    M = 0,
-                                    N = 0,
-                                    O = 0;
-                                for (O = 0; O < K.length; O++) {
-                                    if (K.start(O) > L) {
-                                        M = K.start(O);
-                                    }
-                                    if (K.end(O) > N) {
-                                        N = K.end(O);
-                                    }
-                                }
-                                if (M) {
-                                    r.currentTime = M + 0.5;
-                                } else {
-                                    r.currentTime = N - 1;
-                                }
-                                console.log('clearInterval');
-                                clearInterval(G);
-                            }, 5000);
+                        var u = [];
+                        for (q = 0; q < 8; q++) {
+                            u[q] = String.fromCharCode(r[q]);
+                        }
+                        for (q = 0; q < 8; q++) {
+                            u[q + 8] = String.fromCharCode(s[q]);
+                        }
+                        return u;
                     }.bind(this);
-                    r.addEventListener('canplaythrough', function(u) {
-                        r.readyForChange = true;
-                        if (q.readyForChange) s();
-                    }.bind(this), {
-                        once: true
+                    this.validate_response = function(n, o) {
+                        var p = this.encrypt(n.ltstr, 16);
+                        var q = '';
+                        for (var r = 0; r < 16; r++) {
+                            q += p[r];
+                        }
+                        if (q == o.rtstr) return true;
+                        else return false;
+                    }.bind(this);
+                    if (!this.validate_response(c.req_data, JSON.parse(c.responseText))) {
+                        if (c.status == 403) {
+                            this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
+                        } else {
+                            if (c.status != 200) {
+                                this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
+                                return;
+                            }
+                        }
+                    }
+                    this.base = undefined;
+                    this.baseCode = undefined;
+                    this.addRich360 = undefined;
+                    this.encrypt = undefined;
+                    this.validate_response = undefined;
+                    this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
+                    this._ready_state = RICH360_STATE.RICH360_INIT;
+                    this.requestKMVManifest(function() {
+                        if (this._options.content_data.use_vod) {
+                            this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.singleview_list[0].thumbnail_grid);
+                        }
+                        this.initialize();
+                    }.bind(this));
+                    this._logger.startInterval();
+                }
+            }.bind(this);
+            c.send(d);
+        }
+    }, {
+        key: 'addListener',
+        value: function c(d, e) {
+            this._listener.addListener(d, e);
+            if (d == RICH360_EVENTS.RICH360_STATE_CHANGE) {
+                if (this._ready_state == RICH360_STATE.RICH360_INIT) {
+                    this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
+                }
+                if (this._ready_state == RICH360_STATE.RICH360_READY) {
+                    this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_INIT);
+                    this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
+                }
+            }
+        }
+    }, {
+        key: 'removeListener',
+        value: function d(e, f) {
+            this._listener.removeListener(e, f);
+        }
+    }, {
+        key: 'initialize',
+        value: function e() {
+            this.updateThumbnail();
+            if (document.getElementById('video')) {
+                this._video = document.getElementById('video');
+            } else {
+                this._video = document.createElement('video');
+                this._options.container.append(this._video);
+            }
+            if (!this._options.use_multiview) {
+                addClassName(this._video, 'player-video-wrap');
+            }
+            this._video.crossOrigin = 'anonymous';
+            this._video.disablePictureInPicture = true;
+            this._video.oncontextmenu = function() {
+                return false;
+            };
+            var f = Hls.DefaultConfig;
+            f.liveSyncDurationCount = 3;
+            f.startLevel = -1;
+            if (this._options.seek_to) {
+                f.startPosition = this._options.seek_to;
+            }
+            if (this._options.autoStart) {
+                this._video.autoplay = this._options.autoStart;
+            } else {
+                this._video.autoplay = false;
+            }
+            f.fragLoadingRetryDelay = 100;
+            f.startFragPrefetch = true;
+            f.renderTextTracksNatively = false;
+            f.xhrSetup = function(m, n) {
+                if (n.indexOf('.m3u8') === -1 && n.indexOf('.ts') === -1 && n.indexOf('.vtt') === -1 && n.indexOf('.webvtt') === -1 && n.indexOf('.key') === -1 && n.indexOf('.kmv') === -1) {
+                    m.withCredentials = true;
+                }
+            };
+            if (this._options.use_multiview) {
+                if (this._options.initial_view >= 0 && this._options.initial_view < this._manifest.multiview_list.length) {
+                    this._view = this._options.inital_view;
+                } else {
+                    this._view = 0;
+                }
+                var g = [];
+                for (var h = 0; h < this._manifest.multiview_list[this._view].sub_positions.length; h++) {
+                    var j = document.createElement('div');
+                    j.dataset.view = h;
+                    addClassName(j, 'view_wrap');
+                    var k = document.createElement('label');
+                    k.classList = 'view-name bolder fs_14 fc_point';
+                    if (this._view == h) {
+                        addClassName(j, 'on');
+                    }
+                    k.innerText = this._manifest.singleview_list[h].name;
+                    j.style.backgroundColor = 'transparent';
+                    j.style.zIndex = 1;
+                    j.append(k);
+                    this._options.multiViewList.append(j);
+                    g.push(j);
+                }
+                this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), f, this._options.use_multiview);
+                this._hls.attachMedia(this._video);
+                this._display = new MultiViewDisplay(this._options, this._video, this, this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions, g);
+                this.addHlsFragParsedListener();
+            } else {
+                this._hls = new Rich360HlsWrapper(!this._manifest.singleview_list[0].path.endsWith('.m3u8'), f, this._options.use_multiview);
+                this._hls.attachMedia(this._video);
+            }
+            this.attachVideoListeners();
+            if (!this._hls._isDummy) {
+                this.attachHlsListeners();
+            } else {
+                this._video.setAttribute('playsinline', '');
+                this._video.setAttribute('webkit-playsinline', '');
+            }
+            this._play_status = 'none';
+            if (this._options.use_multiview) {
+                this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+            } else {
+                this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
+            }
+            this._subtitleManager = new Rich360SubtitleManager(this);
+            if (this._loggerItv) {
+                clearInterval(this._loggerItv);
+                this._loggerItv = null;
+            }
+            this._loggerItv = setInterval(function() {
+                if (this._play_status && this._video.currentTime) {
+                    this._logger.addLog({
+                        timePos: this._video.currentTime,
+                        playStatus: this._play_status
                     });
                 }
+            }.bind(this), 1000);
+        }
+    }, {
+        key: 'updateThumbnail',
+        value: function f() {
+            var g = this._manifest;
+            if (g && g.singleview_list) {
+                if (g.singleview_list.length) {
+                    if (g.singleview_list[0].thumbnail) {
+                        var h = this._sourceBase + g.singleview_list[0].thumbnail.path;
+                        this._listener.trigger(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, h);
+                    }
+                }
             }
-        }, {
-            key: 'views',
-            get: function j() {
-                return this._manifest.multiview_count;
+        }
+    }, {
+        key: 'requestKMVManifest',
+        value: function g(h) {
+            var i = this;
+            var j = this._options.source.lastIndexOf('/');
+            if (j < 0) {
+                this._sourceBase = '';
+            } else {
+                this._sourceBase = this._options.source.substring(0, j) + '/';
             }
-        }, {
-            key: 'resizeToCanvasImage',
-            value: function k(l) {
-                var m = document.createElement('canvas'),
-                    n = m.getContext('2d'),
-                    mvMainDiv = $('#mvMainDiv'),
-                    mvMainDiv__video = $('#mvMainDiv video');
-                m.width = mvMainDiv__video.width();
-                m.height = mvMainDiv__video.height();
-                var q = mvMainDiv__video[0],
-                    r = q.videoWidth,
-                    s = q.videoHeight;
-                n.drawImage(mvMainDiv__video[0], Math.round(l.x * r), Math.round(l.y * s), Math.round(l.width * r), Math.round(l.height * s), 0, 0, mvMainDiv.width(), mvMainDiv.height());
-                return m.toDataURL();
+            if (this._options.source.endsWith('.kmv')) {
+                var k = new XMLHttpRequest();
+                k.open('GET', this._options.source);
+                k.onreadystatechange = function() {
+                    if (k.readyState == 4 && k.status == 200) {
+                        i._manifest = JSON.parse(k.responseText);
+                        if (h) h();
+                    }
+                }.bind(this);
+                k.send();
+            } else {
+                if (this._options.use_multiview) {
+                    this._manifest = MULTIVIEW_PLAYER_DEFAULT_MANIFEST;
+                    this._manifest.type = this._options.source.substring(this._options.source.lastIndexOf('.') + 1);
+                    this._manifest.multiview_list[0].path = this._options.source.substring(this._options.source.lastIndexOf('/') + 1);
+                } else {
+                    this._manifest = SINGLEVIEW_PLAYER_DEFAULT_MANIFEST;
+                    this._manifest.type = this._options.source.substring(this._options.source.lastIndexOf('.') + 1);
+                    this._manifest.singleview_list[0].path = this._options.source.substring(this._options.source.lastIndexOf('/') + 1);
+                }
+                if (h) h();
             }
-        }, {
-            key: 'changeSingleView',
-            value: function l(m) {
-                var n = this._video.currentTime;
-                this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
+        }
+    }, {
+        key: 'view',
+        get: function h() {
+            return this._view;
+        },
+        set: function i(j) {
+            var k = this;
+            if (this._changingView) return;
+            if (j < 0) j = 0;
+            if (j >= this._manifest.multiview_count) j = this._manifest.multiview_count - 1;
+            if (this._view == j) return;
+            this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
+            if (this._hls._isDummy) {
+                this._view = j;
+                var l = this._video.currentTime;
                 this._hls.detachMedia();
                 this._hls.destroy();
-                var o = Hls.DefaultConfig;
-                if (this._video.paused) o.autoplay = false;
-                else o.autoplay = true;
-                this._hls = new Rich360HlsWrapper(!this._manifest.singleview_list[this._view].path.endsWith('.m3u8'), o, this._options.use_multiview);
+                var m = Hls.DefaultConfig;
+                if (this._video.paused) m.autoplay = false;
+                else m.autoplay = true;
+                this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), m, this._options.use_multiview);
                 this._hls.attachMedia(this._video);
-                if (m) {
-                    this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
-                } else {
-                    this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+                var n = this._manifest.multiview_list[this._view].sub_positions;
+                var o = n.map(function(t) {
+                    return k.resizeToCanvasImage(t);
+                });
+                this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path, l, o[this._view]);
+                this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
+            } else {
+                this.setChangingView(true);
+                this._view = j;
+                this._display.arrangeVideo();
+                var p = Hls.DefaultConfig;
+                p.startLevel = -1;
+                var q = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), p, this._options.use_multiview);
+                var r = document.createElement('video');
+                this._newVideo = r;
+                if (this._newVideo) {
+                    this._newVideo.disablePictureInPicture = true;
+                    this._newVideo.oncontextmenu = function() {
+                        return false;
+                    };
                 }
-                this._video.addEventListener('loadedmetadata', function(p) {
-                    this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
-                    this._video.play();
-                    if (!m) {
-                        $(this._video).hide();
-                        setTimeout(function() {
-                            $(this._video).show();
-                            this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
-                        }.bind(this), 500);
+                r.setAttribute('playsinline', '');
+                r.setAttribute('preload', 'metadata');
+                q.attachMedia(r);
+                q.on(Hls.Events.MEDIA_ATTACHED, function() {
+                    q.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+                }.bind(this));
+                q.timeDictionary = {};
+                q.snsInDictionary = [];
+                q.firstFrag = true;
+                q.on(Hls.Events.FRAG_PARSED, function(u, w) {
+                    var x = w.frag;
+                    q.timeDictionary[x.sn + ''] = x.startPTS;
+                    q.snsInDictionary.push(x.sn);
+                    while (q.snsInDictionary.length > 100) {
+                        var y = 0;
+                        if (q.snsInDictionary[y] == 0) y = 1;
+                        var z = q.snsInDictionary[y];
+                        q.snsInDictionary.splice(y, 1);
+                        delete q.timeDictionary[z + ''];
                     }
+                    if (q.firstFrag) {
+                        q.firstFrag = false;
+                        q.startSN = x.sn;
+                        q.startPTS = x.startPTS;
+                        q.readyForChange = true;
+                        if (r.readyForChange) s();
+                    }
+                }.bind(this));
+                var s = function() {
+                    var u = this._video;
+                    var w = this._hls;
+                    var x = 0;
+                    if (w.timeDictionary[q.startSN + ''] != undefined) {
+                        x = w.timeDictionary[q.startSN + ''] - q.startPTS;
+                    } else {
+                        var y = -1;
+                        var z = -1;
+                        for (var A in w.timeDictionary) {
+                            var B = Number.parseInt(A + '');
+                            if (z == -1 || B > z) z = B;
+                            if (y == -1 || B < y) y = B;
+                        }
+                        var C = (w.timeDictionary[z + ''] - w.timeDictionary[y + '']) / (z - y);
+                        var D = w.timeDictionary[z + ''] + C * (q.startSN - z);
+                        x = D - q.startPTS;
+                        console.error('startSN : ' + q.startSN + ' not defined in oldHLS');
+                        console.error(w.timeDictionary);
+                        console.error('estPTS : ' + D + ' timePerSN : ' + C + ' smallestSN : ' + y + ' biggestSN : ' + z + ' newStartSN : ' + q.startSN + ' newStartPTS : ' + q.startPTS);
+                    }
+                    var E = function(J) {
+                        r.pause();
+                        var K = (r.currentTime - (u.currentTime - x)) * 1000;
+                        console.log('@@oldHLS.timeDictionary : ', w.timeDictionary);
+                        console.log('@@timeDiff : ', x);
+                        console.log('@@newVideo.currentTime : ', r.currentTime);
+                        console.log('@@oldVideo.currentTime : ', u.currentTime);
+                        console.log('@@@ waitTime : ', K);
+                        setTimeout(function() {
+                            r.volume = u.volume;
+                            if (!this._options.content_data.use_vod) {
+                                this._subtitleManager._prevViewOffsetTime = u.currentTime - r.currentTime;
+                            }
+                            if (!u.paused) {
+                                r.play();
+                            }
+                            u.pause();
+                            q._hls.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
+                            w.detachMedia();
+                            w.destroy();
+                            u = null;
+                            w = null;
+                            this._video = r;
+                            this._hls = q;
+                            this.attachVideoListeners();
+                            if (!this._hls._isDummy) {
+                                this.attachHlsListeners();
+                                this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
+                            }
+                            this.setChangingView(false);
+                            this._display.replaceVideo(r);
+                            this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
+                            this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                                wait: false,
+                                wait_on: RICH360_WAIT_ON.RICH360_SEEK
+                            });
+                        }.bind(this), K >= 0 ? K : 0);
+                    }.bind(this);
+                    r.addEventListener('seeked', E, {
+                        once: true
+                    });
+                    r.volume = 0;
+                    var F = function J() {
+                        console.log('seekIfPossible');
+                        var K = r.buffered;
+                        var L = u.currentTime + 0.5 - x;
+                        console.log('targetTime : ' + L + ' = ' + u.currentTime + ' + 0.5 - ' + x);
+                        var M = 0;
+                        for (; M < K.length; M++) {
+                            console.log('start(' + M + ') : ' + K.start(M));
+                            console.log('end(' + M + ') : ' + K.end(M));
+                            if (K.start(M) <= L && L + 1 <= K.end(M)) {
+                                r.currentTime = L;
+                                break;
+                            }
+                        }
+                        if (M != K.length) {
+                            console.log('clearInterval');
+                            clearInterval(G);
+                            clearTimeout(H);
+                        }
+                    };
+                    var G = setInterval(F, 100);
+                    var H = setTimeout(function() {
+                        console.warn('5 second limit');
+                        var K = r.buffered;
+                        var L = u.currentTime + 0.5 - x;
+                        var M = 0;
+                        var N = 0;
+                        var O = 0;
+                        for (O = 0; O < K.length; O++) {
+                            if (K.start(O) > L) {
+                                M = K.start(O);
+                            }
+                            if (K.end(O) > N) {
+                                N = K.end(O);
+                            }
+                        }
+                        if (M) {
+                            r.currentTime = M + 0.5;
+                        } else {
+                            r.currentTime = N - 1;
+                        }
+                        console.log('clearInterval');
+                        clearInterval(G);
+                    }, 5000);
+                }.bind(this);
+                r.addEventListener('canplaythrough', function(u) {
+                    r.readyForChange = true;
+                    if (q.readyForChange) s();
                 }.bind(this), {
                     once: true
                 });
             }
-        }, {
-            key: 'changeSource',
-            value: function m(n) {
-                if (n) {
-                    this._options.source = n;
-                    this.requestKMVManifest(function() {
-                        var o = this._video.currentTime;
-                        this._hls.detachMedia();
-                        this._hls.destroy();
-                        var p = Hls.DefaultConfig,
-                            q = '';
-                        if (this._options.use_multiview) {
-                            q = this._sourceBase + this._manifest.multiview_list[this._view].path;
-                        } else {
-                            q = this._sourceBase + this._manifest.singleview_list[0].path;
-                        }
-                        this._hls = new Rich360HlsWrapper(!q.endsWith('.m3u8'), p, this._options.use_multiview);
-                        this._hls.attachMedia(this._video);
-                        this._hls.loadSource(q);
-                        if (!this._hls._isDummy) {
-                            this.addHlsFragParsedListener();
-                            this.attachHlsListeners();
-                            this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
-                        }
-                        this._video.addEventListener('loadedmetadata', function(v) {
-                            if (this._options.content_data.use_vod) {
-                                this._video.currentTime = o;
-                                this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
-                            } else {
-                                this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
-                                this._subtitleManager._prevViewOffsetTime = o - this._video.currentTime;
-                            }
-                            this._rich360Player.wakeupController();
-                        }.bind(this), {
-                            once: true
-                        });
+        }
+    }, {
+        key: 'views',
+        get: function j() {
+            return this._manifest.multiview_count;
+        }
+    }, {
+        key: 'resizeToCanvasImage',
+        value: function k(l) {
+            var m = document.createElement('canvas');
+            var n = m.getContext('2d');
+            var mvMainDiv = $('#mvMainDiv');
+            var mvMainDiv__video = $('#mvMainDiv video');
+            m.width = mvMainDiv__video.width();
+            m.height = mvMainDiv__video.height();
+            var q = mvMainDiv__video[0];
+            var r = q.videoWidth;
+            var s = q.videoHeight;
+            n.drawImage(mvMainDiv__video[0], Math.round(l.x * r), Math.round(l.y * s), Math.round(l.width * r), Math.round(l.height * s), 0, 0, mvMainDiv.width(), mvMainDiv.height());
+            return m.toDataURL();
+        }
+    }, {
+        key: 'changeSingleView',
+        value: function l(m) {
+            var n = this._video.currentTime;
+            this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
+            this._hls.detachMedia();
+            this._hls.destroy();
+            var o = Hls.DefaultConfig;
+            if (this._video.paused) o.autoplay = false;
+            else o.autoplay = true;
+            this._hls = new Rich360HlsWrapper(!this._manifest.singleview_list[this._view].path.endsWith('.m3u8'), o, this._options.use_multiview);
+            this._hls.attachMedia(this._video);
+            if (m) {
+                this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
+            } else {
+                this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+            }
+            this._video.addEventListener('loadedmetadata', function(p) {
+                this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
+                this._video.play();
+                if (!m) {
+                    $(this._video).hide();
+                    setTimeout(function() {
+                        $(this._video).show();
+                        this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
+                    }.bind(this), 500);
+                }
+            }.bind(this), {
+                once: true
+            });
+        }
+    }, {
+        key: 'changeSource',
+        value: function m(n) {
+            if (n) {
+                this._options.source = n;
+                this.requestKMVManifest(function() {
+                    var o = this._video.currentTime;
+                    this._hls.detachMedia();
+                    this._hls.destroy();
+                    var p = Hls.DefaultConfig;
+                    var q = '';
+                    if (this._options.use_multiview) {
+                        q = this._sourceBase + this._manifest.multiview_list[this._view].path;
+                    } else {
+                        q = this._sourceBase + this._manifest.singleview_list[0].path;
+                    }
+                    this._hls = new Rich360HlsWrapper(!q.endsWith('.m3u8'), p, this._options.use_multiview);
+                    this._hls.attachMedia(this._video);
+                    this._hls.loadSource(q);
+                    if (!this._hls._isDummy) {
+                        this.addHlsFragParsedListener();
+                        this.attachHlsListeners();
+                        this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
+                    }
+                    this._video.addEventListener('loadedmetadata', function(v) {
                         if (this._options.content_data.use_vod) {
-                            this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.singleview_list[0].thumbnail_grid);
+                            this._video.currentTime = o;
+                            this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
+                        } else {
+                            this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
+                            this._subtitleManager._prevViewOffsetTime = o - this._video.currentTime;
                         }
-                    }.bind(this));
+                        this._rich360Player.wakeupController();
+                    }.bind(this), {
+                        once: true
+                    });
+                    if (this._options.content_data.use_vod) {
+                        this._listener.trigger(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, this._manifest.singleview_list[0].thumbnail_grid);
+                    }
+                }.bind(this));
+            }
+        }
+    }, {
+        key: 'getRandomInt',
+        value: function n(o, p) {
+            return Math.floor(Math.random() * (p - o + 1)) + o;
+        }
+    }, {
+        key: 'generate16byte',
+        value: function o() {
+            return String.fromCharCode(this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255));
+        }
+    }, {
+        key: 'pause_on',
+        value: function p() {
+            this._video.pause();
+            this._ui_play = false;
+            this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
+        }
+    }, {
+        key: 'play_on',
+        value: function q() {
+            this._ui_play = true;
+            this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
+            var r = true;
+            for (var s = 0; s < RICH360_WAIT_ON.SIZE; s++) {
+                r = r && !this.wait_on[s];
+            }
+            r = r && this._ui_play;
+            if (r) {
+                this._video.play();
+            }
+        }
+    }, {
+        key: 'addNativeTrackListener',
+        value: function r(s) {
+            this._subtitleList = [];
+            for (var t = 0; t < this._video.textTracks.length; t++) {
+                this._subtitleList.push({
+                    id: t,
+                    label: this._video.textTracks[t].label,
+                    lang: this._video.textTracks[t].language
+                });
+            }
+            this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
+            var u = s.track;
+            if (this._subtitleManager._isHideDefaultSubtitles) {
+                if (s.track.mode == 'showing') {
+                    s.track.mode = 'hidden';
+                }
+            } else {
+                if (s.track.mode == 'hidden') {
+                    s.track.mode = 'showing';
                 }
             }
-        }, {
-            key: 'getRandomInt',
-            value: function n(o, p) {
-                return Math.floor(Math.random() * (p - o + 1)) + o;
+            u.removeEventListener('cuechange', this.updateNativeTrackCuesListener);
+            u.addEventListener('cuechange', this.updateNativeTrackCuesListener);
+            if (this._options.use_multiview) {
+                this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
             }
-        }, {
-            key: 'generate16byte',
-            value: function o() {
-                return String.fromCharCode(this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255), this.getRandomInt(0, 255));
+        }
+    }, {
+        key: 'updateNativeTrackCuesListener',
+        value: function s(t) {
+            if (this._subtitleManager._isHideDefaultSubtitles) {
+                if (t.target.mode == 'showing') {
+                    t.target.mode = 'hidden';
+                }
+            } else {
+                if (t.target.mode == 'hidden') {
+                    t.target.mode = 'showing';
+                }
             }
-        }, {
-            key: 'pause_on',
-            value: function p() {
-                this._video.pause();
-                this._ui_play = false;
-                this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
+            if (t.target.cues.length) {
+                var u = t.target.cues.length;
+                var v = [];
+                for (var w = 0; w < u; w++) {
+                    var x = -1;
+                    for (var y = 0; y < this._subtitleList.length; y++) {
+                        if (this._subtitleList[y].lang == t.target.cues[w].track.language) {
+                            x = y;
+                            break;
+                        }
+                    }
+                    v.push({
+                        startTime: t.target.cues[w].startTime,
+                        endTime: t.target.cues[w].endTime,
+                        text: t.target.cues[w].text,
+                        track_num: x,
+                        view: this._view
+                    });
+                }
+                this._subtitleManager.addCueData(v);
             }
-        }, {
-            key: 'play_on',
-            value: function q() {
-                this._ui_play = true;
+        }
+    }, {
+        key: 'attachVideoListeners',
+        value: function t() {
+            this._video.addEventListener('seeking', function() {
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: true,
+                    wait_on: RICH360_WAIT_ON.RICH360_SEEK
+                });
+            }.bind(this));
+            this._video.addEventListener('seeked', function() {
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: false,
+                    wait_on: RICH360_WAIT_ON.RICH360_SEEK
+                });
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: false,
+                    wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+                });
+            }.bind(this));
+            this._video.addEventListener('play', function() {
+                this._play_status = 'play';
+                this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                 this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
-                var r = true;
-                for (var s = 0; s < RICH360_WAIT_ON.SIZE; s++) {
-                    r = r && !this.wait_on[s];
+            }.bind(this));
+            this._video.addEventListener('pause', function() {
+                this._play_status = 'pause';
+                this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
+            }.bind(this));
+            this._video.addEventListener('durationchange', function() {
+                this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
+            }.bind(this));
+            this._video.addEventListener('timeupdate', function() {
+                this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
+            }.bind(this));
+            this._video.addEventListener('progress', function() {
+                this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: false,
+                    wait_on: RICH360_WAIT_ON.RICH360_BUFFER
+                });
+            }.bind(this));
+            this._video.addEventListener('ended', function() {
+                this._ui_play = false;
+                this._listener.trigger(RICH360_EVENTS.RICH360_ENDED);
+                this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: false,
+                    wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+                });
+                this._play_status = 'end';
+                this._logger.addLog({
+                    event: 'end'
+                });
+            }.bind(this));
+            this._video.addEventListener('error', function() {
+                console.log('Video error encountered. Running recover function');
+                if (this._hls) {
+                    this._hls.recoverMediaError();
                 }
-                r = r && this._ui_play;
-                if (r) {
-                    this._video.play();
+                if (this._video.paused) {
+                    this._ui_play = false;
+                    this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
+                } else this.play_on();
+            }.bind(this));
+            this._video.addEventListener('loadedmetadata', function() {
+                this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
+                this._ready_state = RICH360_STATE.RICH360_READY;
+                if (this._hls._isDummy) {
+                    this._video.textTracks.removeEventListener('addtrack', this.addNativeTrackListener);
+                    this._video.textTracks.addEventListener('addtrack', this.addNativeTrackListener);
                 }
+            }.bind(this));
+            this._video.addEventListener('waiting', function(u) {
+                console.log('@@@video waiting call : ', u);
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: true,
+                    wait_on: RICH360_WAIT_ON.RICH360_BUFFER
+                });
+            }.bind(this));
+            this._video.addEventListener('playing', function(u) {
+                console.log('@@@video playing call : ', u);
+                if (this._hls._isDummy) {
+                    this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
+                }
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: false,
+                    wait_on: RICH360_WAIT_ON.RICH360_BUFFER
+                });
+                this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
+            }.bind(this));
+            $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(u) {
+                if (u.type == 'webkitbeginfullscreen') {
+                    $('body').addClass('fullscreen');
+                    if (this._options.use_multiview) {
+                        this.changeSingleView(true);
+                    } else this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
+                    this._subtitleManager.showDefaultSubtitle();
+                } else {
+                    if (u.type == 'webkitendfullscreen') {
+                        $('body').removeClass('fullscreen');
+                        if (this._options.use_multiview) {
+                            this.changeSingleView(false);
+                        }
+                        this._subtitleManager.hideDefaultSubtitle();
+                        this.pause_on();
+                        this._rich360Player.hidePlayerController();
+                        setTimeout(function() {
+                            this._rich360Player.wakeupController();
+                        }.bind(this), 100);
+                    }
+                }
+            }.bind(this));
+        }
+    }, {
+        key: 'addHlsFragParsedListener',
+        value: function u() {
+            this._hls.timeDictionary = {};
+            this._hls.snsInDictionary = [];
+            if (!this._hls._isDummy) {
+                this._hls.on(Hls.Events.FRAG_PARSED, function(w, x) {
+                    var y = x.frag;
+                    console.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration);
+                    console.log('frag.startPTS : ', y.sn, y.startPTS);
+                    this._hls.timeDictionary[y.sn + ''] = y.startPTS;
+                    this._hls.snsInDictionary.push(y.sn);
+                    while (this._hls.snsInDictionary.length > 100) {
+                        var z = 0;
+                        if (this._hls.snsInDictionary[z] == 0) z = 1;
+                        var A = this._hls.snsInDictionary[z];
+                        this._hls.snsInDictionary.splice(z, 1);
+                        delete this._hls.timeDictionary[A + ''];
+                    }
+                    if (y.startPTS == 0) {
+                        this._hls.startSN = y.sn;
+                    }
+                }.bind(this));
             }
-        }, {
-            key: 'addNativeTrackListener',
-            value: function r(s) {
-                this._subtitleList = [];
-                for (var t = 0; t < this._video.textTracks.length; t++) {
+        }
+    }, {
+        key: 'attachHlsListeners',
+        value: function v() {
+            this._hls.on(Hls.Events.ERROR, function(w, x) {
+                if (x.fatal) switch (x.type) {
+                    case Hls.ErrorTypes.NETWORK_ERROR:
+                        console.log('fatal network error encountered, try to recover');
+                        this._hls.startLoad();
+                        break;
+                    case Hls.ErrorTypes.MEDIA_ERROR:
+                        var y = this._video.currentTime;
+                        console.log('fatal media error encountered, try to recover');
+                        if (x.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) {
+                            console.log('this is not a media error, try to recover');
+                            this._hls.startLoad();
+                        } else {
+                            this._hls.recoverMediaError();
+                            this.play_on();
+                        }
+                        this._video.currentTime = y;
+                        break;
+                    default:
+                        this._hls.destroy();
+                        break;
+                }
+            }.bind(this));
+            this._hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                this._quality_list = [];
+                var w = this._hls.levels;
+                for (var x in w) {
+                    this._quality_list.push(w[x]);
+                }
+                this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
+                this._ready_state = RICH360_STATE.RICH360_READY;
+            }.bind(this));
+            this._hls.on(Hls.Events.LEVEL_SWITCHED, function(w, x) {
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: false,
+                    wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+                });
+                this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, x.level);
+            }.bind(this));
+            this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(w, x) {
+                for (var y = 0; y < x.tracks.length; y++) {
                     this._subtitleList.push({
-                        id: t,
-                        label: this._video.textTracks[t].label,
-                        lang: this._video.textTracks[t].language
+                        id: y,
+                        label: x.tracks[y].label,
+                        lang: x.tracks[y].subtitleTrack.lang
                     });
                 }
                 this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
-                var u = s.track;
-                if (this._subtitleManager._isHideDefaultSubtitles) {
-                    if (s.track.mode == 'showing') {
-                        s.track.mode = 'hidden';
-                    }
-                } else {
-                    if (s.track.mode == 'hidden') {
-                        s.track.mode = 'showing';
-                    }
-                }
-                u.removeEventListener('cuechange', this.updateNativeTrackCuesListener);
-                u.addEventListener('cuechange', this.updateNativeTrackCuesListener);
-                if (this._options.use_multiview) {
-                    this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
-                }
-            }
-        }, {
-            key: 'updateNativeTrackCuesListener',
-            value: function s(t) {
-                if (this._subtitleManager._isHideDefaultSubtitles) {
-                    if (t.target.mode == 'showing') {
-                        t.target.mode = 'hidden';
-                    }
-                } else {
-                    if (t.target.mode == 'hidden') {
-                        t.target.mode = 'showing';
-                    }
-                }
-                if (t.target.cues.length) {
-                    var u = t.target.cues.length,
-                        v = [];
-                    for (var w = 0; w < u; w++) {
-                        var x = -1;
-                        for (var y = 0; y < this._subtitleList.length; y++) {
-                            if (this._subtitleList[y].lang == t.target.cues[w].track.language) {
-                                x = y;
-                                break;
-                            }
-                        }
-                        v.push({
-                            startTime: t.target.cues[w].startTime,
-                            endTime: t.target.cues[w].endTime,
-                            text: t.target.cues[w].text,
-                            track_num: x,
+            }.bind(this));
+            this._hls.on(Hls.Events.CUES_PARSED, function(w, x) {
+                if (this._subtitleManager) {
+                    var y = x.cues.length;
+                    var z = [];
+                    for (var A = 0; A < y; A++) {
+                        z.push({
+                            startTime: x.cues[A].startTime,
+                            endTime: x.cues[A].endTime,
+                            text: x.cues[A].text,
+                            track_num: this._hls._hls.subtitleTrack,
                             view: this._view
                         });
                     }
-                    this._subtitleManager.addCueData(v);
+                    this._subtitleManager.addCueData(z);
+                }
+            }.bind(this));
+        }
+    }, {
+        key: 'attachPlayerUiListners',
+        value: function w() {
+            if (this._hls._isDummy) {
+                $(this._ui.fullBtn).on('click', function() {
+                    this._subtitleManager.showDefaultSubtitle();
+                    if (!this._video.paused) {
+                        this._video.webkitEnterFullscreen();
+                    }
+                }.bind(this));
+            } else {
+                this._ui.fullScreen = new FullscreenButton(this._rich360Player, this._ui.fullBtn);
+            }
+        }
+    }, {
+        key: 'changeCurrentLevel',
+        value: function x(y) {
+            var z = this._hls.currentLevel;
+            if (y != -1 && z != y || y == -1 && this._hls.nextAutoLevel != z) {
+                this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
+                    wait: true,
+                    wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
+                });
+            }
+            this._hls.currentLevel = y;
+        }
+    }, {
+        key: 'play',
+        value: function y() {
+            this.play_on();
+            this._logger.addLog({
+                event: 'play'
+            });
+        }
+    }, {
+        key: 'pause',
+        value: function z() {
+            this.pause_on();
+            this._logger.addLog({
+                event: 'pause'
+            });
+        }
+    }, {
+        key: 'currentPosition',
+        get: function A() {
+            return this._video.currentTime;
+        },
+        set: function B(C) {
+            if (!isNaN(this._video.duration)) {
+                if (0 > C) C = 0;
+                if (C > this._video.duration) C = this._video.duration;
+                if (Math.abs(C - this._video.currentTime) > 0.5) {
+                    this._video.currentTime = C;
+                    this._logger.addLog({
+                        event: 'seek',
+                        time: C
+                    });
+                    this._render_once_on_seek = true;
+                }
+            } else {
+                console.log('isNan');
+            }
+        }
+    }, {
+        key: 'duration',
+        get: function C() {
+            return this._video.duration;
+        }
+    }, {
+        key: 'volume',
+        get: function D() {
+            return this._video.volume;
+        },
+        set: function E(F) {
+            return this._video.volume = F;
+        }
+    }, {
+        key: 'quality',
+        get: function F() {
+            return this._hls.currentLevel;
+        },
+        set: function G(H) {
+            if (H < -1) H = -1;
+            if (H >= this._quality_list.size) H = this._quality_list.size;
+            this.changeCurrentLevel(H);
+            this._logger.addLog({
+                event: 'quality_change',
+                level: H
+            });
+        }
+    }, {
+        key: 'isAutoQuality',
+        get: function H() {
+            return this._hls.isAutoQuality();
+        }
+    }, {
+        key: 'qualityList',
+        get: function I() {
+            return this._quality_list;
+        }
+    }, {
+        key: 'setSubtitleTrack',
+        value: function J(K) {
+            var L = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+            if (this._hls._isDummy) {
+                var M = this._video.textTracks.length;
+                for (var N = 0; N < M; N++) {
+                    if (K == N) {
+                        this._video.textTracks[N].mode = 'showing';
+                    } else {
+                        this._video.textTracks[N].mode = 'disabled';
+                    }
+                }
+            } else this._hls._hls.subtitleTrack = K;
+            if (L) {
+                this._subtitleManager.clearCueData();
+            }
+        }
+    }, {
+        key: 'getSubtitleTrack',
+        value: function K() {
+            if (this._hls._isDummy) {
+                var L = this._video.textTracks.length;
+                for (var M = 0; M < L; M++) {
+                    if (this._video.textTracks[M].mode == 'showing' || this._video.textTracks[M].mode == 'hidden') return M;
+                }
+                return -1;
+            } else {
+                if (this._hls._hls) {
+                    return this._hls._hls.subtitleTrack;
+                } else {
+                    return -1;
                 }
             }
-        }, {
-            key: 'attachVideoListeners',
-            value: function t() {
-                this._video.addEventListener('seeking', function() {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: true,
-                        wait_on: RICH360_WAIT_ON.RICH360_SEEK
-                    });
-                }.bind(this));
-                this._video.addEventListener('seeked', function() {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: false,
-                        wait_on: RICH360_WAIT_ON.RICH360_SEEK
-                    });
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: false,
-                        wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
-                    });
-                }.bind(this));
-                this._video.addEventListener('play', function() {
-                    this._play_status = 'play';
-                    this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
-                    this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
-                }.bind(this));
-                this._video.addEventListener('pause', function() {
-                    this._play_status = 'pause';
-                    this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
-                }.bind(this));
-                this._video.addEventListener('durationchange', function() {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
-                }.bind(this));
-                this._video.addEventListener('timeupdate', function() {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
-                }.bind(this));
-                this._video.addEventListener('progress', function() {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_DURATION_CHANGE, this._video.duration);
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: false,
-                        wait_on: RICH360_WAIT_ON.RICH360_BUFFER
-                    });
-                }.bind(this));
-                this._video.addEventListener('ended', function() {
-                    this._ui_play = false;
-                    this._listener.trigger(RICH360_EVENTS.RICH360_ENDED);
-                    this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: false,
-                        wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
-                    });
-                    this._play_status = 'end';
-                    this._logger.addLog({
-                        event: 'end'
-                    });
-                }.bind(this));
-                this._video.addEventListener('error', function() {
-                    console.log('Video error encountered. Running recover function');
-                    if (this._hls) {
-                        this._hls.recoverMediaError();
+        }
+    }, {
+        key: 'subtitleList',
+        get: function L() {
+            return this._subtitleList;
+        }
+    }, {
+        key: 'setChangingView',
+        value: function M(N) {
+            var O = this._display;
+            var P = N;
+            if (typeof N === 'undefined') P = false;
+            this._changingView = P;
+            if (!O) return;
+            if (!O._wrapperList) return;
+            if (P) {
+                addClassName(O._wrapperList, 'changing-source');
+            } else removeClassName(O._wrapperList, 'changing-source');
+        }
+    }]);
+    return a;
+}();
+var Rich360SubtitleManager = function() {
+    function a(b) {
+        _classCallCheck(this, a);
+        this._player = b;
+        this._subtitleDiv = document.createElement('div');
+        this._subtitleArr = [];
+        this._subtitleTrack = -1;
+        this._cues = [];
+        this._subItv = null;
+        this._isHideDefaultSubtitles = true;
+        this._bfSendSubTime = new Date();
+        this.initialize();
+        this._prevSubtitleTrack = -1;
+        this._prevViewOffsetTime = 0;
+    }
+    _createClass(a, [{
+        key: 'initialize',
+        value: function b() {
+            this._subtitleDiv.id = 'subtitleDiv';
+            var c = this._subtitleDiv.style;
+            c.position = 'absolute';
+            c.bottom = 0;
+            c.left = 0;
+            c.textAlign = 'center';
+            c.fontFamily = 'sans-serif';
+            c.fontWeight = 'bold';
+            c.backgroundColor = 'transparent';
+            c.color = 'white';
+            c.display = 'none';
+            c.verticalAlign = 'bottom';
+            c.fontWeight = 700;
+            c.textShadow = '#000000 0px 0px 7px';
+            this._player._parent_dom.appendChild(this._subtitleDiv);
+            this.setSubtitleItv();
+        }
+    }, {
+        key: 'addCueData',
+        value: function c(d) {
+            this._bfSendSubTime = new Date();
+            for (var e = 0; e < d.length; e++) {
+                this._cues.push(d[e]);
+            }
+        }
+    }, {
+        key: 'clearCueData',
+        value: function d() {
+            this._cues = [];
+            this._subtitleDiv.innerHTML = '';
+            this._subtitleDiv.style.display = 'none';
+        }
+    }, {
+        key: 'drawSubtitles',
+        value: function e() {
+            var f = [];
+            for (var g = 0; g < this._cues.length; g++) {
+                if (this._prevViewOffsetTime) {
+                    this._cues[g].startTime -= this._prevViewOffsetTime;
+                    this._cues[g].endTime -= this._prevViewOffsetTime;
+                }
+                if (this._player._video.currentTime > this._cues[g].endTime && !this._player._options.content_data.use_vod) {
+                    this._cues.splice(g, 1);
+                    g--;
+                    continue;
+                }
+                if (this._player._video.currentTime >= this._cues[g].startTime && this._player._video.currentTime < this._cues[g].endTime) {
+                    var h = false;
+                    for (var k = 0; k < f.length; k++) {
+                        if (f[k].startTime == this._cues[g].startTime && f[k].endTime == this._cues[g].endTime) {
+                            h = true;
+                        }
                     }
-                    if (this._video.paused) {
-                        this._ui_play = false;
-                        this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
-                    } else this.play_on();
-                }.bind(this));
-                this._video.addEventListener('loadedmetadata', function() {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
-                    this._ready_state = RICH360_STATE.RICH360_READY;
-                    if (this._hls._isDummy) {
-                        this._video.textTracks.removeEventListener('addtrack', this.addNativeTrackListener);
-                        this._video.textTracks.addEventListener('addtrack', this.addNativeTrackListener);
+                    if (!h) {
+                        f.push({
+                            startTime: this._cues[g].startTime,
+                            endTime: this._cues[g].endTime,
+                            text: this._cues[g].text
+                        });
                     }
-                }.bind(this));
-                this._video.addEventListener('waiting', function(u) {
-                    console.log('@@@video waiting call : ', u);
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: true,
-                        wait_on: RICH360_WAIT_ON.RICH360_BUFFER
-                    });
-                }.bind(this));
-                this._video.addEventListener('playing', function(u) {
-                    console.log('@@@video playing call : ', u);
-                    if (this._hls._isDummy) {
-                        this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
+                }
+            }
+            this._prevViewOffsetTime = 0;
+            if (!f.length) {
+                this._subtitleDiv.innerHTML = '';
+                this._subtitleDiv.style.display = 'none';
+                return;
+            }
+            var l = this._player._parent_dom.offsetWidth;
+            var m = this._player._parent_dom.offsetHeight;
+            var n = {
+                left: l / 100 * 10,
+                bottom: m / 100 * 5
+            };
+            if (document.getElementById('playerBottomWrap').style.display != 'none') {
+                var o = document.getElementById('playerBottomWrap').clientHeight;
+                if (document.getElementById('playerBottomWrap').clientWidth < 812) {
+                    o = 0;
+                }
+                n.bottom += o;
+            }
+            if (!this._player._hls._isDummy) {
+                if (parseInt(this._subtitleDiv.style.left.replace('px', '')) == parseInt(n.left) && parseInt(this._subtitleDiv.style.bottom.replace('px', '')) == parseInt(n.bottom) && this._player._hls._hls.subtitleTrack == this._subtitleTrack && this.compareArray(this._subtitleArr, f)) return;
+            }
+            var p = l / 100 * 50;
+            var q = l / 100 * 80;
+            var r = l / 100 * 2.5;
+            if (l < 568) {
+                r = l / 100 * 3.2;
+            } else {
+                if (l > 1000) {
+                    r = l / 100 * 2.2;
+                }
+            }
+            var s = 2;
+            var t = 0;
+            var u = [];
+            for (var g = 0; g < f.length; g++) {
+                var v = f[g].text.split('\n');
+                var w = v.length;
+                for (var k = w - 1; k >= 0; k--) {
+                    if (v[k] == '') continue;
+                    var x = this.measureText(v[k], r) + r;
+                    if (x >= q) {
+                        x = q;
                     }
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: false,
-                        wait_on: RICH360_WAIT_ON.RICH360_BUFFER
-                    });
-                    this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
-                }.bind(this));
-                $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(u) {
-                    if (u.type == 'webkitbeginfullscreen') {
-                        $('body').addClass('fullscreen');
-                        if (this._options.use_multiview) {
-                            this.changeSingleView(true);
-                        } else this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
-                        this._subtitleManager.showDefaultSubtitle();
-                    } else {
-                        if (u.type == 'webkitendfullscreen') {
-                            $('body').removeClass('fullscreen');
-                            if (this._options.use_multiview) {
-                                this.changeSingleView(false);
-                            }
-                            this._subtitleManager.hideDefaultSubtitle();
-                            this.pause_on();
-                            this._rich360Player.hidePlayerController();
+                    var y = p - x / 2 - n.left;
+                    u[t] = '<p style="color:white;word-break:break-all;font-weight:700;text-shadow:#000000 0px 0px 7px;padding:1px 5px;width:' + x + 'px;margin-left:' + y + 'px;margin-bottom:2px;">' + v[k] + '</p>';
+                    t++;
+                    if (s == t) break;
+                }
+                if (s == t) {
+                    break;
+                }
+            }
+            var z = '';
+            for (var A = u.length - 1; A >= 0; A--) {
+                z += u[A];
+            }
+            this._subtitleDiv.innerHTML = z;
+            this._subtitleDiv.style.width = q + 'px';
+            this._subtitleDiv.style.left = n.left + 'px';
+            this._subtitleDiv.style.bottom = n.bottom + 'px';
+            this._subtitleDiv.style.fontSize = r + 'px';
+            this._subtitleDiv.style.display = 'block';
+            this._subtitleArr = JSON.parse(JSON.stringify(f));
+            if (this._player._hls._isDummy) this._subtitleTrack = this.getVideoSubtitleTrack();
+            else {
+                this._subtitleTrack = this._player._hls._hls.subtitleTrack;
+            }
+        }
+    }, {
+        key: 'compareArray',
+        value: function f(g, h) {
+            var i = false;
+            if (g.length != h.length) return i;
+            g.forEach(function(j) {
+                var k = h.indexOf(j);
+                if (k > -1) h.splice(k, 1);
+            });
+            i = h.length == 0;
+            return i;
+        }
+    }, {
+        key: 'measureText',
+        value: function g(h, i) {
+            var j = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.15625, 0.3, 0.4, 0.7, 0.6, 0.9, 0.7, 0.2, 0.4, 0.4, 0.4, 0.6, 0.3, 0.4, 0.3, 0.5, 0.6, 0.55625, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.3, 0.3, 0.6, 0.6, 0.6, 0.6, 1.1, 0.8, 0.7, 0.8, 0.7234375, 0.7, 0.6109375, 0.8, 0.7234375, 0.3, 0.5, 0.8, 0.6, 0.834375, 0.7234375, 0.8, 0.7, 0.8, 0.8, 0.7, 0.8, 0.7234375, 0.8, 1.1, 0.8, 0.8, 0.8, 0.3, 0.5, 0.3, 0.6, 0.7, 0.334375, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5, 0.6, 0.6, 0.2234375, 0.3234375, 0.6, 0.2234375, 0.834375, 0.6, 0.6, 0.6, 0.6, 0.4, 0.5, 0.4, 0.6, 0.7, 0.9, 0.7, 0.7, 0.6, 0.5, 0.2609375, 0.5, 0.6];
+            var k = 1.2;
+            return h.split('').map(function(l) {
+                return l.charCodeAt(0) < j.length ? j[l.charCodeAt(0)] + 0.1 : k;
+            }).reduce(function(l, m) {
+                return m + l;
+            }) * i;
+        }
+    }, {
+        key: 'setSubtitleItv',
+        value: function h() {
+            if (this._subItv) {
+                clearInterval(this._subItv);
+                this._subItv = null;
+            }
+            this._subItv = setInterval(function() {
+                if (this._cues.length) {
+                    this.drawSubtitles();
+                } else {
+                    if (this._player.getSubtitleTrack() != -1) {
+                        var j = new Date();
+                        if (this._bfSendSubTime.getTime() + 10000 < j) {
+                            var k = this._player.getSubtitleTrack();
+                            this._player.setSubtitleTrack(-1);
+                            this._bfSendSubTime = j;
                             setTimeout(function() {
-                                this._rich360Player.wakeupController();
+                                this._player.setSubtitleTrack(k);
                             }.bind(this), 100);
                         }
                     }
-                }.bind(this));
-            }
-        }, {
-            key: 'addHlsFragParsedListener',
-            value: function u() {
-                this._hls.timeDictionary = {};
-                this._hls.snsInDictionary = [];
-                if (!this._hls._isDummy) {
-                    this._hls.on(Hls.Events.FRAG_PARSED, function(w, x) {
-                        var y = x.frag;
-                        console.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration);
-                        console.log('frag.startPTS : ', y.sn, y.startPTS);
-                        this._hls.timeDictionary[y.sn + ''] = y.startPTS;
-                        this._hls.snsInDictionary.push(y.sn);
-                        while (this._hls.snsInDictionary.length > 100) {
-                            var z = 0;
-                            if (this._hls.snsInDictionary[z] == 0) z = 1;
-                            var A = this._hls.snsInDictionary[z];
-                            this._hls.snsInDictionary.splice(z, 1);
-                            delete this._hls.timeDictionary[A + ''];
-                        }
-                        if (y.startPTS == 0) {
-                            this._hls.startSN = y.sn;
-                        }
-                    }.bind(this));
                 }
+            }.bind(this), 100);
+        }
+    }, {
+        key: 'getVideoSubtitleTrack',
+        value: function i() {
+            var j = this._player._video.textTracks.length;
+            for (var k = 0; k < j; k++) {
+                if (this._player._video.textTracks[k].mode == 'showing' || this._player._video.textTracks[k].mode == 'hidden') return k;
             }
-        }, {
-            key: 'attachHlsListeners',
-            value: function v() {
-                this._hls.on(Hls.Events.ERROR, function(w, x) {
-                    if (x.fatal) switch (x.type) {
-                        case Hls.ErrorTypes.NETWORK_ERROR:
-                            console.log('fatal network error encountered, try to recover');
-                            this._hls.startLoad();
-                            break;
-                        case Hls.ErrorTypes.MEDIA_ERROR:
-                            var y = this._video.currentTime;
-                            console.log('fatal media error encountered, try to recover');
-                            if (x.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) {
-                                console.log('this is not a media error, try to recover');
-                                this._hls.startLoad();
-                            } else {
-                                this._hls.recoverMediaError();
-                                this.play_on();
-                            }
-                            this._video.currentTime = y;
-                            break;
-                        default:
-                            this._hls.destroy();
-                            break;
-                    }
-                }.bind(this));
-                this._hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    this._quality_list = [];
-                    var w = this._hls.levels;
-                    for (var x in w) {
-                        this._quality_list.push(w[x]);
-                    }
-                    this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
-                    this._ready_state = RICH360_STATE.RICH360_READY;
-                }.bind(this));
-                this._hls.on(Hls.Events.LEVEL_SWITCHED, function(w, x) {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: false,
-                        wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
-                    });
-                    this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, x.level);
-                }.bind(this));
-                this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(w, x) {
-                    for (var y = 0; y < x.tracks.length; y++) {
-                        this._subtitleList.push({
-                            id: y,
-                            label: x.tracks[y].label,
-                            lang: x.tracks[y].subtitleTrack.lang
-                        });
-                    }
-                    this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
-                }.bind(this));
-                this._hls.on(Hls.Events.CUES_PARSED, function(w, x) {
-                    if (this._subtitleManager) {
-                        var y = x.cues.length,
-                            z = [];
-                        for (var A = 0; A < y; A++) {
-                            z.push({
-                                startTime: x.cues[A].startTime,
-                                endTime: x.cues[A].endTime,
-                                text: x.cues[A].text,
-                                track_num: this._hls._hls.subtitleTrack,
-                                view: this._view
-                            });
-                        }
-                        this._subtitleManager.addCueData(z);
-                    }
-                }.bind(this));
-            }
-        }, {
-            key: 'attachPlayerUiListners',
-            value: function w() {
-                if (this._hls._isDummy) {
-                    $(this._ui.fullBtn).on('click', function() {
-                        this._subtitleManager.showDefaultSubtitle();
-                        if (!this._video.paused) {
-                            this._video.webkitEnterFullscreen();
-                        }
-                    }.bind(this));
-                } else {
-                    this._ui.fullScreen = new FullscreenButton(this._rich360Player, this._ui.fullBtn);
-                }
-            }
-        }, {
-            key: 'changeCurrentLevel',
-            value: function x(y) {
-                var z = this._hls.currentLevel;
-                if (y != -1 && z != y || y == -1 && this._hls.nextAutoLevel != z) {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
-                        wait: true,
-                        wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
-                    });
-                }
-                this._hls.currentLevel = y;
-            }
-        }, {
-            key: 'play',
-            value: function y() {
-                this.play_on();
-                this._logger.addLog({
-                    event: 'play'
-                });
-            }
-        }, {
-            key: 'pause',
-            value: function z() {
-                this.pause_on();
-                this._logger.addLog({
-                    event: 'pause'
-                });
-            }
-        }, {
-            key: 'currentPosition',
-            get: function A() {
-                return this._video.currentTime;
-            },
-            set: function B(C) {
-                if (!isNaN(this._video.duration)) {
-                    if (0 > C) C = 0;
-                    if (C > this._video.duration) C = this._video.duration;
-                    if (Math.abs(C - this._video.currentTime) > 0.5) {
-                        this._video.currentTime = C;
-                        this._logger.addLog({
-                            event: 'seek',
-                            time: C
-                        });
-                        this._render_once_on_seek = true;
-                    }
-                } else {
-                    console.log('isNan');
-                }
-            }
-        }, {
-            key: 'duration',
-            get: function C() {
-                return this._video.duration;
-            }
-        }, {
-            key: 'volume',
-            get: function D() {
-                return this._video.volume;
-            },
-            set: function E(F) {
-                return this._video.volume = F;
-            }
-        }, {
-            key: 'quality',
-            get: function F() {
-                return this._hls.currentLevel;
-            },
-            set: function G(H) {
-                if (H < -1) H = -1;
-                if (H >= this._quality_list.size) H = this._quality_list.size;
-                this.changeCurrentLevel(H);
-                this._logger.addLog({
-                    event: 'quality_change',
-                    level: H
-                });
-            }
-        }, {
-            key: 'isAutoQuality',
-            get: function H() {
-                return this._hls.isAutoQuality();
-            }
-        }, {
-            key: 'qualityList',
-            get: function I() {
-                return this._quality_list;
-            }
-        }, {
-            key: 'setSubtitleTrack',
-            value: function J(K) {
-                var L = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-                if (this._hls._isDummy) {
-                    var M = this._video.textTracks.length;
-                    for (var N = 0; N < M; N++) {
-                        if (K == N) {
-                            this._video.textTracks[N].mode = 'showing';
-                        } else {
-                            this._video.textTracks[N].mode = 'disabled';
-                        }
-                    }
-                } else this._hls._hls.subtitleTrack = K;
-                if (L) {
-                    this._subtitleManager.clearCueData();
-                }
-            }
-        }, {
-            key: 'getSubtitleTrack',
-            value: function K() {
-                if (this._hls._isDummy) {
-                    var L = this._video.textTracks.length;
-                    for (var M = 0; M < L; M++) {
-                        if (this._video.textTracks[M].mode == 'showing' || this._video.textTracks[M].mode == 'hidden') return M;
-                    }
-                    return -1;
-                } else {
-                    if (this._hls._hls) {
-                        return this._hls._hls.subtitleTrack;
-                    } else {
-                        return -1;
-                    }
-                }
-            }
-        }, {
-            key: 'subtitleList',
-            get: function L() {
-                return this._subtitleList;
-            }
-        }, {
-            key: 'setChangingView',
-            value: function M(N) {
-                var O = this._display,
-                    P = N;
-                if (typeof N === 'undefined') P = false;
-                this._changingView = P;
-                if (!O) return;
-                if (!O._wrapperList) return;
-                if (P) {
-                    addClassName(O._wrapperList, 'changing-source');
-                } else removeClassName(O._wrapperList, 'changing-source');
-            }
-        }]);
-        return a;
-    }(),
-    Rich360SubtitleManager = function() {
-        function a(b) {
-            _classCallCheck(this, a);
-            this._player = b;
-            this._subtitleDiv = document.createElement('div');
-            this._subtitleArr = [];
-            this._subtitleTrack = -1;
-            this._cues = [];
-            this._subItv = null;
+            return -1;
+        }
+    }, {
+        key: 'hideDefaultSubtitle',
+        value: function j() {
             this._isHideDefaultSubtitles = true;
-            this._bfSendSubTime = new Date();
-            this.initialize();
-            this._prevSubtitleTrack = -1;
-            this._prevViewOffsetTime = 0;
+            var k = this._player._video.textTracks.length;
+            for (var l = 0; l < k; l++) {
+                if (this._player._video.textTracks[l].mode == 'showing') {
+                    this._player._video.textTracks[l].mode = 'hidden';
+                    cusDDselectOption('#ccSelect', l, true);
+                }
+            }
         }
-        _createClass(a, [{
-            key: 'initialize',
-            value: function b() {
-                this._subtitleDiv.id = 'subtitleDiv';
-                var c = this._subtitleDiv.style;
-                c.position = 'absolute';
-                c.bottom = 0;
-                c.left = 0;
-                c.textAlign = 'center';
-                c.fontFamily = 'sans-serif';
-                c.fontWeight = 'bold';
-                c.backgroundColor = 'transparent';
-                c.color = 'white';
-                c.display = 'none';
-                c.verticalAlign = 'bottom';
-                c.fontWeight = 700;
-                c.textShadow = '#000000 0px 0px 7px';
-                this._player._parent_dom.appendChild(this._subtitleDiv);
-                this.setSubtitleItv();
-            }
-        }, {
-            key: 'addCueData',
-            value: function c(d) {
-                this._bfSendSubTime = new Date();
-                for (var e = 0; e < d.length; e++) {
-                    this._cues.push(d[e]);
+    }, {
+        key: 'showDefaultSubtitle',
+        value: function k() {
+            this._isHideDefaultSubtitles = false;
+            var l = this._player._video.textTracks.length;
+            for (var m = 0; m < l; m++) {
+                if (this._player._video.textTracks[m].mode == 'hidden') {
+                    this._player._video.textTracks[m].mode = 'showing';
                 }
             }
-        }, {
-            key: 'clearCueData',
-            value: function d() {
-                this._cues = [];
-                this._subtitleDiv.innerHTML = '';
-                this._subtitleDiv.style.display = 'none';
-            }
-        }, {
-            key: 'drawSubtitles',
-            value: function e() {
-                var f = [];
-                for (var g = 0; g < this._cues.length; g++) {
-                    if (this._prevViewOffsetTime) {
-                        this._cues[g].startTime -= this._prevViewOffsetTime;
-                        this._cues[g].endTime -= this._prevViewOffsetTime;
-                    }
-                    if (this._player._video.currentTime > this._cues[g].endTime && !this._player._options.content_data.use_vod) {
-                        this._cues.splice(g, 1);
-                        g--;
-                        continue;
-                    }
-                    if (this._player._video.currentTime >= this._cues[g].startTime && this._player._video.currentTime < this._cues[g].endTime) {
-                        var h = false;
-                        for (var k = 0; k < f.length; k++) {
-                            if (f[k].startTime == this._cues[g].startTime && f[k].endTime == this._cues[g].endTime) {
-                                h = true;
-                            }
-                        }
-                        if (!h) {
-                            f.push({
-                                startTime: this._cues[g].startTime,
-                                endTime: this._cues[g].endTime,
-                                text: this._cues[g].text
-                            });
-                        }
-                    }
-                }
-                this._prevViewOffsetTime = 0;
-                if (!f.length) {
-                    this._subtitleDiv.innerHTML = '';
-                    this._subtitleDiv.style.display = 'none';
-                    return;
-                }
-                var l = this._player._parent_dom.offsetWidth,
-                    m = this._player._parent_dom.offsetHeight,
-                    n = {
-                        left: l / 100 * 10,
-                        bottom: m / 100 * 5
-                    };
-                if (document.getElementById('playerBottomWrap').style.display != 'none') {
-                    var o = document.getElementById('playerBottomWrap').clientHeight;
-                    if (document.getElementById('playerBottomWrap').clientWidth < 812) {
-                        o = 0;
-                    }
-                    n.bottom += o;
-                }
-                if (!this._player._hls._isDummy) {
-                    if (parseInt(this._subtitleDiv.style.left.replace('px', '')) == parseInt(n.left) && parseInt(this._subtitleDiv.style.bottom.replace('px', '')) == parseInt(n.bottom) && this._player._hls._hls.subtitleTrack == this._subtitleTrack && this.compareArray(this._subtitleArr, f)) return;
-                }
-                var p = l / 100 * 50,
-                    q = l / 100 * 80,
-                    r = l / 100 * 2.5;
-                if (l < 568) {
-                    r = l / 100 * 3.2;
-                } else {
-                    if (l > 1000) {
-                        r = l / 100 * 2.2;
-                    }
-                }
-                var s = 2,
-                    t = 0,
-                    u = [];
-                for (var g = 0; g < f.length; g++) {
-                    var v = f[g].text.split('\n'),
-                        w = v.length;
-                    for (var k = w - 1; k >= 0; k--) {
-                        if (v[k] == '') continue;
-                        var x = this.measureText(v[k], r) + r;
-                        if (x >= q) {
-                            x = q;
-                        }
-                        var y = p - x / 2 - n.left;
-                        u[t] = '<p style="color:white;word-break:break-all;font-weight:700;text-shadow:#000000 0px 0px 7px;padding:1px 5px;width:' + x + 'px;margin-left:' + y + 'px;margin-bottom:2px;">' + v[k] + '</p>';
-                        t++;
-                        if (s == t) break;
-                    }
-                    if (s == t) {
-                        break;
-                    }
-                }
-                var z = '';
-                for (var A = u.length - 1; A >= 0; A--) {
-                    z += u[A];
-                }
-                this._subtitleDiv.innerHTML = z;
-                this._subtitleDiv.style.width = q + 'px';
-                this._subtitleDiv.style.left = n.left + 'px';
-                this._subtitleDiv.style.bottom = n.bottom + 'px';
-                this._subtitleDiv.style.fontSize = r + 'px';
-                this._subtitleDiv.style.display = 'block';
-                this._subtitleArr = JSON.parse(JSON.stringify(f));
-                if (this._player._hls._isDummy) this._subtitleTrack = this.getVideoSubtitleTrack();
-                else {
-                    this._subtitleTrack = this._player._hls._hls.subtitleTrack;
-                }
-            }
-        }, {
-            key: 'compareArray',
-            value: function f(g, h) {
-                var i = false;
-                if (g.length != h.length) return i;
-                g.forEach(function(j) {
-                    var k = h.indexOf(j);
-                    if (k > -1) h.splice(k, 1);
-                });
-                i = h.length == 0;
-                return i;
-            }
-        }, {
-            key: 'measureText',
-            value: function g(h, i) {
-                var j = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.15625, 0.3, 0.4, 0.7, 0.6, 0.9, 0.7, 0.2, 0.4, 0.4, 0.4, 0.6, 0.3, 0.4, 0.3, 0.5, 0.6, 0.55625, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.3, 0.3, 0.6, 0.6, 0.6, 0.6, 1.1, 0.8, 0.7, 0.8, 0.7234375, 0.7, 0.6109375, 0.8, 0.7234375, 0.3, 0.5, 0.8, 0.6, 0.834375, 0.7234375, 0.8, 0.7, 0.8, 0.8, 0.7, 0.8, 0.7234375, 0.8, 1.1, 0.8, 0.8, 0.8, 0.3, 0.5, 0.3, 0.6, 0.7, 0.334375, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5, 0.6, 0.6, 0.2234375, 0.3234375, 0.6, 0.2234375, 0.834375, 0.6, 0.6, 0.6, 0.6, 0.4, 0.5, 0.4, 0.6, 0.7, 0.9, 0.7, 0.7, 0.6, 0.5, 0.2609375, 0.5, 0.6],
-                    k = 1.2;
-                return h.split('').map(function(l) {
-                    return l.charCodeAt(0) < j.length ? j[l.charCodeAt(0)] + 0.1 : k;
-                }).reduce(function(l, m) {
-                    return m + l;
-                }) * i;
-            }
-        }, {
-            key: 'setSubtitleItv',
-            value: function h() {
-                if (this._subItv) {
-                    clearInterval(this._subItv);
-                    this._subItv = null;
-                }
-                this._subItv = setInterval(function() {
-                    if (this._cues.length) {
-                        this.drawSubtitles();
-                    } else {
-                        if (this._player.getSubtitleTrack() != -1) {
-                            var j = new Date();
-                            if (this._bfSendSubTime.getTime() + 10000 < j) {
-                                var k = this._player.getSubtitleTrack();
-                                this._player.setSubtitleTrack(-1);
-                                this._bfSendSubTime = j;
-                                setTimeout(function() {
-                                    this._player.setSubtitleTrack(k);
-                                }.bind(this), 100);
-                            }
-                        }
-                    }
-                }.bind(this), 100);
-            }
-        }, {
-            key: 'getVideoSubtitleTrack',
-            value: function i() {
-                var j = this._player._video.textTracks.length;
-                for (var k = 0; k < j; k++) {
-                    if (this._player._video.textTracks[k].mode == 'showing' || this._player._video.textTracks[k].mode == 'hidden') return k;
-                }
-                return -1;
-            }
-        }, {
-            key: 'hideDefaultSubtitle',
-            value: function j() {
-                this._isHideDefaultSubtitles = true;
-                var k = this._player._video.textTracks.length;
-                for (var l = 0; l < k; l++) {
-                    if (this._player._video.textTracks[l].mode == 'showing') {
-                        this._player._video.textTracks[l].mode = 'hidden';
-                        cusDDselectOption('#ccSelect', l, true);
-                    }
-                }
-            }
-        }, {
-            key: 'showDefaultSubtitle',
-            value: function k() {
-                this._isHideDefaultSubtitles = false;
-                var l = this._player._video.textTracks.length;
-                for (var m = 0; m < l; m++) {
-                    if (this._player._video.textTracks[m].mode == 'hidden') {
-                        this._player._video.textTracks[m].mode = 'showing';
-                    }
-                }
-            }
-        }]);
-        return a;
-    }(),
-    MultiViewDisplay = function() {
-        function a(b, c, d, e, f, g) {
-            _classCallCheck(this, a);
-            this._options = b;
+        }
+    }]);
+    return a;
+}();
+var MultiViewDisplay = function() {
+    function a(b, c, d, e, f, g) {
+        _classCallCheck(this, a);
+        this._options = b;
+        this._video = c;
+        this._player = d;
+        this._videoSubPositions = f;
+        this._videoMainPosition = e;
+        this._multiviewDivArr = g;
+        this._canvasFPS = 0;
+        this._updateCanvasFlag = false;
+        this._showMultiPreview = false;
+        this._multiviewCanvas = [];
+        this._multiviewCtx = [];
+        this._doubleBufferCanvas = [];
+        this._bfVideoWidth = 0;
+        this._bfVideoHeight = 0;
+        this._wrapper = document.querySelector('#multiViewWrap');
+        this._wrapperList = document.querySelector('#multiViewList');
+        var h = document.createElement('canvas');
+        h.setAttribute('id', 'mvCanvas');
+        h.style.position = 'absolute';
+        h.style.top = '0px';
+        this._multiviewCanvas.push(h);
+        this._multiviewCtx.push(h.getContext('2d', {
+            alpha: false
+        }));
+        $(this._wrapperList).append(h);
+        var j = document.createElement('canvas');
+        this._doubleBufferCanvas.push(j);
+        for (var k = 0; k < this._videoSubPositions.length; k++) {
+            var l = createElementFromHTML('<div class="canvas-overlayer"><span class="label">' + gettext('MULTIVIEW_SWITCHING_VIEW') + '</span></div>');
+            this._multiviewDivArr[k].append(l);
+        }
+        if (this._options.container) {
+            this._parent_dom = this._options.container;
+        } else this._parent_dom = document.body;
+        this._mainDiv = document.createElement('div');
+        this._mainDiv.setAttribute('id', 'mvMainDiv');
+        this._mainDiv.style.overflow = 'hidden';
+        this._mainDiv.style.position = 'absolute';
+        this._mainDiv.appendChild(this._video);
+        this._parent_dom.appendChild(this._mainDiv);
+        if (this._video.readyState == 0) {
+            this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
+                once: true
+            });
+        } else {
+            this.arrangeVideo();
+        }
+        window.addEventListener('resize', function() {
+            setTimeout(function() {
+                this.arrangeVideo();
+            }.bind(this), 200);
+        }.bind(this), false);
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                this.arrangeVideo();
+            }.bind(this), 500);
+        }.bind(this), false);
+    }
+    _createClass(a, [{
+        key: 'replaceVideo',
+        value: function b(c) {
+            this._mainDiv.removeChild(this._video);
+            this._mainDiv.appendChild(c);
             this._video = c;
-            this._player = d;
-            this._videoSubPositions = f;
-            this._videoMainPosition = e;
-            this._multiviewDivArr = g;
-            this._canvasFPS = 0;
-            this._updateCanvasFlag = false;
-            this._showMultiPreview = false;
-            this._multiviewCanvas = [];
-            this._multiviewCtx = [];
-            this._doubleBufferCanvas = [];
-            this._bfVideoWidth = 0;
-            this._bfVideoHeight = 0;
-            this._wrapper = document.querySelector('#multiViewWrap');
-            this._wrapperList = document.querySelector('#multiViewList');
-            var h = document.createElement('canvas');
-            h.setAttribute('id', 'mvCanvas');
-            h.style.position = 'absolute';
-            h.style.top = '0px';
-            this._multiviewCanvas.push(h);
-            this._multiviewCtx.push(h.getContext('2d', {
-                alpha: false
-            }));
-            $(this._wrapperList).append(h);
-            var j = document.createElement('canvas');
-            this._doubleBufferCanvas.push(j);
-            for (var k = 0; k < this._videoSubPositions.length; k++) {
-                var l = createElementFromHTML('<div class="canvas-overlayer"><span class="label">' + gettext('MULTIVIEW_SWITCHING_VIEW') + '</span></div>');
-                this._multiviewDivArr[k].append(l);
-            }
-            if (this._options.container) {
-                this._parent_dom = this._options.container;
-            } else this._parent_dom = document.body;
-            this._mainDiv = document.createElement('div');
-            this._mainDiv.setAttribute('id', 'mvMainDiv');
-            this._mainDiv.style.overflow = 'hidden';
-            this._mainDiv.style.position = 'absolute';
-            this._mainDiv.appendChild(this._video);
-            this._parent_dom.appendChild(this._mainDiv);
-            if (this._video.readyState == 0) {
-                this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
-                    once: true
-                });
-            } else {
-                this.arrangeVideo();
-            }
-            window.addEventListener('resize', function() {
-                setTimeout(function() {
-                    this.arrangeVideo();
-                }.bind(this), 200);
-            }.bind(this), false);
-            window.addEventListener('orientationchange', function() {
-                setTimeout(function() {
-                    this.arrangeVideo();
-                }.bind(this), 500);
-            }.bind(this), false);
         }
-        _createClass(a, [{
-            key: 'replaceVideo',
-            value: function b(c) {
-                this._mainDiv.removeChild(this._video);
-                this._mainDiv.appendChild(c);
-                this._video = c;
-            }
-        }, {
-            key: 'updateVideoArrangement',
-            value: function c(d, e) {
-                var f = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-                this._videoMainPosition = d;
-                this._videoSubPositions = e;
-                if (f) this.arrangeVideo();
-            }
-        }, {
-            key: 'arrangeVideo',
-            value: function d() {
-                var e = this._videoMainPosition;
-                if (this._player._view != e.singleview_id) {
-                    var f = _createForOfIteratorHelper(this._videoSubPositions),
-                        g;
-                    try {
-                        for (f.s(); !(g = f.n()).done;) {
-                            var h = g.value;
-                            if (h.singleview_id == this._player._view) {
-                                e = h;
-                                break;
-                            }
+    }, {
+        key: 'updateVideoArrangement',
+        value: function c(d, e) {
+            var f = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+            this._videoMainPosition = d;
+            this._videoSubPositions = e;
+            if (f) this.arrangeVideo();
+        }
+    }, {
+        key: 'arrangeVideo',
+        value: function d() {
+            var e = this._videoMainPosition;
+            if (this._player._view != e.singleview_id) {
+                var f = _createForOfIteratorHelper(this._videoSubPositions);
+                var g;
+                try {
+                    for (f.s(); !(g = f.n()).done;) {
+                        var h = g.value;
+                        if (h.singleview_id == this._player._view) {
+                            e = h;
+                            break;
                         }
-                    } catch (w) {
-                        f.e(w);
-                    } finally {
-                        f.f();
                     }
+                } catch (w) {
+                    f.e(w);
+                } finally {
+                    f.f();
                 }
-                var i = this._video.videoWidth,
-                    j = this._video.videoHeight;
-                if (!this._video.videoWidth) {
-                    i = this._bfVideoWidth;
+            }
+            var i = this._video.videoWidth;
+            var j = this._video.videoHeight;
+            if (!this._video.videoWidth) {
+                i = this._bfVideoWidth;
+            }
+            if (!this._video.videoHeight) {
+                j = this._bfVideoHeight;
+            }
+            this._bfVideoWidth = i;
+            this._bfVideoHeight = j;
+            var k = e.width * i / (e.height * j);
+            console.log('arrangement : ' + e.width + ', ' + e.height + ' video : ' + i + ', ' + j);
+            var l = this._parent_dom.offsetWidth / this._parent_dom.offsetHeight;
+            console.log('videoRatio : ' + k + ' containerRatio : ' + l);
+            var m;
+            var n;
+            var o;
+            var q;
+            if (k > l) {
+                console.log('videoRatio > containerRatio');
+                m = this._parent_dom.offsetWidth;
+                n = this._parent_dom.offsetWidth / k;
+                o = (this._parent_dom.offsetHeight - n) / 2;
+                q = 0;
+            } else {
+                console.log('videoRatio <= containerRatio');
+                n = this._parent_dom.offsetHeight;
+                m = this._parent_dom.offsetHeight * k;
+                q = (this._parent_dom.offsetWidth - m) / 2;
+                o = 0;
+            }
+            Object.assign(this._mainDiv.style, {
+                width: m + 'px',
+                height: (document.fullscreenEnabled && !checkMobileAndTablet() ? n - 5 : n) + 'px',
+                left: q + 'px',
+                top: o + 'px'
+            });
+            var r = m / e.width;
+            var s = n / e.height;
+            var t = e.x * i * r / i;
+            var u = e.y * j * s / j;
+            Object.assign(this._video.style, {
+                width: r + 'px',
+                height: s + 'px',
+                left: '-' + t + 'px',
+                top: -1 * u + 1 + 'px',
+                position: 'absolute'
+            });
+            if (!this._showMultiPreview) {
+                this._updateCanvasFlag = false;
+            } else {
+                if (!this._updateCanvasFlag) {
+                    this._updateCanvasFlag = true;
+                    this._canvasTimeStamps = [];
+                    this._canvasTimeStamps.push(performance.now());
+                    this._canvasTimeStampIndex = 0;
+                    window.requestAnimationFrame(this.drawCanvas.bind(this));
                 }
-                if (!this._video.videoHeight) {
-                    j = this._bfVideoHeight;
+            }
+        }
+    }, {
+        key: 'showMultiPreview',
+        set: function e(f) {
+            this._showMultiPreview = f;
+            this.arrangeVideo();
+        }
+    }, {
+        key: 'selectedMultiviewCanvas',
+        value: function f(g) {
+            var h = $(this._multiviewDivArr[g]);
+            if (this._player._view == g) h.addClass('on');
+            else h.removeClass('on');
+        }
+    }, {
+        key: 'drawCanvas',
+        value: function g(h) {
+            var i = this;
+            if (this._updateCanvasFlag) {
+                var j = this._video;
+                var k = this._videoSubPositions;
+                var l = this._multiviewCtx[0];
+                var m = parseInt($(this._multiviewDivArr[0]).css('margin-bottom').replace('px', ''));
+                var n = parseInt($(this._multiviewDivArr[0]).css('margin-left').replace('px', ''));
+                var o = false;
+                if (this._multiviewCanvas[0].width !== this._multiviewDivArr[0].clientWidth) {
+                    this._multiviewCanvas[0].width = this._multiviewDivArr[0].clientWidth;
+                    o = true;
                 }
-                this._bfVideoWidth = i;
-                this._bfVideoHeight = j;
-                var k = e.width * i / (e.height * j);
-                console.log('arrangement : ' + e.width + ', ' + e.height + ' video : ' + i + ', ' + j);
-                var l = this._parent_dom.offsetWidth / this._parent_dom.offsetHeight;
-                console.log('videoRatio : ' + k + ' containerRatio : ' + l);
-                var m, n, o, q;
-                if (k > l) {
-                    console.log('videoRatio > containerRatio');
-                    m = this._parent_dom.offsetWidth;
-                    n = this._parent_dom.offsetWidth / k;
-                    o = (this._parent_dom.offsetHeight - n) / 2;
-                    q = 0;
+                if (this._multiviewCanvas[0].height !== this._multiviewDivArr[0].clientHeight * this._multiviewDivArr.length + m * (this._multiviewDivArr.length - 1)) {
+                    this._multiviewCanvas[0].height = this._multiviewDivArr[0].clientHeight * this._multiviewDivArr.length + m * (this._multiviewDivArr.length - 1);
+                    o = true;
+                }
+                var p = parseInt($(this._multiviewCanvas[0]).css('margin-left').replace('px', ''));
+                if (p !== n) {
+                    $(this._multiviewCanvas[0]).css('margin-left', n + 'px');
+                    o = true;
+                }
+                if (!j.paused && !j.ended || o) {
+                    k.forEach(function(z, A) {
+                        var B = i._multiviewDivArr[A];
+                        var C = k.find(function(L) {
+                            return L.singleview_id === A;
+                        });
+                        i.selectedMultiviewCanvas(A);
+                        if (C == null) return;
+                        var D = C.x;
+                        var E = C.y;
+                        var F = C.width;
+                        var G = C.height;
+                        var H = j.videoWidth;
+                        var I = j.videoHeight;
+                        var J = B.offsetWidth;
+                        var K = B.offsetHeight;
+                        l.drawImage(j, Math.round(D * H), Math.round(E * I), Math.round(F * H), Math.round(G * I), 0, K * A + m * A, J, K);
+                    }.bind(this));
+                    var q = this._multiviewCanvas[0];
+                    var r = this._doubleBufferCanvas[0];
+                    r.width = q.width;
+                    r.height = q.height;
+                    r.getContext('2d', {
+                        alpha: false
+                    }).drawImage(q, 0, 0);
+                    l.drawImage(r, 0, 0);
+                }
+                this._canvasTimeStampIndex++;
+                if (this._canvasTimeStampIndex >= 100) {
+                    this._canvasTimeStampIndex = 0;
+                }
+                var s = 0;
+                if (this._canvasTimeStamps.length < 100) {
+                    this._canvasTimeStamps.push(h);
                 } else {
-                    console.log('videoRatio <= containerRatio');
-                    n = this._parent_dom.offsetHeight;
-                    m = this._parent_dom.offsetHeight * k;
-                    q = (this._parent_dom.offsetWidth - m) / 2;
-                    o = 0;
+                    this._canvasTimeStamps[this._canvasTimeStampIndex] = h;
+                    s = this._canvasTimeStampIndex + 1;
+                    if (s >= 100) s = 0;
                 }
-                Object.assign(this._mainDiv.style, {
-                    width: m + 'px',
-                    height: (document.fullscreenEnabled && !checkMobileAndTablet() ? n - 5 : n) + 'px',
-                    left: q + 'px',
-                    top: o + 'px'
-                });
-                var r = m / e.width,
-                    s = n / e.height,
-                    t = e.x * i * r / i,
-                    u = e.y * j * s / j;
-                Object.assign(this._video.style, {
-                    width: r + 'px',
-                    height: s + 'px',
-                    left: '-' + t + 'px',
-                    top: -1 * u + 1 + 'px',
-                    position: 'absolute'
-                });
-                if (!this._showMultiPreview) {
-                    this._updateCanvasFlag = false;
-                } else {
-                    if (!this._updateCanvasFlag) {
-                        this._updateCanvasFlag = true;
-                        this._canvasTimeStamps = [];
-                        this._canvasTimeStamps.push(performance.now());
-                        this._canvasTimeStampIndex = 0;
-                        window.requestAnimationFrame(this.drawCanvas.bind(this));
-                    }
-                }
+                this._canvasFPS = (this._canvasTimeStamps.length - 1) * 1000 / (this._canvasTimeStamps[this._canvasTimeStampIndex] - this._canvasTimeStamps[s]);
+                setTimeout(function() {
+                    return window.requestAnimationFrame(i.drawCanvas.bind(i));
+                }, 10);
             }
-        }, {
-            key: 'showMultiPreview',
-            set: function e(f) {
-                this._showMultiPreview = f;
-                this.arrangeVideo();
-            }
-        }, {
-            key: 'selectedMultiviewCanvas',
-            value: function f(g) {
-                var h = $(this._multiviewDivArr[g]);
-                if (this._player._view == g) h.addClass('on');
-                else h.removeClass('on');
-            }
-        }, {
-            key: 'drawCanvas',
-            value: function g(h) {
-                var i = this;
-                if (this._updateCanvasFlag) {
-                    var j = this._video,
-                        k = this._videoSubPositions,
-                        l = this._multiviewCtx[0],
-                        m = parseInt($(this._multiviewDivArr[0]).css('margin-bottom').replace('px', '')),
-                        n = parseInt($(this._multiviewDivArr[0]).css('margin-left').replace('px', '')),
-                        o = false;
-                    if (this._multiviewCanvas[0].width !== this._multiviewDivArr[0].clientWidth) {
-                        this._multiviewCanvas[0].width = this._multiviewDivArr[0].clientWidth;
-                        o = true;
-                    }
-                    if (this._multiviewCanvas[0].height !== this._multiviewDivArr[0].clientHeight * this._multiviewDivArr.length + m * (this._multiviewDivArr.length - 1)) {
-                        this._multiviewCanvas[0].height = this._multiviewDivArr[0].clientHeight * this._multiviewDivArr.length + m * (this._multiviewDivArr.length - 1);
-                        o = true;
-                    }
-                    var p = parseInt($(this._multiviewCanvas[0]).css('margin-left').replace('px', ''));
-                    if (p !== n) {
-                        $(this._multiviewCanvas[0]).css('margin-left', n + 'px');
-                        o = true;
-                    }
-                    if (!j.paused && !j.ended || o) {
-                        k.forEach(function(z, A) {
-                            var B = i._multiviewDivArr[A],
-                                C = k.find(function(L) {
-                                    return L.singleview_id === A;
-                                });
-                            i.selectedMultiviewCanvas(A);
-                            if (C == null) return;
-                            var D = C.x,
-                                E = C.y,
-                                F = C.width,
-                                G = C.height,
-                                H = j.videoWidth,
-                                I = j.videoHeight,
-                                J = B.offsetWidth,
-                                K = B.offsetHeight;
-                            l.drawImage(j, Math.round(D * H), Math.round(E * I), Math.round(F * H), Math.round(G * I), 0, K * A + m * A, J, K);
-                        }.bind(this));
-                        var q = this._multiviewCanvas[0],
-                            r = this._doubleBufferCanvas[0];
-                        r.width = q.width;
-                        r.height = q.height;
-                        r.getContext('2d', {
-                            alpha: false
-                        }).drawImage(q, 0, 0);
-                        l.drawImage(r, 0, 0);
-                    }
-                    this._canvasTimeStampIndex++;
-                    if (this._canvasTimeStampIndex >= 100) {
-                        this._canvasTimeStampIndex = 0;
-                    }
-                    var s = 0;
-                    if (this._canvasTimeStamps.length < 100) {
-                        this._canvasTimeStamps.push(h);
-                    } else {
-                        this._canvasTimeStamps[this._canvasTimeStampIndex] = h;
-                        s = this._canvasTimeStampIndex + 1;
-                        if (s >= 100) s = 0;
-                    }
-                    this._canvasFPS = (this._canvasTimeStamps.length - 1) * 1000 / (this._canvasTimeStamps[this._canvasTimeStampIndex] - this._canvasTimeStamps[s]);
-                    setTimeout(function() {
-                        return window.requestAnimationFrame(i.drawCanvas.bind(i));
-                    }, 10);
-                }
-            }
-        }]);
-        return a;
-    }(),
-    RSAnd = 'https://api.liveconnect.co.kr',
-    YPP3z = 'pub-c-bf51339c-bf9b-4e3e-8f44-dadc40e90d23',
-    KSPdf = 'sub-c-80f91ce6-c710-11ea-8107-5e100a74f828',
-    Nierw = 'ap-northeast-2',
-    Yacaw = 'AKIARWRY6LMTIMTBNHGW',
-    Ytcsw = 'xmZ2EWmIIKs85VR8kaDZHnEfKwYMiMeHUSRM2UdK';
+        }
+    }]);
+    return a;
+}();
+var RSAnd = 'https://api.liveconnect.co.kr';
+var YPP3z = 'pub-c-bf51339c-bf9b-4e3e-8f44-dadc40e90d23';
+var KSPdf = 'sub-c-80f91ce6-c710-11ea-8107-5e100a74f828';
+var Nierw = 'ap-northeast-2';
+var Yacaw = 'AKIARWRY6LMTIMTBNHGW';
+var Ytcsw = 'xmZ2EWmIIKs85VR8kaDZHnEfKwYMiMeHUSRM2UdK';
 switch (Tira) {
     case '[JSH]LIVE_MULTI':
         var DCvi = '303fff52-27a7-4991-9cc8-4c34ae28417a';
@@ -3495,111 +3500,111 @@ switch (Tira) {
         break;
 }
 var ChatFilter = function() {
-        var a = '',
-            b = false;
-        return {
-            loadChatFilterData: function c(d) {
-                if (b) {
-                    if (d) d();
-                    return;
-                }
-                var e = new XMLHttpRequest();
-                switch (Tira) {
-                    case 'IDLE':
-                        e.open('GET', '/static/filtering/chat_filtering_idle.txt');
-                        break;
-                    case '210417_cix':
-                        e.open('GET', '/static/filtering/chat_filtering_cix.txt');
-                        break;
-                    case '210424_mamamoo':
-                        e.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
-                        break;
-                    default:
-                        e.open('GET', '/static/filtering/chat_filtering.txt');
-                        break;
-                }
-                e.overrideMimeType('text/plain; charset=utf-8');
-                e.onreadystatechange = function() {
-                    if (e.readyState == XMLHttpRequest.DONE) {
-                        if (e.status == 200 || e.status == 201) {
-                            a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
-                            a = a.replace(/[\r]/gm, '');
-                            if (a[a.length - 1] == '|') {
-                                a = a.substr(0, a.length - 1);
-                            }
-                            b = true;
-                            if (d) d();
+    var a = '';
+    var b = false;
+    return {
+        loadChatFilterData: function c(d) {
+            if (b) {
+                if (d) d();
+                return;
+            }
+            var e = new XMLHttpRequest();
+            switch (Tira) {
+                case 'IDLE':
+                    e.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                    break;
+                case '210417_cix':
+                    e.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    break;
+                case '210424_mamamoo':
+                    e.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
+                    break;
+                default:
+                    e.open('GET', '/static/filtering/chat_filtering.txt');
+                    break;
+            }
+            e.overrideMimeType('text/plain; charset=utf-8');
+            e.onreadystatechange = function() {
+                if (e.readyState == XMLHttpRequest.DONE) {
+                    if (e.status == 200 || e.status == 201) {
+                        a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
+                        a = a.replace(/[\r]/gm, '');
+                        if (a[a.length - 1] == '|') {
+                            a = a.substr(0, a.length - 1);
                         }
+                        b = true;
+                        if (d) d();
                     }
-                };
-                e.send();
-            },
-            filteringChatText: function d(e) {
-                if (!b) return;
-                var f = 'gi',
-                    g = new RegExp(a, f);
-                return e.replace(g, '***');
-            },
-            checkFilteringData: function e() {
-                return b;
-            },
-            checkNickname: function f(g) {
-                if (!b) return;
-                var h = 'gi',
-                    i = new RegExp(a, h);
-                return i.test(g);
-            }
-        };
-    }(),
-    NicknameFilter = function() {
-        var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira,
-            b = '';
-        if (a == '210424_mamamoo') {
-            b = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
-            b = b.map(function(d) {
-                return d.replace(/ /gi, '');
-            }).join('|');
+                }
+            };
+            e.send();
+        },
+        filteringChatText: function d(e) {
+            if (!b) return;
+            var f = 'gi';
+            var g = new RegExp(a, f);
+            return e.replace(g, '***');
+        },
+        checkFilteringData: function e() {
+            return b;
+        },
+        checkNickname: function f(g) {
+            if (!b) return;
+            var h = 'gi';
+            var i = new RegExp(a, h);
+            return i.test(g);
         }
-        return {
-            hasForbidden: function d(e) {
-                if (b === '') return false;
-                var f = new RegExp(b, 'gi');
-                return f.test(e);
-            }
-        };
-    }(),
-    Chat = {},
-    CHAT_MSG_SEPARATOR = '|*|',
-    CHAT_USERID_SEPARATOR = '|#|',
-    NICKNAME_SEPARATOR = '|&|';
+    };
+}();
+var NicknameFilter = function() {
+    var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
+    var b = '';
+    if (a == '210424_mamamoo') {
+        b = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
+        b = b.map(function(d) {
+            return d.replace(/ /gi, '');
+        }).join('|');
+    }
+    return {
+        hasForbidden: function d(e) {
+            if (b === '') return false;
+            var f = new RegExp(b, 'gi');
+            return f.test(e);
+        }
+    };
+}();
+var Chat = {};
+var CHAT_MSG_SEPARATOR = '|*|';
+var CHAT_USERID_SEPARATOR = '|#|';
+var NICKNAME_SEPARATOR = '|&|';
 Chat.Manager = function() {
-    var a = 5,
-        b = 10,
-        c = 15,
-        d = 2000,
-        e = '',
-        f = b,
-        g = a,
-        h = null,
-        i = 'ch_chat1' + '_' + DCvi,
-        j = [],
-        k = 'ch_notice' + '_' + DCvi,
-        l = 'ch_ctr' + '_' + DCvi,
-        m = 'ch_artist' + '_' + DCvi,
-        n = null,
-        o = null,
-        p = null,
-        q = [],
-        r = null,
-        s = null;
+    var a = 5;
+    var b = 10;
+    var c = 15;
+    var d = 2000;
+    var e = '';
+    var f = b;
+    var g = a;
+    var h = null;
+    var i = 'ch_chat1' + '_' + DCvi;
+    var j = [];
+    var k = 'ch_notice' + '_' + DCvi;
+    var l = 'ch_ctr' + '_' + DCvi;
+    var m = 'ch_artist' + '_' + DCvi;
+    var n = null;
+    var o = null;
+    var p = null;
+    var q = [];
+    var r = null;
+    var s = null;
     AWS.config.update({
         region: Nierw,
         accessKeyId: Yacaw,
         secretAccessKey: Ytcsw
     });
-    var t = null,
-        u = {},
-        v = '';
+    var t = null;
+    var u = {};
+    var v = '';
     return {
         setContentData: function w(x) {
             u = x;
@@ -3707,8 +3712,8 @@ Chat.Manager = function() {
                     var M = JSON.parse(JSON.stringify(L));
                     if (M.messages.length) {
                         for (var N = 0; N < M.messages.length; N++) {
-                            var O = M.messages[N].entry.update,
-                                P = O.split(CHAT_USERID_SEPARATOR)[0];
+                            var O = M.messages[N].entry.update;
+                            var P = O.split(CHAT_USERID_SEPARATOR)[0];
                             if (P) {
                                 Chat.Ui.displayArtistHistoryMsg(O, M.messages[N].timetoken, P);
                             }
@@ -3884,41 +3889,41 @@ Chat.Manager = function() {
     };
 }();
 Chat.Ui = function() {
-    var a = 100,
-        b = false,
-        c = false,
-        d = false,
-        e = [],
-        f = {
-            '210417_cix': {
-                '84893d8f-e5f9-4a85-a7bb-9028c865488c': {
-                    img: 'BX.png',
-                    msgClass: ''
-                },
-                '362762e8-4b89-4fa4-8fa4-a448fadb2c03': {
-                    img: 'seunghun.png',
-                    msgClass: ''
-                },
-                'fa73fcc5-2425-45cb-aaa8-eb81ba07170e': {
-                    img: 'baejinyoung.png',
-                    msgClass: ''
-                },
-                '36bd9d74-a541-42e8-af1a-efaf063456cd': {
-                    img: 'yonghee.png',
-                    msgClass: ''
-                },
-                '37dcc7d7-a844-408f-aed7-3478464f94ff': {
-                    img: 'hyunsuk.png',
-                    msgClass: ''
-                }
+    var a = 100;
+    var b = false;
+    var c = false;
+    var d = false;
+    var e = [];
+    var f = {
+        '210417_cix': {
+            '84893d8f-e5f9-4a85-a7bb-9028c865488c': {
+                img: 'BX.png',
+                msgClass: ''
             },
-            '210424_mamamoo': {
-                '6bc4c64e-4fa9-4669-bea2-ead0bf38b5c7': {
-                    img: 'chat-img.png',
-                    msgClass: ''
-                }
+            '362762e8-4b89-4fa4-8fa4-a448fadb2c03': {
+                img: 'seunghun.png',
+                msgClass: ''
+            },
+            'fa73fcc5-2425-45cb-aaa8-eb81ba07170e': {
+                img: 'baejinyoung.png',
+                msgClass: ''
+            },
+            '36bd9d74-a541-42e8-af1a-efaf063456cd': {
+                img: 'yonghee.png',
+                msgClass: ''
+            },
+            '37dcc7d7-a844-408f-aed7-3478464f94ff': {
+                img: 'hyunsuk.png',
+                msgClass: ''
             }
-        };
+        },
+        '210424_mamamoo': {
+            '6bc4c64e-4fa9-4669-bea2-ead0bf38b5c7': {
+                img: 'chat-img.png',
+                msgClass: ''
+            }
+        }
+    };
     return {
         initChatUIEvent: function g() {
             var h = false;
@@ -3945,19 +3950,19 @@ Chat.Ui = function() {
             });
             $('#chatList').on('scroll', function() {
                 if (d) return;
-                var chatAnchor = $('#chatAnchor'),
-                    chatList = $('#chatList'),
-                    k = function r() {
-                        return Math.ceil(chatList.scrollTop() + chatList.height());
-                    },
-                    l = function s() {
-                        var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : k();
-                        return t < chatList[0].scrollHeight;
-                    },
-                    m = function t() {
-                        chatAnchor.css('display', 'block');
-                        b = true;
-                    };
+                var chatAnchor = $('#chatAnchor');
+                var chatList = $('#chatList');
+                var k = function r() {
+                    return Math.ceil(chatList.scrollTop() + chatList.height());
+                };
+                var l = function s() {
+                    var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : k();
+                    return t < chatList[0].scrollHeight;
+                };
+                var m = function t() {
+                    chatAnchor.css('display', 'block');
+                    b = true;
+                };
                 if (l()) setTimeout(function() {
                     return l() && m();
                 }, 200);
@@ -3965,8 +3970,8 @@ Chat.Ui = function() {
                     chatAnchor.css('display', 'none');
                     b = false;
                     if (e.length !== 0) {
-                        var n = document.createDocumentFragment(),
-                            o = e.reverse();
+                        var n = document.createDocumentFragment();
+                        var o = e.reverse();
                         for (var p = 0, q = o.length; p < q; p++) {
                             if (a <= p) break;
                             n.prepend(o[p]);
@@ -3984,8 +3989,8 @@ Chat.Ui = function() {
                 $('#chatAnchor').css('display', 'none');
             });
             $('#chatSendBtn').on('click', function() {
-                var i = Chat.Manager.getNickName(),
-                    j = Chat.Manager.getUserId();
+                var i = Chat.Manager.getNickName();
+                var j = Chat.Manager.getUserId();
                 if (!i) {
                     alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
                         location.href = LUEz1;
@@ -4039,10 +4044,10 @@ Chat.Ui = function() {
                 }
             } else {
                 if (k.indexOf('[ticket_exposure]') === 0) {
-                    var m = k.split('[ticket_exposure]')[1].split('|&|'),
-                        n = m[0],
-                        o = m[1],
-                        p = parseInt(m[2]) * 1000;
+                    var m = k.split('[ticket_exposure]')[1].split('|&|');
+                    var n = m[0];
+                    var o = m[1];
+                    var p = parseInt(m[2]) * 1000;
                     setTicketExposureItv(n, o, p);
                 }
             }
@@ -4054,8 +4059,8 @@ Chat.Ui = function() {
             var n = m[0];
             m = m[1].split(NICKNAME_SEPARATOR);
             if (m.length < 2) return false;
-            var o = m[0],
-                p = m[1];
+            var o = m[0];
+            var p = m[1];
             if (!n || !o || !p) return false;
             return {
                 userId: n,
@@ -4066,8 +4071,8 @@ Chat.Ui = function() {
         createArtistChatDiv: function l(m, n, o, p) {
             var q = $('.dummy-wrap > .artist_chat_dummy').clone();
             q.removeClass('artist_chat_dummy');
-            var r = f[Tira] || {},
-                s = r[m] || null;
+            var r = f[Tira] || {};
+            var s = r[m] || null;
             if (s) {
                 if (s.img) {
                     q.find('img').attr('src', '/static/imgs/c_event/' + Tira + '/' + s.img);
@@ -4148,8 +4153,8 @@ Chat.Ui = function() {
             var s = Chat.Ui.convertChatMsg(p);
             if (!s) return;
             if (Chat.Manager.checkArtistUser(r)) {
-                var t = new Date(q / 10000),
-                    u = Chat.Ui.createArtistChatDiv(r, s.nickName, s.text, t);
+                var t = new Date(q / 10000);
+                var u = Chat.Ui.createArtistChatDiv(r, s.nickName, s.text, t);
                 if ($('#artistChatList').length) {
                     $('#artistChatList').append(u);
                 }
@@ -4179,10 +4184,10 @@ Chat.Ui = function() {
 }();
 
 function chatTest(a) {
-    var b = 'chat_test',
-        c = new Date(),
-        d = c.format('yyyyMMdd-HH:mm:ss:') + c.getMilliseconds().toString(),
-        e = Chat.Manager.getChatChannels()[0];
+    var b = 'chat_test';
+    var c = new Date();
+    var d = c.format('yyyyMMdd-HH:mm:ss:') + c.getMilliseconds().toString();
+    var e = Chat.Manager.getChatChannels()[0];
     if (a) {
         var f = e.lastIndexOf('_');
         e = e.substring(0, f + 1) + a.toString();
@@ -4209,23 +4214,23 @@ function chatTestItvStop() {
     }
 }
 var iCM = function() {
-        var a = false;
-        return function(b) {
-            var chatInput = $('#chatInput'),
-                chatSendBtn = $('#chatSendBtn');
-            if (typeof b !== 'undefined') a = b;
-            if (b) chatInput.val('');
-            chatInput.prop('placeholder', a ? gettext('CHAT_PLACEHOLDER_ON_MUTE') : gettext('P_CHAT_INPUT_PLACEHOLDER'));
-            chatInput.attr('disabled', a);
-            chatSendBtn.attr('disabled', a);
-            return a;
-        };
-    }(),
-    _wmarkImgUrl = '';
+    var a = false;
+    return function(b) {
+        var chatInput = $('#chatInput');
+        var chatSendBtn = $('#chatSendBtn');
+        if (typeof b !== 'undefined') a = b;
+        if (b) chatInput.val('');
+        chatInput.prop('placeholder', a ? gettext('CHAT_PLACEHOLDER_ON_MUTE') : gettext('P_CHAT_INPUT_PLACEHOLDER'));
+        chatInput.attr('disabled', a);
+        chatSendBtn.attr('disabled', a);
+        return a;
+    };
+}();
+var _wmarkImgUrl = '';
 
 function updateWaterMarkPos(a) {
-    var playerWrap = $('#playerWrap'),
-        c = document.getElementsByTagName('video')[0];
+    var playerWrap = $('#playerWrap');
+    var c = document.getElementsByTagName('video')[0];
     if (!c) return;
     if ($('#mvMainDiv').length) {
         playerWrap = $('#mvMainDiv');
@@ -4247,13 +4252,13 @@ function updateWaterMarkPos(a) {
     if (!f) {
         f = 1080;
     }
-    var g = e / f,
-        h = playerWrap.width(),
-        i = playerWrap.height(),
-        j = h / g,
-        k = 0,
-        l = 0,
-        m = 0;
+    var g = e / f;
+    var h = playerWrap.width();
+    var i = playerWrap.height();
+    var j = h / g;
+    var k = 0;
+    var l = 0;
+    var m = 0;
     if (j > i) {
         var n = i * g;
         m = n / e;
@@ -4266,8 +4271,8 @@ function updateWaterMarkPos(a) {
     if (m > 1) {
         m = 1;
     }
-    var o = 180,
-        p = 29;
+    var o = 180;
+    var p = 29;
     $('#wmark').css('width', o * m + 'px');
     $('#wmark').css('height', p * m + 'px');
     var q = 20;
@@ -4275,11 +4280,11 @@ function updateWaterMarkPos(a) {
     $('#wmark').css('right', q * m + k + 'px');
 }
 var _ticketPos = {
-        x: 0,
-        y: 0
-    },
-    _ticketExposureTime = 0,
-    _ticketExposureItv = null;
+    x: 0,
+    y: 0
+};
+var _ticketExposureTime = 0;
+var _ticketExposureItv = null;
 
 function setTicketExposureItv(a, b, c) {
     if (a !== undefined) {
@@ -4313,8 +4318,8 @@ function updateTicketDivPos() {
         }
         return;
     }
-    var playerWrap = $('#playerWrap'),
-        b = document.getElementsByTagName('video')[0];
+    var playerWrap = $('#playerWrap');
+    var b = document.getElementsByTagName('video')[0];
     if (!b) return;
     if ($('#mvMainDiv').length) {
         playerWrap = $('#mvMainDiv');
@@ -4324,8 +4329,8 @@ function updateTicketDivPos() {
         c.setAttribute('id', 'ticketDiv');
         playerWrap.append(c);
     }
-    var ticketDiv = $('#ticketDiv'),
-        e = 1920;
+    var ticketDiv = $('#ticketDiv');
+    var e = 1920;
     if (!e) {
         e = 1920;
     }
@@ -4333,13 +4338,13 @@ function updateTicketDivPos() {
     if (!f) {
         f = 1080;
     }
-    var g = e / f,
-        h = playerWrap.width(),
-        i = playerWrap.height(),
-        j = h / g,
-        k = 0,
-        l = 0,
-        m = 0;
+    var g = e / f;
+    var h = playerWrap.width();
+    var i = playerWrap.height();
+    var j = h / g;
+    var k = 0;
+    var l = 0;
+    var m = 0;
     if (j > i) {
         var n = i * g;
         m = n / e;
@@ -4352,9 +4357,9 @@ function updateTicketDivPos() {
     if (m > 1) {
         m = 1;
     }
-    var o = 220,
-        p = 40,
-        q = 32;
+    var o = 220;
+    var p = 40;
+    var q = 32;
     ticketDiv.css('width', o * m + 'px');
     ticketDiv.css('height', p * m + 'px');
     ticketDiv.css('top', (i - l) * _ticketPos.y + l / 2 + 'px');
@@ -4363,10 +4368,10 @@ function updateTicketDivPos() {
     ticketDiv.css('display', 'block');
     ticketDiv.text(getCookie(DCvi + '_ticket_id'));
 }
-var _player = null,
-    IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false,
-    USE_MULTIVIEW = umtv == 'True' ? true : false,
-    PARAM_SINGLEVIEW_ON_MULTIVIEW = '?single_view=true';
+var _player = null;
+var IS_SINGLEVIEW_ON_MULTIVIEW = isom == 'True' ? true : false;
+var USE_MULTIVIEW = umtv == 'True' ? true : false;
+var PARAM_SINGLEVIEW_ON_MULTIVIEW = '?single_view=true';
 
 function b() {
     $('#sliderPaddingDiv').width($('#playerSliderArea').width());
@@ -4398,9 +4403,9 @@ function e() {
 }
 $(document).ready(function() {
     e();
-    var f = 'keyboard-show-by-chat-input',
-        g = null,
-        h = isIpadOS() && isChrome();
+    var f = 'keyboard-show-by-chat-input';
+    var g = null;
+    var h = isIpadOS() && isChrome();
     addClassToElementByEnv();
     injectDeviceContentHeightToCSS();
     $(window).on('orientationchange', function() {
@@ -4451,12 +4456,12 @@ $(document).ready(function() {
         $('#subtitlePopup').css('display', 'none');
     });
     var i = new Menu({
-            wrapper: '#o-wrapper',
-            type: 'slide-right',
-            menuOpenerClass: '.c-button',
-            maskId: '#c-mask'
-        }),
-        j = document.querySelector('#chat-i-pushy');
+        wrapper: '#o-wrapper',
+        type: 'slide-right',
+        menuOpenerClass: '.c-button',
+        maskId: '#c-mask'
+    });
+    var j = document.querySelector('#chat-i-pushy');
     j.addEventListener('click', function(o) {
         o.preventDefault();
         i.open();
@@ -4470,40 +4475,40 @@ $(document).ready(function() {
         return true;
     });
     var k = {
-            container: document.getElementById('playerWrap'),
-            use_multiview: false
-        },
-        l = {
-            pageWrap: document.getElementById('pageWrap'),
-            playerWrap: document.getElementById('playerWrap'),
-            playThumbnail: document.getElementById('playThumbnail'),
-            chatOpenBtn: document.getElementById('chat-i-pushy'),
-            chatWrap: document.getElementById('chatWrap'),
-            chatContents: document.getElementById('c-menu--slide-right'),
-            chatInputWrap: document.getElementById('chatInputWrap'),
-            navBtnWrap: document.getElementById('navBtnWrap'),
-            playerBottomWrap: document.getElementById('playerBottomWrap'),
-            playBtn: document.getElementById('playBtn'),
-            volumeBtn: document.getElementById('volumeBtn'),
-            volumeSlider: document.getElementById('volumeSlider'),
-            fullBtn: document.getElementById('fullBtn'),
-            loadingDiv: document.getElementById('loadingDiv'),
-            ccSelect: document.getElementById('ccSelect'),
-            ccSelectBtn: document.getElementById('ccSelectBtn'),
-            qualitySelect: document.getElementById('qualitySelect'),
-            qualitySelectBtn: document.getElementById('qualitySelectBtn'),
-            qualityPopup: document.getElementById('qualityPopup'),
-            subtitlePopup: document.getElementById('subtitlePopup')
-        },
-        m = {
-            user_id: getCookie(DCvi + '_user_id'),
-            device_id: getCookie(DCvi + '_device_id'),
-            content_id: DCvi
-        };
+        container: document.getElementById('playerWrap'),
+        use_multiview: false
+    };
+    var l = {
+        pageWrap: document.getElementById('pageWrap'),
+        playerWrap: document.getElementById('playerWrap'),
+        playThumbnail: document.getElementById('playThumbnail'),
+        chatOpenBtn: document.getElementById('chat-i-pushy'),
+        chatWrap: document.getElementById('chatWrap'),
+        chatContents: document.getElementById('c-menu--slide-right'),
+        chatInputWrap: document.getElementById('chatInputWrap'),
+        navBtnWrap: document.getElementById('navBtnWrap'),
+        playerBottomWrap: document.getElementById('playerBottomWrap'),
+        playBtn: document.getElementById('playBtn'),
+        volumeBtn: document.getElementById('volumeBtn'),
+        volumeSlider: document.getElementById('volumeSlider'),
+        fullBtn: document.getElementById('fullBtn'),
+        loadingDiv: document.getElementById('loadingDiv'),
+        ccSelect: document.getElementById('ccSelect'),
+        ccSelectBtn: document.getElementById('ccSelectBtn'),
+        qualitySelect: document.getElementById('qualitySelect'),
+        qualitySelectBtn: document.getElementById('qualitySelectBtn'),
+        qualityPopup: document.getElementById('qualityPopup'),
+        subtitlePopup: document.getElementById('subtitlePopup')
+    };
+    var m = {
+        user_id: getCookie(DCvi + '_user_id'),
+        device_id: getCookie(DCvi + '_device_id'),
+        content_id: DCvi
+    };
     userSessionCheck(m, function(o) {
-        var p = k.content_data = JSON.parse(JSON.stringify(o.Data.content)),
-            q = JSON.parse(JSON.stringify(o.Data.user)),
-            r = p.cam_num > 1;
+        var p = k.content_data = JSON.parse(JSON.stringify(o.Data.content));
+        var q = JSON.parse(JSON.stringify(o.Data.user));
+        var r = p.cam_num > 1;
         if (IS_SINGLEVIEW_ON_MULTIVIEW) {
             r = false;
         }
@@ -4711,10 +4716,10 @@ $(document).ready(function() {
         }
     });
     $('#view-type-selector').on('click', '.btn-view-selector', function(o) {
-        var p = $(o.target),
-            q = null,
-            r = window.location.href,
-            s = null;
+        var p = $(o.target);
+        var q = null;
+        var r = window.location.href;
+        var s = null;
         if (p.hasClass('active')) return;
         q = p.data('view-type');
         if (q === 'singleview') {
@@ -4739,8 +4744,8 @@ window.onpageshow = function(a) {
     console.log('@@@onpageshow');
     history.pushState({}, '', location.href);
 };
-var requestCnt = 0,
-    serverLoading = null;
+var requestCnt = 0;
+var serverLoading = null;
 
 function request_to_server(a, b, c, d, e) {
     var f = new XMLHttpRequest();
@@ -4858,8 +4863,8 @@ Date.prototype.format = function(a) {
     });
 };
 String.prototype.string = function(a) {
-    var b = '',
-        c = 0;
+    var b = '';
+    var c = 0;
     while (c++ < a) {
         b += this;
     }
@@ -4927,8 +4932,8 @@ function getQueryStringObject() {
 }
 
 function checkIEbrowser() {
-    var a = window.navigator.userAgent.toLowerCase(),
-        b = a.indexOf('trident');
+    var a = window.navigator.userAgent.toLowerCase();
+    var b = a.indexOf('trident');
     if (b > -1) {
         return true;
     }
@@ -4950,8 +4955,8 @@ function checkMobileAndTablet() {
         if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
             return true;
         } else {
-            var b = navigator.userAgent.toLowerCase(),
-                c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
+            var b = navigator.userAgent.toLowerCase();
+            var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             return !c ? isIpadOS() : c;
         }
     }
@@ -5027,8 +5032,8 @@ function checkMobile() {
         if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
             return true;
         } else {
-            var b = navigator.userAgent.toLowerCase(),
-                c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
+            var b = navigator.userAgent.toLowerCase();
+            var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             if (!c) return isIpadOS();
             else {
                 return c;
@@ -5038,9 +5043,9 @@ function checkMobile() {
 }
 
 function isChrome() {
-    var a = window.navigator.userAgent.toLowerCase(),
-        b = a.indexOf('chrome') !== -1 || a.indexOf('crios') !== -1,
-        c = a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1;
+    var a = window.navigator.userAgent.toLowerCase();
+    var b = a.indexOf('chrome') !== -1 || a.indexOf('crios') !== -1;
+    var c = a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1;
     return b && !c;
 }
 
@@ -5066,27 +5071,27 @@ function delayStopLoadingPanelFactory() {
 var delayStopLoadingPanel = delayStopLoadingPanelFactory();
 
 function isWindow() {
-    var a = window.navigator.userAgent.toLowerCase(),
-        b = checkMobileAndTablet();
+    var a = window.navigator.userAgent.toLowerCase();
+    var b = checkMobileAndTablet();
     return !b && a.indexOf('win') != -1;
 }
 
 function isMac() {
-    var a = window.navigator.userAgent.toLowerCase(),
-        b = checkMobileAndTablet();
+    var a = window.navigator.userAgent.toLowerCase();
+    var b = checkMobileAndTablet();
     return !b && a.indexOf('mac') != -1;
 }
 
 function injectDeviceContentHeightToCSS() {
-    var a = window.innerHeight * 0.01,
-        b = window.document.documentElement;
+    var a = window.innerHeight * 0.01;
+    var b = window.document.documentElement;
     b.style.setProperty('--vh', ''.concat(a, 'px'));
 }
 
 function addClassToElementByEnv(a) {
-    var b = a || window.document.body,
-        c = '',
-        d = [];
+    var b = a || window.document.body;
+    var c = '';
+    var d = [];
     if (isIOS()) d.push('ios');
     if (isAndroid()) d.push('android');
     if (isTablet() || isIpadOS()) d.push('tablet');
@@ -5102,9 +5107,9 @@ function addClassToElementByEnv(a) {
 function debounce(a, b) {
     var c;
     return function() {
-        var d = arguments,
-            e = this,
-            f = arguments;
+        var d = arguments;
+        var e = this;
+        var f = arguments;
         clearTimeout(c);
         c = setTimeout(function() {
             return a.apply(e, d);
@@ -5112,166 +5117,166 @@ function debounce(a, b) {
     };
 }
 var POPUP_CONFIG = {
-        failToGetPlayerCode: function failToGetPlayerCode(a, b) {
-            var c = null,
-                d = a;
-            if (d == 'zh_Hans') d = 'cn';
-            if (b) c = b;
-            var e = {
-                ko: {
-                    title: '알림',
-                    desc: '잠시 후 다시 시도해주세요.',
-                    btnTxt: '확인',
-                    okCallback: c
-                },
-                en: {
-                    title: 'Notification',
-                    desc: 'Please try again later',
-                    btnTxt: 'OK',
-                    okCallback: c
-                },
-                ja: {
-                    title: 'お知らせ',
-                    desc: 'しばらくしてから再度お試しください',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                jp: {
-                    title: 'お知らせ',
-                    desc: 'しばらくしてから再度お試しください',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                cn: {
-                    title: '提醒',
-                    desc: '请稍后再试一次',
-                    btnTxt: '确认',
-                    okCallback: c
-                }
-            };
-            if (!e[d]) return e.en;
-            return e[d];
-        },
-        duplicatedNickname: function duplicatedNickname(a, b) {
-            var c = null,
-                d = a;
-            if (d == 'zh_Hans') d = 'cn';
-            if (b) c = b;
-            var e = {
-                ko: {
-                    title: '알림',
-                    desc: '잠시 후 다시 시도해주세요.',
-                    btnTxt: '확인',
-                    okCallback: c
-                },
-                en: {
-                    title: 'Notification',
-                    desc: 'Please try again later',
-                    btnTxt: 'OK',
-                    okCallback: c
-                },
-                ja: {
-                    title: 'お知らせ',
-                    desc: 'しばらくしてから再度お試しください',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                jp: {
-                    title: 'お知らせ',
-                    desc: 'しばらくしてから再度お試しください',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                cn: {
-                    title: '提醒',
-                    desc: '请稍后再试一次',
-                    btnTxt: '确认',
-                    okCallback: c
-                }
-            };
-            if (!e[d]) return e.en;
-            return e[d];
-        },
-        permissionDenied: function permissionDenied(a, b) {
-            var c = null,
-                d = a;
-            if (d == 'zh_Hans') d = 'cn';
-            if (d == 'ja') d = 'jp';
-            if (b) c = b;
-            var e = {
-                ko: {
-                    title: '알림',
-                    desc: '권한이 없습니다.',
-                    btnTxt: '확인',
-                    okCallback: c
-                },
-                en: {
-                    title: 'Notification',
-                    desc: 'Permission Denied',
-                    btnTxt: 'OK',
-                    okCallback: c
-                },
-                jp: {
-                    title: 'お知らせ',
-                    desc: '権限がありません',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                cn: {
-                    title: '提醒',
-                    desc: '你没有权限访问',
-                    btnTxt: '确认',
-                    okCallback: c
-                }
-            };
-            if (!e[d]) return e.en;
-            return e[d];
-        },
-        authorizedByCode: function authorizedByCode(a) {
-            var b = a;
-            if (b == 'zh_Hans') b = 'cn';
-            if (b == 'ja') b = 'jp';
-            var c = {
-                ko: {
-                    idText: 'ID',
-                    ticketText: '인증코드',
-                    authPopupTitle: '코드 인증'
-                },
-                jp: {
-                    idText: 'ID',
-                    ticketText: '認証コード',
-                    authPopupTitle: 'コード認証'
-                },
-                en: {
-                    idText: 'ID',
-                    ticketText: 'Auth code',
-                    authPopupTitle: 'Code authentication'
-                },
-                cn: {
-                    idText: 'ID',
-                    ticketText: 'Auth code',
-                    authPopupTitle: 'Code authentication'
-                }
-            };
-            if (!c[b]) return c.en;
-            return c[b];
-        }
+    failToGetPlayerCode: function failToGetPlayerCode(a, b) {
+        var c = null;
+        var d = a;
+        if (d == 'zh_Hans') d = 'cn';
+        if (b) c = b;
+        var e = {
+            ko: {
+                title: '알림',
+                desc: '잠시 후 다시 시도해주세요.',
+                btnTxt: '확인',
+                okCallback: c
+            },
+            en: {
+                title: 'Notification',
+                desc: 'Please try again later',
+                btnTxt: 'OK',
+                okCallback: c
+            },
+            ja: {
+                title: 'お知らせ',
+                desc: 'しばらくしてから再度お試しください',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            jp: {
+                title: 'お知らせ',
+                desc: 'しばらくしてから再度お試しください',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            cn: {
+                title: '提醒',
+                desc: '请稍后再试一次',
+                btnTxt: '确认',
+                okCallback: c
+            }
+        };
+        if (!e[d]) return e.en;
+        return e[d];
     },
-    CHAT_MESSAGE_CONFIG = {
-        placeholderOnMuteChat: function placeholderOnMuteChat(a) {
-            var b = a;
-            if (b == 'zh_Hans') b = 'cn';
-            var c = {
-                ko: '채팅을 사용할 수 없습니다.',
-                en: 'Live chat is currently unavailable.',
-                ja: 'チャットを使用できません',
-                jp: 'チャットを使用できません',
-                cn: '不能用聊天'
-            };
-            if (!c[b]) return c.en;
-            return c[b];
-        }
-    };
+    duplicatedNickname: function duplicatedNickname(a, b) {
+        var c = null;
+        var d = a;
+        if (d == 'zh_Hans') d = 'cn';
+        if (b) c = b;
+        var e = {
+            ko: {
+                title: '알림',
+                desc: '잠시 후 다시 시도해주세요.',
+                btnTxt: '확인',
+                okCallback: c
+            },
+            en: {
+                title: 'Notification',
+                desc: 'Please try again later',
+                btnTxt: 'OK',
+                okCallback: c
+            },
+            ja: {
+                title: 'お知らせ',
+                desc: 'しばらくしてから再度お試しください',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            jp: {
+                title: 'お知らせ',
+                desc: 'しばらくしてから再度お試しください',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            cn: {
+                title: '提醒',
+                desc: '请稍后再试一次',
+                btnTxt: '确认',
+                okCallback: c
+            }
+        };
+        if (!e[d]) return e.en;
+        return e[d];
+    },
+    permissionDenied: function permissionDenied(a, b) {
+        var c = null;
+        var d = a;
+        if (d == 'zh_Hans') d = 'cn';
+        if (d == 'ja') d = 'jp';
+        if (b) c = b;
+        var e = {
+            ko: {
+                title: '알림',
+                desc: '권한이 없습니다.',
+                btnTxt: '확인',
+                okCallback: c
+            },
+            en: {
+                title: 'Notification',
+                desc: 'Permission Denied',
+                btnTxt: 'OK',
+                okCallback: c
+            },
+            jp: {
+                title: 'お知らせ',
+                desc: '権限がありません',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            cn: {
+                title: '提醒',
+                desc: '你没有权限访问',
+                btnTxt: '确认',
+                okCallback: c
+            }
+        };
+        if (!e[d]) return e.en;
+        return e[d];
+    },
+    authorizedByCode: function authorizedByCode(a) {
+        var b = a;
+        if (b == 'zh_Hans') b = 'cn';
+        if (b == 'ja') b = 'jp';
+        var c = {
+            ko: {
+                idText: 'ID',
+                ticketText: '인증코드',
+                authPopupTitle: '코드 인증'
+            },
+            jp: {
+                idText: 'ID',
+                ticketText: '認証コード',
+                authPopupTitle: 'コード認証'
+            },
+            en: {
+                idText: 'ID',
+                ticketText: 'Auth code',
+                authPopupTitle: 'Code authentication'
+            },
+            cn: {
+                idText: 'ID',
+                ticketText: 'Auth code',
+                authPopupTitle: 'Code authentication'
+            }
+        };
+        if (!c[b]) return c.en;
+        return c[b];
+    }
+};
+var CHAT_MESSAGE_CONFIG = {
+    placeholderOnMuteChat: function placeholderOnMuteChat(a) {
+        var b = a;
+        if (b == 'zh_Hans') b = 'cn';
+        var c = {
+            ko: '채팅을 사용할 수 없습니다.',
+            en: 'Live chat is currently unavailable.',
+            ja: 'チャットを使用できません',
+            jp: 'チャットを使用できません',
+            cn: '不能用聊天'
+        };
+        if (!c[b]) return c.en;
+        return c[b];
+    }
+};
 
 function createElementFromHTML(a) {
     var b = document.createElement('div');

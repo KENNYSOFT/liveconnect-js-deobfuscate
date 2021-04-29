@@ -1,6 +1,6 @@
 'use strict';
-var selectArr = [],
-    callbackArr = [];
+var selectArr = [];
+var callbackArr = [];
 
 function cusDD(a, b, c) {
     var d = false;
@@ -98,12 +98,12 @@ function cusDDselectOption(a, b, c) {
         }
     });
 }
-var RSAnd = 'https://api.liveconnect.co.kr',
-    YPP3z = 'pub-c-bf51339c-bf9b-4e3e-8f44-dadc40e90d23',
-    KSPdf = 'sub-c-80f91ce6-c710-11ea-8107-5e100a74f828',
-    Nierw = 'ap-northeast-2',
-    Yacaw = 'AKIARWRY6LMTIMTBNHGW',
-    Ytcsw = 'xmZ2EWmIIKs85VR8kaDZHnEfKwYMiMeHUSRM2UdK';
+var RSAnd = 'https://api.liveconnect.co.kr';
+var YPP3z = 'pub-c-bf51339c-bf9b-4e3e-8f44-dadc40e90d23';
+var KSPdf = 'sub-c-80f91ce6-c710-11ea-8107-5e100a74f828';
+var Nierw = 'ap-northeast-2';
+var Yacaw = 'AKIARWRY6LMTIMTBNHGW';
+var Ytcsw = 'xmZ2EWmIIKs85VR8kaDZHnEfKwYMiMeHUSRM2UdK';
 switch (Tira) {
     case '[JSH]LIVE_MULTI':
         var DCvi = '303fff52-27a7-4991-9cc8-4c34ae28417a';
@@ -347,113 +347,113 @@ switch (Tira) {
         break;
 }
 var ChatFilter = function() {
-        var a = '',
-            b = false;
-        return {
-            loadChatFilterData: function c(d) {
-                if (b) {
-                    if (d) d();
-                    return;
-                }
-                var e = new XMLHttpRequest();
-                switch (Tira) {
-                    case 'IDLE':
-                        e.open('GET', '/static/filtering/chat_filtering_idle.txt');
-                        break;
-                    case '210417_cix':
-                        e.open('GET', '/static/filtering/chat_filtering_cix.txt');
-                        break;
-                    case '210424_mamamoo':
-                        e.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
-                        break;
-                    default:
-                        e.open('GET', '/static/filtering/chat_filtering.txt');
-                        break;
-                }
-                e.overrideMimeType('text/plain; charset=utf-8');
-                e.onreadystatechange = function() {
-                    if (e.readyState == XMLHttpRequest.DONE) {
-                        if (e.status == 200 || e.status == 201) {
-                            a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
-                            a = a.replace(/[\r]/gm, '');
-                            if (a[a.length - 1] == '|') {
-                                a = a.substr(0, a.length - 1);
-                            }
-                            b = true;
-                            if (d) d();
+    var a = '';
+    var b = false;
+    return {
+        loadChatFilterData: function c(d) {
+            if (b) {
+                if (d) d();
+                return;
+            }
+            var e = new XMLHttpRequest();
+            switch (Tira) {
+                case 'IDLE':
+                    e.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                    break;
+                case '210417_cix':
+                    e.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    break;
+                case '210424_mamamoo':
+                    e.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
+                    break;
+                default:
+                    e.open('GET', '/static/filtering/chat_filtering.txt');
+                    break;
+            }
+            e.overrideMimeType('text/plain; charset=utf-8');
+            e.onreadystatechange = function() {
+                if (e.readyState == XMLHttpRequest.DONE) {
+                    if (e.status == 200 || e.status == 201) {
+                        a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
+                        a = a.replace(/[\r]/gm, '');
+                        if (a[a.length - 1] == '|') {
+                            a = a.substr(0, a.length - 1);
                         }
+                        b = true;
+                        if (d) d();
                     }
-                };
-                e.send();
-            },
-            filteringChatText: function d(e) {
-                if (!b) return;
-                var f = 'gi',
-                    g = new RegExp(a, f);
-                return e.replace(g, '***');
-            },
-            checkFilteringData: function e() {
-                return b;
-            },
-            checkNickname: function f(g) {
-                if (!b) return;
-                var h = 'gi',
-                    i = new RegExp(a, h);
-                return i.test(g);
-            }
-        };
-    }(),
-    NicknameFilter = function() {
-        var c = function() {
-                var g = true;
-                return function(h, i) {
-                    var j = g ? function() {
-                        if (i) {
-                            var k = i.apply(h, arguments);
-                            i = null;
-                            return k;
-                        }
-                    } : function() {};
-                    g = false;
-                    return j;
-                };
-            }(),
-            d = c(this, function() {
-                var g;
-                try {
-                    var h = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
-                    g = h();
-                } catch (p) {
-                    g = window;
                 }
-                var i = g.console = g.console || {},
-                    j = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-                for (var k = 0; k < j.length; k++) {
-                    var l = c.constructor.prototype.bind(c),
-                        m = j[k],
-                        n = i[m] || l;
-                    l.__proto__ = c.bind(c);
-                    l.toString = n.toString.bind(n);
-                    i[m] = l;
-                }
-            });
-        d();
-        var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira,
-            f = '';
-        if (e == '210424_mamamoo') {
-            f = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
-            f = f.map(function(g) {
-                return g.replace(/ /gi, '');
-            }).join('|');
+            };
+            e.send();
+        },
+        filteringChatText: function d(e) {
+            if (!b) return;
+            var f = 'gi';
+            var g = new RegExp(a, f);
+            return e.replace(g, '***');
+        },
+        checkFilteringData: function e() {
+            return b;
+        },
+        checkNickname: function f(g) {
+            if (!b) return;
+            var h = 'gi';
+            var i = new RegExp(a, h);
+            return i.test(g);
         }
-        return {
-            hasForbidden: function g(h) {
-                if (f === '') return false;
-                var i = new RegExp(f, 'gi');
-                return i.test(h);
-            }
+    };
+}();
+var NicknameFilter = function() {
+    var c = function() {
+        var g = true;
+        return function(h, i) {
+            var j = g ? function() {
+                if (i) {
+                    var k = i.apply(h, arguments);
+                    i = null;
+                    return k;
+                }
+            } : function() {};
+            g = false;
+            return j;
         };
     }();
+    var d = c(this, function() {
+        var g;
+        try {
+            var h = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
+            g = h();
+        } catch (p) {
+            g = window;
+        }
+        var i = g.console = g.console || {};
+        var j = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+        for (var k = 0; k < j.length; k++) {
+            var l = c.constructor.prototype.bind(c);
+            var m = j[k];
+            var n = i[m] || l;
+            l.__proto__ = c.bind(c);
+            l.toString = n.toString.bind(n);
+            i[m] = l;
+        }
+    });
+    d();
+    var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
+    var f = '';
+    if (e == '210424_mamamoo') {
+        f = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
+        f = f.map(function(g) {
+            return g.replace(/ /gi, '');
+        }).join('|');
+    }
+    return {
+        hasForbidden: function g(h) {
+            if (f === '') return false;
+            var i = new RegExp(f, 'gi');
+            return i.test(h);
+        }
+    };
+}();
 
 function b() {
     $('#dayWrap').css('display', 'none');
@@ -474,325 +474,325 @@ if (ddv) {
     });
 } else {
     var c = function t(u, v, w) {
-            request_to_server('POST', RSAnd + '/user_auth/customer_login/', u, function(y) {
-                m = JSON.parse(JSON.stringify(y.Data.content));
-                n = JSON.parse(JSON.stringify(y.Data.user));
-                if (v) v();
-            }, function() {
-                if (w) w();
-            });
-        },
-        d = function u(v, w, x) {
-            request_to_server('POST', RSAnd + '/user_auth/nickname/', v, function(y) {
-                if (w) w(y);
-            }, function(y, z) {
-                if (x) x(y, z);
-            });
-        },
-        e = function v(w, x, y) {
-            request_to_server('POST', RSAnd + '/user_auth/player_enter/', w, function(z) {
-                if (x) x(z);
-            }, function(z) {
-                if (y) y(z);
-            });
-        },
-        f = function w(x) {
-            var y = /[\/\\:*?<>|"]/gi;
-            if (y.test(x)) {
-                return true;
-            } else return false;
-        },
-        g = function x(y) {
-            return y.search(/\s/) != -1 ? true : false;
-        },
-        h = function y() {
-            $('#loadingDiv').css('display', 'block');
-            var z = egl,
-                A = POPUP_CONFIG.failToGetPlayerCode(z, null),
-                B = n,
-                C = m,
-                D = (C && C.id ? C.id : null) || DCvi,
-                E = {
-                    user_id: null,
-                    content_id: null,
-                    device_id: null
-                },
-                F = null,
-                G = null;
-            if (B && B.user_id) E.user_id = B.user_id;
-            if (r) E.device_id = r;
-            if (D) E.content_id = D;
-            e(E, function(I) {
-                $('#loadingDiv').css('display', 'none');
-                console.log(I);
-                F = I && I.Data ? I.Data : null;
-                G = F && F.content ? F.content.player_code : null;
-                if (G) {
-                    setCookie(DCvi + '_user_id', n.user_id, 20160);
-                    setCookie(DCvi + '_chat_id', n.chat_id, 20160);
-                    setCookie(DCvi + '_content_id', DCvi, 20160);
-                    location.href = LUEz1 + '/' + G;
-                } else {
-                    if (A) {
-                        alertPopup(A.title, A.desc, A.btnTxt, A.okCallback);
-                    }
-                }
-            }, function(I) {
-                $('#loadingDiv').css('display', 'none');
-                console.log(I);
+        request_to_server('POST', RSAnd + '/user_auth/customer_login/', u, function(y) {
+            m = JSON.parse(JSON.stringify(y.Data.content));
+            n = JSON.parse(JSON.stringify(y.Data.user));
+            if (v) v();
+        }, function() {
+            if (w) w();
+        });
+    };
+    var d = function u(v, w, x) {
+        request_to_server('POST', RSAnd + '/user_auth/nickname/', v, function(y) {
+            if (w) w(y);
+        }, function(y, z) {
+            if (x) x(y, z);
+        });
+    };
+    var e = function v(w, x, y) {
+        request_to_server('POST', RSAnd + '/user_auth/player_enter/', w, function(z) {
+            if (x) x(z);
+        }, function(z) {
+            if (y) y(z);
+        });
+    };
+    var f = function w(x) {
+        var y = /[\/\\:*?<>|"]/gi;
+        if (y.test(x)) {
+            return true;
+        } else return false;
+    };
+    var g = function x(y) {
+        return y.search(/\s/) != -1 ? true : false;
+    };
+    var h = function y() {
+        $('#loadingDiv').css('display', 'block');
+        var z = egl;
+        var A = POPUP_CONFIG.failToGetPlayerCode(z, null);
+        var B = n;
+        var C = m;
+        var D = (C && C.id ? C.id : null) || DCvi;
+        var E = {
+            user_id: null,
+            content_id: null,
+            device_id: null
+        };
+        var F = null;
+        var G = null;
+        if (B && B.user_id) E.user_id = B.user_id;
+        if (r) E.device_id = r;
+        if (D) E.content_id = D;
+        e(E, function(I) {
+            $('#loadingDiv').css('display', 'none');
+            console.log(I);
+            F = I && I.Data ? I.Data : null;
+            G = F && F.content ? F.content.player_code : null;
+            if (G) {
+                setCookie(DCvi + '_user_id', n.user_id, 20160);
+                setCookie(DCvi + '_chat_id', n.chat_id, 20160);
+                setCookie(DCvi + '_content_id', DCvi, 20160);
+                location.href = LUEz1 + '/' + G;
+            } else {
                 if (A) {
                     alertPopup(A.title, A.desc, A.btnTxt, A.okCallback);
                 }
-            });
-        },
-        i = function z(A, B) {
-            if (B == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                switch (egl) {
-                    case 'ko':
-                        A.text('인증코드를 입력해 주세요.');
-                        break;
-                    case 'en':
-                        A.text('Enter authentication code.');
-                        break;
-                    case 'ja':
-                    case 'jp':
-                        A.text('認証コードを入力してください');
-                        break;
-                    case 'cn':
-                        A.text('Enter authentication code');
-                        break;
-                }
-            } else {
-                switch (egl) {
-                    case 'ko':
-                        A.text('인터파크ID와 예매번호를 입력해 주세요.');
-                        break;
-                    case 'en':
-                        A.text('Enter INTERPARK ID and reservation number.');
-                        break;
-                    case 'ja':
-                    case 'jp':
-                        A.text('INTERPARK IDと購入番号を入力してください。');
-                        break;
-                    case 'cn':
-                        A.text('请输入INTERPARK账户和预订号码');
-                        break;
+            }
+        }, function(I) {
+            $('#loadingDiv').css('display', 'none');
+            console.log(I);
+            if (A) {
+                alertPopup(A.title, A.desc, A.btnTxt, A.okCallback);
+            }
+        });
+    };
+    var i = function z(A, B) {
+        if (B == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+            switch (egl) {
+                case 'ko':
+                    A.text('인증코드를 입력해 주세요.');
+                    break;
+                case 'en':
+                    A.text('Enter authentication code.');
+                    break;
+                case 'ja':
+                case 'jp':
+                    A.text('認証コードを入力してください');
+                    break;
+                case 'cn':
+                    A.text('Enter authentication code');
+                    break;
+            }
+        } else {
+            switch (egl) {
+                case 'ko':
+                    A.text('인터파크ID와 예매번호를 입력해 주세요.');
+                    break;
+                case 'en':
+                    A.text('Enter INTERPARK ID and reservation number.');
+                    break;
+                case 'ja':
+                case 'jp':
+                    A.text('INTERPARK IDと購入番号を入力してください。');
+                    break;
+                case 'cn':
+                    A.text('请输入INTERPARK账户和预订号码');
+                    break;
+            }
+        }
+    };
+    var j = function A(B, C) {
+        if (C == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+            switch (egl) {
+                case 'ko':
+                    B.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                    break;
+                case 'en':
+                    B.text('Authentication code is not valid. Please check and try again.');
+                    break;
+                case 'ja':
+                case 'jp':
+                    B.text('認証コードが正しくありません。確認後、正確に入力してください。');
+                    break;
+                case 'cn':
+                    B.text('Authentication code is not valid. Please check and try again.');
+                    break;
+            }
+        } else {
+            switch (egl) {
+                case 'ko':
+                    B.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                    break;
+                case 'en':
+                    B.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
+                    break;
+                case 'ja':
+                case 'jp':
+                    B.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
+                    break;
+                case 'cn':
+                    B.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
+                    break;
+            }
+        }
+    };
+    var k = function B(C) {
+        $('#authPopup').css('display', 'none');
+        $('#authBtn').css('display', 'none');
+        $('#authMsg1').css('display', 'none');
+        $('#authMsg2').css('display', 'none');
+        $('#readyBtn').css('display', 'inline-block');
+        $('#nicknamePopup').css('display', 'none');
+        if (C && C == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+            switch (egl) {
+                case 'ko':
+                    alertPopup('알림', '인증이 완료되었습니다.', '확인');
+                    break;
+                case 'en':
+                    alertPopup('Notification', 'Verification completed.', 'OK');
+                    break;
+                case 'ja':
+                case 'jp':
+                    alertPopup('お知らせ', '認証が完了しました。', '確認');
+                    break;
+                case 'cn':
+                    alertPopup('提醒', '购票认证已完毕', '确认');
+                    break;
+            }
+        } else {
+            switch (egl) {
+                case 'ko':
+                    alertPopup('알림', '티켓 인증이 완료되었습니다.', '확인');
+                    break;
+                case 'en':
+                    alertPopup('Notification', 'Ticket verification completed.', 'OK');
+                    break;
+                case 'ja':
+                case 'jp':
+                    alertPopup('お知らせ', '観覧券認証が完了しました', '確認');
+                    break;
+                case 'cn':
+                    alertPopup('提醒', '购票认证已完毕', '确认');
+                    break;
+            }
+        }
+    };
+    var l = function C(D, E) {
+        ChatFilter.loadChatFilterData(function() {
+            p = D;
+            if (D == 'enter') $('#loginPopup').css('display', 'none');
+            else {
+                if (D == 'auth') {
+                    $('#authPopup').css('display', 'none');
                 }
             }
-        },
-        j = function A(B, C) {
-            if (C == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                switch (egl) {
-                    case 'ko':
-                        B.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
-                        break;
-                    case 'en':
-                        B.text('Authentication code is not valid. Please check and try again.');
-                        break;
-                    case 'ja':
-                    case 'jp':
-                        B.text('認証コードが正しくありません。確認後、正確に入力してください。');
-                        break;
-                    case 'cn':
-                        B.text('Authentication code is not valid. Please check and try again.');
-                        break;
-                }
-            } else {
-                switch (egl) {
-                    case 'ko':
-                        B.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
-                        break;
-                    case 'en':
-                        B.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
-                        break;
-                    case 'ja':
-                    case 'jp':
-                        B.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
-                        break;
-                    case 'cn':
-                        B.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
-                        break;
-                }
+            if (E) {
+                $('#nickname').val(E);
             }
-        },
-        k = function B(C) {
-            $('#authPopup').css('display', 'none');
-            $('#authBtn').css('display', 'none');
-            $('#authMsg1').css('display', 'none');
-            $('#authMsg2').css('display', 'none');
-            $('#readyBtn').css('display', 'inline-block');
-            $('#nicknamePopup').css('display', 'none');
-            if (C && C == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                switch (egl) {
-                    case 'ko':
-                        alertPopup('알림', '인증이 완료되었습니다.', '확인');
-                        break;
-                    case 'en':
-                        alertPopup('Notification', 'Verification completed.', 'OK');
-                        break;
-                    case 'ja':
-                    case 'jp':
-                        alertPopup('お知らせ', '認証が完了しました。', '確認');
-                        break;
-                    case 'cn':
-                        alertPopup('提醒', '购票认证已完毕', '确认');
-                        break;
-                }
-            } else {
-                switch (egl) {
-                    case 'ko':
-                        alertPopup('알림', '티켓 인증이 완료되었습니다.', '확인');
-                        break;
-                    case 'en':
-                        alertPopup('Notification', 'Ticket verification completed.', 'OK');
-                        break;
-                    case 'ja':
-                    case 'jp':
-                        alertPopup('お知らせ', '観覧券認証が完了しました', '確認');
-                        break;
-                    case 'cn':
-                        alertPopup('提醒', '购票认证已完毕', '确认');
-                        break;
-                }
+            switch (egl) {
+                case 'ko':
+                    $('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
+                    break;
+                case 'en':
+                    $('#nicknameFailTxt').text('Nickname is required to join LIVE CHAT for this show and it is for single-use. (Valid only during the show, and will become invalid and deleted after the show.)');
+                    break;
+                case 'ja':
+                case 'jp':
+                    $('#nicknameFailTxt').text('ニックネームはライブ内でチャット使用のために必要であり、一回用のニックネームです。(ライブ内で使用され、ライブ終了後に削除されます。)');
+                    break;
+                case 'cn':
+                    $('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
+                    break;
             }
-        },
-        l = function C(D, E) {
-            ChatFilter.loadChatFilterData(function() {
-                p = D;
-                if (D == 'enter') $('#loginPopup').css('display', 'none');
-                else {
-                    if (D == 'auth') {
-                        $('#authPopup').css('display', 'none');
-                    }
-                }
-                if (E) {
-                    $('#nickname').val(E);
-                }
-                switch (egl) {
-                    case 'ko':
-                        $('#nicknameFailTxt').text('채팅 닉네임은 본 공연의 채팅사용을 위해 필요하며 1회용 닉네임입니다. (본 공연시에만 사용하며, 공연 종료 후 삭제됩니다.)');
-                        break;
-                    case 'en':
-                        $('#nicknameFailTxt').text('Nickname is required to join LIVE CHAT for this show and it is for single-use. (Valid only during the show, and will become invalid and deleted after the show.)');
-                        break;
-                    case 'ja':
-                    case 'jp':
-                        $('#nicknameFailTxt').text('ニックネームはライブ内でチャット使用のために必要であり、一回用のニックネームです。(ライブ内で使用され、ライブ終了後に削除されます。)');
-                        break;
-                    case 'cn':
-                        $('#nicknameFailTxt').text('账户名用于本演出的聊天功能，是单次性账户名。 (仅限用于本演出，演出结束后会删除。)');
-                        break;
-                }
-                $('#nicknamePopup').css('display', 'block');
-                $('#nickname').focus();
-            });
-        };
+            $('#nicknamePopup').css('display', 'block');
+            $('#nickname').focus();
+        });
+    };
     if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
         $('#enterBtn').css('display', 'none');
         $('#notSupportedBrowser').css('display', 'inline-block');
     }
-    var m = null,
-        n = null,
-        o = null,
-        p = '',
-        q = 0,
-        r = getCookie(DCvi + '_device_id');
+    var m = null;
+    var n = null;
+    var o = null;
+    var p = '';
+    var q = 0;
+    var r = getCookie(DCvi + '_device_id');
     if (!r) {
         r = createDeviceId(DCvi);
     }
     $(document).ready(function() {
-        var E = ['e48fcdad-a485-4f0d-9ef4-df37b43bb560'],
-            enterBtn = $('#enterBtn'),
-            authBtn = $('#authBtn'),
-            readyBtn = $('#readyBtn'),
-            notSupportedBrowser = $('#notSupportedBrowser'),
-            dayWrap = $('#dayWrap'),
-            loginBtn = $('#loginBtn'),
-            loginPopup = $('#loginPopup'),
-            nicknamePopup = $('#nicknamePopup'),
-            authPopup = $('#authPopup'),
-            authMsg1 = $('#authMsg1'),
-            authMsg2 = $('#authMsg2'),
-            customerId = $('#customerId'),
-            ticketId = $('#ticketId'),
-            nickname = $('#nickname'),
-            nicknameFailTxt = $('#nicknameFailTxt'),
-            loginFailTxt = $('#loginFailTxt'),
-            chk_save = $('#chk_save'),
-            chk_save2 = $('#chk_save2'),
-            createNickBtn = $('#createNickBtn'),
-            authCustomerId = $('#authCustomerId'),
-            authTicketId = $('#authTicketId'),
-            authFailTxt = $('#authFailTxt'),
-            authCheckBtn = $('#authCheckBtn'),
-            a2 = new Date(parseInt(ete)),
-            a3 = new Date(parseInt(cte)),
-            a4 = new Date(),
-            a5 = uath,
-            a6 = true,
-            a7 = {
-                requestCreateNickname: null
-            },
-            a8 = false;
+        var E = ['e48fcdad-a485-4f0d-9ef4-df37b43bb560'];
+        var enterBtn = $('#enterBtn');
+        var authBtn = $('#authBtn');
+        var readyBtn = $('#readyBtn');
+        var notSupportedBrowser = $('#notSupportedBrowser');
+        var dayWrap = $('#dayWrap');
+        var loginBtn = $('#loginBtn');
+        var loginPopup = $('#loginPopup');
+        var nicknamePopup = $('#nicknamePopup');
+        var authPopup = $('#authPopup');
+        var authMsg1 = $('#authMsg1');
+        var authMsg2 = $('#authMsg2');
+        var customerId = $('#customerId');
+        var ticketId = $('#ticketId');
+        var nickname = $('#nickname');
+        var nicknameFailTxt = $('#nicknameFailTxt');
+        var loginFailTxt = $('#loginFailTxt');
+        var chk_save = $('#chk_save');
+        var chk_save2 = $('#chk_save2');
+        var createNickBtn = $('#createNickBtn');
+        var authCustomerId = $('#authCustomerId');
+        var authTicketId = $('#authTicketId');
+        var authFailTxt = $('#authFailTxt');
+        var authCheckBtn = $('#authCheckBtn');
+        var a2 = new Date(parseInt(ete));
+        var a3 = new Date(parseInt(cte));
+        var a4 = new Date();
+        var a5 = uath;
+        var a6 = true;
+        var a7 = {
+            requestCreateNickname: null
+        };
+        var a8 = false;
         authMsg1.css('display', 'none');
         authMsg2.css('display', 'none');
         var a9 = function ag(ah) {
-                authMsg1.css('display', 'none');
-                authMsg2.css('display', 'none');
-                authBtn.css('display', 'none');
-                if (ah) {
-                    enterBtn.css('display', 'inline-block');
-                    readyBtn.css('display', 'none');
-                } else {
-                    enterBtn.css('display', 'none');
-                    readyBtn.css('display', 'inline-block');
-                }
-                if (rtd) enterBtn.css('display', 'inline-block');
-            },
-            aa = function ah() {
-                a7.requestCreateNickname = setTimeout(function() {
-                    console.log('@@@RESET');
-                    nicknameFailTxt.text('');
-                    a6 = true;
-                }, 1000);
-            },
-            ab = function ai() {
-                authCustomerId.text('');
-                authTicketId.text('');
-                authFailTxt.text('');
-                chk_save.prop('checked', true);
-                authPopup.css('display', 'block');
-                if (!authCustomerId.val() && getCookie(DCvi + '_customer_id')) {
-                    authCustomerId.val(getCookie(DCvi + '_customer_id'));
-                }
-                if (!authTicketId.val() && getCookie(DCvi + '_ticket_id')) {
-                    authTicketId.val(getCookie(DCvi + '_ticket_id'));
-                }
-                authCustomerId.focus();
-            },
-            ac = function aj() {
-                var ak = egl,
-                    al = DCvi,
-                    am = null;
-                if (al == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                    am = POPUP_CONFIG.authorizedByCode(ak);
-                    $('.popupbox .label_customer_id').text(am.idText);
-                    $('.popupbox .label_ticket_id').text(am.ticketText);
-                    customerId.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
-                    authCustomerId.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
-                    authPopup.find('.pop-tt.auth').text(am.authPopupTitle);
-                }
-            },
-            ad = function ak(al, am) {
-                var an = DCvi;
-                if (E.indexOf(an) < 0) return;
-                if (al && !am) {
-                    ab();
-                }
-                if (!al && !am) {
-                    enterBtn.click();
-                }
-            };
+            authMsg1.css('display', 'none');
+            authMsg2.css('display', 'none');
+            authBtn.css('display', 'none');
+            if (ah) {
+                enterBtn.css('display', 'inline-block');
+                readyBtn.css('display', 'none');
+            } else {
+                enterBtn.css('display', 'none');
+                readyBtn.css('display', 'inline-block');
+            }
+            if (rtd) enterBtn.css('display', 'inline-block');
+        };
+        var aa = function ah() {
+            a7.requestCreateNickname = setTimeout(function() {
+                console.log('@@@RESET');
+                nicknameFailTxt.text('');
+                a6 = true;
+            }, 1000);
+        };
+        var ab = function ai() {
+            authCustomerId.text('');
+            authTicketId.text('');
+            authFailTxt.text('');
+            chk_save.prop('checked', true);
+            authPopup.css('display', 'block');
+            if (!authCustomerId.val() && getCookie(DCvi + '_customer_id')) {
+                authCustomerId.val(getCookie(DCvi + '_customer_id'));
+            }
+            if (!authTicketId.val() && getCookie(DCvi + '_ticket_id')) {
+                authTicketId.val(getCookie(DCvi + '_ticket_id'));
+            }
+            authCustomerId.focus();
+        };
+        var ac = function aj() {
+            var ak = egl;
+            var al = DCvi;
+            var am = null;
+            if (al == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+                am = POPUP_CONFIG.authorizedByCode(ak);
+                $('.popupbox .label_customer_id').text(am.idText);
+                $('.popupbox .label_ticket_id').text(am.ticketText);
+                customerId.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
+                authCustomerId.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
+                authPopup.find('.pop-tt.auth').text(am.authPopupTitle);
+            }
+        };
+        var ad = function ak(al, am) {
+            var an = DCvi;
+            if (E.indexOf(an) < 0) return;
+            if (al && !am) {
+                ab();
+            }
+            if (!al && !am) {
+                enterBtn.click();
+            }
+        };
         ac();
         q = a3.getTime() - a4.getTime();
         if (a2 < a3) {
@@ -835,11 +835,11 @@ if (ddv) {
                         a9(false);
                     }
                 }
-                var ap = (a2 - ao) / 1000,
-                    aq = parseInt(ap / 60 / 60 / 24),
-                    ar = parseInt(ap / 60 / 60 % 24),
-                    as = parseInt(ap / 60 % 60),
-                    at = parseInt(ap % 60);
+                var ap = (a2 - ao) / 1000;
+                var aq = parseInt(ap / 60 / 60 / 24);
+                var ar = parseInt(ap / 60 / 60 % 24);
+                var as = parseInt(ap / 60 % 60);
+                var at = parseInt(ap % 60);
                 if (aq < 10) {
                     aq = '0' + aq;
                 }
@@ -1012,8 +1012,8 @@ if (ddv) {
             loginPopup.css('display', 'none');
         });
         loginBtn.on('click', function() {
-            var ar = customerId.val().trim(),
-                as = ticketId.val().trim();
+            var ar = customerId.val().trim();
+            var as = ticketId.val().trim();
             if (a5 && (!ar || !as)) {
                 i(loginFailTxt, DCvi);
                 return;
@@ -1180,9 +1180,9 @@ if (ddv) {
                                         if (p == 'enter') {
                                             $('#loadingDiv').css('display', 'none');
                                             nicknamePopup.css('display', 'none');
-                                            var aF = '',
-                                                aG = '',
-                                                aH = '';
+                                            var aF = '';
+                                            var aG = '';
+                                            var aH = '';
                                             switch (egl) {
                                                 case 'ko':
                                                     aG = '알림';
@@ -1265,8 +1265,8 @@ if (ddv) {
         });
         authBtn.on('click', ab);
         authCheckBtn.on('click', function() {
-            var ar = authCustomerId.val().trim(),
-                as = authTicketId.val().trim();
+            var ar = authCustomerId.val().trim();
+            var as = authTicketId.val().trim();
             if (!ar || !as) {
                 i(authFailTxt, DCvi);
                 return;
@@ -1315,10 +1315,10 @@ if (ddv) {
         }
     });
     window.onpageshow = function(E) {
-        var F = null,
-            G = window.performance,
-            H = G && G.getEntriesByType ? G.getEntriesByType('navigation') : null,
-            I = H && H[0] ? H[0].type : null;
+        var F = null;
+        var G = window.performance;
+        var H = G && G.getEntriesByType ? G.getEntriesByType('navigation') : null;
+        var I = H && H[0] ? H[0].type : null;
         console.log(I);
         if (E.persisted || I == 'back_forward' || F == 2) {
             location.reload();
@@ -1326,9 +1326,9 @@ if (ddv) {
     };
 }
 window.onpageshow = function(a) {
-    var b = performance.getEntriesByType('navigation'),
-        c = b[0],
-        d = null;
+    var b = performance.getEntriesByType('navigation');
+    var c = b[0];
+    var d = null;
     if (c) {
         var e = c.toJSON();
         if (e) {
@@ -1339,8 +1339,8 @@ window.onpageshow = function(a) {
         location.reload();
     }
 };
-var requestCnt = 0,
-    serverLoading = null;
+var requestCnt = 0;
+var serverLoading = null;
 
 function request_to_server(a, b, c, d, e) {
     var f = new XMLHttpRequest();
@@ -1456,8 +1456,8 @@ Date.prototype.format = function(a) {
     });
 };
 String.prototype.string = function(a) {
-    var b = '',
-        c = 0;
+    var b = '';
+    var c = 0;
     while (c++ < a) {
         b += this;
     }
@@ -1527,8 +1527,8 @@ function getQueryStringObject() {
 }
 
 function checkIEbrowser() {
-    var a = window.navigator.userAgent.toLowerCase(),
-        b = a.indexOf('trident');
+    var a = window.navigator.userAgent.toLowerCase();
+    var b = a.indexOf('trident');
     if (b > -1) {
         return true;
     }
@@ -1548,8 +1548,8 @@ function checkMobileAndTablet() {
         if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
             return true;
         } else {
-            var b = navigator.userAgent.toLowerCase(),
-                c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
+            var b = navigator.userAgent.toLowerCase();
+            var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             if (!c) return isIpadOS();
             else {
                 return c;
@@ -1624,8 +1624,8 @@ function checkMobile() {
         if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
             return true;
         } else {
-            var b = navigator.userAgent.toLowerCase(),
-                c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
+            var b = navigator.userAgent.toLowerCase();
+            var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             if (!c) return isIpadOS();
             else {
                 return c;
@@ -1635,9 +1635,9 @@ function checkMobile() {
 }
 
 function isChrome() {
-    var a = window.navigator.userAgent.toLowerCase(),
-        b = a.indexOf('chrome') !== -1 || a.indexOf('crios') !== -1,
-        c = a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1;
+    var a = window.navigator.userAgent.toLowerCase();
+    var b = a.indexOf('chrome') !== -1 || a.indexOf('crios') !== -1;
+    var c = a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1;
     return b && !c;
 }
 
@@ -1663,27 +1663,27 @@ function delayStopLoadingPanelFactory() {
 var delayStopLoadingPanel = delayStopLoadingPanelFactory();
 
 function isWindow() {
-    var a = window.navigator.userAgent.toLowerCase(),
-        b = checkMobileAndTablet();
+    var a = window.navigator.userAgent.toLowerCase();
+    var b = checkMobileAndTablet();
     return !b && a.indexOf('win') != -1;
 }
 
 function isMac() {
-    var a = window.navigator.userAgent.toLowerCase(),
-        b = checkMobileAndTablet();
+    var a = window.navigator.userAgent.toLowerCase();
+    var b = checkMobileAndTablet();
     return !b && a.indexOf('mac') != -1;
 }
 
 function injectDeviceContentHeightToCSS() {
-    var a = window.innerHeight * 0.01,
-        b = window.document.documentElement;
+    var a = window.innerHeight * 0.01;
+    var b = window.document.documentElement;
     b.style.setProperty('--vh', ''.concat(a, 'px'));
 }
 
 function addClassToElementByEnv(a) {
-    var b = a || window.document.body,
-        c = '',
-        d = [];
+    var b = a || window.document.body;
+    var c = '';
+    var d = [];
     if (isIOS()) d.push('ios');
     if (isAndroid()) d.push('android');
     if (isTablet() || isIpadOS()) d.push('tablet');
@@ -1699,9 +1699,9 @@ function addClassToElementByEnv(a) {
 function debounce(a, b) {
     var c;
     return function() {
-        var d = arguments,
-            e = this,
-            f = arguments;
+        var d = arguments;
+        var e = this;
+        var f = arguments;
         clearTimeout(c);
         c = setTimeout(function() {
             return a.apply(e, d);
@@ -1709,166 +1709,166 @@ function debounce(a, b) {
     };
 }
 var POPUP_CONFIG = {
-        failToGetPlayerCode: function failToGetPlayerCode(a, b) {
-            var c = null,
-                d = a;
-            if (d == 'zh_Hans') d = 'cn';
-            if (b) c = b;
-            var e = {
-                ko: {
-                    title: '알림',
-                    desc: '잠시 후 다시 시도해주세요.',
-                    btnTxt: '확인',
-                    okCallback: c
-                },
-                en: {
-                    title: 'Notification',
-                    desc: 'Please try again later',
-                    btnTxt: 'OK',
-                    okCallback: c
-                },
-                ja: {
-                    title: 'お知らせ',
-                    desc: 'しばらくしてから再度お試しください',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                jp: {
-                    title: 'お知らせ',
-                    desc: 'しばらくしてから再度お試しください',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                cn: {
-                    title: '提醒',
-                    desc: '请稍后再试一次',
-                    btnTxt: '确认',
-                    okCallback: c
-                }
-            };
-            if (!e[d]) return e.en;
-            return e[d];
-        },
-        duplicatedNickname: function duplicatedNickname(a, b) {
-            var c = null,
-                d = a;
-            if (d == 'zh_Hans') d = 'cn';
-            if (b) c = b;
-            var e = {
-                ko: {
-                    title: '알림',
-                    desc: '잠시 후 다시 시도해주세요.',
-                    btnTxt: '확인',
-                    okCallback: c
-                },
-                en: {
-                    title: 'Notification',
-                    desc: 'Please try again later',
-                    btnTxt: 'OK',
-                    okCallback: c
-                },
-                ja: {
-                    title: 'お知らせ',
-                    desc: 'しばらくしてから再度お試しください',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                jp: {
-                    title: 'お知らせ',
-                    desc: 'しばらくしてから再度お試しください',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                cn: {
-                    title: '提醒',
-                    desc: '请稍后再试一次',
-                    btnTxt: '确认',
-                    okCallback: c
-                }
-            };
-            if (!e[d]) return e.en;
-            return e[d];
-        },
-        permissionDenied: function permissionDenied(a, b) {
-            var c = null,
-                d = a;
-            if (d == 'zh_Hans') d = 'cn';
-            if (d == 'ja') d = 'jp';
-            if (b) c = b;
-            var e = {
-                ko: {
-                    title: '알림',
-                    desc: '권한이 없습니다.',
-                    btnTxt: '확인',
-                    okCallback: c
-                },
-                en: {
-                    title: 'Notification',
-                    desc: 'Permission Denied',
-                    btnTxt: 'OK',
-                    okCallback: c
-                },
-                jp: {
-                    title: 'お知らせ',
-                    desc: '権限がありません',
-                    btnTxt: '確認',
-                    okCallback: c
-                },
-                cn: {
-                    title: '提醒',
-                    desc: '你没有权限访问',
-                    btnTxt: '确认',
-                    okCallback: c
-                }
-            };
-            if (!e[d]) return e.en;
-            return e[d];
-        },
-        authorizedByCode: function authorizedByCode(a) {
-            var b = a;
-            if (b == 'zh_Hans') b = 'cn';
-            if (b == 'ja') b = 'jp';
-            var c = {
-                ko: {
-                    idText: 'ID',
-                    ticketText: '인증코드',
-                    authPopupTitle: '코드 인증'
-                },
-                jp: {
-                    idText: 'ID',
-                    ticketText: '認証コード',
-                    authPopupTitle: 'コード認証'
-                },
-                en: {
-                    idText: 'ID',
-                    ticketText: 'Auth code',
-                    authPopupTitle: 'Code authentication'
-                },
-                cn: {
-                    idText: 'ID',
-                    ticketText: 'Auth code',
-                    authPopupTitle: 'Code authentication'
-                }
-            };
-            if (!c[b]) return c.en;
-            return c[b];
-        }
+    failToGetPlayerCode: function failToGetPlayerCode(a, b) {
+        var c = null;
+        var d = a;
+        if (d == 'zh_Hans') d = 'cn';
+        if (b) c = b;
+        var e = {
+            ko: {
+                title: '알림',
+                desc: '잠시 후 다시 시도해주세요.',
+                btnTxt: '확인',
+                okCallback: c
+            },
+            en: {
+                title: 'Notification',
+                desc: 'Please try again later',
+                btnTxt: 'OK',
+                okCallback: c
+            },
+            ja: {
+                title: 'お知らせ',
+                desc: 'しばらくしてから再度お試しください',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            jp: {
+                title: 'お知らせ',
+                desc: 'しばらくしてから再度お試しください',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            cn: {
+                title: '提醒',
+                desc: '请稍后再试一次',
+                btnTxt: '确认',
+                okCallback: c
+            }
+        };
+        if (!e[d]) return e.en;
+        return e[d];
     },
-    CHAT_MESSAGE_CONFIG = {
-        placeholderOnMuteChat: function placeholderOnMuteChat(a) {
-            var b = a;
-            if (b == 'zh_Hans') b = 'cn';
-            var c = {
-                ko: '채팅을 사용할 수 없습니다.',
-                en: 'Live chat is currently unavailable.',
-                ja: 'チャットを使用できません',
-                jp: 'チャットを使用できません',
-                cn: '不能用聊天'
-            };
-            if (!c[b]) return c.en;
-            return c[b];
-        }
-    };
+    duplicatedNickname: function duplicatedNickname(a, b) {
+        var c = null;
+        var d = a;
+        if (d == 'zh_Hans') d = 'cn';
+        if (b) c = b;
+        var e = {
+            ko: {
+                title: '알림',
+                desc: '잠시 후 다시 시도해주세요.',
+                btnTxt: '확인',
+                okCallback: c
+            },
+            en: {
+                title: 'Notification',
+                desc: 'Please try again later',
+                btnTxt: 'OK',
+                okCallback: c
+            },
+            ja: {
+                title: 'お知らせ',
+                desc: 'しばらくしてから再度お試しください',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            jp: {
+                title: 'お知らせ',
+                desc: 'しばらくしてから再度お試しください',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            cn: {
+                title: '提醒',
+                desc: '请稍后再试一次',
+                btnTxt: '确认',
+                okCallback: c
+            }
+        };
+        if (!e[d]) return e.en;
+        return e[d];
+    },
+    permissionDenied: function permissionDenied(a, b) {
+        var c = null;
+        var d = a;
+        if (d == 'zh_Hans') d = 'cn';
+        if (d == 'ja') d = 'jp';
+        if (b) c = b;
+        var e = {
+            ko: {
+                title: '알림',
+                desc: '권한이 없습니다.',
+                btnTxt: '확인',
+                okCallback: c
+            },
+            en: {
+                title: 'Notification',
+                desc: 'Permission Denied',
+                btnTxt: 'OK',
+                okCallback: c
+            },
+            jp: {
+                title: 'お知らせ',
+                desc: '権限がありません',
+                btnTxt: '確認',
+                okCallback: c
+            },
+            cn: {
+                title: '提醒',
+                desc: '你没有权限访问',
+                btnTxt: '确认',
+                okCallback: c
+            }
+        };
+        if (!e[d]) return e.en;
+        return e[d];
+    },
+    authorizedByCode: function authorizedByCode(a) {
+        var b = a;
+        if (b == 'zh_Hans') b = 'cn';
+        if (b == 'ja') b = 'jp';
+        var c = {
+            ko: {
+                idText: 'ID',
+                ticketText: '인증코드',
+                authPopupTitle: '코드 인증'
+            },
+            jp: {
+                idText: 'ID',
+                ticketText: '認証コード',
+                authPopupTitle: 'コード認証'
+            },
+            en: {
+                idText: 'ID',
+                ticketText: 'Auth code',
+                authPopupTitle: 'Code authentication'
+            },
+            cn: {
+                idText: 'ID',
+                ticketText: 'Auth code',
+                authPopupTitle: 'Code authentication'
+            }
+        };
+        if (!c[b]) return c.en;
+        return c[b];
+    }
+};
+var CHAT_MESSAGE_CONFIG = {
+    placeholderOnMuteChat: function placeholderOnMuteChat(a) {
+        var b = a;
+        if (b == 'zh_Hans') b = 'cn';
+        var c = {
+            ko: '채팅을 사용할 수 없습니다.',
+            en: 'Live chat is currently unavailable.',
+            ja: 'チャットを使用できません',
+            jp: 'チャットを使用できません',
+            cn: '不能用聊天'
+        };
+        if (!c[b]) return c.en;
+        return c[b];
+    }
+};
 
 function createElementFromHTML(a) {
     var b = document.createElement('div');
