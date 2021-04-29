@@ -6,7 +6,7 @@ const {parse} = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const t = require('@babel/types');
 const generate = require('@babel/generator').default;
-const isVarName = require('is-var-name');
+const isProperty = require('is-property');
 const fs = require('fs');
 
 const checkSwitchableTest = (expression) => t.isBinaryExpression(expression, {operator: '=='}) && (t.isIdentifier(expression.left, {name: 'Tira'}) || t.isIdentifier(expression.left, {name: 'egl'})) && t.isStringLiteral(expression.right);
@@ -95,21 +95,21 @@ const deobfuscate = async (url) => {
         },
         MemberExpression: (path) => {
             const {computed, property, property: {value}} = path.node;
-            if (computed && t.isStringLiteral(property) && isVarName(value)) {
+            if (computed && t.isStringLiteral(property) && isProperty(value)) {
                 path.node.computed = false;
                 path.node.property = t.identifier(value);
             }
         },
         ClassMethod: (path) => {
             const {computed, key, key: {value}} = path.node;
-            if (computed && t.isStringLiteral(key) && isVarName(value)) {
+            if (computed && t.isStringLiteral(key) && isProperty(value)) {
                 path.node.computed = false;
                 path.node.key = t.identifier(value);
             }
         },
         ObjectProperty: (path) => {
             const {key, key: {value}} = path.node;
-            if (t.isStringLiteral(key) && isVarName(value)) {
+            if (t.isStringLiteral(key) && isProperty(value)) {
                 path.node.key = t.identifier(value);
             }
         },

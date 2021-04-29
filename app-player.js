@@ -44,7 +44,7 @@ function _createForOfIteratorHelper(a, b) {
         },
         f: function v() {
             try {
-                if (!h && c['return'] != null) c['return']();
+                if (!h && c.return != null) c.return();
             } finally {
                 if (j) throw k;
             }
