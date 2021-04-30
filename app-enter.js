@@ -16,14 +16,14 @@ function cusDD(a, b, c) {
         callbackArr.push(c);
     }
     var f = '';
-    if (!b) {
-        f = 'cusDD_default';
-    } else {
+    if (!b) f = 'cusDD_default';
+    else {
         if (b == 'slick dark') f = 'cusDD_slick_d';
-        else if (b == 'slick light') {
-            f = 'cusDD_slick_l';
-        } else {
-            f = b;
+        else {
+            if (b == 'slick light') f = 'cusDD_slick_l';
+            else {
+                f = b;
+            }
         }
     }
     for (var g = 0; g < $(a).length; g++) {
@@ -38,31 +38,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(n) {
+    $(document).click(function(l) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(n) {
-        var o = a;
-        $('.cusDD').not(o).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(o).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', o);
-        n.stopPropagation();
-        if ($(n.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(l) {
+        var m = a;
+        $('.cusDD').not(m).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(m).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', m);
+        l.stopPropagation();
+        if ($(l.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(n.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(l.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var p = 200;
+        var n = 200;
         if ($(this).find('.cusDD_options').children()) {
             if ($(this).find('.cusDD_options').children().length > 30) {
-                p = 0;
+                n = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(p);
+        $(this).find('.cusDD_options').slideToggle(n);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -72,8 +72,8 @@ function cusDD(a, b, c) {
 }
 $.fn.changeElementType = function(b) {
     var c = {};
-    $.each(this[0].attributes, function(e, f) {
-        c[f.nodeName] = f.nodeValue;
+    $.each(this[0].attributes, function(d, e) {
+        c[e.nodeName] = e.nodeValue;
     });
     this.replaceWith(function() {
         return $('<' + b + '/>', c).append($(this).contents());
@@ -333,6 +333,30 @@ switch (Tira) {
     case '210424_mamamoo':
         var DCvi = 'e2431386-a908-4f7d-a2ae-acdc11c9a9b7';
         break;
+    case '210505_sinbiapt':
+        var DCvi = 'a428ef32-1cc3-4ddb-8b68-e58ff591e39a';
+        break;
+    case '210508_popcorn':
+        var DCvi = 'd4b32f7f-bd9c-4a69-b5ee-74433f263e3c';
+        break;
+    case '210514_hike101':
+        var DCvi = '114f7f81-0f8a-4725-b824-6b29c639b86e';
+        break;
+    case '210514_hike201':
+        var DCvi = 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b';
+        break;
+    case '210514_hike301':
+        var DCvi = 'f75219c8-f3cb-492c-ad68-a1fd940b131e';
+        break;
+    case '210515_hike101':
+        var DCvi = 'a50c8232-e98f-4ea1-a891-7272e7adf413';
+        break;
+    case '210515_hike201':
+        var DCvi = '4487013d-39f3-4f61-8c9c-b34cd8087b66';
+        break;
+    case '210515_hike301':
+        var DCvi = '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c';
+        break;
     case 'dev_demo_event':
         var DCvi = 'f3a82d31-a083-4679-88e1-c0961a925afb';
         break;
@@ -404,58 +428,58 @@ var ChatFilter = function() {
     };
 }();
 var NicknameFilter = function() {
-    var c = function() {
-        var g = true;
-        return function(h, i) {
-            var j = g ? function() {
-                if (i) {
-                    var k = i.apply(h, arguments);
-                    i = null;
-                    return k;
-                }
-            } : function() {};
-            g = false;
-            return j;
-        };
-    }();
-    var d = c(this, function() {
-        var g;
-        try {
-            var h = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
-            g = h();
-        } catch (p) {
-            g = window;
-        }
-        var i = g.console = g.console || {};
-        var j = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-        for (var k = 0; k < j.length; k++) {
-            var l = c.constructor.prototype.bind(c);
-            var m = j[k];
-            var n = i[m] || l;
-            l.__proto__ = c.bind(c);
-            l.toString = n.toString.bind(n);
-            i[m] = l;
-        }
-    });
-    d();
-    var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
-    var f = '';
-    if (e == '210424_mamamoo') {
-        f = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
-        f = f.map(function(g) {
-            return g.replace(/ /gi, '');
+    var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
+    var b = '';
+    if (a == '210424_mamamoo') {
+        b = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
+        b = b.map(function(c) {
+            return c.replace(/ /gi, '');
         }).join('|');
     }
     return {
-        hasForbidden: function g(h) {
-            if (f === '') return false;
-            var i = new RegExp(f, 'gi');
-            return i.test(h);
+        hasForbidden: function c(d) {
+            if (b === '') return false;
+            var e = new RegExp(b, 'gi');
+            return e.test(d);
         }
     };
 }();
+var d = function() {
+    var w = true;
+    return function(x, y) {
+        var z = w ? function() {
+            if (y) {
+                var A = y.apply(x, arguments);
+                y = null;
+                return A;
+            }
+        } : function() {};
+        w = false;
+        return z;
+    };
+}();
+var e = d(this, function() {
+    var w;
+    try {
+        var x = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
+        w = x();
+    } catch (E) {
+        w = window;
+    }
+    var y = w.console = w.console || {};
+    var z = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+    for (var A = 0; A < z.length; A++) {
+        var B = d.constructor.prototype.bind(d);
+        var C = z[A];
+        var D = y[C] || B;
+        B.__proto__ = d.bind(d);
+        B.toString = D.toString.bind(D);
+        y[C] = B;
+    }
+});
+e();
 
-function b() {
+function f() {
     $('#dayWrap').css('display', 'none');
     $('#readyBtn').css('display', 'none');
     $('#enterBtn').css('display', 'none');
@@ -468,161 +492,165 @@ function b() {
     removeCookie(DCvi + '_user_id');
     removeCookie(DCvi + '_chat_id');
 }
-if (ddv) {
-    $(document).ready(function() {
-        b();
-    });
-} else {
-    var c = function t(u, v, w) {
-        request_to_server('POST', RSAnd + '/user_auth/customer_login/', u, function(y) {
-            m = JSON.parse(JSON.stringify(y.Data.content));
-            n = JSON.parse(JSON.stringify(y.Data.user));
-            if (v) v();
+if (ddv) $(document).ready(function() {
+    f();
+});
+else {
+    var g = function w(x, y, z) {
+        request_to_server('POST', RSAnd + '/user_auth/customer_login/', x, function(A) {
+            q = JSON.parse(JSON.stringify(A.Data.content));
+            r = JSON.parse(JSON.stringify(A.Data.user));
+            if (y) y();
         }, function() {
-            if (w) w();
+            if (z) z();
         });
     };
-    var d = function u(v, w, x) {
-        request_to_server('POST', RSAnd + '/user_auth/nickname/', v, function(y) {
-            if (w) w(y);
-        }, function(y, z) {
-            if (x) x(y, z);
+    var h = function x(y, z, A) {
+        request_to_server('POST', RSAnd + '/user_auth/nickname/', y, function(B) {
+            if (z) z(B);
+        }, function(B, C) {
+            if (A) A(B, C);
         });
     };
-    var e = function v(w, x, y) {
-        request_to_server('POST', RSAnd + '/user_auth/player_enter/', w, function(z) {
-            if (x) x(z);
-        }, function(z) {
-            if (y) y(z);
+    var i = function y(z, A, B) {
+        request_to_server('POST', RSAnd + '/user_auth/player_enter/', z, function(D) {
+            if (A) A(D);
+        }, function(D) {
+            if (B) B(D);
         });
     };
-    var f = function w(x) {
-        var y = /[\/\\:*?<>|"]/gi;
-        if (y.test(x)) {
+    var j = function z(A) {
+        var B = /[\/\\:*?<>|"]/gi;
+        if (B.test(A)) {
             return true;
-        } else return false;
+        } else {
+            return false;
+        }
     };
-    var g = function x(y) {
-        return y.search(/\s/) != -1 ? true : false;
+    var k = function A(B) {
+        if (B.search(/\s/) != -1) {
+            return true;
+        } else {
+            return false;
+        }
     };
-    var h = function y() {
+    var l = function B() {
         $('#loadingDiv').css('display', 'block');
-        var z = egl;
-        var A = POPUP_CONFIG.failToGetPlayerCode(z, null);
-        var B = n;
-        var C = m;
-        var D = (C && C.id ? C.id : null) || DCvi;
-        var E = {
+        var C = egl;
+        var D = POPUP_CONFIG.failToGetPlayerCode(C, null);
+        var E = r;
+        var F = q;
+        var G = (F && F.id ? F.id : null) || DCvi;
+        var H = {
             user_id: null,
             content_id: null,
             device_id: null
         };
-        var F = null;
-        var G = null;
-        if (B && B.user_id) E.user_id = B.user_id;
-        if (r) E.device_id = r;
-        if (D) E.content_id = D;
-        e(E, function(I) {
+        var I = null;
+        var J = null;
+        if (E && E.user_id) H.user_id = E.user_id;
+        if (v) H.device_id = v;
+        if (G) H.content_id = G;
+        i(H, function(K) {
             $('#loadingDiv').css('display', 'none');
-            console.log(I);
-            F = I && I.Data ? I.Data : null;
-            G = F && F.content ? F.content.player_code : null;
-            if (G) {
-                setCookie(DCvi + '_user_id', n.user_id, 20160);
-                setCookie(DCvi + '_chat_id', n.chat_id, 20160);
+            console.log(K);
+            I = K && K.Data ? K.Data : null;
+            J = I && I.content ? I.content.player_code : null;
+            if (J) {
+                setCookie(DCvi + '_user_id', r.user_id, 20160);
+                setCookie(DCvi + '_chat_id', r.chat_id, 20160);
                 setCookie(DCvi + '_content_id', DCvi, 20160);
-                location.href = LUEz1 + '/' + G;
-            } else {
-                if (A) {
-                    alertPopup(A.title, A.desc, A.btnTxt, A.okCallback);
-                }
+                HIKE_UTIL.setCookiesOnGroup(null, null, r.user_id, true);
+                location.href = LUEz1 + '/' + J;
+            } else if (D) {
+                alertPopup(D.title, D.desc, D.btnTxt, D.okCallback);
             }
-        }, function(I) {
+        }, function(K) {
             $('#loadingDiv').css('display', 'none');
-            console.log(I);
-            if (A) {
-                alertPopup(A.title, A.desc, A.btnTxt, A.okCallback);
+            console.log(K);
+            if (D) {
+                alertPopup(D.title, D.desc, D.btnTxt, D.okCallback);
             }
         });
     };
-    var i = function z(A, B) {
-        if (B == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+    var m = function C(D, E) {
+        if (E == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
             switch (egl) {
                 case 'ko':
-                    A.text('인증코드를 입력해 주세요.');
+                    D.text('인증코드를 입력해 주세요.');
                     break;
                 case 'en':
-                    A.text('Enter authentication code.');
+                    D.text('Enter authentication code.');
                     break;
                 case 'ja':
                 case 'jp':
-                    A.text('認証コードを入力してください');
+                    D.text('認証コードを入力してください');
                     break;
                 case 'cn':
-                    A.text('Enter authentication code');
+                    D.text('Enter authentication code');
                     break;
             }
         } else {
             switch (egl) {
                 case 'ko':
-                    A.text('인터파크ID와 예매번호를 입력해 주세요.');
+                    D.text('인터파크ID와 예매번호를 입력해 주세요.');
                     break;
                 case 'en':
-                    A.text('Enter INTERPARK ID and reservation number.');
+                    D.text('Enter INTERPARK ID and reservation number.');
                     break;
                 case 'ja':
                 case 'jp':
-                    A.text('INTERPARK IDと購入番号を入力してください。');
+                    D.text('INTERPARK IDと購入番号を入力してください。');
                     break;
                 case 'cn':
-                    A.text('请输入INTERPARK账户和预订号码');
+                    D.text('请输入INTERPARK账户和预订号码');
                     break;
             }
         }
     };
-    var j = function A(B, C) {
-        if (C == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+    var n = function D(E, F) {
+        if (F == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
             switch (egl) {
                 case 'ko':
-                    B.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                    E.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
                     break;
                 case 'en':
-                    B.text('Authentication code is not valid. Please check and try again.');
+                    E.text('Authentication code is not valid. Please check and try again.');
                     break;
                 case 'ja':
                 case 'jp':
-                    B.text('認証コードが正しくありません。確認後、正確に入力してください。');
+                    E.text('認証コードが正しくありません。確認後、正確に入力してください。');
                     break;
                 case 'cn':
-                    B.text('Authentication code is not valid. Please check and try again.');
+                    E.text('Authentication code is not valid. Please check and try again.');
                     break;
             }
         } else {
             switch (egl) {
                 case 'ko':
-                    B.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                    E.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
                     break;
                 case 'en':
-                    B.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
+                    E.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
                     break;
                 case 'ja':
                 case 'jp':
-                    B.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
+                    E.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
                     break;
                 case 'cn':
-                    B.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
+                    E.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
                     break;
             }
         }
     };
-    var k = function B(C) {
+    var o = function E(F) {
         $('#authPopup').css('display', 'none');
         $('#authBtn').css('display', 'none');
         $('#authMsg1').css('display', 'none');
         $('#authMsg2').css('display', 'none');
         $('#readyBtn').css('display', 'inline-block');
         $('#nicknamePopup').css('display', 'none');
-        if (C && C == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+        if (F && F == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
             switch (egl) {
                 case 'ko':
                     alertPopup('알림', '인증이 완료되었습니다.', '확인');
@@ -656,17 +684,16 @@ if (ddv) {
             }
         }
     };
-    var l = function C(D, E) {
+    var p = function F(G, H) {
         ChatFilter.loadChatFilterData(function() {
-            p = D;
-            if (D == 'enter') $('#loginPopup').css('display', 'none');
-            else {
-                if (D == 'auth') {
-                    $('#authPopup').css('display', 'none');
-                }
+            t = G;
+            if (G == 'enter') {
+                $('#loginPopup').css('display', 'none');
+            } else if (G == 'auth') {
+                $('#authPopup').css('display', 'none');
             }
-            if (E) {
-                $('#nickname').val(E);
+            if (H) {
+                $('#nickname').val(H);
             }
             switch (egl) {
                 case 'ko':
@@ -691,17 +718,17 @@ if (ddv) {
         $('#enterBtn').css('display', 'none');
         $('#notSupportedBrowser').css('display', 'inline-block');
     }
-    var m = null;
-    var n = null;
-    var o = null;
-    var p = '';
-    var q = 0;
-    var r = getCookie(DCvi + '_device_id');
-    if (!r) {
-        r = createDeviceId(DCvi);
+    var q = null;
+    var r = null;
+    var s = null;
+    var t = '';
+    var u = 0;
+    var v = getCookie(DCvi + '_device_id');
+    if (!v) {
+        v = createDeviceId(DCvi);
+        HIKE_UTIL.setCookiesOnGroup(null, null, null, null, v);
     }
     $(document).ready(function() {
-        var E = ['e48fcdad-a485-4f0d-9ef4-df37b43bb560'];
         var enterBtn = $('#enterBtn');
         var authBtn = $('#authBtn');
         var readyBtn = $('#readyBtn');
@@ -725,22 +752,22 @@ if (ddv) {
         var authTicketId = $('#authTicketId');
         var authFailTxt = $('#authFailTxt');
         var authCheckBtn = $('#authCheckBtn');
-        var a2 = new Date(parseInt(ete));
-        var a3 = new Date(parseInt(cte));
-        var a4 = new Date();
-        var a5 = uath;
-        var a6 = true;
-        var a7 = {
+        var a4 = new Date(parseInt(ete));
+        var a5 = new Date(parseInt(cte));
+        var a6 = new Date();
+        var a7 = uath;
+        var a8 = true;
+        var a9 = {
             requestCreateNickname: null
         };
-        var a8 = false;
+        var aa = false;
         authMsg1.css('display', 'none');
         authMsg2.css('display', 'none');
-        var a9 = function ag(ah) {
+        var ab = function aj(ak) {
             authMsg1.css('display', 'none');
             authMsg2.css('display', 'none');
             authBtn.css('display', 'none');
-            if (ah) {
+            if (ak) {
                 enterBtn.css('display', 'inline-block');
                 readyBtn.css('display', 'none');
             } else {
@@ -749,14 +776,14 @@ if (ddv) {
             }
             if (rtd) enterBtn.css('display', 'inline-block');
         };
-        var aa = function ah() {
-            a7.requestCreateNickname = setTimeout(function() {
+        var ac = function ak() {
+            a9.requestCreateNickname = setTimeout(function() {
                 console.log('@@@RESET');
                 nicknameFailTxt.text('');
-                a6 = true;
+                a8 = true;
             }, 1000);
         };
-        var ab = function ai() {
+        var ad = function al() {
             authCustomerId.text('');
             authTicketId.text('');
             authFailTxt.text('');
@@ -770,32 +797,32 @@ if (ddv) {
             }
             authCustomerId.focus();
         };
-        var ac = function aj() {
-            var ak = egl;
-            var al = DCvi;
-            var am = null;
-            if (al == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
-                am = POPUP_CONFIG.authorizedByCode(ak);
-                $('.popupbox .label_customer_id').text(am.idText);
-                $('.popupbox .label_ticket_id').text(am.ticketText);
+        var ae = function am() {
+            var an = egl;
+            var ao = DCvi;
+            var ap = null;
+            if (ao == '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82') {
+                ap = POPUP_CONFIG.authorizedByCode(an);
+                $('.popupbox .label_customer_id').text(ap.idText);
+                $('.popupbox .label_ticket_id').text(ap.ticketText);
                 customerId.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
                 authCustomerId.prop('autofocus', false).prop('readonly', true).val('UNIVERSE');
-                authPopup.find('.pop-tt.auth').text(am.authPopupTitle);
+                authPopup.find('.pop-tt.auth').text(ap.authPopupTitle);
             }
         };
-        var ad = function ak(al, am) {
-            var an = DCvi;
-            if (E.indexOf(an) < 0) return;
-            if (al && !am) {
-                ab();
+        var af = function an(ao, ap) {
+            var aq = DCvi;
+            if (!HIKE_UTIL.isHikeEvent(aq)) return;
+            if (ao && !ap) {
+                ad();
             }
-            if (!al && !am) {
+            if (!ao && !ap) {
                 enterBtn.click();
             }
         };
-        ac();
-        q = a3.getTime() - a4.getTime();
-        if (a2 < a3) {
+        ae();
+        u = a5.getTime() - a6.getTime();
+        if (a4 < a5) {
             dayWrap.css('display', 'none');
             if (!checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp()) {
                 enterBtn.css('display', 'inline-block');
@@ -809,78 +836,78 @@ if (ddv) {
                 dayWrap.css('display', 'none');
             } else dayWrap.css('display', 'block');
             enterBtn.css('display', 'none');
-            if (!a5) {
-                a9(false);
+            if (!a7) {
+                ab(false);
             }
-            var ae = function an() {
-                var ao = new Date();
-                ao.setTime(ao.getTime() + q);
-                a8 = a2 <= ao;
-                if (a2 <= ao) {
+            var ag = function aq() {
+                var ar = new Date();
+                ar.setTime(ar.getTime() + u);
+                aa = a4 <= ar;
+                if (a4 <= ar) {
                     dayWrap.css('display', 'none');
                     enterBtn.css('display', 'inline-block');
                     readyBtn.css('display', 'none');
                     authBtn.css('display', 'none');
                     authMsg1.css('display', 'none');
                     authMsg2.css('display', 'none');
-                    if (o) {
-                        clearInterval(o);
+                    if (s) {
+                        clearInterval(s);
                         return;
                     }
                 } else {
                     if (!rtd) {
                         enterBtn.css('display', 'none');
                     }
-                    if (!a5) {
-                        a9(false);
+                    if (!a7) {
+                        ab(false);
                     }
                 }
-                var ap = (a2 - ao) / 1000;
-                var aq = parseInt(ap / 60 / 60 / 24);
-                var ar = parseInt(ap / 60 / 60 % 24);
-                var as = parseInt(ap / 60 % 60);
-                var at = parseInt(ap % 60);
-                if (aq < 10) {
-                    aq = '0' + aq;
-                }
-                if (ar < 10) {
-                    ar = '0' + ar;
-                }
-                if (as < 10) {
-                    as = '0' + as;
-                }
+                var as = (a4 - ar) / 1000;
+                var at = parseInt(as / 60 / 60 / 24);
+                var au = parseInt(as / 60 / 60 % 24);
+                var av = parseInt(as / 60 % 60);
+                var aw = parseInt(as % 60);
                 if (at < 10) {
                     at = '0' + at;
                 }
+                if (au < 10) {
+                    au = '0' + au;
+                }
+                if (av < 10) {
+                    av = '0' + av;
+                }
+                if (aw < 10) {
+                    aw = '0' + aw;
+                }
                 if (document.getElementById('day')) {
-                    document.getElementById('day').innerHTML = aq;
+                    document.getElementById('day').innerHTML = at;
                 }
                 if (document.getElementById('hour')) {
-                    document.getElementById('hour').innerHTML = ar;
+                    document.getElementById('hour').innerHTML = au;
                 }
                 if (document.getElementById('minute')) {
-                    document.getElementById('minute').innerHTML = as;
+                    document.getElementById('minute').innerHTML = av;
                 }
                 if (document.getElementById('second')) {
-                    document.getElementById('second').innerHTML = at;
+                    document.getElementById('second').innerHTML = aw;
                 }
             };
-            ae();
-            o = setInterval(ae, 1000);
+            ag();
+            s = setInterval(ag, 1000);
         }
         if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
             enterBtn.css('display', 'none');
             notSupportedBrowser.css('display', 'inline-block');
         } else {
-            var af = {
+            var ah = {
                 content_id: DCvi,
                 user_id: getCookie(DCvi + '_user_id'),
                 device_id: getCookie(DCvi + '_device_id')
             };
-            if (a2 > a3) {
-                if (!a5) a9(false);
+            if (a4 > a5) {
+                if (!a7) ab(false);
                 else {
-                    if (!af.user_id) {
+                    if (!ah.user_id) {
                         authBtn.css('display', 'inline-block');
                         if (!dsev) {
                             authMsg1.css('display', 'block');
@@ -889,18 +916,18 @@ if (ddv) {
                     }
                 }
             }
-            userSessionCheck(af, function(aq) {
-                n = JSON.parse(JSON.stringify(aq.Data.user));
-                m = JSON.parse(JSON.stringify(aq.Data.content));
-                if (m.status == 'end') {
-                    clearInterval(o);
-                    b();
+            userSessionCheck(ah, function(au) {
+                r = JSON.parse(JSON.stringify(au.Data.user));
+                q = JSON.parse(JSON.stringify(au.Data.content));
+                if (q.status == 'end') {
+                    clearInterval(s);
+                    f();
                 } else {
-                    if (m.is_chat_used) {
-                        if (n.nickname) {
-                            if (a2 > a3) {
-                                if (!a5) {
-                                    a9(false);
+                    if (q.is_chat_used) {
+                        if (r.nickname) {
+                            if (a4 > a5) {
+                                if (!a7) {
+                                    ab(false);
                                 } else {
                                     readyBtn.css('display', 'inline-block');
                                 }
@@ -909,50 +936,50 @@ if (ddv) {
                             authMsg1.css('display', 'none');
                             authMsg2.css('display', 'none');
                         } else {
-                            if (a2 > a3) {
-                                if (!a5) {
-                                    a9(false);
+                            if (a4 > a5) {
+                                if (!a7) {
+                                    ab(false);
                                 } else authBtn.css('display', 'inline-block');
-                                if (!dsev && a5) {
+                                if (!dsev && a7) {
                                     authMsg1.css('display', 'block');
                                     authMsg2.css('display', 'block');
                                 }
                             }
                         }
                     } else {
-                        if (a2 > a3) {
-                            if (!a5) {
-                                a9(false);
+                        if (a4 > a5) {
+                            if (!a7) {
+                                ab(false);
                             } else {
                                 authBtn.css('display', 'inline-block');
-                                ad(true, false);
+                                af(true, false);
                             }
-                            if (!dsev && a5) {
+                            if (!dsev && a7) {
                                 authMsg1.css('display', 'block');
                                 authMsg2.css('display', 'block');
                             }
                         }
                     }
                 }
-            }, function(aq) {
-                if (aq.Data) {
-                    if (aq.Data.content.status == 'end') {
-                        clearInterval(o);
-                        b();
+            }, function(au) {
+                if (au.Data) {
+                    if (au.Data.content.status == 'end') {
+                        clearInterval(s);
+                        f();
                     } else {
-                        if (a2 > a3) {
-                            if (!a5) {
-                                a9(false);
+                        if (a4 > a5) {
+                            if (!a7) {
+                                ab(false);
                             } else {
                                 authBtn.css('display', 'inline-block');
-                                ad(true, false);
+                                af(true, false);
                             }
-                            if (!dsev && a5) {
+                            if (!dsev && a7) {
                                 authMsg1.css('display', 'block');
                                 authMsg2.css('display', 'block');
                             }
                         } else {
-                            ad(false, false);
+                            af(false, false);
                             authBtn.css('display', 'none');
                             authMsg1.css('display', 'none');
                             authMsg2.css('display', 'none');
@@ -966,32 +993,37 @@ if (ddv) {
             ticketId.val('');
             loginFailTxt.text('');
             chk_save2.prop('checked', true);
-            ac();
-            var ar = {
+            ae();
+            var au = {
                 user_id: getCookie(DCvi + '_user_id'),
                 device_id: getCookie(DCvi + '_device_id'),
                 content_id: DCvi
             };
-            if (!a5) {
-                if (ar.user_id) {
-                    if (m && m.is_chat_used) l('enter', n.nickname);
-                    else {
-                        h();
+            if (!a7) {
+                if (au.user_id) {
+                    if (q && q.is_chat_used) {
+                        p('enter', r.nickname);
+                    } else {
+                        l();
                     }
-                } else loginBtn.click();
+                } else {
+                    loginBtn.click();
+                }
                 return;
             }
-            userSessionCheck(ar, function(au) {
-                m = JSON.parse(JSON.stringify(au.Data.content));
-                n = JSON.parse(JSON.stringify(au.Data.user));
-                if (m.is_chat_used) {
-                    l('enter', n.nickname);
-                } else h();
-            }, function(au) {
-                if (au.Data) {
-                    if (au.Data.content.status == 'end') {
-                        clearInterval(o);
-                        b();
+            userSessionCheck(au, function(aw) {
+                q = JSON.parse(JSON.stringify(aw.Data.content));
+                r = JSON.parse(JSON.stringify(aw.Data.user));
+                if (q.is_chat_used) {
+                    p('enter', r.nickname);
+                } else {
+                    l();
+                }
+            }, function(aw) {
+                if (aw.Data) {
+                    if (aw.Data.content.status == 'end') {
+                        clearInterval(s);
+                        f();
                     } else {
                         removeCookie(DCvi + '_user_id');
                         removeCookie(DCvi + '_chat_id');
@@ -1012,39 +1044,40 @@ if (ddv) {
             loginPopup.css('display', 'none');
         });
         loginBtn.on('click', function() {
-            var ar = customerId.val().trim();
-            var as = ticketId.val().trim();
-            if (a5 && (!ar || !as)) {
-                i(loginFailTxt, DCvi);
+            var au = customerId.val().trim();
+            var av = ticketId.val().trim();
+            if (a7 && (!au || !av)) {
+                m(loginFailTxt, DCvi);
                 return;
             }
-            var at = {
-                customer_id: ar,
-                ticket_id: as,
+            var aw = {
+                customer_id: au,
+                ticket_id: av,
                 content_id: DCvi,
-                device_id: r
+                device_id: v
             };
-            if (!a5) {
-                at.customer_id = null;
-                at.ticket_id = null;
+            if (!a7) {
+                aw.customer_id = null;
+                aw.ticket_id = null;
             }
-            c(at, function() {
-                if (a5) {
+            g(aw, function() {
+                if (a7) {
                     if (chk_save2.prop('checked')) {
-                        setCookie(DCvi + '_customer_id', at.customer_id, 20160);
-                        setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
+                        setCookie(DCvi + '_customer_id', aw.customer_id, 20160);
+                        setCookie(DCvi + '_ticket_id', aw.ticket_id, 20160);
                     } else {
                         removeCookie(DCvi + '_customer_id');
                         removeCookie(DCvi + '_ticket_id');
                     }
-                    setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
+                    setCookie(DCvi + '_ticket_id', aw.ticket_id, 20160);
+                    HIKE_UTIL.setCookiesOnGroup(null, aw.ticket_id, null, null);
                 }
-                if (m.is_chat_used) l('enter', n.nickname);
+                if (q.is_chat_used) p('enter', r.nickname);
                 else {
-                    h();
+                    l();
                 }
             }, function() {
-                j(loginFailTxt, DCvi);
+                n(loginFailTxt, DCvi);
             });
         });
         $('#nicknamePopup button[name=closebtn]').on('click', function() {
@@ -1053,8 +1086,8 @@ if (ddv) {
             nicknamePopup.css('display', 'none');
         });
         createNickBtn.on('click', function() {
-            var ar = nickname.val();
-            if (!ar) {
+            var au = nickname.val();
+            if (!au) {
                 switch (egl) {
                     case 'ko':
                         nicknameFailTxt.text('닉네임을 입력해주세요.');
@@ -1072,7 +1105,7 @@ if (ddv) {
                 }
                 return;
             }
-            if (f(ar)) {
+            if (j(au)) {
                 switch (egl) {
                     case 'ko':
                         nicknameFailTxt.text('닉네임에는 특수문자를 포함할 수 없습니다.');
@@ -1089,7 +1122,7 @@ if (ddv) {
                         break;
                 }
             } else {
-                if (g(ar)) {
+                if (k(au)) {
                     switch (egl) {
                         case 'ko':
                             nicknameFailTxt.text('닉네임에는 공백을 포함할 수 없습니다.');
@@ -1106,7 +1139,7 @@ if (ddv) {
                             break;
                     }
                 } else {
-                    if (ar.length < 2 || ar.length > 12) {
+                    if (au.length < 2 || au.length > 12) {
                         switch (egl) {
                             case 'ko':
                                 nicknameFailTxt.text('닉네임은 2~12자로 입력해 주세요.');
@@ -1123,7 +1156,7 @@ if (ddv) {
                                 break;
                         }
                     } else {
-                        if (NicknameFilter.hasForbidden(ar)) {
+                        if (NicknameFilter.hasForbidden(au)) {
                             switch (egl) {
                                 case 'ko':
                                     nicknameFailTxt.text('사용할 수 없는 닉네임입니다.');
@@ -1140,7 +1173,7 @@ if (ddv) {
                                     break;
                             }
                         } else {
-                            if (ChatFilter.checkNickname(ar)) {
+                            if (ChatFilter.checkNickname(au)) {
                                 switch (egl) {
                                     case 'ko':
                                         nicknameFailTxt.text('닉네임에 비속어가 포함되어 있습니다.');
@@ -1157,63 +1190,63 @@ if (ddv) {
                                         break;
                                 }
                             } else {
-                                clearTimeout(a7.requestCreateNickname);
-                                if (!a6) {
+                                clearTimeout(a9.requestCreateNickname);
+                                if (!a8) {
                                     nicknameFailTxt.text(POPUP_CONFIG.duplicatedNickname(egl).desc);
-                                    aa();
+                                    ac();
                                 }
-                                if (!a6) return;
-                                var as = {
-                                    user_id: n.user_id,
-                                    device_id: r,
-                                    nickname: ar,
+                                if (!a8) return;
+                                var av = {
+                                    user_id: r.user_id,
+                                    device_id: v,
+                                    nickname: au,
                                     content_id: DCvi
                                 };
                                 $('#loadingDiv').css('display', 'block');
-                                d(as, function() {
-                                    a6 = true;
-                                    clearTimeout(a7.requestCreateNickname);
-                                    if (p == 'auth') {
-                                        k(DCvi);
-                                        if (a8) readyBtn.css('display', 'none');
+                                h(av, function() {
+                                    a8 = true;
+                                    clearTimeout(a9.requestCreateNickname);
+                                    if (t == 'auth') {
+                                        o(DCvi);
+                                        if (aa) readyBtn.css('display', 'none');
                                     } else {
-                                        if (p == 'enter') {
+                                        if (t == 'enter') {
                                             $('#loadingDiv').css('display', 'none');
                                             nicknamePopup.css('display', 'none');
-                                            var aF = '';
-                                            var aG = '';
-                                            var aH = '';
+                                            var aP = '';
+                                            var aQ = '';
+                                            var aR = '';
                                             switch (egl) {
                                                 case 'ko':
-                                                    aG = '알림';
-                                                    aF = '닉네임 생성이 완료되었습니다.';
-                                                    aH = '확인';
+                                                    aQ = '알림';
+                                                    aP = '닉네임 생성이 완료되었습니다.';
+                                                    aR = '확인';
                                                     break;
                                                 case 'en':
-                                                    aG = 'Notification';
-                                                    aF = 'Nickname successfully created.';
-                                                    aH = 'OK';
+                                                    aQ = 'Notification';
+                                                    aP = 'Nickname successfully created.';
+                                                    aR = 'OK';
                                                     break;
                                                 case 'ja':
                                                 case 'jp':
-                                                    aG = 'お知らせ';
-                                                    aF = 'ニックネーム作成を完了しました';
-                                                    aH = '確認';
+                                                    aQ = 'お知らせ';
+                                                    aP = 'ニックネーム作成を完了しました';
+                                                    aR = '確認';
                                                     break;
                                                 case 'cn':
-                                                    aG = '提醒';
-                                                    aF = '账户名生成完毕';
-                                                    aH = '确认';
+                                                    aQ = '提醒';
+                                                    aP = '账户名生成完毕';
+                                                    aR = '确认';
                                                     break;
                                             }
-                                            alertPopup(aG, aF, aH, h);
+                                            alertPopup(aQ, aP, aR, l);
                                         }
                                     }
-                                }, function(aF, aG) {
-                                    a6 = false;
-                                    aa();
-                                    var aH = aF && aF.Message == 'nickname duplicated.' || aG == 409;
-                                    if (aH) {
+                                }, function(aP, aQ) {
+                                    a8 = false;
+                                    ac();
+                                    var aR = aP && aP.Message == 'nickname duplicated.' || aQ == 409;
+                                    if (aR) {
                                         switch (egl) {
                                             case 'ko':
                                                 nicknameFailTxt.text('이미 사용 중인 닉네임입니다.');
@@ -1253,53 +1286,55 @@ if (ddv) {
                 }
             }
         });
-        $('#customerId,#ticketId').on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        $('#customerId,#ticketId').on('keydown', function(au) {
+            if (au.keyCode == 13) {
                 loginBtn.click();
             }
         });
-        nickname.on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        nickname.on('keydown', function(au) {
+            if (au.keyCode == 13) {
                 createNickBtn.click();
             }
         });
-        authBtn.on('click', ab);
+        authBtn.on('click', ad);
         authCheckBtn.on('click', function() {
-            var ar = authCustomerId.val().trim();
-            var as = authTicketId.val().trim();
-            if (!ar || !as) {
-                i(authFailTxt, DCvi);
+            var au = authCustomerId.val().trim();
+            var av = authTicketId.val().trim();
+            if (!au || !av) {
+                m(authFailTxt, DCvi);
                 return;
             }
-            var at = {
-                customer_id: ar,
-                ticket_id: as,
+            var aw = {
+                customer_id: au,
+                ticket_id: av,
                 content_id: DCvi,
-                device_id: r
+                device_id: v
             };
-            c(at, function() {
+            g(aw, function() {
                 if (chk_save.prop('checked')) {
-                    setCookie(DCvi + '_customer_id', at.customer_id, 20160);
-                    setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
-                    if (n) {
-                        setCookie(DCvi + '_user_id', n.user_id, 20160);
+                    setCookie(DCvi + '_customer_id', aw.customer_id, 20160);
+                    setCookie(DCvi + '_ticket_id', aw.ticket_id, 20160);
+                    HIKE_UTIL.setCookiesOnGroup(aw.customer_id, aw.ticket_id, null, null);
+                    if (r) {
+                        setCookie(DCvi + '_user_id', r.user_id, 20160);
+                        HIKE_UTIL.setCookiesOnGroup(null, null, r.user_id, null);
                     }
                 } else {
                     removeCookie(DCvi + '_customer_id');
                     removeCookie(DCvi + '_ticket_id');
                     removeCookie(DCvi + '_user_id');
                 }
-                if (m.is_chat_used) {
-                    l('auth', n.nickname);
+                if (q.is_chat_used) {
+                    p('auth', r.nickname);
                 } else {
-                    k(DCvi);
+                    o(DCvi);
                 }
             }, function() {
-                j(authFailTxt, DCvi);
+                n(authFailTxt, DCvi);
             });
         });
-        $('#authCustomerId, #authTicketId').on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        $('#authCustomerId, #authTicketId').on('keydown', function(au) {
+            if (au.keyCode == 13) {
                 authCheckBtn.click();
             }
         });
@@ -1314,13 +1349,13 @@ if (ddv) {
             authMsg2.remove();
         }
     });
-    window.onpageshow = function(E) {
-        var F = null;
-        var G = window.performance;
-        var H = G && G.getEntriesByType ? G.getEntriesByType('navigation') : null;
-        var I = H && H[0] ? H[0].type : null;
-        console.log(I);
-        if (E.persisted || I == 'back_forward' || F == 2) {
+    window.onpageshow = function(H) {
+        var I = null;
+        var J = window.performance;
+        var K = J && J.getEntriesByType ? J.getEntriesByType('navigation') : null;
+        var L = K && K[0] ? K[0].type : null;
+        console.log(L);
+        if (H.persisted || L == 'back_forward' || I == 2) {
             location.reload();
         }
     };
@@ -1354,7 +1389,9 @@ function request_to_server(a, b, c, d, e) {
             g.append(h, c[h]);
         }
         f.send(g);
-    } else f.send();
+    } else {
+        f.send();
+    }
     $('#loadingDiv').css('display', 'block');
     requestCnt++;
     if (!serverLoading) {
@@ -1380,20 +1417,18 @@ function request_to_server(a, b, c, d, e) {
                         if (f.responseText) {
                             console.log(JSON.parse(f.responseText));
                         }
-                    } else {
-                        try {
-                            var i = JSON.parse(f.responseText);
-                            e(i, f.status);
-                        } catch (k) {
-                            e(f.responseText, f.status);
-                        }
+                    } else try {
+                        var j = JSON.parse(f.responseText);
+                        e(j, f.status);
+                    } catch (m) {
+                        e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(i) {
-        console.log(i);
+    f.ontimeout = function(j) {
+        console.log(j);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -1539,15 +1574,16 @@ function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
     if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) {
         return true;
-    } else return false;
+    } else {
+        return false;
+    }
 }
 
 function checkMobileAndTablet() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
-        if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
-            return true;
-        } else {
+        if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
+        else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             if (!c) return isIpadOS();
@@ -1609,12 +1645,14 @@ function removeClassName(a, b) {
 
 function getOrientation() {
     if (!isMobile()) return false;
-    if (isIOS()) switch (window.orientation) {
-        case -90:
-        case 90:
-            return 'landscape';
-        default:
-            return 'portrait';
+    if (isIOS()) {
+        switch (window.orientation) {
+            case -90:
+            case 90:
+                return 'landscape';
+            default:
+                return 'portrait';
+        }
     } else return screen.orientation.type.toLowerCase();
 }
 
@@ -1875,3 +1913,46 @@ function createElementFromHTML(a) {
     b.innerHTML = a.trim();
     return b.firstChild;
 }
+var HIKE_UTIL = {
+    contentIdList: ['114f7f81-0f8a-4725-b824-6b29c639b86e', 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b', 'f75219c8-f3cb-492c-ad68-a1fd940b131e', 'a50c8232-e98f-4ea1-a891-7272e7adf413', '4487013d-39f3-4f61-8c9c-b34cd8087b66', '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c'],
+    cookieGroup: {
+        '114f7f81-0f8a-4725-b824-6b29c639b86e': ['114f7f81-0f8a-4725-b824-6b29c639b86e', 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b', 'f75219c8-f3cb-492c-ad68-a1fd940b131e'],
+        'be86100e-bc6f-4d6c-8821-5c5ef95cb45b': ['114f7f81-0f8a-4725-b824-6b29c639b86e', 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b', 'f75219c8-f3cb-492c-ad68-a1fd940b131e'],
+        'f75219c8-f3cb-492c-ad68-a1fd940b131e': ['114f7f81-0f8a-4725-b824-6b29c639b86e', 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b', 'f75219c8-f3cb-492c-ad68-a1fd940b131e'],
+        'a50c8232-e98f-4ea1-a891-7272e7adf413': ['a50c8232-e98f-4ea1-a891-7272e7adf413', '4487013d-39f3-4f61-8c9c-b34cd8087b66', '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c'],
+        '4487013d-39f3-4f61-8c9c-b34cd8087b66': ['a50c8232-e98f-4ea1-a891-7272e7adf413', '4487013d-39f3-4f61-8c9c-b34cd8087b66', '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c'],
+        '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c': ['a50c8232-e98f-4ea1-a891-7272e7adf413', '4487013d-39f3-4f61-8c9c-b34cd8087b66', '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c']
+    },
+    isHikeEvent: function isHikeEvent() {
+        var a = this.contentIdList;
+        var b = DCvi;
+        var c = false;
+        if (a.indexOf(b) > -1) c = true;
+        return c;
+    },
+    setCookiesOnGroup: function setCookiesOnGroup(a, b, c, d, e) {
+        var f = this.cookieGroup;
+        var g = this.contentIdList;
+        var h = DCvi;
+        var i = f[h];
+        if (g.indexOf(h) < 0) return;
+        if (!i) return;
+        i.forEach(function(j, k) {
+            if (a) {
+                setCookie(j + '_customer_id', a, 20160);
+            }
+            if (b) {
+                setCookie(j + '_ticket_id', b, 20160);
+            }
+            if (c) {
+                setCookie(j + '_user_id', c, 20160);
+            }
+            if (d) {
+                setCookie(j + '_content_id', j, 20160);
+            }
+            if (e) {
+                setCookie(j + '_device_id', e, 20160);
+            }
+        });
+    }
+};
