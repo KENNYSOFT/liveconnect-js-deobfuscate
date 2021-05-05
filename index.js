@@ -40,7 +40,7 @@ const ifToCases = (cases, ifStatement) => {
                 cases.push(t.switchCase(null, convertStatementToCaseConsequent(alternate)));
             }
             break;
-        case 'IfStatement': 
+        case 'IfStatement':
             ifToCases(cases, alternate);
             break;
         case 'ExpressionStatement':
@@ -132,16 +132,19 @@ const deobfuscate = async (url) => {
                     break;
             }
         },
-        LogicalExpression: (path) => {
-            if (t.isExpressionStatement(path.parent) && (t.isLogicalExpression(path.node, {operator: '&&'}) || t.isLogicalExpression(path.node, {operator: '||'}))) {
-                const {operator, left, right} = path.node;
-                path.parentPath.replaceWith(t.ifStatement(operator === '&&' ? left : t.unaryExpression('!', left), flattenExpressionToStatement(right)));
-            }
-        },
-        ConditionalExpression: (path) => {
-            if (t.isExpressionStatement(path.parent)) {
-                const {test, consequent, alternate} = path.node;
-                path.parentPath.replaceWith(t.ifStatement(test, flattenExpressionToStatement(consequent), flattenExpressionToStatement(alternate)));
+        ExpressionStatement: (path) => {
+            const {expression} = path.node;
+            switch (expression.type) {
+                case 'LogicalExpression':
+                    const {operator, left, right} = expression;
+                    if (operator === '&&' || operator === '||') {
+                        path.replaceWith(t.ifStatement(operator === '&&' ? left : t.unaryExpression('!', left), flattenExpressionToStatement(right)));
+                    }
+                    break;
+                case 'ConditionalExpression':
+                    const {test, consequent, alternate} = expression;
+                    path.replaceWith(t.ifStatement(test, flattenExpressionToStatement(consequent), flattenExpressionToStatement(alternate)));
+                    break;
             }
         },
         CallExpression: (path) => {
