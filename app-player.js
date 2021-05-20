@@ -6,10 +6,10 @@ function _createForOfIteratorHelper(a, b) {
         if (Array.isArray(a) || (c = _unsupportedIterableToArray(a)) || b && a && typeof a.length === 'number') {
             if (c) a = c;
             var d = 0;
-            var g = function l() {};
+            var g = function m() {};
             return {
                 s: g,
-                n: function m() {
+                n: function p() {
                     if (d >= a.length) return {
                         done: true
                     };
@@ -18,8 +18,8 @@ function _createForOfIteratorHelper(a, b) {
                         value: a[d++]
                     };
                 },
-                e: function p(q) {
-                    throw q;
+                e: function q(r) {
+                    throw r;
                 },
                 f: g
             };
@@ -30,19 +30,19 @@ function _createForOfIteratorHelper(a, b) {
     var j = false;
     var k;
     return {
-        s: function q() {
+        s: function r() {
             c = c.call(a);
         },
-        n: function r() {
-            var t = c.next();
-            h = t.done;
-            return t;
+        n: function t() {
+            var u = c.next();
+            h = u.done;
+            return u;
         },
-        e: function t(u) {
+        e: function u(v) {
             j = true;
-            k = u;
+            k = v;
         },
-        f: function u() {
+        f: function v() {
             try {
                 if (!h && c.return != null) c.return();
             } finally {
@@ -70,7 +70,9 @@ function _arrayLikeToArray(a, b) {
 }
 
 function _classCallCheck(a, b) {
-    if (!(a instanceof b)) throw new TypeError('Cannot call a class as a function');
+    if (!(a instanceof b)) {
+        throw new TypeError('Cannot call a class as a function');
+    }
 }
 
 function _defineProperties(a, b) {
@@ -108,12 +110,11 @@ function cusDD(a, b, c) {
     if (!b) {
         f = 'cusDD_default';
     } else {
-        if (b == 'slick dark') {
-            f = 'cusDD_slick_d';
+        if (b == 'slick dark') f = 'cusDD_slick_d';
+        else if (b == 'slick light') {
+            f = 'cusDD_slick_l';
         } else {
-            if (b == 'slick light') {
-                f = 'cusDD_slick_l';
-            } else f = b;
+            f = b;
         }
     }
     for (var g = 0; g < $(a).length; g++) {
@@ -128,31 +129,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(o) {
+    $(document).click(function(n) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(o) {
-        var p = a;
-        $('.cusDD').not(p).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(p).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', p);
-        o.stopPropagation();
-        if ($(o.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(n) {
+        var o = a;
+        $('.cusDD').not(o).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(o).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', o);
+        n.stopPropagation();
+        if ($(n.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(o.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(n.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var q = 200;
+        var p = 200;
         if ($(this).find('.cusDD_options').children()) {
             if ($(this).find('.cusDD_options').children().length > 30) {
-                q = 0;
+                p = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(q);
+        $(this).find('.cusDD_options').slideToggle(p);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -228,14 +229,14 @@ function cusDDselectOption(a, b, c) {
     };
     d.prototype._initEvents = function() {
         if (this.closeBtn) {
-            this.closeBtn.addEventListener('click', function(g) {
-                g.preventDefault();
+            this.closeBtn.addEventListener('click', function(f) {
+                f.preventDefault();
                 this.close();
             }.bind(this));
         }
         if (this.mask) {
-            this.mask.addEventListener('click', function(h) {
-                h.preventDefault();
+            this.mask.addEventListener('click', function(f) {
+                f.preventDefault();
                 this.close();
             }.bind(this));
         }
@@ -260,57 +261,19 @@ function cusDDselectOption(a, b, c) {
         });
     };
     d.prototype.enableMenuOpeners = function() {
-        c(this.menuOpeners, function(f) {
-            f.disabled = false;
+        c(this.menuOpeners, function(e) {
+            e.disabled = false;
         });
     };
     a.Menu = d;
 })(window);
 var Rich360Player = function() {
-    var c = function() {
-        var f = true;
-        return function(g, h) {
-            var i = f ? function() {
-                if (h) {
-                    var j = h.apply(g, arguments);
-                    h = null;
-                    return j;
-                }
-            } : function() {};
-            f = false;
-            return i;
-        };
-    }();
-    var d = c(this, function() {
-        var f = function() {
-            var n;
-            try {
-                n = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
-            } catch (p) {
-                n = window;
-            }
-            return n;
-        };
-        var g = f();
-        var h = g.console = g.console || {};
-        var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-        for (var j = 0; j < i.length; j++) {
-            var k = c.constructor.prototype.bind(c);
-            var l = i[j];
-            var m = h[l] || k;
-            k.__proto__ = c.bind(c);
-            k.toString = m.toString.bind(m);
-            h[l] = k;
-        }
-    });
-    d();
-
-    function e(f, g, h) {
-        _classCallCheck(this, e);
-        this._options = f;
-        this._ui = g;
-        this._req_str = h;
-        this._player = new Rich360(f, h, g, this);
+    function a(b, c, d) {
+        _classCallCheck(this, a);
+        this._options = b;
+        this._ui = c;
+        this._req_str = d;
+        this._player = new Rich360(b, d, c, this);
         this._initHideCtroller = false;
         this._initQualityUI = false;
         this._initSubtitleUI = false;
@@ -327,14 +290,13 @@ var Rich360Player = function() {
         this.initLoadingState();
         this.initEventListener();
     }
-    _createClass(e, [{
+    _createClass(a, [{
         key: 'initPlayerUI',
-        value: function f() {
+        value: function b() {
             this._ui.playBtn.onclick = function() {
-                if (this._player._ui_play) this.pause();
-                else {
-                    this.play();
-                }
+                if (this._player._ui_play) {
+                    this.pause();
+                } else this.play();
             }.bind(this);
             this._ui.volumeSlider = new customRange(this._ui.volumeSlider);
             if (isMobile() || isTablet() || isIpadOS()) {
@@ -344,14 +306,12 @@ var Rich360Player = function() {
                 this._ui.volumeSlider.addEventListener('input', function() {
                     if (this._ui.volumeSlider._value == 0) {
                         this._ui.volumeBtn.classList.add('mute');
-                    } else {
-                        this._ui.volumeBtn.classList.remove('mute');
-                    }
+                    } else this._ui.volumeBtn.classList.remove('mute');
                     this._ui.volumeSlider.barDiv.style.backgroundImage = 'linear-gradient(to right, #fff 0%, #fff ' + this._ui.volumeSlider._value + '%, transparent ' + this._ui.volumeSlider._value + '%, transparent 100%)';
                     this.volume(this._ui.volumeSlider._value);
                 }.bind(this));
-                this._ui.volumeSlider.addEventListener('seek', function(i) {
-                    this.volume(i.target._value);
+                this._ui.volumeSlider.addEventListener('seek', function(f) {
+                    this.volume(f.target._value);
                 }.bind(this));
                 this._ui.volumeBtn.onclick = function() {
                     if (this._ui.volumeBtn.classList.contains('mute')) {
@@ -371,38 +331,38 @@ var Rich360Player = function() {
             }
             if (this._options.content_data.use_vod) {
                 this._ui.seekBar = new customRange(this._ui.sliderArea, 0, this._ui.sliderPaddingDiv);
-                this._ui.seekBar.addEventListener('input', function(j) {
-                    this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + j.target._value + '%, #ea0029 ' + j.target._value + '%, transparent ' + j.target._loadedValue + '%, transparent ' + j.target._loadedValue + '%)';
+                this._ui.seekBar.addEventListener('input', function(f) {
+                    this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + f.target._value + '%, #ea0029 ' + f.target._value + '%, transparent ' + f.target._loadedValue + '%, transparent ' + f.target._loadedValue + '%)';
                     if (this._ui.seekBar.thumbInteracting) {
-                        this.viewSeekBarThumbnail(j.target._value, true);
+                        this.viewSeekBarThumbnail(f.target._value, true);
                     }
                 }.bind(this));
-                this._ui.seekBar.paddingBar.addEventListener('mousemove', function(j) {
-                    this.viewSeekBarThumbnail(j.offsetX / this._ui.seekBar.clientWidth * 100);
+                this._ui.seekBar.paddingBar.addEventListener('mousemove', function(f) {
+                    this.viewSeekBarThumbnail(f.offsetX / this._ui.seekBar.clientWidth * 100);
                 }.bind(this));
-                this._ui.seekBar.paddingBar.addEventListener('mouseout', function(j) {
+                this._ui.seekBar.paddingBar.addEventListener('mouseout', function(f) {
                     $(this._ui.sliderThumbnail).css('display', 'none');
                 }.bind(this));
-                this._ui.seekBar.addEventListener('seek', function(j) {
-                    this.seek(j.target._value);
+                this._ui.seekBar.addEventListener('seek', function(f) {
+                    this.seek(f.target._value);
                     $(this._ui.sliderThumbnail).css('display', 'none');
                 }.bind(this));
                 $(this._ui.prev10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var j = this._player.currentPosition - 10;
-                        if (j < 0) {
-                            j = 0;
+                        var e = this._player.currentPosition - 10;
+                        if (e < 0) {
+                            e = 0;
                         }
-                        this._player.currentPosition = j;
+                        this._player.currentPosition = e;
                     }
                 }.bind(this));
                 $(this._ui.next10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var j = this._player.currentPosition + 10;
-                        if (j > this._player.duration - 1) {
-                            j = this._player.duration - 1;
+                        var e = this._player.currentPosition + 10;
+                        if (e > this._player.duration - 1) {
+                            e = this._player.duration - 1;
                         }
-                        this._player.currentPosition = j;
+                        this._player.currentPosition = e;
                     }
                 }.bind(this));
             }
@@ -415,22 +375,21 @@ var Rich360Player = function() {
                 }.bind(this));
             } else this._ui.fullScreen = new FullscreenButton(this, this._ui.fullBtn);
             if (isMobile()) {
-                var g = getOrientation();
-                if (typeof g == 'string') {
-                    if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') {
-                        this.hideChatWrap();
-                    } else {
-                        if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
+                var c = getOrientation();
+                if (typeof c == 'string') {
+                    if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') this.hideChatWrap();
+                    else {
+                        if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
                             this.showChatWrap();
                         }
                     }
                 }
                 $(window).on('orientationchange', function() {
-                    var m = getOrientation();
-                    if (typeof m == 'string') {
-                        if (m == 'landscape-primary' || m == 'landscape-secondary' || m == 'landscape') this.hideChatWrap();
+                    var h = getOrientation();
+                    if (typeof h == 'string') {
+                        if (h == 'landscape-primary' || h == 'landscape-secondary' || h == 'landscape') this.hideChatWrap();
                         else {
-                            if (m == 'portrait-primary' || m == 'portrait-secondary' || m == 'portrait') {
+                            if (h == 'portrait-primary' || h == 'portrait-secondary' || h == 'portrait') {
                                 this.showChatWrap();
                             }
                         }
@@ -443,63 +402,63 @@ var Rich360Player = function() {
         }
     }, {
         key: 'createQualityDiv',
-        value: function g(h) {
-            var i = document.createElement('div');
-            i.className = 'fc_default cusDD_opt';
-            i.id = h.id;
-            i.dataset.id = h.id;
-            i.dataset.height = h.height;
-            var j = '';
-            if (i.dataset.height == 'auto') {
-                j = 'AUTO';
-            } else j = i.dataset.height + 'P';
-            i.innerHTML = j;
-            return i;
+        value: function c(d) {
+            var e = document.createElement('div');
+            e.className = 'fc_default cusDD_opt';
+            e.id = d.id;
+            e.dataset.id = d.id;
+            e.dataset.height = d.height;
+            var f = '';
+            if (e.dataset.height == 'auto') {
+                f = 'AUTO';
+            } else f = e.dataset.height + 'P';
+            e.innerHTML = f;
+            return e;
         }
     }, {
         key: 'createQualityBtn',
-        value: function h(i) {
-            var j = document.createElement('button');
-            j.className = 'text-btn fc_default bold';
-            j.id = i.id;
-            j.dataset.id = i.id;
-            j.dataset.height = i.height;
-            var k = '';
-            if (j.dataset.height == 'auto') {
-                k = 'AUTO';
+        value: function d(e) {
+            var f = document.createElement('button');
+            f.className = 'text-btn fc_default bold';
+            f.id = e.id;
+            f.dataset.id = e.id;
+            f.dataset.height = e.height;
+            var g = '';
+            if (f.dataset.height == 'auto') {
+                g = 'AUTO';
             } else {
-                k = j.dataset.height + 'P';
+                g = f.dataset.height + 'P';
             }
-            j.innerHTML = k;
-            return j;
+            f.innerHTML = g;
+            return f;
         }
     }, {
         key: 'createSubtitleDiv',
-        value: function i(j) {
-            var k = document.createElement('div');
-            k.className = 'fc_default cusDD_opt';
-            k.id = j.id;
-            k.dataset.id = j.id;
-            k.dataset.label = j.label;
-            k.dataset.lang = j.lang;
-            k.innerHTML = j.label;
-            return k;
+        value: function e(f) {
+            var g = document.createElement('div');
+            g.className = 'fc_default cusDD_opt';
+            g.id = f.id;
+            g.dataset.id = f.id;
+            g.dataset.label = f.label;
+            g.dataset.lang = f.lang;
+            g.innerHTML = f.label;
+            return g;
         }
     }, {
         key: 'createSubtitleBtn',
-        value: function j(k) {
-            var l = document.createElement('button');
-            l.className = 'text-btn fc_default bold';
-            l.id = k.id;
-            l.dataset.id = k.id;
-            l.dataset.label = k.label;
-            l.dataset.lang = k.lang;
-            l.innerHTML = k.label;
-            return l;
+        value: function f(g) {
+            var h = document.createElement('button');
+            h.className = 'text-btn fc_default bold';
+            h.id = g.id;
+            h.dataset.id = g.id;
+            h.dataset.label = g.label;
+            h.dataset.lang = g.lang;
+            h.innerHTML = g.label;
+            return h;
         }
     }, {
         key: 'initQuality',
-        value: function k() {
+        value: function g() {
             if (this._initQualityUI) return;
             this._ui.qualityItems = [];
             this._ui.qualityPopupItems = [];
@@ -510,55 +469,56 @@ var Rich360Player = function() {
             }
             this._ui.qualitySelect.style.display = 'block';
             this._ui.qualitySelectBtn.style.display = 'block';
-            var l = this.createQualityDiv({
+            var h = this.createQualityDiv({
                 id: 'auto',
                 height: 'auto'
             });
-            var m = this.createQualityBtn({
+            var j = this.createQualityBtn({
                 id: 'auto',
                 height: 'auto'
             });
-            var n = document.createElement('div');
-            n.className = 'cusDD_options';
-            n.appendChild(l);
-            m.className += ' on';
-            $(this._ui.qualityPopup).find('.ta_c').append(m);
-            this._ui.qualityItems.push(l);
-            this._ui.qualityPopupItems.push(m);
+            var k = document.createElement('div');
+            k.className = 'cusDD_options';
+            k.appendChild(h);
+            j.className += ' on';
+            $(this._ui.qualityPopup).find('.ta_c').append(j);
+            this._ui.qualityItems.push(h);
+            this._ui.qualityPopupItems.push(j);
             if (this._player.qualityList) {
-                for (var o = 0; o < this._player.qualityList.length; o++) {
-                    if (!this._player.qualityList[o].height) continue;
-                    var p = this.createQualityDiv({
-                        id: o,
-                        height: this._player.qualityList[o].height
+                for (var l = 0; l < this._player.qualityList.length; l++) {
+                    if (!this._player.qualityList[l].height) continue;
+                    var m = this.createQualityDiv({
+                        id: l,
+                        height: this._player.qualityList[l].height
                     });
-                    var q = this.createQualityBtn({
-                        id: o,
-                        height: this._player.qualityList[o].height
+                    var n = this.createQualityBtn({
+                        id: l,
+                        height: this._player.qualityList[l].height
                     });
-                    if ('NAME' in this._player.qualityList[o].attrs) {
-                        p = this.createQualityDiv({
-                            id: o,
-                            height: this._player.qualityList[o].attrs.NAME
+                    if ('NAME' in this._player.qualityList[l].attrs) {
+                        m = this.createQualityDiv({
+                            id: l,
+                            height: this._player.qualityList[l].attrs.NAME
                         });
-                        q = this.createQualityBtn({
-                            id: o,
-                            height: this._player.qualityList[o].attrs.NAME
+                        n = this.createQualityBtn({
+                            id: l,
+                            height: this._player.qualityList[l].attrs.NAME
                         });
                     }
                     if (this._player.quality) {
-                        if (this._player.quality == o) addClassName(p, 'on');
+                        if (this._player.quality == l) addClassName(m, 'on');
                     }
-                    n.appendChild(p);
-                    $(this._ui.qualityPopup).find('.ta_c').append(q);
-                    this._ui.qualityItems.push(p);
-                    this._ui.qualityPopupItems.push(q);
+                    k.appendChild(m);
+                    $(this._ui.qualityPopup).find('.ta_c').append(n);
+                    this._ui.qualityItems.push(m);
+                    this._ui.qualityPopupItems.push(n);
                 }
-                for (var r = 0; r < this._ui.qualityPopupItems.length; r++) {
-                    this._ui.qualityPopupItems[r].addEventListener('click', function(v) {
+                for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
+                    this._ui.qualityPopupItems[o].addEventListener('click', function(v) {
                         var w = null;
-                        if (v.target.id == 'auto') w = -1;
-                        else {
+                        if (v.target.id == 'auto') {
+                            w = -1;
+                        } else {
                             w = parseInt(v.target.id);
                         }
                         for (var x = 0; x < this._ui.qualityPopupItems.length; x++) {
@@ -566,26 +526,27 @@ var Rich360Player = function() {
                         }
                         v.target.classList.add('on');
                         this._ui.qualityPopup.style.display = 'none';
-                        if (this._player.quality == w) return;
+                        if (this._player.quality == w) {
+                            return;
+                        }
                         this._player.quality = w;
-                        if (v.target.id == 'auto') {
+                        if (v.target.id == 'auto')
                             for (var y = 0; y < this._ui.qualityPopupItems.length; y++) {
                                 if (this._ui.qualityPopupItems[y].id == this._player._hls.nextAutoLevel) {
                                     addClassName(this._ui.qualityPopupItems[y], 'on');
                                     break;
                                 }
                             }
-                        }
                     }.bind(this));
                 }
             }
-            this._ui.qualitySelect.appendChild(n);
-            var s = '#' + this._ui.qualitySelect.getAttribute('id');
-            cusDD(s, null, function(x) {
-                var y = null;
-                $(s).find('.cusDD_opt').each(function() {
-                    if ($(this).data().id != x.id) {
-                        if (!$(this).attr('selected') || x.id != 'auto') {
+            this._ui.qualitySelect.appendChild(k);
+            var p = '#' + this._ui.qualitySelect.getAttribute('id');
+            cusDD(p, null, function(v) {
+                var w = null;
+                $(p).find('.cusDD_opt').each(function() {
+                    if ($(this).data().id != v.id) {
+                        if (!$(this).attr('selected') || v.id != 'auto') {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         }
@@ -594,30 +555,30 @@ var Rich360Player = function() {
                         $(this).addClass('on');
                     }
                 });
-                if (x.id == 'auto') {
-                    y = -1;
+                if (v.id == 'auto') {
+                    w = -1;
                 } else {
-                    y = parseInt(x.id);
+                    w = parseInt(v.id);
                 }
-                this._player.quality = y;
+                this._player.quality = w;
             }.bind(this));
-            cusDDselectOption(s, 'auto', true);
+            cusDDselectOption(p, 'auto', true);
             this._ui.qualitySelect = document.getElementById(this._ui.qualitySelect.getAttribute('id'));
-            $(this._ui.qualitySelectBtn).on('click', function(x) {
+            $(this._ui.qualitySelectBtn).on('click', function(v) {
                 $(this._ui.qualitySelect).click();
-                x.stopPropagation();
+                v.stopPropagation();
             }.bind(this));
             this._initQualityUI = true;
         }
     }, {
         key: 'initSubtitle',
-        value: function l() {
+        value: function h() {
             if (this._initSubtitleUI) {
                 return;
-                var m = this._ui.ccSelect.getAttribute('id');
+                var j = this._ui.ccSelect.getAttribute('id');
                 $(this._ui.ccSelect).find('.cusDD_opt').each(function() {
                     if ($(this).attr('selected') == 'selected') {
-                        cusDDselectOption('#' + m, $(this).data().id, true);
+                        cusDDselectOption('#' + j, $(this).data().id, true);
                     }
                 });
                 return;
@@ -633,51 +594,49 @@ var Rich360Player = function() {
                     this._ui.ccSelectBtn.style.display = 'none';
                     return;
                 } else {
-                    if (!this._player.subtitleList[0].lang) {
-                        return;
-                    }
+                    if (!this._player.subtitleList[0].lang) return;
                 }
             }
-            var n = this.createSubtitleDiv({
+            var k = this.createSubtitleDiv({
                 id: '-1',
                 label: 'OFF',
                 lang: 'OFF'
             });
-            var o = this.createSubtitleBtn({
+            var l = this.createSubtitleBtn({
                 id: '-1',
                 label: 'OFF',
                 lang: 'OFF'
             });
-            var p = document.createElement('div');
-            addClassName(n, 'on');
-            addClassName(o, 'on');
-            p.className = 'cusDD_options';
-            p.appendChild(n);
-            this._ui.subtitlePopupItems.push(o);
-            $(this._ui.subtitlePopup).find('.ta_c').append(o);
+            var m = document.createElement('div');
+            addClassName(k, 'on');
+            addClassName(l, 'on');
+            m.className = 'cusDD_options';
+            m.appendChild(k);
+            this._ui.subtitlePopupItems.push(l);
+            $(this._ui.subtitlePopup).find('.ta_c').append(l);
             if (this._player.subtitleList) {
-                for (var q = 0; q < this._player.subtitleList.length; q++) {
-                    var r = this.createSubtitleDiv(this._player.subtitleList[q]);
-                    var s = this.createSubtitleBtn(this._player.subtitleList[q]);
-                    p.appendChild(r);
-                    this._ui.subtitlePopupItems.push(s);
-                    $(this._ui.subtitlePopup).find('.ta_c').append(s);
+                for (var n = 0; n < this._player.subtitleList.length; n++) {
+                    var o = this.createSubtitleDiv(this._player.subtitleList[n]);
+                    var p = this.createSubtitleBtn(this._player.subtitleList[n]);
+                    m.appendChild(o);
+                    this._ui.subtitlePopupItems.push(p);
+                    $(this._ui.subtitlePopup).find('.ta_c').append(p);
                 }
                 if (this._player.subtitleList.length) {
                     $(this._ui.ccSelectBtn).css('display', 'block');
                     $(this._ui.ccSelect).css('display', 'block');
                 }
             }
-            this._ui.ccSelect.appendChild(p);
-            $(this._ui.ccSelectBtn).on('click', function(x) {
+            this._ui.ccSelect.appendChild(m);
+            $(this._ui.ccSelectBtn).on('click', function(r) {
                 $(this._ui.ccSelect).click();
-                x.stopPropagation();
+                r.stopPropagation();
             }.bind(this));
-            var m = '#' + this._ui.ccSelect.getAttribute('id');
-            cusDD(m, null, function(x) {
-                console.log('selected ccSelect option : ', x);
-                $(m).find('.cusDD_opt').each(function(z) {
-                    if ($(this).data().id != x.id) {
+            var j = '#' + this._ui.ccSelect.getAttribute('id');
+            cusDD(j, null, function(r) {
+                console.log('selected ccSelect option : ', r);
+                $(j).find('.cusDD_opt').each(function(s) {
+                    if ($(this).data().id != r.id) {
                         $(this).removeAttr('selected');
                         $(this).removeClass('on');
                     } else {
@@ -685,14 +644,14 @@ var Rich360Player = function() {
                         $(this).addClass('on');
                     }
                 });
-                this._player.setSubtitleTrack(parseInt(x.id));
+                this._player.setSubtitleTrack(parseInt(r.id));
             }.bind(this));
-            cusDDselectOption(m, -1, true);
+            cusDDselectOption(j, -1, true);
             this._ui.ccSelect = document.getElementById(this._ui.ccSelect.getAttribute('id'));
-            for (var t = 0; t < this._ui.subtitlePopupItems.length; t++) {
-                this._ui.subtitlePopupItems[t].addEventListener('click', function(x) {
+            for (var q = 0; q < this._ui.subtitlePopupItems.length; q++) {
+                this._ui.subtitlePopupItems[q].addEventListener('click', function(r) {
                     $(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
-                        if ($(this).data().id != $(x.target).data().id) {
+                        if ($(this).data().id != $(r.target).data().id) {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         } else {
@@ -701,7 +660,7 @@ var Rich360Player = function() {
                         }
                     });
                     this._ui.subtitlePopup.style.display = 'none';
-                    this._player.setSubtitleTrack(parseInt($(x.target).data().id));
+                    this._player.setSubtitleTrack(parseInt($(r.target).data().id));
                 }.bind(this));
             }
             this._player.setSubtitleTrack(-1);
@@ -709,41 +668,41 @@ var Rich360Player = function() {
         }
     }, {
         key: 'initLoadingState',
-        value: function m() {
+        value: function i() {
             this._loading_on = [];
-            for (var n = 0; n < RICH360_WAIT_ON.SIZE; n++) {
-                this._loading_on[n] = false;
+            for (var j = 0; j < RICH360_WAIT_ON.SIZE; j++) {
+                this._loading_on[j] = false;
             }
         }
     }, {
         key: 'initEventListener',
-        value: function n() {
-            this._player.addListener(RICH360_EVENTS.RICH360_STATE_CHANGE, function(o) {
-                if (o === RICH360_STATE.RICH360_INIT) {
-                    this.initPlayerUI();
-                } else {
-                    if (o === RICH360_STATE.RICH360_READY) {
+        value: function j() {
+            this._player.addListener(RICH360_EVENTS.RICH360_STATE_CHANGE, function(k) {
+                if (k === RICH360_STATE.RICH360_INIT) this.initPlayerUI();
+                else {
+                    if (k === RICH360_STATE.RICH360_READY) {
                         this.initHideCtrllerEvent();
                         this._ui.volumeSlider.value = this._player.volume * 100;
                         this.initQuality();
                     }
                 }
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_QUALITY_CHANGE, function(o) {
-                for (var p = 0; p < this._ui.qualityItems.length; p++) {
-                    if (this._ui.qualityItems[p].id == o) {
-                        addClassName(this._ui.qualityItems[p], 'on');
-                        $(this._ui.qualityItems[p]).attr('selected', 'selected');
-                    } else if (this._ui.qualityItems[p].id != 'auto' || !this._player.isAutoQuality) {
-                        removeClassName(this._ui.qualityItems[p], 'on');
-                        $(this._ui.qualityItems[p]).removeAttr('selected');
+            this._player.addListener(RICH360_EVENTS.RICH360_QUALITY_CHANGE, function(k) {
+                for (var l = 0; l < this._ui.qualityItems.length; l++) {
+                    if (this._ui.qualityItems[l].id == k) {
+                        addClassName(this._ui.qualityItems[l], 'on');
+                        $(this._ui.qualityItems[l]).attr('selected', 'selected');
+                    } else if (this._ui.qualityItems[l].id != 'auto' || !this._player.isAutoQuality) {
+                        removeClassName(this._ui.qualityItems[l], 'on');
+                        $(this._ui.qualityItems[l]).removeAttr('selected');
                     }
                 }
-                for (var q = 0; q < this._ui.qualityPopupItems.length; q++) {
-                    if (this._ui.qualityPopupItems[q].id == o) {
-                        addClassName(this._ui.qualityPopupItems[q], 'on');
-                    } else if (this._ui.qualityPopupItems[q].id != 'auto' || !this._player.isAutoQuality) {
-                        removeClassName(this._ui.qualityPopupItems[q], 'on');
+                for (var m = 0; m < this._ui.qualityPopupItems.length; m++) {
+                    if (this._ui.qualityPopupItems[m].id == k) addClassName(this._ui.qualityPopupItems[m], 'on');
+                    else {
+                        if (this._ui.qualityPopupItems[m].id != 'auto' || !this._player.isAutoQuality) {
+                            removeClassName(this._ui.qualityPopupItems[m], 'on');
+                        }
                     }
                 }
                 if (this._player.isAutoQuality) {
@@ -754,8 +713,8 @@ var Rich360Player = function() {
             this._player.addListener(RICH360_EVENTS.RICH360_ENDED, function() {
                 $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_WAIT, function(o) {
-                this.loading(o.wait, o.wait_on);
+            this._player.addListener(RICH360_EVENTS.RICH360_WAIT, function(k) {
+                this.loading(k.wait, k.wait_on);
             }.bind(this));
             this._player.addListener(RICH360_EVENTS.RICH360_DURATION_CHANGE, function() {
                 if (this._options.content_data.use_vod && this._ui.seekBar) {
@@ -763,20 +722,20 @@ var Rich360Player = function() {
                         this.setDurationText(this._player.currentPosition, this._player.duration);
                         if (this._player.currentPosition == 0) {
                             this._ui.seekBar.value = 0;
-                        } else this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration;
+                        } else {
+                            this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration;
+                        }
                     }
                 }
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, function(o) {
-                if (o) {
+            this._player.addListener(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, function(k) {
+                if (k) {
                     $(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause');
                     this._ui.playThumbnail.style.display = 'none';
-                } else {
-                    $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
-                }
+                } else $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(o) {
-                if (o == 'Authorization failed') {
+            this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(k) {
+                if (k == 'Authorization failed') {
                     Chat.Manager.destroy();
                     if (this._player && this._player._hls) this._player._hls.destroy();
                     removeCookie(DCvi + '_user_id');
@@ -786,9 +745,9 @@ var Rich360Player = function() {
                     });
                 }
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_ACCESS_DENIED, function(o) {
-                var p = POPUP_CONFIG;
-                var q = null;
+            this._player.addListener(RICH360_EVENTS.RICH360_ACCESS_DENIED, function(k) {
+                var l = POPUP_CONFIG;
+                var m = null;
                 Chat.Manager.destroy();
                 if (this._player && this._player._hls) this._player._hls.destroy();
                 removeCookie(DCvi + '_user_id');
@@ -798,16 +757,14 @@ var Rich360Player = function() {
                         location.href = LUEz1;
                     }, 3000);
                 }
-                if (o == 'Permission Denied') {
-                    q = p.permissionDenied(egl, function() {
+                if (k == 'Permission Denied') {
+                    m = l.permissionDenied(egl, function() {
                         location.href = LUEz1;
                     });
-                    alertPopup(q.title, q.desc, q.btnTxt, q.okCallback);
-                } else {
-                    alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_LIMIT_DEVNUM_DESC'), gettext('P_ALERT_OK'), function() {
-                        location.href = LUEz1;
-                    });
-                }
+                    alertPopup(m.title, m.desc, m.btnTxt, m.okCallback);
+                } else alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_LIMIT_DEVNUM_DESC'), gettext('P_ALERT_OK'), function() {
+                    location.href = LUEz1;
+                });
             }.bind(this));
             this._player.addListener(RICH360_EVENTS.RICH360_LIVE_ENDED, function() {
                 this._player._hls.destroy();
@@ -823,31 +780,31 @@ var Rich360Player = function() {
                     location.href = LUEz1;
                 });
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_SOURCE_CHANGE, function(o) {
-                this.changeSource(o);
+            this._player.addListener(RICH360_EVENTS.RICH360_SOURCE_CHANGE, function(k) {
+                this.changeSource(k);
             }.bind(this));
             this._player.addListener(RICH360_EVENTS.RICH360_SUBTITLE_FOUND, function() {
                 this.initSubtitle();
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, function(o) {
-                this.updateThumbnail(o);
+            this._player.addListener(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, function(k) {
+                this.updateThumbnail(k);
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, function(o) {
-                this.initSeekBarThumbnailData(o);
+            this._player.addListener(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, function(k) {
+                this.initSeekBarThumbnailData(k);
             }.bind(this));
         }
     }, {
         key: 'loading',
-        value: function o(p, q) {
-            this._loading_on[q] = p;
-            var r = false;
-            for (var s = 0; s < RICH360_WAIT_ON.SIZE; s++) {
-                if (this._loading_on[s]) {
-                    r = true;
+        value: function k(l, m) {
+            this._loading_on[m] = l;
+            var n = false;
+            for (var o = 0; o < RICH360_WAIT_ON.SIZE; o++) {
+                if (this._loading_on[o]) {
+                    n = true;
                     break;
                 }
             }
-            if (r) {
+            if (n) {
                 $(this._ui.loadingDiv).css('display', 'block');
                 $(this._ui.loadingDiv).parent().css('display', 'block');
             } else {
@@ -857,28 +814,31 @@ var Rich360Player = function() {
         }
     }, {
         key: 'setDurationText',
-        value: function p(q, r) {
-            this._ui.durationStart.innerHTML = numberPad(Math.floor(q / 3600), 2) + ':' + numberPad(Math.floor(q / 60) % 60, 2) + ':' + numberPad(Math.floor(q % 60), 2);
-            r -= q;
-            this._ui.durationEnd.innerHTML = '-' + numberPad(Math.floor(r / 3600), 2) + ':' + numberPad(Math.floor(r / 60) % 60, 2) + ':' + numberPad(Math.floor(r % 60), 2);
+        value: function l(m, n) {
+            this._ui.durationStart.innerHTML = numberPad(Math.floor(m / 3600), 2) + ':' + numberPad(Math.floor(m / 60) % 60, 2) + ':' + numberPad(Math.floor(m % 60), 2);
+            n -= m;
+            this._ui.durationEnd.innerHTML = '-' + numberPad(Math.floor(n / 3600), 2) + ':' + numberPad(Math.floor(n / 60) % 60, 2) + ':' + numberPad(Math.floor(n % 60), 2);
         }
     }, {
         key: 'initHideCtrllerEvent',
-        value: function q() {
-            if (this._initHideCtroller) return;
+        value: function m() {
+            if (this._initHideCtroller) {
+                return;
+            }
             this._ui.playerBottomWrap.style.display = 'block';
             if (!$(this._ui.chatContents).hasClass('is-active')) {
                 this.showChatOpenBtn(true);
             }
-            if (isMobile() || isTablet() || isIpadOS()) this._options.container.addEventListener('touchend', r.bind(this), false);
-            else {
+            if (isMobile() || isTablet() || isIpadOS()) {
+                this._options.container.addEventListener('touchend', n.bind(this), false);
+            } else {
                 this._options.container.addEventListener('mousemove', this.wakeupController.bind(this), false);
-                this._options.container.addEventListener('mouseup', r.bind(this), false);
+                this._options.container.addEventListener('mouseup', n.bind(this), false);
             }
 
-            function r(t) {
+            function n(q) {
                 this._wakeupPastTime = 0;
-                if (!this._player._video.paused && (t.target.tagName === 'CANVAS' || t.target.tagName === 'VIDEO' || t.target === this._ui.playerBottomWrap || t.target.id == 'loadingWrap' || t.target.id == 'subtitleDiv' || t.target.parentElement.id == 'subtitleDiv')) {
+                if (!this._player._video.paused && (q.target.tagName === 'CANVAS' || q.target.tagName === 'VIDEO' || q.target === this._ui.playerBottomWrap || q.target.id == 'loadingWrap' || q.target.id == 'subtitleDiv' || q.target.parentElement.id == 'subtitleDiv')) {
                     if (this._ui.playerBottomWrap.style.display == 'block') {
                         this._ui.playerBottomWrap.style.display = 'none';
                         this.showChatOpenBtn(false);
@@ -904,23 +864,23 @@ var Rich360Player = function() {
         }
     }, {
         key: 'setTimerHidePlayerController',
-        value: function r(s) {
-            var t = s;
-            if (typeof t === 'undefined') t = true;
+        value: function n(o) {
+            var p = o;
+            if (typeof p === 'undefined') p = true;
             clearTimeout(this._timer.hidePlayerController.timer);
             this._timer.hidePlayerController.timer = null;
-            if (t) {
+            if (p) {
                 this._timer.hidePlayerController.timer = setTimeout(this.hidePlayerController.bind(this), this._timer.hidePlayerController.period);
             }
         }
     }, {
         key: 'hidePlayerController',
-        value: function s() {
-            var t = this._ui.volumeSlider.thumbInteracting || !this._player._ui_play;
+        value: function o() {
+            var p = this._ui.volumeSlider.thumbInteracting || !this._player._ui_play;
             if (this._options.content_data.use_vod && this._ui.seekBar) {
-                t = t || this._ui.seekBar.thumbInteracting;
+                p = p || this._ui.seekBar.thumbInteracting;
             }
-            if (t) {
+            if (p) {
                 this.wakeupController();
                 return;
             }
@@ -931,7 +891,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'wakeupController',
-        value: function t(u) {
+        value: function p(q) {
             this._ui.playerBottomWrap.style.display = 'block';
             if (!$(this._ui.chatContents).hasClass('is-active')) {
                 this.showChatOpenBtn(true);
@@ -942,7 +902,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'hideChatWrap',
-        value: function u() {
+        value: function q() {
             if ($(this._ui.pageWrap).hasClass('pl-t-default')) {
                 $(this._ui.pageWrap).removeClass('pl-t-default').addClass('pl-t-fullscreen');
                 $(this._ui.chatWrap).addClass('chat_full');
@@ -958,12 +918,14 @@ var Rich360Player = function() {
         }
     }, {
         key: 'showChatWrap',
-        value: function v() {
+        value: function r() {
             if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen')) {
                 $(this._ui.pageWrap).removeClass('pl-t-fullscreen').addClass('pl-t-default');
                 $(this._ui.chatWrap).removeClass('chat_full');
-            } else if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen_nochat')) {
-                $(this._ui.pageWrap).removeClass('pl-t-fullscreen_nochat').addClass('pl-t-default_nochat');
+            } else {
+                if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen_nochat')) {
+                    $(this._ui.pageWrap).removeClass('pl-t-fullscreen_nochat').addClass('pl-t-default_nochat');
+                }
             }
             $(this._ui.playerBottomWrap).css('display', 'block');
             $(this._ui.playerWrap).css('z-index', '3');
@@ -971,15 +933,17 @@ var Rich360Player = function() {
             $(this._ui.chatContents).addClass('is-active');
             this.showChatOpenBtn(false);
             if (isMobile()) {
-                var w = getOrientation();
-                if (typeof w == 'string') {
-                    if (w == 'landscape-primary' || w == 'landscape-secondary' || w == 'landscape') $(this._ui.chatInputWrap).css('display', 'none');
+                var s = getOrientation();
+                if (typeof s == 'string') {
+                    if (s == 'landscape-primary' || s == 'landscape-secondary' || s == 'landscape') $(this._ui.chatInputWrap).css('display', 'none');
                     else {
                         if ($(this._ui.navBtnWrap).find('button[name=chatnavbtn]').hasClass('on')) {
                             $(this._ui.chatInputWrap).css('top', '');
                             $(this._ui.chatInputWrap).css('position', 'relative');
                             $(this._ui.chatInputWrap).css('display', 'block');
-                        } else $(this._ui.chatInputWrap).css('display', 'none');
+                        } else {
+                            $(this._ui.chatInputWrap).css('display', 'none');
+                        }
                     }
                 } else {
                     $(this._ui.chatInputWrap).css('top', '');
@@ -999,7 +963,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'play',
-        value: function w() {
+        value: function s() {
             if (!this._initHideCtroller) {
                 this.initHideCtrllerEvent();
             }
@@ -1022,7 +986,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'pause',
-        value: function x() {
+        value: function t() {
             this._player._subtitleManager._prevSubtitleTrack = this._player.getSubtitleTrack();
             if (this._player._hls._isDummy) {
                 if (this._options.content_data.use_vod) {
@@ -1035,90 +999,89 @@ var Rich360Player = function() {
         }
     }, {
         key: 'seek',
-        value: function y(z) {
-            this._player.currentPosition = this._player.duration * z / 100;
+        value: function u(v) {
+            this._player.currentPosition = this._player.duration * v / 100;
         }
     }, {
         key: 'volume',
-        value: function z(A) {
-            this._player.volume = parseFloat(A / 100);
+        value: function v(w) {
+            this._player.volume = parseFloat(w / 100);
         }
     }, {
         key: 'changeSource',
-        value: function A(B) {
-            if (B) {
+        value: function w(x) {
+            if (x) {
                 this.pause();
-                this._player.changeSource(B);
+                this._player.changeSource(x);
             }
         }
     }, {
         key: 'updateThumbnail',
-        value: function B(C) {
-            var D = new Date();
-            C = C + '?' + D.getTime();
+        value: function x(y) {
+            var z = new Date();
+            y = y + '?' + z.getTime();
             $(this._ui.playThumbnail).css('background-image', '');
-            $(this._ui.playThumbnail).css('background-image', 'url(' + C + ')');
+            $(this._ui.playThumbnail).css('background-image', 'url(' + y + ')');
             $(this._ui.playThumbnail).css('display', 'block');
         }
     }, {
         key: 'initSeekBarThumbnailData',
-        value: function C(D) {
-            this._thumbnailGridData = JSON.parse(JSON.stringify(D));
-            var E = this._req_str.lastIndexOf('/output');
-            var F = new Date();
-            $(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, E) + '/' + this._thumbnailGridData.path + '?' + F.getTime() + ')');
+        value: function y(z) {
+            this._thumbnailGridData = JSON.parse(JSON.stringify(z));
+            var A = this._req_str.lastIndexOf('/output');
+            var B = new Date();
+            $(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, A) + '/' + this._thumbnailGridData.path + '?' + B.getTime() + ')');
         }
     }, {
         key: 'viewSeekBarThumbnail',
-        value: function D(E, F) {
+        value: function z(A, B) {
             if (!this._thumbnailGridData) {
                 $(this._ui.sliderThumbnail).css('display', 'none');
                 return false;
             }
-            if (E > 100) {
-                E = 100;
-            } else if (E < 0) {
+            if (A > 100) A = 100;
+            else if (A < 0) {
+                A = 0;
+            }
+            var C = A / 100;
+            var D = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y;
+            var E = Math.ceil(D * C) - 1;
+            if (E < 0) {
                 E = 0;
             }
-            var G = E / 100;
-            var H = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y;
-            var I = Math.ceil(H * G) - 1;
-            if (I < 0) {
-                I = 0;
-            }
-            var J = I % 10;
-            var K = parseInt(I / 10);
-            var L = 160;
-            var M = 90;
-            var N = $(this._ui.sliderArea.slider.thumb).width();
-            var O = J * L * -1;
-            var P = K * M * -1;
-            if (F) {
+            var F = E % 10;
+            var G = parseInt(E / 10);
+            var H = 160;
+            var I = 90;
+            var J = $(this._ui.sliderArea.slider.thumb).width();
+            var K = F * H * -1;
+            var L = G * I * -1;
+            if (B) {
                 $(this._ui.sliderArea.slider.thumb).append($(this._ui.sliderThumbnail));
-                this.setDurationText(this._thumbnailGridData.duration * G, this._thumbnailGridData.duration);
+                this.setDurationText(this._thumbnailGridData.duration * C, this._thumbnailGridData.duration);
                 $(this._ui.sliderThumbnail).css('top', '');
                 $(this._ui.sliderThumbnail).css('left', '');
             } else {
                 $(this._ui.sliderArea).append($(this._ui.sliderThumbnail));
                 $(this._ui.sliderThumbnail).css('top', '-16px');
-                $(this._ui.sliderThumbnail).css('left', 'calc(' + E + '% + ' + N / 2 + 'px - ' + (L + N) * G + 'px)');
+                $(this._ui.sliderThumbnail).css('left', 'calc(' + A + '% + ' + J / 2 + 'px - ' + (H + J) * C + 'px)');
             }
-            $(this._ui.sliderThumbnail).css('background-position-x', O + 'px');
-            $(this._ui.sliderThumbnail).css('background-position-y', P + 'px');
+            $(this._ui.sliderThumbnail).css('background-position-x', K + 'px');
+            $(this._ui.sliderThumbnail).css('background-position-y', L + 'px');
             $(this._ui.sliderThumbnail).css('display', 'block');
             return true;
         }
     }, {
         key: 'showChatOpenBtn',
-        value: function E(F) {
-            var G = F;
+        value: function A(B) {
+            var C = B;
             if (isIpadOS()) {
-                G = false;
+                C = false;
             }
-            $(this._ui.chatOpenBtn).css('display', G ? 'block' : 'none');
+            $(this._ui.chatOpenBtn).css('display', C ? 'block' : 'none');
         }
     }]);
-    return e;
+    return a;
 }();
 var customRange = function customRange(a, b, c) {
     var d = a;
@@ -1199,12 +1162,50 @@ var customRange = function customRange(a, b, c) {
     return d;
 };
 var FullscreenButton = function() {
-    function a(b, c) {
-        _classCallCheck(this, a);
-        this._web_ui = b;
-        this._options = b._player._options;
-        this._web_player = b._player;
-        this._dom_element = c;
+    var c = function() {
+        var f = true;
+        return function(h, i) {
+            var j = f ? function() {
+                if (i) {
+                    var k = i.apply(h, arguments);
+                    i = null;
+                    return k;
+                }
+            } : function() {};
+            f = false;
+            return j;
+        };
+    }();
+    var d = c(this, function() {
+        var f = function() {
+            var n;
+            try {
+                n = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
+            } catch (o) {
+                n = window;
+            }
+            return n;
+        };
+        var g = f();
+        var h = g.console = g.console || {};
+        var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+        for (var j = 0; j < i.length; j++) {
+            var k = c.constructor.prototype.bind(c);
+            var l = i[j];
+            var m = h[l] || k;
+            k.__proto__ = c.bind(c);
+            k.toString = m.toString.bind(m);
+            h[l] = k;
+        }
+    });
+    d();
+
+    function e(f, g) {
+        _classCallCheck(this, e);
+        this._web_ui = f;
+        this._options = f._player._options;
+        this._web_player = f._player;
+        this._dom_element = g;
         this._dom_element.onclick = this.onclick.bind(this);
         this._is_fullscreen_button = true;
         this._dom_element.id = 'fullBtn';
@@ -1213,52 +1214,55 @@ var FullscreenButton = function() {
         document.addEventListener('mozfullscreenchange', this.fullscreenChanged.bind(this));
         document.addEventListener('MSFullscreenChange', this.fullscreenChanged.bind(this));
     }
-    _createClass(a, [{
+    _createClass(e, [{
         key: 'setIsFullScreen',
-        value: function b(c) {
-            this._web_ui._isFullScreen = c;
+        value: function f(g) {
+            this._web_ui._isFullScreen = g;
         }
     }, {
         key: 'showMultiviewBtn',
-        value: function c(d) {
-            var e = this._web_player._options.use_multiview;
-            if (!e) return;
-            var f = this._web_ui._ui;
-            var g = f.navBtnWrap;
-            var h = f.chatOpenBtn;
-            var i = 'button[name=multiviewnavbtn]';
-            var j = 'button[name=artistchatnavbtn]';
-            var k = 'button[name=chatnavbtn]';
-            var l = d ? 'inline-block' : 'none';
-            var m = d ? 'block' : 'none';
-            $(g).find(i).css('display', l);
-            $(h).find(i).css('display', m);
+        value: function g(h) {
+            var i = this._web_player._options.use_multiview;
+            if (!i) return;
+            var j = this._web_ui._ui;
+            var k = j.navBtnWrap;
+            var l = j.chatOpenBtn;
+            var m = 'button[name=multiviewnavbtn]';
+            var n = 'button[name=artistchatnavbtn]';
+            var o = 'button[name=chatnavbtn]';
+            var p = h ? 'inline-block' : 'none';
+            var q = h ? 'block' : 'none';
+            $(k).find(m).css('display', p);
+            $(l).find(m).css('display', q);
         }
     }, {
         key: 'fullscreenChanged',
-        value: function d() {
-            var e = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
-            var f = this;
+        value: function h() {
+            var i = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+            var j = this;
             delayStopLoadingPanel();
-            if (!e) {
+            if (!i) {
                 $('body').removeClass('fullscreen');
                 this._is_fullscreen_button = true;
                 $(this._dom_element).removeClass('pl-i-full float_r').addClass('pl-i-screen float_r');
                 if (isMobile()) {
-                    var g = getOrientation();
-                    if (typeof g == 'string') {
-                        if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') {
+                    var k = getOrientation();
+                    if (typeof k == 'string') {
+                        if (k == 'landscape-primary' || k == 'landscape-secondary' || k == 'landscape') {
                             this._web_ui.hideChatWrap();
-                        } else if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
-                            this._web_ui.showChatWrap();
+                        } else {
+                            if (k == 'portrait-primary' || k == 'portrait-secondary' || k == 'portrait') {
+                                this._web_ui.showChatWrap();
+                            }
                         }
                     }
-                } else if (isSafari()) {
-                    setTimeout(function() {
-                        f._web_ui.showChatWrap();
-                    });
                 } else {
-                    f._web_ui.showChatWrap();
+                    if (isSafari()) setTimeout(function() {
+                        j._web_ui.showChatWrap();
+                    });
+                    else {
+                        j._web_ui.showChatWrap();
+                    }
                 }
                 this.setIsFullScreen(false);
                 this.showMultiviewBtn(true);
@@ -1278,19 +1282,20 @@ var FullscreenButton = function() {
         }
     }, {
         key: 'onclick',
-        value: function e() {
+        value: function i() {
             if (this._is_fullscreen_button) {
                 if ('fullscreenEnabled' in document || 'webkitFullscreenEnabled' in document || 'mozFullScreenEnabled' in document || 'msFullscreenEnabled' in document) {
                     if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
-                        var f = document.querySelector('html');
-                        if ('requestFullscreen' in f) f.requestFullscreen();
+                        var j = document.querySelector('html');
+                        if ('requestFullscreen' in j) j.requestFullscreen();
                         else {
-                            if ('webkitRequestFullscreen' in f) f.webkitRequestFullscreen();
+                            if ('webkitRequestFullscreen' in j) j.webkitRequestFullscreen();
                             else {
-                                if ('mozRequestFullScreen' in f) {
-                                    f.mozRequestFullScreen();
-                                } else if ('msRequestFullscreen' in f) {
-                                    f.msRequestFullscreen();
+                                if ('mozRequestFullScreen' in j) j.mozRequestFullScreen();
+                                else {
+                                    if ('msRequestFullscreen' in j) {
+                                        j.msRequestFullscreen();
+                                    }
                                 }
                             }
                         }
@@ -1298,8 +1303,8 @@ var FullscreenButton = function() {
                     } else console.log('fullscreen not enabled');
                 } else console.log('fullscreen not supported');
             } else {
-                var g = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
-                if (g && g == document.querySelector('html')) {
+                var k = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                if (k && k == document.querySelector('html')) {
                     this._is_fullscreen_button = true;
                     if ('exitFullscreen' in document) document.exitFullscreen();
                     else {
@@ -1316,7 +1321,7 @@ var FullscreenButton = function() {
             }
         }
     }]);
-    return a;
+    return e;
 }();
 
 function numberPad(a, b) {
@@ -1387,33 +1392,33 @@ var Rich360Log = function() {
             m.append('user_agent', navigator.userAgent);
             l.send(m);
             l.onload = function(o) {
-                if (l.readyState === 4 && l.status === 200) {
-                    try {
-                        var p = JSON.parse(l.responseText).Data;
-                        for (var q = 0; q < p.content.channels.length; q++) {
-                            var r = true;
-                            if (Ythc == 'sub') {
-                                r = false;
-                            }
-                            if (p.content.channels[q].is_main_channel == r) {
-                                if (this._options.content_data.current_channel_id != p.content.channels[q].id) {
-                                    this._options.content_data = JSON.parse(JSON.stringify(p.content));
-                                    this._options.content_data.current_channel_id = p.content.channels[q].id;
-                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[q].hls_url);
-                                }
-                                break;
-                            }
+                if (l.readyState === 4 && l.status === 200) try {
+                    var p = JSON.parse(l.responseText).Data;
+                    for (var q = 0; q < p.content.channels.length; q++) {
+                        var r = true;
+                        if (Ythc == 'sub') {
+                            r = false;
                         }
-                        iCM(!!p.user.is_mute);
-                    } catch (v) {
-                        console.log(v);
+                        if (p.content.channels[q].is_main_channel == r) {
+                            if (this._options.content_data.current_channel_id != p.content.channels[q].id) {
+                                this._options.content_data = JSON.parse(JSON.stringify(p.content));
+                                this._options.content_data.current_channel_id = p.content.channels[q].id;
+                                this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[q].hls_url);
+                            }
+                            break;
+                        }
                     }
+                    iCM(!!p.user.is_mute);
+                } catch (s) {
+                    console.log(s);
                 }
             }.bind(this);
             l.onloadend = function(o) {
                 if (l.status === 400 || l.status === 401) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                else if (l.status === 403) {
-                    this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
+                else {
+                    if (l.status === 403) {
+                        this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
+                    }
                 }
             }.bind(this);
         }
@@ -1503,24 +1508,20 @@ var Rich360HlsWrapper = function() {
                 if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl') || isIOS() || isIpadOS()) {
                     this._isDummy = true;
                     this._hls = null;
-                } else {
-                    if (Hls.isSupported()) {
-                        this._isDummy = false;
-                        this._hls = new Hls(this._config);
-                    }
+                } else if (Hls.isSupported()) {
+                    this._isDummy = false;
+                    this._hls = new Hls(this._config);
                 }
             } else {
                 if (isIOS() || isIpadOS()) {
                     this._isDummy = true;
                     this._hls = null;
+                } else if (Hls.isSupported()) {
+                    this._isDummy = false;
+                    this._hls = new Hls(this._config);
                 } else {
-                    if (Hls.isSupported()) {
-                        this._isDummy = false;
-                        this._hls = new Hls(this._config);
-                    } else {
-                        this._isDummy = true;
-                        this._hls = null;
-                    }
+                    this._isDummy = true;
+                    this._hls = null;
                 }
             }
             this._video.addEventListener('canplay', function() {
@@ -1567,9 +1568,7 @@ var Rich360HlsWrapper = function() {
     }, {
         key: 'recoverMediaError',
         value: function g() {
-            if (this._isDummy) {} else {
-                this._hls.recoverMediaError();
-            }
+            if (this._isDummy) {} else this._hls.recoverMediaError();
         }
     }, {
         key: 'on',
@@ -1607,24 +1606,24 @@ var Rich360HlsWrapper = function() {
     }, {
         key: 'levels',
         get: function l() {
-            if (this._isDummy) return false;
-            else {
-                return this._hls.levels;
-            }
+            if (this._isDummy) {
+                return false;
+            } else return this._hls.levels;
         }
     }, {
         key: 'nextAutoLevel',
         get: function m() {
-            if (this._isDummy) {
-                return 0;
-            } else {
+            if (this._isDummy) return 0;
+            else {
                 return this._hls.abrController.nextAutoLevel;
             }
         }
     }, {
         key: 'currentLevel',
         get: function n() {
-            return this._isDummy ? 0 : this._hls.currentLevel;
+            if (this._isDummy) {
+                return 0;
+            } else return this._hls.currentLevel;
         },
         set: function o(p) {
             if (!this._isDummy) this._hls.currentLevel = p;
@@ -1745,14 +1744,12 @@ var Rich360 = function() {
             if (!('ticket_id' in this._options.credentials)) {
                 this._options.credentials.ticket_id = null;
             }
-        } else {
-            this._options.credentials = {
-                device_id: null,
-                user_id: null,
-                content_id: null,
-                ticket_id: null
-            };
-        }
+        } else this._options.credentials = {
+            device_id: null,
+            user_id: null,
+            content_id: null,
+            ticket_id: null
+        };
         if (this._options.container) {
             this._parent_dom = this._options.container;
         } else {
@@ -1816,54 +1813,55 @@ var Rich360 = function() {
                     for (g = 0; g < 7; g++) {
                         this.baseCode[g] = this.base.charCodeAt(g);
                     }
-                    this.addRich360 = function(m, n) {
-                        var o = n % 7;
-                        var p = this.baseCode.slice(o, 7).concat(this.baseCode.slice(0, o + 1));
+                    this.addRich360 = function(n, o) {
+                        var p = o % 7;
+                        var q = this.baseCode.slice(p, 7).concat(this.baseCode.slice(0, p + 1));
                         for (h = 0; h < 8; h++) {
-                            m[h] = (m[h] + p[h]) % 256;
+                            n[h] = (n[h] + q[h]) % 256;
                         }
-                        return m;
+                        return n;
                     }.bind(this);
-                    this.encrypt = function(m, n) {
-                        if (m.length != 16) {
+                    this.encrypt = function(n, o) {
+                        if (n.length != 16) {
                             return 'string length must be 16';
                         }
-                        var o = [];
-                        var p;
-                        for (p = 0; p < 16; p++) {
-                            o[p] = m.charCodeAt(p);
+                        var p = [];
+                        var q;
+                        for (q = 0; q < 16; q++) {
+                            p[q] = n.charCodeAt(q);
                         }
-                        var q = o.slice(0, 8);
-                        var r = o.slice(8, 16);
-                        for (p = 0; p < n; p++) {
-                            r = this.addRich360(r, p);
-                            var s = q.slice(0, 8);
+                        var r = p.slice(0, 8);
+                        var s = p.slice(8, 16);
+                        for (q = 0; q < o; q++) {
+                            s = this.addRich360(s, q);
+                            var t = r.slice(0, 8);
                             for (l = 0; l < 8; l++) {
-                                q[l] = q[l] ^ r[l];
+                                r[l] = r[l] ^ s[l];
                             }
-                            r = s.slice(0, 8);
+                            s = t.slice(0, 8);
                         }
-                        var t = [];
-                        for (p = 0; p < 8; p++) {
-                            t[p] = String.fromCharCode(q[p]);
+                        var u = [];
+                        for (q = 0; q < 8; q++) {
+                            u[q] = String.fromCharCode(r[q]);
                         }
-                        for (p = 0; p < 8; p++) {
-                            t[p + 8] = String.fromCharCode(r[p]);
+                        for (q = 0; q < 8; q++) {
+                            u[q + 8] = String.fromCharCode(s[q]);
                         }
-                        return t;
+                        return u;
                     }.bind(this);
-                    this.validate_response = function(m, n) {
-                        var o = this.encrypt(m.ltstr, 16);
-                        var p = '';
-                        for (var q = 0; q < 16; q++) {
-                            p += o[q];
+                    this.validate_response = function(n, o) {
+                        var p = this.encrypt(n.ltstr, 16);
+                        var q = '';
+                        for (var r = 0; r < 16; r++) {
+                            q += p[r];
                         }
-                        if (p == n.rtstr) return true;
+                        if (q == o.rtstr) return true;
                         else return false;
                     }.bind(this);
                     if (!this.validate_response(c.req_data, JSON.parse(c.responseText))) {
-                        if (c.status == 403) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
-                        else {
+                        if (c.status == 403) {
+                            this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
+                        } else {
                             if (c.status != 200) {
                                 this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
                                 return;
@@ -1911,9 +1909,8 @@ var Rich360 = function() {
         key: 'initialize',
         value: function e() {
             this.updateThumbnail();
-            if (document.getElementById('video')) {
-                this._video = document.getElementById('video');
-            } else {
+            if (document.getElementById('video')) this._video = document.getElementById('video');
+            else {
                 this._video = document.createElement('video');
                 this._options.container.append(this._video);
             }
@@ -1931,9 +1928,8 @@ var Rich360 = function() {
             if (this._options.seek_to) {
                 f.startPosition = this._options.seek_to;
             }
-            if (this._options.autoStart) {
-                this._video.autoplay = this._options.autoStart;
-            } else {
+            if (this._options.autoStart) this._video.autoplay = this._options.autoStart;
+            else {
                 this._video.autoplay = false;
             }
             f.fragLoadingRetryDelay = 100;
@@ -1945,9 +1941,8 @@ var Rich360 = function() {
                 }
             };
             if (this._options.use_multiview) {
-                if (this._options.initial_view >= 0 && this._options.initial_view < this._manifest.multiview_list.length) {
-                    this._view = this._options.inital_view;
-                } else {
+                if (this._options.initial_view >= 0 && this._options.initial_view < this._manifest.multiview_list.length) this._view = this._options.inital_view;
+                else {
                     this._view = 0;
                 }
                 var g = [];
@@ -1983,8 +1978,9 @@ var Rich360 = function() {
                 this._video.setAttribute('webkit-playsinline', '');
             }
             this._play_status = 'none';
-            if (this._options.use_multiview) this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
-            else {
+            if (this._options.use_multiview) {
+                this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+            } else {
                 this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
             }
             this._subtitleManager = new Rich360SubtitleManager(this);
@@ -2021,9 +2017,7 @@ var Rich360 = function() {
             var j = this._options.source.lastIndexOf('/');
             if (j < 0) {
                 this._sourceBase = '';
-            } else {
-                this._sourceBase = this._options.source.substring(0, j) + '/';
-            }
+            } else this._sourceBase = this._options.source.substring(0, j) + '/';
             if (this._options.source.endsWith('.kmv')) {
                 var k = new XMLHttpRequest();
                 k.open('GET', this._options.source);
@@ -2070,8 +2064,8 @@ var Rich360 = function() {
                 this._hls = new Rich360HlsWrapper(!this._manifest.multiview_list[this._view].path.endsWith('.m3u8'), m, this._options.use_multiview);
                 this._hls.attachMedia(this._video);
                 var n = this._manifest.multiview_list[this._view].sub_positions;
-                var o = n.map(function(u) {
-                    return k.resizeToCanvasImage(u);
+                var o = n.map(function(t) {
+                    return k.resizeToCanvasImage(t);
                 });
                 this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path, l, o[this._view]);
                 this._display.updateVideoArrangement(this._manifest.multiview_list[this._view].main_position, this._manifest.multiview_list[this._view].sub_positions);
@@ -2218,7 +2212,9 @@ var Rich360 = function() {
                         }
                         if (M) {
                             r.currentTime = M + 0.5;
-                        } else r.currentTime = N - 1;
+                        } else {
+                            r.currentTime = N - 1;
+                        }
                         console.log('clearInterval');
                         clearInterval(G);
                     }, 5000);
@@ -2287,31 +2283,31 @@ var Rich360 = function() {
             if (n) {
                 this._options.source = n;
                 this.requestKMVManifest(function() {
-                    var o = this._video.currentTime;
+                    var q = this._video.currentTime;
                     this._hls.detachMedia();
                     this._hls.destroy();
-                    var p = Hls.DefaultConfig;
-                    var q = '';
+                    var r = Hls.DefaultConfig;
+                    var s = '';
                     if (this._options.use_multiview) {
-                        q = this._sourceBase + this._manifest.multiview_list[this._view].path;
+                        s = this._sourceBase + this._manifest.multiview_list[this._view].path;
                     } else {
-                        q = this._sourceBase + this._manifest.singleview_list[0].path;
+                        s = this._sourceBase + this._manifest.singleview_list[0].path;
                     }
-                    this._hls = new Rich360HlsWrapper(!q.endsWith('.m3u8'), p, this._options.use_multiview);
+                    this._hls = new Rich360HlsWrapper(!s.endsWith('.m3u8'), r, this._options.use_multiview);
                     this._hls.attachMedia(this._video);
-                    this._hls.loadSource(q);
+                    this._hls.loadSource(s);
                     if (!this._hls._isDummy) {
                         this.addHlsFragParsedListener();
                         this.attachHlsListeners();
                         this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
                     }
-                    this._video.addEventListener('loadedmetadata', function(t) {
+                    this._video.addEventListener('loadedmetadata', function(v) {
                         if (this._options.content_data.use_vod) {
-                            this._video.currentTime = o;
+                            this._video.currentTime = q;
                             this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
                         } else {
                             this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
-                            this._subtitleManager._prevViewOffsetTime = o - this._video.currentTime;
+                            this._subtitleManager._prevViewOffsetTime = q - this._video.currentTime;
                         }
                         this._rich360Player.wakeupController();
                     }.bind(this), {
@@ -2478,7 +2474,9 @@ var Rich360 = function() {
                 if (this._video.paused) {
                     this._ui_play = false;
                     this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, false);
-                } else this.play_on();
+                } else {
+                    this.play_on();
+                }
             }.bind(this));
             this._video.addEventListener('loadedmetadata', function() {
                 this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
@@ -2488,15 +2486,15 @@ var Rich360 = function() {
                     this._video.textTracks.addEventListener('addtrack', this.addNativeTrackListener);
                 }
             }.bind(this));
-            this._video.addEventListener('waiting', function(u) {
-                console.log('@@@video waiting call : ', u);
+            this._video.addEventListener('waiting', function(v) {
+                console.log('@@@video waiting call : ', v);
                 this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                     wait: true,
                     wait_on: RICH360_WAIT_ON.RICH360_BUFFER
                 });
             }.bind(this));
-            this._video.addEventListener('playing', function(u) {
-                console.log('@@@video playing call : ', u);
+            this._video.addEventListener('playing', function(v) {
+                console.log('@@@video playing call : ', v);
                 if (this._hls._isDummy) {
                     this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                 }
@@ -2506,16 +2504,15 @@ var Rich360 = function() {
                 });
                 this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
             }.bind(this));
-            $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(u) {
-                if (u.type == 'webkitbeginfullscreen') {
+            $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(v) {
+                if (v.type == 'webkitbeginfullscreen') {
                     $('body').addClass('fullscreen');
-                    if (this._options.use_multiview) {
-                        this.changeSingleView(true);
-                    } else {
+                    if (this._options.use_multiview) this.changeSingleView(true);
+                    else {
                         this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
                     }
                     this._subtitleManager.showDefaultSubtitle();
-                } else if (u.type == 'webkitendfullscreen') {
+                } else if (v.type == 'webkitendfullscreen') {
                     $('body').removeClass('fullscreen');
                     if (this._options.use_multiview) {
                         this.changeSingleView(false);
@@ -2557,24 +2554,24 @@ var Rich360 = function() {
     }, {
         key: 'attachHlsListeners',
         value: function v() {
-            this._hls.on(Hls.Events.ERROR, function(w, x) {
-                if (x.fatal) {
-                    switch (x.type) {
+            this._hls.on(Hls.Events.ERROR, function(x, y) {
+                if (y.fatal) {
+                    switch (y.type) {
                         case Hls.ErrorTypes.NETWORK_ERROR:
                             console.log('fatal network error encountered, try to recover');
                             this._hls.startLoad();
                             break;
                         case Hls.ErrorTypes.MEDIA_ERROR:
-                            var y = this._video.currentTime;
+                            var z = this._video.currentTime;
                             console.log('fatal media error encountered, try to recover');
-                            if (x.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) {
+                            if (y.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) {
                                 console.log('this is not a media error, try to recover');
                                 this._hls.startLoad();
                             } else {
                                 this._hls.recoverMediaError();
                                 this.play_on();
                             }
-                            this._video.currentTime = y;
+                            this._video.currentTime = z;
                             break;
                         default:
                             this._hls.destroy();
@@ -2584,58 +2581,57 @@ var Rich360 = function() {
             }.bind(this));
             this._hls.on(Hls.Events.MANIFEST_PARSED, function() {
                 this._quality_list = [];
-                var w = this._hls.levels;
-                for (var x in w) {
-                    this._quality_list.push(w[x]);
+                var x = this._hls.levels;
+                for (var y in x) {
+                    this._quality_list.push(x[y]);
                 }
                 this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
                 this._ready_state = RICH360_STATE.RICH360_READY;
             }.bind(this));
-            this._hls.on(Hls.Events.LEVEL_SWITCHED, function(w, x) {
+            this._hls.on(Hls.Events.LEVEL_SWITCHED, function(x, y) {
                 this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                     wait: false,
                     wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
                 });
-                this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, x.level);
+                this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, y.level);
             }.bind(this));
-            this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(w, x) {
-                for (var y = 0; y < x.tracks.length; y++) {
+            this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(x, y) {
+                for (var z = 0; z < y.tracks.length; z++) {
                     this._subtitleList.push({
-                        id: y,
-                        label: x.tracks[y].label,
-                        lang: x.tracks[y].subtitleTrack.lang
+                        id: z,
+                        label: y.tracks[z].label,
+                        lang: y.tracks[z].subtitleTrack.lang
                     });
                 }
                 this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
             }.bind(this));
-            this._hls.on(Hls.Events.CUES_PARSED, function(w, x) {
+            this._hls.on(Hls.Events.CUES_PARSED, function(x, y) {
                 if (this._subtitleManager) {
-                    var y = x.cues.length;
-                    var z = [];
-                    for (var A = 0; A < y; A++) {
-                        z.push({
-                            startTime: x.cues[A].startTime,
-                            endTime: x.cues[A].endTime,
-                            text: x.cues[A].text,
+                    var z = y.cues.length;
+                    var A = [];
+                    for (var B = 0; B < z; B++) {
+                        A.push({
+                            startTime: y.cues[B].startTime,
+                            endTime: y.cues[B].endTime,
+                            text: y.cues[B].text,
                             track_num: this._hls._hls.subtitleTrack,
                             view: this._view
                         });
                     }
-                    this._subtitleManager.addCueData(z);
+                    this._subtitleManager.addCueData(A);
                 }
             }.bind(this));
         }
     }, {
         key: 'attachPlayerUiListners',
         value: function w() {
-            if (this._hls._isDummy) {
-                $(this._ui.fullBtn).on('click', function() {
-                    this._subtitleManager.showDefaultSubtitle();
-                    if (!this._video.paused) {
-                        this._video.webkitEnterFullscreen();
-                    }
-                }.bind(this));
-            } else {
+            if (this._hls._isDummy) $(this._ui.fullBtn).on('click', function() {
+                this._subtitleManager.showDefaultSubtitle();
+                if (!this._video.paused) {
+                    this._video.webkitEnterFullscreen();
+                }
+            }.bind(this));
+            else {
                 this._ui.fullScreen = new FullscreenButton(this._rich360Player, this._ui.fullBtn);
             }
         }
@@ -2750,7 +2746,12 @@ var Rich360 = function() {
                     if (this._video.textTracks[M].mode == 'showing' || this._video.textTracks[M].mode == 'hidden') return M;
                 }
                 return -1;
-            } else return this._hls._hls ? this._hls._hls.subtitleTrack : -1;
+            } else {
+                if (this._hls._hls) return this._hls._hls.subtitleTrack;
+                else {
+                    return -1;
+                }
+            }
         }
     }, {
         key: 'subtitleList',
@@ -2766,9 +2767,10 @@ var Rich360 = function() {
             this._changingView = P;
             if (!O) return;
             if (!O._wrapperList) return;
-            if (P) {
-                addClassName(O._wrapperList, 'changing-source');
-            } else removeClassName(O._wrapperList, 'changing-source');
+            if (P) addClassName(O._wrapperList, 'changing-source');
+            else {
+                removeClassName(O._wrapperList, 'changing-source');
+            }
         }
     }]);
     return a;
@@ -2880,11 +2882,10 @@ var Rich360SubtitleManager = function() {
             var p = l / 100 * 50;
             var q = l / 100 * 80;
             var r = l / 100 * 2.5;
-            if (l < 568) r = l / 100 * 3.2;
-            else {
-                if (l > 1000) {
-                    r = l / 100 * 2.2;
-                }
+            if (l < 568) {
+                r = l / 100 * 3.2;
+            } else if (l > 1000) {
+                r = l / 100 * 2.2;
             }
             var s = 2;
             var t = 0;
@@ -2937,10 +2938,10 @@ var Rich360SubtitleManager = function() {
         value: function g(h, i) {
             var j = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.15625, 0.3, 0.4, 0.7, 0.6, 0.9, 0.7, 0.2, 0.4, 0.4, 0.4, 0.6, 0.3, 0.4, 0.3, 0.5, 0.6, 0.55625, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.3, 0.3, 0.6, 0.6, 0.6, 0.6, 1.1, 0.8, 0.7, 0.8, 0.7234375, 0.7, 0.6109375, 0.8, 0.7234375, 0.3, 0.5, 0.8, 0.6, 0.834375, 0.7234375, 0.8, 0.7, 0.8, 0.8, 0.7, 0.8, 0.7234375, 0.8, 1.1, 0.8, 0.8, 0.8, 0.3, 0.5, 0.3, 0.6, 0.7, 0.334375, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5, 0.6, 0.6, 0.2234375, 0.3234375, 0.6, 0.2234375, 0.834375, 0.6, 0.6, 0.6, 0.6, 0.4, 0.5, 0.4, 0.6, 0.7, 0.9, 0.7, 0.7, 0.6, 0.5, 0.2609375, 0.5, 0.6];
             var k = 1.2;
-            return h.split('').map(function(m) {
-                return m.charCodeAt(0) < j.length ? j[m.charCodeAt(0)] + 0.1 : k;
-            }).reduce(function(m, n) {
-                return n + m;
+            return h.split('').map(function(l) {
+                return l.charCodeAt(0) < j.length ? j[l.charCodeAt(0)] + 0.1 : k;
+            }).reduce(function(l, m) {
+                return m + l;
             }) * i;
         }
     }, {
@@ -2951,16 +2952,17 @@ var Rich360SubtitleManager = function() {
                 this._subItv = null;
             }
             this._subItv = setInterval(function() {
-                if (this._cues.length) this.drawSubtitles();
-                else {
+                if (this._cues.length) {
+                    this.drawSubtitles();
+                } else {
                     if (this._player.getSubtitleTrack() != -1) {
-                        var k = new Date();
-                        if (this._bfSendSubTime.getTime() + 10000 < k) {
-                            var l = this._player.getSubtitleTrack();
+                        var i = new Date();
+                        if (this._bfSendSubTime.getTime() + 10000 < i) {
+                            var j = this._player.getSubtitleTrack();
                             this._player.setSubtitleTrack(-1);
-                            this._bfSendSubTime = k;
+                            this._bfSendSubTime = i;
                             setTimeout(function() {
-                                this._player.setSubtitleTrack(l);
+                                this._player.setSubtitleTrack(j);
                             }.bind(this), 100);
                         }
                     }
@@ -3049,9 +3051,7 @@ var MultiViewDisplay = function() {
             this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
                 once: true
             });
-        } else {
-            this.arrangeVideo();
-        }
+        } else this.arrangeVideo();
         window.addEventListener('resize', function() {
             setTimeout(function() {
                 this.arrangeVideo();
@@ -3147,9 +3147,8 @@ var MultiViewDisplay = function() {
                 top: -1 * u + 1 + 'px',
                 position: 'absolute'
             });
-            if (!this._showMultiPreview) {
-                this._updateCanvasFlag = false;
-            } else {
+            if (!this._showMultiPreview) this._updateCanvasFlag = false;
+            else {
                 if (!this._updateCanvasFlag) {
                     this._updateCanvasFlag = true;
                     this._canvasTimeStamps = [];
@@ -3197,22 +3196,22 @@ var MultiViewDisplay = function() {
                     o = true;
                 }
                 if (!j.paused && !j.ended || o) {
-                    k.forEach(function(u, v) {
-                        var w = i._multiviewDivArr[v];
-                        var z = k.find(function(J) {
-                            return J.singleview_id === v;
+                    k.forEach(function(v, w) {
+                        var z = i._multiviewDivArr[w];
+                        var A = k.find(function(J) {
+                            return J.singleview_id === w;
                         });
-                        i.selectedMultiviewCanvas(v);
-                        if (z == null) return;
-                        var A = z.x;
-                        var B = z.y;
-                        var C = z.width;
-                        var D = z.height;
-                        var E = j.videoWidth;
-                        var F = j.videoHeight;
-                        var G = w.offsetWidth;
-                        var H = w.offsetHeight;
-                        l.drawImage(j, Math.round(A * E), Math.round(B * F), Math.round(C * E), Math.round(D * F), 0, H * v + m * v, G, H);
+                        i.selectedMultiviewCanvas(w);
+                        if (A == null) return;
+                        var B = A.x;
+                        var C = A.y;
+                        var D = A.width;
+                        var E = A.height;
+                        var F = j.videoWidth;
+                        var G = j.videoHeight;
+                        var H = z.offsetWidth;
+                        var I = z.offsetHeight;
+                        l.drawImage(j, Math.round(B * F), Math.round(C * G), Math.round(D * F), Math.round(E * G), 0, I * w + m * w, H, I);
                     }.bind(this));
                     var q = this._multiviewCanvas[0];
                     var r = this._doubleBufferCanvas[0];
@@ -3228,8 +3227,9 @@ var MultiViewDisplay = function() {
                     this._canvasTimeStampIndex = 0;
                 }
                 var s = 0;
-                if (this._canvasTimeStamps.length < 100) this._canvasTimeStamps.push(h);
-                else {
+                if (this._canvasTimeStamps.length < 100) {
+                    this._canvasTimeStamps.push(h);
+                } else {
                     this._canvasTimeStamps[this._canvasTimeStampIndex] = h;
                     s = this._canvasTimeStampIndex + 1;
                     if (s >= 100) s = 0;
@@ -3505,6 +3505,9 @@ switch (Tira) {
     case '210516_kangdaniel':
         var DCvi = '866bdbec-6069-4ebb-bead-71370637e78d';
         break;
+    case '210523_kimeunbi':
+        var DCvi = '659fe4f6-23c1-45d8-abc7-7d6a51727d01';
+        break;
     case 'dev_demo_event':
         var DCvi = 'f3a82d31-a083-4679-88e1-c0961a925afb';
         break;
@@ -3712,15 +3715,15 @@ Chat.Manager = function() {
             s.history({
                 channel: j[I],
                 count: c
-            }, function(K, L) {
-                console.log(K, L);
-                if (L) {
-                    if (L.messages.length)
-                        for (var M = 0; M < L.messages.length; M++) {
-                            var N = L.messages[M].entry.update.split(CHAT_MSG_SEPARATOR);
-                            for (var O = 0; O < N.length; O++) {
-                                var P = N[O].split(CHAT_USERID_SEPARATOR)[0];
-                                Chat.Ui.displayMessage(N[O], L.messages[M].timetoken, P, true);
+            }, function(J, K) {
+                console.log(J, K);
+                if (K) {
+                    if (K.messages.length)
+                        for (var L = 0; L < K.messages.length; L++) {
+                            var M = K.messages[L].entry.update.split(CHAT_MSG_SEPARATOR);
+                            for (var N = 0; N < M.length; N++) {
+                                var O = M[N].split(CHAT_USERID_SEPARATOR)[0];
+                                Chat.Ui.displayMessage(M[N], K.messages[L].timetoken, O, true);
                             }
                         }
                 }
@@ -3728,16 +3731,16 @@ Chat.Manager = function() {
             s.history({
                 channel: m,
                 count: 10000
-            }, function(K, L) {
-                console.log(K, L);
-                if (L) {
-                    var M = JSON.parse(JSON.stringify(L));
-                    if (M.messages.length) {
-                        for (var N = 0; N < M.messages.length; N++) {
-                            var O = M.messages[N].entry.update;
-                            var P = O.split(CHAT_USERID_SEPARATOR)[0];
-                            if (P) {
-                                Chat.Ui.displayArtistHistoryMsg(O, M.messages[N].timetoken, P);
+            }, function(J, K) {
+                console.log(J, K);
+                if (K) {
+                    var L = JSON.parse(JSON.stringify(K));
+                    if (L.messages.length) {
+                        for (var M = 0; M < L.messages.length; M++) {
+                            var N = L.messages[M].entry.update;
+                            var O = N.split(CHAT_USERID_SEPARATOR)[0];
+                            if (O) {
+                                Chat.Ui.displayArtistHistoryMsg(N, L.messages[M].timetoken, O);
                             }
                         }
                         if ($('#artistChatList').length) {
@@ -3767,8 +3770,9 @@ Chat.Manager = function() {
                     }
                 },
                 message: function N(O) {
-                    if (O.channel == k) Chat.Ui.updateNotice(O.message.update, O.timetoken, O.message.entry);
-                    else {
+                    if (O.channel == k) {
+                        Chat.Ui.updateNotice(O.message.update, O.timetoken, O.message.entry);
+                    } else {
                         if (O.channel == l) Chat.Ui.recvCtrlChMsg(O.message.update);
                         else {
                             var P = O.message.update.split(CHAT_MSG_SEPARATOR);
@@ -3800,8 +3804,8 @@ Chat.Manager = function() {
             var L = d / q.length;
             r = setInterval(function() {
                 if (q.length) {
-                    var O = q[0].split(CHAT_USERID_SEPARATOR)[0];
-                    Chat.Ui.displayMessage(q[0], K, O);
+                    var M = q[0].split(CHAT_USERID_SEPARATOR)[0];
+                    Chat.Ui.displayMessage(q[0], K, M);
                     K = parseInt(K) + parseInt(L * 1000 * 10);
                     q.splice(0, 1);
                 }
@@ -3841,11 +3845,11 @@ Chat.Manager = function() {
                             entry: M,
                             update: N
                         }
-                    }, function(X, Y) {
-                        if (X.error) {} else {
+                    }, function(U, V) {
+                        if (U.error) {} else {
                             if (Chat.Manager.checkArtistUser(n) && !Q) {
-                                if (Y) {
-                                    Chat.Ui.displayMessage(N, Y.timetoken, n);
+                                if (V) {
+                                    Chat.Ui.displayMessage(N, V.timetoken, n);
                                 }
                                 Q = true;
                             }
@@ -3858,12 +3862,12 @@ Chat.Manager = function() {
                     PartitionKey: O[0],
                     StreamName: 'KINESIS_CHAT'
                 };
-                t.putRecord(S, function(Y, Z) {
-                    if (Y) console.log(Y, Y.stack);
+                t.putRecord(S, function(U, V) {
+                    if (U) console.log(U, U.stack);
                     else {
-                        console.log(Z);
-                        var a0 = new Date();
-                        Chat.Ui.displayMessage(N, a0.getTime() * 10000);
+                        console.log(V);
+                        var W = new Date();
+                        Chat.Ui.displayMessage(N, W.getTime() * 10000);
                     }
                 });
             }
@@ -3894,9 +3898,10 @@ Chat.Manager = function() {
                     g = 0;
                     f = b;
                 }
-                if (f <= 0) {
-                    Chat.Ui.disableChatInput(a - g);
-                } else Chat.Ui.enableChatInput();
+                if (f <= 0) Chat.Ui.disableChatInput(a - g);
+                else {
+                    Chat.Ui.enableChatInput();
+                }
             }, 1000);
         },
         getNickName: function Q() {
@@ -3990,56 +3995,54 @@ Chat.Ui = function() {
             $('#chatContentWrap .scroll-bar').on('touchstart', function() {
                 b = true;
             });
-            $('#chatList').on('touchstart', function(l) {
+            $('#chatList').on('touchstart', function(k) {
                 j = true;
             });
-            $(document).on('touchmove', function(l) {
+            $(document).on('touchmove', function(k) {
                 console.log('touchmove');
                 if (j) {
                     b = true;
                 }
             });
-            $(document).on('touchend', function(l) {
+            $(document).on('touchend', function(k) {
                 j = false;
                 console.log('touchmove');
             });
-            $('#chatList').on('wheel', function(l) {
-                if (l.originalEvent.deltaY < 0 && $('#chatList').scrollTop() > 0) {
+            $('#chatList').on('wheel', function(k) {
+                if (k.originalEvent.deltaY < 0 && $('#chatList').scrollTop() > 0) {
                     b = true;
                 }
             });
             $('#chatList').on('scroll', function() {
-                if (d) {
-                    return;
-                }
+                if (d) return;
                 var chatAnchor = $('#chatAnchor');
                 var chatList = $('#chatList');
-                var n = function v() {
+                var m = function u() {
                     return Math.ceil(chatList.scrollTop() + chatList.height());
                 };
-                var o = function w() {
-                    var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : n();
-                    return x < chatList[0].scrollHeight;
+                var n = function v() {
+                    var w = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : m();
+                    return w < chatList[0].scrollHeight;
                 };
-                var p = function x() {
+                var o = function w() {
                     chatAnchor.css('display', 'block');
                     b = true;
                 };
-                if (o()) setTimeout(function() {
-                    return o() && p();
+                if (n()) setTimeout(function() {
+                    return n() && o();
                 }, 200);
                 else {
                     chatAnchor.css('display', 'none');
                     b = false;
                     if (e.length !== 0) {
-                        var q = document.createDocumentFragment();
-                        var r = e.reverse();
-                        for (var s = 0, t = r.length; s < t; s++) {
-                            if (a <= s) break;
-                            q.prepend(r[s]);
+                        var p = document.createDocumentFragment();
+                        var q = e.reverse();
+                        for (var r = 0, s = q.length; r < s; r++) {
+                            if (a <= r) break;
+                            p.prepend(q[r]);
                         }
                         chatList.find('.user_chat:eq(-1)').css('margin-bottom', '1.25em');
-                        chatList.append(q);
+                        chatList.append(p);
                         if (navigator.userAgent.indexOf('Firefox') === -1) chatList.find('.user_chat:eq(-1)').css('margin-bottom', '0');
                         chatList.scrollTop(chatList[0].scrollHeight);
                         e = [];
@@ -4051,59 +4054,56 @@ Chat.Ui = function() {
                 $('#chatAnchor').css('display', 'none');
             });
             $('#chatSendBtn').on('click', function() {
-                var l = Chat.Manager.getNickName();
-                var m = Chat.Manager.getUserId();
-                if (!l) {
+                var k = Chat.Manager.getNickName();
+                var l = Chat.Manager.getUserId();
+                if (!k) {
                     alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
                         location.href = LUEz1;
                     });
                     return;
                 }
-                var n = $('#chatInput').val();
-                if (!n || !ChatFilter.checkFilteringData()) return;
-                if (Chat.Manager.checkOperationntUser(m) && n.length > OPERATOR_CHAT_INPUT_MAXLENGTH) n = n.slice(0, OPERATOR_CHAT_INPUT_MAXLENGTH);
+                var m = $('#chatInput').val();
+                if (!m || !ChatFilter.checkFilteringData()) return;
+                if (Chat.Manager.checkOperationntUser(l) && m.length > OPERATOR_CHAT_INPUT_MAXLENGTH) m = m.slice(0, OPERATOR_CHAT_INPUT_MAXLENGTH);
                 else {
-                    if ((Chat.Manager.checkAdminUser(m) || Chat.Manager.checkArtistUser(m)) && n.length > ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH) {
-                        n = n.slice(0, ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH);
-                    } else {
-                        if (!Chat.Manager.isSuperUser() && n.length > USER_CHAT_INPUT_MAXLENGTH) {
-                            n = n.slice(0, USER_CHAT_INPUT_MAXLENGTH);
-                        }
+                    if ((Chat.Manager.checkAdminUser(l) || Chat.Manager.checkArtistUser(l)) && m.length > ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH) m = m.slice(0, ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH);
+                    else if (!Chat.Manager.isSuperUser() && m.length > USER_CHAT_INPUT_MAXLENGTH) {
+                        m = m.slice(0, USER_CHAT_INPUT_MAXLENGTH);
                     }
                 }
-                if (Chat.Manager.checkOperationntUser(m)) Chat.Manager.submitUpdate(m, n, Chat.Manager.getNoticeChannel());
+                if (Chat.Manager.checkOperationntUser(l)) Chat.Manager.submitUpdate(l, m, Chat.Manager.getNoticeChannel());
                 else {
-                    if (Chat.Manager.checkAdminUser(m)) Chat.Manager.submitUpdate(m, n, Chat.Manager.getCtrChannel());
+                    if (Chat.Manager.checkAdminUser(l)) Chat.Manager.submitUpdate(l, m, Chat.Manager.getCtrChannel());
                     else {
-                        var o = ChatFilter.filteringChatText(n);
-                        Chat.Manager.submitUpdate(m, m + CHAT_USERID_SEPARATOR + l + NICKNAME_SEPARATOR + o, Chat.Manager.getChatChannels());
+                        var n = ChatFilter.filteringChatText(m);
+                        Chat.Manager.submitUpdate(l, l + CHAT_USERID_SEPARATOR + k + NICKNAME_SEPARATOR + n, Chat.Manager.getChatChannels());
                     }
                 }
                 $('#chatInput').val('');
             });
-            $('#chatInput').on('keydown', function(l) {
-                if (l.keyCode == 13) {
+            $('#chatInput').on('keydown', function(k) {
+                if (k.keyCode == 13) {
                     $('#chatSendBtn').click();
                     return false;
                 }
             });
-            $('#chatInput').on('focus', function(l) {
+            $('#chatInput').on('focus', function(k) {
                 delayStopLoadingPanel();
             });
-            $('#chatInput').on('blur', function(l) {
+            $('#chatInput').on('blur', function(k) {
                 delayStopLoadingPanel();
             });
             $('#artistChatList').on('scroll', debounce(function() {
                 if (d) return;
                 var artistChatList = $('#artistChatList');
-                var m = function o() {
+                var l = function n() {
                     return Math.ceil(artistChatList.scrollTop() + artistChatList.height());
                 };
-                var n = function p() {
-                    var q = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : m();
-                    return q >= artistChatList[0].scrollHeight;
+                var m = function o() {
+                    var p = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : l();
+                    return p >= artistChatList[0].scrollHeight;
                 };
-                if (n()) {
+                if (m()) {
                     f = true;
                 } else {
                     f = false;
@@ -4192,18 +4192,18 @@ Chat.Ui = function() {
             var w = new Date(s / 10000);
             if (Chat.Manager.checkArtistUser(t)) {
                 x = Chat.Ui.createArtistChatDiv(t, v.nickName, v.text, w);
-                if (b) {
-                    e.push(x[0]);
-                } else $('#chatList').append(x);
+                if (b) e.push(x[0]);
+                else {
+                    $('#chatList').append(x);
+                }
                 if ($('#artistChatList').length && !u) {
                     $('#artistChatList').append(x.clone());
                 }
             } else {
                 if (t) {
                     var x = Chat.Ui.createUserChatDiv(t, v.nickName, v.text, w);
-                    if (b) {
-                        e.push(x[0]);
-                    } else {
+                    if (b) e.push(x[0]);
+                    else {
                         $('#chatList').append(x);
                     }
                 } else {
@@ -4232,8 +4232,9 @@ Chat.Ui = function() {
             if ((f || Chat.Ui.isYourSelf(v.userId)) && $('#artistChatList').length) {
                 $('#artistChatList').scrollTop($('#artistChatList')[0].scrollHeight);
             }
-            if (!c && (Chat.Ui.isYourSelf(v.userId) || !t || !b)) $('#chatList').scrollTop($('#chatList')[0].scrollHeight);
-            else {
+            if (!c && (Chat.Ui.isYourSelf(v.userId) || !t || !b)) {
+                $('#chatList').scrollTop($('#chatList')[0].scrollHeight);
+            } else {
                 $('#chatAnchor').css('display', 'block');
             }
         },
@@ -4260,7 +4261,9 @@ Chat.Ui = function() {
                 $('#chatInput').prop('placeholder', interpolate(gettext('P_CHAT_ABLE_DELAY_PLACEHOLDER_%(delay)s'), {
                     delay: u
                 }, true));
-            } else $('#chatInput').prop('placeholder', '');
+            } else {
+                $('#chatInput').prop('placeholder', '');
+            }
         },
         setHoldChatScroll: function u(v) {
             c = v;
@@ -4476,9 +4479,7 @@ function c() {
 function d(f) {
     if (f) {
         if (f._player) {
-            if (f._player.qualityList) {
-                return f._player.qualityList.length;
-            }
+            if (f._player.qualityList) return f._player.qualityList.length;
         }
     }
     return false;
@@ -4603,8 +4604,9 @@ $(document).ready(function() {
             r = false;
         }
         iCM(!!q.is_mute);
-        if (!p.artist_account) $('button[name=artistchatnavbtn]').css('display', ' none');
-        else {
+        if (!p.artist_account) {
+            $('button[name=artistchatnavbtn]').css('display', ' none');
+        } else {
             if (p.artist_account.indexOf(',') !== -1) {
                 p.artist_account = p.artist_account.split(',');
             } else {
@@ -4647,7 +4649,9 @@ $(document).ready(function() {
             l.sliderArea.slider.thumb = document.getElementById('playerSliderThumb');
             l.sliderThumbnail = document.getElementById('sliderThumbnail');
             l.sliderPaddingDiv = document.getElementById('sliderPaddingDiv');
-        } else $('#durationWrap').css('display', 'none');
+        } else {
+            $('#durationWrap').css('display', 'none');
+        }
         k.credentials = {
             user_id: q.user_id,
             device_id: getCookie(DCvi + '_device_id'),
@@ -4688,9 +4692,11 @@ $(document).ready(function() {
                 alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_END_LIVE_DESC'), gettext('P_ALERT_OK'), function() {
                     location.href = LUEz1;
                 });
-            } else alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_TRY_AGAIN_DESC'), gettext('P_ALERT_OK'), function() {
-                location.href = LUEz1;
-            });
+            } else {
+                alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_TRY_AGAIN_DESC'), gettext('P_ALERT_OK'), function() {
+                    location.href = LUEz1;
+                });
+            }
         }
     });
     $('button[name=chatnavbtn]').on('click', function() {
@@ -4707,10 +4713,10 @@ $(document).ready(function() {
                 } else {
                     $('#chatInputWrap').css('display', 'block');
                 }
-            } else {
-                $('#chatInputWrap').css('display', 'block');
-            }
-        } else $('#chatInputWrap').css('display', 'block');
+            } else $('#chatInputWrap').css('display', 'block');
+        } else {
+            $('#chatInputWrap').css('display', 'block');
+        }
         $('#holdChatScrollLabel').css('display', 'block');
         $('#artistChatWrap').css('display', 'none');
         $('#multiViewWrap').css('display', 'none');
@@ -4763,9 +4769,7 @@ $(document).ready(function() {
                         var o = _player._player.view;
                         _player._player.view = $(this).data().view;
                         $(this).siblings().each(function() {
-                            if (o == $(this).data().view) {
-                                return;
-                            }
+                            if (o == $(this).data().view) return;
                         });
                         $();
                     }
@@ -4783,8 +4787,9 @@ $(document).ready(function() {
                 $('#volumeBtn').css('display', 'inline-block');
                 $('#volumeSlider').css('display', 'inline-block');
             }
-            if ((!isIOS() || isIpadOS()) && d(_player)) $('#qualitySelectBtn').css('display', 'block');
-            else {
+            if ((!isIOS() || isIpadOS()) && d(_player)) {
+                $('#qualitySelectBtn').css('display', 'block');
+            } else {
                 $('#qualitySelectBtn').css('display', 'none');
             }
             if (_player._player.subtitleList) {
@@ -4793,9 +4798,7 @@ $(document).ready(function() {
                         $('#ccSelectBtn').css('display', 'block');
                     }
                 }
-            } else {
-                $('#ccSelectBtn').css('display', 'none');
-            }
+            } else $('#ccSelectBtn').css('display', 'none');
             $('#fullBtn').css('display', 'block');
             $('.pl-ctr-wrap').css('visibility', 'visible');
             $('.pl-btm-wrap').css('visibility', 'visible');
@@ -4854,7 +4857,9 @@ function request_to_server(a, b, c, d, e) {
             g.append(h, c[h]);
         }
         f.send(g);
-    } else f.send();
+    } else {
+        f.send();
+    }
     $('#loadingDiv').css('display', 'block');
     requestCnt++;
     if (!serverLoading) {
@@ -4881,17 +4886,17 @@ function request_to_server(a, b, c, d, e) {
                             console.log(JSON.parse(f.responseText));
                         }
                     } else try {
-                        var i = JSON.parse(f.responseText);
-                        e(i, f.status);
-                    } catch (m) {
+                        var k = JSON.parse(f.responseText);
+                        e(k, f.status);
+                    } catch (p) {
                         e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(i) {
-        console.log(i);
+    f.ontimeout = function(k) {
+        console.log(k);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -5006,9 +5011,7 @@ function alertPopup(a, b, c, d) {
 }
 
 function checkInterparkApp() {
-    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) {
-        return true;
-    }
+    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) return true;
     return false;
 }
 
@@ -5027,13 +5030,19 @@ function getQueryStringObject() {
 function checkIEbrowser() {
     var a = window.navigator.userAgent.toLowerCase();
     var b = a.indexOf('trident');
-    if (b > -1) return true;
+    if (b > -1) {
+        return true;
+    }
     return false;
 }
 
 function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
-    return a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1 ? true : false;
+    if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function checkMobileAndTablet() {
@@ -5043,10 +5052,7 @@ function checkMobileAndTablet() {
         else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            if (!c) return isIpadOS();
-            else {
-                return c;
-            }
+            return !c ? isIpadOS() : c;
         }
     }
 }
@@ -5101,9 +5107,7 @@ function removeClassName(a, b) {
 }
 
 function getOrientation() {
-    if (!isMobile()) {
-        return false;
-    }
+    if (!isMobile()) return false;
     if (isIOS()) {
         switch (window.orientation) {
             case -90:
@@ -5112,9 +5116,7 @@ function getOrientation() {
             default:
                 return 'portrait';
         }
-    } else {
-        return screen.orientation.type.toLowerCase();
-    }
+    } else return screen.orientation.type.toLowerCase();
 }
 
 function checkMobile() {
@@ -5127,7 +5129,9 @@ function checkMobile() {
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             if (!c) {
                 return isIpadOS();
-            } else return c;
+            } else {
+                return c;
+            }
         }
     }
 }

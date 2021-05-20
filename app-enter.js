@@ -16,14 +16,15 @@ function cusDD(a, b, c) {
         callbackArr.push(c);
     }
     var f = '';
-    if (!b) f = 'cusDD_default';
-    else {
-        if (b == 'slick dark') f = 'cusDD_slick_d';
-        else {
-            if (b == 'slick light') f = 'cusDD_slick_l';
-            else {
-                f = b;
-            }
+    if (!b) {
+        f = 'cusDD_default';
+    } else {
+        if (b == 'slick dark') {
+            f = 'cusDD_slick_d';
+        } else {
+            if (b == 'slick light') {
+                f = 'cusDD_slick_l';
+            } else f = b;
         }
     }
     for (var g = 0; g < $(a).length; g++) {
@@ -38,31 +39,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(n) {
+    $(document).click(function(p) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(n) {
-        var o = a;
-        $('.cusDD').not(o).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(o).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', o);
-        n.stopPropagation();
-        if ($(n.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(p) {
+        var q = a;
+        $('.cusDD').not(q).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(q).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', q);
+        p.stopPropagation();
+        if ($(p.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(n.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(p.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var p = 200;
+        var r = 200;
         if ($(this).find('.cusDD_options').children()) {
             if ($(this).find('.cusDD_options').children().length > 30) {
-                p = 0;
+                r = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(p);
+        $(this).find('.cusDD_options').slideToggle(r);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -360,6 +361,9 @@ switch (Tira) {
     case '210516_kangdaniel':
         var DCvi = '866bdbec-6069-4ebb-bead-71370637e78d';
         break;
+    case '210523_kimeunbi':
+        var DCvi = '659fe4f6-23c1-45d8-abc7-7d6a51727d01';
+        break;
     case 'dev_demo_event':
         var DCvi = 'f3a82d31-a083-4679-88e1-c0961a925afb';
         break;
@@ -374,71 +378,14 @@ switch (Tira) {
         break;
 }
 var ChatFilter = function() {
-    var a = '';
-    var b = false;
-    return {
-        loadChatFilterData: function c(d) {
-            if (b) {
-                if (d) d();
-                return;
-            }
-            var e = new XMLHttpRequest();
-            switch (Tira) {
-                case 'IDLE':
-                    e.open('GET', '/static/filtering/chat_filtering_idle.txt');
-                    break;
-                case '210417_cix':
-                    e.open('GET', '/static/filtering/chat_filtering_cix.txt');
-                    break;
-                case '210424_mamamoo':
-                    e.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
-                    break;
-                default:
-                    e.open('GET', '/static/filtering/chat_filtering.txt');
-                    break;
-            }
-            e.overrideMimeType('text/plain; charset=utf-8');
-            e.onreadystatechange = function() {
-                if (e.readyState == XMLHttpRequest.DONE) {
-                    if (e.status == 200 || e.status == 201) {
-                        a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
-                        a = a.replace(/[\r]/gm, '');
-                        if (a[a.length - 1] == '|') {
-                            a = a.substr(0, a.length - 1);
-                        }
-                        b = true;
-                        if (d) d();
-                    }
-                }
-            };
-            e.send();
-        },
-        filteringChatText: function d(e) {
-            if (!b) return;
-            var f = 'gi';
-            var g = new RegExp(a, f);
-            return e.replace(g, '***');
-        },
-        checkFilteringData: function e() {
-            return b;
-        },
-        checkNickname: function f(g) {
-            if (!b) return;
-            var h = 'gi';
-            var i = new RegExp(a, h);
-            return i.test(g);
-        }
-    };
-}();
-var NicknameFilter = function() {
     var c = function() {
         var g = true;
         return function(i, j) {
             var k = g ? function() {
                 if (j) {
-                    var m = j.apply(i, arguments);
+                    var l = j.apply(i, arguments);
                     j = null;
-                    return m;
+                    return l;
                 }
             } : function() {};
             g = false;
@@ -450,7 +397,7 @@ var NicknameFilter = function() {
         try {
             var h = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
             g = h();
-        } catch (p) {
+        } catch (o) {
             g = window;
         }
         var i = g.console = g.console || {};
@@ -465,19 +412,76 @@ var NicknameFilter = function() {
         }
     });
     d();
-    var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
-    var f = '';
-    if (e == '210424_mamamoo') {
-        f = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
-        f = f.map(function(h) {
-            return h.replace(/ /gi, '');
+    var e = '';
+    var f = false;
+    return {
+        loadChatFilterData: function g(h) {
+            if (f) {
+                if (h) h();
+                return;
+            }
+            var i = new XMLHttpRequest();
+            switch (Tira) {
+                case 'IDLE':
+                    i.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                    break;
+                case '210417_cix':
+                    i.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    break;
+                case '210424_mamamoo':
+                    i.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
+                    break;
+                default:
+                    i.open('GET', '/static/filtering/chat_filtering.txt');
+                    break;
+            }
+            i.overrideMimeType('text/plain; charset=utf-8');
+            i.onreadystatechange = function() {
+                if (i.readyState == XMLHttpRequest.DONE) {
+                    if (i.status == 200 || i.status == 201) {
+                        e = i.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
+                        e = e.replace(/[\r]/gm, '');
+                        if (e[e.length - 1] == '|') {
+                            e = e.substr(0, e.length - 1);
+                        }
+                        f = true;
+                        if (h) h();
+                    }
+                }
+            };
+            i.send();
+        },
+        filteringChatText: function h(i) {
+            if (!f) return;
+            var j = 'gi';
+            var k = new RegExp(e, j);
+            return i.replace(k, '***');
+        },
+        checkFilteringData: function i() {
+            return f;
+        },
+        checkNickname: function j(k) {
+            if (!f) return;
+            var l = 'gi';
+            var m = new RegExp(e, l);
+            return m.test(k);
+        }
+    };
+}();
+var NicknameFilter = function() {
+    var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
+    var b = '';
+    if (a == '210424_mamamoo') {
+        b = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
+        b = b.map(function(c) {
+            return c.replace(/ /gi, '');
         }).join('|');
     }
     return {
-        hasForbidden: function h(i) {
-            if (f === '') return false;
-            var j = new RegExp(f, 'gi');
-            return j.test(i);
+        hasForbidden: function c(d) {
+            if (b === '') return false;
+            var e = new RegExp(b, 'gi');
+            return e.test(d);
         }
     };
 }();
@@ -522,20 +526,18 @@ function request_to_server(a, b, c, d, e) {
                         if (f.responseText) {
                             console.log(JSON.parse(f.responseText));
                         }
-                    } else {
-                        try {
-                            var k = JSON.parse(f.responseText);
-                            e(k, f.status);
-                        } catch (q) {
-                            e(f.responseText, f.status);
-                        }
+                    } else try {
+                        var j = JSON.parse(f.responseText);
+                        e(j, f.status);
+                    } catch (m) {
+                        e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(k) {
-        console.log(k);
+    f.ontimeout = function(j) {
+        console.log(j);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -650,7 +652,9 @@ function alertPopup(a, b, c, d) {
 }
 
 function checkInterparkApp() {
-    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) return true;
+    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) {
+        return true;
+    }
     return false;
 }
 
@@ -675,15 +679,16 @@ function checkIEbrowser() {
 
 function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
-    return a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1 ? true : false;
+    if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) {
+        return true;
+    } else return false;
 }
 
 function checkMobileAndTablet() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
-        if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
-            return true;
-        } else {
+        if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
+        else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             if (!c) return isIpadOS();
@@ -744,13 +749,17 @@ function removeClassName(a, b) {
 }
 
 function getOrientation() {
-    if (!isMobile()) return false;
-    if (isIOS()) switch (window.orientation) {
-        case -90:
-        case 90:
-            return 'landscape';
-        default:
-            return 'portrait';
+    if (!isMobile()) {
+        return false;
+    }
+    if (isIOS()) {
+        switch (window.orientation) {
+            case -90:
+            case 90:
+                return 'landscape';
+            default:
+                return 'portrait';
+        }
     } else {
         return screen.orientation.type.toLowerCase();
     }
@@ -763,7 +772,9 @@ function checkMobile() {
         else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            return !c ? isIpadOS() : c;
+            if (!c) {
+                return isIpadOS();
+            } else return c;
         }
     }
 }
@@ -1079,10 +1090,11 @@ function d() {
     removeCookie(DCvi + '_user_id');
     removeCookie(DCvi + '_chat_id');
 }
-if (ddv) $(document).ready(function() {
-    d();
-});
-else {
+if (ddv) {
+    $(document).ready(function() {
+        d();
+    });
+} else {
     var e = function w(x, y, z) {
         request_to_server('POST', RSAnd + '/user_auth/customer_login/', x, function(A) {
             o = JSON.parse(JSON.stringify(A.Data.content));
@@ -1103,10 +1115,10 @@ else {
         });
     };
     var g = function y(z, A, B) {
-        request_to_server('POST', RSAnd + '/user_auth/player_enter/', z, function(C) {
-            if (A) A(C);
-        }, function(C) {
-            if (B) B(C);
+        request_to_server('POST', RSAnd + '/user_auth/player_enter/', z, function(D) {
+            if (A) A(D);
+        }, function(D) {
+            if (B) B(D);
         });
     };
     var h = function z(A) {
@@ -1272,8 +1284,10 @@ else {
         ChatFilter.loadChatFilterData(function() {
             s = G;
             if (G == 'enter') $('#loginPopup').css('display', 'none');
-            else if (G == 'auth') {
-                $('#authPopup').css('display', 'none');
+            else {
+                if (G == 'auth') {
+                    $('#authPopup').css('display', 'none');
+                }
             }
             if (H) {
                 $('#nickname').val(H);
@@ -1336,22 +1350,22 @@ else {
         var authTicketId = $('#authTicketId');
         var authFailTxt = $('#authFailTxt');
         var authCheckBtn = $('#authCheckBtn');
-        var a3 = new Date(parseInt(ete));
-        var a4 = new Date(parseInt(cte));
-        var a5 = new Date();
-        var a6 = uath;
-        var a7 = true;
-        var a8 = {
+        var a4 = new Date(parseInt(ete));
+        var a5 = new Date(parseInt(cte));
+        var a6 = new Date();
+        var a7 = uath;
+        var a8 = true;
+        var a9 = {
             requestCreateNickname: null
         };
-        var a9 = false;
+        var aa = false;
         authMsg1.css('display', 'none');
         authMsg2.css('display', 'none');
-        var aa = function ah(ai) {
+        var ab = function ai(aj) {
             authMsg1.css('display', 'none');
             authMsg2.css('display', 'none');
             authBtn.css('display', 'none');
-            if (ai) {
+            if (aj) {
                 enterBtn.css('display', 'inline-block');
                 readyBtn.css('display', 'none');
             } else {
@@ -1360,14 +1374,14 @@ else {
             }
             if (rtd) enterBtn.css('display', 'inline-block');
         };
-        var ab = function ai() {
-            a8.requestCreateNickname = setTimeout(function() {
+        var ac = function aj() {
+            a9.requestCreateNickname = setTimeout(function() {
                 console.log('@@@RESET');
                 nicknameFailTxt.text('');
-                a7 = true;
+                a8 = true;
             }, 1000);
         };
-        var ac = function aj() {
+        var ad = function ak() {
             authCustomerId.text('');
             authTicketId.text('');
             authFailTxt.text('');
@@ -1381,32 +1395,32 @@ else {
             }
             authCustomerId.focus();
         };
-        var ad = function ak() {
-            var al = egl;
-            var am = DCvi;
-            var an = null;
+        var ae = function al() {
+            var am = egl;
+            var an = DCvi;
+            var ao = null;
             if (c !== null) {
-                an = POPUP_CONFIG.authorizedByCode(al);
-                $('.popupbox .label_customer_id').text(an.idText);
-                $('.popupbox .label_ticket_id').text(an.ticketText);
+                ao = POPUP_CONFIG.authorizedByCode(am);
+                $('.popupbox .label_customer_id').text(ao.idText);
+                $('.popupbox .label_ticket_id').text(ao.ticketText);
                 customerId.prop('autofocus', false).prop('readonly', true).val(c);
                 authCustomerId.prop('autofocus', false).prop('readonly', true).val(c);
-                authPopup.find('.pop-tt.auth').text(an.authPopupTitle);
+                authPopup.find('.pop-tt.auth').text(ao.authPopupTitle);
             }
         };
-        var ae = function al(am, an) {
-            var ao = DCvi;
-            if (!HIKE_UTIL.isHikeEvent(ao)) return;
-            if (am && !an) {
-                ac();
+        var af = function am(an, ao) {
+            var ap = DCvi;
+            if (!HIKE_UTIL.isHikeEvent(ap)) return;
+            if (an && !ao) {
+                ad();
             }
-            if (!am && !an) {
+            if (!an && !ao) {
                 enterBtn.click();
             }
         };
-        ad();
-        t = a4.getTime() - a5.getTime();
-        if (a3 < a4) {
+        ae();
+        t = a5.getTime() - a6.getTime();
+        if (a4 < a5) {
             dayWrap.css('display', 'none');
             if (!checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp()) {
                 enterBtn.css('display', 'inline-block');
@@ -1422,14 +1436,14 @@ else {
                 dayWrap.css('display', 'block');
             }
             enterBtn.css('display', 'none');
-            if (!a6) {
-                aa(false);
+            if (!a7) {
+                ab(false);
             }
-            var af = function am() {
-                var an = new Date();
-                an.setTime(an.getTime() + t);
-                a9 = a3 <= an;
-                if (a3 <= an) {
+            var ag = function ap() {
+                var aq = new Date();
+                aq.setTime(aq.getTime() + t);
+                aa = a4 <= aq;
+                if (a4 <= aq) {
                     dayWrap.css('display', 'none');
                     enterBtn.css('display', 'inline-block');
                     readyBtn.css('display', 'none');
@@ -1444,57 +1458,57 @@ else {
                     if (!rtd) {
                         enterBtn.css('display', 'none');
                     }
-                    if (!a6) {
-                        aa(false);
+                    if (!a7) {
+                        ab(false);
                     }
                 }
-                var ao = (a3 - an) / 1000;
-                var ap = parseInt(ao / 60 / 60 / 24);
-                var aq = parseInt(ao / 60 / 60 % 24);
-                var ar = parseInt(ao / 60 % 60);
-                var as = parseInt(ao % 60);
-                if (ap < 10) {
-                    ap = '0' + ap;
-                }
-                if (aq < 10) {
-                    aq = '0' + aq;
-                }
-                if (ar < 10) {
-                    ar = '0' + ar;
-                }
+                var ar = (a4 - aq) / 1000;
+                var as = parseInt(ar / 60 / 60 / 24);
+                var at = parseInt(ar / 60 / 60 % 24);
+                var au = parseInt(ar / 60 % 60);
+                var av = parseInt(ar % 60);
                 if (as < 10) {
                     as = '0' + as;
                 }
+                if (at < 10) {
+                    at = '0' + at;
+                }
+                if (au < 10) {
+                    au = '0' + au;
+                }
+                if (av < 10) {
+                    av = '0' + av;
+                }
                 if (document.getElementById('day')) {
-                    document.getElementById('day').innerHTML = ap;
+                    document.getElementById('day').innerHTML = as;
                 }
                 if (document.getElementById('hour')) {
-                    document.getElementById('hour').innerHTML = aq;
+                    document.getElementById('hour').innerHTML = at;
                 }
                 if (document.getElementById('minute')) {
-                    document.getElementById('minute').innerHTML = ar;
+                    document.getElementById('minute').innerHTML = au;
                 }
                 if (document.getElementById('second')) {
-                    document.getElementById('second').innerHTML = as;
+                    document.getElementById('second').innerHTML = av;
                 }
             };
-            af();
-            r = setInterval(af, 1000);
+            ag();
+            r = setInterval(ag, 1000);
         }
         if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
             enterBtn.css('display', 'none');
             notSupportedBrowser.css('display', 'inline-block');
         } else {
-            var ag = {
+            var ah = {
                 content_id: DCvi,
                 user_id: getCookie(DCvi + '_user_id'),
                 device_id: getCookie(DCvi + '_device_id')
             };
-            if (a3 > a4) {
-                if (!a6) {
-                    aa(false);
+            if (a4 > a5) {
+                if (!a7) {
+                    ab(false);
                 } else {
-                    if (!ag.user_id) {
+                    if (!ah.user_id) {
                         authBtn.css('display', 'inline-block');
                         if (!dsev) {
                             authMsg1.css('display', 'block');
@@ -1503,71 +1517,72 @@ else {
                     }
                 }
             }
-            userSessionCheck(ag, function(aq) {
-                p = JSON.parse(JSON.stringify(aq.Data.user));
-                o = JSON.parse(JSON.stringify(aq.Data.content));
+            userSessionCheck(ah, function(av) {
+                p = JSON.parse(JSON.stringify(av.Data.user));
+                o = JSON.parse(JSON.stringify(av.Data.content));
                 if (o.status == 'end') {
                     clearInterval(r);
                     d();
                 } else {
                     if (o.is_chat_used) {
                         if (p.nickname) {
-                            if (a3 > a4) {
-                                if (!a6) aa(false);
-                                else {
-                                    readyBtn.css('display', 'inline-block');
-                                }
+                            if (a4 > a5) {
+                                if (!a7) {
+                                    ab(false);
+                                } else readyBtn.css('display', 'inline-block');
                             }
                             authBtn.css('display', 'none');
                             authMsg1.css('display', 'none');
                             authMsg2.css('display', 'none');
                         } else {
-                            if (a3 > a4) {
-                                if (!a6) aa(false);
+                            if (a4 > a5) {
+                                if (!a7) ab(false);
                                 else {
                                     authBtn.css('display', 'inline-block');
                                     if (HIKE_UTIL.isHikeEvent()) {
                                         readyBtn.show();
                                     }
                                 }
-                                if (!dsev && a6) {
+                                if (!dsev && a7) {
                                     authMsg1.css('display', 'block');
                                     authMsg2.css('display', 'block');
                                 }
                             }
                         }
                     } else {
-                        if (a3 > a4) {
-                            if (!a6) aa(false);
-                            else {
+                        if (a4 > a5) {
+                            if (!a7) {
+                                ab(false);
+                            } else {
                                 authBtn.css('display', 'inline-block');
-                                ae(true, false);
+                                af(true, false);
                             }
-                            if (!dsev && a6) {
+                            if (!dsev && a7) {
                                 authMsg1.css('display', 'block');
                                 authMsg2.css('display', 'block');
                             }
                         }
                     }
                 }
-            }, function(aq) {
-                if (aq.Data) {
-                    if (aq.Data.content.status == 'end') {
+            }, function(av) {
+                if (av.Data) {
+                    if (av.Data.content.status == 'end') {
                         clearInterval(r);
                         d();
                     } else {
-                        if (a3 > a4) {
-                            if (!a6) aa(false);
-                            else {
+                        if (a4 > a5) {
+                            if (!a7) {
+                                ab(false);
+                            } else {
                                 authBtn.css('display', 'inline-block');
-                                ae(true, false);
+                                af(true, false);
                             }
-                            if (!dsev && a6) {
+                            if (!dsev && a7) {
                                 authMsg1.css('display', 'block');
                                 authMsg2.css('display', 'block');
                             }
                         } else {
-                            ae(false, false);
+                            af(false, false);
                             authBtn.css('display', 'none');
                             authMsg1.css('display', 'none');
                             authMsg2.css('display', 'none');
@@ -1581,31 +1596,35 @@ else {
             ticketId.val('');
             loginFailTxt.text('');
             chk_save2.prop('checked', true);
-            ad();
-            var ar = {
+            ae();
+            var aw = {
                 user_id: getCookie(DCvi + '_user_id'),
                 device_id: getCookie(DCvi + '_device_id'),
                 content_id: DCvi
             };
-            if (!a6) {
-                if (ar.user_id) {
+            if (!a7) {
+                if (aw.user_id) {
                     if (o && o.is_chat_used) {
                         n('enter', p.nickname);
                     } else {
                         j();
                     }
-                } else loginBtn.click();
+                } else {
+                    loginBtn.click();
+                }
                 return;
             }
-            userSessionCheck(ar, function(au) {
-                o = JSON.parse(JSON.stringify(au.Data.content));
-                p = JSON.parse(JSON.stringify(au.Data.user));
+            userSessionCheck(aw, function(ay) {
+                o = JSON.parse(JSON.stringify(ay.Data.content));
+                p = JSON.parse(JSON.stringify(ay.Data.user));
                 if (o.is_chat_used) {
                     n('enter', p.nickname);
-                } else j();
-            }, function(au) {
-                if (au.Data) {
-                    if (au.Data.content.status == 'end') {
+                } else {
+                    j();
+                }
+            }, function(ay) {
+                if (ay.Data) {
+                    if (ay.Data.content.status == 'end') {
                         clearInterval(r);
                         d();
                     } else {
@@ -1628,37 +1647,39 @@ else {
             loginPopup.css('display', 'none');
         });
         loginBtn.on('click', function() {
-            var ar = customerId.val().trim();
-            var as = ticketId.val().trim();
-            if (a6 && (!ar || !as)) {
+            var aw = customerId.val().trim();
+            var ax = ticketId.val().trim();
+            if (a7 && (!aw || !ax)) {
                 k(loginFailTxt, DCvi);
                 return;
             }
-            var at = {
-                customer_id: ar,
-                ticket_id: as,
+            var ay = {
+                customer_id: aw,
+                ticket_id: ax,
                 content_id: DCvi,
                 device_id: u
             };
-            if (!a6) {
-                at.customer_id = null;
-                at.ticket_id = null;
+            if (!a7) {
+                ay.customer_id = null;
+                ay.ticket_id = null;
             }
-            e(at, function() {
-                if (a6) {
+            e(ay, function() {
+                if (a7) {
                     if (chk_save2.prop('checked')) {
-                        setCookie(DCvi + '_customer_id', at.customer_id, 20160);
-                        setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
+                        setCookie(DCvi + '_customer_id', ay.customer_id, 20160);
+                        setCookie(DCvi + '_ticket_id', ay.ticket_id, 20160);
                     } else {
                         removeCookie(DCvi + '_customer_id');
                         removeCookie(DCvi + '_ticket_id');
                     }
-                    setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
-                    HIKE_UTIL.setCookiesOnGroup(q, false, at.ticket_id, false, false);
+                    setCookie(DCvi + '_ticket_id', ay.ticket_id, 20160);
+                    HIKE_UTIL.setCookiesOnGroup(q, false, ay.ticket_id, false, false);
                 }
                 if (o.is_chat_used) {
                     n('enter', p.nickname);
-                } else j();
+                } else {
+                    j();
+                }
             }, function() {
                 l(loginFailTxt, DCvi);
             });
@@ -1669,8 +1690,8 @@ else {
             nicknamePopup.css('display', 'none');
         });
         createNickBtn.on('click', function() {
-            var ar = nickname.val();
-            if (!ar) {
+            var aw = nickname.val();
+            if (!aw) {
                 switch (egl) {
                     case 'ko':
                         nicknameFailTxt.text('닉네임을 입력해주세요.');
@@ -1688,7 +1709,7 @@ else {
                 }
                 return;
             }
-            if (h(ar)) {
+            if (h(aw)) {
                 switch (egl) {
                     case 'ko':
                         nicknameFailTxt.text('닉네임에는 특수문자를 포함할 수 없습니다.');
@@ -1705,7 +1726,7 @@ else {
                         break;
                 }
             } else {
-                if (i(ar)) {
+                if (i(aw)) {
                     switch (egl) {
                         case 'ko':
                             nicknameFailTxt.text('닉네임에는 공백을 포함할 수 없습니다.');
@@ -1722,7 +1743,7 @@ else {
                             break;
                     }
                 } else {
-                    if (ar.length < 2 || ar.length > 12) {
+                    if (aw.length < 2 || aw.length > 12) {
                         switch (egl) {
                             case 'ko':
                                 nicknameFailTxt.text('닉네임은 2~12자로 입력해 주세요.');
@@ -1739,7 +1760,7 @@ else {
                                 break;
                         }
                     } else {
-                        if (NicknameFilter.hasForbidden(ar)) {
+                        if (NicknameFilter.hasForbidden(aw)) {
                             switch (egl) {
                                 case 'ko':
                                     nicknameFailTxt.text('사용할 수 없는 닉네임입니다.');
@@ -1756,7 +1777,7 @@ else {
                                     break;
                             }
                         } else {
-                            if (ChatFilter.checkNickname(ar)) {
+                            if (ChatFilter.checkNickname(aw)) {
                                 switch (egl) {
                                     case 'ko':
                                         nicknameFailTxt.text('닉네임에 비속어가 포함되어 있습니다.');
@@ -1773,63 +1794,63 @@ else {
                                         break;
                                 }
                             } else {
-                                clearTimeout(a8.requestCreateNickname);
-                                if (!a7) {
+                                clearTimeout(a9.requestCreateNickname);
+                                if (!a8) {
                                     nicknameFailTxt.text(POPUP_CONFIG.duplicatedNickname(egl).desc);
-                                    ab();
+                                    ac();
                                 }
-                                if (!a7) return;
-                                var as = {
+                                if (!a8) return;
+                                var ax = {
                                     user_id: p.user_id,
                                     device_id: u,
-                                    nickname: ar,
+                                    nickname: aw,
                                     content_id: DCvi
                                 };
                                 $('#loadingDiv').css('display', 'block');
-                                f(as, function() {
-                                    a7 = true;
-                                    clearTimeout(a8.requestCreateNickname);
+                                f(ax, function() {
+                                    a8 = true;
+                                    clearTimeout(a9.requestCreateNickname);
                                     if (s == 'auth') {
                                         m(DCvi);
-                                        if (a9) readyBtn.css('display', 'none');
+                                        if (aa) readyBtn.css('display', 'none');
                                     } else {
                                         if (s == 'enter') {
                                             $('#loadingDiv').css('display', 'none');
                                             nicknamePopup.css('display', 'none');
-                                            var aH = '';
-                                            var aI = '';
-                                            var aJ = '';
+                                            var aK = '';
+                                            var aL = '';
+                                            var aM = '';
                                             switch (egl) {
                                                 case 'ko':
-                                                    aI = '알림';
-                                                    aH = '닉네임 생성이 완료되었습니다.';
-                                                    aJ = '확인';
+                                                    aL = '알림';
+                                                    aK = '닉네임 생성이 완료되었습니다.';
+                                                    aM = '확인';
                                                     break;
                                                 case 'en':
-                                                    aI = 'Notification';
-                                                    aH = 'Nickname successfully created.';
-                                                    aJ = 'OK';
+                                                    aL = 'Notification';
+                                                    aK = 'Nickname successfully created.';
+                                                    aM = 'OK';
                                                     break;
                                                 case 'ja':
                                                 case 'jp':
-                                                    aI = 'お知らせ';
-                                                    aH = 'ニックネーム作成を完了しました';
-                                                    aJ = '確認';
+                                                    aL = 'お知らせ';
+                                                    aK = 'ニックネーム作成を完了しました';
+                                                    aM = '確認';
                                                     break;
                                                 case 'cn':
-                                                    aI = '提醒';
-                                                    aH = '账户名生成完毕';
-                                                    aJ = '确认';
+                                                    aL = '提醒';
+                                                    aK = '账户名生成完毕';
+                                                    aM = '确认';
                                                     break;
                                             }
-                                            alertPopup(aI, aH, aJ, j);
+                                            alertPopup(aL, aK, aM, j);
                                         }
                                     }
-                                }, function(aH, aI) {
-                                    a7 = false;
-                                    ab();
-                                    var aJ = aH && aH.Message == 'nickname duplicated.' || aI == 409;
-                                    if (aJ) {
+                                }, function(aK, aL) {
+                                    a8 = false;
+                                    ac();
+                                    var aM = aK && aK.Message == 'nickname duplicated.' || aL == 409;
+                                    if (aM) {
                                         switch (egl) {
                                             case 'ko':
                                                 nicknameFailTxt.text('이미 사용 중인 닉네임입니다.');
@@ -1846,7 +1867,7 @@ else {
                                                 break;
                                         }
                                     } else {
-                                        if (aI === 403) {
+                                        if (aL === 403) {
                                             switch (egl) {
                                                 case 'ko':
                                                     nicknameFailTxt.text('사용할 수 없는 닉네임입니다.');
@@ -1887,35 +1908,35 @@ else {
                 }
             }
         });
-        $('#customerId,#ticketId').on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        $('#customerId,#ticketId').on('keydown', function(aw) {
+            if (aw.keyCode == 13) {
                 loginBtn.click();
             }
         });
-        nickname.on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        nickname.on('keydown', function(aw) {
+            if (aw.keyCode == 13) {
                 createNickBtn.click();
             }
         });
-        authBtn.on('click', ac);
+        authBtn.on('click', ad);
         authCheckBtn.on('click', function() {
-            var ar = authCustomerId.val().trim();
-            var as = authTicketId.val().trim();
-            if (!ar || !as) {
+            var aw = authCustomerId.val().trim();
+            var ax = authTicketId.val().trim();
+            if (!aw || !ax) {
                 k(authFailTxt, DCvi);
                 return;
             }
-            var at = {
-                customer_id: ar,
-                ticket_id: as,
+            var ay = {
+                customer_id: aw,
+                ticket_id: ax,
                 content_id: DCvi,
                 device_id: u
             };
-            e(at, function() {
+            e(ay, function() {
                 if (chk_save.prop('checked')) {
-                    setCookie(DCvi + '_customer_id', at.customer_id, 20160);
-                    setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
-                    HIKE_UTIL.setCookiesOnGroup(q, at.customer_id, at.ticket_id, false, false);
+                    setCookie(DCvi + '_customer_id', ay.customer_id, 20160);
+                    setCookie(DCvi + '_ticket_id', ay.ticket_id, 20160);
+                    HIKE_UTIL.setCookiesOnGroup(q, ay.customer_id, ay.ticket_id, false, false);
                     if (p) {
                         setCookie(DCvi + '_user_id', p.user_id, 20160);
                         HIKE_UTIL.setCookiesOnGroup(q, null, null, true, false);
@@ -1925,16 +1946,17 @@ else {
                     removeCookie(DCvi + '_ticket_id');
                     removeCookie(DCvi + '_user_id');
                 }
-                if (o.is_chat_used) n('auth', p.nickname);
-                else {
+                if (o.is_chat_used) {
+                    n('auth', p.nickname);
+                } else {
                     m(DCvi);
                 }
             }, function() {
                 l(authFailTxt, DCvi);
             });
         });
-        $('#authCustomerId, #authTicketId').on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        $('#authCustomerId, #authTicketId').on('keydown', function(aw) {
+            if (aw.keyCode == 13) {
                 authCheckBtn.click();
             }
         });
@@ -1949,13 +1971,13 @@ else {
             authMsg2.remove();
         }
     });
-    window.onpageshow = function(G) {
-        var H = null;
-        var I = window.performance;
-        var J = I && I.getEntriesByType ? I.getEntriesByType('navigation') : null;
-        var K = J && J[0] ? J[0].type : null;
-        console.log(K);
-        if (G.persisted || K == 'back_forward' || H == 2) {
+    window.onpageshow = function(H) {
+        var I = null;
+        var J = window.performance;
+        var K = J && J.getEntriesByType ? J.getEntriesByType('navigation') : null;
+        var L = K && K[0] ? K[0].type : null;
+        console.log(L);
+        if (H.persisted || L == 'back_forward' || I == 2) {
             location.reload();
         }
     };
