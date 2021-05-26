@@ -6,10 +6,10 @@ function _createForOfIteratorHelper(a, b) {
         if (Array.isArray(a) || (c = _unsupportedIterableToArray(a)) || b && a && typeof a.length === 'number') {
             if (c) a = c;
             var d = 0;
-            var g = function l() {};
+            var g = function m() {};
             return {
                 s: g,
-                n: function m() {
+                n: function p() {
                     if (d >= a.length) return {
                         done: true
                     };
@@ -18,8 +18,8 @@ function _createForOfIteratorHelper(a, b) {
                         value: a[d++]
                     };
                 },
-                e: function p(q) {
-                    throw q;
+                e: function q(r) {
+                    throw r;
                 },
                 f: g
             };
@@ -70,7 +70,9 @@ function _arrayLikeToArray(a, b) {
 }
 
 function _classCallCheck(a, b) {
-    if (!(a instanceof b)) throw new TypeError('Cannot call a class as a function');
+    if (!(a instanceof b)) {
+        throw new TypeError('Cannot call a class as a function');
+    }
 }
 
 function _defineProperties(a, b) {
@@ -105,14 +107,14 @@ function cusDD(a, b, c) {
         callbackArr.push(c);
     }
     var f = '';
-    if (!b) {
-        f = 'cusDD_default';
-    } else {
+    if (!b) f = 'cusDD_default';
+    else {
         if (b == 'slick dark') f = 'cusDD_slick_d';
-        else if (b == 'slick light') {
-            f = 'cusDD_slick_l';
-        } else {
-            f = b;
+        else {
+            if (b == 'slick light') f = 'cusDD_slick_l';
+            else {
+                f = b;
+            }
         }
     }
     for (var g = 0; g < $(a).length; g++) {
@@ -127,31 +129,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(m) {
+    $(document).click(function(n) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(m) {
-        var n = a;
-        $('.cusDD').not(n).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(n).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', n);
-        m.stopPropagation();
-        if ($(m.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(n) {
+        var o = a;
+        $('.cusDD').not(o).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(o).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', o);
+        n.stopPropagation();
+        if ($(n.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(m.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(n.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var o = 200;
+        var p = 200;
         if ($(this).find('.cusDD_options').children()) {
             if ($(this).find('.cusDD_options').children().length > 30) {
-                o = 0;
+                p = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(o);
+        $(this).find('.cusDD_options').slideToggle(p);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -227,8 +229,8 @@ function cusDDselectOption(a, b, c) {
     };
     d.prototype._initEvents = function() {
         if (this.closeBtn) {
-            this.closeBtn.addEventListener('click', function(f) {
-                f.preventDefault();
+            this.closeBtn.addEventListener('click', function(g) {
+                g.preventDefault();
                 this.close();
             }.bind(this));
         }
@@ -292,9 +294,8 @@ var Rich360Player = function() {
         key: 'initPlayerUI',
         value: function b() {
             this._ui.playBtn.onclick = function() {
-                if (this._player._ui_play) {
-                    this.pause();
-                } else {
+                if (this._player._ui_play) this.pause();
+                else {
                     this.play();
                 }
             }.bind(this);
@@ -351,20 +352,20 @@ var Rich360Player = function() {
                 }.bind(this));
                 $(this._ui.prev10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var e = this._player.currentPosition - 10;
-                        if (e < 0) {
-                            e = 0;
+                        var f = this._player.currentPosition - 10;
+                        if (f < 0) {
+                            f = 0;
                         }
-                        this._player.currentPosition = e;
+                        this._player.currentPosition = f;
                     }
                 }.bind(this));
                 $(this._ui.next10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var e = this._player.currentPosition + 10;
-                        if (e > this._player.duration - 1) {
-                            e = this._player.duration - 1;
+                        var f = this._player.currentPosition + 10;
+                        if (f > this._player.duration - 1) {
+                            f = this._player.duration - 1;
                         }
-                        this._player.currentPosition = e;
+                        this._player.currentPosition = f;
                     }
                 }.bind(this));
             }
@@ -375,21 +376,26 @@ var Rich360Player = function() {
                         this._player._video.webkitEnterFullscreen();
                     }
                 }.bind(this));
-            } else this._ui.fullScreen = new FullscreenButton(this, this._ui.fullBtn);
+            } else {
+                this._ui.fullScreen = new FullscreenButton(this, this._ui.fullBtn);
+            }
             if (isMobile()) {
                 var c = getOrientation();
                 if (typeof c == 'string') {
                     if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') {
                         this.hideChatWrap();
-                    } else if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
-                        this.showChatWrap();
+                    } else {
+                        if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
+                            this.showChatWrap();
+                        }
                     }
                 }
                 $(window).on('orientationchange', function() {
-                    var h = getOrientation();
-                    if (typeof h == 'string') {
-                        if (h == 'landscape-primary' || h == 'landscape-secondary' || h == 'landscape') this.hideChatWrap();
-                        else if (h == 'portrait-primary' || h == 'portrait-secondary' || h == 'portrait') {
+                    var j = getOrientation();
+                    if (typeof j == 'string') {
+                        if (j == 'landscape-primary' || j == 'landscape-secondary' || j == 'landscape') {
+                            this.hideChatWrap();
+                        } else if (j == 'portrait-primary' || j == 'portrait-secondary' || j == 'portrait') {
                             this.showChatWrap();
                         }
                     }
@@ -408,8 +414,9 @@ var Rich360Player = function() {
             e.dataset.id = d.id;
             e.dataset.height = d.height;
             var f = '';
-            if (e.dataset.height == 'auto') f = 'AUTO';
-            else {
+            if (e.dataset.height == 'auto') {
+                f = 'AUTO';
+            } else {
                 f = e.dataset.height + 'P';
             }
             e.innerHTML = f;
@@ -424,9 +431,8 @@ var Rich360Player = function() {
             f.dataset.id = e.id;
             f.dataset.height = e.height;
             var g = '';
-            if (f.dataset.height == 'auto') {
-                g = 'AUTO';
-            } else {
+            if (f.dataset.height == 'auto') g = 'AUTO';
+            else {
                 g = f.dataset.height + 'P';
             }
             f.innerHTML = g;
@@ -514,40 +520,38 @@ var Rich360Player = function() {
                     this._ui.qualityPopupItems.push(n);
                 }
                 for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
-                    this._ui.qualityPopupItems[o].addEventListener('click', function(q) {
-                        var r = null;
-                        if (q.target.id == 'auto') {
-                            r = -1;
-                        } else {
-                            r = parseInt(q.target.id);
+                    this._ui.qualityPopupItems[o].addEventListener('click', function(t) {
+                        var u = null;
+                        if (t.target.id == 'auto') u = -1;
+                        else {
+                            u = parseInt(t.target.id);
                         }
-                        for (var s = 0; s < this._ui.qualityPopupItems.length; s++) {
-                            removeClassName(this._ui.qualityPopupItems[s], 'on');
+                        for (var v = 0; v < this._ui.qualityPopupItems.length; v++) {
+                            removeClassName(this._ui.qualityPopupItems[v], 'on');
                         }
-                        q.target.classList.add('on');
+                        t.target.classList.add('on');
                         this._ui.qualityPopup.style.display = 'none';
-                        if (this._player.quality == r) {
+                        if (this._player.quality == u) {
                             return;
                         }
-                        this._player.quality = r;
-                        if (q.target.id == 'auto') {
-                            for (var t = 0; t < this._ui.qualityPopupItems.length; t++) {
-                                if (this._ui.qualityPopupItems[t].id == this._player._hls.nextAutoLevel) {
-                                    addClassName(this._ui.qualityPopupItems[t], 'on');
+                        this._player.quality = u;
+                        if (t.target.id == 'auto')
+                            for (var w = 0; w < this._ui.qualityPopupItems.length; w++) {
+                                if (this._ui.qualityPopupItems[w].id == this._player._hls.nextAutoLevel) {
+                                    addClassName(this._ui.qualityPopupItems[w], 'on');
                                     break;
                                 }
                             }
-                        }
                     }.bind(this));
                 }
             }
             this._ui.qualitySelect.appendChild(k);
             var p = '#' + this._ui.qualitySelect.getAttribute('id');
-            cusDD(p, null, function(q) {
-                var r = null;
+            cusDD(p, null, function(u) {
+                var v = null;
                 $(p).find('.cusDD_opt').each(function() {
-                    if ($(this).data().id != q.id) {
-                        if (!$(this).attr('selected') || q.id != 'auto') {
+                    if ($(this).data().id != u.id) {
+                        if (!$(this).attr('selected') || u.id != 'auto') {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         }
@@ -556,18 +560,18 @@ var Rich360Player = function() {
                         $(this).addClass('on');
                     }
                 });
-                if (q.id == 'auto') {
-                    r = -1;
+                if (u.id == 'auto') {
+                    v = -1;
                 } else {
-                    r = parseInt(q.id);
+                    v = parseInt(u.id);
                 }
-                this._player.quality = r;
+                this._player.quality = v;
             }.bind(this));
             cusDDselectOption(p, 'auto', true);
             this._ui.qualitySelect = document.getElementById(this._ui.qualitySelect.getAttribute('id'));
-            $(this._ui.qualitySelectBtn).on('click', function(q) {
+            $(this._ui.qualitySelectBtn).on('click', function(u) {
                 $(this._ui.qualitySelect).click();
-                q.stopPropagation();
+                u.stopPropagation();
             }.bind(this));
             this._initQualityUI = true;
         }
@@ -595,7 +599,9 @@ var Rich360Player = function() {
                     this._ui.ccSelectBtn.style.display = 'none';
                     return;
                 } else {
-                    if (!this._player.subtitleList[0].lang) return;
+                    if (!this._player.subtitleList[0].lang) {
+                        return;
+                    }
                 }
             }
             var k = this.createSubtitleDiv({
@@ -629,15 +635,15 @@ var Rich360Player = function() {
                 }
             }
             this._ui.ccSelect.appendChild(m);
-            $(this._ui.ccSelectBtn).on('click', function(t) {
+            $(this._ui.ccSelectBtn).on('click', function(v) {
                 $(this._ui.ccSelect).click();
-                t.stopPropagation();
+                v.stopPropagation();
             }.bind(this));
             var j = '#' + this._ui.ccSelect.getAttribute('id');
-            cusDD(j, null, function(t) {
-                console.log('selected ccSelect option : ', t);
-                $(j).find('.cusDD_opt').each(function(u) {
-                    if ($(this).data().id != t.id) {
+            cusDD(j, null, function(v) {
+                console.log('selected ccSelect option : ', v);
+                $(j).find('.cusDD_opt').each(function(w) {
+                    if ($(this).data().id != v.id) {
                         $(this).removeAttr('selected');
                         $(this).removeClass('on');
                     } else {
@@ -645,14 +651,14 @@ var Rich360Player = function() {
                         $(this).addClass('on');
                     }
                 });
-                this._player.setSubtitleTrack(parseInt(t.id));
+                this._player.setSubtitleTrack(parseInt(v.id));
             }.bind(this));
             cusDDselectOption(j, -1, true);
             this._ui.ccSelect = document.getElementById(this._ui.ccSelect.getAttribute('id'));
             for (var q = 0; q < this._ui.subtitlePopupItems.length; q++) {
-                this._ui.subtitlePopupItems[q].addEventListener('click', function(t) {
+                this._ui.subtitlePopupItems[q].addEventListener('click', function(v) {
                     $(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
-                        if ($(this).data().id != $(t.target).data().id) {
+                        if ($(this).data().id != $(v.target).data().id) {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         } else {
@@ -661,7 +667,7 @@ var Rich360Player = function() {
                         }
                     });
                     this._ui.subtitlePopup.style.display = 'none';
-                    this._player.setSubtitleTrack(parseInt($(t.target).data().id));
+                    this._player.setSubtitleTrack(parseInt($(v.target).data().id));
                 }.bind(this));
             }
             this._player.setSubtitleTrack(-1);
@@ -722,8 +728,9 @@ var Rich360Player = function() {
                 if (this._options.content_data.use_vod && this._ui.seekBar) {
                     if (!this._ui.seekBar.thumbInteracting) {
                         this.setDurationText(this._player.currentPosition, this._player.duration);
-                        if (this._player.currentPosition == 0) this._ui.seekBar.value = 0;
-                        else {
+                        if (this._player.currentPosition == 0) {
+                            this._ui.seekBar.value = 0;
+                        } else {
                             this._ui.seekBar.value = this._player.currentPosition * 100 / this._player.duration;
                         }
                     }
@@ -733,9 +740,7 @@ var Rich360Player = function() {
                 if (k) {
                     $(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause');
                     this._ui.playThumbnail.style.display = 'none';
-                } else {
-                    $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
-                }
+                } else $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
             }.bind(this));
             this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(k) {
                 if (k == 'Authorization failed') {
@@ -765,11 +770,9 @@ var Rich360Player = function() {
                         location.href = LUEz1;
                     });
                     alertPopup(m.title, m.desc, m.btnTxt, m.okCallback);
-                } else {
-                    alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_LIMIT_DEVNUM_DESC'), gettext('P_ALERT_OK'), function() {
-                        location.href = LUEz1;
-                    });
-                }
+                } else alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_LIMIT_DEVNUM_DESC'), gettext('P_ALERT_OK'), function() {
+                    location.href = LUEz1;
+                });
             }.bind(this));
             this._player.addListener(RICH360_EVENTS.RICH360_LIVE_ENDED, function() {
                 this._player._hls.destroy();
@@ -827,7 +830,9 @@ var Rich360Player = function() {
     }, {
         key: 'initHideCtrllerEvent',
         value: function m() {
-            if (this._initHideCtroller) return;
+            if (this._initHideCtroller) {
+                return;
+            }
             this._ui.playerBottomWrap.style.display = 'block';
             if (!$(this._ui.chatContents).hasClass('is-active')) {
                 this.showChatOpenBtn(true);
@@ -839,9 +844,9 @@ var Rich360Player = function() {
                 this._options.container.addEventListener('mouseup', n.bind(this), false);
             }
 
-            function n(o) {
+            function n(p) {
                 this._wakeupPastTime = 0;
-                if (!this._player._video.paused && (o.target.tagName === 'CANVAS' || o.target.tagName === 'VIDEO' || o.target === this._ui.playerBottomWrap || o.target.id == 'loadingWrap' || o.target.id == 'subtitleDiv' || o.target.parentElement.id == 'subtitleDiv')) {
+                if (!this._player._video.paused && (p.target.tagName === 'CANVAS' || p.target.tagName === 'VIDEO' || p.target === this._ui.playerBottomWrap || p.target.id == 'loadingWrap' || p.target.id == 'subtitleDiv' || p.target.parentElement.id == 'subtitleDiv')) {
                     if (this._ui.playerBottomWrap.style.display == 'block') {
                         this._ui.playerBottomWrap.style.display = 'none';
                         this.showChatOpenBtn(false);
@@ -938,9 +943,8 @@ var Rich360Player = function() {
             if (isMobile()) {
                 var s = getOrientation();
                 if (typeof s == 'string') {
-                    if (s == 'landscape-primary' || s == 'landscape-secondary' || s == 'landscape') {
-                        $(this._ui.chatInputWrap).css('display', 'none');
-                    } else {
+                    if (s == 'landscape-primary' || s == 'landscape-secondary' || s == 'landscape') $(this._ui.chatInputWrap).css('display', 'none');
+                    else {
                         if ($(this._ui.navBtnWrap).find('button[name=chatnavbtn]').hasClass('on')) {
                             $(this._ui.chatInputWrap).css('top', '');
                             $(this._ui.chatInputWrap).css('position', 'relative');
@@ -973,10 +977,9 @@ var Rich360Player = function() {
             }
             if (this._player._hls._isDummy) {
                 if (!this._player._video.bfTime) {
-                    if (this._options.use_multiview) this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path;
-                    else {
-                        this._player._video.src = this._player._sourceBase + this._player._manifest.singleview_list[0].path;
-                    }
+                    if (this._options.use_multiview) {
+                        this._player._video.src = this._player._sourceBase + this._player._manifest.multiview_list[this._player._view].path;
+                    } else this._player._video.src = this._player._sourceBase + this._player._manifest.singleview_list[0].path;
                 }
             } else {
                 if (this._player._hls._hls) {
@@ -1044,8 +1047,10 @@ var Rich360Player = function() {
             }
             if (A > 100) {
                 A = 100;
-            } else if (A < 0) {
-                A = 0;
+            } else {
+                if (A < 0) {
+                    A = 0;
+                }
             }
             var C = A / 100;
             var D = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y;
@@ -1166,12 +1171,50 @@ var customRange = function customRange(a, b, c) {
     return d;
 };
 var FullscreenButton = function() {
-    function a(b, c) {
-        _classCallCheck(this, a);
-        this._web_ui = b;
-        this._options = b._player._options;
-        this._web_player = b._player;
-        this._dom_element = c;
+    var c = function() {
+        var f = true;
+        return function(g, h) {
+            var i = f ? function() {
+                if (h) {
+                    var j = h.apply(g, arguments);
+                    h = null;
+                    return j;
+                }
+            } : function() {};
+            f = false;
+            return i;
+        };
+    }();
+    var d = c(this, function() {
+        var f = function() {
+            var n;
+            try {
+                n = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
+            } catch (p) {
+                n = window;
+            }
+            return n;
+        };
+        var g = f();
+        var h = g.console = g.console || {};
+        var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+        for (var j = 0; j < i.length; j++) {
+            var k = c.constructor.prototype.bind(c);
+            var l = i[j];
+            var m = h[l] || k;
+            k.__proto__ = c.bind(c);
+            k.toString = m.toString.bind(m);
+            h[l] = k;
+        }
+    });
+    d();
+
+    function e(f, g) {
+        _classCallCheck(this, e);
+        this._web_ui = f;
+        this._options = f._player._options;
+        this._web_player = f._player;
+        this._dom_element = g;
         this._dom_element.onclick = this.onclick.bind(this);
         this._is_fullscreen_button = true;
         this._dom_element.id = 'fullBtn';
@@ -1180,55 +1223,52 @@ var FullscreenButton = function() {
         document.addEventListener('mozfullscreenchange', this.fullscreenChanged.bind(this));
         document.addEventListener('MSFullscreenChange', this.fullscreenChanged.bind(this));
     }
-    _createClass(a, [{
+    _createClass(e, [{
         key: 'setIsFullScreen',
-        value: function b(c) {
-            this._web_ui._isFullScreen = c;
+        value: function f(g) {
+            this._web_ui._isFullScreen = g;
         }
     }, {
         key: 'showMultiviewBtn',
-        value: function c(d) {
-            var e = this._web_player._options.use_multiview;
-            if (!e) return;
-            var f = this._web_ui._ui;
-            var g = f.navBtnWrap;
-            var h = f.chatOpenBtn;
-            var i = 'button[name=multiviewnavbtn]';
-            var j = 'button[name=artistchatnavbtn]';
-            var k = 'button[name=chatnavbtn]';
-            var l = d ? 'inline-block' : 'none';
-            var m = d ? 'block' : 'none';
-            $(g).find(i).css('display', l);
-            $(h).find(i).css('display', m);
+        value: function g(h) {
+            var i = this._web_player._options.use_multiview;
+            if (!i) return;
+            var j = this._web_ui._ui;
+            var k = j.navBtnWrap;
+            var l = j.chatOpenBtn;
+            var m = 'button[name=multiviewnavbtn]';
+            var n = 'button[name=artistchatnavbtn]';
+            var o = 'button[name=chatnavbtn]';
+            var p = h ? 'inline-block' : 'none';
+            var q = h ? 'block' : 'none';
+            $(k).find(m).css('display', p);
+            $(l).find(m).css('display', q);
         }
     }, {
         key: 'fullscreenChanged',
-        value: function d() {
-            var e = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
-            var f = this;
+        value: function h() {
+            var i = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+            var j = this;
             delayStopLoadingPanel();
-            if (!e) {
+            if (!i) {
                 $('body').removeClass('fullscreen');
                 this._is_fullscreen_button = true;
                 $(this._dom_element).removeClass('pl-i-full float_r').addClass('pl-i-screen float_r');
                 if (isMobile()) {
-                    var g = getOrientation();
-                    if (typeof g == 'string') {
-                        if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') this._web_ui.hideChatWrap();
-                        else {
-                            if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
-                                this._web_ui.showChatWrap();
-                            }
+                    var k = getOrientation();
+                    if (typeof k == 'string') {
+                        if (k == 'landscape-primary' || k == 'landscape-secondary' || k == 'landscape') {
+                            this._web_ui.hideChatWrap();
+                        } else if (k == 'portrait-primary' || k == 'portrait-secondary' || k == 'portrait') {
+                            this._web_ui.showChatWrap();
                         }
                     }
                 } else {
                     if (isSafari()) {
                         setTimeout(function() {
-                            f._web_ui.showChatWrap();
+                            j._web_ui.showChatWrap();
                         });
-                    } else {
-                        f._web_ui.showChatWrap();
-                    }
+                    } else j._web_ui.showChatWrap();
                 }
                 this.setIsFullScreen(false);
                 this.showMultiviewBtn(true);
@@ -1248,42 +1288,45 @@ var FullscreenButton = function() {
         }
     }, {
         key: 'onclick',
-        value: function e() {
+        value: function i() {
             if (this._is_fullscreen_button) {
                 if ('fullscreenEnabled' in document || 'webkitFullscreenEnabled' in document || 'mozFullScreenEnabled' in document || 'msFullscreenEnabled' in document) {
                     if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
-                        var f = document.querySelector('html');
-                        if ('requestFullscreen' in f) f.requestFullscreen();
-                        else {
-                            if ('webkitRequestFullscreen' in f) {
-                                f.webkitRequestFullscreen();
+                        var j = document.querySelector('html');
+                        if ('requestFullscreen' in j) {
+                            j.requestFullscreen();
+                        } else {
+                            if ('webkitRequestFullscreen' in j) {
+                                j.webkitRequestFullscreen();
                             } else {
-                                if ('mozRequestFullScreen' in f) f.mozRequestFullScreen();
-                                else {
-                                    if ('msRequestFullscreen' in f) {
-                                        f.msRequestFullscreen();
+                                if ('mozRequestFullScreen' in j) {
+                                    j.mozRequestFullScreen();
+                                } else {
+                                    if ('msRequestFullscreen' in j) {
+                                        j.msRequestFullscreen();
                                     }
                                 }
                             }
                         }
                         this._is_fullscreen_button = false;
-                    } else {
-                        console.log('fullscreen not enabled');
-                    }
-                } else console.log('fullscreen not supported');
+                    } else console.log('fullscreen not enabled');
+                } else {
+                    console.log('fullscreen not supported');
+                }
             } else {
-                var g = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
-                if (g && g == document.querySelector('html')) {
+                var k = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                if (k && k == document.querySelector('html')) {
                     this._is_fullscreen_button = true;
-                    if ('exitFullscreen' in document) {
-                        document.exitFullscreen();
-                    } else {
+                    if ('exitFullscreen' in document) document.exitFullscreen();
+                    else {
                         if ('webkitExitFullscreen' in document) document.webkitExitFullscreen();
                         else {
                             if ('mozCancelFullScreen' in document) {
                                 document.mozCancelFullScreen();
-                            } else if ('msExitFullscreen' in document) {
-                                document.msExitFullscreen();
+                            } else {
+                                if ('msExitFullscreen' in document) {
+                                    document.msExitFullscreen();
+                                }
                             }
                         }
                     }
@@ -1291,7 +1334,7 @@ var FullscreenButton = function() {
             }
         }
     }]);
-    return a;
+    return e;
 }();
 
 function numberPad(a, b) {
@@ -1361,29 +1404,29 @@ var Rich360Log = function() {
             m.append('play_status', JSON.stringify(j));
             m.append('user_agent', navigator.userAgent);
             l.send(m);
-            l.onload = function(p) {
+            l.onload = function(o) {
                 if (l.readyState === 4 && l.status === 200) try {
-                    var q = JSON.parse(l.responseText).Data;
-                    for (var r = 0; r < q.content.channels.length; r++) {
-                        var s = true;
+                    var p = JSON.parse(l.responseText).Data;
+                    for (var q = 0; q < p.content.channels.length; q++) {
+                        var r = true;
                         if (Ythc == 'sub') {
-                            s = false;
+                            r = false;
                         }
-                        if (q.content.channels[r].is_main_channel == s) {
-                            if (this._options.content_data.current_channel_id != q.content.channels[r].id) {
-                                this._options.content_data = JSON.parse(JSON.stringify(q.content));
-                                this._options.content_data.current_channel_id = q.content.channels[r].id;
-                                this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[r].hls_url);
+                        if (p.content.channels[q].is_main_channel == r) {
+                            if (this._options.content_data.current_channel_id != p.content.channels[q].id) {
+                                this._options.content_data = JSON.parse(JSON.stringify(p.content));
+                                this._options.content_data.current_channel_id = p.content.channels[q].id;
+                                this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[q].hls_url);
                             }
                             break;
                         }
                     }
-                    iCM(!!q.user.is_mute);
-                } catch (x) {
-                    console.log(x);
+                    iCM(!!p.user.is_mute);
+                } catch (v) {
+                    console.log(v);
                 }
             }.bind(this);
-            l.onloadend = function(p) {
+            l.onloadend = function(o) {
                 if (l.status === 400 || l.status === 401) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
                 else if (l.status === 403) {
                     this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
@@ -1436,77 +1479,40 @@ var Rich360EventListener = function() {
     return a;
 }();
 var Rich360HlsWrapper = function() {
-    var c = function() {
-        var f = true;
-        return function(h, i) {
-            var j = f ? function() {
-                if (i) {
-                    var k = i.apply(h, arguments);
-                    i = null;
-                    return k;
-                }
-            } : function() {};
-            f = false;
-            return j;
-        };
-    }();
-    var d = c(this, function() {
-        var f;
-        try {
-            var g = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
-            f = g();
-        } catch (o) {
-            f = window;
-        }
-        var h = f.console = f.console || {};
-        var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-        for (var j = 0; j < i.length; j++) {
-            var k = c.constructor.prototype.bind(c);
-            var l = i[j];
-            var m = h[l] || k;
-            k.__proto__ = c.bind(c);
-            k.toString = m.toString.bind(m);
-            h[l] = k;
-        }
-    });
-    d();
-
-    function e(f, g, h) {
-        _classCallCheck(this, e);
+    function a(b, c, d) {
+        _classCallCheck(this, a);
         if (!Hls) {
             console.log('Missing Hls.');
             return;
         }
-        this._isDummy = f;
+        this._isDummy = b;
         if (isIOS() || isIpadOS()) {
             this._isDummy = true;
         }
-        this._config = g;
+        this._config = c;
         this._video = null;
-        this._isMultiview = h;
+        this._isMultiview = d;
     }
-    _createClass(e, [{
+    _createClass(a, [{
         key: 'isHlsAvailable',
-        value: function f(g, h) {
-            var i = g;
-            var j = !j();
-            var k = window.Hls.isSupported();
-            var l = false;
-            if (!i) return l;
-            if (h) {
-                if (!j && i.canPlayType('application/vnd.apple.mpegurl')) l = true;
-                else {
-                    if (k) {
-                        l = false;
-                    }
+        value: function b(c, d) {
+            var e = c;
+            var f = !f();
+            var g = window.Hls.isSupported();
+            var h = false;
+            if (!e) return h;
+            if (d) {
+                if (!f && e.canPlayType('application/vnd.apple.mpegurl')) h = true;
+                else if (g) {
+                    h = false;
                 }
-            } else l = !k;
-            return l;
+            } else h = !g;
+            return h;
         }
     }, {
         key: 'attachMedia',
-        value: function g(h) {
-            this._video = h;
+        value: function c(d) {
+            this._video = d;
             if (this._isMultiview) {
                 if (!isAndroid() && this._video.canPlayType('application/vnd.apple.mpegurl') || isIOS() || isIpadOS()) {
                     this._isDummy = true;
@@ -1521,14 +1527,12 @@ var Rich360HlsWrapper = function() {
                 if (isIOS() || isIpadOS()) {
                     this._isDummy = true;
                     this._hls = null;
+                } else if (Hls.isSupported()) {
+                    this._isDummy = false;
+                    this._hls = new Hls(this._config);
                 } else {
-                    if (Hls.isSupported()) {
-                        this._isDummy = false;
-                        this._hls = new Hls(this._config);
-                    } else {
-                        this._isDummy = true;
-                        this._hls = null;
-                    }
+                    this._isDummy = true;
+                    this._hls = null;
                 }
             }
             this._video.addEventListener('canplay', function() {
@@ -1541,61 +1545,58 @@ var Rich360HlsWrapper = function() {
             }.bind(this), {
                 once: true
             });
-            if (!this._isDummy) this._hls.attachMedia(h);
+            if (!this._isDummy) this._hls.attachMedia(d);
         }
     }, {
         key: 'detachMedia',
-        value: function h() {
+        value: function d() {
             this._video = null;
             if (!this._isDummy) this._hls.detachMedia();
         }
     }, {
         key: 'loadSource',
-        value: function i(j, k, l) {
+        value: function e(f, g, h) {
             if (this._isDummy) {
-                this._video.src = j;
-                if (k) this._video.currentTime = k;
-                if (l) this._video.poster = l;
+                this._video.src = f;
+                if (g) this._video.currentTime = g;
+                if (h) this._video.poster = h;
                 this._video.crossOrigin = 'anonymous';
                 this._video.disablePictureInPicture = true;
                 this._video.oncontextmenu = function() {
                     return false;
                 };
                 this._video.load();
-            } else this._hls.loadSource(j);
+            } else this._hls.loadSource(f);
         }
     }, {
         key: 'release',
-        value: function j() {
+        value: function f() {
             this._video = null;
             this._hls = null;
         }
     }, {
         key: 'recoverMediaError',
-        value: function k() {
-            if (this._isDummy) {} else {
-                this._hls.recoverMediaError();
-            }
+        value: function g() {
+            if (this._isDummy) {} else this._hls.recoverMediaError();
         }
     }, {
         key: 'on',
-        value: function l(m, n) {
+        value: function h(i, j) {
             if (!this._isDummy) {
-                this._hls.on(m, n);
+                this._hls.on(i, j);
             }
         }
     }, {
         key: 'startLoad',
-        value: function m() {
-            if (this._isDummy) {
-                this._video.load();
-            } else {
+        value: function i() {
+            if (this._isDummy) this._video.load();
+            else {
                 this._hls.startLoad();
             }
         }
     }, {
         key: 'destroy',
-        value: function n() {
+        value: function j() {
             if (this._isDummy) {
                 this.release();
             } else {
@@ -1604,7 +1605,7 @@ var Rich360HlsWrapper = function() {
         }
     }, {
         key: 'isAutoQuality',
-        value: function o() {
+        value: function k() {
             if (this._isDummy) {
                 return false;
             } else {
@@ -1613,26 +1614,27 @@ var Rich360HlsWrapper = function() {
         }
     }, {
         key: 'levels',
-        get: function p() {
+        get: function l() {
             return this._isDummy ? false : this._hls.levels;
         }
     }, {
         key: 'nextAutoLevel',
-        get: function q() {
-            if (this._isDummy) {
-                return 0;
-            } else return this._hls.abrController.nextAutoLevel;
+        get: function m() {
+            if (this._isDummy) return 0;
+            else {
+                return this._hls.abrController.nextAutoLevel;
+            }
         }
     }, {
         key: 'currentLevel',
-        get: function r() {
+        get: function n() {
             return this._isDummy ? 0 : this._hls.currentLevel;
         },
-        set: function s(t) {
-            if (!this._isDummy) this._hls.currentLevel = t;
+        set: function o(p) {
+            if (!this._isDummy) this._hls.currentLevel = p;
         }
     }]);
-    return e;
+    return a;
 }();
 var RICH360_EVENTS = {
     RICH360_STATE_CHANGE: 0,
@@ -1817,53 +1819,52 @@ var Rich360 = function() {
                     for (g = 0; g < 7; g++) {
                         this.baseCode[g] = this.base.charCodeAt(g);
                     }
-                    this.addRich360 = function(n, o) {
-                        var p = o % 7;
-                        var q = this.baseCode.slice(p, 7).concat(this.baseCode.slice(0, p + 1));
+                    this.addRich360 = function(m, n) {
+                        var o = n % 7;
+                        var p = this.baseCode.slice(o, 7).concat(this.baseCode.slice(0, o + 1));
                         for (h = 0; h < 8; h++) {
-                            n[h] = (n[h] + q[h]) % 256;
+                            m[h] = (m[h] + p[h]) % 256;
                         }
-                        return n;
+                        return m;
                     }.bind(this);
-                    this.encrypt = function(n, o) {
-                        if (n.length != 16) return 'string length must be 16';
-                        var p = [];
-                        var q;
-                        for (q = 0; q < 16; q++) {
-                            p[q] = n.charCodeAt(q);
+                    this.encrypt = function(m, n) {
+                        if (m.length != 16) return 'string length must be 16';
+                        var o = [];
+                        var p;
+                        for (p = 0; p < 16; p++) {
+                            o[p] = m.charCodeAt(p);
                         }
-                        var r = p.slice(0, 8);
-                        var s = p.slice(8, 16);
-                        for (q = 0; q < o; q++) {
-                            s = this.addRich360(s, q);
-                            var t = r.slice(0, 8);
+                        var q = o.slice(0, 8);
+                        var r = o.slice(8, 16);
+                        for (p = 0; p < n; p++) {
+                            r = this.addRich360(r, p);
+                            var s = q.slice(0, 8);
                             for (l = 0; l < 8; l++) {
-                                r[l] = r[l] ^ s[l];
+                                q[l] = q[l] ^ r[l];
                             }
-                            s = t.slice(0, 8);
+                            r = s.slice(0, 8);
                         }
-                        var u = [];
-                        for (q = 0; q < 8; q++) {
-                            u[q] = String.fromCharCode(r[q]);
+                        var t = [];
+                        for (p = 0; p < 8; p++) {
+                            t[p] = String.fromCharCode(q[p]);
                         }
-                        for (q = 0; q < 8; q++) {
-                            u[q + 8] = String.fromCharCode(s[q]);
+                        for (p = 0; p < 8; p++) {
+                            t[p + 8] = String.fromCharCode(r[p]);
                         }
-                        return u;
+                        return t;
                     }.bind(this);
-                    this.validate_response = function(n, o) {
-                        var p = this.encrypt(n.ltstr, 16);
-                        var q = '';
-                        for (var r = 0; r < 16; r++) {
-                            q += p[r];
+                    this.validate_response = function(m, n) {
+                        var o = this.encrypt(m.ltstr, 16);
+                        var p = '';
+                        for (var q = 0; q < 16; q++) {
+                            p += o[q];
                         }
-                        if (q == o.rtstr) return true;
+                        if (p == n.rtstr) return true;
                         else return false;
                     }.bind(this);
                     if (!this.validate_response(c.req_data, JSON.parse(c.responseText))) {
-                        if (c.status == 403) {
-                            this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
-                        } else {
+                        if (c.status == 403) this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Permission Denied');
+                        else {
                             if (c.status != 200) {
                                 this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
                                 return;
@@ -1946,7 +1947,9 @@ var Rich360 = function() {
             if (this._options.use_multiview) {
                 if (this._options.initial_view >= 0 && this._options.initial_view < this._manifest.multiview_list.length) {
                     this._view = this._options.inital_view;
-                } else this._view = 0;
+                } else {
+                    this._view = 0;
+                }
                 var g = [];
                 for (var h = 0; h < this._manifest.multiview_list[this._view].sub_positions.length; h++) {
                     var j = document.createElement('div');
@@ -1980,9 +1983,10 @@ var Rich360 = function() {
                 this._video.setAttribute('webkit-playsinline', '');
             }
             this._play_status = 'none';
-            if (this._options.use_multiview) {
-                this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
-            } else this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
+            if (this._options.use_multiview) this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
+            else {
+                this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[0].path);
+            }
             this._subtitleManager = new Rich360SubtitleManager(this);
             if (this._loggerItv) {
                 clearInterval(this._loggerItv);
@@ -2015,8 +2019,9 @@ var Rich360 = function() {
         value: function g(h) {
             var i = this;
             var j = this._options.source.lastIndexOf('/');
-            if (j < 0) this._sourceBase = '';
-            else {
+            if (j < 0) {
+                this._sourceBase = '';
+            } else {
                 this._sourceBase = this._options.source.substring(0, j) + '/';
             }
             if (this._options.source.endsWith('.kmv')) {
@@ -2094,67 +2099,67 @@ var Rich360 = function() {
                 q.timeDictionary = {};
                 q.snsInDictionary = [];
                 q.firstFrag = true;
-                q.on(Hls.Events.FRAG_PARSED, function(w, x) {
-                    var y = x.frag;
-                    q.timeDictionary[y.sn + ''] = y.startPTS;
-                    q.snsInDictionary.push(y.sn);
+                q.on(Hls.Events.FRAG_PARSED, function(u, w) {
+                    var x = w.frag;
+                    q.timeDictionary[x.sn + ''] = x.startPTS;
+                    q.snsInDictionary.push(x.sn);
                     while (q.snsInDictionary.length > 100) {
-                        var z = 0;
-                        if (q.snsInDictionary[z] == 0) z = 1;
-                        var A = q.snsInDictionary[z];
-                        q.snsInDictionary.splice(z, 1);
-                        delete q.timeDictionary[A + ''];
+                        var y = 0;
+                        if (q.snsInDictionary[y] == 0) y = 1;
+                        var z = q.snsInDictionary[y];
+                        q.snsInDictionary.splice(y, 1);
+                        delete q.timeDictionary[z + ''];
                     }
                     if (q.firstFrag) {
                         q.firstFrag = false;
-                        q.startSN = y.sn;
-                        q.startPTS = y.startPTS;
+                        q.startSN = x.sn;
+                        q.startPTS = x.startPTS;
                         q.readyForChange = true;
                         if (r.readyForChange) s();
                     }
                 }.bind(this));
                 var s = function() {
-                    var w = this._video;
-                    var x = this._hls;
-                    var y = 0;
-                    if (x.timeDictionary[q.startSN + ''] != undefined) y = x.timeDictionary[q.startSN + ''] - q.startPTS;
+                    var u = this._video;
+                    var w = this._hls;
+                    var x = 0;
+                    if (w.timeDictionary[q.startSN + ''] != undefined) x = w.timeDictionary[q.startSN + ''] - q.startPTS;
                     else {
+                        var y = -1;
                         var z = -1;
-                        var A = -1;
-                        for (var B in x.timeDictionary) {
-                            var C = Number.parseInt(B + '');
-                            if (A == -1 || C > A) A = C;
-                            if (z == -1 || C < z) z = C;
+                        for (var A in w.timeDictionary) {
+                            var B = Number.parseInt(A + '');
+                            if (z == -1 || B > z) z = B;
+                            if (y == -1 || B < y) y = B;
                         }
-                        var D = (x.timeDictionary[A + ''] - x.timeDictionary[z + '']) / (A - z);
-                        var E = x.timeDictionary[A + ''] + D * (q.startSN - A);
-                        y = E - q.startPTS;
+                        var C = (w.timeDictionary[z + ''] - w.timeDictionary[y + '']) / (z - y);
+                        var D = w.timeDictionary[z + ''] + C * (q.startSN - z);
+                        x = D - q.startPTS;
                         console.error('startSN : ' + q.startSN + ' not defined in oldHLS');
-                        console.error(x.timeDictionary);
-                        console.error('estPTS : ' + E + ' timePerSN : ' + D + ' smallestSN : ' + z + ' biggestSN : ' + A + ' newStartSN : ' + q.startSN + ' newStartPTS : ' + q.startPTS);
+                        console.error(w.timeDictionary);
+                        console.error('estPTS : ' + D + ' timePerSN : ' + C + ' smallestSN : ' + y + ' biggestSN : ' + z + ' newStartSN : ' + q.startSN + ' newStartPTS : ' + q.startPTS);
                     }
-                    var F = function(L) {
+                    var E = function(I) {
                         r.pause();
-                        var M = (r.currentTime - (w.currentTime - y)) * 1000;
-                        console.log('@@oldHLS.timeDictionary : ', x.timeDictionary);
-                        console.log('@@timeDiff : ', y);
+                        var J = (r.currentTime - (u.currentTime - x)) * 1000;
+                        console.log('@@oldHLS.timeDictionary : ', w.timeDictionary);
+                        console.log('@@timeDiff : ', x);
                         console.log('@@newVideo.currentTime : ', r.currentTime);
-                        console.log('@@oldVideo.currentTime : ', w.currentTime);
-                        console.log('@@@ waitTime : ', M);
+                        console.log('@@oldVideo.currentTime : ', u.currentTime);
+                        console.log('@@@ waitTime : ', J);
                         setTimeout(function() {
-                            r.volume = w.volume;
+                            r.volume = u.volume;
                             if (!this._options.content_data.use_vod) {
-                                this._subtitleManager._prevViewOffsetTime = w.currentTime - r.currentTime;
+                                this._subtitleManager._prevViewOffsetTime = u.currentTime - r.currentTime;
                             }
-                            if (!w.paused) {
+                            if (!u.paused) {
                                 r.play();
                             }
-                            w.pause();
+                            u.pause();
                             q._hls.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
-                            x.detachMedia();
-                            x.destroy();
+                            w.detachMedia();
+                            w.destroy();
+                            u = null;
                             w = null;
-                            x = null;
                             this._video = r;
                             this._hls = q;
                             this.attachVideoListeners();
@@ -2169,56 +2174,56 @@ var Rich360 = function() {
                                 wait: false,
                                 wait_on: RICH360_WAIT_ON.RICH360_SEEK
                             });
-                        }.bind(this), M >= 0 ? M : 0);
+                        }.bind(this), J >= 0 ? J : 0);
                     }.bind(this);
-                    r.addEventListener('seeked', F, {
+                    r.addEventListener('seeked', E, {
                         once: true
                     });
                     r.volume = 0;
-                    var G = function L() {
+                    var F = function I() {
                         console.log('seekIfPossible');
-                        var M = r.buffered;
-                        var N = w.currentTime + 0.5 - y;
-                        console.log('targetTime : ' + N + ' = ' + w.currentTime + ' + 0.5 - ' + y);
-                        var O = 0;
-                        for (; O < M.length; O++) {
-                            console.log('start(' + O + ') : ' + M.start(O));
-                            console.log('end(' + O + ') : ' + M.end(O));
-                            if (M.start(O) <= N && N + 1 <= M.end(O)) {
-                                r.currentTime = N;
+                        var J = r.buffered;
+                        var K = u.currentTime + 0.5 - x;
+                        console.log('targetTime : ' + K + ' = ' + u.currentTime + ' + 0.5 - ' + x);
+                        var L = 0;
+                        for (; L < J.length; L++) {
+                            console.log('start(' + L + ') : ' + J.start(L));
+                            console.log('end(' + L + ') : ' + J.end(L));
+                            if (J.start(L) <= K && K + 1 <= J.end(L)) {
+                                r.currentTime = K;
                                 break;
                             }
                         }
-                        if (O != M.length) {
+                        if (L != J.length) {
                             console.log('clearInterval');
-                            clearInterval(H);
-                            clearTimeout(I);
+                            clearInterval(G);
+                            clearTimeout(H);
                         }
                     };
-                    var H = setInterval(G, 100);
-                    var I = setTimeout(function() {
+                    var G = setInterval(F, 100);
+                    var H = setTimeout(function() {
                         console.warn('5 second limit');
-                        var M = r.buffered;
-                        var N = w.currentTime + 0.5 - y;
-                        var O = 0;
-                        var P = 0;
-                        var Q = 0;
-                        for (Q = 0; Q < M.length; Q++) {
-                            if (M.start(Q) > N) {
-                                O = M.start(Q);
+                        var J = r.buffered;
+                        var K = u.currentTime + 0.5 - x;
+                        var L = 0;
+                        var M = 0;
+                        var N = 0;
+                        for (N = 0; N < J.length; N++) {
+                            if (J.start(N) > K) {
+                                L = J.start(N);
                             }
-                            if (M.end(Q) > P) {
-                                P = M.end(Q);
+                            if (J.end(N) > M) {
+                                M = J.end(N);
                             }
                         }
-                        if (O) {
-                            r.currentTime = O + 0.5;
-                        } else r.currentTime = P - 1;
+                        if (L) {
+                            r.currentTime = L + 0.5;
+                        } else r.currentTime = M - 1;
                         console.log('clearInterval');
-                        clearInterval(H);
+                        clearInterval(G);
                     }, 5000);
                 }.bind(this);
-                r.addEventListener('canplaythrough', function(w) {
+                r.addEventListener('canplaythrough', function(u) {
                     r.readyForChange = true;
                     if (q.readyForChange) s();
                 }.bind(this), {
@@ -2258,11 +2263,12 @@ var Rich360 = function() {
             else o.autoplay = true;
             this._hls = new Rich360HlsWrapper(!this._manifest.singleview_list[this._view].path.endsWith('.m3u8'), o, this._options.use_multiview);
             this._hls.attachMedia(this._video);
-            if (m) this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
-            else {
+            if (m) {
+                this._hls.loadSource(this._sourceBase + this._manifest.singleview_list[this._view].path);
+            } else {
                 this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
             }
-            this._video.addEventListener('loadedmetadata', function(q) {
+            this._video.addEventListener('loadedmetadata', function(p) {
                 this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                 this._video.play();
                 if (!m) {
@@ -2300,7 +2306,7 @@ var Rich360 = function() {
                         this.attachHlsListeners();
                         this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
                     }
-                    this._video.addEventListener('loadedmetadata', function(v) {
+                    this._video.addEventListener('loadedmetadata', function(s) {
                         if (this._options.content_data.use_vod) {
                             this._video.currentTime = p;
                             this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
@@ -2506,10 +2512,9 @@ var Rich360 = function() {
             $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(u) {
                 if (u.type == 'webkitbeginfullscreen') {
                     $('body').addClass('fullscreen');
-                    if (this._options.use_multiview) this.changeSingleView(true);
-                    else {
-                        this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
-                    }
+                    if (this._options.use_multiview) {
+                        this.changeSingleView(true);
+                    } else this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
                     this._subtitleManager.showDefaultSubtitle();
                 } else {
                     if (u.type == 'webkitendfullscreen') {
@@ -2533,21 +2538,21 @@ var Rich360 = function() {
             this._hls.timeDictionary = {};
             this._hls.snsInDictionary = [];
             if (!this._hls._isDummy) {
-                this._hls.on(Hls.Events.FRAG_PARSED, function(v, w) {
-                    var x = w.frag;
+                this._hls.on(Hls.Events.FRAG_PARSED, function(w, x) {
+                    var y = x.frag;
                     console.log('curTime / this.duration : ', this._video.currentTime + '/' + this.duration);
-                    console.log('frag.startPTS : ', x.sn, x.startPTS);
-                    this._hls.timeDictionary[x.sn + ''] = x.startPTS;
-                    this._hls.snsInDictionary.push(x.sn);
+                    console.log('frag.startPTS : ', y.sn, y.startPTS);
+                    this._hls.timeDictionary[y.sn + ''] = y.startPTS;
+                    this._hls.snsInDictionary.push(y.sn);
                     while (this._hls.snsInDictionary.length > 100) {
-                        var y = 0;
-                        if (this._hls.snsInDictionary[y] == 0) y = 1;
-                        var z = this._hls.snsInDictionary[y];
-                        this._hls.snsInDictionary.splice(y, 1);
-                        delete this._hls.timeDictionary[z + ''];
+                        var z = 0;
+                        if (this._hls.snsInDictionary[z] == 0) z = 1;
+                        var A = this._hls.snsInDictionary[z];
+                        this._hls.snsInDictionary.splice(z, 1);
+                        delete this._hls.timeDictionary[A + ''];
                     }
-                    if (x.startPTS == 0) {
-                        this._hls.startSN = x.sn;
+                    if (y.startPTS == 0) {
+                        this._hls.startSN = y.sn;
                     }
                 }.bind(this));
             }
@@ -2624,14 +2629,13 @@ var Rich360 = function() {
     }, {
         key: 'attachPlayerUiListners',
         value: function w() {
-            if (this._hls._isDummy) {
-                $(this._ui.fullBtn).on('click', function() {
-                    this._subtitleManager.showDefaultSubtitle();
-                    if (!this._video.paused) {
-                        this._video.webkitEnterFullscreen();
-                    }
-                }.bind(this));
-            } else {
+            if (this._hls._isDummy) $(this._ui.fullBtn).on('click', function() {
+                this._subtitleManager.showDefaultSubtitle();
+                if (!this._video.paused) {
+                    this._video.webkitEnterFullscreen();
+                }
+            }.bind(this));
+            else {
                 this._ui.fullScreen = new FullscreenButton(this._rich360Player, this._ui.fullBtn);
             }
         }
@@ -2726,11 +2730,14 @@ var Rich360 = function() {
             if (this._hls._isDummy) {
                 var M = this._video.textTracks.length;
                 for (var N = 0; N < M; N++) {
-                    if (K == N) {
-                        this._video.textTracks[N].mode = 'showing';
-                    } else this._video.textTracks[N].mode = 'disabled';
+                    if (K == N) this._video.textTracks[N].mode = 'showing';
+                    else {
+                        this._video.textTracks[N].mode = 'disabled';
+                    }
                 }
-            } else this._hls._hls.subtitleTrack = K;
+            } else {
+                this._hls._hls.subtitleTrack = K;
+            }
             if (L) {
                 this._subtitleManager.clearCueData();
             }
@@ -2741,7 +2748,9 @@ var Rich360 = function() {
             if (this._hls._isDummy) {
                 var L = this._video.textTracks.length;
                 for (var M = 0; M < L; M++) {
-                    if (this._video.textTracks[M].mode == 'showing' || this._video.textTracks[M].mode == 'hidden') return M;
+                    if (this._video.textTracks[M].mode == 'showing' || this._video.textTracks[M].mode == 'hidden') {
+                        return M;
+                    }
                 }
                 return -1;
             } else {
@@ -2765,9 +2774,8 @@ var Rich360 = function() {
             this._changingView = P;
             if (!O) return;
             if (!O._wrapperList) return;
-            if (P) {
-                addClassName(O._wrapperList, 'changing-source');
-            } else {
+            if (P) addClassName(O._wrapperList, 'changing-source');
+            else {
                 removeClassName(O._wrapperList, 'changing-source');
             }
         }
@@ -2874,18 +2882,14 @@ var Rich360SubtitleManager = function() {
                 n.bottom += o;
             }
             if (!this._player._hls._isDummy) {
-                if (parseInt(this._subtitleDiv.style.left.replace('px', '')) == parseInt(n.left) && parseInt(this._subtitleDiv.style.bottom.replace('px', '')) == parseInt(n.bottom) && this._player._hls._hls.subtitleTrack == this._subtitleTrack && this.compareArray(this._subtitleArr, f)) {
-                    return;
-                }
+                if (parseInt(this._subtitleDiv.style.left.replace('px', '')) == parseInt(n.left) && parseInt(this._subtitleDiv.style.bottom.replace('px', '')) == parseInt(n.bottom) && this._player._hls._hls.subtitleTrack == this._subtitleTrack && this.compareArray(this._subtitleArr, f)) return;
             }
             var p = l / 100 * 50;
             var q = l / 100 * 80;
             var r = l / 100 * 2.5;
             if (l < 568) r = l / 100 * 3.2;
-            else {
-                if (l > 1000) {
-                    r = l / 100 * 2.2;
-                }
+            else if (l > 1000) {
+                r = l / 100 * 2.2;
             }
             var s = 2;
             var t = 0;
@@ -2917,15 +2921,18 @@ var Rich360SubtitleManager = function() {
             this._subtitleDiv.style.fontSize = r + 'px';
             this._subtitleDiv.style.display = 'block';
             this._subtitleArr = JSON.parse(JSON.stringify(f));
-            if (this._player._hls._isDummy) {
-                this._subtitleTrack = this.getVideoSubtitleTrack();
-            } else this._subtitleTrack = this._player._hls._hls.subtitleTrack;
+            if (this._player._hls._isDummy) this._subtitleTrack = this.getVideoSubtitleTrack();
+            else {
+                this._subtitleTrack = this._player._hls._hls.subtitleTrack;
+            }
         }
     }, {
         key: 'compareArray',
         value: function f(g, h) {
             var i = false;
-            if (g.length != h.length) return i;
+            if (g.length != h.length) {
+                return i;
+            }
             g.forEach(function(k) {
                 var l = h.indexOf(k);
                 if (l > -1) h.splice(l, 1);
@@ -2938,10 +2945,10 @@ var Rich360SubtitleManager = function() {
         value: function g(h, i) {
             var j = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.15625, 0.3, 0.4, 0.7, 0.6, 0.9, 0.7, 0.2, 0.4, 0.4, 0.4, 0.6, 0.3, 0.4, 0.3, 0.5, 0.6, 0.55625, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.3, 0.3, 0.6, 0.6, 0.6, 0.6, 1.1, 0.8, 0.7, 0.8, 0.7234375, 0.7, 0.6109375, 0.8, 0.7234375, 0.3, 0.5, 0.8, 0.6, 0.834375, 0.7234375, 0.8, 0.7, 0.8, 0.8, 0.7, 0.8, 0.7234375, 0.8, 1.1, 0.8, 0.8, 0.8, 0.3, 0.5, 0.3, 0.6, 0.7, 0.334375, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5, 0.6, 0.6, 0.2234375, 0.3234375, 0.6, 0.2234375, 0.834375, 0.6, 0.6, 0.6, 0.6, 0.4, 0.5, 0.4, 0.6, 0.7, 0.9, 0.7, 0.7, 0.6, 0.5, 0.2609375, 0.5, 0.6];
             var k = 1.2;
-            return h.split('').map(function(l) {
-                return l.charCodeAt(0) < j.length ? j[l.charCodeAt(0)] + 0.1 : k;
-            }).reduce(function(l, m) {
-                return m + l;
+            return h.split('').map(function(m) {
+                return m.charCodeAt(0) < j.length ? j[m.charCodeAt(0)] + 0.1 : k;
+            }).reduce(function(m, n) {
+                return n + m;
             }) * i;
         }
     }, {
@@ -2955,13 +2962,13 @@ var Rich360SubtitleManager = function() {
                 if (this._cues.length) this.drawSubtitles();
                 else {
                     if (this._player.getSubtitleTrack() != -1) {
-                        var i = new Date();
-                        if (this._bfSendSubTime.getTime() + 10000 < i) {
-                            var j = this._player.getSubtitleTrack();
+                        var j = new Date();
+                        if (this._bfSendSubTime.getTime() + 10000 < j) {
+                            var k = this._player.getSubtitleTrack();
                             this._player.setSubtitleTrack(-1);
-                            this._bfSendSubTime = i;
+                            this._bfSendSubTime = j;
                             setTimeout(function() {
-                                this._player.setSubtitleTrack(j);
+                                this._player.setSubtitleTrack(k);
                             }.bind(this), 100);
                         }
                     }
@@ -3048,11 +3055,12 @@ var MultiViewDisplay = function() {
         this._mainDiv.style.position = 'absolute';
         this._mainDiv.appendChild(this._video);
         this._parent_dom.appendChild(this._mainDiv);
-        if (this._video.readyState == 0) {
-            this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
-                once: true
-            });
-        } else this.arrangeVideo();
+        if (this._video.readyState == 0) this._video.addEventListener('canplay', this.arrangeVideo.bind(this), {
+            once: true
+        });
+        else {
+            this.arrangeVideo();
+        }
         window.addEventListener('resize', function() {
             setTimeout(function() {
                 this.arrangeVideo();
@@ -3094,8 +3102,8 @@ var MultiViewDisplay = function() {
                             break;
                         }
                     }
-                } catch (w) {
-                    f.e(w);
+                } catch (x) {
+                    f.e(x);
                 } finally {
                     f.f();
                 }
@@ -3198,22 +3206,22 @@ var MultiViewDisplay = function() {
                     o = true;
                 }
                 if (!j.paused && !j.ended || o) {
-                    k.forEach(function(v, w) {
-                        var z = i._multiviewDivArr[w];
-                        var A = k.find(function(J) {
-                            return J.singleview_id === w;
+                    k.forEach(function(w, z) {
+                        var A = i._multiviewDivArr[z];
+                        var B = k.find(function(L) {
+                            return L.singleview_id === z;
                         });
-                        i.selectedMultiviewCanvas(w);
-                        if (A == null) return;
-                        var B = A.x;
-                        var C = A.y;
-                        var D = A.width;
-                        var E = A.height;
-                        var F = j.videoWidth;
-                        var G = j.videoHeight;
-                        var H = z.offsetWidth;
-                        var I = z.offsetHeight;
-                        l.drawImage(j, Math.round(B * F), Math.round(C * G), Math.round(D * F), Math.round(E * G), 0, I * w + m * w, H, I);
+                        i.selectedMultiviewCanvas(z);
+                        if (B == null) return;
+                        var C = B.x;
+                        var D = B.y;
+                        var E = B.width;
+                        var F = B.height;
+                        var G = j.videoWidth;
+                        var H = j.videoHeight;
+                        var I = A.offsetWidth;
+                        var J = A.offsetHeight;
+                        l.drawImage(j, Math.round(C * G), Math.round(D * H), Math.round(E * G), Math.round(F * H), 0, J * z + m * z, I, J);
                     }.bind(this));
                     var q = this._multiviewCanvas[0];
                     var r = this._doubleBufferCanvas[0];
@@ -3601,10 +3609,10 @@ var NicknameFilter = function() {
         }).join('|');
     }
     return {
-        hasForbidden: function c(d) {
+        hasForbidden: function d(e) {
             if (b === '') return false;
-            var e = new RegExp(b, 'gi');
-            return e.test(d);
+            var f = new RegExp(b, 'gi');
+            return f.test(e);
         }
     };
 }();
@@ -3676,8 +3684,9 @@ Chat.Manager = function() {
         },
         setUserId: function C(D) {
             if (n) return;
-            if (!D) n = getCookie(DCvi + '_user_id');
-            else {
+            if (!D) {
+                n = getCookie(DCvi + '_user_id');
+            } else {
                 n = D;
             }
         },
@@ -3777,28 +3786,29 @@ Chat.Manager = function() {
                 }
             }
             s.addListener({
-                status: function M(N) {
-                    console.log('[STATUS: ' + N.category + ']', 'connected to channels: ' + N.affectedChannels);
-                    if (N.category == 'PNConnectedCategory') {
+                status: function L(M) {
+                    console.log('[STATUS: ' + M.category + ']', 'connected to channels: ' + M.affectedChannels);
+                    if (M.category == 'PNConnectedCategory') {
                         ChatFilter.loadChatFilterData();
                         Chat.Manager.initChatInterval();
                     }
                 },
-                message: function N(O) {
-                    if (O.channel == k) Chat.Ui.updateNotice(O.message.update, O.timetoken, O.message.entry);
+                message: function M(N) {
+                    if (N.channel == k) Chat.Ui.updateNotice(N.message.update, N.timetoken, N.message.entry);
                     else {
-                        if (O.channel == l) Chat.Ui.recvCtrlChMsg(O.message.update);
-                        else {
-                            var P = O.message.update.split(CHAT_MSG_SEPARATOR);
-                            for (var Q = 0; Q < P.length; Q++) {
-                                var R = P[Q].split(CHAT_USERID_SEPARATOR)[0];
-                                if (n == R) continue;
-                                if (Chat.Manager.checkArtistUser(R)) {
-                                    Chat.Ui.displayMessage(O.message.update, O.timetoken, O.message.entry);
-                                } else q.push(P[Q]);
+                        if (N.channel == l) {
+                            Chat.Ui.recvCtrlChMsg(N.message.update);
+                        } else {
+                            var O = N.message.update.split(CHAT_MSG_SEPARATOR);
+                            for (var P = 0; P < O.length; P++) {
+                                var Q = O[P].split(CHAT_USERID_SEPARATOR)[0];
+                                if (n == Q) continue;
+                                if (Chat.Manager.checkArtistUser(Q)) {
+                                    Chat.Ui.displayMessage(N.message.update, N.timetoken, N.message.entry);
+                                } else q.push(O[P]);
                             }
                             if (q.length) {
-                                Chat.Manager.displayMessageItv(parseInt(O.timetoken));
+                                Chat.Manager.displayMessageItv(parseInt(N.timetoken));
                             }
                         }
                     }
@@ -3816,8 +3826,8 @@ Chat.Manager = function() {
             var L = d / q.length;
             r = setInterval(function() {
                 if (q.length) {
-                    var N = q[0].split(CHAT_USERID_SEPARATOR)[0];
-                    Chat.Ui.displayMessage(q[0], K, N);
+                    var M = q[0].split(CHAT_USERID_SEPARATOR)[0];
+                    Chat.Ui.displayMessage(q[0], K, M);
                     K = parseInt(K) + parseInt(L * 1000 * 10);
                     q.splice(0, 1);
                 }
@@ -3857,11 +3867,11 @@ Chat.Manager = function() {
                             entry: M,
                             update: N
                         }
-                    }, function(Z, a0) {
-                        if (Z.error) {} else {
+                    }, function(W, X) {
+                        if (W.error) {} else {
                             if (Chat.Manager.checkArtistUser(n) && !Q) {
-                                if (a0) {
-                                    Chat.Ui.displayMessage(N, a0.timetoken, n);
+                                if (X) {
+                                    Chat.Ui.displayMessage(N, X.timetoken, n);
                                 }
                                 Q = true;
                             }
@@ -3874,24 +3884,24 @@ Chat.Manager = function() {
                     PartitionKey: O[0],
                     StreamName: 'KINESIS_CHAT'
                 };
-                t.putRecord(S, function(Z, a0) {
-                    if (Z) console.log(Z, Z.stack);
-                    else {
-                        console.log(a0);
-                        var a1 = new Date();
-                        Chat.Ui.displayMessage(N, a1.getTime() * 10000);
+                t.putRecord(S, function(Y, Z) {
+                    if (Y) {
+                        console.log(Y, Y.stack);
+                    } else {
+                        console.log(Z);
+                        var a0 = new Date();
+                        Chat.Ui.displayMessage(N, a0.getTime() * 10000);
                     }
                 });
             }
         },
         checkOperationntUser: function M(N) {
-            if (u.operation_account === N) return true;
-            else {
-                return false;
-            }
+            return u.operation_account === N ? true : false;
         },
         checkAdminUser: function N(O) {
-            if (u.admin_account === O) return true;
+            if (u.admin_account === O) {
+                return true;
+            }
             return false;
         },
         checkArtistUser: function O(P) {
@@ -4010,21 +4020,21 @@ Chat.Ui = function() {
             $('#chatContentWrap .scroll-bar').on('touchstart', function() {
                 b = true;
             });
-            $('#chatList').on('touchstart', function(l) {
+            $('#chatList').on('touchstart', function(k) {
                 j = true;
             });
-            $(document).on('touchmove', function(l) {
+            $(document).on('touchmove', function(k) {
                 console.log('touchmove');
                 if (j) {
                     b = true;
                 }
             });
-            $(document).on('touchend', function(l) {
+            $(document).on('touchend', function(k) {
                 j = false;
                 console.log('touchmove');
             });
-            $('#chatList').on('wheel', function(l) {
-                if (l.originalEvent.deltaY < 0 && $('#chatList').scrollTop() > 0) {
+            $('#chatList').on('wheel', function(k) {
+                if (k.originalEvent.deltaY < 0 && $('#chatList').scrollTop() > 0) {
                     b = true;
                 }
             });
@@ -4032,32 +4042,32 @@ Chat.Ui = function() {
                 if (d) return;
                 var chatAnchor = $('#chatAnchor');
                 var chatList = $('#chatList');
-                var n = function u() {
+                var m = function t() {
                     return Math.ceil(chatList.scrollTop() + chatList.height());
                 };
-                var o = function v() {
-                    var w = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : n();
-                    return w < chatList[0].scrollHeight;
+                var n = function u() {
+                    var v = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : m();
+                    return v < chatList[0].scrollHeight;
                 };
-                var p = function w() {
+                var o = function v() {
                     chatAnchor.css('display', 'block');
                     b = true;
                 };
-                if (o()) setTimeout(function() {
-                    return o() && p();
+                if (n()) setTimeout(function() {
+                    return n() && o();
                 }, 200);
                 else {
                     chatAnchor.css('display', 'none');
                     b = false;
                     if (e.length !== 0) {
-                        var q = document.createDocumentFragment();
-                        var r = e.reverse();
-                        for (var s = 0, t = r.length; s < t; s++) {
-                            if (a <= s) break;
-                            q.prepend(r[s]);
+                        var p = document.createDocumentFragment();
+                        var q = e.reverse();
+                        for (var r = 0, s = q.length; r < s; r++) {
+                            if (a <= r) break;
+                            p.prepend(q[r]);
                         }
                         chatList.find('.user_chat:eq(-1)').css('margin-bottom', '1.25em');
-                        chatList.append(q);
+                        chatList.append(p);
                         if (navigator.userAgent.indexOf('Firefox') === -1) chatList.find('.user_chat:eq(-1)').css('margin-bottom', '0');
                         chatList.scrollTop(chatList[0].scrollHeight);
                         e = [];
@@ -4069,57 +4079,61 @@ Chat.Ui = function() {
                 $('#chatAnchor').css('display', 'none');
             });
             $('#chatSendBtn').on('click', function() {
-                var l = Chat.Manager.getNickName();
-                var m = Chat.Manager.getUserId();
-                if (!l) {
+                var k = Chat.Manager.getNickName();
+                var l = Chat.Manager.getUserId();
+                if (!k) {
                     alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
                         location.href = LUEz1;
                     });
                     return;
                 }
-                var n = $('#chatInput').val();
-                if (!n || !ChatFilter.checkFilteringData()) return;
-                if (Chat.Manager.checkOperationntUser(m) && n.length > OPERATOR_CHAT_INPUT_MAXLENGTH) n = n.slice(0, OPERATOR_CHAT_INPUT_MAXLENGTH);
+                var m = $('#chatInput').val();
+                if (!m || !ChatFilter.checkFilteringData()) {
+                    return;
+                }
+                if (Chat.Manager.checkOperationntUser(l) && m.length > OPERATOR_CHAT_INPUT_MAXLENGTH) m = m.slice(0, OPERATOR_CHAT_INPUT_MAXLENGTH);
                 else {
-                    if ((Chat.Manager.checkAdminUser(m) || Chat.Manager.checkArtistUser(m)) && n.length > ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH) n = n.slice(0, ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH);
-                    else if (!Chat.Manager.isSuperUser() && n.length > USER_CHAT_INPUT_MAXLENGTH) {
-                        n = n.slice(0, USER_CHAT_INPUT_MAXLENGTH);
+                    if ((Chat.Manager.checkAdminUser(l) || Chat.Manager.checkArtistUser(l)) && m.length > ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH) m = m.slice(0, ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH);
+                    else {
+                        if (!Chat.Manager.isSuperUser() && m.length > USER_CHAT_INPUT_MAXLENGTH) {
+                            m = m.slice(0, USER_CHAT_INPUT_MAXLENGTH);
+                        }
                     }
                 }
-                if (Chat.Manager.checkOperationntUser(m)) {
-                    Chat.Manager.submitUpdate(m, n, Chat.Manager.getNoticeChannel());
-                } else {
-                    if (Chat.Manager.checkAdminUser(m)) Chat.Manager.submitUpdate(m, n, Chat.Manager.getCtrChannel());
-                    else {
-                        var o = ChatFilter.filteringChatText(n);
-                        Chat.Manager.submitUpdate(m, m + CHAT_USERID_SEPARATOR + l + NICKNAME_SEPARATOR + o, Chat.Manager.getChatChannels());
+                if (Chat.Manager.checkOperationntUser(l)) Chat.Manager.submitUpdate(l, m, Chat.Manager.getNoticeChannel());
+                else {
+                    if (Chat.Manager.checkAdminUser(l)) {
+                        Chat.Manager.submitUpdate(l, m, Chat.Manager.getCtrChannel());
+                    } else {
+                        var n = ChatFilter.filteringChatText(m);
+                        Chat.Manager.submitUpdate(l, l + CHAT_USERID_SEPARATOR + k + NICKNAME_SEPARATOR + n, Chat.Manager.getChatChannels());
                     }
                 }
                 $('#chatInput').val('');
             });
-            $('#chatInput').on('keydown', function(l) {
-                if (l.keyCode == 13) {
+            $('#chatInput').on('keydown', function(k) {
+                if (k.keyCode == 13) {
                     $('#chatSendBtn').click();
                     return false;
                 }
             });
-            $('#chatInput').on('focus', function(l) {
+            $('#chatInput').on('focus', function(k) {
                 delayStopLoadingPanel();
             });
-            $('#chatInput').on('blur', function(l) {
+            $('#chatInput').on('blur', function(k) {
                 delayStopLoadingPanel();
             });
             $('#artistChatList').on('scroll', debounce(function() {
                 if (d) return;
                 var artistChatList = $('#artistChatList');
-                var m = function o() {
+                var l = function n() {
                     return Math.ceil(artistChatList.scrollTop() + artistChatList.height());
                 };
-                var n = function p() {
-                    var q = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : m();
-                    return q >= artistChatList[0].scrollHeight;
+                var m = function o() {
+                    var p = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : l();
+                    return p >= artistChatList[0].scrollHeight;
                 };
-                if (n()) {
+                if (m()) {
                     f = true;
                 } else {
                     f = false;
@@ -4165,7 +4179,9 @@ Chat.Ui = function() {
             if (o.length < 2) return false;
             var q = o[0];
             var r = o[1];
-            if (!p || !q || !r) return false;
+            if (!p || !q || !r) {
+                return false;
+            }
             return {
                 userId: p,
                 nickName: q,
@@ -4217,9 +4233,8 @@ Chat.Ui = function() {
             } else {
                 if (t) {
                     var x = Chat.Ui.createUserChatDiv(t, v.nickName, v.text, w);
-                    if (b) {
-                        e.push(x[0]);
-                    } else {
+                    if (b) e.push(x[0]);
+                    else {
                         $('#chatList').append(x);
                     }
                 } else {
@@ -4346,7 +4361,9 @@ function updateWaterMarkPos(a) {
     if (a) {
         $('#wmark').css('background-image', 'url(' + a + ')');
         _wmarkImgUrl = a;
-    } else $('#wmark').css('background-image', 'url(' + _wmarkImgUrl + ')');
+    } else {
+        $('#wmark').css('background-image', 'url(' + _wmarkImgUrl + ')');
+    }
     var e = 1920;
     if (!e) {
         e = 1920;
@@ -4563,8 +4580,8 @@ $(document).ready(function() {
         maskId: '#c-mask'
     });
     var j = document.querySelector('#chat-i-pushy');
-    j.addEventListener('click', function(p) {
-        p.preventDefault();
+    j.addEventListener('click', function(o) {
+        o.preventDefault();
         i.open();
         j.style.display = 'none';
         $('#chatList').scrollTop($('#chatList')[0].scrollHeight);
@@ -4606,33 +4623,31 @@ $(document).ready(function() {
         device_id: getCookie(DCvi + '_device_id'),
         content_id: DCvi
     };
-    userSessionCheck(m, function(p) {
-        var q = k.content_data = JSON.parse(JSON.stringify(p.Data.content));
-        var r = JSON.parse(JSON.stringify(p.Data.user));
-        var s = q.cam_num > 1;
+    userSessionCheck(m, function(o) {
+        var p = k.content_data = JSON.parse(JSON.stringify(o.Data.content));
+        var q = JSON.parse(JSON.stringify(o.Data.user));
+        var r = p.cam_num > 1;
         if (IS_SINGLEVIEW_ON_MULTIVIEW) {
-            s = false;
+            r = false;
         }
-        iCM(!!r.is_mute);
-        if (!q.artist_account) {
-            $('button[name=artistchatnavbtn]').css('display', ' none');
-        } else {
-            if (q.artist_account.indexOf(',') !== -1) q.artist_account = q.artist_account.split(',');
-            else {
-                q.artist_account = [q.artist_account];
-            }
+        iCM(!!q.is_mute);
+        if (!p.artist_account) $('button[name=artistchatnavbtn]').css('display', ' none');
+        else {
+            if (p.artist_account.indexOf(',') !== -1) {
+                p.artist_account = p.artist_account.split(',');
+            } else p.artist_account = [p.artist_account];
             $('button[name=artistchatnavbtn]').css('display', ' inline-block');
         }
-        if (s) {
+        if (r) {
             k.multiViewList = document.getElementById('multiViewList');
             k.use_multiview = true;
             $('button[name=multiviewnavbtn]').css('display', 'inline-block');
         } else {
             $('button[name=multiviewnavbtn]').css('display', 'none');
         }
-        Chat.Manager.setContentData(q);
+        Chat.Manager.setContentData(p);
         if (Chat.Manager.isChatUsed()) {
-            if (!r.nickname) {
+            if (!q.nickname) {
                 alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
                     location.href = LUEz1;
                 });
@@ -4640,13 +4655,13 @@ $(document).ready(function() {
             } else {
                 $('#pageWrap').removeClass().addClass('pl-t-default');
                 $('#chatWrap').css('display', 'block');
-                Chat.Manager.setPubnubAPI(r.nickname);
+                Chat.Manager.setPubnubAPI(q.nickname);
             }
         } else {
             $('#pageWrap').removeClass().addClass('pl-t-default_nochat');
             $('#chatWrap').css('display', 'none');
         }
-        if (q.use_vod) {
+        if (p.use_vod) {
             $('#playerBottomWrap').addClass('ver_vod');
             $('.pl-i-live').css('display', ' none');
             l.durationStart = document.getElementById('durationStart');
@@ -4662,38 +4677,38 @@ $(document).ready(function() {
             $('#durationWrap').css('display', 'none');
         }
         k.credentials = {
-            user_id: r.user_id,
+            user_id: q.user_id,
             device_id: getCookie(DCvi + '_device_id'),
             content_id: DCvi,
             api_server: RSAnd
         };
-        var t = '';
-        for (var u = 0; u < q.channels.length; u++) {
-            var v = true;
+        var s = '';
+        for (var t = 0; t < p.channels.length; t++) {
+            var u = true;
             if (Ythc == 'sub') {
-                v = false;
+                u = false;
             }
-            if (q.channels[u].is_main_channel == v) {
-                t = q.channels[u].hls_url;
-                k.content_data.current_channel_id = q.channels[u].id;
+            if (p.channels[t].is_main_channel == u) {
+                s = p.channels[t].hls_url;
+                k.content_data.current_channel_id = p.channels[t].id;
                 break;
             }
         }
-        _player = new Rich360Player(k, l, t);
+        _player = new Rich360Player(k, l, s);
         $(document).on('click', '#playThumbnail button', function() {
             b();
             $(this).parent().css('display', 'none');
             _player.play();
         });
-    }, function(p, q) {
-        if (q == 400 || q == 401) {
+    }, function(o, p) {
+        if (p == 400 || p == 401) {
             removeCookie(DCvi + '_user_id');
             removeCookie(DCvi + '_chat_id');
             alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_NOT_EXIST_LOGIN_INFO_DESC'), gettext('P_ALERT_OK'), function() {
                 location.href = LUEz1;
             });
         } else {
-            if (q == 403) {
+            if (p == 403) {
                 removeCookie(DCvi + '_customer_id');
                 removeCookie(DCvi + '_ticket_id');
                 removeCookie(DCvi + '_user_id');
@@ -4715,13 +4730,11 @@ $(document).ready(function() {
             $('#chatList').scrollTop($('#chatList')[0].scrollHeight);
         }, 200);
         if (isMobile()) {
-            var p = getOrientation();
-            if (typeof p == 'string') {
-                if (p == 'landscape-primary' || p == 'landscape-secondary' || p == 'landscape') {
+            var o = getOrientation();
+            if (typeof o == 'string') {
+                if (o == 'landscape-primary' || o == 'landscape-secondary' || o == 'landscape') {
                     $('#chatInputWrap').css('display', 'block');
-                } else {
-                    $('#chatInputWrap').css('display', 'block');
-                }
+                } else $('#chatInputWrap').css('display', 'block');
             } else $('#chatInputWrap').css('display', 'block');
         } else {
             $('#chatInputWrap').css('display', 'block');
@@ -4775,12 +4788,10 @@ $(document).ready(function() {
             if (_player._options.use_multiview) {
                 if (_player._player._video) {
                     if (!_player._player._video.paused) {
-                        var p = _player._player.view;
+                        var o = _player._player.view;
                         _player._player.view = $(this).data().view;
                         $(this).siblings().each(function() {
-                            if (p == $(this).data().view) {
-                                return;
-                            }
+                            if (o == $(this).data().view) return;
                         });
                         $();
                     }
@@ -4798,8 +4809,9 @@ $(document).ready(function() {
                 $('#volumeBtn').css('display', 'inline-block');
                 $('#volumeSlider').css('display', 'inline-block');
             }
-            if ((!isIOS() || isIpadOS()) && d(_player)) $('#qualitySelectBtn').css('display', 'block');
-            else {
+            if ((!isIOS() || isIpadOS()) && d(_player)) {
+                $('#qualitySelectBtn').css('display', 'block');
+            } else {
                 $('#qualitySelectBtn').css('display', 'none');
             }
             if (_player._player.subtitleList) {
@@ -4823,26 +4835,27 @@ $(document).ready(function() {
             $('.pl-btm-wrap').css('visibility', 'hidden');
         }
     });
-    $('#view-type-selector').on('click', '.btn-view-selector', function(p) {
-        var q = $(p.target);
-        var r = null;
-        var s = window.location.href;
-        var t = null;
-        if (q.hasClass('active')) return;
-        r = q.data('view-type');
-        if (r === 'singleview') window.location.replace(s + PARAM_SINGLEVIEW_ON_MULTIVIEW);
-        else if (r === 'multiview') {
-            t = s.split(PARAM_SINGLEVIEW_ON_MULTIVIEW);
-            window.location.replace(t[0]);
+    $('#view-type-selector').on('click', '.btn-view-selector', function(o) {
+        var p = $(o.target);
+        var q = null;
+        var r = window.location.href;
+        var s = null;
+        if (p.hasClass('active')) return;
+        q = p.data('view-type');
+        if (q === 'singleview') {
+            window.location.replace(r + PARAM_SINGLEVIEW_ON_MULTIVIEW);
+        } else if (q === 'multiview') {
+            s = r.split(PARAM_SINGLEVIEW_ON_MULTIVIEW);
+            window.location.replace(s[0]);
         }
     });
 
-    function o() {
+    function n() {
         if (!document.hidden) {
             c();
         }
     }
-    document.addEventListener('visibilitychange', o, false);
+    document.addEventListener('visibilitychange', n, false);
 });
 window.onpopstate = function(a) {
     location.replace(LUEz1);
@@ -4866,7 +4879,9 @@ function request_to_server(a, b, c, d, e) {
             g.append(h, c[h]);
         }
         f.send(g);
-    } else f.send();
+    } else {
+        f.send();
+    }
     $('#loadingDiv').css('display', 'block');
     requestCnt++;
     if (!serverLoading) {
@@ -4894,9 +4909,9 @@ function request_to_server(a, b, c, d, e) {
                         }
                     } else {
                         try {
-                            var i = JSON.parse(f.responseText);
-                            e(i, f.status);
-                        } catch (k) {
+                            var j = JSON.parse(f.responseText);
+                            e(j, f.status);
+                        } catch (m) {
                             e(f.responseText, f.status);
                         }
                     }
@@ -4904,8 +4919,8 @@ function request_to_server(a, b, c, d, e) {
             }
         } else {}
     };
-    f.ontimeout = function(i) {
-        console.log(i);
+    f.ontimeout = function(j) {
+        console.log(j);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -5039,25 +5054,30 @@ function getQueryStringObject() {
 function checkIEbrowser() {
     var a = window.navigator.userAgent.toLowerCase();
     var b = a.indexOf('trident');
-    if (b > -1) return true;
+    if (b > -1) {
+        return true;
+    }
     return false;
 }
 
 function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
-    if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) {
-        return true;
-    } else return false;
+    return a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1 ? true : false;
 }
 
 function checkMobileAndTablet() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
-        if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
-        else {
+        if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
+            return true;
+        } else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            return !c ? isIpadOS() : c;
+            if (!c) {
+                return isIpadOS();
+            } else {
+                return c;
+            }
         }
     }
 }
@@ -5112,17 +5132,13 @@ function removeClassName(a, b) {
 }
 
 function getOrientation() {
-    if (!isMobile()) {
-        return false;
-    }
-    if (isIOS()) {
-        switch (window.orientation) {
-            case -90:
-            case 90:
-                return 'landscape';
-            default:
-                return 'portrait';
-        }
+    if (!isMobile()) return false;
+    if (isIOS()) switch (window.orientation) {
+        case -90:
+        case 90:
+            return 'landscape';
+        default:
+            return 'portrait';
     } else {
         return screen.orientation.type.toLowerCase();
     }
@@ -5135,9 +5151,10 @@ function checkMobile() {
         else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            if (!c) {
-                return isIpadOS();
-            } else return c;
+            if (!c) return isIpadOS();
+            else {
+                return c;
+            }
         }
     }
 }
