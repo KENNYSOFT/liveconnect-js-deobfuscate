@@ -21,9 +21,10 @@ function cusDD(a, b, c) {
         if (b == 'slick dark') {
             f = 'cusDD_slick_d';
         } else {
-            if (b == 'slick light') {
-                f = 'cusDD_slick_l';
-            } else f = b;
+            if (b == 'slick light') f = 'cusDD_slick_l';
+            else {
+                f = b;
+            }
         }
     }
     for (var g = 0; g < $(a).length; g++) {
@@ -38,31 +39,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(o) {
+    $(document).click(function(n) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(o) {
-        var p = a;
-        $('.cusDD').not(p).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(p).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', p);
-        o.stopPropagation();
-        if ($(o.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(n) {
+        var o = a;
+        $('.cusDD').not(o).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(o).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', o);
+        n.stopPropagation();
+        if ($(n.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(o.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(n.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var q = 200;
+        var p = 200;
         if ($(this).find('.cusDD_options').children()) {
             if ($(this).find('.cusDD_options').children().length > 30) {
-                q = 0;
+                p = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(q);
+        $(this).find('.cusDD_options').slideToggle(p);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -72,8 +73,8 @@ function cusDD(a, b, c) {
 }
 $.fn.changeElementType = function(b) {
     var c = {};
-    $.each(this[0].attributes, function(d, e) {
-        c[e.nodeName] = e.nodeValue;
+    $.each(this[0].attributes, function(e, f) {
+        c[f.nodeName] = f.nodeValue;
     });
     this.replaceWith(function() {
         return $('<' + b + '/>', c).append($(this).contents());
@@ -389,14 +390,71 @@ switch (Tira) {
         break;
 }
 var ChatFilter = function() {
+    var a = '';
+    var b = false;
+    return {
+        loadChatFilterData: function c(d) {
+            if (b) {
+                if (d) d();
+                return;
+            }
+            var e = new XMLHttpRequest();
+            switch (Tira) {
+                case 'IDLE':
+                    e.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                    break;
+                case '210417_cix':
+                    e.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    break;
+                case '210424_mamamoo':
+                    e.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
+                    break;
+                default:
+                    e.open('GET', '/static/filtering/chat_filtering.txt');
+                    break;
+            }
+            e.overrideMimeType('text/plain; charset=utf-8');
+            e.onreadystatechange = function() {
+                if (e.readyState == XMLHttpRequest.DONE) {
+                    if (e.status == 200 || e.status == 201) {
+                        a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
+                        a = a.replace(/[\r]/gm, '');
+                        if (a[a.length - 1] == '|') {
+                            a = a.substr(0, a.length - 1);
+                        }
+                        b = true;
+                        if (d) d();
+                    }
+                }
+            };
+            e.send();
+        },
+        filteringChatText: function d(e) {
+            if (!b) return;
+            var f = 'gi';
+            var g = new RegExp(a, f);
+            return e.replace(g, '***');
+        },
+        checkFilteringData: function e() {
+            return b;
+        },
+        checkNickname: function f(g) {
+            if (!b) return;
+            var h = 'gi';
+            var i = new RegExp(a, h);
+            return i.test(g);
+        }
+    };
+}();
+var NicknameFilter = function() {
     var c = function() {
         var g = true;
         return function(h, i) {
             var j = g ? function() {
                 if (i) {
-                    var l = i.apply(h, arguments);
+                    var k = i.apply(h, arguments);
                     i = null;
-                    return l;
+                    return k;
                 }
             } : function() {};
             g = false;
@@ -423,76 +481,19 @@ var ChatFilter = function() {
         }
     });
     d();
-    var e = '';
-    var f = false;
-    return {
-        loadChatFilterData: function g(h) {
-            if (f) {
-                if (h) h();
-                return;
-            }
-            var i = new XMLHttpRequest();
-            switch (Tira) {
-                case 'IDLE':
-                    i.open('GET', '/static/filtering/chat_filtering_idle.txt');
-                    break;
-                case '210417_cix':
-                    i.open('GET', '/static/filtering/chat_filtering_cix.txt');
-                    break;
-                case '210424_mamamoo':
-                    i.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
-                    break;
-                default:
-                    i.open('GET', '/static/filtering/chat_filtering.txt');
-                    break;
-            }
-            i.overrideMimeType('text/plain; charset=utf-8');
-            i.onreadystatechange = function() {
-                if (i.readyState == XMLHttpRequest.DONE) {
-                    if (i.status == 200 || i.status == 201) {
-                        e = i.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
-                        e = e.replace(/[\r]/gm, '');
-                        if (e[e.length - 1] == '|') {
-                            e = e.substr(0, e.length - 1);
-                        }
-                        f = true;
-                        if (h) h();
-                    }
-                }
-            };
-            i.send();
-        },
-        filteringChatText: function h(i) {
-            if (!f) return;
-            var j = 'gi';
-            var k = new RegExp(e, j);
-            return i.replace(k, '***');
-        },
-        checkFilteringData: function i() {
-            return f;
-        },
-        checkNickname: function j(k) {
-            if (!f) return;
-            var l = 'gi';
-            var m = new RegExp(e, l);
-            return m.test(k);
-        }
-    };
-}();
-var NicknameFilter = function() {
-    var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
-    var b = '';
-    if (a == '210424_mamamoo') {
-        b = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
-        b = b.map(function(d) {
-            return d.replace(/ /gi, '');
+    var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
+    var f = '';
+    if (e == '210424_mamamoo') {
+        f = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
+        f = f.map(function(h) {
+            return h.replace(/ /gi, '');
         }).join('|');
     }
     return {
-        hasForbidden: function d(e) {
-            if (b === '') return false;
-            var f = new RegExp(b, 'gi');
-            return f.test(e);
+        hasForbidden: function h(i) {
+            if (f === '') return false;
+            var j = new RegExp(f, 'gi');
+            return j.test(i);
         }
     };
 }();
@@ -511,9 +512,7 @@ function request_to_server(a, b, c, d, e) {
             g.append(h, c[h]);
         }
         f.send(g);
-    } else {
-        f.send();
-    }
+    } else f.send();
     $('#loadingDiv').css('display', 'block');
     requestCnt++;
     if (!serverLoading) {
@@ -540,17 +539,17 @@ function request_to_server(a, b, c, d, e) {
                             console.log(JSON.parse(f.responseText));
                         }
                     } else try {
-                        var k = JSON.parse(f.responseText);
-                        e(k, f.status);
-                    } catch (p) {
+                        var j = JSON.parse(f.responseText);
+                        e(j, f.status);
+                    } catch (m) {
                         e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(k) {
-        console.log(k);
+    f.ontimeout = function(j) {
+        console.log(j);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -684,7 +683,9 @@ function getQueryStringObject() {
 function checkIEbrowser() {
     var a = window.navigator.userAgent.toLowerCase();
     var b = a.indexOf('trident');
-    if (b > -1) return true;
+    if (b > -1) {
+        return true;
+    }
     return false;
 }
 
@@ -692,7 +693,9 @@ function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
     if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) {
         return true;
-    } else return false;
+    } else {
+        return false;
+    }
 }
 
 function checkMobileAndTablet() {
@@ -702,9 +705,7 @@ function checkMobileAndTablet() {
         else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            if (!c) {
-                return isIpadOS();
-            } else return c;
+            return !c ? isIpadOS() : c;
         }
     }
 }
@@ -759,32 +760,26 @@ function removeClassName(a, b) {
 }
 
 function getOrientation() {
-    if (!isMobile()) {
-        return false;
+    if (!isMobile()) return false;
+    if (isIOS()) switch (window.orientation) {
+        case -90:
+        case 90:
+            return 'landscape';
+        default:
+            return 'portrait';
+    } else {
+        return screen.orientation.type.toLowerCase();
     }
-    if (isIOS()) {
-        switch (window.orientation) {
-            case -90:
-            case 90:
-                return 'landscape';
-            default:
-                return 'portrait';
-        }
-    } else return screen.orientation.type.toLowerCase();
 }
 
 function checkMobile() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
-        if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
-            return true;
-        } else {
+        if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
+        else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            if (!c) return isIpadOS();
-            else {
-                return c;
-            }
+            return !c ? isIpadOS() : c;
         }
     }
 }
@@ -1100,162 +1095,159 @@ function d() {
     removeCookie(DCvi + '_user_id');
     removeCookie(DCvi + '_chat_id');
 }
-if (ddv) {
-    $(document).ready(function() {
-        d();
-    });
-} else {
-    var e = function w(x, y, z) {
-        request_to_server('POST', RSAnd + '/user_auth/customer_login/', x, function(A) {
-            o = JSON.parse(JSON.stringify(A.Data.content));
-            p = JSON.parse(JSON.stringify(A.Data.user));
-            if (A.Data.allowed_events) {
-                q = JSON.parse(JSON.stringify(A.Data.allowed_events));
+if (ddv) $(document).ready(function() {
+    d();
+});
+else {
+    var e = function v(w, x, y) {
+        request_to_server('POST', RSAnd + '/user_auth/customer_login/', w, function(z) {
+            o = JSON.parse(JSON.stringify(z.Data.content));
+            p = JSON.parse(JSON.stringify(z.Data.user));
+            if (z.Data.allowed_events) {
+                q = JSON.parse(JSON.stringify(z.Data.allowed_events));
             }
-            if (y) y();
+            if (x) x();
         }, function() {
-            if (z) z();
+            if (y) y();
         });
     };
-    var f = function x(y, z, A) {
-        request_to_server('POST', RSAnd + '/user_auth/nickname/', y, function(C) {
-            if (z) z(C);
-        }, function(C, D) {
-            if (A) A(C, D);
+    var f = function w(x, y, z) {
+        request_to_server('POST', RSAnd + '/user_auth/nickname/', x, function(B) {
+            if (y) y(B);
+        }, function(B, C) {
+            if (z) z(B, C);
         });
     };
-    var g = function y(z, A, B) {
-        request_to_server('POST', RSAnd + '/user_auth/player_enter/', z, function(C) {
-            if (A) A(C);
-        }, function(C) {
-            if (B) B(C);
+    var g = function x(y, z, A) {
+        request_to_server('POST', RSAnd + '/user_auth/player_enter/', y, function(B) {
+            if (z) z(B);
+        }, function(B) {
+            if (A) A(B);
         });
     };
-    var h = function z(A) {
-        var B = /[\/\\:*?<>|"]/gi;
-        if (B.test(A)) {
-            return true;
-        } else return false;
-    };
-    var i = function A(B) {
-        if (B.search(/\s/) != -1) {
+    var h = function y(z) {
+        var A = /[\/\\:*?<>|"]/gi;
+        if (A.test(z)) {
             return true;
         } else {
             return false;
         }
     };
-    var j = function B() {
+    var i = function z(A) {
+        if (A.search(/\s/) != -1) {
+            return true;
+        } else return false;
+    };
+    var j = function A() {
         $('#loadingDiv').css('display', 'block');
-        var C = egl;
-        var D = POPUP_CONFIG.failToGetPlayerCode(C, null);
-        var E = p;
-        var F = o;
-        var G = (F && F.id ? F.id : null) || DCvi;
-        var H = {
+        var B = egl;
+        var C = POPUP_CONFIG.failToGetPlayerCode(B, null);
+        var D = p;
+        var E = o;
+        var F = (E && E.id ? E.id : null) || DCvi;
+        var G = {
             user_id: null,
             content_id: null,
             device_id: null
         };
+        var H = null;
         var I = null;
-        var J = null;
-        if (E && E.user_id) H.user_id = E.user_id;
-        if (u) H.device_id = u;
-        if (G) H.content_id = G;
-        g(H, function(K) {
+        if (D && D.user_id) G.user_id = D.user_id;
+        if (u) G.device_id = u;
+        if (F) G.content_id = F;
+        g(G, function(J) {
             $('#loadingDiv').css('display', 'none');
-            console.log(K);
-            I = K && K.Data ? K.Data : null;
-            J = I && I.content ? I.content.player_code : null;
-            if (J) {
+            console.log(J);
+            H = J && J.Data ? J.Data : null;
+            I = H && H.content ? H.content.player_code : null;
+            if (I) {
                 setCookie(DCvi + '_user_id', p.user_id, 20160);
                 setCookie(DCvi + '_chat_id', p.chat_id, 20160);
                 setCookie(DCvi + '_content_id', DCvi, 20160);
                 HIKE_UTIL.setCookiesOnGroup(q, false, false, true, true);
-                location.href = LUEz1 + '/' + J;
-            } else {
-                if (D) {
-                    alertPopup(D.title, D.desc, D.btnTxt, D.okCallback);
-                }
+                location.href = LUEz1 + '/' + I;
+            } else if (C) {
+                alertPopup(C.title, C.desc, C.btnTxt, C.okCallback);
             }
-        }, function(K) {
+        }, function(J) {
             $('#loadingDiv').css('display', 'none');
-            console.log(K);
-            if (D) {
-                alertPopup(D.title, D.desc, D.btnTxt, D.okCallback);
+            console.log(J);
+            if (C) {
+                alertPopup(C.title, C.desc, C.btnTxt, C.okCallback);
             }
         });
     };
-    var k = function C(D, E) {
+    var k = function B(C, D) {
         if (b == 'code') {
             switch (egl) {
                 case 'ko':
-                    D.text('인증코드를 입력해 주세요.');
+                    C.text('인증코드를 입력해 주세요.');
                     break;
                 case 'en':
-                    D.text('Enter authentication code.');
+                    C.text('Enter authentication code.');
                     break;
                 case 'ja':
                 case 'jp':
-                    D.text('認証コードを入力してください');
+                    C.text('認証コードを入力してください');
                     break;
                 case 'cn':
-                    D.text('Enter authentication code');
+                    C.text('Enter authentication code');
                     break;
             }
         } else {
             switch (egl) {
                 case 'ko':
-                    D.text('인터파크ID와 예매번호를 입력해 주세요.');
+                    C.text('인터파크ID와 예매번호를 입력해 주세요.');
                     break;
                 case 'en':
-                    D.text('Enter INTERPARK ID and reservation number.');
+                    C.text('Enter INTERPARK ID and reservation number.');
                     break;
                 case 'ja':
                 case 'jp':
-                    D.text('INTERPARK IDと購入番号を入力してください。');
+                    C.text('INTERPARK IDと購入番号を入力してください。');
                     break;
                 case 'cn':
-                    D.text('请输入INTERPARK账户和预订号码');
+                    C.text('请输入INTERPARK账户和预订号码');
                     break;
             }
         }
     };
-    var l = function D(E, F) {
+    var l = function C(D, E) {
         if (b == 'code') {
             switch (egl) {
                 case 'ko':
-                    E.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                    D.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
                     break;
                 case 'en':
-                    E.text('Authentication code is not valid. Please check and try again.');
+                    D.text('Authentication code is not valid. Please check and try again.');
                     break;
                 case 'ja':
                 case 'jp':
-                    E.text('認証コードが正しくありません。確認後、正確に入力してください。');
+                    D.text('認証コードが正しくありません。確認後、正確に入力してください。');
                     break;
                 case 'cn':
-                    E.text('Authentication code is not valid. Please check and try again.');
+                    D.text('Authentication code is not valid. Please check and try again.');
                     break;
             }
         } else {
             switch (egl) {
                 case 'ko':
-                    E.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                    D.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
                     break;
                 case 'en':
-                    E.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
+                    D.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
                     break;
                 case 'ja':
                 case 'jp':
-                    E.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
+                    D.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
                     break;
                 case 'cn':
-                    E.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
+                    D.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
                     break;
             }
         }
     };
-    var m = function E(F) {
+    var m = function D(E) {
         $('#authPopup').css('display', 'none');
         $('#authBtn').css('display', 'none');
         $('#authMsg1').css('display', 'none');
@@ -1296,15 +1288,18 @@ if (ddv) {
             }
         }
     };
-    var n = function F(G, H) {
+    var n = function E(F, G) {
         ChatFilter.loadChatFilterData(function() {
-            s = G;
-            if (G == 'enter') $('#loginPopup').css('display', 'none');
-            else if (G == 'auth') {
-                $('#authPopup').css('display', 'none');
+            s = F;
+            if (F == 'enter') {
+                $('#loginPopup').css('display', 'none');
+            } else {
+                if (F == 'auth') {
+                    $('#authPopup').css('display', 'none');
+                }
             }
-            if (H) {
-                $('#nickname').val(H);
+            if (G) {
+                $('#nickname').val(G);
             }
             switch (egl) {
                 case 'ko':
@@ -1364,22 +1359,22 @@ if (ddv) {
         var authTicketId = $('#authTicketId');
         var authFailTxt = $('#authFailTxt');
         var authCheckBtn = $('#authCheckBtn');
-        var a4 = new Date(parseInt(ete));
-        var a5 = new Date(parseInt(cte));
-        var a6 = new Date();
-        var a7 = uath;
-        var a8 = true;
-        var a9 = {
+        var a3 = new Date(parseInt(ete));
+        var a4 = new Date(parseInt(cte));
+        var a5 = new Date();
+        var a6 = uath;
+        var a7 = true;
+        var a8 = {
             requestCreateNickname: null
         };
-        var aa = false;
+        var a9 = false;
         authMsg1.css('display', 'none');
         authMsg2.css('display', 'none');
-        var ab = function aj(ak) {
+        var aa = function ah(ai) {
             authMsg1.css('display', 'none');
             authMsg2.css('display', 'none');
             authBtn.css('display', 'none');
-            if (ak) {
+            if (ai) {
                 enterBtn.css('display', 'inline-block');
                 readyBtn.css('display', 'none');
             } else {
@@ -1388,14 +1383,14 @@ if (ddv) {
             }
             if (rtd) enterBtn.css('display', 'inline-block');
         };
-        var ac = function ak() {
-            a9.requestCreateNickname = setTimeout(function() {
+        var ab = function ai() {
+            a8.requestCreateNickname = setTimeout(function() {
                 console.log('@@@RESET');
                 nicknameFailTxt.text('');
-                a8 = true;
+                a7 = true;
             }, 1000);
         };
-        var ad = function al() {
+        var ac = function aj() {
             authCustomerId.text('');
             authTicketId.text('');
             authFailTxt.text('');
@@ -1409,32 +1404,32 @@ if (ddv) {
             }
             authCustomerId.focus();
         };
-        var ae = function am() {
-            var an = egl;
-            var ao = DCvi;
-            var ap = null;
+        var ad = function ak() {
+            var al = egl;
+            var am = DCvi;
+            var an = null;
             if (c !== null) {
-                ap = POPUP_CONFIG.authorizedByCode(an);
-                $('.popupbox .label_customer_id').text(ap.idText);
-                $('.popupbox .label_ticket_id').text(ap.ticketText);
+                an = POPUP_CONFIG.authorizedByCode(al);
+                $('.popupbox .label_customer_id').text(an.idText);
+                $('.popupbox .label_ticket_id').text(an.ticketText);
                 customerId.prop('autofocus', false).prop('readonly', true).val(c);
                 authCustomerId.prop('autofocus', false).prop('readonly', true).val(c);
-                authPopup.find('.pop-tt.auth').text(ap.authPopupTitle);
+                authPopup.find('.pop-tt.auth').text(an.authPopupTitle);
             }
         };
-        var af = function an(ao, ap) {
-            var aq = DCvi;
-            if (!HIKE_UTIL.isHikeEvent(aq)) return;
-            if (ao && !ap) {
-                ad();
+        var ae = function al(am, an) {
+            var ao = DCvi;
+            if (!HIKE_UTIL.isHikeEvent(ao)) return;
+            if (am && !an) {
+                ac();
             }
-            if (!ao && !ap) {
+            if (!am && !an) {
                 enterBtn.click();
             }
         };
-        ae();
-        t = a5.getTime() - a6.getTime();
-        if (a4 < a5) {
+        ad();
+        t = a4.getTime() - a5.getTime();
+        if (a3 < a4) {
             dayWrap.css('display', 'none');
             if (!checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp()) {
                 enterBtn.css('display', 'inline-block');
@@ -1444,18 +1439,19 @@ if (ddv) {
             authMsg1.css('display', 'none');
             authMsg2.css('display', 'none');
         } else {
-            if (dsev) {
-                dayWrap.css('display', 'none');
-            } else dayWrap.css('display', 'block');
-            enterBtn.css('display', 'none');
-            if (!a7) {
-                ab(false);
+            if (dsev) dayWrap.css('display', 'none');
+            else {
+                dayWrap.css('display', 'block');
             }
-            var ag = function ap() {
-                var aq = new Date();
-                aq.setTime(aq.getTime() + t);
-                aa = a4 <= aq;
-                if (a4 <= aq) {
+            enterBtn.css('display', 'none');
+            if (!a6) {
+                aa(false);
+            }
+            var af = function aq() {
+                var ar = new Date();
+                ar.setTime(ar.getTime() + t);
+                a9 = a3 <= ar;
+                if (a3 <= ar) {
                     dayWrap.css('display', 'none');
                     enterBtn.css('display', 'inline-block');
                     readyBtn.css('display', 'none');
@@ -1470,18 +1466,15 @@ if (ddv) {
                     if (!rtd) {
                         enterBtn.css('display', 'none');
                     }
-                    if (!a7) {
-                        ab(false);
+                    if (!a6) {
+                        aa(false);
                     }
                 }
-                var ar = (a4 - aq) / 1000;
-                var as = parseInt(ar / 60 / 60 / 24);
-                var at = parseInt(ar / 60 / 60 % 24);
-                var au = parseInt(ar / 60 % 60);
-                var av = parseInt(ar % 60);
-                if (as < 10) {
-                    as = '0' + as;
-                }
+                var as = (a3 - ar) / 1000;
+                var at = parseInt(as / 60 / 60 / 24);
+                var au = parseInt(as / 60 / 60 % 24);
+                var av = parseInt(as / 60 % 60);
+                var aw = parseInt(as % 60);
                 if (at < 10) {
                     at = '0' + at;
                 }
@@ -1491,36 +1484,38 @@ if (ddv) {
                 if (av < 10) {
                     av = '0' + av;
                 }
+                if (aw < 10) {
+                    aw = '0' + aw;
+                }
                 if (document.getElementById('day')) {
-                    document.getElementById('day').innerHTML = as;
+                    document.getElementById('day').innerHTML = at;
                 }
                 if (document.getElementById('hour')) {
-                    document.getElementById('hour').innerHTML = at;
+                    document.getElementById('hour').innerHTML = au;
                 }
                 if (document.getElementById('minute')) {
-                    document.getElementById('minute').innerHTML = au;
+                    document.getElementById('minute').innerHTML = av;
                 }
                 if (document.getElementById('second')) {
-                    document.getElementById('second').innerHTML = av;
+                    document.getElementById('second').innerHTML = aw;
                 }
             };
-            ag();
-            r = setInterval(ag, 1000);
+            af();
+            r = setInterval(af, 1000);
         }
         if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
             enterBtn.css('display', 'none');
             notSupportedBrowser.css('display', 'inline-block');
         } else {
-            var ah = {
+            var ag = {
                 content_id: DCvi,
                 user_id: getCookie(DCvi + '_user_id'),
                 device_id: getCookie(DCvi + '_device_id')
             };
-            if (a4 > a5) {
-                if (!a7) {
-                    ab(false);
-                } else {
-                    if (!ah.user_id) {
+            if (a3 > a4) {
+                if (!a6) aa(false);
+                else {
+                    if (!ag.user_id) {
                         authBtn.css('display', 'inline-block');
                         if (!dsev) {
                             authMsg1.css('display', 'block');
@@ -1529,73 +1524,71 @@ if (ddv) {
                     }
                 }
             }
-            userSessionCheck(ah, function(aw) {
-                p = JSON.parse(JSON.stringify(aw.Data.user));
-                o = JSON.parse(JSON.stringify(aw.Data.content));
+            userSessionCheck(ag, function(as) {
+                p = JSON.parse(JSON.stringify(as.Data.user));
+                o = JSON.parse(JSON.stringify(as.Data.content));
                 if (o.status == 'end') {
                     clearInterval(r);
                     d();
                 } else {
                     if (o.is_chat_used) {
                         if (p.nickname) {
-                            if (a4 > a5) {
-                                if (!a7) {
-                                    ab(false);
-                                } else {
-                                    readyBtn.css('display', 'inline-block');
-                                }
+                            if (a3 > a4) {
+                                if (!a6) {
+                                    aa(false);
+                                } else readyBtn.css('display', 'inline-block');
                             }
                             authBtn.css('display', 'none');
                             authMsg1.css('display', 'none');
                             authMsg2.css('display', 'none');
                         } else {
-                            if (a4 > a5) {
-                                if (!a7) ab(false);
-                                else {
+                            if (a3 > a4) {
+                                if (!a6) {
+                                    aa(false);
+                                } else {
                                     authBtn.css('display', 'inline-block');
                                     if (HIKE_UTIL.isHikeEvent()) {
                                         readyBtn.show();
                                     }
                                 }
-                                if (!dsev && a7) {
+                                if (!dsev && a6) {
                                     authMsg1.css('display', 'block');
                                     authMsg2.css('display', 'block');
                                 }
                             }
                         }
-                    } else {
-                        if (a4 > a5) {
-                            if (!a7) {
-                                ab(false);
-                            } else {
-                                authBtn.css('display', 'inline-block');
-                                af(true, false);
-                            }
-                            if (!dsev && a7) {
-                                authMsg1.css('display', 'block');
-                                authMsg2.css('display', 'block');
-                            }
+                    } else if (a3 > a4) {
+                        if (!a6) {
+                            aa(false);
+                        } else {
+                            authBtn.css('display', 'inline-block');
+                            ae(true, false);
+                        }
+                        if (!dsev && a6) {
+                            authMsg1.css('display', 'block');
+                            authMsg2.css('display', 'block');
                         }
                     }
                 }
-            }, function(aw) {
-                if (aw.Data) {
-                    if (aw.Data.content.status == 'end') {
+            }, function(as) {
+                if (as.Data) {
+                    if (as.Data.content.status == 'end') {
                         clearInterval(r);
                         d();
                     } else {
-                        if (a4 > a5) {
-                            if (!a7) ab(false);
-                            else {
+                        if (a3 > a4) {
+                            if (!a6) {
+                                aa(false);
+                            } else {
                                 authBtn.css('display', 'inline-block');
-                                af(true, false);
+                                ae(true, false);
                             }
-                            if (!dsev && a7) {
+                            if (!dsev && a6) {
                                 authMsg1.css('display', 'block');
                                 authMsg2.css('display', 'block');
                             }
                         } else {
-                            af(false, false);
+                            ae(false, false);
                             authBtn.css('display', 'none');
                             authMsg1.css('display', 'none');
                             authMsg2.css('display', 'none');
@@ -1609,25 +1602,23 @@ if (ddv) {
             ticketId.val('');
             loginFailTxt.text('');
             chk_save2.prop('checked', true);
-            ae();
-            var aw = {
+            ad();
+            var at = {
                 user_id: getCookie(DCvi + '_user_id'),
                 device_id: getCookie(DCvi + '_device_id'),
                 content_id: DCvi
             };
-            if (!a7) {
-                if (aw.user_id) {
+            if (!a6) {
+                if (at.user_id) {
                     if (o && o.is_chat_used) {
                         n('enter', p.nickname);
-                    } else {
-                        j();
-                    }
+                    } else j();
                 } else {
                     loginBtn.click();
                 }
                 return;
             }
-            userSessionCheck(aw, function(ay) {
+            userSessionCheck(at, function(ay) {
                 o = JSON.parse(JSON.stringify(ay.Data.content));
                 p = JSON.parse(JSON.stringify(ay.Data.user));
                 if (o.is_chat_used) {
@@ -1658,33 +1649,33 @@ if (ddv) {
             loginPopup.css('display', 'none');
         });
         loginBtn.on('click', function() {
-            var aw = customerId.val().trim();
-            var ax = ticketId.val().trim();
-            if (a7 && (!aw || !ax)) {
+            var at = customerId.val().trim();
+            var au = ticketId.val().trim();
+            if (a6 && (!at || !au)) {
                 k(loginFailTxt, DCvi);
                 return;
             }
-            var ay = {
-                customer_id: aw,
-                ticket_id: ax,
+            var av = {
+                customer_id: at,
+                ticket_id: au,
                 content_id: DCvi,
                 device_id: u
             };
-            if (!a7) {
-                ay.customer_id = null;
-                ay.ticket_id = null;
+            if (!a6) {
+                av.customer_id = null;
+                av.ticket_id = null;
             }
-            e(ay, function() {
-                if (a7) {
+            e(av, function() {
+                if (a6) {
                     if (chk_save2.prop('checked')) {
-                        setCookie(DCvi + '_customer_id', ay.customer_id, 20160);
-                        setCookie(DCvi + '_ticket_id', ay.ticket_id, 20160);
+                        setCookie(DCvi + '_customer_id', av.customer_id, 20160);
+                        setCookie(DCvi + '_ticket_id', av.ticket_id, 20160);
                     } else {
                         removeCookie(DCvi + '_customer_id');
                         removeCookie(DCvi + '_ticket_id');
                     }
-                    setCookie(DCvi + '_ticket_id', ay.ticket_id, 20160);
-                    HIKE_UTIL.setCookiesOnGroup(q, false, ay.ticket_id, false, false);
+                    setCookie(DCvi + '_ticket_id', av.ticket_id, 20160);
+                    HIKE_UTIL.setCookiesOnGroup(q, false, av.ticket_id, false, false);
                 }
                 if (o.is_chat_used) {
                     n('enter', p.nickname);
@@ -1701,8 +1692,8 @@ if (ddv) {
             nicknamePopup.css('display', 'none');
         });
         createNickBtn.on('click', function() {
-            var aw = nickname.val();
-            if (!aw) {
+            var at = nickname.val();
+            if (!at) {
                 switch (egl) {
                     case 'ko':
                         nicknameFailTxt.text('닉네임을 입력해주세요.');
@@ -1720,7 +1711,7 @@ if (ddv) {
                 }
                 return;
             }
-            if (h(aw)) {
+            if (h(at)) {
                 switch (egl) {
                     case 'ko':
                         nicknameFailTxt.text('닉네임에는 특수문자를 포함할 수 없습니다.');
@@ -1737,7 +1728,7 @@ if (ddv) {
                         break;
                 }
             } else {
-                if (i(aw)) {
+                if (i(at)) {
                     switch (egl) {
                         case 'ko':
                             nicknameFailTxt.text('닉네임에는 공백을 포함할 수 없습니다.');
@@ -1754,7 +1745,7 @@ if (ddv) {
                             break;
                     }
                 } else {
-                    if (aw.length < 2 || aw.length > 12) {
+                    if (at.length < 2 || at.length > 12) {
                         switch (egl) {
                             case 'ko':
                                 nicknameFailTxt.text('닉네임은 2~12자로 입력해 주세요.');
@@ -1771,7 +1762,7 @@ if (ddv) {
                                 break;
                         }
                     } else {
-                        if (NicknameFilter.hasForbidden(aw)) {
+                        if (NicknameFilter.hasForbidden(at)) {
                             switch (egl) {
                                 case 'ko':
                                     nicknameFailTxt.text('사용할 수 없는 닉네임입니다.');
@@ -1788,7 +1779,7 @@ if (ddv) {
                                     break;
                             }
                         } else {
-                            if (ChatFilter.checkNickname(aw)) {
+                            if (ChatFilter.checkNickname(at)) {
                                 switch (egl) {
                                     case 'ko':
                                         nicknameFailTxt.text('닉네임에 비속어가 포함되어 있습니다.');
@@ -1805,25 +1796,25 @@ if (ddv) {
                                         break;
                                 }
                             } else {
-                                clearTimeout(a9.requestCreateNickname);
-                                if (!a8) {
+                                clearTimeout(a8.requestCreateNickname);
+                                if (!a7) {
                                     nicknameFailTxt.text(POPUP_CONFIG.duplicatedNickname(egl).desc);
-                                    ac();
+                                    ab();
                                 }
-                                if (!a8) return;
-                                var ax = {
+                                if (!a7) return;
+                                var au = {
                                     user_id: p.user_id,
                                     device_id: u,
-                                    nickname: aw,
+                                    nickname: at,
                                     content_id: DCvi
                                 };
                                 $('#loadingDiv').css('display', 'block');
-                                f(ax, function() {
-                                    a8 = true;
-                                    clearTimeout(a9.requestCreateNickname);
+                                f(au, function() {
+                                    a7 = true;
+                                    clearTimeout(a8.requestCreateNickname);
                                     if (s == 'auth') {
                                         m(DCvi);
-                                        if (aa) readyBtn.css('display', 'none');
+                                        if (a9) readyBtn.css('display', 'none');
                                     } else {
                                         if (s == 'enter') {
                                             $('#loadingDiv').css('display', 'none');
@@ -1858,8 +1849,8 @@ if (ddv) {
                                         }
                                     }
                                 }, function(aL, aM) {
-                                    a8 = false;
-                                    ac();
+                                    a7 = false;
+                                    ab();
                                     var aN = aL && aL.Message == 'nickname duplicated.' || aM == 409;
                                     if (aN) {
                                         switch (egl) {
@@ -1919,35 +1910,35 @@ if (ddv) {
                 }
             }
         });
-        $('#customerId,#ticketId').on('keydown', function(aw) {
-            if (aw.keyCode == 13) {
+        $('#customerId,#ticketId').on('keydown', function(at) {
+            if (at.keyCode == 13) {
                 loginBtn.click();
             }
         });
-        nickname.on('keydown', function(aw) {
-            if (aw.keyCode == 13) {
+        nickname.on('keydown', function(at) {
+            if (at.keyCode == 13) {
                 createNickBtn.click();
             }
         });
-        authBtn.on('click', ad);
+        authBtn.on('click', ac);
         authCheckBtn.on('click', function() {
-            var aw = authCustomerId.val().trim();
-            var ax = authTicketId.val().trim();
-            if (!aw || !ax) {
+            var at = authCustomerId.val().trim();
+            var au = authTicketId.val().trim();
+            if (!at || !au) {
                 k(authFailTxt, DCvi);
                 return;
             }
-            var ay = {
-                customer_id: aw,
-                ticket_id: ax,
+            var av = {
+                customer_id: at,
+                ticket_id: au,
                 content_id: DCvi,
                 device_id: u
             };
-            e(ay, function() {
+            e(av, function() {
                 if (chk_save.prop('checked')) {
-                    setCookie(DCvi + '_customer_id', ay.customer_id, 20160);
-                    setCookie(DCvi + '_ticket_id', ay.ticket_id, 20160);
-                    HIKE_UTIL.setCookiesOnGroup(q, ay.customer_id, ay.ticket_id, false, false);
+                    setCookie(DCvi + '_customer_id', av.customer_id, 20160);
+                    setCookie(DCvi + '_ticket_id', av.ticket_id, 20160);
+                    HIKE_UTIL.setCookiesOnGroup(q, av.customer_id, av.ticket_id, false, false);
                     if (p) {
                         setCookie(DCvi + '_user_id', p.user_id, 20160);
                         HIKE_UTIL.setCookiesOnGroup(q, null, null, true, false);
@@ -1957,15 +1948,16 @@ if (ddv) {
                     removeCookie(DCvi + '_ticket_id');
                     removeCookie(DCvi + '_user_id');
                 }
-                if (o.is_chat_used) {
-                    n('auth', p.nickname);
-                } else m(DCvi);
+                if (o.is_chat_used) n('auth', p.nickname);
+                else {
+                    m(DCvi);
+                }
             }, function() {
                 l(authFailTxt, DCvi);
             });
         });
-        $('#authCustomerId, #authTicketId').on('keydown', function(aw) {
-            if (aw.keyCode == 13) {
+        $('#authCustomerId, #authTicketId').on('keydown', function(at) {
+            if (at.keyCode == 13) {
                 authCheckBtn.click();
             }
         });
@@ -1980,13 +1972,13 @@ if (ddv) {
             authMsg2.remove();
         }
     });
-    window.onpageshow = function(H) {
-        var I = null;
-        var J = window.performance;
-        var K = J && J.getEntriesByType ? J.getEntriesByType('navigation') : null;
-        var L = K && K[0] ? K[0].type : null;
-        console.log(L);
-        if (H.persisted || L == 'back_forward' || I == 2) {
+    window.onpageshow = function(G) {
+        var H = null;
+        var I = window.performance;
+        var J = I && I.getEntriesByType ? I.getEntriesByType('navigation') : null;
+        var K = J && J[0] ? J[0].type : null;
+        console.log(K);
+        if (G.persisted || K == 'back_forward' || H == 2) {
             location.reload();
         }
     };
