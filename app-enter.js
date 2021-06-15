@@ -18,13 +18,12 @@ function cusDD(a, b, c) {
     var f = '';
     if (!b) f = 'cusDD_default';
     else {
-        if (b == 'slick dark') f = 'cusDD_slick_d';
-        else {
+        if (b == 'slick dark') {
+            f = 'cusDD_slick_d';
+        } else {
             if (b == 'slick light') {
                 f = 'cusDD_slick_l';
-            } else {
-                f = b;
-            }
+            } else f = b;
         }
     }
     for (var g = 0; g < $(a).length; g++) {
@@ -73,8 +72,8 @@ function cusDD(a, b, c) {
 }
 $.fn.changeElementType = function(b) {
     var c = {};
-    $.each(this[0].attributes, function(d, e) {
-        c[e.nodeName] = e.nodeValue;
+    $.each(this[0].attributes, function(e, f) {
+        c[f.nodeName] = f.nodeValue;
     });
     this.replaceWith(function() {
         return $('<' + b + '/>', c).append($(this).contents());
@@ -126,6 +125,9 @@ switch (Tira) {
         break;
     case '[TEST]vod_test':
         var DCvi = 'd4141fc6-5b17-4034-819e-ba2f6fd631e0';
+        break;
+    case '1623651443480_mbcidollive':
+        var DCvi = '36afb480-109a-4a43-9d84-0b9704b49d01';
         break;
     case '200817_guckkasten':
         var DCvi = '66d65700-0799-4007-9289-ecbd17699128';
@@ -394,6 +396,9 @@ switch (Tira) {
     case '210625_woowahan':
         var DCvi = '7f328115-ae26-499c-9e66-3724fa9a709e';
         break;
+    case 'dd':
+        var DCvi = 'fc6170aa-6f67-4076-b0f1-19250bee49dc';
+        break;
     case 'dev_demo_event':
         var DCvi = 'f3a82d31-a083-4679-88e1-c0961a925afb';
         break;
@@ -406,75 +411,8 @@ switch (Tira) {
     case 'dev_demo_vod':
         var DCvi = 'b36f6b04-98b0-4c57-b29e-2f4ab19c18ee';
         break;
-    case 'mbc_idol_live_sample':
-        var DCvi = '36afb480-109a-4a43-9d84-0b9704b49d01';
-        break;
 }
 var ChatFilter = function() {
-    var a = '';
-    var b = false;
-    return {
-        loadChatFilterData: function c(d) {
-            if (b) {
-                if (d) d();
-                return;
-            }
-            var e = new XMLHttpRequest();
-            switch (Tira) {
-                case 'IDLE':
-                    e.open('GET', '/static/filtering/chat_filtering_idle.txt');
-                    break;
-                case '210417_cix':
-                    e.open('GET', '/static/filtering/chat_filtering_cix.txt');
-                    break;
-                case '210424_mamamoo':
-                    e.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
-                    break;
-                case '210604_parkyuchun_1':
-                case '210604_parkyuchun_2':
-                    e.open('GET', '/static/filtering/chat_filtering_parkyuchun.txt');
-                    break;
-                case '210606_cravity':
-                    e.open('GET', '/static/filtering/chat_filtering_cravity.txt');
-                    break;
-                default:
-                    e.open('GET', '/static/filtering/chat_filtering.txt');
-                    break;
-            }
-            e.overrideMimeType('text/plain; charset=utf-8');
-            e.onreadystatechange = function() {
-                if (e.readyState == XMLHttpRequest.DONE) {
-                    if (e.status == 200 || e.status == 201) {
-                        a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
-                        a = a.replace(/[\r]/gm, '');
-                        if (a[a.length - 1] == '|') {
-                            a = a.substr(0, a.length - 1);
-                        }
-                        b = true;
-                        if (d) d();
-                    }
-                }
-            };
-            e.send();
-        },
-        filteringChatText: function d(e) {
-            if (!b) return;
-            var f = 'gi';
-            var g = new RegExp(a, f);
-            return e.replace(g, '***');
-        },
-        checkFilteringData: function e() {
-            return b;
-        },
-        checkNickname: function f(g) {
-            if (!b) return;
-            var h = 'gi';
-            var i = new RegExp(a, h);
-            return i.test(g);
-        }
-    };
-}();
-var NicknameFilter = function() {
     var c = function() {
         var g = true;
         return function(h, i) {
@@ -494,7 +432,7 @@ var NicknameFilter = function() {
         try {
             var h = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
             g = h();
-        } catch (o) {
+        } catch (p) {
             g = window;
         }
         var i = g.console = g.console || {};
@@ -509,19 +447,83 @@ var NicknameFilter = function() {
         }
     });
     d();
-    var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
-    var f = '';
-    if (e == '210424_mamamoo') {
-        f = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
-        f = f.map(function(g) {
-            return g.replace(/ /gi, '');
+    var e = '';
+    var f = false;
+    return {
+        loadChatFilterData: function g(h) {
+            if (f) {
+                if (h) h();
+                return;
+            }
+            var i = new XMLHttpRequest();
+            switch (Tira) {
+                case 'IDLE':
+                    i.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                    break;
+                case '210417_cix':
+                    i.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    break;
+                case '210424_mamamoo':
+                    i.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
+                    break;
+                case '210604_parkyuchun_1':
+                case '210604_parkyuchun_2':
+                    i.open('GET', '/static/filtering/chat_filtering_parkyuchun.txt');
+                    break;
+                case '210606_cravity':
+                    i.open('GET', '/static/filtering/chat_filtering_cravity.txt');
+                    break;
+                default:
+                    i.open('GET', '/static/filtering/chat_filtering.txt');
+                    break;
+            }
+            i.overrideMimeType('text/plain; charset=utf-8');
+            i.onreadystatechange = function() {
+                if (i.readyState == XMLHttpRequest.DONE) {
+                    if (i.status == 200 || i.status == 201) {
+                        e = i.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
+                        e = e.replace(/[\r]/gm, '');
+                        if (e[e.length - 1] == '|') {
+                            e = e.substr(0, e.length - 1);
+                        }
+                        f = true;
+                        if (h) h();
+                    }
+                }
+            };
+            i.send();
+        },
+        filteringChatText: function h(i) {
+            if (!f) return;
+            var j = 'gi';
+            var k = new RegExp(e, j);
+            return i.replace(k, '***');
+        },
+        checkFilteringData: function i() {
+            return f;
+        },
+        checkNickname: function j(k) {
+            if (!f) return;
+            var l = 'gi';
+            var m = new RegExp(e, l);
+            return m.test(k);
+        }
+    };
+}();
+var NicknameFilter = function() {
+    var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Tira;
+    var b = '';
+    if (a == '210424_mamamoo') {
+        b = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
+        b = b.map(function(c) {
+            return c.replace(/ /gi, '');
         }).join('|');
     }
     return {
-        hasForbidden: function g(h) {
-            if (f === '') return false;
-            var i = new RegExp(f, 'gi');
-            return i.test(h);
+        hasForbidden: function c(d) {
+            if (b === '') return false;
+            var e = new RegExp(b, 'gi');
+            return e.test(d);
         }
     };
 }();
@@ -568,20 +570,18 @@ function request_to_server(a, b, c, d, e) {
                         if (f.responseText) {
                             console.log(JSON.parse(f.responseText));
                         }
-                    } else {
-                        try {
-                            var k = JSON.parse(f.responseText);
-                            e(k, f.status);
-                        } catch (p) {
-                            e(f.responseText, f.status);
-                        }
+                    } else try {
+                        var j = JSON.parse(f.responseText);
+                        e(j, f.status);
+                    } catch (p) {
+                        e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(k) {
-        console.log(k);
+    f.ontimeout = function(j) {
+        console.log(j);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -696,7 +696,9 @@ function alertPopup(a, b, c, d) {
 }
 
 function checkInterparkApp() {
-    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) return true;
+    if (navigator.userAgent.toLowerCase().indexOf('interpark') !== -1) {
+        return true;
+    }
     return false;
 }
 
@@ -715,15 +717,15 @@ function getQueryStringObject() {
 function checkIEbrowser() {
     var a = window.navigator.userAgent.toLowerCase();
     var b = a.indexOf('trident');
-    if (b > -1) {
-        return true;
-    }
+    if (b > -1) return true;
     return false;
 }
 
 function checkEdgeBrowser() {
     var a = window.navigator.userAgent.toLowerCase();
-    return a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1 ? true : false;
+    if (a.indexOf('edg') !== -1 || a.indexOf('edge') !== -1) {
+        return true;
+    } else return false;
 }
 
 function checkMobileAndTablet() {
@@ -792,14 +794,12 @@ function removeClassName(a, b) {
 
 function getOrientation() {
     if (!isMobile()) return false;
-    if (isIOS()) {
-        switch (window.orientation) {
-            case -90:
-            case 90:
-                return 'landscape';
-            default:
-                return 'portrait';
-        }
+    if (isIOS()) switch (window.orientation) {
+        case -90:
+        case 90:
+            return 'landscape';
+        default:
+            return 'portrait';
     } else {
         return screen.orientation.type.toLowerCase();
     }
@@ -808,9 +808,8 @@ function getOrientation() {
 function checkMobile() {
     var a = 'win16|win32|win64|mac|macintel';
     if (navigator.platform) {
-        if (a.indexOf(navigator.platform.toLowerCase()) < 0) {
-            return true;
-        } else {
+        if (a.indexOf(navigator.platform.toLowerCase()) < 0) return true;
+        else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
             if (!c) {
@@ -1131,156 +1130,160 @@ function d() {
     removeCookie(DCvi + '_user_id');
     removeCookie(DCvi + '_chat_id');
 }
-if (ddv) $(document).ready(function() {
-    d();
-});
-else {
-    var e = function v(w, x, y) {
-        request_to_server('POST', RSAnd + '/user_auth/customer_login/', w, function(A) {
+if (ddv) {
+    $(document).ready(function() {
+        d();
+    });
+} else {
+    var e = function w(x, y, z) {
+        request_to_server('POST', RSAnd + '/user_auth/customer_login/', x, function(A) {
             o = JSON.parse(JSON.stringify(A.Data.content));
             p = JSON.parse(JSON.stringify(A.Data.user));
             if (A.Data.allowed_events) {
                 q = JSON.parse(JSON.stringify(A.Data.allowed_events));
             }
-            if (x) x();
-        }, function() {
             if (y) y();
+        }, function() {
+            if (z) z();
         });
     };
-    var f = function w(x, y, z) {
-        request_to_server('POST', RSAnd + '/user_auth/nickname/', x, function(A) {
-            if (y) y(A);
-        }, function(A, B) {
-            if (z) z(A, B);
-        });
-    };
-    var g = function x(y, z, A) {
-        request_to_server('POST', RSAnd + '/user_auth/player_enter/', y, function(B) {
+    var f = function x(y, z, A) {
+        request_to_server('POST', RSAnd + '/user_auth/nickname/', y, function(B) {
             if (z) z(B);
-        }, function(B) {
-            if (A) A(B);
+        }, function(B, C) {
+            if (A) A(B, C);
         });
     };
-    var h = function y(z) {
-        var A = /[\/\\:*?<>|"]/gi;
-        if (A.test(z)) return true;
+    var g = function y(z, A, B) {
+        request_to_server('POST', RSAnd + '/user_auth/player_enter/', z, function(D) {
+            if (A) A(D);
+        }, function(D) {
+            if (B) B(D);
+        });
+    };
+    var h = function z(A) {
+        var B = /[\/\\:*?<>|"]/gi;
+        if (B.test(A)) return true;
         else {
             return false;
         }
     };
-    var i = function z(A) {
-        return A.search(/\s/) != -1 ? true : false;
+    var i = function A(B) {
+        if (B.search(/\s/) != -1) return true;
+        else {
+            return false;
+        }
     };
-    var j = function A() {
+    var j = function B() {
         $('#loadingDiv').css('display', 'block');
-        var B = egl;
-        var C = POPUP_CONFIG.failToGetPlayerCode(B, null);
-        var D = p;
-        var E = o;
-        var F = (E && E.id ? E.id : null) || DCvi;
-        var G = {
+        var C = egl;
+        var D = POPUP_CONFIG.failToGetPlayerCode(C, null);
+        var E = p;
+        var F = o;
+        var G = (F && F.id ? F.id : null) || DCvi;
+        var H = {
             user_id: null,
             content_id: null,
             device_id: null
         };
-        var H = null;
         var I = null;
-        if (D && D.user_id) G.user_id = D.user_id;
-        if (u) G.device_id = u;
-        if (F) G.content_id = F;
-        g(G, function(J) {
+        var J = null;
+        if (E && E.user_id) H.user_id = E.user_id;
+        if (u) H.device_id = u;
+        if (G) H.content_id = G;
+        g(H, function(K) {
             $('#loadingDiv').css('display', 'none');
-            console.log(J);
-            H = J && J.Data ? J.Data : null;
-            I = H && H.content ? H.content.player_code : null;
-            if (I) {
+            console.log(K);
+            I = K && K.Data ? K.Data : null;
+            J = I && I.content ? I.content.player_code : null;
+            if (J) {
                 setCookie(DCvi + '_user_id', p.user_id, 20160);
                 setCookie(DCvi + '_chat_id', p.chat_id, 20160);
                 setCookie(DCvi + '_content_id', DCvi, 20160);
                 HIKE_UTIL.setCookiesOnGroup(q, false, false, true, true);
-                location.href = LUEz1 + '/' + I;
-            } else if (C) {
-                alertPopup(C.title, C.desc, C.btnTxt, C.okCallback);
+                location.href = LUEz1 + '/' + J;
+            } else if (D) {
+                alertPopup(D.title, D.desc, D.btnTxt, D.okCallback);
             }
-        }, function(J) {
+        }, function(K) {
             $('#loadingDiv').css('display', 'none');
-            console.log(J);
-            if (C) {
-                alertPopup(C.title, C.desc, C.btnTxt, C.okCallback);
+            console.log(K);
+            if (D) {
+                alertPopup(D.title, D.desc, D.btnTxt, D.okCallback);
             }
         });
     };
-    var k = function B(C, D) {
+    var k = function C(D, E) {
         if (b == 'code') {
             switch (egl) {
                 case 'ko':
-                    C.text('인증코드를 입력해 주세요.');
+                    D.text('인증코드를 입력해 주세요.');
                     break;
                 case 'en':
-                    C.text('Enter authentication code.');
+                    D.text('Enter authentication code.');
                     break;
                 case 'ja':
                 case 'jp':
-                    C.text('認証コードを入力してください');
+                    D.text('認証コードを入力してください');
                     break;
                 case 'cn':
-                    C.text('Enter authentication code');
+                    D.text('Enter authentication code');
                     break;
             }
         } else {
             switch (egl) {
                 case 'ko':
-                    C.text('인터파크ID와 예매번호를 입력해 주세요.');
+                    D.text('인터파크ID와 예매번호를 입력해 주세요.');
                     break;
                 case 'en':
-                    C.text('Enter INTERPARK ID and reservation number.');
+                    D.text('Enter INTERPARK ID and reservation number.');
                     break;
                 case 'ja':
                 case 'jp':
-                    C.text('INTERPARK IDと購入番号を入力してください。');
+                    D.text('INTERPARK IDと購入番号を入力してください。');
                     break;
                 case 'cn':
-                    C.text('请输入INTERPARK账户和预订号码');
+                    D.text('请输入INTERPARK账户和预订号码');
                     break;
             }
         }
     };
-    var l = function C(D, E) {
+    var l = function D(E, F) {
         if (b == 'code') {
             switch (egl) {
                 case 'ko':
-                    D.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                    E.text('인증코드가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
                     break;
                 case 'en':
-                    D.text('Authentication code is not valid. Please check and try again.');
+                    E.text('Authentication code is not valid. Please check and try again.');
                     break;
                 case 'ja':
                 case 'jp':
-                    D.text('認証コードが正しくありません。確認後、正確に入力してください。');
+                    E.text('認証コードが正しくありません。確認後、正確に入力してください。');
                     break;
                 case 'cn':
-                    D.text('Authentication code is not valid. Please check and try again.');
+                    E.text('Authentication code is not valid. Please check and try again.');
                     break;
             }
         } else {
             switch (egl) {
                 case 'ko':
-                    D.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
+                    E.text('인터파크ID 혹은 예매번호가 유효하지 않습니다. 확인 후 정확히 입력해주세요.');
                     break;
                 case 'en':
-                    D.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
+                    E.text('INTERPARK ID or reservation number is not valid. Please check and try again.');
                     break;
                 case 'ja':
                 case 'jp':
-                    D.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
+                    E.text('INTERPARK IDまたは購入番号が正しくありません。確認後、正確に入力してください。');
                     break;
                 case 'cn':
-                    D.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
+                    E.text('INTERPARK账号和预订号码为无效。请输入正确的信息。');
                     break;
             }
         }
     };
-    var m = function D(E) {
+    var m = function E(F) {
         $('#authPopup').css('display', 'none');
         $('#authBtn').css('display', 'none');
         $('#authMsg1').css('display', 'none');
@@ -1321,16 +1324,18 @@ else {
             }
         }
     };
-    var n = function E(F, G) {
+    var n = function F(G, H) {
         ChatFilter.loadChatFilterData(function() {
-            s = F;
-            if (F == 'enter') {
+            s = G;
+            if (G == 'enter') {
                 $('#loginPopup').css('display', 'none');
-            } else if (F == 'auth') {
-                $('#authPopup').css('display', 'none');
+            } else {
+                if (G == 'auth') {
+                    $('#authPopup').css('display', 'none');
+                }
             }
-            if (G) {
-                $('#nickname').val(G);
+            if (H) {
+                $('#nickname').val(H);
             }
             switch (egl) {
                 case 'ko':
@@ -1390,22 +1395,22 @@ else {
         var authTicketId = $('#authTicketId');
         var authFailTxt = $('#authFailTxt');
         var authCheckBtn = $('#authCheckBtn');
-        var a3 = new Date(parseInt(ete));
-        var a4 = new Date(parseInt(cte));
-        var a5 = new Date();
-        var a6 = uath;
-        var a7 = true;
-        var a8 = {
+        var a4 = new Date(parseInt(ete));
+        var a5 = new Date(parseInt(cte));
+        var a6 = new Date();
+        var a7 = uath;
+        var a8 = true;
+        var a9 = {
             requestCreateNickname: null
         };
-        var a9 = false;
+        var aa = false;
         authMsg1.css('display', 'none');
         authMsg2.css('display', 'none');
-        var aa = function ah(ai) {
+        var ab = function ai(aj) {
             authMsg1.css('display', 'none');
             authMsg2.css('display', 'none');
             authBtn.css('display', 'none');
-            if (ai) {
+            if (aj) {
                 enterBtn.css('display', 'inline-block');
                 readyBtn.css('display', 'none');
             } else {
@@ -1414,14 +1419,14 @@ else {
             }
             if (rtd) enterBtn.css('display', 'inline-block');
         };
-        var ab = function ai() {
-            a8.requestCreateNickname = setTimeout(function() {
+        var ac = function aj() {
+            a9.requestCreateNickname = setTimeout(function() {
                 console.log('@@@RESET');
                 nicknameFailTxt.text('');
-                a7 = true;
+                a8 = true;
             }, 1000);
         };
-        var ac = function aj() {
+        var ad = function ak() {
             authCustomerId.text('');
             authTicketId.text('');
             authFailTxt.text('');
@@ -1435,32 +1440,32 @@ else {
             }
             authCustomerId.focus();
         };
-        var ad = function ak() {
-            var al = egl;
-            var am = DCvi;
-            var an = null;
+        var ae = function al() {
+            var am = egl;
+            var an = DCvi;
+            var ao = null;
             if (c !== null) {
-                an = POPUP_CONFIG.authorizedByCode(al);
-                $('.popupbox .label_customer_id').text(an.idText);
-                $('.popupbox .label_ticket_id').text(an.ticketText);
+                ao = POPUP_CONFIG.authorizedByCode(am);
+                $('.popupbox .label_customer_id').text(ao.idText);
+                $('.popupbox .label_ticket_id').text(ao.ticketText);
                 customerId.prop('autofocus', false).prop('readonly', true).val(c);
                 authCustomerId.prop('autofocus', false).prop('readonly', true).val(c);
-                authPopup.find('.pop-tt.auth').text(an.authPopupTitle);
+                authPopup.find('.pop-tt.auth').text(ao.authPopupTitle);
             }
         };
-        var ae = function al(am, an) {
-            var ao = DCvi;
-            if (!HIKE_UTIL.isHikeEvent(ao)) return;
-            if (am && !an) {
-                ac();
+        var af = function am(an, ao) {
+            var ap = DCvi;
+            if (!HIKE_UTIL.isHikeEvent(ap)) return;
+            if (an && !ao) {
+                ad();
             }
-            if (!am && !an) {
+            if (!an && !ao) {
                 enterBtn.click();
             }
         };
-        ad();
-        t = a4.getTime() - a5.getTime();
-        if (a3 < a4) {
+        ae();
+        t = a5.getTime() - a6.getTime();
+        if (a4 < a5) {
             dayWrap.css('display', 'none');
             if (!checkIEbrowser() && !(isIOS() && checkEdgeBrowser()) && !checkInterparkApp()) {
                 enterBtn.css('display', 'inline-block');
@@ -1476,14 +1481,14 @@ else {
                 dayWrap.css('display', 'block');
             }
             enterBtn.css('display', 'none');
-            if (!a6) {
-                aa(false);
+            if (!a7) {
+                ab(false);
             }
-            var af = function an() {
-                var ao = new Date();
-                ao.setTime(ao.getTime() + t);
-                a9 = a3 <= ao;
-                if (a3 <= ao) {
+            var ag = function ap() {
+                var aq = new Date();
+                aq.setTime(aq.getTime() + t);
+                aa = a4 <= aq;
+                if (a4 <= aq) {
                     dayWrap.css('display', 'none');
                     enterBtn.css('display', 'inline-block');
                     readyBtn.css('display', 'none');
@@ -1498,57 +1503,57 @@ else {
                     if (!rtd) {
                         enterBtn.css('display', 'none');
                     }
-                    if (!a6) {
-                        aa(false);
+                    if (!a7) {
+                        ab(false);
                     }
                 }
-                var ap = (a3 - ao) / 1000;
-                var aq = parseInt(ap / 60 / 60 / 24);
-                var ar = parseInt(ap / 60 / 60 % 24);
-                var as = parseInt(ap / 60 % 60);
-                var at = parseInt(ap % 60);
-                if (aq < 10) {
-                    aq = '0' + aq;
-                }
-                if (ar < 10) {
-                    ar = '0' + ar;
-                }
+                var ar = (a4 - aq) / 1000;
+                var as = parseInt(ar / 60 / 60 / 24);
+                var at = parseInt(ar / 60 / 60 % 24);
+                var au = parseInt(ar / 60 % 60);
+                var av = parseInt(ar % 60);
                 if (as < 10) {
                     as = '0' + as;
                 }
                 if (at < 10) {
                     at = '0' + at;
                 }
+                if (au < 10) {
+                    au = '0' + au;
+                }
+                if (av < 10) {
+                    av = '0' + av;
+                }
                 if (document.getElementById('day')) {
-                    document.getElementById('day').innerHTML = aq;
+                    document.getElementById('day').innerHTML = as;
                 }
                 if (document.getElementById('hour')) {
-                    document.getElementById('hour').innerHTML = ar;
+                    document.getElementById('hour').innerHTML = at;
                 }
                 if (document.getElementById('minute')) {
-                    document.getElementById('minute').innerHTML = as;
+                    document.getElementById('minute').innerHTML = au;
                 }
                 if (document.getElementById('second')) {
-                    document.getElementById('second').innerHTML = at;
+                    document.getElementById('second').innerHTML = av;
                 }
             };
-            af();
-            r = setInterval(af, 1000);
+            ag();
+            r = setInterval(ag, 1000);
         }
         if (checkIEbrowser() || isIOS() && checkEdgeBrowser() || checkInterparkApp()) {
             enterBtn.css('display', 'none');
             notSupportedBrowser.css('display', 'inline-block');
         } else {
-            var ag = {
+            var ah = {
                 content_id: DCvi,
                 user_id: getCookie(DCvi + '_user_id'),
                 device_id: getCookie(DCvi + '_device_id')
             };
-            if (a3 > a4) {
-                if (!a6) {
-                    aa(false);
+            if (a4 > a5) {
+                if (!a7) {
+                    ab(false);
                 } else {
-                    if (!ag.user_id) {
+                    if (!ah.user_id) {
                         authBtn.css('display', 'inline-block');
                         if (!dsev) {
                             authMsg1.css('display', 'block');
@@ -1557,17 +1562,17 @@ else {
                     }
                 }
             }
-            userSessionCheck(ag, function(ar) {
-                p = JSON.parse(JSON.stringify(ar.Data.user));
-                o = JSON.parse(JSON.stringify(ar.Data.content));
+            userSessionCheck(ah, function(au) {
+                p = JSON.parse(JSON.stringify(au.Data.user));
+                o = JSON.parse(JSON.stringify(au.Data.content));
                 if (o.status == 'end') {
                     clearInterval(r);
                     d();
                 } else {
                     if (o.is_chat_used) {
                         if (p.nickname) {
-                            if (a3 > a4) {
-                                if (!a6) aa(false);
+                            if (a4 > a5) {
+                                if (!a7) ab(false);
                                 else {
                                     readyBtn.css('display', 'inline-block');
                                 }
@@ -1576,54 +1581,53 @@ else {
                             authMsg1.css('display', 'none');
                             authMsg2.css('display', 'none');
                         } else {
-                            if (a3 > a4) {
-                                if (!a6) {
-                                    aa(false);
-                                } else {
+                            if (a4 > a5) {
+                                if (!a7) ab(false);
+                                else {
                                     authBtn.css('display', 'inline-block');
                                     if (HIKE_UTIL.isHikeEvent()) {
                                         readyBtn.show();
                                     }
                                 }
-                                if (!dsev && a6) {
+                                if (!dsev && a7) {
                                     authMsg1.css('display', 'block');
                                     authMsg2.css('display', 'block');
                                 }
                             }
                         }
                     } else {
-                        if (a3 > a4) {
-                            if (!a6) {
-                                aa(false);
-                            } else {
+                        if (a4 > a5) {
+                            if (!a7) ab(false);
+                            else {
                                 authBtn.css('display', 'inline-block');
-                                ae(true, false);
+                                af(true, false);
                             }
-                            if (!dsev && a6) {
+                            if (!dsev && a7) {
                                 authMsg1.css('display', 'block');
                                 authMsg2.css('display', 'block');
                             }
                         }
                     }
                 }
-            }, function(ar) {
-                if (ar.Data) {
-                    if (ar.Data.content.status == 'end') {
+            }, function(au) {
+                if (au.Data) {
+                    if (au.Data.content.status == 'end') {
                         clearInterval(r);
                         d();
                     } else {
-                        if (a3 > a4) {
-                            if (!a6) aa(false);
-                            else {
+                        if (a4 > a5) {
+                            if (!a7) {
+                                ab(false);
+                            } else {
                                 authBtn.css('display', 'inline-block');
-                                ae(true, false);
+                                af(true, false);
                             }
-                            if (!dsev && a6) {
+                            if (!dsev && a7) {
                                 authMsg1.css('display', 'block');
                                 authMsg2.css('display', 'block');
                             }
                         } else {
-                            ae(false, false);
+                            af(false, false);
                             authBtn.css('display', 'none');
                             authMsg1.css('display', 'none');
                             authMsg2.css('display', 'none');
@@ -1637,14 +1641,14 @@ else {
             ticketId.val('');
             loginFailTxt.text('');
             chk_save2.prop('checked', true);
-            ad();
-            var ar = {
+            ae();
+            var av = {
                 user_id: getCookie(DCvi + '_user_id'),
                 device_id: getCookie(DCvi + '_device_id'),
                 content_id: DCvi
             };
-            if (!a6) {
-                if (ar.user_id) {
+            if (!a7) {
+                if (av.user_id) {
                     if (o && o.is_chat_used) {
                         n('enter', p.nickname);
                     } else {
@@ -1653,15 +1657,17 @@ else {
                 } else loginBtn.click();
                 return;
             }
-            userSessionCheck(ar, function(at) {
-                o = JSON.parse(JSON.stringify(at.Data.content));
-                p = JSON.parse(JSON.stringify(at.Data.user));
+            userSessionCheck(av, function(az) {
+                o = JSON.parse(JSON.stringify(az.Data.content));
+                p = JSON.parse(JSON.stringify(az.Data.user));
                 if (o.is_chat_used) {
                     n('enter', p.nickname);
-                } else j();
-            }, function(at) {
-                if (at.Data) {
-                    if (at.Data.content.status == 'end') {
+                } else {
+                    j();
+                }
+            }, function(az) {
+                if (az.Data) {
+                    if (az.Data.content.status == 'end') {
                         clearInterval(r);
                         d();
                     } else {
@@ -1684,37 +1690,39 @@ else {
             loginPopup.css('display', 'none');
         });
         loginBtn.on('click', function() {
-            var ar = customerId.val().trim();
-            var as = ticketId.val().trim();
-            if (a6 && (!ar || !as)) {
+            var av = customerId.val().trim();
+            var aw = ticketId.val().trim();
+            if (a7 && (!av || !aw)) {
                 k(loginFailTxt, DCvi);
                 return;
             }
-            var at = {
-                customer_id: ar,
-                ticket_id: as,
+            var ax = {
+                customer_id: av,
+                ticket_id: aw,
                 content_id: DCvi,
                 device_id: u
             };
-            if (!a6) {
-                at.customer_id = null;
-                at.ticket_id = null;
+            if (!a7) {
+                ax.customer_id = null;
+                ax.ticket_id = null;
             }
-            e(at, function() {
-                if (a6) {
+            e(ax, function() {
+                if (a7) {
                     if (chk_save2.prop('checked')) {
-                        setCookie(DCvi + '_customer_id', at.customer_id, 20160);
-                        setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
+                        setCookie(DCvi + '_customer_id', ax.customer_id, 20160);
+                        setCookie(DCvi + '_ticket_id', ax.ticket_id, 20160);
                     } else {
                         removeCookie(DCvi + '_customer_id');
                         removeCookie(DCvi + '_ticket_id');
                     }
-                    setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
-                    HIKE_UTIL.setCookiesOnGroup(q, false, at.ticket_id, false, false);
+                    setCookie(DCvi + '_ticket_id', ax.ticket_id, 20160);
+                    HIKE_UTIL.setCookiesOnGroup(q, false, ax.ticket_id, false, false);
                 }
                 if (o.is_chat_used) {
                     n('enter', p.nickname);
-                } else j();
+                } else {
+                    j();
+                }
             }, function() {
                 l(loginFailTxt, DCvi);
             });
@@ -1725,8 +1733,8 @@ else {
             nicknamePopup.css('display', 'none');
         });
         createNickBtn.on('click', function() {
-            var ar = nickname.val();
-            if (!ar) {
+            var av = nickname.val();
+            if (!av) {
                 switch (egl) {
                     case 'ko':
                         nicknameFailTxt.text('닉네임을 입력해주세요.');
@@ -1744,7 +1752,7 @@ else {
                 }
                 return;
             }
-            if (h(ar)) {
+            if (h(av)) {
                 switch (egl) {
                     case 'ko':
                         nicknameFailTxt.text('닉네임에는 특수문자를 포함할 수 없습니다.');
@@ -1761,7 +1769,7 @@ else {
                         break;
                 }
             } else {
-                if (i(ar)) {
+                if (i(av)) {
                     switch (egl) {
                         case 'ko':
                             nicknameFailTxt.text('닉네임에는 공백을 포함할 수 없습니다.');
@@ -1778,7 +1786,7 @@ else {
                             break;
                     }
                 } else {
-                    if (ar.length < 2 || ar.length > 12) {
+                    if (av.length < 2 || av.length > 12) {
                         switch (egl) {
                             case 'ko':
                                 nicknameFailTxt.text('닉네임은 2~12자로 입력해 주세요.');
@@ -1795,7 +1803,7 @@ else {
                                 break;
                         }
                     } else {
-                        if (NicknameFilter.hasForbidden(ar) || ChatFilter.checkNickname(ar)) {
+                        if (NicknameFilter.hasForbidden(av) || ChatFilter.checkNickname(av)) {
                             switch (egl) {
                                 case 'ko':
                                     nicknameFailTxt.text('사용할 수 없는 닉네임입니다.');
@@ -1812,63 +1820,63 @@ else {
                                     break;
                             }
                         } else {
-                            clearTimeout(a8.requestCreateNickname);
-                            if (!a7) {
+                            clearTimeout(a9.requestCreateNickname);
+                            if (!a8) {
                                 nicknameFailTxt.text(POPUP_CONFIG.duplicatedNickname(egl).desc);
-                                ab();
+                                ac();
                             }
-                            if (!a7) return;
-                            var as = {
+                            if (!a8) return;
+                            var aw = {
                                 user_id: p.user_id,
                                 device_id: u,
-                                nickname: ar,
+                                nickname: av,
                                 content_id: DCvi
                             };
                             $('#loadingDiv').css('display', 'block');
-                            f(as, function() {
-                                a7 = true;
-                                clearTimeout(a8.requestCreateNickname);
+                            f(aw, function() {
+                                a8 = true;
+                                clearTimeout(a9.requestCreateNickname);
                                 if (s == 'auth') {
                                     m(DCvi);
-                                    if (a9) readyBtn.css('display', 'none');
+                                    if (aa) readyBtn.css('display', 'none');
                                 } else {
                                     if (s == 'enter') {
                                         $('#loadingDiv').css('display', 'none');
                                         nicknamePopup.css('display', 'none');
-                                        var aC = '';
-                                        var aD = '';
-                                        var aE = '';
+                                        var aH = '';
+                                        var aI = '';
+                                        var aJ = '';
                                         switch (egl) {
                                             case 'ko':
-                                                aD = '알림';
-                                                aC = '닉네임 생성이 완료되었습니다.';
-                                                aE = '확인';
+                                                aI = '알림';
+                                                aH = '닉네임 생성이 완료되었습니다.';
+                                                aJ = '확인';
                                                 break;
                                             case 'en':
-                                                aD = 'Notification';
-                                                aC = 'Nickname successfully created.';
-                                                aE = 'OK';
+                                                aI = 'Notification';
+                                                aH = 'Nickname successfully created.';
+                                                aJ = 'OK';
                                                 break;
                                             case 'ja':
                                             case 'jp':
-                                                aD = 'お知らせ';
-                                                aC = 'ニックネーム作成を完了しました';
-                                                aE = '確認';
+                                                aI = 'お知らせ';
+                                                aH = 'ニックネーム作成を完了しました';
+                                                aJ = '確認';
                                                 break;
                                             case 'cn':
-                                                aD = '提醒';
-                                                aC = '账户名生成完毕';
-                                                aE = '确认';
+                                                aI = '提醒';
+                                                aH = '账户名生成完毕';
+                                                aJ = '确认';
                                                 break;
                                         }
-                                        alertPopup(aD, aC, aE, j);
+                                        alertPopup(aI, aH, aJ, j);
                                     }
                                 }
-                            }, function(aC, aD) {
-                                a7 = false;
-                                ab();
-                                var aE = aC && aC.Message == 'nickname duplicated.' || aD == 409;
-                                if (aE) {
+                            }, function(aH, aI) {
+                                a8 = false;
+                                ac();
+                                var aJ = aH && aH.Message == 'nickname duplicated.' || aI == 409;
+                                if (aJ) {
                                     switch (egl) {
                                         case 'ko':
                                             nicknameFailTxt.text('이미 사용 중인 닉네임입니다.');
@@ -1885,7 +1893,7 @@ else {
                                             break;
                                     }
                                 } else {
-                                    if (aD === 403) {
+                                    if (aI === 403) {
                                         switch (egl) {
                                             case 'ko':
                                                 nicknameFailTxt.text('사용할 수 없는 닉네임입니다.');
@@ -1925,35 +1933,35 @@ else {
                 }
             }
         });
-        $('#customerId,#ticketId').on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        $('#customerId,#ticketId').on('keydown', function(av) {
+            if (av.keyCode == 13) {
                 loginBtn.click();
             }
         });
-        nickname.on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        nickname.on('keydown', function(av) {
+            if (av.keyCode == 13) {
                 createNickBtn.click();
             }
         });
-        authBtn.on('click', ac);
+        authBtn.on('click', ad);
         authCheckBtn.on('click', function() {
-            var ar = authCustomerId.val().trim();
-            var as = authTicketId.val().trim();
-            if (!ar || !as) {
+            var av = authCustomerId.val().trim();
+            var aw = authTicketId.val().trim();
+            if (!av || !aw) {
                 k(authFailTxt, DCvi);
                 return;
             }
-            var at = {
-                customer_id: ar,
-                ticket_id: as,
+            var ax = {
+                customer_id: av,
+                ticket_id: aw,
                 content_id: DCvi,
                 device_id: u
             };
-            e(at, function() {
+            e(ax, function() {
                 if (chk_save.prop('checked')) {
-                    setCookie(DCvi + '_customer_id', at.customer_id, 20160);
-                    setCookie(DCvi + '_ticket_id', at.ticket_id, 20160);
-                    HIKE_UTIL.setCookiesOnGroup(q, at.customer_id, at.ticket_id, false, false);
+                    setCookie(DCvi + '_customer_id', ax.customer_id, 20160);
+                    setCookie(DCvi + '_ticket_id', ax.ticket_id, 20160);
+                    HIKE_UTIL.setCookiesOnGroup(q, ax.customer_id, ax.ticket_id, false, false);
                     if (p) {
                         setCookie(DCvi + '_user_id', p.user_id, 20160);
                         HIKE_UTIL.setCookiesOnGroup(q, null, null, true, false);
@@ -1963,16 +1971,17 @@ else {
                     removeCookie(DCvi + '_ticket_id');
                     removeCookie(DCvi + '_user_id');
                 }
-                if (o.is_chat_used) n('auth', p.nickname);
-                else {
+                if (o.is_chat_used) {
+                    n('auth', p.nickname);
+                } else {
                     m(DCvi);
                 }
             }, function() {
                 l(authFailTxt, DCvi);
             });
         });
-        $('#authCustomerId, #authTicketId').on('keydown', function(ar) {
-            if (ar.keyCode == 13) {
+        $('#authCustomerId, #authTicketId').on('keydown', function(av) {
+            if (av.keyCode == 13) {
                 authCheckBtn.click();
             }
         });
@@ -1987,13 +1996,13 @@ else {
             authMsg2.remove();
         }
     });
-    window.onpageshow = function(G) {
-        var H = null;
-        var I = window.performance;
-        var J = I && I.getEntriesByType ? I.getEntriesByType('navigation') : null;
-        var K = J && J[0] ? J[0].type : null;
-        console.log(K);
-        if (G.persisted || K == 'back_forward' || H == 2) {
+    window.onpageshow = function(H) {
+        var I = null;
+        var J = window.performance;
+        var K = J && J.getEntriesByType ? J.getEntriesByType('navigation') : null;
+        var L = K && K[0] ? K[0].type : null;
+        console.log(L);
+        if (H.persisted || L == 'back_forward' || I == 2) {
             location.reload();
         }
     };
