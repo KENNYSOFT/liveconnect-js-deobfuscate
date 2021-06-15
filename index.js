@@ -92,6 +92,13 @@ const deobfuscate = async (url) => {
                 } else {
                     path.replaceWith(replacement);
                 }
+                return;
+            }
+            if (!t.isBlockStatement(consequent)) {
+                path.get('consequent').replaceWith(t.blockStatement([consequent]));
+            }
+            if (alternate && !t.isBlockStatement(alternate)) {
+                path.get('alternate').replaceWith(t.blockStatement([alternate]));
             }
         },
         MemberExpression: (path) => {
@@ -193,6 +200,17 @@ const deobfuscate = async (url) => {
                     } else {
                         console.error(`Cannot construct variable name from jQuery selector: ${value}`);
                     }
+                }
+            }
+        },
+    });
+    traverse(ast, {
+        IfStatement: (path) => {
+            const {alternate} = path.node;
+            if (t.isBlockStatement(alternate)) {
+                const {body} = alternate;
+                if (body.length === 1 && t.isIfStatement(body[0])) {
+                    path.get('alternate').replaceWith(body[0]);
                 }
             }
         },
