@@ -8,10 +8,10 @@ function _createForOfIteratorHelper(a, b) {
                 a = c;
             }
             var d = 0;
-            var g = function l() {};
+            var g = function p() {};
             return {
                 s: g,
-                n: function m() {
+                n: function q() {
                     if (d >= a.length) {
                         return {
                             done: true
@@ -22,8 +22,8 @@ function _createForOfIteratorHelper(a, b) {
                         value: a[d++]
                     };
                 },
-                e: function p(q) {
-                    throw q;
+                e: function r(t) {
+                    throw t;
                 },
                 f: g
             };
@@ -154,31 +154,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(n) {
+    $(document).click(function(q) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(n) {
-        var o = a;
-        $('.cusDD').not(o).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(o).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', o);
-        n.stopPropagation();
-        if ($(n.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(q) {
+        var r = a;
+        $('.cusDD').not(r).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(r).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', r);
+        q.stopPropagation();
+        if ($(q.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(n.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(q.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var p = 200;
+        var s = 200;
         if ($(this).find('.cusDD_options').children()) {
             if ($(this).find('.cusDD_options').children().length > 30) {
-                p = 0;
+                s = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(p);
+        $(this).find('.cusDD_options').slideToggle(s);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -217,71 +217,37 @@ function cusDDselectOption(a, b, c) {
             }
         }
     });
-}(function(c) {
-    var d = function() {
-        var i = true;
-        return function(j, k) {
-            var l = i ? function() {
-                if (k) {
-                    var n = k.apply(j, arguments);
-                    k = null;
-                    return n;
-                }
-            } : function() {};
-            i = false;
-            return l;
-        };
-    }();
-    var e = d(this, function() {
-        var i;
-        try {
-            var j = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
-            i = j();
-        } catch (r) {
-            i = c;
-        }
-        var k = i.console = i.console || {};
-        var l = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-        for (var m = 0; m < l.length; m++) {
-            var n = d.constructor.prototype.bind(d);
-            var o = l[m];
-            var p = k[o] || n;
-            n.__proto__ = d.bind(d);
-            n.toString = p.toString.bind(p);
-            k[o] = n;
-        }
-    });
-    e();
+}(function(a) {
     'use strict';
 
-    function f(i, j) {
-        for (var k in j) {
-            if (j.hasOwnProperty(k)) {
-                i[k] = j[k];
+    function b(e, f) {
+        for (var g in f) {
+            if (f.hasOwnProperty(g)) {
+                e[g] = f[g];
             }
         }
-        return i;
+        return e;
     }
 
-    function g(j, k) {
-        for (var l = 0; l < j.length; l++) {
-            var m = j[l];
-            k(m);
+    function c(e, f) {
+        for (var g = 0; g < e.length; g++) {
+            var h = e[g];
+            f(h);
         }
     }
 
-    function h(i) {
-        this.options = f({}, this.options);
-        f(this.options, i);
+    function d(e) {
+        this.options = b({}, this.options);
+        b(this.options, e);
         this._init();
     }
-    h.prototype.options = {
+    d.prototype.options = {
         wrapper: '#o-wrapper',
         type: 'slide-left',
         menuOpenerClass: '.c-button',
         maskId: '#c-mask'
     };
-    h.prototype._init = function() {
+    d.prototype._init = function() {
         this.body = document.body;
         this.wrapper = document.querySelector(this.options.wrapper);
         this.mask = document.querySelector(this.options.maskId);
@@ -290,45 +256,45 @@ function cusDDselectOption(a, b, c) {
         this.menuOpeners = document.querySelectorAll(this.options.menuOpenerClass);
         this._initEvents();
     };
-    h.prototype._initEvents = function() {
+    d.prototype._initEvents = function() {
         if (this.closeBtn) {
-            this.closeBtn.addEventListener('click', function(i) {
-                i.preventDefault();
+            this.closeBtn.addEventListener('click', function(f) {
+                f.preventDefault();
                 this.close();
             }.bind(this));
         }
         if (this.mask) {
-            this.mask.addEventListener('click', function(k) {
-                k.preventDefault();
+            this.mask.addEventListener('click', function(f) {
+                f.preventDefault();
                 this.close();
             }.bind(this));
         }
     };
-    h.prototype.open = function() {
+    d.prototype.open = function() {
         this.body.classList.add('has-active-menu');
         this.wrapper.classList.add('has-' + this.options.type);
         this.menu.classList.add('is-active');
         this.mask.classList.add('is-active');
         this.disableMenuOpeners();
     };
-    h.prototype.close = function() {
+    d.prototype.close = function() {
         this.body.classList.remove('has-active-menu');
         this.wrapper.classList.remove('has-' + this.options.type);
         this.menu.classList.remove('is-active');
         this.mask.classList.remove('is-active');
         this.enableMenuOpeners();
     };
-    h.prototype.disableMenuOpeners = function() {
-        g(this.menuOpeners, function(j) {
-            j.disabled = true;
+    d.prototype.disableMenuOpeners = function() {
+        c(this.menuOpeners, function(e) {
+            e.disabled = true;
         });
     };
-    h.prototype.enableMenuOpeners = function() {
-        g(this.menuOpeners, function(i) {
-            i.disabled = false;
+    d.prototype.enableMenuOpeners = function() {
+        c(this.menuOpeners, function(e) {
+            e.disabled = false;
         });
     };
-    c.Menu = h;
+    a.Menu = d;
 })(window);
 var Rich360Player = function() {
     function a(b, c, d) {
@@ -398,38 +364,38 @@ var Rich360Player = function() {
             }
             if (this._options.content_data.use_vod) {
                 this._ui.seekBar = new customRange(this._ui.sliderArea, 0, this._ui.sliderPaddingDiv);
-                this._ui.seekBar.addEventListener('input', function(g) {
-                    this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + g.target._value + '%, #ea0029 ' + g.target._value + '%, transparent ' + g.target._loadedValue + '%, transparent ' + g.target._loadedValue + '%)';
+                this._ui.seekBar.addEventListener('input', function(f) {
+                    this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + f.target._value + '%, #ea0029 ' + f.target._value + '%, transparent ' + f.target._loadedValue + '%, transparent ' + f.target._loadedValue + '%)';
                     if (this._ui.seekBar.thumbInteracting) {
-                        this.viewSeekBarThumbnail(g.target._value, true);
+                        this.viewSeekBarThumbnail(f.target._value, true);
                     }
                 }.bind(this));
-                this._ui.seekBar.paddingBar.addEventListener('mousemove', function(g) {
-                    this.viewSeekBarThumbnail(g.offsetX / this._ui.seekBar.clientWidth * 100);
+                this._ui.seekBar.paddingBar.addEventListener('mousemove', function(f) {
+                    this.viewSeekBarThumbnail(f.offsetX / this._ui.seekBar.clientWidth * 100);
                 }.bind(this));
-                this._ui.seekBar.paddingBar.addEventListener('mouseout', function(g) {
+                this._ui.seekBar.paddingBar.addEventListener('mouseout', function(f) {
                     $(this._ui.sliderThumbnail).css('display', 'none');
                 }.bind(this));
-                this._ui.seekBar.addEventListener('seek', function(g) {
-                    this.seek(g.target._value);
+                this._ui.seekBar.addEventListener('seek', function(f) {
+                    this.seek(f.target._value);
                     $(this._ui.sliderThumbnail).css('display', 'none');
                 }.bind(this));
                 $(this._ui.prev10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var g = this._player.currentPosition - 10;
-                        if (g < 0) {
-                            g = 0;
+                        var e = this._player.currentPosition - 10;
+                        if (e < 0) {
+                            e = 0;
                         }
-                        this._player.currentPosition = g;
+                        this._player.currentPosition = e;
                     }
                 }.bind(this));
                 $(this._ui.next10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var g = this._player.currentPosition + 10;
-                        if (g > this._player.duration - 1) {
-                            g = this._player.duration - 1;
+                        var e = this._player.currentPosition + 10;
+                        if (e > this._player.duration - 1) {
+                            e = this._player.duration - 1;
                         }
-                        this._player.currentPosition = g;
+                        this._player.currentPosition = e;
                     }
                 }.bind(this));
             }
@@ -453,11 +419,11 @@ var Rich360Player = function() {
                     }
                 }
                 $(window).on('orientationchange', function() {
-                    var k = getOrientation();
-                    if (typeof k == 'string') {
-                        if (k == 'landscape-primary' || k == 'landscape-secondary' || k == 'landscape') {
+                    var g = getOrientation();
+                    if (typeof g == 'string') {
+                        if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') {
                             this.hideChatWrap();
-                        } else if (k == 'portrait-primary' || k == 'portrait-secondary' || k == 'portrait') {
+                        } else if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
                             this.showChatWrap();
                         }
                     }
@@ -589,26 +555,26 @@ var Rich360Player = function() {
                     this._ui.qualityPopupItems.push(n);
                 }
                 for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
-                    this._ui.qualityPopupItems[o].addEventListener('click', function(r) {
-                        var s = null;
-                        if (r.target.id == 'auto') {
-                            s = -1;
+                    this._ui.qualityPopupItems[o].addEventListener('click', function(s) {
+                        var t = null;
+                        if (s.target.id == 'auto') {
+                            t = -1;
                         } else {
-                            s = parseInt(r.target.id);
+                            t = parseInt(s.target.id);
                         }
-                        for (var t = 0; t < this._ui.qualityPopupItems.length; t++) {
-                            removeClassName(this._ui.qualityPopupItems[t], 'on');
+                        for (var u = 0; u < this._ui.qualityPopupItems.length; u++) {
+                            removeClassName(this._ui.qualityPopupItems[u], 'on');
                         }
-                        r.target.classList.add('on');
+                        s.target.classList.add('on');
                         this._ui.qualityPopup.style.display = 'none';
-                        if (this._player.quality == s) {
+                        if (this._player.quality == t) {
                             return;
                         }
-                        this._player.quality = s;
-                        if (r.target.id == 'auto') {
-                            for (var u = 0; u < this._ui.qualityPopupItems.length; u++) {
-                                if (this._ui.qualityPopupItems[u].id == this._player._hls.nextAutoLevel) {
-                                    addClassName(this._ui.qualityPopupItems[u], 'on');
+                        this._player.quality = t;
+                        if (s.target.id == 'auto') {
+                            for (var v = 0; v < this._ui.qualityPopupItems.length; v++) {
+                                if (this._ui.qualityPopupItems[v].id == this._player._hls.nextAutoLevel) {
+                                    addClassName(this._ui.qualityPopupItems[v], 'on');
                                     break;
                                 }
                             }
@@ -702,15 +668,15 @@ var Rich360Player = function() {
                 }
             }
             this._ui.ccSelect.appendChild(m);
-            $(this._ui.ccSelectBtn).on('click', function(w) {
+            $(this._ui.ccSelectBtn).on('click', function(v) {
                 $(this._ui.ccSelect).click();
-                w.stopPropagation();
+                v.stopPropagation();
             }.bind(this));
             var j = '#' + this._ui.ccSelect.getAttribute('id');
-            cusDD(j, null, function(w) {
-                console.log('selected ccSelect option : ', w);
-                $(j).find('.cusDD_opt').each(function(x) {
-                    if ($(this).data().id != w.id) {
+            cusDD(j, null, function(v) {
+                console.log('selected ccSelect option : ', v);
+                $(j).find('.cusDD_opt').each(function(w) {
+                    if ($(this).data().id != v.id) {
                         $(this).removeAttr('selected');
                         $(this).removeClass('on');
                     } else {
@@ -718,14 +684,14 @@ var Rich360Player = function() {
                         $(this).addClass('on');
                     }
                 });
-                this._player.setSubtitleTrack(parseInt(w.id));
+                this._player.setSubtitleTrack(parseInt(v.id));
             }.bind(this));
             cusDDselectOption(j, -1, true);
             this._ui.ccSelect = document.getElementById(this._ui.ccSelect.getAttribute('id'));
             for (var q = 0; q < this._ui.subtitlePopupItems.length; q++) {
-                this._ui.subtitlePopupItems[q].addEventListener('click', function(w) {
+                this._ui.subtitlePopupItems[q].addEventListener('click', function(v) {
                     $(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
-                        if ($(this).data().id != $(w.target).data().id) {
+                        if ($(this).data().id != $(v.target).data().id) {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         } else {
@@ -734,7 +700,7 @@ var Rich360Player = function() {
                         }
                     });
                     this._ui.subtitlePopup.style.display = 'none';
-                    this._player.setSubtitleTrack(parseInt($(w.target).data().id));
+                    this._player.setSubtitleTrack(parseInt($(v.target).data().id));
                 }.bind(this));
             }
             this._player.setSubtitleTrack(-1);
@@ -916,9 +882,9 @@ var Rich360Player = function() {
                 this._options.container.addEventListener('mouseup', n.bind(this), false);
             }
 
-            function n(q) {
+            function n(p) {
                 this._wakeupPastTime = 0;
-                if (!this._player._video.paused && (q.target.tagName === 'CANVAS' || q.target.tagName === 'VIDEO' || q.target === this._ui.playerBottomWrap || q.target.id == 'loadingWrap' || q.target.id == 'subtitleDiv' || q.target.parentElement.id == 'subtitleDiv')) {
+                if (!this._player._video.paused && (p.target.tagName === 'CANVAS' || p.target.tagName === 'VIDEO' || p.target === this._ui.playerBottomWrap || p.target.id == 'loadingWrap' || p.target.id == 'subtitleDiv' || p.target.parentElement.id == 'subtitleDiv')) {
                     if (this._ui.playerBottomWrap.style.display == 'block') {
                         this._ui.playerBottomWrap.style.display = 'none';
                         this.showChatOpenBtn(false);
@@ -1444,31 +1410,31 @@ var Rich360Log = function() {
             o.append('user_agent', navigator.userAgent);
             o.append('current_view_id', m);
             n.send(o);
-            n.onload = function(p) {
+            n.onload = function(r) {
                 if (n.readyState === 4 && n.status === 200) {
                     try {
-                        var q = JSON.parse(n.responseText).Data;
-                        for (var r = 0; r < q.content.channels.length; r++) {
-                            var s = true;
+                        var s = JSON.parse(n.responseText).Data;
+                        for (var t = 0; t < s.content.channels.length; t++) {
+                            var u = true;
                             if (Ythc == 'sub') {
-                                s = false;
+                                u = false;
                             }
-                            if (q.content.channels[r].is_main_channel == s) {
-                                if (this._options.content_data.current_channel_id != q.content.channels[r].id) {
-                                    this._options.content_data = JSON.parse(JSON.stringify(q.content));
-                                    this._options.content_data.current_channel_id = q.content.channels[r].id;
-                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[r].hls_url);
+                            if (s.content.channels[t].is_main_channel == u) {
+                                if (this._options.content_data.current_channel_id != s.content.channels[t].id) {
+                                    this._options.content_data = JSON.parse(JSON.stringify(s.content));
+                                    this._options.content_data.current_channel_id = s.content.channels[t].id;
+                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[t].hls_url);
                                 }
                                 break;
                             }
                         }
-                        iCM(!!q.user.is_mute);
+                        iCM(!!s.user.is_mute);
                     } catch (x) {
                         console.log(x);
                     }
                 }
             }.bind(this);
-            n.onloadend = function(p) {
+            n.onloadend = function(r) {
                 if (n.status === 400 || n.status === 401) {
                     this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
                 } else if (n.status === 403) {
@@ -1480,50 +1446,88 @@ var Rich360Log = function() {
     return a;
 }();
 var Rich360EventListener = function() {
-    function a(b) {
-        _classCallCheck(this, a);
+    var c = function() {
+        var f = true;
+        return function(g, h) {
+            var i = f ? function() {
+                if (h) {
+                    var k = h.apply(g, arguments);
+                    h = null;
+                    return k;
+                }
+            } : function() {};
+            f = false;
+            return i;
+        };
+    }();
+    var d = c(this, function() {
+        var f = function() {
+            var o;
+            try {
+                o = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
+            } catch (q) {
+                o = window;
+            }
+            return o;
+        };
+        var g = f();
+        var h = g.console = g.console || {};
+        var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+        for (var j = 0; j < i.length; j++) {
+            var k = c.constructor.prototype.bind(c);
+            var l = i[j];
+            var m = h[l] || k;
+            k.__proto__ = c.bind(c);
+            k.toString = m.toString.bind(m);
+            h[l] = k;
+        }
+    });
+    d();
+
+    function e(f) {
+        _classCallCheck(this, e);
         this.events = [];
-        for (var c in b) {
+        for (var g in f) {
             this.events.push({
-                key: b[c],
+                key: f[g],
                 listeners: []
             });
         }
     }
-    _createClass(a, [{
+    _createClass(e, [{
         key: 'addListener',
-        value: function b(c, d) {
-            this.events[c].listeners.push(d);
+        value: function f(g, h) {
+            this.events[g].listeners.push(h);
         }
     }, {
         key: 'removeListener',
-        value: function c(d, e) {
-            var f;
-            for (f = 0; f < this.events[d].listeners.length; f++) {
-                if (this.events[d].listeners[f] == e) {
+        value: function g(h, i) {
+            var j;
+            for (j = 0; j < this.events[h].listeners.length; j++) {
+                if (this.events[h].listeners[j] == i) {
                     break;
                 }
             }
-            if (f >= this.events[d].listeners.length) {
+            if (j >= this.events[h].listeners.length) {
                 return;
             }
-            this.events[d].listeners.splice(f, 1);
+            this.events[h].listeners.splice(j, 1);
         }
     }, {
         key: 'trigger',
-        value: function d(e, f) {
-            var g = this;
-            var h = function k(l) {
+        value: function h(j, k) {
+            var l = this;
+            var m = function o(p) {
                 setTimeout(function() {
-                    this.events[e].listeners[l](f);
-                }.bind(g), 0);
+                    this.events[j].listeners[p](k);
+                }.bind(l), 0);
             };
-            for (var j = 0; j < this.events[e].listeners.length; j++) {
-                h(j);
+            for (var n = 0; n < this.events[j].listeners.length; n++) {
+                m(n);
             }
         }
     }]);
-    return a;
+    return e;
 }();
 var Rich360HlsWrapper = function() {
     function a(b, c, d) {
@@ -1671,7 +1675,11 @@ var Rich360HlsWrapper = function() {
     }, {
         key: 'levels',
         get: function l() {
-            return this._isDummy ? false : this._hls.levels;
+            if (this._isDummy) {
+                return false;
+            } else {
+                return this._hls.levels;
+            }
         }
     }, {
         key: 'nextAutoLevel',
@@ -1685,11 +1693,7 @@ var Rich360HlsWrapper = function() {
     }, {
         key: 'currentLevel',
         get: function n() {
-            if (this._isDummy) {
-                return 0;
-            } else {
-                return this._hls.currentLevel;
-            }
+            return this._isDummy ? 0 : this._hls.currentLevel;
         },
         set: function o(p) {
             if (!this._isDummy) {
@@ -1885,49 +1889,49 @@ var Rich360 = function() {
                     for (g = 0; g < 7; g++) {
                         this.baseCode[g] = this.base.charCodeAt(g);
                     }
-                    this.addRich360 = function(o, p) {
-                        var q = p % 7;
-                        var r = this.baseCode.slice(q, 7).concat(this.baseCode.slice(0, q + 1));
+                    this.addRich360 = function(m, n) {
+                        var o = n % 7;
+                        var p = this.baseCode.slice(o, 7).concat(this.baseCode.slice(0, o + 1));
                         for (h = 0; h < 8; h++) {
-                            o[h] = (o[h] + r[h]) % 256;
+                            m[h] = (m[h] + p[h]) % 256;
                         }
-                        return o;
+                        return m;
                     }.bind(this);
-                    this.encrypt = function(o, p) {
-                        if (o.length != 16) {
+                    this.encrypt = function(m, n) {
+                        if (m.length != 16) {
                             return 'string length must be 16';
                         }
-                        var q = [];
-                        var r;
-                        for (r = 0; r < 16; r++) {
-                            q[r] = o.charCodeAt(r);
+                        var o = [];
+                        var p;
+                        for (p = 0; p < 16; p++) {
+                            o[p] = m.charCodeAt(p);
                         }
-                        var s = q.slice(0, 8);
-                        var t = q.slice(8, 16);
-                        for (r = 0; r < p; r++) {
-                            t = this.addRich360(t, r);
-                            var u = s.slice(0, 8);
+                        var q = o.slice(0, 8);
+                        var r = o.slice(8, 16);
+                        for (p = 0; p < n; p++) {
+                            r = this.addRich360(r, p);
+                            var s = q.slice(0, 8);
                             for (l = 0; l < 8; l++) {
-                                s[l] = s[l] ^ t[l];
+                                q[l] = q[l] ^ r[l];
                             }
-                            t = u.slice(0, 8);
+                            r = s.slice(0, 8);
                         }
-                        var v = [];
-                        for (r = 0; r < 8; r++) {
-                            v[r] = String.fromCharCode(s[r]);
+                        var t = [];
+                        for (p = 0; p < 8; p++) {
+                            t[p] = String.fromCharCode(q[p]);
                         }
-                        for (r = 0; r < 8; r++) {
-                            v[r + 8] = String.fromCharCode(t[r]);
+                        for (p = 0; p < 8; p++) {
+                            t[p + 8] = String.fromCharCode(r[p]);
                         }
-                        return v;
+                        return t;
                     }.bind(this);
-                    this.validate_response = function(o, p) {
-                        var q = this.encrypt(o.ltstr, 16);
-                        var r = '';
-                        for (var s = 0; s < 16; s++) {
-                            r += q[s];
+                    this.validate_response = function(m, n) {
+                        var o = this.encrypt(m.ltstr, 16);
+                        var p = '';
+                        for (var q = 0; q < 16; q++) {
+                            p += o[q];
                         }
-                        if (r == p.rtstr) {
+                        if (p == n.rtstr) {
                             return true;
                         } else {
                             return false;
@@ -2010,9 +2014,9 @@ var Rich360 = function() {
             f.fragLoadingRetryDelay = 100;
             f.startFragPrefetch = true;
             f.renderTextTracksNatively = false;
-            f.xhrSetup = function(l, m) {
-                if (m.indexOf('.m3u8') === -1 && m.indexOf('.ts') === -1 && m.indexOf('.vtt') === -1 && m.indexOf('.webvtt') === -1 && m.indexOf('.key') === -1 && m.indexOf('.kmv') === -1) {
-                    l.withCredentials = true;
+            f.xhrSetup = function(q, r) {
+                if (r.indexOf('.m3u8') === -1 && r.indexOf('.ts') === -1 && r.indexOf('.vtt') === -1 && r.indexOf('.webvtt') === -1 && r.indexOf('.key') === -1 && r.indexOf('.kmv') === -1) {
+                    q.withCredentials = true;
                 }
             };
             if (this._options.use_multiview) {
@@ -2185,23 +2189,23 @@ var Rich360 = function() {
                 r.timeDictionary = {};
                 r.snsInDictionary = [];
                 r.firstFrag = true;
-                r.on(Hls.Events.FRAG_PARSED, function(w, x) {
-                    var y = x.frag;
-                    r.timeDictionary[y.sn + ''] = y.startPTS;
-                    r.snsInDictionary.push(y.sn);
+                r.on(Hls.Events.FRAG_PARSED, function(x, y) {
+                    var z = y.frag;
+                    r.timeDictionary[z.sn + ''] = z.startPTS;
+                    r.snsInDictionary.push(z.sn);
                     while (r.snsInDictionary.length > 100) {
-                        var z = 0;
-                        if (r.snsInDictionary[z] == 0) {
-                            z = 1;
+                        var A = 0;
+                        if (r.snsInDictionary[A] == 0) {
+                            A = 1;
                         }
-                        var A = r.snsInDictionary[z];
-                        r.snsInDictionary.splice(z, 1);
-                        delete r.timeDictionary[A + ''];
+                        var B = r.snsInDictionary[A];
+                        r.snsInDictionary.splice(A, 1);
+                        delete r.timeDictionary[B + ''];
                     }
                     if (r.firstFrag) {
                         r.firstFrag = false;
-                        r.startSN = y.sn;
-                        r.startPTS = y.startPTS;
+                        r.startSN = z.sn;
+                        r.startPTS = z.startPTS;
                         r.readyForChange = true;
                         if (s.readyForChange) {
                             t();
@@ -2209,52 +2213,52 @@ var Rich360 = function() {
                     }
                 }.bind(this));
                 var t = function() {
-                    var w = this._video;
-                    var x = this._hls;
-                    var y = 0;
-                    if (x.timeDictionary[r.startSN + ''] != undefined) {
-                        y = x.timeDictionary[r.startSN + ''] - r.startPTS;
+                    var x = this._video;
+                    var y = this._hls;
+                    var z = 0;
+                    if (y.timeDictionary[r.startSN + ''] != undefined) {
+                        z = y.timeDictionary[r.startSN + ''] - r.startPTS;
                     } else {
-                        var z = -1;
                         var A = -1;
-                        for (var B in x.timeDictionary) {
-                            var C = Number.parseInt(B + '');
-                            if (A == -1 || C > A) {
-                                A = C;
+                        var B = -1;
+                        for (var C in y.timeDictionary) {
+                            var D = Number.parseInt(C + '');
+                            if (B == -1 || D > B) {
+                                B = D;
                             }
-                            if (z == -1 || C < z) {
-                                z = C;
+                            if (A == -1 || D < A) {
+                                A = D;
                             }
                         }
-                        var D = (x.timeDictionary[A + ''] - x.timeDictionary[z + '']) / (A - z);
-                        var E = x.timeDictionary[A + ''] + D * (r.startSN - A);
-                        y = E - r.startPTS;
+                        var E = (y.timeDictionary[B + ''] - y.timeDictionary[A + '']) / (B - A);
+                        var F = y.timeDictionary[B + ''] + E * (r.startSN - B);
+                        z = F - r.startPTS;
                         console.error('startSN : ' + r.startSN + ' not defined in oldHLS');
-                        console.error(x.timeDictionary);
-                        console.error('estPTS : ' + E + ' timePerSN : ' + D + ' smallestSN : ' + z + ' biggestSN : ' + A + ' newStartSN : ' + r.startSN + ' newStartPTS : ' + r.startPTS);
+                        console.error(y.timeDictionary);
+                        console.error('estPTS : ' + F + ' timePerSN : ' + E + ' smallestSN : ' + A + ' biggestSN : ' + B + ' newStartSN : ' + r.startSN + ' newStartPTS : ' + r.startPTS);
                     }
-                    var F = function(L) {
+                    var G = function(L) {
                         s.pause();
-                        var M = (s.currentTime - (w.currentTime - y)) * 1000;
-                        console.log('@@oldHLS.timeDictionary : ', x.timeDictionary);
-                        console.log('@@timeDiff : ', y);
+                        var M = (s.currentTime - (x.currentTime - z)) * 1000;
+                        console.log('@@oldHLS.timeDictionary : ', y.timeDictionary);
+                        console.log('@@timeDiff : ', z);
                         console.log('@@newVideo.currentTime : ', s.currentTime);
-                        console.log('@@oldVideo.currentTime : ', w.currentTime);
+                        console.log('@@oldVideo.currentTime : ', x.currentTime);
                         console.log('@@@ waitTime : ', M);
                         setTimeout(function() {
-                            s.volume = w.volume;
+                            s.volume = x.volume;
                             if (!this._options.content_data.use_vod) {
-                                this._subtitleManager._prevViewOffsetTime = w.currentTime - s.currentTime;
+                                this._subtitleManager._prevViewOffsetTime = x.currentTime - s.currentTime;
                             }
-                            if (!w.paused) {
+                            if (!x.paused) {
                                 s.play();
                             }
-                            w.pause();
+                            x.pause();
                             r._hls.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
-                            x.detachMedia();
-                            x.destroy();
-                            w = null;
+                            y.detachMedia();
+                            y.destroy();
                             x = null;
+                            y = null;
                             this._video = s;
                             this._hls = r;
                             this.attachVideoListeners();
@@ -2271,15 +2275,15 @@ var Rich360 = function() {
                             });
                         }.bind(this), M >= 0 ? M : 0);
                     }.bind(this);
-                    s.addEventListener('seeked', F, {
+                    s.addEventListener('seeked', G, {
                         once: true
                     });
                     s.volume = 0;
-                    var G = function L() {
+                    var H = function L() {
                         console.log('seekIfPossible');
                         var M = s.buffered;
-                        var N = w.currentTime + 0.5 - y;
-                        console.log('targetTime : ' + N + ' = ' + w.currentTime + ' + 0.5 - ' + y);
+                        var N = x.currentTime + 0.5 - z;
+                        console.log('targetTime : ' + N + ' = ' + x.currentTime + ' + 0.5 - ' + z);
                         var O = 0;
                         for (; O < M.length; O++) {
                             console.log('start(' + O + ') : ' + M.start(O));
@@ -2291,15 +2295,15 @@ var Rich360 = function() {
                         }
                         if (O != M.length) {
                             console.log('clearInterval');
-                            clearInterval(H);
-                            clearTimeout(I);
+                            clearInterval(I);
+                            clearTimeout(J);
                         }
                     };
-                    var H = setInterval(G, 100);
-                    var I = setTimeout(function() {
+                    var I = setInterval(H, 100);
+                    var J = setTimeout(function() {
                         console.warn('5 second limit');
                         var M = s.buffered;
-                        var N = w.currentTime + 0.5 - y;
+                        var N = x.currentTime + 0.5 - z;
                         var O = 0;
                         var P = 0;
                         var Q = 0;
@@ -2317,10 +2321,10 @@ var Rich360 = function() {
                             s.currentTime = P - 1;
                         }
                         console.log('clearInterval');
-                        clearInterval(H);
+                        clearInterval(I);
                     }, 5000);
                 }.bind(this);
-                s.addEventListener('canplaythrough', function(w) {
+                s.addEventListener('canplaythrough', function(x) {
                     s.readyForChange = true;
                     if (r.readyForChange) {
                         t();
@@ -2378,7 +2382,7 @@ var Rich360 = function() {
             } else {
                 this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
             }
-            this._video.addEventListener('loadedmetadata', function(q) {
+            this._video.addEventListener('loadedmetadata', function(p) {
                 this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                 this._video.play();
                 if (!m) {
@@ -2416,7 +2420,7 @@ var Rich360 = function() {
                         this.attachHlsListeners();
                         this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
                     }
-                    this._video.addEventListener('loadedmetadata', function(t) {
+                    this._video.addEventListener('loadedmetadata', function(s) {
                         if (this._options.content_data.use_vod) {
                             this._video.currentTime = o;
                             this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
@@ -2668,24 +2672,24 @@ var Rich360 = function() {
     }, {
         key: 'attachHlsListeners',
         value: function v() {
-            this._hls.on(Hls.Events.ERROR, function(w, x) {
-                if (x.fatal) {
-                    switch (x.type) {
+            this._hls.on(Hls.Events.ERROR, function(x, y) {
+                if (y.fatal) {
+                    switch (y.type) {
                         case Hls.ErrorTypes.NETWORK_ERROR:
                             console.log('fatal network error encountered, try to recover');
                             this._hls.startLoad();
                             break;
                         case Hls.ErrorTypes.MEDIA_ERROR:
-                            var y = this._video.currentTime;
+                            var z = this._video.currentTime;
                             console.log('fatal media error encountered, try to recover');
-                            if (x.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) {
+                            if (y.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR) {
                                 console.log('this is not a media error, try to recover');
                                 this._hls.startLoad();
                             } else {
                                 this._hls.recoverMediaError();
                                 this.play_on();
                             }
-                            this._video.currentTime = y;
+                            this._video.currentTime = z;
                             break;
                         default:
                             this._hls.destroy();
@@ -2695,44 +2699,44 @@ var Rich360 = function() {
             }.bind(this));
             this._hls.on(Hls.Events.MANIFEST_PARSED, function() {
                 this._quality_list = [];
-                var w = this._hls.levels;
-                for (var x in w) {
-                    this._quality_list.push(w[x]);
+                var x = this._hls.levels;
+                for (var y in x) {
+                    this._quality_list.push(x[y]);
                 }
                 this._listener.trigger(RICH360_EVENTS.RICH360_STATE_CHANGE, RICH360_STATE.RICH360_READY);
                 this._ready_state = RICH360_STATE.RICH360_READY;
             }.bind(this));
-            this._hls.on(Hls.Events.LEVEL_SWITCHED, function(w, x) {
+            this._hls.on(Hls.Events.LEVEL_SWITCHED, function(x, y) {
                 this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                     wait: false,
                     wait_on: RICH360_WAIT_ON.RICH360_QUALITY_CHANGE
                 });
-                this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, x.level);
+                this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, y.level);
             }.bind(this));
-            this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(w, x) {
-                for (var y = 0; y < x.tracks.length; y++) {
+            this._hls.on(Hls.Events.NON_NATIVE_TEXT_TRACKS_FOUND, function(x, y) {
+                for (var z = 0; z < y.tracks.length; z++) {
                     this._subtitleList.push({
-                        id: y,
-                        label: x.tracks[y].label,
-                        lang: x.tracks[y].subtitleTrack.lang
+                        id: z,
+                        label: y.tracks[z].label,
+                        lang: y.tracks[z].subtitleTrack.lang
                     });
                 }
                 this._listener.trigger(RICH360_EVENTS.RICH360_SUBTITLE_FOUND);
             }.bind(this));
-            this._hls.on(Hls.Events.CUES_PARSED, function(w, x) {
+            this._hls.on(Hls.Events.CUES_PARSED, function(x, y) {
                 if (this._subtitleManager) {
-                    var y = x.cues.length;
-                    var z = [];
-                    for (var A = 0; A < y; A++) {
-                        z.push({
-                            startTime: x.cues[A].startTime,
-                            endTime: x.cues[A].endTime,
-                            text: x.cues[A].text,
+                    var z = y.cues.length;
+                    var A = [];
+                    for (var B = 0; B < z; B++) {
+                        A.push({
+                            startTime: y.cues[B].startTime,
+                            endTime: y.cues[B].endTime,
+                            text: y.cues[B].text,
                             track_num: this._hls._hls.subtitleTrack,
                             view: this._view
                         });
                     }
-                    this._subtitleManager.addCueData(z);
+                    this._subtitleManager.addCueData(A);
                 }
             }.bind(this));
         }
@@ -2875,8 +2879,10 @@ var Rich360 = function() {
                     }
                 }
                 return -1;
+            } else if (this._hls._hls) {
+                return this._hls._hls.subtitleTrack;
             } else {
-                return this._hls._hls ? this._hls._hls.subtitleTrack : -1;
+                return -1;
             }
         }
     }, {
@@ -3100,13 +3106,13 @@ var Rich360SubtitleManager = function() {
                 if (this._cues.length) {
                     this.drawSubtitles();
                 } else if (this._player.getSubtitleTrack() != -1) {
-                    var k = new Date();
-                    if (this._bfSendSubTime.getTime() + 10000 < k) {
-                        var l = this._player.getSubtitleTrack();
+                    var i = new Date();
+                    if (this._bfSendSubTime.getTime() + 10000 < i) {
+                        var j = this._player.getSubtitleTrack();
                         this._player.setSubtitleTrack(-1);
-                        this._bfSendSubTime = k;
+                        this._bfSendSubTime = i;
                         setTimeout(function() {
-                            this._player.setSubtitleTrack(l);
+                            this._player.setSubtitleTrack(j);
                         }.bind(this), 100);
                     }
                 }
@@ -3244,8 +3250,8 @@ var MultiViewDisplay = function() {
                             break;
                         }
                     }
-                } catch (z) {
-                    f.e(z);
+                } catch (w) {
+                    f.e(w);
                 } finally {
                     f.f();
                 }
@@ -3349,24 +3355,24 @@ var MultiViewDisplay = function() {
                     o = true;
                 }
                 if (!j.paused && !j.ended || o) {
-                    k.forEach(function(v, w) {
-                        var z = i._multiviewDivArr[w];
-                        var A = k.find(function(J) {
-                            return J.singleview_id === w;
+                    k.forEach(function(z, A) {
+                        var B = i._multiviewDivArr[A];
+                        var C = k.find(function(L) {
+                            return L.singleview_id === A;
                         });
-                        i.selectedMultiviewCanvas(w);
-                        if (A == null) {
+                        i.selectedMultiviewCanvas(A);
+                        if (C == null) {
                             return;
                         }
-                        var B = A.x;
-                        var C = A.y;
-                        var D = A.width;
-                        var E = A.height;
-                        var F = j.videoWidth;
-                        var G = j.videoHeight;
-                        var H = z.offsetWidth;
-                        var I = z.offsetHeight;
-                        l.drawImage(j, Math.round(B * F), Math.round(C * G), Math.round(D * F), Math.round(E * G), 0, I * w + m * w, H, I);
+                        var D = C.x;
+                        var E = C.y;
+                        var F = C.width;
+                        var G = C.height;
+                        var H = j.videoWidth;
+                        var I = j.videoHeight;
+                        var J = B.offsetWidth;
+                        var K = B.offsetHeight;
+                        l.drawImage(j, Math.round(D * H), Math.round(E * I), Math.round(F * H), Math.round(G * I), 0, K * A + m * A, J, K);
                     }.bind(this));
                     var q = this._multiviewCanvas[0];
                     var r = this._doubleBufferCanvas[0];
@@ -3749,6 +3755,9 @@ switch (Tira) {
     case 'dev_demo_vod':
         var DCvi = 'b36f6b04-98b0-4c57-b29e-2f4ab19c18ee';
         break;
+    case 'test':
+        var DCvi = '2c07afe2-d369-41c5-baf7-6fc3a9ab90bc';
+        break;
 }
 var ChatFilter = function() {
     var a = '';
@@ -3969,26 +3978,26 @@ Chat.Manager = function() {
                 t.history({
                     channel: l,
                     count: 1
-                }, function(M, N) {
-                    console.log(M, N);
-                    if (N) {
-                        if (N.messages.length) {
-                            Chat.Ui.updateNotice(N.messages[0].entry.update, N.messages[0].entry.timetoken, N.messages[0].entry.entry);
+                }, function(L, M) {
+                    console.log(L, M);
+                    if (M) {
+                        if (M.messages.length) {
+                            Chat.Ui.updateNotice(M.messages[0].entry.update, M.messages[0].entry.timetoken, M.messages[0].entry.entry);
                         }
                     }
                 });
                 t.history({
                     channel: k[0],
                     count: c
-                }, function(M, N) {
-                    console.log(M, N);
-                    if (N) {
-                        if (N.messages.length) {
-                            for (var O = 0; O < N.messages.length; O++) {
-                                var P = N.messages[O].entry.update.split(CHAT_MSG_SEPARATOR);
-                                for (var Q = 0; Q < P.length; Q++) {
-                                    var R = P[Q].split(CHAT_USERID_SEPARATOR)[0];
-                                    Chat.Ui.displayMessage(P[Q], N.messages[O].timetoken, R, true);
+                }, function(L, M) {
+                    console.log(L, M);
+                    if (M) {
+                        if (M.messages.length) {
+                            for (var N = 0; N < M.messages.length; N++) {
+                                var O = M.messages[N].entry.update.split(CHAT_MSG_SEPARATOR);
+                                for (var P = 0; P < O.length; P++) {
+                                    var Q = O[P].split(CHAT_USERID_SEPARATOR)[0];
+                                    Chat.Ui.displayMessage(O[P], M.messages[N].timetoken, Q, true);
                                 }
                             }
                         }
@@ -3998,16 +4007,16 @@ Chat.Manager = function() {
                     t.history({
                         channel: n,
                         count: 10000
-                    }, function(M, N) {
-                        console.log(M, N);
-                        if (N) {
-                            var O = JSON.parse(JSON.stringify(N));
-                            if (O.messages.length) {
-                                for (var P = 0; P < O.messages.length; P++) {
-                                    var Q = O.messages[P].entry.update;
-                                    var R = Q.split(CHAT_USERID_SEPARATOR)[0];
-                                    if (R) {
-                                        Chat.Ui.displayArtistHistoryMsg(Q, O.messages[P].timetoken, R);
+                    }, function(L, M) {
+                        console.log(L, M);
+                        if (M) {
+                            var N = JSON.parse(JSON.stringify(M));
+                            if (N.messages.length) {
+                                for (var O = 0; O < N.messages.length; O++) {
+                                    var P = N.messages[O].entry.update;
+                                    var Q = P.split(CHAT_USERID_SEPARATOR)[0];
+                                    if (Q) {
+                                        Chat.Ui.displayArtistHistoryMsg(P, N.messages[O].timetoken, Q);
                                     }
                                 }
                                 if ($('#artistChatList').length) {
@@ -4021,11 +4030,11 @@ Chat.Manager = function() {
                 t.history({
                     channel: l,
                     count: 1
-                }, function(N, O) {
-                    console.log(N, O);
-                    if (O) {
-                        if (O.messages.length) {
-                            Chat.Ui.updateNotice(O.messages[0].entry.update, O.messages[0].entry.timetoken, O.messages[0].entry.entry);
+                }, function(L, M) {
+                    console.log(L, M);
+                    if (M) {
+                        if (M.messages.length) {
+                            Chat.Ui.updateNotice(M.messages[0].entry.update, M.messages[0].entry.timetoken, M.messages[0].entry.entry);
                         }
                     }
                 });
@@ -4036,15 +4045,15 @@ Chat.Manager = function() {
                 t.history({
                     channel: k[K],
                     count: c
-                }, function(N, O) {
-                    console.log(N, O);
-                    if (O) {
-                        if (O.messages.length) {
-                            for (var P = 0; P < O.messages.length; P++) {
-                                var Q = O.messages[P].entry.update.split(CHAT_MSG_SEPARATOR);
-                                for (var R = 0; R < Q.length; R++) {
-                                    var S = Q[R].split(CHAT_USERID_SEPARATOR)[0];
-                                    Chat.Ui.displayMessage(Q[R], O.messages[P].timetoken, S, true);
+                }, function(L, M) {
+                    console.log(L, M);
+                    if (M) {
+                        if (M.messages.length) {
+                            for (var N = 0; N < M.messages.length; N++) {
+                                var O = M.messages[N].entry.update.split(CHAT_MSG_SEPARATOR);
+                                for (var P = 0; P < O.length; P++) {
+                                    var Q = O[P].split(CHAT_USERID_SEPARATOR)[0];
+                                    Chat.Ui.displayMessage(O[P], M.messages[N].timetoken, Q, true);
                                 }
                             }
                         }
@@ -4053,16 +4062,16 @@ Chat.Manager = function() {
                 t.history({
                     channel: n,
                     count: 10000
-                }, function(N, O) {
-                    console.log(N, O);
-                    if (O) {
-                        var P = JSON.parse(JSON.stringify(O));
-                        if (P.messages.length) {
-                            for (var Q = 0; Q < P.messages.length; Q++) {
-                                var R = P.messages[Q].entry.update;
-                                var S = R.split(CHAT_USERID_SEPARATOR)[0];
-                                if (S) {
-                                    Chat.Ui.displayArtistHistoryMsg(R, P.messages[Q].timetoken, S);
+                }, function(L, M) {
+                    console.log(L, M);
+                    if (M) {
+                        var N = JSON.parse(JSON.stringify(M));
+                        if (N.messages.length) {
+                            for (var O = 0; O < N.messages.length; O++) {
+                                var P = N.messages[O].entry.update;
+                                var Q = P.split(CHAT_USERID_SEPARATOR)[0];
+                                if (Q) {
+                                    Chat.Ui.displayArtistHistoryMsg(P, N.messages[O].timetoken, Q);
                                 }
                             }
                             if ($('#artistChatList').length) {
@@ -4077,33 +4086,33 @@ Chat.Manager = function() {
             if (DREAMCONCERT_UTIL.isDreamConcert(v.id)) {
                 var L = [l, m].concat(k);
                 t.addListener({
-                    status: function N(O) {
-                        console.log('[STATUS: ' + O.category + ']', 'connected to channels: ' + O.affectedChannels);
-                        if (O.category == 'PNConnectedCategory') {
+                    status: function O(P) {
+                        console.log('[STATUS: ' + P.category + ']', 'connected to channels: ' + P.affectedChannels);
+                        if (P.category == 'PNConnectedCategory') {
                             ChatFilter.loadChatFilterData();
                             Chat.Manager.initChatInterval();
                         }
                     },
-                    message: function O(P) {
-                        if (P.channel == l) {
-                            Chat.Ui.updateNotice(P.message.update, P.timetoken, P.message.entry);
-                        } else if (P.channel == m) {
-                            Chat.Ui.recvCtrlChMsg(P.message.update);
+                    message: function P(Q) {
+                        if (Q.channel == l) {
+                            Chat.Ui.updateNotice(Q.message.update, Q.timetoken, Q.message.entry);
+                        } else if (Q.channel == m) {
+                            Chat.Ui.recvCtrlChMsg(Q.message.update);
                         } else {
-                            var Q = P.message.update.split(CHAT_MSG_SEPARATOR);
-                            for (var R = 0; R < Q.length; R++) {
-                                var S = Q[R].split(CHAT_USERID_SEPARATOR)[0];
-                                if (o == S) {
+                            var R = Q.message.update.split(CHAT_MSG_SEPARATOR);
+                            for (var S = 0; S < R.length; S++) {
+                                var T = R[S].split(CHAT_USERID_SEPARATOR)[0];
+                                if (o == T) {
                                     continue;
                                 }
-                                if (Chat.Manager.checkArtistUser(S)) {
-                                    Chat.Ui.displayMessage(P.message.update, P.timetoken, P.message.entry);
+                                if (Chat.Manager.checkArtistUser(T)) {
+                                    Chat.Ui.displayMessage(Q.message.update, Q.timetoken, Q.message.entry);
                                 } else {
-                                    r.push(Q[R]);
+                                    r.push(R[S]);
                                 }
                             }
                             if (r.length) {
-                                Chat.Manager.displayMessageItv(parseInt(P.timetoken));
+                                Chat.Manager.displayMessageItv(parseInt(Q.timetoken));
                             }
                         }
                     }
@@ -4168,8 +4177,8 @@ Chat.Manager = function() {
             var N = d / r.length;
             s = setInterval(function() {
                 if (r.length) {
-                    var O = r[0].split(CHAT_USERID_SEPARATOR)[0];
-                    Chat.Ui.displayMessage(r[0], M, O);
+                    var P = r[0].split(CHAT_USERID_SEPARATOR)[0];
+                    Chat.Ui.displayMessage(r[0], M, P);
                     M = parseInt(M) + parseInt(N * 1000 * 10);
                     r.splice(0, 1);
                 }
@@ -4215,10 +4224,10 @@ Chat.Manager = function() {
                             entry: O,
                             update: P
                         }
-                    }, function(Z, a0) {
-                        if (Z.error) {} else if (Chat.Manager.checkArtistUser(o) && !S) {
-                            if (a0) {
-                                Chat.Ui.displayMessage(P, a0.timetoken, o);
+                    }, function(X, Y) {
+                        if (X.error) {} else if (Chat.Manager.checkArtistUser(o) && !S) {
+                            if (Y) {
+                                Chat.Ui.displayMessage(P, Y.timetoken, o);
                             }
                             S = true;
                         }
@@ -4230,13 +4239,13 @@ Chat.Manager = function() {
                     PartitionKey: Q[0],
                     StreamName: 'KINESIS_CHAT'
                 };
-                u.putRecord(U, function(a0, a1) {
-                    if (a0) {
-                        console.log(a0, a0.stack);
+                u.putRecord(U, function(Y, Z) {
+                    if (Y) {
+                        console.log(Y, Y.stack);
                     } else {
-                        console.log(a1);
-                        var a2 = new Date();
-                        Chat.Ui.displayMessage(P, a2.getTime() * 10000);
+                        console.log(Z);
+                        var a0 = new Date();
+                        Chat.Ui.displayMessage(P, a0.getTime() * 10000);
                     }
                 });
             }
@@ -4335,21 +4344,21 @@ Chat.Ui = function() {
             $('#chatContentWrap .scroll-bar').on('touchstart', function() {
                 b = true;
             });
-            $('#chatList').on('touchstart', function(k) {
+            $('#chatList').on('touchstart', function(l) {
                 j = true;
             });
-            $(document).on('touchmove', function(k) {
+            $(document).on('touchmove', function(l) {
                 console.log('touchmove');
                 if (j) {
                     b = true;
                 }
             });
-            $(document).on('touchend', function(k) {
+            $(document).on('touchend', function(l) {
                 j = false;
                 console.log('touchmove');
             });
-            $('#chatList').on('wheel', function(k) {
-                if (k.originalEvent.deltaY < 0 && $('#chatList').scrollTop() > 0) {
+            $('#chatList').on('wheel', function(l) {
+                if (l.originalEvent.deltaY < 0 && $('#chatList').scrollTop() > 0) {
                     b = true;
                 }
             });
@@ -4359,35 +4368,35 @@ Chat.Ui = function() {
                 }
                 var chatAnchor = $('#chatAnchor');
                 var chatList = $('#chatList');
-                var m = function t() {
+                var n = function u() {
                     return Math.ceil(chatList.scrollTop() + chatList.height());
                 };
-                var n = function u() {
-                    var v = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : m();
-                    return v < chatList[0].scrollHeight;
-                };
                 var o = function v() {
+                    var w = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : n();
+                    return w < chatList[0].scrollHeight;
+                };
+                var p = function w() {
                     chatAnchor.css('display', 'block');
                     b = true;
                 };
-                if (n()) {
+                if (o()) {
                     setTimeout(function() {
-                        return n() && o();
+                        return o() && p();
                     }, 200);
                 } else {
                     chatAnchor.css('display', 'none');
                     b = false;
                     if (e.length !== 0) {
-                        var p = document.createDocumentFragment();
-                        var q = e.reverse();
-                        for (var r = 0, s = q.length; r < s; r++) {
-                            if (a <= r) {
+                        var q = document.createDocumentFragment();
+                        var r = e.reverse();
+                        for (var s = 0, t = r.length; s < t; s++) {
+                            if (a <= s) {
                                 break;
                             }
-                            p.prepend(q[r]);
+                            q.prepend(r[s]);
                         }
                         chatList.find('.user_chat:eq(-1)').css('margin-bottom', '1.25em');
-                        chatList.append(p);
+                        chatList.append(q);
                         if (navigator.userAgent.indexOf('Firefox') === -1) {
                             chatList.find('.user_chat:eq(-1)').css('margin-bottom', '0');
                         }
@@ -4401,47 +4410,47 @@ Chat.Ui = function() {
                 $('#chatAnchor').css('display', 'none');
             });
             $('#chatSendBtn').on('click', function() {
-                var k = Chat.Manager.getNickName();
-                var l = Chat.Manager.getUserId();
-                if (!k) {
+                var l = Chat.Manager.getNickName();
+                var m = Chat.Manager.getUserId();
+                if (!l) {
                     alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
                         location.href = LUEz1;
                     });
                     return;
                 }
-                var m = $('#chatInput').val();
-                if (!m || !ChatFilter.checkFilteringData()) {
+                var n = $('#chatInput').val();
+                if (!n || !ChatFilter.checkFilteringData()) {
                     return;
                 }
-                if (Chat.Manager.checkOperationntUser(l) && m.length > OPERATOR_CHAT_INPUT_MAXLENGTH) {
-                    m = m.slice(0, OPERATOR_CHAT_INPUT_MAXLENGTH);
-                } else if ((Chat.Manager.checkAdminUser(l) || Chat.Manager.checkArtistUser(l)) && m.length > ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH) {
-                    m = m.slice(0, ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH);
-                } else if (!Chat.Manager.isSuperUser() && m.length > USER_CHAT_INPUT_MAXLENGTH) {
-                    m = m.slice(0, USER_CHAT_INPUT_MAXLENGTH);
+                if (Chat.Manager.checkOperationntUser(m) && n.length > OPERATOR_CHAT_INPUT_MAXLENGTH) {
+                    n = n.slice(0, OPERATOR_CHAT_INPUT_MAXLENGTH);
+                } else if ((Chat.Manager.checkAdminUser(m) || Chat.Manager.checkArtistUser(m)) && n.length > ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH) {
+                    n = n.slice(0, ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH);
+                } else if (!Chat.Manager.isSuperUser() && n.length > USER_CHAT_INPUT_MAXLENGTH) {
+                    n = n.slice(0, USER_CHAT_INPUT_MAXLENGTH);
                 }
-                if (Chat.Manager.checkOperationntUser(l)) {
-                    Chat.Manager.submitUpdate(l, m, Chat.Manager.getNoticeChannel());
-                } else if (Chat.Manager.checkAdminUser(l)) {
-                    Chat.Manager.submitUpdate(l, m, Chat.Manager.getCtrChannel());
-                } else if (Chat.Manager.checkArtistUser(l)) {
-                    Chat.Manager.submitUpdate(l, l + CHAT_USERID_SEPARATOR + k + NICKNAME_SEPARATOR + m, Chat.Manager.getChatChannels());
+                if (Chat.Manager.checkOperationntUser(m)) {
+                    Chat.Manager.submitUpdate(m, n, Chat.Manager.getNoticeChannel());
+                } else if (Chat.Manager.checkAdminUser(m)) {
+                    Chat.Manager.submitUpdate(m, n, Chat.Manager.getCtrChannel());
+                } else if (Chat.Manager.checkArtistUser(m)) {
+                    Chat.Manager.submitUpdate(m, m + CHAT_USERID_SEPARATOR + l + NICKNAME_SEPARATOR + n, Chat.Manager.getChatChannels());
                 } else {
-                    var n = ChatFilter.filteringChatText(m);
-                    Chat.Manager.submitUpdate(l, l + CHAT_USERID_SEPARATOR + k + NICKNAME_SEPARATOR + n, Chat.Manager.getChatChannels());
+                    var o = ChatFilter.filteringChatText(n);
+                    Chat.Manager.submitUpdate(m, m + CHAT_USERID_SEPARATOR + l + NICKNAME_SEPARATOR + o, Chat.Manager.getChatChannels());
                 }
                 $('#chatInput').val('');
             });
-            $('#chatInput').on('keydown', function(k) {
-                if (k.keyCode == 13) {
+            $('#chatInput').on('keydown', function(l) {
+                if (l.keyCode == 13) {
                     $('#chatSendBtn').click();
                     return false;
                 }
             });
-            $('#chatInput').on('focus', function(k) {
+            $('#chatInput').on('focus', function(l) {
                 delayStopLoadingPanel();
             });
-            $('#chatInput').on('blur', function(k) {
+            $('#chatInput').on('blur', function(l) {
                 delayStopLoadingPanel();
             });
             $('#artistChatList').on('scroll', debounce(function() {
@@ -4449,14 +4458,14 @@ Chat.Ui = function() {
                     return;
                 }
                 var artistChatList = $('#artistChatList');
-                var l = function o() {
+                var m = function p() {
                     return Math.ceil(artistChatList.scrollTop() + artistChatList.height());
                 };
-                var m = function p() {
-                    var q = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : l();
-                    return q >= artistChatList[0].scrollHeight;
+                var n = function q() {
+                    var r = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : m();
+                    return r >= artistChatList[0].scrollHeight;
                 };
-                if (m()) {
+                if (n()) {
                     f = true;
                 } else {
                     f = false;
@@ -5266,17 +5275,17 @@ function request_to_server(a, b, c, d, e) {
                     }
                 } else {
                     try {
-                        var m = JSON.parse(f.responseText);
-                        e(m, f.status);
-                    } catch (q) {
+                        var j = JSON.parse(f.responseText);
+                        e(j, f.status);
+                    } catch (n) {
                         e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(m) {
-        console.log(m);
+    f.ontimeout = function(j) {
+        console.log(j);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -5542,11 +5551,7 @@ function checkMobile() {
         } else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            if (!c) {
-                return isIpadOS();
-            } else {
-                return c;
-            }
+            return !c ? isIpadOS() : c;
         }
     }
 }
