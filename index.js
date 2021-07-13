@@ -30,7 +30,8 @@ const ifToCases = (cases, ifStatement) => {
         cases.push(t.switchCase(test.left.right, []));
         cases.push(t.switchCase(test.right.right, convertStatementToCaseConsequent(consequent)));
     } else {
-        console.error('Unsupported test while constructing cases');
+        cases.push(t.switchCase(null, convertStatementToCaseConsequent(ifStatement)));
+        return;
     }
     switch (alternate?.type) {
         case 'BlockStatement':

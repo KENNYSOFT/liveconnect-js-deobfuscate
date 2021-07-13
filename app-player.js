@@ -3789,7 +3789,11 @@ var ChatFilter = function() {
                     e.open('GET', '/static/filtering/chat_filtering_cravity.txt');
                     break;
                 default:
-                    e.open('GET', '/static/filtering/chat_filtering.txt');
+                    if (Tira.indexOf('everglow') !== -1) {
+                        e.open('GET', '/static/filtering/chat_filtering_everglow.txt');
+                    } else {
+                        e.open('GET', '/static/filtering/chat_filtering.txt');
+                    }
                     break;
             }
             e.overrideMimeType('text/plain; charset=utf-8');
