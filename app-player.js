@@ -8,10 +8,10 @@ function _createForOfIteratorHelper(a, b) {
                 a = c;
             }
             var d = 0;
-            var g = function p() {};
+            var g = function l() {};
             return {
                 s: g,
-                n: function q() {
+                n: function m() {
                     if (d >= a.length) {
                         return {
                             done: true
@@ -22,8 +22,8 @@ function _createForOfIteratorHelper(a, b) {
                         value: a[d++]
                     };
                 },
-                e: function r(t) {
-                    throw t;
+                e: function p(q) {
+                    throw q;
                 },
                 f: g
             };
@@ -34,19 +34,19 @@ function _createForOfIteratorHelper(a, b) {
     var j = false;
     var k;
     return {
-        s: function t() {
+        s: function q() {
             c = c.call(a);
         },
-        n: function u() {
-            var v = c.next();
-            h = v.done;
-            return v;
+        n: function r() {
+            var t = c.next();
+            h = t.done;
+            return t;
         },
-        e: function v(w) {
+        e: function t(u) {
             j = true;
-            k = w;
+            k = u;
         },
-        f: function w() {
+        f: function u() {
             try {
                 if (!h && c.return != null) {
                     c.return();
@@ -154,31 +154,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(q) {
+    $(document).click(function(m) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(q) {
-        var r = a;
-        $('.cusDD').not(r).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(r).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', r);
-        q.stopPropagation();
-        if ($(q.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(m) {
+        var n = a;
+        $('.cusDD').not(n).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(n).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', n);
+        m.stopPropagation();
+        if ($(m.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(q.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(m.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var s = 200;
+        var o = 200;
         if ($(this).find('.cusDD_options').children()) {
             if ($(this).find('.cusDD_options').children().length > 30) {
-                s = 0;
+                o = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(s);
+        $(this).find('.cusDD_options').slideToggle(o);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -382,20 +382,20 @@ var Rich360Player = function() {
                 }.bind(this));
                 $(this._ui.prev10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var e = this._player.currentPosition - 10;
-                        if (e < 0) {
-                            e = 0;
+                        var f = this._player.currentPosition - 10;
+                        if (f < 0) {
+                            f = 0;
                         }
-                        this._player.currentPosition = e;
+                        this._player.currentPosition = f;
                     }
                 }.bind(this));
                 $(this._ui.next10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var e = this._player.currentPosition + 10;
-                        if (e > this._player.duration - 1) {
-                            e = this._player.duration - 1;
+                        var f = this._player.currentPosition + 10;
+                        if (f > this._player.duration - 1) {
+                            f = this._player.duration - 1;
                         }
-                        this._player.currentPosition = e;
+                        this._player.currentPosition = f;
                     }
                 }.bind(this));
             }
@@ -419,11 +419,11 @@ var Rich360Player = function() {
                     }
                 }
                 $(window).on('orientationchange', function() {
-                    var g = getOrientation();
-                    if (typeof g == 'string') {
-                        if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') {
+                    var i = getOrientation();
+                    if (typeof i == 'string') {
+                        if (i == 'landscape-primary' || i == 'landscape-secondary' || i == 'landscape') {
                             this.hideChatWrap();
-                        } else if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
+                        } else if (i == 'portrait-primary' || i == 'portrait-secondary' || i == 'portrait') {
                             this.showChatWrap();
                         }
                     }
@@ -555,26 +555,26 @@ var Rich360Player = function() {
                     this._ui.qualityPopupItems.push(n);
                 }
                 for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
-                    this._ui.qualityPopupItems[o].addEventListener('click', function(s) {
-                        var t = null;
-                        if (s.target.id == 'auto') {
-                            t = -1;
+                    this._ui.qualityPopupItems[o].addEventListener('click', function(q) {
+                        var r = null;
+                        if (q.target.id == 'auto') {
+                            r = -1;
                         } else {
-                            t = parseInt(s.target.id);
+                            r = parseInt(q.target.id);
                         }
-                        for (var u = 0; u < this._ui.qualityPopupItems.length; u++) {
-                            removeClassName(this._ui.qualityPopupItems[u], 'on');
+                        for (var s = 0; s < this._ui.qualityPopupItems.length; s++) {
+                            removeClassName(this._ui.qualityPopupItems[s], 'on');
                         }
-                        s.target.classList.add('on');
+                        q.target.classList.add('on');
                         this._ui.qualityPopup.style.display = 'none';
-                        if (this._player.quality == t) {
+                        if (this._player.quality == r) {
                             return;
                         }
-                        this._player.quality = t;
-                        if (s.target.id == 'auto') {
-                            for (var v = 0; v < this._ui.qualityPopupItems.length; v++) {
-                                if (this._ui.qualityPopupItems[v].id == this._player._hls.nextAutoLevel) {
-                                    addClassName(this._ui.qualityPopupItems[v], 'on');
+                        this._player.quality = r;
+                        if (q.target.id == 'auto') {
+                            for (var t = 0; t < this._ui.qualityPopupItems.length; t++) {
+                                if (this._ui.qualityPopupItems[t].id == this._player._hls.nextAutoLevel) {
+                                    addClassName(this._ui.qualityPopupItems[t], 'on');
                                     break;
                                 }
                             }
@@ -584,11 +584,11 @@ var Rich360Player = function() {
             }
             this._ui.qualitySelect.appendChild(k);
             var p = '#' + this._ui.qualitySelect.getAttribute('id');
-            cusDD(p, null, function(t) {
-                var u = null;
+            cusDD(p, null, function(r) {
+                var s = null;
                 $(p).find('.cusDD_opt').each(function() {
-                    if ($(this).data().id != t.id) {
-                        if (!$(this).attr('selected') || t.id != 'auto') {
+                    if ($(this).data().id != r.id) {
+                        if (!$(this).attr('selected') || r.id != 'auto') {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         }
@@ -597,18 +597,18 @@ var Rich360Player = function() {
                         $(this).addClass('on');
                     }
                 });
-                if (t.id == 'auto') {
-                    u = -1;
+                if (r.id == 'auto') {
+                    s = -1;
                 } else {
-                    u = parseInt(t.id);
+                    s = parseInt(r.id);
                 }
-                this._player.quality = u;
+                this._player.quality = s;
             }.bind(this));
             cusDDselectOption(p, 'auto', true);
             this._ui.qualitySelect = document.getElementById(this._ui.qualitySelect.getAttribute('id'));
-            $(this._ui.qualitySelectBtn).on('click', function(t) {
+            $(this._ui.qualitySelectBtn).on('click', function(r) {
                 $(this._ui.qualitySelect).click();
-                t.stopPropagation();
+                r.stopPropagation();
             }.bind(this));
             this._initQualityUI = true;
         }
@@ -882,9 +882,9 @@ var Rich360Player = function() {
                 this._options.container.addEventListener('mouseup', n.bind(this), false);
             }
 
-            function n(p) {
+            function n(o) {
                 this._wakeupPastTime = 0;
-                if (!this._player._video.paused && (p.target.tagName === 'CANVAS' || p.target.tagName === 'VIDEO' || p.target === this._ui.playerBottomWrap || p.target.id == 'loadingWrap' || p.target.id == 'subtitleDiv' || p.target.parentElement.id == 'subtitleDiv')) {
+                if (!this._player._video.paused && (o.target.tagName === 'CANVAS' || o.target.tagName === 'VIDEO' || o.target === this._ui.playerBottomWrap || o.target.id == 'loadingWrap' || o.target.id == 'subtitleDiv' || o.target.parentElement.id == 'subtitleDiv')) {
                     if (this._ui.playerBottomWrap.style.display == 'block') {
                         this._ui.playerBottomWrap.style.display = 'none';
                         this.showChatOpenBtn(false);
@@ -1146,54 +1146,54 @@ var customRange = function customRange(a, b, c) {
     d.inputEvent = new Event('input');
     d.seekEvent = new Event('seek');
     Object.defineProperty(d, 'value', {
-        get: function j() {
+        get: function i() {
             return this._value;
         },
-        set: function k(l) {
-            if (l > 100) {
-                l = 100;
-            } else if (l < 0) {
-                l = 0;
+        set: function j(k) {
+            if (k > 100) {
+                k = 100;
+            } else if (k < 0) {
+                k = 0;
             }
-            this.thumbDiv.style.left = l + '%';
-            this._value = l;
+            this.thumbDiv.style.left = k + '%';
+            this._value = k;
             this.dispatchEvent(this.inputEvent);
         }
     });
-    var e = function l(m) {
+    var e = function k(l) {
         this.thumbInteracting = true;
-        this.interactStartX = m.clientX || m.touches && m.touches[0].clientX;
+        this.interactStartX = l.clientX || l.touches && l.touches[0].clientX;
         this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
     };
-    var f = function m(n) {
+    var f = function l(m) {
         if (this.thumbInteracting) {
-            var o = (n.clientX || n.touches && n.touches[0].clientX) - this.interactStartX;
-            var p = this.interactStartOffset + o;
-            if (p < 0) {
-                p = 0;
+            var n = (m.clientX || m.touches && m.touches[0].clientX) - this.interactStartX;
+            var o = this.interactStartOffset + n;
+            if (o < 0) {
+                o = 0;
             }
-            if (p > this.barDiv.offsetWidth) {
-                p = this.barDiv.offsetWidth;
+            if (o > this.barDiv.offsetWidth) {
+                o = this.barDiv.offsetWidth;
             }
-            this.value = p * 100 / this.barDiv.offsetWidth;
+            this.value = o * 100 / this.barDiv.offsetWidth;
         }
     };
-    var g = function n() {
+    var g = function m() {
         if (this.thumbInteracting) {
             this.thumbInteracting = false;
             this.dispatchEvent(this.seekEvent);
         }
     };
-    var h = function o(p) {
-        if (p.target != this.thumbDiv) {
+    var h = function n(o) {
+        if (o.target != this.thumbDiv) {
             this.thumbInteracting = true;
-            var q = p.offsetX;
-            if (!q) {
-                var r = p.target.getBoundingClientRect();
-                q = p.targetTouches[0].pageX - r.left;
+            var p = o.offsetX;
+            if (!p) {
+                var q = o.target.getBoundingClientRect();
+                p = o.targetTouches[0].pageX - q.left;
             }
-            this.value = q * 100 / this.barDiv.offsetWidth;
-            this.interactStartX = p.clientX || p.touches && p.touches[0].clientX;
+            this.value = p * 100 / this.barDiv.offsetWidth;
+            this.interactStartX = o.clientX || o.touches && o.touches[0].clientX;
             this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
         }
     };
@@ -1410,31 +1410,31 @@ var Rich360Log = function() {
             o.append('user_agent', navigator.userAgent);
             o.append('current_view_id', m);
             n.send(o);
-            n.onload = function(r) {
+            n.onload = function(q) {
                 if (n.readyState === 4 && n.status === 200) {
                     try {
-                        var s = JSON.parse(n.responseText).Data;
-                        for (var t = 0; t < s.content.channels.length; t++) {
-                            var u = true;
+                        var r = JSON.parse(n.responseText).Data;
+                        for (var s = 0; s < r.content.channels.length; s++) {
+                            var t = true;
                             if (Ythc == 'sub') {
-                                u = false;
+                                t = false;
                             }
-                            if (s.content.channels[t].is_main_channel == u) {
-                                if (this._options.content_data.current_channel_id != s.content.channels[t].id) {
-                                    this._options.content_data = JSON.parse(JSON.stringify(s.content));
-                                    this._options.content_data.current_channel_id = s.content.channels[t].id;
-                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[t].hls_url);
+                            if (r.content.channels[s].is_main_channel == t) {
+                                if (this._options.content_data.current_channel_id != r.content.channels[s].id) {
+                                    this._options.content_data = JSON.parse(JSON.stringify(r.content));
+                                    this._options.content_data.current_channel_id = r.content.channels[s].id;
+                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[s].hls_url);
                                 }
                                 break;
                             }
                         }
-                        iCM(!!s.user.is_mute);
-                    } catch (x) {
-                        console.log(x);
+                        iCM(!!r.user.is_mute);
+                    } catch (v) {
+                        console.log(v);
                     }
                 }
             }.bind(this);
-            n.onloadend = function(r) {
+            n.onloadend = function(q) {
                 if (n.status === 400 || n.status === 401) {
                     this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
                 } else if (n.status === 403) {
@@ -1451,9 +1451,9 @@ var Rich360EventListener = function() {
         return function(g, h) {
             var i = f ? function() {
                 if (h) {
-                    var k = h.apply(g, arguments);
+                    var j = h.apply(g, arguments);
                     h = null;
-                    return k;
+                    return j;
                 }
             } : function() {};
             f = false;
@@ -1461,17 +1461,14 @@ var Rich360EventListener = function() {
         };
     }();
     var d = c(this, function() {
-        var f = function() {
-            var o;
-            try {
-                o = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
-            } catch (q) {
-                o = window;
-            }
-            return o;
-        };
-        var g = f();
-        var h = g.console = g.console || {};
+        var f;
+        try {
+            var g = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
+            f = g();
+        } catch (o) {
+            f = window;
+        }
+        var h = f.console = f.console || {};
         var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
         for (var j = 0; j < i.length; j++) {
             var k = c.constructor.prototype.bind(c);
@@ -1670,7 +1667,11 @@ var Rich360HlsWrapper = function() {
     }, {
         key: 'isAutoQuality',
         value: function k() {
-            return this._isDummy ? false : this._hls.levelController.manualLevel == -1;
+            if (this._isDummy) {
+                return false;
+            } else {
+                return this._hls.levelController.manualLevel == -1;
+            }
         }
     }, {
         key: 'levels',
@@ -1693,7 +1694,11 @@ var Rich360HlsWrapper = function() {
     }, {
         key: 'currentLevel',
         get: function n() {
-            return this._isDummy ? 0 : this._hls.currentLevel;
+            if (this._isDummy) {
+                return 0;
+            } else {
+                return this._hls.currentLevel;
+            }
         },
         set: function o(p) {
             if (!this._isDummy) {
@@ -1889,49 +1894,49 @@ var Rich360 = function() {
                     for (g = 0; g < 7; g++) {
                         this.baseCode[g] = this.base.charCodeAt(g);
                     }
-                    this.addRich360 = function(m, n) {
-                        var o = n % 7;
-                        var p = this.baseCode.slice(o, 7).concat(this.baseCode.slice(0, o + 1));
+                    this.addRich360 = function(n, o) {
+                        var p = o % 7;
+                        var q = this.baseCode.slice(p, 7).concat(this.baseCode.slice(0, p + 1));
                         for (h = 0; h < 8; h++) {
-                            m[h] = (m[h] + p[h]) % 256;
+                            n[h] = (n[h] + q[h]) % 256;
                         }
-                        return m;
+                        return n;
                     }.bind(this);
-                    this.encrypt = function(m, n) {
-                        if (m.length != 16) {
+                    this.encrypt = function(n, o) {
+                        if (n.length != 16) {
                             return 'string length must be 16';
                         }
-                        var o = [];
-                        var p;
-                        for (p = 0; p < 16; p++) {
-                            o[p] = m.charCodeAt(p);
+                        var p = [];
+                        var q;
+                        for (q = 0; q < 16; q++) {
+                            p[q] = n.charCodeAt(q);
                         }
-                        var q = o.slice(0, 8);
-                        var r = o.slice(8, 16);
-                        for (p = 0; p < n; p++) {
-                            r = this.addRich360(r, p);
-                            var s = q.slice(0, 8);
+                        var r = p.slice(0, 8);
+                        var s = p.slice(8, 16);
+                        for (q = 0; q < o; q++) {
+                            s = this.addRich360(s, q);
+                            var t = r.slice(0, 8);
                             for (l = 0; l < 8; l++) {
-                                q[l] = q[l] ^ r[l];
+                                r[l] = r[l] ^ s[l];
                             }
-                            r = s.slice(0, 8);
+                            s = t.slice(0, 8);
                         }
-                        var t = [];
-                        for (p = 0; p < 8; p++) {
-                            t[p] = String.fromCharCode(q[p]);
+                        var u = [];
+                        for (q = 0; q < 8; q++) {
+                            u[q] = String.fromCharCode(r[q]);
                         }
-                        for (p = 0; p < 8; p++) {
-                            t[p + 8] = String.fromCharCode(r[p]);
+                        for (q = 0; q < 8; q++) {
+                            u[q + 8] = String.fromCharCode(s[q]);
                         }
-                        return t;
+                        return u;
                     }.bind(this);
-                    this.validate_response = function(m, n) {
-                        var o = this.encrypt(m.ltstr, 16);
-                        var p = '';
-                        for (var q = 0; q < 16; q++) {
-                            p += o[q];
+                    this.validate_response = function(n, o) {
+                        var p = this.encrypt(n.ltstr, 16);
+                        var q = '';
+                        for (var r = 0; r < 16; r++) {
+                            q += p[r];
                         }
-                        if (p == n.rtstr) {
+                        if (q == o.rtstr) {
                             return true;
                         } else {
                             return false;
@@ -2014,9 +2019,9 @@ var Rich360 = function() {
             f.fragLoadingRetryDelay = 100;
             f.startFragPrefetch = true;
             f.renderTextTracksNatively = false;
-            f.xhrSetup = function(q, r) {
-                if (r.indexOf('.m3u8') === -1 && r.indexOf('.ts') === -1 && r.indexOf('.vtt') === -1 && r.indexOf('.webvtt') === -1 && r.indexOf('.key') === -1 && r.indexOf('.kmv') === -1) {
-                    q.withCredentials = true;
+            f.xhrSetup = function(n, o) {
+                if (o.indexOf('.m3u8') === -1 && o.indexOf('.ts') === -1 && o.indexOf('.vtt') === -1 && o.indexOf('.webvtt') === -1 && o.indexOf('.key') === -1 && o.indexOf('.kmv') === -1) {
+                    n.withCredentials = true;
                 }
             };
             if (this._options.use_multiview) {
@@ -2189,23 +2194,23 @@ var Rich360 = function() {
                 r.timeDictionary = {};
                 r.snsInDictionary = [];
                 r.firstFrag = true;
-                r.on(Hls.Events.FRAG_PARSED, function(x, y) {
-                    var z = y.frag;
-                    r.timeDictionary[z.sn + ''] = z.startPTS;
-                    r.snsInDictionary.push(z.sn);
+                r.on(Hls.Events.FRAG_PARSED, function(w, x) {
+                    var y = x.frag;
+                    r.timeDictionary[y.sn + ''] = y.startPTS;
+                    r.snsInDictionary.push(y.sn);
                     while (r.snsInDictionary.length > 100) {
-                        var A = 0;
-                        if (r.snsInDictionary[A] == 0) {
-                            A = 1;
+                        var z = 0;
+                        if (r.snsInDictionary[z] == 0) {
+                            z = 1;
                         }
-                        var B = r.snsInDictionary[A];
-                        r.snsInDictionary.splice(A, 1);
-                        delete r.timeDictionary[B + ''];
+                        var A = r.snsInDictionary[z];
+                        r.snsInDictionary.splice(z, 1);
+                        delete r.timeDictionary[A + ''];
                     }
                     if (r.firstFrag) {
                         r.firstFrag = false;
-                        r.startSN = z.sn;
-                        r.startPTS = z.startPTS;
+                        r.startSN = y.sn;
+                        r.startPTS = y.startPTS;
                         r.readyForChange = true;
                         if (s.readyForChange) {
                             t();
@@ -2213,52 +2218,52 @@ var Rich360 = function() {
                     }
                 }.bind(this));
                 var t = function() {
-                    var x = this._video;
-                    var y = this._hls;
-                    var z = 0;
-                    if (y.timeDictionary[r.startSN + ''] != undefined) {
-                        z = y.timeDictionary[r.startSN + ''] - r.startPTS;
+                    var w = this._video;
+                    var x = this._hls;
+                    var y = 0;
+                    if (x.timeDictionary[r.startSN + ''] != undefined) {
+                        y = x.timeDictionary[r.startSN + ''] - r.startPTS;
                     } else {
+                        var z = -1;
                         var A = -1;
-                        var B = -1;
-                        for (var C in y.timeDictionary) {
-                            var D = Number.parseInt(C + '');
-                            if (B == -1 || D > B) {
-                                B = D;
+                        for (var B in x.timeDictionary) {
+                            var C = Number.parseInt(B + '');
+                            if (A == -1 || C > A) {
+                                A = C;
                             }
-                            if (A == -1 || D < A) {
-                                A = D;
+                            if (z == -1 || C < z) {
+                                z = C;
                             }
                         }
-                        var E = (y.timeDictionary[B + ''] - y.timeDictionary[A + '']) / (B - A);
-                        var F = y.timeDictionary[B + ''] + E * (r.startSN - B);
-                        z = F - r.startPTS;
+                        var D = (x.timeDictionary[A + ''] - x.timeDictionary[z + '']) / (A - z);
+                        var E = x.timeDictionary[A + ''] + D * (r.startSN - A);
+                        y = E - r.startPTS;
                         console.error('startSN : ' + r.startSN + ' not defined in oldHLS');
-                        console.error(y.timeDictionary);
-                        console.error('estPTS : ' + F + ' timePerSN : ' + E + ' smallestSN : ' + A + ' biggestSN : ' + B + ' newStartSN : ' + r.startSN + ' newStartPTS : ' + r.startPTS);
+                        console.error(x.timeDictionary);
+                        console.error('estPTS : ' + E + ' timePerSN : ' + D + ' smallestSN : ' + z + ' biggestSN : ' + A + ' newStartSN : ' + r.startSN + ' newStartPTS : ' + r.startPTS);
                     }
-                    var G = function(L) {
+                    var F = function(K) {
                         s.pause();
-                        var M = (s.currentTime - (x.currentTime - z)) * 1000;
-                        console.log('@@oldHLS.timeDictionary : ', y.timeDictionary);
-                        console.log('@@timeDiff : ', z);
+                        var L = (s.currentTime - (w.currentTime - y)) * 1000;
+                        console.log('@@oldHLS.timeDictionary : ', x.timeDictionary);
+                        console.log('@@timeDiff : ', y);
                         console.log('@@newVideo.currentTime : ', s.currentTime);
-                        console.log('@@oldVideo.currentTime : ', x.currentTime);
-                        console.log('@@@ waitTime : ', M);
+                        console.log('@@oldVideo.currentTime : ', w.currentTime);
+                        console.log('@@@ waitTime : ', L);
                         setTimeout(function() {
-                            s.volume = x.volume;
+                            s.volume = w.volume;
                             if (!this._options.content_data.use_vod) {
-                                this._subtitleManager._prevViewOffsetTime = x.currentTime - s.currentTime;
+                                this._subtitleManager._prevViewOffsetTime = w.currentTime - s.currentTime;
                             }
-                            if (!x.paused) {
+                            if (!w.paused) {
                                 s.play();
                             }
-                            x.pause();
+                            w.pause();
                             r._hls.subtitleTrack = this._subtitleManager._prevSubtitleTrack;
-                            y.detachMedia();
-                            y.destroy();
+                            x.detachMedia();
+                            x.destroy();
+                            w = null;
                             x = null;
-                            y = null;
                             this._video = s;
                             this._hls = r;
                             this.attachVideoListeners();
@@ -2273,58 +2278,58 @@ var Rich360 = function() {
                                 wait: false,
                                 wait_on: RICH360_WAIT_ON.RICH360_SEEK
                             });
-                        }.bind(this), M >= 0 ? M : 0);
+                        }.bind(this), L >= 0 ? L : 0);
                     }.bind(this);
-                    s.addEventListener('seeked', G, {
+                    s.addEventListener('seeked', F, {
                         once: true
                     });
                     s.volume = 0;
-                    var H = function L() {
+                    var G = function K() {
                         console.log('seekIfPossible');
-                        var M = s.buffered;
-                        var N = x.currentTime + 0.5 - z;
-                        console.log('targetTime : ' + N + ' = ' + x.currentTime + ' + 0.5 - ' + z);
-                        var O = 0;
-                        for (; O < M.length; O++) {
-                            console.log('start(' + O + ') : ' + M.start(O));
-                            console.log('end(' + O + ') : ' + M.end(O));
-                            if (M.start(O) <= N && N + 1 <= M.end(O)) {
-                                s.currentTime = N;
+                        var L = s.buffered;
+                        var M = w.currentTime + 0.5 - y;
+                        console.log('targetTime : ' + M + ' = ' + w.currentTime + ' + 0.5 - ' + y);
+                        var N = 0;
+                        for (; N < L.length; N++) {
+                            console.log('start(' + N + ') : ' + L.start(N));
+                            console.log('end(' + N + ') : ' + L.end(N));
+                            if (L.start(N) <= M && M + 1 <= L.end(N)) {
+                                s.currentTime = M;
                                 break;
                             }
                         }
-                        if (O != M.length) {
+                        if (N != L.length) {
                             console.log('clearInterval');
-                            clearInterval(I);
-                            clearTimeout(J);
+                            clearInterval(H);
+                            clearTimeout(I);
                         }
                     };
-                    var I = setInterval(H, 100);
-                    var J = setTimeout(function() {
+                    var H = setInterval(G, 100);
+                    var I = setTimeout(function() {
                         console.warn('5 second limit');
-                        var M = s.buffered;
-                        var N = x.currentTime + 0.5 - z;
+                        var L = s.buffered;
+                        var M = w.currentTime + 0.5 - y;
+                        var N = 0;
                         var O = 0;
                         var P = 0;
-                        var Q = 0;
-                        for (Q = 0; Q < M.length; Q++) {
-                            if (M.start(Q) > N) {
-                                O = M.start(Q);
+                        for (P = 0; P < L.length; P++) {
+                            if (L.start(P) > M) {
+                                N = L.start(P);
                             }
-                            if (M.end(Q) > P) {
-                                P = M.end(Q);
+                            if (L.end(P) > O) {
+                                O = L.end(P);
                             }
                         }
-                        if (O) {
-                            s.currentTime = O + 0.5;
+                        if (N) {
+                            s.currentTime = N + 0.5;
                         } else {
-                            s.currentTime = P - 1;
+                            s.currentTime = O - 1;
                         }
                         console.log('clearInterval');
-                        clearInterval(I);
+                        clearInterval(H);
                     }, 5000);
                 }.bind(this);
-                s.addEventListener('canplaythrough', function(x) {
+                s.addEventListener('canplaythrough', function(w) {
                     s.readyForChange = true;
                     if (r.readyForChange) {
                         t();
@@ -2382,7 +2387,7 @@ var Rich360 = function() {
             } else {
                 this._hls.loadSource(this._sourceBase + this._manifest.multiview_list[this._view].path);
             }
-            this._video.addEventListener('loadedmetadata', function(p) {
+            this._video.addEventListener('loadedmetadata', function(q) {
                 this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                 this._video.play();
                 if (!m) {
@@ -2601,15 +2606,15 @@ var Rich360 = function() {
                     this._video.textTracks.addEventListener('addtrack', this.addNativeTrackListener);
                 }
             }.bind(this));
-            this._video.addEventListener('waiting', function(v) {
-                console.log('@@@video waiting call : ', v);
+            this._video.addEventListener('waiting', function(u) {
+                console.log('@@@video waiting call : ', u);
                 this._listener.trigger(RICH360_EVENTS.RICH360_WAIT, {
                     wait: true,
                     wait_on: RICH360_WAIT_ON.RICH360_BUFFER
                 });
             }.bind(this));
-            this._video.addEventListener('playing', function(v) {
-                console.log('@@@video playing call : ', v);
+            this._video.addEventListener('playing', function(u) {
+                console.log('@@@video playing call : ', u);
                 if (this._hls._isDummy) {
                     this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack, false);
                 }
@@ -2619,8 +2624,8 @@ var Rich360 = function() {
                 });
                 this._listener.trigger(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, true);
             }.bind(this));
-            $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(v) {
-                if (v.type == 'webkitbeginfullscreen') {
+            $(this._video).bind('webkitendfullscreen webkitbeginfullscreen', function(u) {
+                if (u.type == 'webkitbeginfullscreen') {
                     $('body').addClass('fullscreen');
                     if (this._options.use_multiview) {
                         this.changeSingleView(true);
@@ -2628,7 +2633,7 @@ var Rich360 = function() {
                         this._subtitleManager._prevSubtitleTrack = this.getSubtitleTrack();
                     }
                     this._subtitleManager.showDefaultSubtitle();
-                } else if (v.type == 'webkitendfullscreen') {
+                } else if (u.type == 'webkitendfullscreen') {
                     $('body').removeClass('fullscreen');
                     if (this._options.use_multiview) {
                         this.changeSingleView(false);
@@ -3250,8 +3255,8 @@ var MultiViewDisplay = function() {
                             break;
                         }
                     }
-                } catch (w) {
-                    f.e(w);
+                } catch (v) {
+                    f.e(v);
                 } finally {
                     f.f();
                 }
@@ -3412,353 +3417,6 @@ var KSPdf = 'sub-c-80f91ce6-c710-11ea-8107-5e100a74f828';
 var Nierw = 'ap-northeast-2';
 var Yacaw = 'AKIARWRY6LMTIMTBNHGW';
 var Ytcsw = 'xmZ2EWmIIKs85VR8kaDZHnEfKwYMiMeHUSRM2UdK';
-switch (Tira) {
-    case '[JSH]LIVE_MULTI':
-        var DCvi = '303fff52-27a7-4991-9cc8-4c34ae28417a';
-        break;
-    case '[JSH]LIVE_SINGLE':
-        var DCvi = '186accfb-f3f4-441d-adee-0d78e34e9d18';
-        break;
-    case '[JSH]VOD':
-        var DCvi = 'a9731791-ae47-429f-a599-ca07353bb501';
-        break;
-    case '[TEST]event_test':
-        var DCvi = '13748634-68a6-4a78-b05c-e5cf3272eb5e';
-        break;
-    case '[TEST]multiview_test':
-        var DCvi = '8a201ab9-fab1-4d61-bdac-bd6bcd78c368';
-        break;
-    case '[TEST]MULVW-3CAM':
-        var DCvi = '487a1162-30a5-4888-be0e-e670d6b91a60';
-        break;
-    case '[TEST]vod_test':
-        var DCvi = 'd4141fc6-5b17-4034-819e-ba2f6fd631e0';
-        break;
-    case '1623651443480_mbcidollive':
-        var DCvi = '36afb480-109a-4a43-9d84-0b9704b49d01';
-        break;
-    case '200817_guckkasten':
-        var DCvi = '66d65700-0799-4007-9289-ecbd17699128';
-        break;
-    case '200819_leeyongshin':
-        var DCvi = 'd8f2dfa4-8e0f-4b40-9ae6-92a7b3d15af5';
-        break;
-    case '200905_2pm':
-        var DCvi = 'd7a8f442-e734-4069-92c2-49e9c528297e';
-        break;
-    case '200906_pentagon':
-        var DCvi = '71aad509-9790-4cde-8a9c-9092fc734845';
-        break;
-    case '200913_izone':
-        var DCvi = '78bc66bd-0ce3-4f20-ad70-81214a977c51';
-        break;
-    case '200924_thepromiseoftheday':
-        var DCvi = '1eb2193c-733f-49fc-b1f2-385219759eda';
-        break;
-    case '200925_thepromiseoftheday':
-        var DCvi = '58b5bc53-a16a-4886-8a9a-8e25f407a1bd';
-        break;
-    case '200926_thepromiseoftheday':
-        var DCvi = '36853e07-ebac-4576-a6a8-15eca6822945';
-        break;
-    case '200926_thepromiseoftheday_2':
-        var DCvi = 'b882911c-a45e-46e1-acd6-fbbcb874cad4';
-        break;
-    case '200927_woodz':
-        var DCvi = '8febe59f-1915-4f25-8a27-3e72d52129c8';
-        break;
-    case '201011_cix':
-        var DCvi = 'd6a2863d-9bd6-4b34-ad92-3ca1c8a0eba4';
-        break;
-    case '201017_khj':
-        var DCvi = '3f6d28f4-0c1d-4c31-97bf-55b2a14a113e';
-        break;
-    case '201026_maybehappyending':
-        var DCvi = '7c90cda7-4037-477b-bc59-15016890756e';
-        break;
-    case '201030_memth':
-        var DCvi = 'c94be74c-f6e1-43b0-b637-5e50df9e9d79';
-        break;
-    case '201030_sinbiapt':
-        var DCvi = '6fce5920-eb64-49df-9a8d-d67c25632f36';
-        break;
-    case '201031_sinbiapt':
-        var DCvi = '9eb6375e-38f8-4a7e-abce-15d3cedef40e';
-        break;
-    case '201101_littlebasketball':
-        var DCvi = '22575e2c-83e0-4d40-a4d7-731eabb41bee';
-        break;
-    case '201101_sinbiapt':
-        var DCvi = '3e158308-4a46-4115-8411-38160c223a00';
-        break;
-    case '201102_littlebasketball':
-        var DCvi = 'f30bdaaa-a3fe-4151-8e15-4fb9802c26fa';
-        break;
-    case '201105_maybehappyending':
-        var DCvi = 'a462ed03-1979-49a5-95de-13de9cf7a642';
-        break;
-    case '201108_gidle':
-        var DCvi = '56762a8f-9162-44bf-aec2-d8349f902ef1';
-        break;
-    case '201108_victon':
-        var DCvi = '717d72f3-a23b-4824-aacc-8cdb17cdb4b7';
-        break;
-    case '201109_teacher':
-        var DCvi = 'd1469f24-5e03-40db-9289-7be2c0423b1d';
-        break;
-    case '201121_joyangel':
-        var DCvi = '3b43a92a-fc61-4676-a70d-14bffd9b98ae';
-        break;
-    case '201121_ohmygirl_p':
-        var DCvi = '4fd7d315-9ee5-4e5b-bf03-467e0d8123b2';
-        break;
-    case '201121_xia':
-        var DCvi = '70bebcdc-b7a9-4478-ad60-ac8925042df6';
-        break;
-    case '201122_ohmygirl':
-        var DCvi = '6ad7b0cb-e353-4cd3-b724-7cba3f34d737';
-        break;
-    case '201122_xia':
-        var DCvi = 'c1ae68f0-a65e-44ea-8793-9cc24c8442bd';
-        break;
-    case '201205_b1a4':
-        var DCvi = 'b1bc33a2-3f99-428f-8063-33ebe6d01c72';
-        break;
-    case '201205_theboyz':
-        var DCvi = '35328d37-f99d-4725-98cb-bc2e445ab869';
-        break;
-    case '201211_littlebasketball_vod':
-        var DCvi = 'ec851af1-b551-4076-bab8-60ed51c38e74';
-        break;
-    case '201211_teacher_vod':
-        var DCvi = 'fd094607-5731-466b-8631-37e08d8cbcff';
-        break;
-    case '201213_pentagon':
-        var DCvi = 'd4a8782e-5c73-4a7d-93f9-0876989d7c76';
-        break;
-    case '201218_woodz_vod':
-        var DCvi = 'ffd0a6a3-777e-48d8-8471-8229d66bcb7d';
-        break;
-    case '201225_yoonjisung':
-        var DCvi = '1c4b0fed-bc2b-4101-8771-19cc94dca0fd';
-        break;
-    case '201226_pentagon_vod':
-        var DCvi = '46554765-6d6b-4d43-99eb-5bbe0823613a';
-        break;
-    case '201226_xia':
-        var DCvi = '5dc04bcd-bcdd-4add-b7bb-26995c7a166e';
-        break;
-    case '201227_apink':
-        var DCvi = 'c67e2edc-3a6f-4091-9b4b-28fde50495a8';
-        break;
-    case '201227_xia':
-        var DCvi = '3e1562d4-7f5a-4e37-b13c-9726eca336bc';
-        break;
-    case '210108_gentleman':
-        var DCvi = '26a2c6a7-de48-42fc-becb-105e7455affd';
-        break;
-    case '210109_gentleman_1':
-        var DCvi = '954f0cf8-c2ff-4658-9f81-d37e6cfc94ff';
-        break;
-    case '210109_gentleman_2':
-        var DCvi = 'f5e6cfd4-ba43-4c9a-9dba-e0973496f2b2';
-        break;
-    case '210110_gentleman':
-        var DCvi = 'bcdc9ea3-4663-43f1-9c72-59152640b266';
-        break;
-    case '210115_gentleman':
-        var DCvi = '401b170c-a8d6-4213-a761-b14dd9152ad3';
-        break;
-    case '210115_killerparty':
-        var DCvi = '21e7d09f-ca8e-4585-9529-e221e5e7f3c6';
-        break;
-    case '210116_gentleman_1':
-        var DCvi = 'f30aa9c1-9342-4113-8134-5a75a8464651';
-        break;
-    case '210116_gentleman_2':
-        var DCvi = '30ced1cf-60b7-4736-88b1-2ed024f5a51c';
-        break;
-    case '210116_killerparty':
-        var DCvi = '1ac6d7e6-3043-4991-8517-36f1152e0cc7';
-        break;
-    case '210117_gentleman':
-        var DCvi = '4bb96f7c-3dc1-421b-986f-fc823a081335';
-        break;
-    case '210123_btob4u':
-        var DCvi = '7dff265c-25a8-4dc4-baa6-e354056bd997';
-        break;
-    case '210227_mona':
-        var DCvi = '65efef4a-cd76-468a-a6f4-f42589cf02b6';
-        break;
-    case '210313_boyhood':
-        var DCvi = 'd59c47cf-bf61-4c4f-b9ca-91667c044279';
-        break;
-    case '210313_izone':
-        var DCvi = 'ac820489-d611-40e6-ba4f-539b4f83a0bf';
-        break;
-    case '210314_izone':
-        var DCvi = '4f2bcf78-c4ad-4d6d-89b3-551d83525fff';
-        break;
-    case '210320_hwangyunseong_1':
-        var DCvi = '51905d9b-3b05-4667-b9e1-4fa5391d06fb';
-        break;
-    case '210320_hwangyunseong_2':
-        var DCvi = '562b8381-ebc8-496a-aa85-ba404e76459e';
-        break;
-    case '210320_sacconcert':
-        var DCvi = '68de58a5-38e5-41d4-a33b-41e70d554138';
-        break;
-    case '210321_leesieun':
-        var DCvi = '1f176c81-c0e5-463a-ae70-5938a250e396';
-        break;
-    case '210326_sinbiapt':
-        var DCvi = '30e05e26-728d-4afd-838e-2e7fc18bc805';
-        break;
-    case '210327_hyukoh':
-        var DCvi = 'c291b33a-291c-4935-b7e9-01c72b74b2d8';
-        break;
-    case '210327_sinbiapt':
-        var DCvi = 'cd6f57e3-d512-4692-82e9-7aee2571a48a';
-        break;
-    case '210328_sinbiapt':
-        var DCvi = 'eab1a962-c951-40a3-8e17-77d3398c0161';
-        break;
-    case '210407_lunarsolar':
-        var DCvi = '270638ff-f1e5-4717-bf80-52bed1a491e6';
-        break;
-    case '210410_sungdameb':
-        var DCvi = '4b5d825b-4c0d-4cbd-898a-46a5adfcb7e4';
-        break;
-    case '210411_boyhood':
-        var DCvi = 'dcb519d5-e770-4377-960d-edc6cf169c68';
-        break;
-    case '210415_parkseojin':
-        var DCvi = 'fabb3e81-e293-4088-91a1-68efca8193ef';
-        break;
-    case '210417_cix':
-        var DCvi = '2e282fdc-a1ee-49b8-8ee0-a4178a74eb82';
-        break;
-    case '210418_marychou':
-        var DCvi = '4861a19c-18c1-469e-aa3c-3bf913ed901f';
-        break;
-    case '210424_mamamoo':
-        var DCvi = 'e2431386-a908-4f7d-a2ae-acdc11c9a9b7';
-        break;
-    case '210505_sinbiapt':
-        var DCvi = 'a428ef32-1cc3-4ddb-8b68-e58ff591e39a';
-        break;
-    case '210508_popcorn':
-        var DCvi = 'd4b32f7f-bd9c-4a69-b5ee-74433f263e3c';
-        break;
-    case '210514_hike101':
-        var DCvi = '114f7f81-0f8a-4725-b824-6b29c639b86e';
-        break;
-    case '210514_hike201':
-        var DCvi = 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b';
-        break;
-    case '210514_hike301':
-        var DCvi = 'f75219c8-f3cb-492c-ad68-a1fd940b131e';
-        break;
-    case '210515_hike101':
-        var DCvi = 'a50c8232-e98f-4ea1-a891-7272e7adf413';
-        break;
-    case '210515_hike201':
-        var DCvi = '4487013d-39f3-4f61-8c9c-b34cd8087b66';
-        break;
-    case '210515_hike301':
-        var DCvi = '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c';
-        break;
-    case '210516_kangdaniel':
-        var DCvi = '866bdbec-6069-4ebb-bead-71370637e78d';
-        break;
-    case '210523_kimeunbi':
-        var DCvi = '659fe4f6-23c1-45d8-abc7-7d6a51727d01';
-        break;
-    case '210529_heyman':
-        var DCvi = '2a3b9f0f-48d7-445b-a545-5c85855d5401';
-        break;
-    case '210604_parkyuchun_1':
-        var DCvi = '82c3d6bf-03f4-48cb-9196-03ea101073d2';
-        break;
-    case '210604_parkyuchun_2':
-        var DCvi = '7be5cc80-26b3-45ec-9dd5-2b0316383a68';
-        break;
-    case '210605_jaejooboy':
-        var DCvi = '1999c3ae-6cfd-44e8-93f8-fd10adf20c47';
-        break;
-    case '210606_cravity':
-        var DCvi = '7581d019-5802-46aa-81fe-4dbcdd975d32';
-        break;
-    case '210621_littlebasketball':
-        var DCvi = 'f9c407b3-b39b-40ef-95ca-7929bea1ff12';
-        break;
-    case '210621_littlebasketballvod':
-        var DCvi = '4301fd1f-c506-41a6-880a-ddcad89feb50';
-        break;
-    case '210624_elenateacher':
-        var DCvi = 'b4660382-f71e-4c2f-8177-02f2bddd05e8';
-        break;
-    case '210624_elenateachervod':
-        var DCvi = 'ddd7b6e0-0e0d-48aa-92e1-a43ec378ff4c';
-        break;
-    case '210625_woowahan':
-        var DCvi = '7f328115-ae26-499c-9e66-3724fa9a709e';
-        break;
-    case '210626_dreamconcert':
-        var DCvi = 'fc6170aa-6f67-4076-b0f1-19250bee49dc';
-        break;
-    case '210626_yngandrich':
-        var DCvi = '7b9cdeaf-70c4-44db-a5c0-edcbca193ce1';
-        break;
-    case '210711_boyhood':
-        var DCvi = '3d03fc24-5df5-44bf-828e-5e2326e173b7';
-        break;
-    case '210711_poppins':
-        var DCvi = '11675c8c-9932-4743-8140-628ae207418a';
-        break;
-    case '210712_poppins':
-        var DCvi = '9523747a-d708-49bd-aa37-ac406ca61543';
-        break;
-    case '210717_goldenchild':
-        var DCvi = '27652134-1cf3-49b5-8aec-efe91b27e733';
-        break;
-    case '210717_hynn':
-        var DCvi = '839b801d-6663-4145-9b7a-86ed18485ddf';
-        break;
-    case '210718_goldenchild':
-        var DCvi = '3dc26248-e01a-4751-8a70-e2208d17fb17';
-        break;
-    case '210718_poppins':
-        var DCvi = '34d8477a-5d2e-45d2-b3b0-853769eb2204';
-        break;
-    case '210719_poppins':
-        var DCvi = 'de03cf10-ba34-40c8-9a53-f0c3b6dd7ca5';
-        break;
-    case '210724_everglow':
-        var DCvi = '768ce06f-94e8-4da8-af7d-1b3f1929318e';
-        break;
-    case '210725_everglow_1':
-        var DCvi = '5c65ea93-b181-467b-8270-c2cc2cda0b04';
-        break;
-    case '210725_everglow_2':
-        var DCvi = '05214d8e-b898-4329-8b26-af11f44e46cb';
-        break;
-    case 'dev_demo_event':
-        var DCvi = 'f3a82d31-a083-4679-88e1-c0961a925afb';
-        break;
-    case 'dev_demo_event_01':
-        var DCvi = 'c5f88688-08ed-4e43-af96-c3caa464a17c';
-        break;
-    case 'dev_demo_event_02':
-        var DCvi = 'e48fcdad-a485-4f0d-9ef4-df37b43bb560';
-        break;
-    case 'dev_demo_vod':
-        var DCvi = 'b36f6b04-98b0-4c57-b29e-2f4ab19c18ee';
-        break;
-    case 'test':
-        var DCvi = '2c07afe2-d369-41c5-baf7-6fc3a9ab90bc';
-        break;
-}
 var ChatFilter = function() {
     var a = '';
     var b = false;
@@ -3840,8 +3498,8 @@ var NicknameFilter = function() {
     var b = '';
     if (a == '210424_mamamoo') {
         b = '솔라, ソラ, SOLARSIDO, 솔라시도, Solar-sido, 계약, 해체, 에릭남, 개비덥, 알비답, 김진우, 김도훈'.split(',');
-        b = b.map(function(c) {
-            return c.replace(/ /gi, '');
+        b = b.map(function(d) {
+            return d.replace(/ /gi, '');
         }).join('|');
     }
     return {
@@ -3861,6 +3519,20 @@ var NICKNAME_SEPARATOR = '|&|';
 var USER_CHAT_INPUT_MAXLENGTH = 80;
 var OPERATOR_CHAT_INPUT_MAXLENGTH = 1000;
 var ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH = 128;
+var SHOW_PLAY_IMAGE = '[showplayimage]';
+var HIDE_PLAY_IMAGE = '[hideplayimage]';
+var USER_TYPE_OPERATOR = 'operator';
+var USER_TYPE_ENGINEER = 'engineer';
+var IS_OPERATOR = function IS_OPERATOR() {
+    var a;
+    if (typeof CHAT_USER_SETTINGS === 'undefined') {
+        return false;
+    }
+    return ((a = CHAT_USER_SETTINGS) === null || a === void 0 ? void 0 : a.userType) === USER_TYPE_OPERATOR && Chat.Manager.isAdminUser();
+};
+var IS_ENGINEER = function IS_ENGINEER() {
+    return false;
+};
 Chat.Manager = function() {
     var a = 5;
     var b = 10;
@@ -3965,43 +3637,104 @@ Chat.Manager = function() {
                 subscribeKey: KSPdf,
                 uuid: o
             });
-            AWS.config.update({
-                region: Nierw,
-                accessKeyId: Yacaw,
-                secretAccessKey: Ytcsw
-            });
-            u = new AWS.Kinesis();
-            Chat.Ui.initChatUI();
-            Chat.Ui.initChatUIEvent();
-            Chat.Manager.setChatChannels();
-            Chat.Manager.setChatHistory();
-            Chat.Manager.initPubnubEvent();
+            if (IS_ENGINEER()) {
+                this.initEngineerMode();
+            } else {
+                AWS.config.update({
+                    region: Nierw,
+                    accessKeyId: Yacaw,
+                    secretAccessKey: Ytcsw
+                });
+                u = new AWS.Kinesis();
+                Chat.Ui.initChatUI();
+                Chat.Ui.initChatUIEvent();
+                Chat.Manager.setChatChannels();
+                Chat.Manager.setChatHistory();
+                Chat.Manager.initPubnubEvent();
+            }
         },
-        setChatHistory: function J() {
+        toggleImageBtn: function J(K) {
+            $('.show-image-btn').css('display', K ? 'none' : 'block');
+            $('.hide-image-btn').css('display', K ? 'block' : 'none');
+        },
+        changePlayImageLabel: function K(L) {
+            if (L === SHOW_PLAY_IMAGE) {
+                this.toggleImageBtn(true);
+            } else if (L === HIDE_PLAY_IMAGE) {
+                this.toggleImageBtn(false);
+            } else {
+                this.toggleImageBtn(false);
+            }
+        },
+        showLoading: function L(M) {
+            $('.pop-full-wrap.loading').css('display', M ? 'block' : 'none');
+            $('#loadingDiv').css('display', M ? 'block' : 'none');
+        },
+        initEngineerMode: function M() {
+            var N = this;
+            $('.chat-t-fullscreen').css('display', 'none');
+            $('.chat-engineer-page').css('display', 'block');
+            this.showLoading(true);
+            $('.show-image-btn').on('click', function() {
+                if (Chat.Manager.checkOperationntUser(o)) {
+                    Chat.Manager.submitUpdate(o, SHOW_PLAY_IMAGE, Chat.Manager.getNoticeChannel());
+                }
+            });
+            $('.hide-image-btn').on('click', function() {
+                if (Chat.Manager.checkOperationntUser(o)) {
+                    Chat.Manager.submitUpdate(o, HIDE_PLAY_IMAGE, Chat.Manager.getNoticeChannel());
+                }
+            });
+            t.history({
+                channel: l,
+                count: 1
+            }, function(O, P) {
+                if (P) {
+                    if (P.messages.length) {
+                        N.showLoading(false);
+                        N.changePlayImageLabel(P.messages[0].entry.update);
+                    } else {
+                        N.toggleImageBtn(false);
+                    }
+                }
+            });
+            t.addListener({
+                status: function O(P) {
+                    console.log('[STATUS: ' + P.category + ']', 'connected to channels: ' + P.affectedChannels);
+                },
+                message: function P(Q) {
+                    return N.changePlayImageLabel(Q.message.update);
+                }
+            });
+            t.subscribe({
+                channels: [l]
+            });
+        },
+        setChatHistory: function N() {
             if (DREAMCONCERT_UTIL.isDreamConcert(v.id)) {
                 t.history({
                     channel: l,
                     count: 1
-                }, function(L, M) {
-                    console.log(L, M);
-                    if (M) {
-                        if (M.messages.length) {
-                            Chat.Ui.updateNotice(M.messages[0].entry.update, M.messages[0].entry.timetoken, M.messages[0].entry.entry);
+                }, function(P, Q) {
+                    console.log(P, Q);
+                    if (Q) {
+                        if (Q.messages.length) {
+                            Chat.Ui.updateNotice(Q.messages[0].entry.update, Q.messages[0].entry.timetoken, Q.messages[0].entry.entry);
                         }
                     }
                 });
                 t.history({
                     channel: k[0],
                     count: c
-                }, function(L, M) {
-                    console.log(L, M);
-                    if (M) {
-                        if (M.messages.length) {
-                            for (var N = 0; N < M.messages.length; N++) {
-                                var O = M.messages[N].entry.update.split(CHAT_MSG_SEPARATOR);
-                                for (var P = 0; P < O.length; P++) {
-                                    var Q = O[P].split(CHAT_USERID_SEPARATOR)[0];
-                                    Chat.Ui.displayMessage(O[P], M.messages[N].timetoken, Q, true);
+                }, function(P, Q) {
+                    console.log(P, Q);
+                    if (Q) {
+                        if (Q.messages.length) {
+                            for (var R = 0; R < Q.messages.length; R++) {
+                                var S = Q.messages[R].entry.update.split(CHAT_MSG_SEPARATOR);
+                                for (var T = 0; T < S.length; T++) {
+                                    var U = S[T].split(CHAT_USERID_SEPARATOR)[0];
+                                    Chat.Ui.displayMessage(S[T], Q.messages[R].timetoken, U, true);
                                 }
                             }
                         }
@@ -4011,16 +3744,16 @@ Chat.Manager = function() {
                     t.history({
                         channel: n,
                         count: 10000
-                    }, function(L, M) {
-                        console.log(L, M);
-                        if (M) {
-                            var N = JSON.parse(JSON.stringify(M));
-                            if (N.messages.length) {
-                                for (var O = 0; O < N.messages.length; O++) {
-                                    var P = N.messages[O].entry.update;
-                                    var Q = P.split(CHAT_USERID_SEPARATOR)[0];
-                                    if (Q) {
-                                        Chat.Ui.displayArtistHistoryMsg(P, N.messages[O].timetoken, Q);
+                    }, function(P, Q) {
+                        console.log(P, Q);
+                        if (Q) {
+                            var R = JSON.parse(JSON.stringify(Q));
+                            if (R.messages.length) {
+                                for (var S = 0; S < R.messages.length; S++) {
+                                    var T = R.messages[S].entry.update;
+                                    var U = T.split(CHAT_USERID_SEPARATOR)[0];
+                                    if (U) {
+                                        Chat.Ui.displayArtistHistoryMsg(T, R.messages[S].timetoken, U);
                                     }
                                 }
                                 if ($('#artistChatList').length) {
@@ -4034,30 +3767,30 @@ Chat.Manager = function() {
                 t.history({
                     channel: l,
                     count: 1
-                }, function(L, M) {
-                    console.log(L, M);
-                    if (M) {
-                        if (M.messages.length) {
-                            Chat.Ui.updateNotice(M.messages[0].entry.update, M.messages[0].entry.timetoken, M.messages[0].entry.entry);
+                }, function(P, Q) {
+                    console.log(P, Q);
+                    if (Q) {
+                        if (Q.messages.length) {
+                            Chat.Ui.updateNotice(Q.messages[0].entry.update, Q.messages[0].entry.timetoken, Q.messages[0].entry.entry);
                         }
                     }
                 });
-                var K = 0;
+                var O = 0;
                 if (q) {
-                    K = q - 1;
+                    O = q - 1;
                 }
                 t.history({
-                    channel: k[K],
+                    channel: k[O],
                     count: c
-                }, function(L, M) {
-                    console.log(L, M);
-                    if (M) {
-                        if (M.messages.length) {
-                            for (var N = 0; N < M.messages.length; N++) {
-                                var O = M.messages[N].entry.update.split(CHAT_MSG_SEPARATOR);
-                                for (var P = 0; P < O.length; P++) {
-                                    var Q = O[P].split(CHAT_USERID_SEPARATOR)[0];
-                                    Chat.Ui.displayMessage(O[P], M.messages[N].timetoken, Q, true);
+                }, function(Q, R) {
+                    console.log(Q, R);
+                    if (R) {
+                        if (R.messages.length) {
+                            for (var S = 0; S < R.messages.length; S++) {
+                                var T = R.messages[S].entry.update.split(CHAT_MSG_SEPARATOR);
+                                for (var U = 0; U < T.length; U++) {
+                                    var V = T[U].split(CHAT_USERID_SEPARATOR)[0];
+                                    Chat.Ui.displayMessage(T[U], R.messages[S].timetoken, V, true);
                                 }
                             }
                         }
@@ -4066,16 +3799,16 @@ Chat.Manager = function() {
                 t.history({
                     channel: n,
                     count: 10000
-                }, function(L, M) {
-                    console.log(L, M);
-                    if (M) {
-                        var N = JSON.parse(JSON.stringify(M));
-                        if (N.messages.length) {
-                            for (var O = 0; O < N.messages.length; O++) {
-                                var P = N.messages[O].entry.update;
-                                var Q = P.split(CHAT_USERID_SEPARATOR)[0];
-                                if (Q) {
-                                    Chat.Ui.displayArtistHistoryMsg(P, N.messages[O].timetoken, Q);
+                }, function(Q, R) {
+                    console.log(Q, R);
+                    if (R) {
+                        var S = JSON.parse(JSON.stringify(R));
+                        if (S.messages.length) {
+                            for (var T = 0; T < S.messages.length; T++) {
+                                var U = S.messages[T].entry.update;
+                                var V = U.split(CHAT_USERID_SEPARATOR)[0];
+                                if (V) {
+                                    Chat.Ui.displayArtistHistoryMsg(U, S.messages[T].timetoken, V);
                                 }
                             }
                             if ($('#artistChatList').length) {
@@ -4086,56 +3819,9 @@ Chat.Manager = function() {
                 });
             }
         },
-        initPubnubEvent: function K() {
+        initPubnubEvent: function O() {
             if (DREAMCONCERT_UTIL.isDreamConcert(v.id)) {
-                var L = [l, m].concat(k);
-                t.addListener({
-                    status: function O(P) {
-                        console.log('[STATUS: ' + P.category + ']', 'connected to channels: ' + P.affectedChannels);
-                        if (P.category == 'PNConnectedCategory') {
-                            ChatFilter.loadChatFilterData();
-                            Chat.Manager.initChatInterval();
-                        }
-                    },
-                    message: function P(Q) {
-                        if (Q.channel == l) {
-                            Chat.Ui.updateNotice(Q.message.update, Q.timetoken, Q.message.entry);
-                        } else if (Q.channel == m) {
-                            Chat.Ui.recvCtrlChMsg(Q.message.update);
-                        } else {
-                            var R = Q.message.update.split(CHAT_MSG_SEPARATOR);
-                            for (var S = 0; S < R.length; S++) {
-                                var T = R[S].split(CHAT_USERID_SEPARATOR)[0];
-                                if (o == T) {
-                                    continue;
-                                }
-                                if (Chat.Manager.checkArtistUser(T)) {
-                                    Chat.Ui.displayMessage(Q.message.update, Q.timetoken, Q.message.entry);
-                                } else {
-                                    r.push(R[S]);
-                                }
-                            }
-                            if (r.length) {
-                                Chat.Manager.displayMessageItv(parseInt(Q.timetoken));
-                            }
-                        }
-                    }
-                });
-                t.subscribe({
-                    channels: L
-                });
-            } else {
-                var L = [l, m];
-                if (q) {
-                    L.push(k[q - 1]);
-                } else {
-                    if (!p) {
-                        p = 1;
-                    }
-                    for (var M = 0; M < p; M++) {
-                        L.push(k[M]);
-                    }
-                }
+                var P = [l, m].concat(k);
                 t.addListener({
                     status: function R(S) {
                         console.log('[STATUS: ' + S.category + ']', 'connected to channels: ' + S.affectedChannels);
@@ -4169,41 +3855,92 @@ Chat.Manager = function() {
                     }
                 });
                 t.subscribe({
-                    channels: L
+                    channels: P
+                });
+            } else {
+                var P = [l, m];
+                if (q) {
+                    P.push(k[q - 1]);
+                } else {
+                    if (!p) {
+                        p = 1;
+                    }
+                    for (var Q = 0; Q < p; Q++) {
+                        P.push(k[Q]);
+                    }
+                }
+                t.addListener({
+                    status: function T(U) {
+                        console.log('[STATUS: ' + U.category + ']', 'connected to channels: ' + U.affectedChannels);
+                        if (U.category == 'PNConnectedCategory') {
+                            ChatFilter.loadChatFilterData();
+                            Chat.Manager.initChatInterval();
+                        }
+                    },
+                    message: function U(V) {
+                        if (V.channel == l) {
+                            Chat.Ui.updateNotice(V.message.update, V.timetoken, V.message.entry);
+                        } else if (V.channel == m) {
+                            Chat.Ui.recvCtrlChMsg(V.message.update);
+                        } else {
+                            var W = V.message.update.split(CHAT_MSG_SEPARATOR);
+                            for (var X = 0; X < W.length; X++) {
+                                var Y = W[X].split(CHAT_USERID_SEPARATOR)[0];
+                                if (o == Y) {
+                                    continue;
+                                }
+                                if (Chat.Manager.checkArtistUser(Y)) {
+                                    Chat.Ui.displayMessage(V.message.update, V.timetoken, V.message.entry);
+                                } else {
+                                    r.push(W[X]);
+                                }
+                            }
+                            if (r.length) {
+                                Chat.Manager.displayMessageItv(parseInt(V.timetoken));
+                            }
+                        }
+                    }
+                });
+                t.subscribe({
+                    channels: P
                 });
             }
         },
-        displayMessageItv: function L(M) {
+        displayMessageItv: function P(Q) {
             if (s) {
                 clearInterval(s);
                 s = null;
             }
-            var N = d / r.length;
+            var R = d / r.length;
             s = setInterval(function() {
                 if (r.length) {
-                    var P = r[0].split(CHAT_USERID_SEPARATOR)[0];
-                    Chat.Ui.displayMessage(r[0], M, P);
-                    M = parseInt(M) + parseInt(N * 1000 * 10);
+                    var S = r[0].split(CHAT_USERID_SEPARATOR)[0];
+                    Chat.Ui.displayMessage(r[0], Q, S);
+                    Q = parseInt(Q) + parseInt(R * 1000 * 10);
                     r.splice(0, 1);
                 }
-            }, N);
+            }, R);
         },
-        isSuperUser: function M() {
-            var N = this.getUserId();
-            return this.checkOperationntUser(N) || this.checkAdminUser(N) || this.checkArtistUser(N);
+        isAdminUser: function Q() {
+            var R = this.getUserId();
+            return this.checkOperationntUser(R) || this.checkAdminUser(R);
         },
-        submitUpdate: function N(O, P, Q, R) {
+        isSuperUser: function R() {
+            var S = this.getUserId();
+            return this.checkOperationntUser(S) || this.checkAdminUser(S) || this.checkArtistUser(S);
+        },
+        submitUpdate: function S(T, U, V, W) {
             if (!t) {
                 return;
             }
-            if (P === w && !this.isSuperUser()) {
+            if (U === w && !this.isSuperUser()) {
                 return;
             }
             if (iCM()) {
                 return;
             }
-            w = P;
-            if (!R) {
+            w = U;
+            if (!W) {
                 if (f) {
                     f--;
                 }
@@ -4216,66 +3953,66 @@ Chat.Manager = function() {
                     Chat.Ui.enableChatInput();
                 }
             }
-            if (!Array.isArray(Q)) {
-                Q = [Q];
+            if (!Array.isArray(V)) {
+                V = [V];
             }
             if (this.isSuperUser()) {
-                var S = false;
-                for (var T = 1; T <= Q.length; T++) {
+                var X = false;
+                for (var Y = 1; Y <= V.length; Y++) {
                     t.publish({
-                        channel: Q[T - 1],
+                        channel: V[Y - 1],
                         message: {
-                            entry: O,
-                            update: P
+                            entry: T,
+                            update: U
                         }
-                    }, function(X, Y) {
-                        if (X.error) {} else if (Chat.Manager.checkArtistUser(o) && !S) {
-                            if (Y) {
-                                Chat.Ui.displayMessage(P, Y.timetoken, o);
+                    }, function(a2, a3) {
+                        if (a2.error) {} else if (Chat.Manager.checkArtistUser(o) && !X) {
+                            if (a3) {
+                                Chat.Ui.displayMessage(U, a3.timetoken, o);
                             }
-                            S = true;
+                            X = true;
                         }
                     });
                 }
             } else {
-                var U = {
-                    Data: JSON.stringify(P),
-                    PartitionKey: Q[0],
+                var Z = {
+                    Data: JSON.stringify(U),
+                    PartitionKey: V[0],
                     StreamName: 'KINESIS_CHAT'
                 };
-                u.putRecord(U, function(Y, Z) {
-                    if (Y) {
-                        console.log(Y, Y.stack);
+                u.putRecord(Z, function(a4, a5) {
+                    if (a4) {
+                        console.log(a4, a4.stack);
                     } else {
-                        console.log(Z);
-                        var a0 = new Date();
-                        Chat.Ui.displayMessage(P, a0.getTime() * 10000);
+                        console.log(a5);
+                        var a6 = new Date();
+                        Chat.Ui.displayMessage(U, a6.getTime() * 10000);
                     }
                 });
             }
         },
-        checkOperationntUser: function O(P) {
-            if (v.operation_account === P) {
+        checkOperationntUser: function T(U) {
+            if (v.operation_account === U) {
                 return true;
             } else {
                 return false;
             }
         },
-        checkAdminUser: function P(Q) {
-            if (v.admin_account === Q) {
+        checkAdminUser: function U(V) {
+            if (v.admin_account === V) {
                 return true;
             }
             return false;
         },
-        checkArtistUser: function Q(R) {
-            for (var S = 0; S < v.artist_account.length; S++) {
-                if (v.artist_account[S] === R) {
+        checkArtistUser: function V(W) {
+            for (var X = 0; X < v.artist_account.length; X++) {
+                if (v.artist_account[X] === W) {
                     return true;
                 }
             }
             return false;
         },
-        initChatInterval: function R() {
+        initChatInterval: function W() {
             if (h) {
                 clearInterval(h);
             }
@@ -4292,10 +4029,10 @@ Chat.Manager = function() {
                 }
             }, 1000);
         },
-        getNickName: function S() {
+        getNickName: function X() {
             return e;
         },
-        destroy: function T() {
+        destroy: function Y() {
             if (t) {
                 t.destroy();
             }
@@ -4342,27 +4079,32 @@ Chat.Ui = function() {
                     $('#chatInput').attr('maxlength', OPERATOR_CHAT_INPUT_MAXLENGTH);
                 }
             }
+            if (IS_OPERATOR()) {
+                $('#chatWrap').addClass('opreator');
+                $('#chatInputWrap').css('display', 'none');
+                $('.chat-input-inner').css('display', 'flex');
+            }
         },
         initChatUIEvent: function i() {
             var j = false;
             $('#chatContentWrap .scroll-bar').on('touchstart', function() {
                 b = true;
             });
-            $('#chatList').on('touchstart', function(l) {
+            $('#chatList').on('touchstart', function(m) {
                 j = true;
             });
-            $(document).on('touchmove', function(l) {
+            $(document).on('touchmove', function(m) {
                 console.log('touchmove');
                 if (j) {
                     b = true;
                 }
             });
-            $(document).on('touchend', function(l) {
+            $(document).on('touchend', function(m) {
                 j = false;
                 console.log('touchmove');
             });
-            $('#chatList').on('wheel', function(l) {
-                if (l.originalEvent.deltaY < 0 && $('#chatList').scrollTop() > 0) {
+            $('#chatList').on('wheel', function(m) {
+                if (m.originalEvent.deltaY < 0 && $('#chatList').scrollTop() > 0) {
                     b = true;
                 }
             });
@@ -4372,35 +4114,35 @@ Chat.Ui = function() {
                 }
                 var chatAnchor = $('#chatAnchor');
                 var chatList = $('#chatList');
-                var n = function u() {
+                var o = function x() {
                     return Math.ceil(chatList.scrollTop() + chatList.height());
                 };
-                var o = function v() {
-                    var w = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : n();
-                    return w < chatList[0].scrollHeight;
+                var p = function y() {
+                    var z = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : o();
+                    return z < chatList[0].scrollHeight;
                 };
-                var p = function w() {
+                var q = function z() {
                     chatAnchor.css('display', 'block');
                     b = true;
                 };
-                if (o()) {
+                if (p()) {
                     setTimeout(function() {
-                        return o() && p();
+                        return p() && q();
                     }, 200);
                 } else {
                     chatAnchor.css('display', 'none');
                     b = false;
                     if (e.length !== 0) {
-                        var q = document.createDocumentFragment();
-                        var r = e.reverse();
-                        for (var s = 0, t = r.length; s < t; s++) {
-                            if (a <= s) {
+                        var r = document.createDocumentFragment();
+                        var s = e.reverse();
+                        for (var t = 0, u = s.length; t < u; t++) {
+                            if (a <= t) {
                                 break;
                             }
-                            q.prepend(r[s]);
+                            r.prepend(s[t]);
                         }
                         chatList.find('.user_chat:eq(-1)').css('margin-bottom', '1.25em');
-                        chatList.append(q);
+                        chatList.append(r);
                         if (navigator.userAgent.indexOf('Firefox') === -1) {
                             chatList.find('.user_chat:eq(-1)').css('margin-bottom', '0');
                         }
@@ -4413,63 +4155,79 @@ Chat.Ui = function() {
                 $('#chatList').scrollTop($('#chatList')[0].scrollHeight);
                 $('#chatAnchor').css('display', 'none');
             });
-            $('#chatSendBtn').on('click', function() {
-                var l = Chat.Manager.getNickName();
-                var m = Chat.Manager.getUserId();
-                if (!l) {
-                    alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
-                        location.href = LUEz1;
-                    });
-                    return;
-                }
-                var n = $('#chatInput').val();
-                if (!n || !ChatFilter.checkFilteringData()) {
-                    return;
-                }
-                if (Chat.Manager.checkOperationntUser(m) && n.length > OPERATOR_CHAT_INPUT_MAXLENGTH) {
-                    n = n.slice(0, OPERATOR_CHAT_INPUT_MAXLENGTH);
-                } else if ((Chat.Manager.checkAdminUser(m) || Chat.Manager.checkArtistUser(m)) && n.length > ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH) {
-                    n = n.slice(0, ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH);
-                } else if (!Chat.Manager.isSuperUser() && n.length > USER_CHAT_INPUT_MAXLENGTH) {
-                    n = n.slice(0, USER_CHAT_INPUT_MAXLENGTH);
-                }
-                if (Chat.Manager.checkOperationntUser(m)) {
-                    Chat.Manager.submitUpdate(m, n, Chat.Manager.getNoticeChannel());
-                } else if (Chat.Manager.checkAdminUser(m)) {
-                    Chat.Manager.submitUpdate(m, n, Chat.Manager.getCtrChannel());
-                } else if (Chat.Manager.checkArtistUser(m)) {
-                    Chat.Manager.submitUpdate(m, m + CHAT_USERID_SEPARATOR + l + NICKNAME_SEPARATOR + n, Chat.Manager.getChatChannels());
-                } else {
-                    var o = ChatFilter.filteringChatText(n);
-                    Chat.Manager.submitUpdate(m, m + CHAT_USERID_SEPARATOR + l + NICKNAME_SEPARATOR + o, Chat.Manager.getChatChannels());
-                }
-                $('#chatInput').val('');
-            });
-            $('#chatInput').on('keydown', function(l) {
-                if (l.keyCode == 13) {
-                    $('#chatSendBtn').click();
-                    return false;
-                }
-            });
-            $('#chatInput').on('focus', function(l) {
-                delayStopLoadingPanel();
-            });
-            $('#chatInput').on('blur', function(l) {
-                delayStopLoadingPanel();
-            });
+            var k = function m(n) {
+                return function(o) {
+                    var p = Chat.Manager.getNickName();
+                    var q = Chat.Manager.getUserId();
+                    if (!p) {
+                        alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_INVALID_NICKNAME_DESC'), gettext('P_ALERT_OK'), function() {
+                            location.href = LUEz1;
+                        });
+                        return;
+                    }
+                    var r = o || $(n).val();
+                    if (!r || !ChatFilter.checkFilteringData()) {
+                        return;
+                    }
+                    if (Chat.Manager.checkOperationntUser(q) && r.length > OPERATOR_CHAT_INPUT_MAXLENGTH) {
+                        r = r.slice(0, OPERATOR_CHAT_INPUT_MAXLENGTH);
+                    } else if ((Chat.Manager.checkAdminUser(q) || Chat.Manager.checkArtistUser(q)) && r.length > ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH) {
+                        r = r.slice(0, ARTIST_ADMIN_USER_CHAT_INPUT_MAXLENGTH);
+                    } else if (!Chat.Manager.isSuperUser() && r.length > USER_CHAT_INPUT_MAXLENGTH) {
+                        r = r.slice(0, USER_CHAT_INPUT_MAXLENGTH);
+                    }
+                    if (Chat.Manager.checkOperationntUser(q)) {
+                        Chat.Manager.submitUpdate(q, r, Chat.Manager.getNoticeChannel());
+                    } else if (Chat.Manager.checkAdminUser(q)) {
+                        Chat.Manager.submitUpdate(q, r, Chat.Manager.getCtrChannel());
+                    } else {
+                        var s = ChatFilter.filteringChatText(r);
+                        Chat.Manager.submitUpdate(q, q + CHAT_USERID_SEPARATOR + p + NICKNAME_SEPARATOR + s, Chat.Manager.getChatChannels());
+                    }
+                    $(n).val('');
+                };
+            };
+            var l = k(IS_OPERATOR() ? '.chat-input-textarea' : '#chatInput');
+            if (IS_OPERATOR()) {
+                $('#chat-send-btn').on('click', function() {
+                    return l();
+                });
+                $('#chat-delete-btn').on('click', function() {
+                    return l('[delete]');
+                });
+                $('#chat-reset-btn').on('click', function() {
+                    return $('.chat-input-textarea').val('');
+                });
+            } else {
+                $('#chatSendBtn').on('click', function() {
+                    return l();
+                });
+                $('#chatInput').on('keydown', function(o) {
+                    if (o.keyCode == 13) {
+                        $('#chatSendBtn').click();
+                        return false;
+                    }
+                });
+                $('#chatInput').on('focus', function(o) {
+                    delayStopLoadingPanel();
+                });
+                $('#chatInput').on('blur', function(o) {
+                    delayStopLoadingPanel();
+                });
+            }
             $('#artistChatList').on('scroll', debounce(function() {
                 if (d) {
                     return;
                 }
                 var artistChatList = $('#artistChatList');
-                var m = function p() {
+                var p = function r() {
                     return Math.ceil(artistChatList.scrollTop() + artistChatList.height());
                 };
-                var n = function q() {
-                    var r = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : m();
-                    return r >= artistChatList[0].scrollHeight;
+                var q = function s() {
+                    var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : p();
+                    return t >= artistChatList[0].scrollHeight;
                 };
-                if (n()) {
+                if (q()) {
                     f = true;
                 } else {
                     f = false;
@@ -5279,17 +5037,17 @@ function request_to_server(a, b, c, d, e) {
                     }
                 } else {
                     try {
-                        var j = JSON.parse(f.responseText);
-                        e(j, f.status);
-                    } catch (n) {
+                        var k = JSON.parse(f.responseText);
+                        e(k, f.status);
+                    } catch (o) {
                         e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(j) {
-        console.log(j);
+    f.ontimeout = function(k) {
+        console.log(k);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -5466,11 +5224,7 @@ function checkMobileAndTablet() {
         } else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            if (!c) {
-                return isIpadOS();
-            } else {
-                return c;
-            }
+            return !c ? isIpadOS() : c;
         }
     }
 }
@@ -5555,7 +5309,11 @@ function checkMobile() {
         } else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            return !c ? isIpadOS() : c;
+            if (!c) {
+                return isIpadOS();
+            } else {
+                return c;
+            }
         }
     }
 }
@@ -5882,17 +5640,14 @@ function createElementFromHTML(a) {
     b.innerHTML = a.trim();
     return b.firstChild;
 }
-var HIKE_UTIL = {
-    contentIdList: ['114f7f81-0f8a-4725-b824-6b29c639b86e', 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b', 'f75219c8-f3cb-492c-ad68-a1fd940b131e', 'a50c8232-e98f-4ea1-a891-7272e7adf413', '4487013d-39f3-4f61-8c9c-b34cd8087b66', '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c'],
+var BatchAuthUtil = {
+    contentIdList: ['c67149eb-30fe-400c-98a3-a88a5b45e510', 'ff422c67-3389-4172-b31b-c624e1e187c5', '3bde171c-6e79-4e41-9392-3d1608535d85'],
     cookieGroup: {
-        '114f7f81-0f8a-4725-b824-6b29c639b86e': ['114f7f81-0f8a-4725-b824-6b29c639b86e', 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b', 'f75219c8-f3cb-492c-ad68-a1fd940b131e'],
-        'be86100e-bc6f-4d6c-8821-5c5ef95cb45b': ['114f7f81-0f8a-4725-b824-6b29c639b86e', 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b', 'f75219c8-f3cb-492c-ad68-a1fd940b131e'],
-        'f75219c8-f3cb-492c-ad68-a1fd940b131e': ['114f7f81-0f8a-4725-b824-6b29c639b86e', 'be86100e-bc6f-4d6c-8821-5c5ef95cb45b', 'f75219c8-f3cb-492c-ad68-a1fd940b131e'],
-        'a50c8232-e98f-4ea1-a891-7272e7adf413': ['a50c8232-e98f-4ea1-a891-7272e7adf413', '4487013d-39f3-4f61-8c9c-b34cd8087b66', '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c'],
-        '4487013d-39f3-4f61-8c9c-b34cd8087b66': ['a50c8232-e98f-4ea1-a891-7272e7adf413', '4487013d-39f3-4f61-8c9c-b34cd8087b66', '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c'],
-        '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c': ['a50c8232-e98f-4ea1-a891-7272e7adf413', '4487013d-39f3-4f61-8c9c-b34cd8087b66', '35f3a20e-31f0-45c0-9d51-6b0d1a6a119c']
+        'c67149eb-30fe-400c-98a3-a88a5b45e510': ['c67149eb-30fe-400c-98a3-a88a5b45e510', 'ff422c67-3389-4172-b31b-c624e1e187c5', '3bde171c-6e79-4e41-9392-3d1608535d85'],
+        'ff422c67-3389-4172-b31b-c624e1e187c5': ['c67149eb-30fe-400c-98a3-a88a5b45e510', 'ff422c67-3389-4172-b31b-c624e1e187c5', '3bde171c-6e79-4e41-9392-3d1608535d85'],
+        '3bde171c-6e79-4e41-9392-3d1608535d85': ['c67149eb-30fe-400c-98a3-a88a5b45e510', 'ff422c67-3389-4172-b31b-c624e1e187c5', '3bde171c-6e79-4e41-9392-3d1608535d85']
     },
-    isHikeEvent: function isHikeEvent() {
+    isTargetEvent: function isTargetEvent() {
         var a = this.contentIdList;
         var b = DCvi;
         var c = false;
