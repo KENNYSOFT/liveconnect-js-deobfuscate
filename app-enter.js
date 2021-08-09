@@ -1792,7 +1792,7 @@ if (ddv) {
         var authTicketId = $('#authTicketId');
         var authFailTxt = $('#authFailTxt');
         var authCheckBtn = $('#authCheckBtn');
-        var a5 = $('#event-start-time');
+        var event_start_time = $('#event-start-time');
         var a6 = new Date(parseInt(ete));
         var a7 = new Date(parseInt(cte));
         var a8 = new Date();
@@ -1805,7 +1805,7 @@ if (ddv) {
         var ad = m(new Date(EVENT_START_TIME));
         authMsg1.css('display', 'none');
         authMsg2.css('display', 'none');
-        a5.text(ad);
+        event_start_time.text(ad);
         ARTIST_ROOM_SELECTOR.init(DCvi, Tira);
         EVENT_SELELCTOR.init(DCvi, Tira);
         YoutubeSrcUtil.init(DCvi);

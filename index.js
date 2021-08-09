@@ -195,7 +195,7 @@ const deobfuscate = async (url) => {
                 const {arguments, callee} = init;
                 if (callee.name === '$' && arguments.length === 1 && t.isStringLiteral(arguments[0])) {
                     const value = arguments[0].value;
-                    const varName = value.replace(/#/g, '').replace(/ /g, '__');
+                    const varName = value.replace(/#/g, '').replace(/ /g, '__').replace(/-/g, '_');
                     if (isVarName(varName)) {
                         path.parentPath.scope.rename(id.name, varName);
                     } else {
