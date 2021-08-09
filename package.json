@@ -7,7 +7,7 @@
     "@babel/generator": "^7.15.0",
     "@babel/parser": "^7.14.8",
     "@babel/traverse": "^7.14.8",
-    "@babel/types": "^7.14.8",
+    "@babel/types": "^7.15.0",
     "is-property": "^1.0.2",
     "is-var-name": "^2.0.0",
     "js-beautify": "^1.14.0",
