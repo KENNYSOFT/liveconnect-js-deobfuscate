@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/generator": "^7.15.0",
-    "@babel/parser": "^7.15.2",
+    "@babel/parser": "^7.15.3",
     "@babel/traverse": "^7.15.0",
     "@babel/types": "^7.15.0",
     "is-property": "^1.0.2",
