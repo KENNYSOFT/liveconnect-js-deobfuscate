@@ -8,10 +8,10 @@ function _createForOfIteratorHelper(a, b) {
                 a = c;
             }
             var d = 0;
-            var g = function l() {};
+            var g = function m() {};
             return {
                 s: g,
-                n: function m() {
+                n: function p() {
                     if (d >= a.length) {
                         return {
                             done: true
@@ -22,8 +22,8 @@ function _createForOfIteratorHelper(a, b) {
                         value: a[d++]
                     };
                 },
-                e: function p(q) {
-                    throw q;
+                e: function q(r) {
+                    throw r;
                 },
                 f: g
             };
@@ -107,14 +107,14 @@ function _objectSpread(a) {
     for (var b = 1; b < arguments.length; b++) {
         var c = arguments[b] != null ? arguments[b] : {};
         if (b % 2) {
-            ownKeys(Object(c), true).forEach(function(d) {
-                _defineProperty(a, d, c[d]);
+            ownKeys(Object(c), true).forEach(function(e) {
+                _defineProperty(a, e, c[e]);
             });
         } else if (Object.getOwnPropertyDescriptors) {
             Object.defineProperties(a, Object.getOwnPropertyDescriptors(c));
         } else {
-            ownKeys(Object(c)).forEach(function(d) {
-                Object.defineProperty(a, d, Object.getOwnPropertyDescriptor(c, d));
+            ownKeys(Object(c)).forEach(function(f) {
+                Object.defineProperty(a, f, Object.getOwnPropertyDescriptor(c, f));
             });
         }
     }
@@ -343,50 +343,12 @@ function cusDDselectOption(a, b, c) {
     a.Menu = d;
 })(window);
 var Rich360Player = function() {
-    var c = function() {
-        var f = true;
-        return function(g, h) {
-            var i = f ? function() {
-                if (h) {
-                    var j = h.apply(g, arguments);
-                    h = null;
-                    return j;
-                }
-            } : function() {};
-            f = false;
-            return i;
-        };
-    }();
-    var d = c(this, function() {
-        var f = function() {
-            var n;
-            try {
-                n = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
-            } catch (o) {
-                n = window;
-            }
-            return n;
-        };
-        var g = f();
-        var h = g.console = g.console || {};
-        var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-        for (var j = 0; j < i.length; j++) {
-            var k = c.constructor.prototype.bind(c);
-            var l = i[j];
-            var m = h[l] || k;
-            k.__proto__ = c.bind(c);
-            k.toString = m.toString.bind(m);
-            h[l] = k;
-        }
-    });
-    d();
-
-    function e(f, g, h) {
-        _classCallCheck(this, e);
-        this._options = f;
-        this._ui = g;
-        this._req_str = h;
-        this._player = new Rich360(f, h, g, this);
+    function a(b, c, d) {
+        _classCallCheck(this, a);
+        this._options = b;
+        this._ui = c;
+        this._req_str = d;
+        this._player = new Rich360(b, d, c, this);
         this._initHideCtroller = false;
         this._initQualityUI = false;
         this._initSubtitleUI = false;
@@ -403,9 +365,9 @@ var Rich360Player = function() {
         this.initLoadingState();
         this.initEventListener();
     }
-    _createClass(e, [{
+    _createClass(a, [{
         key: 'initPlayerUI',
-        value: function f() {
+        value: function b() {
             this._ui.playBtn.onclick = function() {
                 if (this._player._ui_play) {
                     this.pause();
@@ -427,8 +389,8 @@ var Rich360Player = function() {
                     this._ui.volumeSlider.barDiv.style.backgroundImage = 'linear-gradient(to right, #fff 0%, #fff ' + this._ui.volumeSlider._value + '%, transparent ' + this._ui.volumeSlider._value + '%, transparent 100%)';
                     this.volume(this._ui.volumeSlider._value);
                 }.bind(this));
-                this._ui.volumeSlider.addEventListener('seek', function(i) {
-                    this.volume(i.target._value);
+                this._ui.volumeSlider.addEventListener('seek', function(d) {
+                    this.volume(d.target._value);
                 }.bind(this));
                 this._ui.volumeBtn.onclick = function() {
                     if (this._ui.volumeBtn.classList.contains('mute')) {
@@ -448,38 +410,38 @@ var Rich360Player = function() {
             }
             if (this._options.content_data.use_vod) {
                 this._ui.seekBar = new customRange(this._ui.sliderArea, 0, this._ui.sliderPaddingDiv);
-                this._ui.seekBar.addEventListener('input', function(i) {
-                    this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + i.target._value + '%, #ea0029 ' + i.target._value + '%, transparent ' + i.target._loadedValue + '%, transparent ' + i.target._loadedValue + '%)';
+                this._ui.seekBar.addEventListener('input', function(f) {
+                    this._ui.seekBar.style.backgroundImage = 'linear-gradient(to right, #ea0029 ' + f.target._value + '%, #ea0029 ' + f.target._value + '%, transparent ' + f.target._loadedValue + '%, transparent ' + f.target._loadedValue + '%)';
                     if (this._ui.seekBar.thumbInteracting) {
-                        this.viewSeekBarThumbnail(i.target._value, true);
+                        this.viewSeekBarThumbnail(f.target._value, true);
                     }
                 }.bind(this));
-                this._ui.seekBar.paddingBar.addEventListener('mousemove', function(i) {
-                    this.viewSeekBarThumbnail(i.offsetX / this._ui.seekBar.clientWidth * 100);
+                this._ui.seekBar.paddingBar.addEventListener('mousemove', function(f) {
+                    this.viewSeekBarThumbnail(f.offsetX / this._ui.seekBar.clientWidth * 100);
                 }.bind(this));
-                this._ui.seekBar.paddingBar.addEventListener('mouseout', function(i) {
+                this._ui.seekBar.paddingBar.addEventListener('mouseout', function(f) {
                     $(this._ui.sliderThumbnail).css('display', 'none');
                 }.bind(this));
-                this._ui.seekBar.addEventListener('seek', function(i) {
-                    this.seek(i.target._value);
+                this._ui.seekBar.addEventListener('seek', function(f) {
+                    this.seek(f.target._value);
                     $(this._ui.sliderThumbnail).css('display', 'none');
                 }.bind(this));
                 $(this._ui.prev10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var i = this._player.currentPosition - 10;
-                        if (i < 0) {
-                            i = 0;
+                        var e = this._player.currentPosition - 10;
+                        if (e < 0) {
+                            e = 0;
                         }
-                        this._player.currentPosition = i;
+                        this._player.currentPosition = e;
                     }
                 }.bind(this));
                 $(this._ui.next10sBtn).on('click', function() {
                     if (this._player.currentPosition) {
-                        var i = this._player.currentPosition + 10;
-                        if (i > this._player.duration - 1) {
-                            i = this._player.duration - 1;
+                        var e = this._player.currentPosition + 10;
+                        if (e > this._player.duration - 1) {
+                            e = this._player.duration - 1;
                         }
-                        this._player.currentPosition = i;
+                        this._player.currentPosition = e;
                     }
                 }.bind(this));
             }
@@ -494,20 +456,20 @@ var Rich360Player = function() {
                 this._ui.fullScreen = new FullscreenButton(this, this._ui.fullBtn);
             }
             if (isMobile()) {
-                var g = getOrientation();
-                if (typeof g == 'string') {
-                    if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') {
+                var c = getOrientation();
+                if (typeof c == 'string') {
+                    if (c == 'landscape-primary' || c == 'landscape-secondary' || c == 'landscape') {
                         this.hideChatWrap();
-                    } else if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
+                    } else if (c == 'portrait-primary' || c == 'portrait-secondary' || c == 'portrait') {
                         this.showChatWrap();
                     }
                 }
                 $(window).on('orientationchange', function() {
-                    var n = getOrientation();
-                    if (typeof n == 'string') {
-                        if (n == 'landscape-primary' || n == 'landscape-secondary' || n == 'landscape') {
+                    var g = getOrientation();
+                    if (typeof g == 'string') {
+                        if (g == 'landscape-primary' || g == 'landscape-secondary' || g == 'landscape') {
                             this.hideChatWrap();
-                        } else if (n == 'portrait-primary' || n == 'portrait-secondary' || n == 'portrait') {
+                        } else if (g == 'portrait-primary' || g == 'portrait-secondary' || g == 'portrait') {
                             this.showChatWrap();
                         }
                     }
@@ -519,65 +481,65 @@ var Rich360Player = function() {
         }
     }, {
         key: 'createQualityDiv',
-        value: function g(h) {
-            var i = document.createElement('div');
-            i.className = 'fc_default cusDD_opt';
-            i.id = h.id;
-            i.dataset.id = h.id;
-            i.dataset.height = h.height;
-            var j = '';
-            if (i.dataset.height == 'auto') {
-                j = 'AUTO';
+        value: function c(d) {
+            var e = document.createElement('div');
+            e.className = 'fc_default cusDD_opt';
+            e.id = d.id;
+            e.dataset.id = d.id;
+            e.dataset.height = d.height;
+            var f = '';
+            if (e.dataset.height == 'auto') {
+                f = 'AUTO';
             } else {
-                j = i.dataset.height + 'P';
+                f = e.dataset.height + 'P';
             }
-            i.innerHTML = j;
-            return i;
+            e.innerHTML = f;
+            return e;
         }
     }, {
         key: 'createQualityBtn',
-        value: function h(i) {
-            var j = document.createElement('button');
-            j.className = 'text-btn fc_default bold';
-            j.id = i.id;
-            j.dataset.id = i.id;
-            j.dataset.height = i.height;
-            var k = '';
-            if (j.dataset.height == 'auto') {
-                k = 'AUTO';
+        value: function d(e) {
+            var f = document.createElement('button');
+            f.className = 'text-btn fc_default bold';
+            f.id = e.id;
+            f.dataset.id = e.id;
+            f.dataset.height = e.height;
+            var g = '';
+            if (f.dataset.height == 'auto') {
+                g = 'AUTO';
             } else {
-                k = j.dataset.height + 'P';
+                g = f.dataset.height + 'P';
             }
-            j.innerHTML = k;
-            return j;
+            f.innerHTML = g;
+            return f;
         }
     }, {
         key: 'createSubtitleDiv',
-        value: function i(j) {
-            var k = document.createElement('div');
-            k.className = 'fc_default cusDD_opt';
-            k.id = j.id;
-            k.dataset.id = j.id;
-            k.dataset.label = j.label;
-            k.dataset.lang = j.lang;
-            k.innerHTML = j.label;
-            return k;
+        value: function e(f) {
+            var g = document.createElement('div');
+            g.className = 'fc_default cusDD_opt';
+            g.id = f.id;
+            g.dataset.id = f.id;
+            g.dataset.label = f.label;
+            g.dataset.lang = f.lang;
+            g.innerHTML = f.label;
+            return g;
         }
     }, {
         key: 'createSubtitleBtn',
-        value: function j(k) {
-            var l = document.createElement('button');
-            l.className = 'text-btn fc_default bold';
-            l.id = k.id;
-            l.dataset.id = k.id;
-            l.dataset.label = k.label;
-            l.dataset.lang = k.lang;
-            l.innerHTML = k.label;
-            return l;
+        value: function f(g) {
+            var h = document.createElement('button');
+            h.className = 'text-btn fc_default bold';
+            h.id = g.id;
+            h.dataset.id = g.id;
+            h.dataset.label = g.label;
+            h.dataset.lang = g.lang;
+            h.innerHTML = g.label;
+            return h;
         }
     }, {
         key: 'initQuality',
-        value: function k() {
+        value: function g() {
             if (this._initQualityUI) {
                 return;
             }
@@ -590,75 +552,75 @@ var Rich360Player = function() {
             }
             this._ui.qualitySelect.style.display = 'block';
             this._ui.qualitySelectBtn.style.display = 'block';
-            var l = this.createQualityDiv({
+            var h = this.createQualityDiv({
                 id: 'auto',
                 height: 'auto'
             });
-            var m = this.createQualityBtn({
+            var j = this.createQualityBtn({
                 id: 'auto',
                 height: 'auto'
             });
-            var n = document.createElement('div');
-            n.className = 'cusDD_options';
-            n.appendChild(l);
-            m.className += ' on';
-            $(this._ui.qualityPopup).find('.ta_c').append(m);
-            this._ui.qualityItems.push(l);
-            this._ui.qualityPopupItems.push(m);
+            var k = document.createElement('div');
+            k.className = 'cusDD_options';
+            k.appendChild(h);
+            j.className += ' on';
+            $(this._ui.qualityPopup).find('.ta_c').append(j);
+            this._ui.qualityItems.push(h);
+            this._ui.qualityPopupItems.push(j);
             if (this._player.qualityList) {
-                for (var o = 0; o < this._player.qualityList.length; o++) {
-                    if (!this._player.qualityList[o].height) {
+                for (var l = 0; l < this._player.qualityList.length; l++) {
+                    if (!this._player.qualityList[l].height) {
                         continue;
                     }
-                    var p = this.createQualityDiv({
-                        id: o,
-                        height: this._player.qualityList[o].height
+                    var m = this.createQualityDiv({
+                        id: l,
+                        height: this._player.qualityList[l].height
                     });
-                    var q = this.createQualityBtn({
-                        id: o,
-                        height: this._player.qualityList[o].height
+                    var n = this.createQualityBtn({
+                        id: l,
+                        height: this._player.qualityList[l].height
                     });
-                    if ('NAME' in this._player.qualityList[o].attrs) {
-                        p = this.createQualityDiv({
-                            id: o,
-                            height: this._player.qualityList[o].attrs.NAME
+                    if ('NAME' in this._player.qualityList[l].attrs) {
+                        m = this.createQualityDiv({
+                            id: l,
+                            height: this._player.qualityList[l].attrs.NAME
                         });
-                        q = this.createQualityBtn({
-                            id: o,
-                            height: this._player.qualityList[o].attrs.NAME
+                        n = this.createQualityBtn({
+                            id: l,
+                            height: this._player.qualityList[l].attrs.NAME
                         });
                     }
                     if (this._player.quality) {
-                        if (this._player.quality == o) {
-                            addClassName(p, 'on');
+                        if (this._player.quality == l) {
+                            addClassName(m, 'on');
                         }
                     }
-                    n.appendChild(p);
-                    $(this._ui.qualityPopup).find('.ta_c').append(q);
-                    this._ui.qualityItems.push(p);
-                    this._ui.qualityPopupItems.push(q);
+                    k.appendChild(m);
+                    $(this._ui.qualityPopup).find('.ta_c').append(n);
+                    this._ui.qualityItems.push(m);
+                    this._ui.qualityPopupItems.push(n);
                 }
-                for (var r = 0; r < this._ui.qualityPopupItems.length; r++) {
-                    this._ui.qualityPopupItems[r].addEventListener('click', function(v) {
-                        var w = null;
-                        if (v.target.id == 'auto') {
-                            w = -1;
+                for (var o = 0; o < this._ui.qualityPopupItems.length; o++) {
+                    this._ui.qualityPopupItems[o].addEventListener('click', function(t) {
+                        var u = null;
+                        if (t.target.id == 'auto') {
+                            u = -1;
                         } else {
-                            w = parseInt(v.target.id);
+                            u = parseInt(t.target.id);
                         }
-                        for (var x = 0; x < this._ui.qualityPopupItems.length; x++) {
-                            removeClassName(this._ui.qualityPopupItems[x], 'on');
+                        for (var v = 0; v < this._ui.qualityPopupItems.length; v++) {
+                            removeClassName(this._ui.qualityPopupItems[v], 'on');
                         }
-                        v.target.classList.add('on');
+                        t.target.classList.add('on');
                         this._ui.qualityPopup.style.display = 'none';
-                        if (this._player.quality == w) {
+                        if (this._player.quality == u) {
                             return;
                         }
-                        this._player.quality = w;
-                        if (v.target.id == 'auto') {
-                            for (var y = 0; y < this._ui.qualityPopupItems.length; y++) {
-                                if (this._ui.qualityPopupItems[y].id == this._player._hls.nextAutoLevel) {
-                                    addClassName(this._ui.qualityPopupItems[y], 'on');
+                        this._player.quality = u;
+                        if (t.target.id == 'auto') {
+                            for (var w = 0; w < this._ui.qualityPopupItems.length; w++) {
+                                if (this._ui.qualityPopupItems[w].id == this._player._hls.nextAutoLevel) {
+                                    addClassName(this._ui.qualityPopupItems[w], 'on');
                                     break;
                                 }
                             }
@@ -666,13 +628,13 @@ var Rich360Player = function() {
                     }.bind(this));
                 }
             }
-            this._ui.qualitySelect.appendChild(n);
-            var s = '#' + this._ui.qualitySelect.getAttribute('id');
-            cusDD(s, null, function(w) {
-                var x = null;
-                $(s).find('.cusDD_opt').each(function() {
-                    if ($(this).data().id != w.id) {
-                        if (!$(this).attr('selected') || w.id != 'auto') {
+            this._ui.qualitySelect.appendChild(k);
+            var p = '#' + this._ui.qualitySelect.getAttribute('id');
+            cusDD(p, null, function(t) {
+                var u = null;
+                $(p).find('.cusDD_opt').each(function() {
+                    if ($(this).data().id != t.id) {
+                        if (!$(this).attr('selected') || t.id != 'auto') {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         }
@@ -681,30 +643,30 @@ var Rich360Player = function() {
                         $(this).addClass('on');
                     }
                 });
-                if (w.id == 'auto') {
-                    x = -1;
+                if (t.id == 'auto') {
+                    u = -1;
                 } else {
-                    x = parseInt(w.id);
+                    u = parseInt(t.id);
                 }
-                this._player.quality = x;
+                this._player.quality = u;
             }.bind(this));
-            cusDDselectOption(s, 'auto', true);
+            cusDDselectOption(p, 'auto', true);
             this._ui.qualitySelect = document.getElementById(this._ui.qualitySelect.getAttribute('id'));
-            $(this._ui.qualitySelectBtn).on('click', function(w) {
+            $(this._ui.qualitySelectBtn).on('click', function(t) {
                 $(this._ui.qualitySelect).click();
-                w.stopPropagation();
+                t.stopPropagation();
             }.bind(this));
             this._initQualityUI = true;
         }
     }, {
         key: 'initSubtitle',
-        value: function l() {
+        value: function h() {
             if (this._initSubtitleUI) {
                 return;
-                var m = this._ui.ccSelect.getAttribute('id');
+                var j = this._ui.ccSelect.getAttribute('id');
                 $(this._ui.ccSelect).find('.cusDD_opt').each(function() {
                     if ($(this).attr('selected') == 'selected') {
-                        cusDDselectOption('#' + m, $(this).data().id, true);
+                        cusDDselectOption('#' + j, $(this).data().id, true);
                     }
                 });
                 return;
@@ -721,48 +683,48 @@ var Rich360Player = function() {
             } else if (!this._player.subtitleList[0].lang) {
                 return;
             }
-            var n = this.createSubtitleDiv({
+            var k = this.createSubtitleDiv({
                 id: '-1',
                 label: 'OFF',
                 lang: 'OFF'
             });
-            var o = this.createSubtitleBtn({
+            var l = this.createSubtitleBtn({
                 id: '-1',
                 label: 'OFF',
                 lang: 'OFF'
             });
-            var p = document.createElement('div');
-            addClassName(n, 'on');
-            addClassName(o, 'on');
-            p.className = 'cusDD_options';
-            p.appendChild(n);
-            this._ui.subtitlePopupItems.push(o);
-            $(this._ui.subtitlePopup).find('.ta_c').append(o);
+            var m = document.createElement('div');
+            addClassName(k, 'on');
+            addClassName(l, 'on');
+            m.className = 'cusDD_options';
+            m.appendChild(k);
+            this._ui.subtitlePopupItems.push(l);
+            $(this._ui.subtitlePopup).find('.ta_c').append(l);
             if (this._player.subtitleList) {
-                for (var q = 0; q < this._player.subtitleList.length; q++) {
-                    var r = this.createSubtitleDiv(this._player.subtitleList[q]);
-                    var s = this.createSubtitleBtn(this._player.subtitleList[q]);
-                    p.appendChild(r);
-                    this._ui.subtitlePopupItems.push(s);
-                    $(this._ui.subtitlePopup).find('.ta_c').append(s);
+                for (var n = 0; n < this._player.subtitleList.length; n++) {
+                    var o = this.createSubtitleDiv(this._player.subtitleList[n]);
+                    var p = this.createSubtitleBtn(this._player.subtitleList[n]);
+                    m.appendChild(o);
+                    this._ui.subtitlePopupItems.push(p);
+                    $(this._ui.subtitlePopup).find('.ta_c').append(p);
                 }
                 if (this._player.subtitleList.length) {
                     $(this._ui.ccSelectBtn).css('display', 'block');
                     $(this._ui.ccSelect).css('display', 'block');
                 }
             }
-            this._ui.ccSelect.appendChild(p);
-            $(this._ui.ccSelectBtn).on('click', function(v) {
+            this._ui.ccSelect.appendChild(m);
+            $(this._ui.ccSelectBtn).on('click', function(u) {
                 $(this._ui.ccSelect).click();
-                v.stopPropagation();
+                u.stopPropagation();
             }.bind(this));
-            var m = '#' + this._ui.ccSelect.getAttribute('id');
-            cusDD(m, null, function(v) {
+            var j = '#' + this._ui.ccSelect.getAttribute('id');
+            cusDD(j, null, function(u) {
+                var v;
                 var w;
-                var x;
-                console.log('selected ccSelect option : ', v);
-                $(m).find('.cusDD_opt').each(function(z) {
-                    if ($(this).data().id != v.id) {
+                console.log('selected ccSelect option : ', u);
+                $(j).find('.cusDD_opt').each(function(y) {
+                    if ($(this).data().id != u.id) {
                         $(this).removeAttr('selected');
                         $(this).removeClass('on');
                     } else {
@@ -770,17 +732,17 @@ var Rich360Player = function() {
                         $(this).addClass('on');
                     }
                 });
-                var y = !((w = this._player._options) !== null && w !== void 0 && (x = w.content_data) !== null && x !== void 0 && x.use_vod);
-                this._player.setSubtitleTrack(parseInt(v.id), y);
+                var x = !((v = this._player._options) !== null && v !== void 0 && (w = v.content_data) !== null && w !== void 0 && w.use_vod);
+                this._player.setSubtitleTrack(parseInt(u.id), x);
             }.bind(this));
-            cusDDselectOption(m, -1, true);
+            cusDDselectOption(j, -1, true);
             this._ui.ccSelect = document.getElementById(this._ui.ccSelect.getAttribute('id'));
-            for (var t = 0; t < this._ui.subtitlePopupItems.length; t++) {
-                this._ui.subtitlePopupItems[t].addEventListener('click', function(w) {
-                    var x;
-                    var y;
+            for (var q = 0; q < this._ui.subtitlePopupItems.length; q++) {
+                this._ui.subtitlePopupItems[q].addEventListener('click', function(u) {
+                    var v;
+                    var w;
                     $(this._ui.subtitlePopup).find('.ta_c > button').each(function() {
-                        if ($(this).data().id != $(w.target).data().id) {
+                        if ($(this).data().id != $(u.target).data().id) {
                             $(this).removeAttr('selected');
                             $(this).removeClass('on');
                         } else {
@@ -789,8 +751,8 @@ var Rich360Player = function() {
                         }
                     });
                     this._ui.subtitlePopup.style.display = 'none';
-                    var z = !((x = this._player._options) !== null && x !== void 0 && (y = x.content_data) !== null && y !== void 0 && y.use_vod);
-                    this._player.setSubtitleTrack(parseInt($(w.target).data().id), z);
+                    var x = !((v = this._player._options) !== null && v !== void 0 && (w = v.content_data) !== null && w !== void 0 && w.use_vod);
+                    this._player.setSubtitleTrack(parseInt($(u.target).data().id), x);
                 }.bind(this));
             }
             this._player.setSubtitleTrack(-1);
@@ -798,39 +760,39 @@ var Rich360Player = function() {
         }
     }, {
         key: 'initLoadingState',
-        value: function m() {
+        value: function i() {
             this._loading_on = [];
-            for (var n = 0; n < RICH360_WAIT_ON.SIZE; n++) {
-                this._loading_on[n] = false;
+            for (var j = 0; j < RICH360_WAIT_ON.SIZE; j++) {
+                this._loading_on[j] = false;
             }
         }
     }, {
         key: 'initEventListener',
-        value: function n() {
-            this._player.addListener(RICH360_EVENTS.RICH360_STATE_CHANGE, function(o) {
-                if (o === RICH360_STATE.RICH360_INIT) {
+        value: function j() {
+            this._player.addListener(RICH360_EVENTS.RICH360_STATE_CHANGE, function(k) {
+                if (k === RICH360_STATE.RICH360_INIT) {
                     this.initPlayerUI();
-                } else if (o === RICH360_STATE.RICH360_READY) {
+                } else if (k === RICH360_STATE.RICH360_READY) {
                     this.initHideCtrllerEvent();
                     this._ui.volumeSlider.value = this._player.volume * 100;
                     this.initQuality();
                 }
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_QUALITY_CHANGE, function(o) {
-                for (var p = 0; p < this._ui.qualityItems.length; p++) {
-                    if (this._ui.qualityItems[p].id == o) {
-                        addClassName(this._ui.qualityItems[p], 'on');
-                        $(this._ui.qualityItems[p]).attr('selected', 'selected');
-                    } else if (this._ui.qualityItems[p].id != 'auto' || !this._player.isAutoQuality) {
-                        removeClassName(this._ui.qualityItems[p], 'on');
-                        $(this._ui.qualityItems[p]).removeAttr('selected');
+            this._player.addListener(RICH360_EVENTS.RICH360_QUALITY_CHANGE, function(k) {
+                for (var l = 0; l < this._ui.qualityItems.length; l++) {
+                    if (this._ui.qualityItems[l].id == k) {
+                        addClassName(this._ui.qualityItems[l], 'on');
+                        $(this._ui.qualityItems[l]).attr('selected', 'selected');
+                    } else if (this._ui.qualityItems[l].id != 'auto' || !this._player.isAutoQuality) {
+                        removeClassName(this._ui.qualityItems[l], 'on');
+                        $(this._ui.qualityItems[l]).removeAttr('selected');
                     }
                 }
-                for (var q = 0; q < this._ui.qualityPopupItems.length; q++) {
-                    if (this._ui.qualityPopupItems[q].id == o) {
-                        addClassName(this._ui.qualityPopupItems[q], 'on');
-                    } else if (this._ui.qualityPopupItems[q].id != 'auto' || !this._player.isAutoQuality) {
-                        removeClassName(this._ui.qualityPopupItems[q], 'on');
+                for (var m = 0; m < this._ui.qualityPopupItems.length; m++) {
+                    if (this._ui.qualityPopupItems[m].id == k) {
+                        addClassName(this._ui.qualityPopupItems[m], 'on');
+                    } else if (this._ui.qualityPopupItems[m].id != 'auto' || !this._player.isAutoQuality) {
+                        removeClassName(this._ui.qualityPopupItems[m], 'on');
                     }
                 }
                 if (this._player.isAutoQuality) {
@@ -841,8 +803,8 @@ var Rich360Player = function() {
             this._player.addListener(RICH360_EVENTS.RICH360_ENDED, function() {
                 $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_WAIT, function(o) {
-                this.loading(o.wait, o.wait_on);
+            this._player.addListener(RICH360_EVENTS.RICH360_WAIT, function(k) {
+                this.loading(k.wait, k.wait_on);
             }.bind(this));
             this._player.addListener(RICH360_EVENTS.RICH360_DURATION_CHANGE, function() {
                 if (this._options.content_data.use_vod && this._ui.seekBar) {
@@ -856,16 +818,16 @@ var Rich360Player = function() {
                     }
                 }
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, function(o) {
-                if (o) {
+            this._player.addListener(RICH360_EVENTS.RICH360_PLAY_PAUSE_CHANGE, function(k) {
+                if (k) {
                     $(this._ui.playBtn).removeClass('pl-i-play').addClass('pl-i-pause');
                     this._ui.playThumbnail.style.display = 'none';
                 } else {
                     $(this._ui.playBtn).removeClass('pl-i-pause').addClass('pl-i-play');
                 }
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(o) {
-                if (o == 'Authorization failed') {
+            this._player.addListener(RICH360_EVENTS.RICH360_ERROR, function(k) {
+                if (k == 'Authorization failed') {
                     Chat.Manager.destroy();
                     if (this._player && this._player._hls) {
                         this._player._hls.destroy();
@@ -877,9 +839,9 @@ var Rich360Player = function() {
                     });
                 }
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_ACCESS_DENIED, function(o) {
-                var p = POPUP_CONFIG;
-                var q = null;
+            this._player.addListener(RICH360_EVENTS.RICH360_ACCESS_DENIED, function(k) {
+                var l = POPUP_CONFIG;
+                var m = null;
                 Chat.Manager.destroy();
                 if (this._player && this._player._hls) {
                     this._player._hls.destroy();
@@ -891,11 +853,11 @@ var Rich360Player = function() {
                         location.href = LUEz1;
                     }, 3000);
                 }
-                if (o == 'Permission Denied') {
-                    q = p.permissionDenied(egl, function() {
+                if (k == 'Permission Denied') {
+                    m = l.permissionDenied(egl, function() {
                         location.href = LUEz1;
                     });
-                    alertPopup(q.title, q.desc, q.btnTxt, q.okCallback);
+                    alertPopup(m.title, m.desc, m.btnTxt, m.okCallback);
                 } else {
                     alertPopup(gettext('P_ALERT_TITLE'), gettext('P_ALERT_LIMIT_DEVNUM_DESC'), gettext('P_ALERT_OK'), function() {
                         location.href = LUEz1;
@@ -916,31 +878,31 @@ var Rich360Player = function() {
                     location.href = LUEz1;
                 });
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_SOURCE_CHANGE, function(o) {
-                this.changeSource(o);
+            this._player.addListener(RICH360_EVENTS.RICH360_SOURCE_CHANGE, function(k) {
+                this.changeSource(k);
             }.bind(this));
             this._player.addListener(RICH360_EVENTS.RICH360_SUBTITLE_FOUND, function() {
                 this.initSubtitle();
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, function(o) {
-                this.updateThumbnail(o);
+            this._player.addListener(RICH360_EVENTS.RICH360_THUMBNAIL_UPDATE, function(k) {
+                this.updateThumbnail(k);
             }.bind(this));
-            this._player.addListener(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, function(o) {
-                this.initSeekBarThumbnailData(o);
+            this._player.addListener(RICH360_EVENTS.RICH360_GRID_THUMBNAIL_UPDATE, function(k) {
+                this.initSeekBarThumbnailData(k);
             }.bind(this));
         }
     }, {
         key: 'loading',
-        value: function o(p, q) {
-            this._loading_on[q] = p;
-            var r = false;
-            for (var s = 0; s < RICH360_WAIT_ON.SIZE; s++) {
-                if (this._loading_on[s]) {
-                    r = true;
+        value: function k(l, m) {
+            this._loading_on[m] = l;
+            var n = false;
+            for (var o = 0; o < RICH360_WAIT_ON.SIZE; o++) {
+                if (this._loading_on[o]) {
+                    n = true;
                     break;
                 }
             }
-            if (r) {
+            if (n) {
                 $(this._ui.loadingDiv).css('display', 'block');
                 $(this._ui.loadingDiv).parent().css('display', 'block');
             } else {
@@ -950,14 +912,14 @@ var Rich360Player = function() {
         }
     }, {
         key: 'setDurationText',
-        value: function p(q, r) {
-            this._ui.durationStart.innerHTML = numberPad(Math.floor(q / 3600), 2) + ':' + numberPad(Math.floor(q / 60) % 60, 2) + ':' + numberPad(Math.floor(q % 60), 2);
-            r -= q;
-            this._ui.durationEnd.innerHTML = '-' + numberPad(Math.floor(r / 3600), 2) + ':' + numberPad(Math.floor(r / 60) % 60, 2) + ':' + numberPad(Math.floor(r % 60), 2);
+        value: function l(m, n) {
+            this._ui.durationStart.innerHTML = numberPad(Math.floor(m / 3600), 2) + ':' + numberPad(Math.floor(m / 60) % 60, 2) + ':' + numberPad(Math.floor(m % 60), 2);
+            n -= m;
+            this._ui.durationEnd.innerHTML = '-' + numberPad(Math.floor(n / 3600), 2) + ':' + numberPad(Math.floor(n / 60) % 60, 2) + ':' + numberPad(Math.floor(n % 60), 2);
         }
     }, {
         key: 'initHideCtrllerEvent',
-        value: function q() {
+        value: function m() {
             if (this._initHideCtroller) {
                 return;
             }
@@ -966,15 +928,15 @@ var Rich360Player = function() {
                 this.showChatOpenBtn(true);
             }
             if (isMobile() || isTablet() || isIpadOS()) {
-                this._options.container.addEventListener('touchend', r.bind(this), false);
+                this._options.container.addEventListener('touchend', n.bind(this), false);
             } else {
                 this._options.container.addEventListener('mousemove', this.wakeupController.bind(this), false);
-                this._options.container.addEventListener('mouseup', r.bind(this), false);
+                this._options.container.addEventListener('mouseup', n.bind(this), false);
             }
 
-            function r(t) {
+            function n(q) {
                 this._wakeupPastTime = 0;
-                if (!this._player._video.paused && (t.target.tagName === 'CANVAS' || t.target.tagName === 'VIDEO' || t.target === this._ui.playerBottomWrap || t.target.id == 'loadingWrap' || t.target.id == 'subtitleDiv' || t.target.parentElement.id == 'subtitleDiv')) {
+                if (!this._player._video.paused && (q.target.tagName === 'CANVAS' || q.target.tagName === 'VIDEO' || q.target === this._ui.playerBottomWrap || q.target.id == 'loadingWrap' || q.target.id == 'subtitleDiv' || q.target.parentElement.id == 'subtitleDiv')) {
                     if (this._ui.playerBottomWrap.style.display == 'block') {
                         this._ui.playerBottomWrap.style.display = 'none';
                         this.showChatOpenBtn(false);
@@ -1000,25 +962,25 @@ var Rich360Player = function() {
         }
     }, {
         key: 'setTimerHidePlayerController',
-        value: function r(s) {
-            var t = s;
-            if (typeof t === 'undefined') {
-                t = true;
+        value: function n(o) {
+            var p = o;
+            if (typeof p === 'undefined') {
+                p = true;
             }
             clearTimeout(this._timer.hidePlayerController.timer);
             this._timer.hidePlayerController.timer = null;
-            if (t) {
+            if (p) {
                 this._timer.hidePlayerController.timer = setTimeout(this.hidePlayerController.bind(this), this._timer.hidePlayerController.period);
             }
         }
     }, {
         key: 'hidePlayerController',
-        value: function s() {
-            var t = this._ui.volumeSlider.thumbInteracting || !this._player._ui_play;
+        value: function o() {
+            var p = this._ui.volumeSlider.thumbInteracting || !this._player._ui_play;
             if (this._options.content_data.use_vod && this._ui.seekBar) {
-                t = t || this._ui.seekBar.thumbInteracting;
+                p = p || this._ui.seekBar.thumbInteracting;
             }
-            if (t) {
+            if (p) {
                 this.wakeupController();
                 return;
             }
@@ -1029,7 +991,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'wakeupController',
-        value: function t(u) {
+        value: function p(q) {
             this._ui.playerBottomWrap.style.display = 'block';
             if (!$(this._ui.chatContents).hasClass('is-active')) {
                 this.showChatOpenBtn(true);
@@ -1040,7 +1002,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'hideChatWrap',
-        value: function u() {
+        value: function q() {
             if ($(this._ui.pageWrap).hasClass('pl-t-default')) {
                 $(this._ui.pageWrap).removeClass('pl-t-default').addClass('pl-t-fullscreen');
                 $(this._ui.chatWrap).addClass('chat_full');
@@ -1056,7 +1018,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'showChatWrap',
-        value: function v() {
+        value: function r() {
             if ($(this._ui.pageWrap).hasClass('pl-t-fullscreen')) {
                 $(this._ui.pageWrap).removeClass('pl-t-fullscreen').addClass('pl-t-default');
                 $(this._ui.chatWrap).removeClass('chat_full');
@@ -1069,9 +1031,9 @@ var Rich360Player = function() {
             $(this._ui.chatContents).addClass('is-active');
             this.showChatOpenBtn(false);
             if (isMobile()) {
-                var w = getOrientation();
-                if (typeof w == 'string') {
-                    if (w == 'landscape-primary' || w == 'landscape-secondary' || w == 'landscape') {
+                var s = getOrientation();
+                if (typeof s == 'string') {
+                    if (s == 'landscape-primary' || s == 'landscape-secondary' || s == 'landscape') {
                         $(this._ui.chatInputWrap).css('display', 'none');
                     } else if ($(this._ui.navBtnWrap).find('button[name=chatnavbtn]').hasClass('on')) {
                         $(this._ui.chatInputWrap).css('top', '');
@@ -1096,7 +1058,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'play',
-        value: function w() {
+        value: function s() {
             if (!this._initHideCtroller) {
                 this.initHideCtrllerEvent();
             }
@@ -1117,7 +1079,7 @@ var Rich360Player = function() {
         }
     }, {
         key: 'pause',
-        value: function x() {
+        value: function t() {
             this._player._subtitleManager._prevSubtitleTrack = this._player.getSubtitleTrack();
             if (this._player._hls._isDummy) {
                 if (this._options.content_data.use_vod) {
@@ -1130,90 +1092,90 @@ var Rich360Player = function() {
         }
     }, {
         key: 'seek',
-        value: function y(z) {
-            this._player.currentPosition = this._player.duration * z / 100;
+        value: function u(v) {
+            this._player.currentPosition = this._player.duration * v / 100;
         }
     }, {
         key: 'volume',
-        value: function z(A) {
-            this._player.volume = parseFloat(A / 100);
+        value: function v(w) {
+            this._player.volume = parseFloat(w / 100);
         }
     }, {
         key: 'changeSource',
-        value: function A(B) {
-            if (B) {
+        value: function w(x) {
+            if (x) {
                 this.pause();
-                this._player.changeSource(B);
+                this._player.changeSource(x);
             }
         }
     }, {
         key: 'updateThumbnail',
-        value: function B(C) {
-            var D = new Date();
-            C = C + '?' + D.getTime();
+        value: function x(y) {
+            var z = new Date();
+            y = y + '?' + z.getTime();
             $(this._ui.playThumbnail).css('background-image', '');
-            $(this._ui.playThumbnail).css('background-image', 'url(' + C + ')');
+            $(this._ui.playThumbnail).css('background-image', 'url(' + y + ')');
             $(this._ui.playThumbnail).css('display', 'block');
         }
     }, {
         key: 'initSeekBarThumbnailData',
-        value: function C(D) {
-            this._thumbnailGridData = JSON.parse(JSON.stringify(D));
-            var E = this._req_str.lastIndexOf('/output');
-            var F = new Date();
-            $(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, E) + '/' + this._thumbnailGridData.path + '?' + F.getTime() + ')');
+        value: function y(z) {
+            this._thumbnailGridData = JSON.parse(JSON.stringify(z));
+            var A = this._req_str.lastIndexOf('/output');
+            var B = new Date();
+            $(this._ui.sliderThumbnail).css('background-image', 'url(' + this._req_str.substr(0, A) + '/' + this._thumbnailGridData.path + '?' + B.getTime() + ')');
         }
     }, {
         key: 'viewSeekBarThumbnail',
-        value: function D(E, F) {
+        value: function z(A, B) {
             if (!this._thumbnailGridData) {
                 $(this._ui.sliderThumbnail).css('display', 'none');
                 return false;
             }
-            if (E > 100) {
-                E = 100;
-            } else if (E < 0) {
+            if (A > 100) {
+                A = 100;
+            } else if (A < 0) {
+                A = 0;
+            }
+            var C = A / 100;
+            var D = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y;
+            var E = Math.ceil(D * C) - 1;
+            if (E < 0) {
                 E = 0;
             }
-            var G = E / 100;
-            var H = this._thumbnailGridData.grid_x * this._thumbnailGridData.grid_y;
-            var I = Math.ceil(H * G) - 1;
-            if (I < 0) {
-                I = 0;
-            }
-            var J = I % 10;
-            var K = parseInt(I / 10);
-            var L = 160;
-            var M = 90;
-            var N = $(this._ui.sliderArea.slider.thumb).width();
-            var O = J * L * -1;
-            var P = K * M * -1;
-            if (F) {
+            var F = E % 10;
+            var G = parseInt(E / 10);
+            var H = 160;
+            var I = 90;
+            var J = $(this._ui.sliderArea.slider.thumb).width();
+            var K = F * H * -1;
+            var L = G * I * -1;
+            if (B) {
                 $(this._ui.sliderArea.slider.thumb).append($(this._ui.sliderThumbnail));
-                this.setDurationText(this._thumbnailGridData.duration * G, this._thumbnailGridData.duration);
+                this.setDurationText(this._thumbnailGridData.duration * C, this._thumbnailGridData.duration);
                 $(this._ui.sliderThumbnail).css('top', '');
                 $(this._ui.sliderThumbnail).css('left', '');
             } else {
                 $(this._ui.sliderArea).append($(this._ui.sliderThumbnail));
                 $(this._ui.sliderThumbnail).css('top', '-16px');
-                $(this._ui.sliderThumbnail).css('left', 'calc(' + E + '% + ' + N / 2 + 'px - ' + (L + N) * G + 'px)');
+                $(this._ui.sliderThumbnail).css('left', 'calc(' + A + '% + ' + J / 2 + 'px - ' + (H + J) * C + 'px)');
             }
-            $(this._ui.sliderThumbnail).css('background-position-x', O + 'px');
-            $(this._ui.sliderThumbnail).css('background-position-y', P + 'px');
+            $(this._ui.sliderThumbnail).css('background-position-x', K + 'px');
+            $(this._ui.sliderThumbnail).css('background-position-y', L + 'px');
             $(this._ui.sliderThumbnail).css('display', 'block');
             return true;
         }
     }, {
         key: 'showChatOpenBtn',
-        value: function E(F) {
-            var G = F;
+        value: function A(B) {
+            var C = B;
             if (isIpadOS()) {
-                G = false;
+                C = false;
             }
-            $(this._ui.chatOpenBtn).css('display', G ? 'block' : 'none');
+            $(this._ui.chatOpenBtn).css('display', C ? 'block' : 'none');
         }
     }]);
-    return e;
+    return a;
 }();
 var customRange = function customRange(a, b, c) {
     var d = a;
@@ -1236,54 +1198,54 @@ var customRange = function customRange(a, b, c) {
     d.inputEvent = new Event('input');
     d.seekEvent = new Event('seek');
     Object.defineProperty(d, 'value', {
-        get: function i() {
+        get: function j() {
             return this._value;
         },
-        set: function j(k) {
-            if (k > 100) {
-                k = 100;
-            } else if (k < 0) {
-                k = 0;
+        set: function k(l) {
+            if (l > 100) {
+                l = 100;
+            } else if (l < 0) {
+                l = 0;
             }
-            this.thumbDiv.style.left = k + '%';
-            this._value = k;
+            this.thumbDiv.style.left = l + '%';
+            this._value = l;
             this.dispatchEvent(this.inputEvent);
         }
     });
-    var e = function k(l) {
+    var e = function l(m) {
         this.thumbInteracting = true;
-        this.interactStartX = l.clientX || l.touches && l.touches[0].clientX;
+        this.interactStartX = m.clientX || m.touches && m.touches[0].clientX;
         this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
     };
-    var f = function l(m) {
+    var f = function m(n) {
         if (this.thumbInteracting) {
-            var n = (m.clientX || m.touches && m.touches[0].clientX) - this.interactStartX;
-            var o = this.interactStartOffset + n;
-            if (o < 0) {
-                o = 0;
+            var o = (n.clientX || n.touches && n.touches[0].clientX) - this.interactStartX;
+            var p = this.interactStartOffset + o;
+            if (p < 0) {
+                p = 0;
             }
-            if (o > this.barDiv.offsetWidth) {
-                o = this.barDiv.offsetWidth;
+            if (p > this.barDiv.offsetWidth) {
+                p = this.barDiv.offsetWidth;
             }
-            this.value = o * 100 / this.barDiv.offsetWidth;
+            this.value = p * 100 / this.barDiv.offsetWidth;
         }
     };
-    var g = function m() {
+    var g = function n() {
         if (this.thumbInteracting) {
             this.thumbInteracting = false;
             this.dispatchEvent(this.seekEvent);
         }
     };
-    var h = function n(o) {
-        if (o.target != this.thumbDiv) {
+    var h = function o(p) {
+        if (p.target != this.thumbDiv) {
             this.thumbInteracting = true;
-            var p = o.offsetX;
-            if (!p) {
-                var q = o.target.getBoundingClientRect();
-                p = o.targetTouches[0].pageX - q.left;
+            var q = p.offsetX;
+            if (!q) {
+                var r = p.target.getBoundingClientRect();
+                q = p.targetTouches[0].pageX - r.left;
             }
-            this.value = p * 100 / this.barDiv.offsetWidth;
-            this.interactStartX = o.clientX || o.touches && o.touches[0].clientX;
+            this.value = q * 100 / this.barDiv.offsetWidth;
+            this.interactStartX = p.clientX || p.touches && p.touches[0].clientX;
             this.interactStartOffset = this.barDiv.offsetWidth * this.value / 100;
         }
     };
@@ -1430,45 +1392,83 @@ function numberPad(a, b) {
 }
 'use strict';
 var Rich360Log = function() {
-    function a(b) {
-        _classCallCheck(this, a);
-        this._options = b;
+    var c = function() {
+        var f = true;
+        return function(g, h) {
+            var i = f ? function() {
+                if (h) {
+                    var j = h.apply(g, arguments);
+                    h = null;
+                    return j;
+                }
+            } : function() {};
+            f = false;
+            return i;
+        };
+    }();
+    var d = c(this, function() {
+        var f = function() {
+            var n;
+            try {
+                n = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
+            } catch (p) {
+                n = window;
+            }
+            return n;
+        };
+        var g = f();
+        var h = g.console = g.console || {};
+        var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+        for (var j = 0; j < i.length; j++) {
+            var k = c.constructor.prototype.bind(c);
+            var l = i[j];
+            var m = h[l] || k;
+            k.__proto__ = c.bind(c);
+            k.toString = m.toString.bind(m);
+            h[l] = k;
+        }
+    });
+    d();
+
+    function e(f) {
+        _classCallCheck(this, e);
+        this._options = f;
         this._logMaxLength = 1000;
         this._logData = [];
         this._listener = null;
         this._logItv = null;
-        this._rich360Instance = b.rich360;
+        this._rich360Instance = f.rich360;
     }
-    _createClass(a, [{
+    _createClass(e, [{
         key: 'getTimeStamp',
-        value: function b() {
-            var c = new Date();
-            return c.format('yyyy-MM-dd HH:mm:ss:mss');
+        value: function f() {
+            var g = new Date();
+            return g.format('yyyy-MM-dd HH:mm:ss:mss');
         }
     }, {
         key: 'addLog',
-        value: function c(d) {
+        value: function g(h) {
             if (this._logData.length >= this._logMaxLength) {
                 this._logData.splice(0, 1);
             }
             this._logData.push({
-                value: d,
+                value: h,
                 timeStamp: this.getTimeStamp()
             });
         }
     }, {
         key: 'clearLogData',
-        value: function d() {
+        value: function h() {
             this._logData = [];
         }
     }, {
         key: 'getLog',
-        value: function e() {
+        value: function i() {
             return this._logData.slice();
         }
     }, {
         key: 'startInterval',
-        value: function f() {
+        value: function j() {
             if (this._logItv) {
                 clearInterval(this._logItv);
             }
@@ -1476,64 +1476,64 @@ var Rich360Log = function() {
         }
     }, {
         key: 'sendLog',
-        value: function g() {
-            var h = this.getLog();
-            var j = [];
-            for (var k = 0; k < h.length; k++) {
-                if (h[k].value.playStatus) {
-                    j.push(h[k].value.playStatus);
+        value: function k() {
+            var l = this.getLog();
+            var m = [];
+            for (var n = 0; n < l.length; n++) {
+                if (l[n].value.playStatus) {
+                    m.push(l[n].value.playStatus);
                 }
             }
             this.clearLogData();
-            var l = this._rich360Instance;
-            var m = 0;
-            if (l && typeof l.view != 'undefined' && l.view != null) {
-                m = l.view;
+            var o = this._rich360Instance;
+            var p = 0;
+            if (o && typeof o.view != 'undefined' && o.view != null) {
+                p = o.view;
             }
-            var n = new XMLHttpRequest();
-            n.open('POST', this._options.credentials.api_server + '/user_auth/session_check/', true);
-            var o = new FormData();
-            o.append('device_id', getCookie(DCvi + '_device_id'));
-            o.append('user_id', getCookie(DCvi + '_user_id'));
-            o.append('content_id', this._options.credentials.content_id);
-            o.append('play_status', JSON.stringify(j));
-            o.append('user_agent', navigator.userAgent);
-            o.append('current_view_id', m);
-            n.send(o);
-            n.onload = function(r) {
-                if (n.readyState === 4 && n.status === 200) {
+            var q = new XMLHttpRequest();
+            q.open('POST', this._options.credentials.api_server + '/user_auth/session_check/', true);
+            var r = new FormData();
+            r.append('device_id', getCookie(DCvi + '_device_id'));
+            r.append('user_id', getCookie(DCvi + '_user_id'));
+            r.append('content_id', this._options.credentials.content_id);
+            r.append('play_status', JSON.stringify(m));
+            r.append('user_agent', navigator.userAgent);
+            r.append('current_view_id', p);
+            q.send(r);
+            q.onload = function(v) {
+                if (q.readyState === 4 && q.status === 200) {
                     try {
-                        var s = JSON.parse(n.responseText).Data;
-                        for (var t = 0; t < s.content.channels.length; t++) {
-                            var u = true;
+                        var w = JSON.parse(q.responseText).Data;
+                        for (var x = 0; x < w.content.channels.length; x++) {
+                            var y = true;
                             if (Ythc == 'sub') {
-                                u = false;
+                                y = false;
                             }
-                            if (s.content.channels[t].is_main_channel == u) {
-                                if (this._options.content_data.current_channel_id != s.content.channels[t].id) {
-                                    this._options.content_data = JSON.parse(JSON.stringify(s.content));
-                                    this._options.content_data.current_channel_id = s.content.channels[t].id;
-                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[t].hls_url);
+                            if (w.content.channels[x].is_main_channel == y) {
+                                if (this._options.content_data.current_channel_id != w.content.channels[x].id) {
+                                    this._options.content_data = JSON.parse(JSON.stringify(w.content));
+                                    this._options.content_data.current_channel_id = w.content.channels[x].id;
+                                    this._listener.trigger(RICH360_EVENTS.RICH360_SOURCE_CHANGE, this._options.content_data.channels[x].hls_url);
                                 }
                                 break;
                             }
                         }
-                        iCM(!!s.user.is_mute);
-                    } catch (v) {
-                        console.log(v);
+                        iCM(!!w.user.is_mute);
+                    } catch (A) {
+                        console.log(A);
                     }
                 }
             }.bind(this);
-            n.onloadend = function(r) {
-                if (n.status === 400 || n.status === 401) {
+            q.onloadend = function(v) {
+                if (q.status === 400 || q.status === 401) {
                     this._listener.trigger(RICH360_EVENTS.RICH360_ACCESS_DENIED, 'Authorization failed');
-                } else if (n.status === 403) {
+                } else if (q.status === 403) {
                     this._listener.trigger(RICH360_EVENTS.RICH360_LIVE_ENDED, 'Live ended');
                 }
             }.bind(this);
         }
     }]);
-    return a;
+    return e;
 }();
 var Rich360EventListener = function() {
     function a(b) {
@@ -1593,13 +1593,13 @@ var Rich360HlsWrapper = function() {
             this._isDummy = true;
         }
         this._config = _objectSpread(_objectSpread({}, c), {}, {
-            xhrSetup: function e(f, g) {
-                var h = g || '';
-                var i = h.indexOf('m3u8') > -1;
-                var j = h.indexOf('date_time') > -1;
-                if (h && !j && i) {
-                    g = AddParamtoUrl(g, 'date_time', new Date().getTime());
-                    f.open('GET', g, true);
+            xhrSetup: function f(g, h) {
+                var i = h || '';
+                var j = i.indexOf('m3u8') > -1;
+                var k = i.indexOf('date_time') > -1;
+                if (i && !k && j) {
+                    h = AddParamtoUrl(h, 'date_time', new Date().getTime());
+                    g.open('GET', h, true);
                 }
             }
         });
@@ -1732,7 +1732,11 @@ var Rich360HlsWrapper = function() {
     }, {
         key: 'isAutoQuality',
         value: function k() {
-            return this._isDummy ? false : this._hls.levelController.manualLevel == -1;
+            if (this._isDummy) {
+                return false;
+            } else {
+                return this._hls.levelController.manualLevel == -1;
+            }
         }
     }, {
         key: 'levels',
@@ -1751,7 +1755,11 @@ var Rich360HlsWrapper = function() {
     }, {
         key: 'currentLevel',
         get: function n() {
-            return this._isDummy ? 0 : this._hls.currentLevel;
+            if (this._isDummy) {
+                return 0;
+            } else {
+                return this._hls.currentLevel;
+            }
         },
         set: function o(p) {
             if (!this._isDummy) {
@@ -2072,9 +2080,9 @@ var Rich360 = function() {
             f.fragLoadingRetryDelay = 100;
             f.startFragPrefetch = true;
             f.renderTextTracksNatively = false;
-            f.xhrSetup = function(s, t) {
-                if (t.indexOf('.m3u8') === -1 && t.indexOf('.ts') === -1 && t.indexOf('.vtt') === -1 && t.indexOf('.webvtt') === -1 && t.indexOf('.key') === -1 && t.indexOf('.kmv') === -1) {
-                    s.withCredentials = true;
+            f.xhrSetup = function(q, r) {
+                if (r.indexOf('.m3u8') === -1 && r.indexOf('.ts') === -1 && r.indexOf('.vtt') === -1 && r.indexOf('.webvtt') === -1 && r.indexOf('.key') === -1 && r.indexOf('.kmv') === -1) {
+                    q.withCredentials = true;
                 }
             };
             if (this._options.use_multiview) {
@@ -2301,14 +2309,14 @@ var Rich360 = function() {
                         console.error(x.timeDictionary);
                         console.error('estPTS : ' + E + ' timePerSN : ' + D + ' smallestSN : ' + z + ' biggestSN : ' + A + ' newStartSN : ' + r.startSN + ' newStartPTS : ' + r.startPTS);
                     }
-                    var F = function(J) {
+                    var F = function(K) {
                         s.pause();
-                        var K = (s.currentTime - (w.currentTime - y)) * 1000;
+                        var L = (s.currentTime - (w.currentTime - y)) * 1000;
                         console.log('@@oldHLS.timeDictionary : ', x.timeDictionary);
                         console.log('@@timeDiff : ', y);
                         console.log('@@newVideo.currentTime : ', s.currentTime);
                         console.log('@@oldVideo.currentTime : ', w.currentTime);
-                        console.log('@@@ waitTime : ', K);
+                        console.log('@@@ waitTime : ', L);
                         setTimeout(function() {
                             s.volume = w.volume;
                             if (!this._options.content_data.use_vod) {
@@ -2337,27 +2345,27 @@ var Rich360 = function() {
                                 wait: false,
                                 wait_on: RICH360_WAIT_ON.RICH360_SEEK
                             });
-                        }.bind(this), K >= 0 ? K : 0);
+                        }.bind(this), L >= 0 ? L : 0);
                     }.bind(this);
                     s.addEventListener('seeked', F, {
                         once: true
                     });
                     s.volume = 0;
-                    var G = function J() {
+                    var G = function K() {
                         console.log('seekIfPossible');
-                        var K = s.buffered;
-                        var L = w.currentTime + 0.5 - y;
-                        console.log('targetTime : ' + L + ' = ' + w.currentTime + ' + 0.5 - ' + y);
-                        var M = 0;
-                        for (; M < K.length; M++) {
-                            console.log('start(' + M + ') : ' + K.start(M));
-                            console.log('end(' + M + ') : ' + K.end(M));
-                            if (K.start(M) <= L && L + 1 <= K.end(M)) {
-                                s.currentTime = L;
+                        var L = s.buffered;
+                        var M = w.currentTime + 0.5 - y;
+                        console.log('targetTime : ' + M + ' = ' + w.currentTime + ' + 0.5 - ' + y);
+                        var N = 0;
+                        for (; N < L.length; N++) {
+                            console.log('start(' + N + ') : ' + L.start(N));
+                            console.log('end(' + N + ') : ' + L.end(N));
+                            if (L.start(N) <= M && M + 1 <= L.end(N)) {
+                                s.currentTime = M;
                                 break;
                             }
                         }
-                        if (M != K.length) {
+                        if (N != L.length) {
                             console.log('clearInterval');
                             clearInterval(H);
                             clearTimeout(I);
@@ -2366,23 +2374,23 @@ var Rich360 = function() {
                     var H = setInterval(G, 100);
                     var I = setTimeout(function() {
                         console.warn('5 second limit');
-                        var K = s.buffered;
-                        var L = w.currentTime + 0.5 - y;
-                        var M = 0;
+                        var L = s.buffered;
+                        var M = w.currentTime + 0.5 - y;
                         var N = 0;
                         var O = 0;
-                        for (O = 0; O < K.length; O++) {
-                            if (K.start(O) > L) {
-                                M = K.start(O);
+                        var P = 0;
+                        for (P = 0; P < L.length; P++) {
+                            if (L.start(P) > M) {
+                                N = L.start(P);
                             }
-                            if (K.end(O) > N) {
-                                N = K.end(O);
+                            if (L.end(P) > O) {
+                                O = L.end(P);
                             }
                         }
-                        if (M) {
-                            s.currentTime = M + 0.5;
+                        if (N) {
+                            s.currentTime = N + 0.5;
                         } else {
-                            s.currentTime = N - 1;
+                            s.currentTime = O - 1;
                         }
                         console.log('clearInterval');
                         clearInterval(H);
@@ -2484,7 +2492,7 @@ var Rich360 = function() {
                         this.attachHlsListeners();
                         this._listener.trigger(RICH360_EVENTS.RICH360_QUALITY_CHANGE, this._hls.nextAutoLevel);
                     }
-                    this._video.addEventListener('loadedmetadata', function(s) {
+                    this._video.addEventListener('loadedmetadata', function(r) {
                         if (this._options.content_data.use_vod) {
                             this._video.currentTime = o;
                             this.setSubtitleTrack(this._subtitleManager._prevSubtitleTrack);
@@ -2943,8 +2951,10 @@ var Rich360 = function() {
                     }
                 }
                 return -1;
+            } else if (this._hls._hls) {
+                return this._hls._hls.subtitleTrack;
             } else {
-                return this._hls._hls ? this._hls._hls.subtitleTrack : -1;
+                return -1;
             }
         }
     }, {
@@ -3142,10 +3152,10 @@ var Rich360SubtitleManager = function() {
             if (g.length != h.length) {
                 return i;
             }
-            g.forEach(function(j) {
-                var k = h.indexOf(j);
-                if (k > -1) {
-                    h.splice(k, 1);
+            g.forEach(function(k) {
+                var l = h.indexOf(k);
+                if (l > -1) {
+                    h.splice(l, 1);
                 }
             });
             i = h.length == 0;
@@ -3156,10 +3166,10 @@ var Rich360SubtitleManager = function() {
         value: function g(h, i) {
             var j = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.15625, 0.3, 0.4, 0.7, 0.6, 0.9, 0.7, 0.2, 0.4, 0.4, 0.4, 0.6, 0.3, 0.4, 0.3, 0.5, 0.6, 0.55625, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.3, 0.3, 0.6, 0.6, 0.6, 0.6, 1.1, 0.8, 0.7, 0.8, 0.7234375, 0.7, 0.6109375, 0.8, 0.7234375, 0.3, 0.5, 0.8, 0.6, 0.834375, 0.7234375, 0.8, 0.7, 0.8, 0.8, 0.7, 0.8, 0.7234375, 0.8, 1.1, 0.8, 0.8, 0.8, 0.3, 0.5, 0.3, 0.6, 0.7, 0.334375, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5, 0.6, 0.6, 0.2234375, 0.3234375, 0.6, 0.2234375, 0.834375, 0.6, 0.6, 0.6, 0.6, 0.4, 0.5, 0.4, 0.6, 0.7, 0.9, 0.7, 0.7, 0.6, 0.5, 0.2609375, 0.5, 0.6];
             var k = 1.2;
-            return h.split('').map(function(m) {
-                return m.charCodeAt(0) < j.length ? j[m.charCodeAt(0)] + 0.1 : k;
-            }).reduce(function(m, n) {
-                return n + m;
+            return h.split('').map(function(l) {
+                return l.charCodeAt(0) < j.length ? j[l.charCodeAt(0)] + 0.1 : k;
+            }).reduce(function(l, m) {
+                return m + l;
             }) * i;
         }
     }, {
@@ -3173,13 +3183,13 @@ var Rich360SubtitleManager = function() {
                 if (this._cues.length) {
                     this.drawSubtitles();
                 } else if (this._player.getSubtitleTrack() != -1) {
-                    var i = new Date();
-                    if (this._bfSendSubTime.getTime() + 10000 < i) {
-                        var j = this._player.getSubtitleTrack();
+                    var k = new Date();
+                    if (this._bfSendSubTime.getTime() + 10000 < k) {
+                        var l = this._player.getSubtitleTrack();
                         this._player.setSubtitleTrack(-1);
-                        this._bfSendSubTime = i;
+                        this._bfSendSubTime = k;
                         setTimeout(function() {
-                            this._player.setSubtitleTrack(j);
+                            this._player.setSubtitleTrack(l);
                         }.bind(this), 100);
                     }
                 }
@@ -3317,8 +3327,8 @@ var MultiViewDisplay = function() {
                             break;
                         }
                     }
-                } catch (x) {
-                    f.e(x);
+                } catch (w) {
+                    f.e(w);
                 } finally {
                     f.f();
                 }
@@ -3422,24 +3432,24 @@ var MultiViewDisplay = function() {
                     o = true;
                 }
                 if (!j.paused && !j.ended || o) {
-                    k.forEach(function(u, v) {
-                        var w = i._multiviewDivArr[v];
-                        var z = k.find(function(I) {
-                            return I.singleview_id === v;
+                    k.forEach(function(v, w) {
+                        var z = i._multiviewDivArr[w];
+                        var A = k.find(function(J) {
+                            return J.singleview_id === w;
                         });
-                        i.selectedMultiviewCanvas(v);
-                        if (z == null) {
+                        i.selectedMultiviewCanvas(w);
+                        if (A == null) {
                             return;
                         }
-                        var A = z.x;
-                        var B = z.y;
-                        var C = z.width;
-                        var D = z.height;
-                        var E = j.videoWidth;
-                        var F = j.videoHeight;
-                        var G = w.offsetWidth;
-                        var H = w.offsetHeight;
-                        l.drawImage(j, Math.round(A * E), Math.round(B * F), Math.round(C * E), Math.round(D * F), 0, H * v + m * v, G, H);
+                        var B = A.x;
+                        var C = A.y;
+                        var D = A.width;
+                        var E = A.height;
+                        var F = j.videoWidth;
+                        var G = j.videoHeight;
+                        var H = z.offsetWidth;
+                        var I = z.offsetHeight;
+                        l.drawImage(j, Math.round(B * F), Math.round(C * G), Math.round(D * F), Math.round(E * G), 0, I * w + m * w, H, I);
                     }.bind(this));
                     var q = this._multiviewCanvas[0];
                     var r = this._doubleBufferCanvas[0];
@@ -3932,33 +3942,33 @@ Chat.Manager = function() {
                     }
                 }
                 t.addListener({
-                    status: function W(X) {
-                        console.log('[STATUS: ' + X.category + ']', 'connected to channels: ' + X.affectedChannels);
-                        if (X.category == 'PNConnectedCategory') {
+                    status: function V(W) {
+                        console.log('[STATUS: ' + W.category + ']', 'connected to channels: ' + W.affectedChannels);
+                        if (W.category == 'PNConnectedCategory') {
                             ChatFilter.loadChatFilterData();
                             Chat.Manager.initChatInterval();
                         }
                     },
-                    message: function X(Y) {
-                        if (Y.channel == l) {
-                            Chat.Ui.updateNotice(Y.message.update, Y.timetoken, Y.message.entry);
-                        } else if (Y.channel == m) {
-                            Chat.Ui.recvCtrlChMsg(Y.message.update);
+                    message: function W(X) {
+                        if (X.channel == l) {
+                            Chat.Ui.updateNotice(X.message.update, X.timetoken, X.message.entry);
+                        } else if (X.channel == m) {
+                            Chat.Ui.recvCtrlChMsg(X.message.update);
                         } else {
-                            var Z = Y.message.update.split(CHAT_MSG_SEPARATOR);
-                            for (var a0 = 0; a0 < Z.length; a0++) {
-                                var a1 = Z[a0].split(CHAT_USERID_SEPARATOR)[0];
-                                if (o == a1) {
+                            var Y = X.message.update.split(CHAT_MSG_SEPARATOR);
+                            for (var Z = 0; Z < Y.length; Z++) {
+                                var a0 = Y[Z].split(CHAT_USERID_SEPARATOR)[0];
+                                if (o == a0) {
                                     continue;
                                 }
-                                if (Chat.Manager.checkArtistUser(a1)) {
-                                    Chat.Ui.displayMessage(Y.message.update, Y.timetoken, Y.message.entry);
+                                if (Chat.Manager.checkArtistUser(a0)) {
+                                    Chat.Ui.displayMessage(X.message.update, X.timetoken, X.message.entry);
                                 } else {
-                                    r.push(Z[a0]);
+                                    r.push(Y[Z]);
                                 }
                             }
                             if (r.length) {
-                                Chat.Manager.displayMessageItv(parseInt(Y.timetoken));
+                                Chat.Manager.displayMessageItv(parseInt(X.timetoken));
                             }
                         }
                     }
@@ -3976,8 +3986,8 @@ Chat.Manager = function() {
             var R = d / r.length;
             s = setInterval(function() {
                 if (r.length) {
-                    var T = r[0].split(CHAT_USERID_SEPARATOR)[0];
-                    Chat.Ui.displayMessage(r[0], Q, T);
+                    var U = r[0].split(CHAT_USERID_SEPARATOR)[0];
+                    Chat.Ui.displayMessage(r[0], Q, U);
                     Q = parseInt(Q) + parseInt(R * 1000 * 10);
                     r.splice(0, 1);
                 }
@@ -4027,10 +4037,10 @@ Chat.Manager = function() {
                             entry: T,
                             update: U
                         }
-                    }, function(a1, a2) {
-                        if (a1.error) {} else if (Chat.Manager.checkArtistUser(o) && !X) {
-                            if (a2) {
-                                Chat.Ui.displayMessage(U, a2.timetoken, o);
+                    }, function(a5, a6) {
+                        if (a5.error) {} else if (Chat.Manager.checkArtistUser(o) && !X) {
+                            if (a6) {
+                                Chat.Ui.displayMessage(U, a6.timetoken, o);
                             }
                             X = true;
                         }
@@ -4042,23 +4052,19 @@ Chat.Manager = function() {
                     PartitionKey: V[0],
                     StreamName: 'KINESIS_CHAT'
                 };
-                u.putRecord(Z, function(a2, a3) {
-                    if (a2) {
-                        console.log(a2, a2.stack);
+                u.putRecord(Z, function(a5, a6) {
+                    if (a5) {
+                        console.log(a5, a5.stack);
                     } else {
-                        console.log(a3);
-                        var a4 = new Date();
-                        Chat.Ui.displayMessage(U, a4.getTime() * 10000);
+                        console.log(a6);
+                        var a7 = new Date();
+                        Chat.Ui.displayMessage(U, a7.getTime() * 10000);
                     }
                 });
             }
         },
         checkOperationalUser: function T(U) {
-            if (v.operation_account === U) {
-                return true;
-            } else {
-                return false;
-            }
+            return v.operation_account === U ? true : false;
         },
         checkAdminUser: function U(V) {
             if (v.admin_account === V) {
@@ -4176,14 +4182,14 @@ Chat.Ui = function() {
                 }
                 var chatAnchor = $('#chatAnchor');
                 var chatList = $('#chatList');
-                var o = function v() {
+                var o = function w() {
                     return Math.ceil(chatList.scrollTop() + chatList.height());
                 };
-                var p = function w() {
-                    var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : o();
-                    return x < chatList[0].scrollHeight;
+                var p = function x() {
+                    var y = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : o();
+                    return y < chatList[0].scrollHeight;
                 };
-                var q = function x() {
+                var q = function y() {
                     chatAnchor.css('display', 'block');
                     b = true;
                 };
@@ -4260,9 +4266,9 @@ Chat.Ui = function() {
                 $('#chat-reset-btn').on('click', function() {
                     return $('.chat-input-textarea').val('');
                 });
-                $('.chat-input-textarea').on('keydown', function(n) {
-                    if (n.keyCode == 13 && !n.shiftKey) {
-                        n.preventDefault();
+                $('.chat-input-textarea').on('keydown', function(o) {
+                    if (o.keyCode == 13 && !o.shiftKey) {
+                        o.preventDefault();
                         $('#chat-send-btn').click();
                     }
                 });
@@ -4288,12 +4294,12 @@ Chat.Ui = function() {
                     return;
                 }
                 var artistChatList = $('#artistChatList');
-                var p = function r() {
+                var p = function s() {
                     return Math.ceil(artistChatList.scrollTop() + artistChatList.height());
                 };
-                var q = function s() {
-                    var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : p();
-                    return t >= artistChatList[0].scrollHeight;
+                var q = function t() {
+                    var u = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : p();
+                    return u >= artistChatList[0].scrollHeight;
                 };
                 if (q()) {
                     f = true;
@@ -5105,17 +5111,17 @@ function request_to_server(a, b, c, d, e) {
                     }
                 } else {
                     try {
-                        var k = JSON.parse(f.responseText);
-                        e(k, f.status);
-                    } catch (p) {
+                        var l = JSON.parse(f.responseText);
+                        e(l, f.status);
+                    } catch (m) {
                         e(f.responseText, f.status);
                     }
                 }
             }
         } else {}
     };
-    f.ontimeout = function(k) {
-        console.log(k);
+    f.ontimeout = function(l) {
+        console.log(l);
         alertPopup('fail', 'Request timeout', 'Please try again', 'OK', function() {
             location.reload();
         });
@@ -5292,7 +5298,11 @@ function checkMobileAndTablet() {
         } else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            return !c ? isIpadOS() : c;
+            if (!c) {
+                return isIpadOS();
+            } else {
+                return c;
+            }
         }
     }
 }
@@ -6282,9 +6292,5 @@ var EVENT_SELELCTOR = {
 var AddParamtoUrl = function AddParamtoUrl(a, b, c) {
     var d = new RegExp('([?&])' + b + '=.*?(&|$)', 'i');
     var e = a.indexOf('?') !== -1 ? '&' : '?';
-    if (a.match(d)) {
-        return a.replace(d, '$1' + b + '=' + c + '$2');
-    } else {
-        return a + e + b + '=' + c;
-    }
+    return a.match(d) ? a.replace(d, '$1' + b + '=' + c + '$2') : a + e + b + '=' + c;
 };

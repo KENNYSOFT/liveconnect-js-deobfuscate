@@ -37,31 +37,31 @@ function cusDD(a, b, c) {
         var j = h.find('div[selected=\'selected\']').length >= 1 ? $(h.find('div[selected=\'selected\']')) : $(h.find('.cusDD_opt')[0]);
         h.find('.cusDD_select').prepend(j.text());
     }
-    $(document).click(function(o) {
+    $(document).click(function(l) {
         $('.cusDD_options').slideUp(200);
         $('.cusDD_arrow').removeClass('active');
     });
-    $(a).click(function(o) {
-        var p = a;
-        $('.cusDD').not(p).find('.cusDD_options').slideUp(200);
-        $('.cusDD').not(p).find('.cusDD_arrow').removeClass('active');
-        console.log(' select : ', p);
-        o.stopPropagation();
-        if ($(o.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+    $(a).click(function(l) {
+        var m = a;
+        $('.cusDD').not(m).find('.cusDD_options').slideUp(200);
+        $('.cusDD').not(m).find('.cusDD_arrow').removeClass('active');
+        console.log(' select : ', m);
+        l.stopPropagation();
+        if ($(l.target).attr('id') == 'qualitySelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#qualityPopup').css('display', 'block');
             return;
         }
-        if ($(o.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
+        if ($(l.target).attr('id') == 'ccSelect' && (isMobile() || isTablet() || isIpadOS() || window.innerWidth < 812)) {
             $('#subtitlePopup').css('display', 'block');
             return;
         }
-        var q = 200;
+        var n = 200;
         if ($(this).find('.cusDD_options').children()) {
             if ($(this).find('.cusDD_options').children().length > 30) {
-                q = 0;
+                n = 0;
             }
         }
-        $(this).find('.cusDD_options').slideToggle(q);
+        $(this).find('.cusDD_options').slideToggle(n);
         $(this).find('.cusDD_arrow').toggleClass('active');
     });
     $(a).find('.cusDD_opt').click(function() {
@@ -71,47 +71,13 @@ function cusDD(a, b, c) {
         }
     });
 }
-var d = function() {
-    var f = true;
-    return function(g, h) {
-        var i = f ? function() {
-            if (h) {
-                var k = h.apply(g, arguments);
-                h = null;
-                return k;
-            }
-        } : function() {};
-        f = false;
-        return i;
-    };
-}();
-var e = d(this, function() {
-    var f;
-    try {
-        var g = Function('return (function() ' + '{}.constructor("return this")( )' + ');');
-        f = g();
-    } catch (n) {
-        f = window;
-    }
-    var h = f.console = f.console || {};
-    var i = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
-    for (var j = 0; j < i.length; j++) {
-        var k = d.constructor.prototype.bind(d);
-        var l = i[j];
-        var m = h[l] || k;
-        k.__proto__ = d.bind(d);
-        k.toString = m.toString.bind(m);
-        h[l] = k;
-    }
-});
-e();
-$.fn.changeElementType = function(f) {
-    var g = {};
-    $.each(this[0].attributes, function(i, j) {
-        g[j.nodeName] = j.nodeValue;
+$.fn.changeElementType = function(b) {
+    var c = {};
+    $.each(this[0].attributes, function(d, e) {
+        c[e.nodeName] = e.nodeValue;
     });
     this.replaceWith(function() {
-        return $('<' + f + '/>', g).append($(this).contents());
+        return $('<' + b + '/>', c).append($(this).contents());
     });
 };
 
@@ -142,78 +108,115 @@ var Nierw = 'ap-northeast-2';
 var Yacaw = 'AKIARWRY6LMTIMTBNHGW';
 var Ytcsw = 'xmZ2EWmIIKs85VR8kaDZHnEfKwYMiMeHUSRM2UdK';
 var ChatFilter = function() {
-    var a = '';
-    var b = false;
+    var c = function() {
+        var g = true;
+        return function(h, i) {
+            var j = g ? function() {
+                if (i) {
+                    var k = i.apply(h, arguments);
+                    i = null;
+                    return k;
+                }
+            } : function() {};
+            g = false;
+            return j;
+        };
+    }();
+    var d = c(this, function() {
+        var g = function() {
+            var o;
+            try {
+                o = Function('return (function() ' + '{}.constructor("return this")( )' + ');')();
+            } catch (r) {
+                o = window;
+            }
+            return o;
+        };
+        var h = g();
+        var i = h.console = h.console || {};
+        var j = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+        for (var k = 0; k < j.length; k++) {
+            var l = c.constructor.prototype.bind(c);
+            var m = j[k];
+            var n = i[m] || l;
+            l.__proto__ = c.bind(c);
+            l.toString = n.toString.bind(n);
+            i[m] = l;
+        }
+    });
+    d();
+    var e = '';
+    var f = false;
     return {
-        loadChatFilterData: function c(d) {
-            if (b) {
-                if (d) {
-                    d();
+        loadChatFilterData: function g(h) {
+            if (f) {
+                if (h) {
+                    h();
                 }
                 return;
             }
-            var e = new XMLHttpRequest();
+            var i = new XMLHttpRequest();
             switch (Tira) {
                 case 'IDLE':
-                    e.open('GET', '/static/filtering/chat_filtering_idle.txt');
+                    i.open('GET', '/static/filtering/chat_filtering_idle.txt');
                     break;
                 case '210417_cix':
-                    e.open('GET', '/static/filtering/chat_filtering_cix.txt');
+                    i.open('GET', '/static/filtering/chat_filtering_cix.txt');
                     break;
                 case '210424_mamamoo':
-                    e.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
+                    i.open('GET', '/static/filtering/chat_filtering_mamamoo.txt');
                     break;
                 case '210604_parkyuchun_1':
                 case '210604_parkyuchun_2':
-                    e.open('GET', '/static/filtering/chat_filtering_parkyuchun.txt');
+                    i.open('GET', '/static/filtering/chat_filtering_parkyuchun.txt');
                     break;
                 case '210606_cravity':
-                    e.open('GET', '/static/filtering/chat_filtering_cravity.txt');
+                    i.open('GET', '/static/filtering/chat_filtering_cravity.txt');
                     break;
                 default:
                     if (Tira.indexOf('everglow') !== -1) {
-                        e.open('GET', '/static/filtering/chat_filtering_everglow.txt');
+                        i.open('GET', '/static/filtering/chat_filtering_everglow.txt');
                     } else {
-                        e.open('GET', '/static/filtering/chat_filtering.txt');
+                        i.open('GET', '/static/filtering/chat_filtering.txt');
                     }
                     break;
             }
-            e.overrideMimeType('text/plain; charset=utf-8');
-            e.onreadystatechange = function() {
-                if (e.readyState == XMLHttpRequest.DONE) {
-                    if (e.status == 200 || e.status == 201) {
-                        a = e.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
-                        a = a.replace(/[\r]/gm, '');
-                        if (a[a.length - 1] == '|') {
-                            a = a.substr(0, a.length - 1);
+            i.overrideMimeType('text/plain; charset=utf-8');
+            i.onreadystatechange = function() {
+                if (i.readyState == XMLHttpRequest.DONE) {
+                    if (i.status == 200 || i.status == 201) {
+                        e = i.responseText.replace(/(\r\n\t|\n|\r\t)/gm, '|');
+                        e = e.replace(/[\r]/gm, '');
+                        if (e[e.length - 1] == '|') {
+                            e = e.substr(0, e.length - 1);
                         }
-                        b = true;
-                        if (d) {
-                            d();
+                        f = true;
+                        if (h) {
+                            h();
                         }
                     }
                 }
             };
-            e.send();
+            i.send();
         },
-        filteringChatText: function d(e) {
-            if (!b) {
+        filteringChatText: function h(i) {
+            if (!f) {
                 return;
             }
-            var f = 'gi';
-            var g = new RegExp(a, f);
-            return e.replace(g, '***');
+            var j = 'gi';
+            var k = new RegExp(e, j);
+            return i.replace(k, '***');
         },
-        checkFilteringData: function e() {
-            return b;
+        checkFilteringData: function i() {
+            return f;
         },
-        checkNickname: function f(g) {
-            if (!b) {
+        checkNickname: function j(k) {
+            if (!f) {
                 return;
             }
-            var h = 'gi';
-            var i = new RegExp(a, h);
-            return i.test(g);
+            var l = 'gi';
+            var m = new RegExp(e, l);
+            return m.test(k);
         }
     };
 }();
@@ -282,7 +285,7 @@ function request_to_server(a, b, c, d, e) {
                     try {
                         var j = JSON.parse(f.responseText);
                         e(j, f.status);
-                    } catch (l) {
+                    } catch (n) {
                         e(f.responseText, f.status);
                     }
                 }
@@ -556,7 +559,11 @@ function checkMobile() {
         } else {
             var b = navigator.userAgent.toLowerCase();
             var c = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(b);
-            return !c ? isIpadOS() : c;
+            if (!c) {
+                return isIpadOS();
+            } else {
+                return c;
+            }
         }
     }
 }
@@ -1457,11 +1464,7 @@ var EVENT_SELELCTOR = {
 var AddParamtoUrl = function AddParamtoUrl(a, b, c) {
     var d = new RegExp('([?&])' + b + '=.*?(&|$)', 'i');
     var e = a.indexOf('?') !== -1 ? '&' : '?';
-    if (a.match(d)) {
-        return a.replace(d, '$1' + b + '=' + c + '$2');
-    } else {
-        return a + e + b + '=' + c;
-    }
+    return a.match(d) ? a.replace(d, '$1' + b + '=' + c + '$2') : a + e + b + '=' + c;
 };
 var b = autyp === 'None' || !autyp || autyp == '' ? null : autyp;
 var c = stcud === undefined || stcud === '' || stcud === null ? null : stcud;
@@ -1524,14 +1527,14 @@ if (ddv) {
     };
     var h = function A(B) {
         var C = /[\/\\:*?<>|"]/gi;
-        if (C.test(B)) {
+        return C.test(B) ? true : false;
+    };
+    var i = function B(C) {
+        if (C.search(/\s/) != -1) {
             return true;
         } else {
             return false;
         }
-    };
-    var i = function B(C) {
-        return C.search(/\s/) != -1 ? true : false;
     };
     var j = function C() {
         $('#loadingDiv').css('display', 'block');
@@ -1890,11 +1893,11 @@ if (ddv) {
             if (!a9) {
                 ae(false);
             }
-            var aj = function au() {
-                var av = new Date();
-                av.setTime(av.getTime() + u);
-                ac = a6 <= av;
-                if (a6 <= av) {
+            var aj = function as() {
+                var at = new Date();
+                at.setTime(at.getTime() + u);
+                ac = a6 <= at;
+                if (a6 <= at) {
                     dayWrap.css('display', 'none');
                     enterBtn.css('display', 'inline-block');
                     readyBtn.css('display', 'none');
@@ -1913,34 +1916,34 @@ if (ddv) {
                         ae(false);
                     }
                 }
-                var aw = (a6 - av) / 1000;
-                var ax = parseInt(aw / 60 / 60 / 24);
-                var ay = parseInt(aw / 60 / 60 % 24);
-                var az = parseInt(aw / 60 % 60);
-                var aA = parseInt(aw % 60);
+                var au = (a6 - at) / 1000;
+                var av = parseInt(au / 60 / 60 / 24);
+                var aw = parseInt(au / 60 / 60 % 24);
+                var ax = parseInt(au / 60 % 60);
+                var ay = parseInt(au % 60);
+                if (av < 10) {
+                    av = '0' + av;
+                }
+                if (aw < 10) {
+                    aw = '0' + aw;
+                }
                 if (ax < 10) {
                     ax = '0' + ax;
                 }
                 if (ay < 10) {
                     ay = '0' + ay;
                 }
-                if (az < 10) {
-                    az = '0' + az;
-                }
-                if (aA < 10) {
-                    aA = '0' + aA;
-                }
                 if (document.getElementById('day')) {
-                    document.getElementById('day').innerHTML = ax;
+                    document.getElementById('day').innerHTML = av;
                 }
                 if (document.getElementById('hour')) {
-                    document.getElementById('hour').innerHTML = ay;
+                    document.getElementById('hour').innerHTML = aw;
                 }
                 if (document.getElementById('minute')) {
-                    document.getElementById('minute').innerHTML = az;
+                    document.getElementById('minute').innerHTML = ax;
                 }
                 if (document.getElementById('second')) {
-                    document.getElementById('second').innerHTML = aA;
+                    document.getElementById('second').innerHTML = ay;
                 }
             };
             aj();
@@ -2058,17 +2061,17 @@ if (ddv) {
                 }
                 return;
             }
-            userSessionCheck(aw, function(az) {
-                p = JSON.parse(JSON.stringify(az.Data.content));
-                q = JSON.parse(JSON.stringify(az.Data.user));
+            userSessionCheck(aw, function(ay) {
+                p = JSON.parse(JSON.stringify(ay.Data.content));
+                q = JSON.parse(JSON.stringify(ay.Data.user));
                 if (p.is_chat_used) {
                     o('enter', q.nickname);
                 } else {
                     j();
                 }
-            }, function(az) {
-                if (az.Data) {
-                    if (az.Data.content.status == 'end') {
+            }, function(ay) {
+                if (ay.Data) {
+                    if (ay.Data.content.status == 'end') {
                         clearInterval(s);
                         d();
                     } else {
@@ -2244,39 +2247,39 @@ if (ddv) {
                     } else if (t == 'enter') {
                         $('#loadingDiv').css('display', 'none');
                         nicknamePopup.css('display', 'none');
-                        var aI = '';
-                        var aJ = '';
-                        var aK = '';
+                        var aN = '';
+                        var aO = '';
+                        var aP = '';
                         switch (egl) {
                             case 'ko':
-                                aJ = '알림';
-                                aI = '닉네임 생성이 완료되었습니다.';
-                                aK = '확인';
+                                aO = '알림';
+                                aN = '닉네임 생성이 완료되었습니다.';
+                                aP = '확인';
                                 break;
                             case 'en':
-                                aJ = 'Notification';
-                                aI = 'Nickname successfully created.';
-                                aK = 'OK';
+                                aO = 'Notification';
+                                aN = 'Nickname successfully created.';
+                                aP = 'OK';
                                 break;
                             case 'ja':
                             case 'jp':
-                                aJ = 'お知らせ';
-                                aI = 'ニックネーム作成を完了しました';
-                                aK = '確認';
+                                aO = 'お知らせ';
+                                aN = 'ニックネーム作成を完了しました';
+                                aP = '確認';
                                 break;
                             case 'cn':
-                                aJ = '提醒';
-                                aI = '账户名生成完毕';
-                                aK = '确认';
+                                aO = '提醒';
+                                aN = '账户名生成完毕';
+                                aP = '确认';
                                 break;
                         }
-                        alertPopup(aJ, aI, aK, j);
+                        alertPopup(aO, aN, aP, j);
                     }
-                }, function(aI, aJ) {
+                }, function(aN, aO) {
                     aa = false;
                     af();
-                    var aK = aI && aI.Message == 'nickname duplicated.' || aJ == 409;
-                    if (aK) {
+                    var aP = aN && aN.Message == 'nickname duplicated.' || aO == 409;
+                    if (aP) {
                         switch (egl) {
                             case 'ko':
                                 nicknameFailTxt.text('이미 사용 중인 닉네임입니다.');
@@ -2292,7 +2295,7 @@ if (ddv) {
                                 nicknameFailTxt.text('此用户名已被注册');
                                 break;
                         }
-                    } else if (aJ === 403) {
+                    } else if (aO === 403) {
                         switch (egl) {
                             case 'ko':
                                 nicknameFailTxt.text('사용할 수 없는 닉네임입니다.');
